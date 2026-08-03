@@ -2,6 +2,9 @@
 
 > 归档于 llm-test 项目 | 2026-08 | 硬件: 2×8 RTX PRO 6000 Blackwell
 
+> 💡 **完整压测数据见 [deepseek-v4-pro/docs/benchmark.md](deepseek-v4-pro/docs/benchmark.md)**
+> (含 ITL/MTP接受率/PC命中率, 终极版 bench_ultimate.py 测得)
+
 ## 一、测试环境
 
 | 项目 | 配置 |
