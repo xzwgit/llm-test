@@ -2,38 +2,52 @@
 
 > 基于 2×8 RTX PRO 6000 (96GB, SM120) + DP2 + MTP 实测得出
 
-## 关键参数
+## max-num-batched-tokens (prefill 批量)
 
-### max-num-batched-tokens (prefill 批量)
+**含义**: 单次 forward (前向推理) 能处理的最大 token 数。与时间无关, 不是"每秒"。
+vLLM 推理循环每个 step 打包 ≤此值的 token 送 GPU 计算。
 
-**作用**: 每次 forward 最多处理的 token 数 (prefill + decode 合计)。
-影响长输入的 prefill 分块次数和 TTFT。
+**主要影响 prefill (输入)**, 不影响 decode (输出):
+- prefill: 一次吃 N 个 token, 超了就分块
+- decode: 每 seq 每 step 只 1 token, 占用极小
 
-**默认值**: 2048 (vLLM 0.26 SchedulerConfig 默认)
+**必须有上限**: 长输入一次 prefill 会爆显存 (激活峰值)。
 
-**推荐值**: `--max-num-batched-tokens 8192`
+### 默认值 vs 推荐值
 
-#### 不同值对长输入的影响
+- **默认**: 2048 (vLLM 0.26 SchedulerConfig)
+- **推荐**: `--max-num-batched-tokens 8192`
 
-| max-num-batched-tokens | 32K输入 prefill 次数 | 预期 TTFT |
+### 各输入长度的 prefill 次数 (实测 token 数)
+
+实测 prompt token 数 (DeepSeek-V4-Pro tokenizer):
+| 脚本 | prompt token | @2048(默认) | @8192(推荐) |
+|---|---|---|---|
+| 4K输入 (×12) | 673 | 1 次 | 1 次 (无变化) |
+| 16K输入 (×125) | 7001 | **4 次** | **1 次** |
+| 32K输入 (×255) | 14281 | **7 次** | **2 次** |
+| 32K32k (×2400) | 24001 | 12 次 | 3 次 |
+
+**结论**:
+- 短输入 (≤4K, <2048 token): 调不调无区别 (都 1 次 prefill)
+- 16K 输入: 4 次 → 1 次, TTFT 明显改善
+- 32K 输入: 7 次 → 2 次, TTFT 减半左右
+
+### 选择依据
+
+| 值 | 适用 | 风险 |
 |---|---|---|
-| 2048 (默认) | 7 次 | ~4.1s |
-| **8192 (推荐)** | **2 次** | **~1.5s** |
-| 16384 (激进) | 1 次 | ~0.8s |
+| 2048 (默认) | 仅短输入 (≤4K) | 长输入 TTFT 偏高 |
+| **8192 (推荐)** | 通用, 长输入 TTFT 改善 | 激活峰值可控 (数 GB) |
+| 16384 (激进) | 追求极致 TTFT | 显存余量紧张时可能 prefill OOM |
 
-#### 选择依据
+### 注意
 
-- **8192 (推荐)**: 长输入 TTFT 减半, 激活内存峰值可控 (数 GB 内)
-- **16384 (激进)**: TTFT 最优, 但激活内存峰值高, 显存余量紧张时可能 prefill OOM
-- **2048 (默认)**: 短输入 (≤4K) 够用, 不用改; 长输入 TTFT 偏高
+- 当前显存余量 ~1GB/卡 (gpu-memory-utilization 0.95), 激进值 (16384) 有 OOM 风险
+- 此参数只影响 prefill 分块, 不限制输出长度 (输出受 max_tokens / max-model-len 管)
+- 改此参数需重启 vllm (运行中改不了)
 
-#### 注意
-
-- 显存余量紧张时 (gpu-memory-utilization 0.95 下每卡仅剩 ~1GB), 激进值 (16384) 有 prefill OOM 风险
-- 短输入场景 (≤4K) 调此参数收益不大 (2048 已能一次 prefill 完)
-- 此参数只影响 prefill 分块, 不影响 decode 并发上限 (decode 每 step 每 seq 1 token)
-
-### 其他参数 (当前配置, 已验证)
+## 其他参数 (当前配置, 已验证)
 
 | 参数 | 值 | 说明 |
 |---|---|---|
