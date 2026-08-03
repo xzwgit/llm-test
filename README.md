@@ -12,7 +12,6 @@ llm-test/
 │   ├── bench_scripts/  # 可复用的压测脚本
 │   ├── patch/          # SM120 必需补丁
 │   └── logs/           # 历史运行日志
-├── qwen3-test/        # Qwen3.6-27B 脚本分析与优化 (2026-08)
 ├── _template/          # 新测试模板 (后续加测试参考)
 └── README.md
 ```
@@ -22,7 +21,6 @@ llm-test/
 | 项目 | 状态 | 日期 | 说明 |
 |---|---|---|---|
 | [deepseek-v4-pro](deepseek-v4-pro/) | ✅ 完成 | 2026-08 | DP2+MTP 部署, 多上下文压测 |
-| [qwen3-test](qwen3-test/) | 📝 分析 | 2026-08 | 启动脚本优化 + 压测脚本改进 |
 
 ## 如何新增测试
 
