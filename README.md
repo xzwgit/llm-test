@@ -7,7 +7,8 @@ LLM 部署与性能测试归档。每个子目录是一个独立测试项目。
 ```
 llm-test/
 ├── deepseek-v4-pro/    # DeepSeek-V4-Pro 部署与压测 (2026-08)
-│   ├── docs/           # 压测报告 + 配置说明
+│   ├── docs/           # 压测报告 + 调优建议 + 配置说明
+│   ├── scripts/        # 启动脚本 (start_server01/02.sh, 含 max-num-batched-tokens 优化)
 │   ├── bench_scripts/  # 可复用的压测脚本
 │   ├── patch/          # SM120 必需补丁
 │   └── logs/           # 历史运行日志
