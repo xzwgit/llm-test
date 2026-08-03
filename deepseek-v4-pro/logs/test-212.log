@@ -1,0 +1,450 @@
+-+-[10001:00]-+-01.0-[0a]----00.0  Samsung Electronics Co Ltd NVMe SSD Controller PM9A1/PM9A3/980PRO
+ |            +-03.0-[0b]----00.0  Samsung Electronics Co Ltd NVMe SSD Controller PM9A1/PM9A3/980PRO
+ |            +-05.0-[0c]----00.0  FADU Inc. Device 4081
+ |            \-07.0-[0d]----00.0  FADU Inc. Device 4081
+ +-[10000:80]-+-01.0-[81]----00.0  Mellanox Technologies MT2910 Family [ConnectX-7]
+ |            +-03.0-[82]--
+ |            +-05.0-[83]--
+ |            \-07.0-[84]--
+ +-[0000:ff]-+-00.0  Intel Corporation Device 324c
+ |           +-00.1  Intel Corporation Device 324c
+ |           +-00.2  Intel Corporation Device 324c
+ |           +-00.3  Intel Corporation Device 324c
+ |           +-00.4  Intel Corporation Device 324c
+ |           +-00.5  Intel Corporation Device 324c
+ |           +-00.6  Intel Corporation Device 324c
+ |           +-00.7  Intel Corporation Device 324c
+ |           +-01.0  Intel Corporation Device 324c
+ |           +-01.1  Intel Corporation Device 324c
+ |           +-01.2  Intel Corporation Device 324c
+ |           +-01.3  Intel Corporation Device 324c
+ |           +-01.4  Intel Corporation Device 324c
+ |           +-01.5  Intel Corporation Device 324c
+ |           +-01.6  Intel Corporation Device 324c
+ |           +-01.7  Intel Corporation Device 324c
+ |           +-02.0  Intel Corporation Device 324c
+ |           +-02.1  Intel Corporation Device 324c
+ |           +-02.2  Intel Corporation Device 324c
+ |           +-02.3  Intel Corporation Device 324c
+ |           +-02.4  Intel Corporation Device 324c
+ |           +-02.5  Intel Corporation Device 324c
+ |           +-02.6  Intel Corporation Device 324c
+ |           +-02.7  Intel Corporation Device 324c
+ |           +-03.0  Intel Corporation Device 324c
+ |           +-03.1  Intel Corporation Device 324c
+ |           +-03.2  Intel Corporation Device 324c
+ |           +-03.3  Intel Corporation Device 324c
+ |           +-03.4  Intel Corporation Device 324c
+ |           +-03.5  Intel Corporation Device 324c
+ |           +-03.6  Intel Corporation Device 324c
+ |           +-03.7  Intel Corporation Device 324c
+ |           +-04.0  Intel Corporation Device 324c
+ |           +-04.1  Intel Corporation Device 324c
+ |           +-04.2  Intel Corporation Device 324c
+ |           +-04.3  Intel Corporation Device 324c
+ |           +-04.4  Intel Corporation Device 324c
+ |           +-04.5  Intel Corporation Device 324c
+ |           +-04.6  Intel Corporation Device 324c
+ |           +-04.7  Intel Corporation Device 324c
+ |           +-05.0  Intel Corporation Device 324c
+ |           +-05.1  Intel Corporation Device 324c
+ |           +-05.2  Intel Corporation Device 324c
+ |           +-05.3  Intel Corporation Device 324c
+ |           +-05.4  Intel Corporation Device 324c
+ |           +-05.5  Intel Corporation Device 324c
+ |           +-05.6  Intel Corporation Device 324c
+ |           +-05.7  Intel Corporation Device 324c
+ |           +-06.0  Intel Corporation Device 324c
+ |           +-06.1  Intel Corporation Device 324c
+ |           +-06.2  Intel Corporation Device 324c
+ |           +-06.3  Intel Corporation Device 324c
+ |           +-0a.0  Intel Corporation Device 324d
+ |           +-0a.1  Intel Corporation Device 324d
+ |           +-0a.2  Intel Corporation Device 324d
+ |           +-0a.3  Intel Corporation Device 324d
+ |           +-0a.4  Intel Corporation Device 324d
+ |           +-0a.5  Intel Corporation Device 324d
+ |           +-0a.6  Intel Corporation Device 324d
+ |           +-0a.7  Intel Corporation Device 324d
+ |           +-0b.0  Intel Corporation Device 324d
+ |           +-0b.1  Intel Corporation Device 324d
+ |           +-0b.2  Intel Corporation Device 324d
+ |           +-0b.3  Intel Corporation Device 324d
+ |           +-0b.4  Intel Corporation Device 324d
+ |           +-0b.5  Intel Corporation Device 324d
+ |           +-0b.6  Intel Corporation Device 324d
+ |           +-0b.7  Intel Corporation Device 324d
+ |           +-0c.0  Intel Corporation Device 324d
+ |           +-0c.1  Intel Corporation Device 324d
+ |           +-0c.2  Intel Corporation Device 324d
+ |           +-0c.3  Intel Corporation Device 324d
+ |           +-0c.4  Intel Corporation Device 324d
+ |           +-0c.5  Intel Corporation Device 324d
+ |           +-0c.6  Intel Corporation Device 324d
+ |           +-0c.7  Intel Corporation Device 324d
+ |           +-0d.0  Intel Corporation Device 324d
+ |           +-0d.1  Intel Corporation Device 324d
+ |           +-0d.2  Intel Corporation Device 324d
+ |           +-0d.3  Intel Corporation Device 324d
+ |           +-0d.4  Intel Corporation Device 324d
+ |           +-0d.5  Intel Corporation Device 324d
+ |           +-0d.6  Intel Corporation Device 324d
+ |           +-0d.7  Intel Corporation Device 324d
+ |           +-0e.0  Intel Corporation Device 324d
+ |           +-0e.1  Intel Corporation Device 324d
+ |           +-0e.2  Intel Corporation Device 324d
+ |           +-0e.3  Intel Corporation Device 324d
+ |           +-0e.4  Intel Corporation Device 324d
+ |           +-0e.5  Intel Corporation Device 324d
+ |           +-0e.6  Intel Corporation Device 324d
+ |           +-0e.7  Intel Corporation Device 324d
+ |           +-0f.0  Intel Corporation Device 324d
+ |           +-0f.1  Intel Corporation Device 324d
+ |           +-0f.2  Intel Corporation Device 324d
+ |           +-0f.3  Intel Corporation Device 324d
+ |           +-0f.4  Intel Corporation Device 324d
+ |           +-0f.5  Intel Corporation Device 324d
+ |           +-0f.6  Intel Corporation Device 324d
+ |           +-0f.7  Intel Corporation Device 324d
+ |           +-10.0  Intel Corporation Device 324d
+ |           +-10.1  Intel Corporation Device 324d
+ |           +-10.2  Intel Corporation Device 324d
+ |           +-10.3  Intel Corporation Device 324d
+ |           +-1d.0  Intel Corporation Device 344f
+ |           +-1d.1  Intel Corporation Device 3457
+ |           +-1e.0  Intel Corporation Device 3258
+ |           +-1e.1  Intel Corporation Device 3259
+ |           +-1e.2  Intel Corporation Device 325a
+ |           +-1e.3  Intel Corporation Device 325b
+ |           +-1e.4  Intel Corporation Device 325c
+ |           +-1e.5  Intel Corporation Device 325d
+ |           +-1e.6  Intel Corporation Device 325e
+ |           \-1e.7  Intel Corporation Device 325f
+ +-[0000:fe]-+-00.0  Intel Corporation Device 3250
+ |           +-00.1  Intel Corporation Device 3251
+ |           +-00.2  Intel Corporation Device 3252
+ |           +-00.3  Intel Corporation Device 0998
+ |           +-00.5  Intel Corporation Device 3255
+ |           +-01.0  Intel Corporation Device 3240
+ |           +-01.1  Intel Corporation Device 3241
+ |           +-01.2  Intel Corporation Device 3242
+ |           +-02.0  Intel Corporation Device 3240
+ |           +-02.1  Intel Corporation Device 3241
+ |           +-02.2  Intel Corporation Device 3242
+ |           +-03.0  Intel Corporation Device 3240
+ |           +-03.1  Intel Corporation Device 3241
+ |           +-03.2  Intel Corporation Device 3242
+ |           +-04.0  Intel Corporation Device 3240
+ |           +-04.1  Intel Corporation Device 3241
+ |           +-04.2  Intel Corporation Device 3242
+ |           +-05.0  Intel Corporation Device 3245
+ |           +-05.1  Intel Corporation Device 3246
+ |           +-05.2  Intel Corporation Device 3247
+ |           +-06.0  Intel Corporation Device 3245
+ |           +-06.1  Intel Corporation Device 3246
+ |           +-06.2  Intel Corporation Device 3247
+ |           +-07.0  Intel Corporation Device 3245
+ |           +-07.1  Intel Corporation Device 3246
+ |           +-07.2  Intel Corporation Device 3247
+ |           +-08.0  Intel Corporation Device 3245
+ |           +-08.1  Intel Corporation Device 3246
+ |           +-08.2  Intel Corporation Device 3247
+ |           +-0c.0  Intel Corporation Device 324a
+ |           +-0d.0  Intel Corporation Device 324a
+ |           +-0e.0  Intel Corporation Device 324a
+ |           +-0f.0  Intel Corporation Device 324a
+ |           +-1a.0  Intel Corporation Device 2880
+ |           +-1b.0  Intel Corporation Device 2880
+ |           +-1c.0  Intel Corporation Device 2880
+ |           \-1d.0  Intel Corporation Device 2880
+ +-[0000:f6]-+-00.0  Intel Corporation Device 09a2
+ |           +-00.1  Intel Corporation Device 09a4
+ |           +-00.2  Intel Corporation Device 09a3
+ |           \-00.4  Intel Corporation Device 0b23
+ +-[0000:f1]-+-00.0  Intel Corporation Device 09a2
+ |           +-00.1  Intel Corporation Device 09a4
+ |           +-00.2  Intel Corporation Device 09a3
+ |           \-00.4  Intel Corporation Device 0b23
+ +-[0000:ec]-+-00.0  Intel Corporation Device 09a2
+ |           +-00.1  Intel Corporation Device 09a4
+ |           +-00.2  Intel Corporation Device 09a3
+ |           \-00.4  Intel Corporation Device 0b23
+ +-[0000:e7]-+-00.0  Intel Corporation Device 09a2
+ |           +-00.1  Intel Corporation Device 09a4
+ |           +-00.2  Intel Corporation Device 09a3
+ |           +-00.4  Intel Corporation Device 0b23
+ |           +-01.0  Intel Corporation Device 0b25
+ |           +-03.0  Intel Corporation Device 09a6
+ |           \-03.1  Intel Corporation Device 09a7
+ +-[0000:d7]-+-00.0  Intel Corporation Device 09a2
+ |           +-00.1  Intel Corporation Device 09a4
+ |           +-00.2  Intel Corporation Device 09a3
+ |           +-00.4  Intel Corporation Device 0b23
+ |           +-01.0-[d8]--
+ |           \-05.0-[d9]--
+ +-[0000:c7]-+-00.0  Intel Corporation Device 09a2
+ |           +-00.1  Intel Corporation Device 09a4
+ |           +-00.2  Intel Corporation Device 09a3
+ |           +-00.4  Intel Corporation Device 0b23
+ |           +-00.5  Intel Corporation Volume Management Device NVMe RAID Controller
+ |           +-01.0  Intel Corporation Device 09ab
+ |           +-03.0  Intel Corporation Device 09ab
+ |           +-05.0  Intel Corporation Device 09ab
+ |           \-07.0  Intel Corporation Device 09ab
+ +-[0000:b7]-+-00.0  Intel Corporation Device 09a2
+ |           +-00.1  Intel Corporation Device 09a4
+ |           +-00.2  Intel Corporation Device 09a3
+ |           +-00.4  Intel Corporation Device 0b23
+ |           \-01.0-[b8-bc]----00.0-[b9-bc]--+-00.0-[ba]--+-00.0  NVIDIA Corporation Device 2b85
+ |                                           |            \-00.1  NVIDIA Corporation Device 22e8
+ |                                           +-01.0-[bb]----00.0  Broadcom / LSI Device 02b2
+ |                                           \-02.0-[bc]--+-00.0  NVIDIA Corporation Device 2b85
+ |                                                        \-00.1  NVIDIA Corporation Device 22e8
+ +-[0000:a7]-+-00.0  Intel Corporation Device 09a2
+ |           +-00.1  Intel Corporation Device 09a4
+ |           +-00.2  Intel Corporation Device 09a3
+ |           +-00.4  Intel Corporation Device 0b23
+ |           \-01.0-[a8-ac]----00.0-[a9-ac]--+-00.0-[aa]--+-00.0  NVIDIA Corporation Device 2b85
+ |                                           |            \-00.1  NVIDIA Corporation Device 22e8
+ |                                           +-01.0-[ab]--+-00.0  NVIDIA Corporation Device 2b85
+ |                                           |            \-00.1  NVIDIA Corporation Device 22e8
+ |                                           \-1f.0-[ac]----00.0  Broadcom / LSI PCIe Switch management endpoint
+ +-[0000:97]-+-00.0  Intel Corporation Device 09a2
+ |           +-00.1  Intel Corporation Device 09a4
+ |           +-00.2  Intel Corporation Device 09a3
+ |           +-00.4  Intel Corporation Device 0b23
+ |           \-01.0-[98]--+-00.0  Mellanox Technologies MT43244 BlueField-3 integrated ConnectX-7 network controller
+ |                        +-00.1  Mellanox Technologies MT43244 BlueField-3 integrated ConnectX-7 network controller
+ |                        \-00.2  Mellanox Technologies MT43244 BlueField-3 SoC Management Interface
+ +-[0000:80]-+-00.0  Intel Corporation Device 09a2
+ |           +-00.1  Intel Corporation Device 09a4
+ |           +-00.2  Intel Corporation Device 09a3
+ |           +-00.4  Intel Corporation Device 0b23
+ |           +-01.0-[81]--
+ |           \-05.0-[82]--
+ +-[0000:7f]-+-00.0  Intel Corporation Device 324c
+ |           +-00.1  Intel Corporation Device 324c
+ |           +-00.2  Intel Corporation Device 324c
+ |           +-00.3  Intel Corporation Device 324c
+ |           +-00.4  Intel Corporation Device 324c
+ |           +-00.5  Intel Corporation Device 324c
+ |           +-00.6  Intel Corporation Device 324c
+ |           +-00.7  Intel Corporation Device 324c
+ |           +-01.0  Intel Corporation Device 324c
+ |           +-01.1  Intel Corporation Device 324c
+ |           +-01.2  Intel Corporation Device 324c
+ |           +-01.3  Intel Corporation Device 324c
+ |           +-01.4  Intel Corporation Device 324c
+ |           +-01.5  Intel Corporation Device 324c
+ |           +-01.6  Intel Corporation Device 324c
+ |           +-01.7  Intel Corporation Device 324c
+ |           +-02.0  Intel Corporation Device 324c
+ |           +-02.1  Intel Corporation Device 324c
+ |           +-02.2  Intel Corporation Device 324c
+ |           +-02.3  Intel Corporation Device 324c
+ |           +-02.4  Intel Corporation Device 324c
+ |           +-02.5  Intel Corporation Device 324c
+ |           +-02.6  Intel Corporation Device 324c
+ |           +-02.7  Intel Corporation Device 324c
+ |           +-03.0  Intel Corporation Device 324c
+ |           +-03.1  Intel Corporation Device 324c
+ |           +-03.2  Intel Corporation Device 324c
+ |           +-03.3  Intel Corporation Device 324c
+ |           +-03.4  Intel Corporation Device 324c
+ |           +-03.5  Intel Corporation Device 324c
+ |           +-03.6  Intel Corporation Device 324c
+ |           +-03.7  Intel Corporation Device 324c
+ |           +-04.0  Intel Corporation Device 324c
+ |           +-04.1  Intel Corporation Device 324c
+ |           +-04.2  Intel Corporation Device 324c
+ |           +-04.3  Intel Corporation Device 324c
+ |           +-04.4  Intel Corporation Device 324c
+ |           +-04.5  Intel Corporation Device 324c
+ |           +-04.6  Intel Corporation Device 324c
+ |           +-04.7  Intel Corporation Device 324c
+ |           +-05.0  Intel Corporation Device 324c
+ |           +-05.1  Intel Corporation Device 324c
+ |           +-05.2  Intel Corporation Device 324c
+ |           +-05.3  Intel Corporation Device 324c
+ |           +-05.4  Intel Corporation Device 324c
+ |           +-05.5  Intel Corporation Device 324c
+ |           +-05.6  Intel Corporation Device 324c
+ |           +-05.7  Intel Corporation Device 324c
+ |           +-06.0  Intel Corporation Device 324c
+ |           +-06.1  Intel Corporation Device 324c
+ |           +-06.2  Intel Corporation Device 324c
+ |           +-06.3  Intel Corporation Device 324c
+ |           +-0a.0  Intel Corporation Device 324d
+ |           +-0a.1  Intel Corporation Device 324d
+ |           +-0a.2  Intel Corporation Device 324d
+ |           +-0a.3  Intel Corporation Device 324d
+ |           +-0a.4  Intel Corporation Device 324d
+ |           +-0a.5  Intel Corporation Device 324d
+ |           +-0a.6  Intel Corporation Device 324d
+ |           +-0a.7  Intel Corporation Device 324d
+ |           +-0b.0  Intel Corporation Device 324d
+ |           +-0b.1  Intel Corporation Device 324d
+ |           +-0b.2  Intel Corporation Device 324d
+ |           +-0b.3  Intel Corporation Device 324d
+ |           +-0b.4  Intel Corporation Device 324d
+ |           +-0b.5  Intel Corporation Device 324d
+ |           +-0b.6  Intel Corporation Device 324d
+ |           +-0b.7  Intel Corporation Device 324d
+ |           +-0c.0  Intel Corporation Device 324d
+ |           +-0c.1  Intel Corporation Device 324d
+ |           +-0c.2  Intel Corporation Device 324d
+ |           +-0c.3  Intel Corporation Device 324d
+ |           +-0c.4  Intel Corporation Device 324d
+ |           +-0c.5  Intel Corporation Device 324d
+ |           +-0c.6  Intel Corporation Device 324d
+ |           +-0c.7  Intel Corporation Device 324d
+ |           +-0d.0  Intel Corporation Device 324d
+ |           +-0d.1  Intel Corporation Device 324d
+ |           +-0d.2  Intel Corporation Device 324d
+ |           +-0d.3  Intel Corporation Device 324d
+ |           +-0d.4  Intel Corporation Device 324d
+ |           +-0d.5  Intel Corporation Device 324d
+ |           +-0d.6  Intel Corporation Device 324d
+ |           +-0d.7  Intel Corporation Device 324d
+ |           +-0e.0  Intel Corporation Device 324d
+ |           +-0e.1  Intel Corporation Device 324d
+ |           +-0e.2  Intel Corporation Device 324d
+ |           +-0e.3  Intel Corporation Device 324d
+ |           +-0e.4  Intel Corporation Device 324d
+ |           +-0e.5  Intel Corporation Device 324d
+ |           +-0e.6  Intel Corporation Device 324d
+ |           +-0e.7  Intel Corporation Device 324d
+ |           +-0f.0  Intel Corporation Device 324d
+ |           +-0f.1  Intel Corporation Device 324d
+ |           +-0f.2  Intel Corporation Device 324d
+ |           +-0f.3  Intel Corporation Device 324d
+ |           +-0f.4  Intel Corporation Device 324d
+ |           +-0f.5  Intel Corporation Device 324d
+ |           +-0f.6  Intel Corporation Device 324d
+ |           +-0f.7  Intel Corporation Device 324d
+ |           +-10.0  Intel Corporation Device 324d
+ |           +-10.1  Intel Corporation Device 324d
+ |           +-10.2  Intel Corporation Device 324d
+ |           +-10.3  Intel Corporation Device 324d
+ |           +-1d.0  Intel Corporation Device 344f
+ |           +-1d.1  Intel Corporation Device 3457
+ |           +-1e.0  Intel Corporation Device 3258
+ |           +-1e.1  Intel Corporation Device 3259
+ |           +-1e.2  Intel Corporation Device 325a
+ |           +-1e.3  Intel Corporation Device 325b
+ |           +-1e.4  Intel Corporation Device 325c
+ |           +-1e.5  Intel Corporation Device 325d
+ |           +-1e.6  Intel Corporation Device 325e
+ |           \-1e.7  Intel Corporation Device 325f
+ +-[0000:7e]-+-00.0  Intel Corporation Device 3250
+ |           +-00.1  Intel Corporation Device 3251
+ |           +-00.2  Intel Corporation Device 3252
+ |           +-00.3  Intel Corporation Device 0998
+ |           +-00.5  Intel Corporation Device 3255
+ |           +-01.0  Intel Corporation Device 3240
+ |           +-01.1  Intel Corporation Device 3241
+ |           +-01.2  Intel Corporation Device 3242
+ |           +-02.0  Intel Corporation Device 3240
+ |           +-02.1  Intel Corporation Device 3241
+ |           +-02.2  Intel Corporation Device 3242
+ |           +-03.0  Intel Corporation Device 3240
+ |           +-03.1  Intel Corporation Device 3241
+ |           +-03.2  Intel Corporation Device 3242
+ |           +-04.0  Intel Corporation Device 3240
+ |           +-04.1  Intel Corporation Device 3241
+ |           +-04.2  Intel Corporation Device 3242
+ |           +-05.0  Intel Corporation Device 3245
+ |           +-05.1  Intel Corporation Device 3246
+ |           +-05.2  Intel Corporation Device 3247
+ |           +-06.0  Intel Corporation Device 3245
+ |           +-06.1  Intel Corporation Device 3246
+ |           +-06.2  Intel Corporation Device 3247
+ |           +-07.0  Intel Corporation Device 3245
+ |           +-07.1  Intel Corporation Device 3246
+ |           +-07.2  Intel Corporation Device 3247
+ |           +-08.0  Intel Corporation Device 3245
+ |           +-08.1  Intel Corporation Device 3246
+ |           +-08.2  Intel Corporation Device 3247
+ |           +-0c.0  Intel Corporation Device 324a
+ |           +-0d.0  Intel Corporation Device 324a
+ |           +-0e.0  Intel Corporation Device 324a
+ |           +-0f.0  Intel Corporation Device 324a
+ |           +-1a.0  Intel Corporation Device 2880
+ |           +-1b.0  Intel Corporation Device 2880
+ |           +-1c.0  Intel Corporation Device 2880
+ |           \-1d.0  Intel Corporation Device 2880
+ +-[0000:79]-+-00.0  Intel Corporation Device 09a2
+ |           +-00.1  Intel Corporation Device 09a4
+ |           +-00.2  Intel Corporation Device 09a3
+ |           \-00.4  Intel Corporation Device 0b23
+ +-[0000:74]-+-00.0  Intel Corporation Device 09a2
+ |           +-00.1  Intel Corporation Device 09a4
+ |           +-00.2  Intel Corporation Device 09a3
+ |           \-00.4  Intel Corporation Device 0b23
+ +-[0000:6f]-+-00.0  Intel Corporation Device 09a2
+ |           +-00.1  Intel Corporation Device 09a4
+ |           +-00.2  Intel Corporation Device 09a3
+ |           \-00.4  Intel Corporation Device 0b23
+ +-[0000:6a]-+-00.0  Intel Corporation Device 09a2
+ |           +-00.1  Intel Corporation Device 09a4
+ |           +-00.2  Intel Corporation Device 09a3
+ |           +-00.4  Intel Corporation Device 0b23
+ |           +-01.0  Intel Corporation Device 0b25
+ |           +-03.0  Intel Corporation Device 09a6
+ |           \-03.1  Intel Corporation Device 09a7
+ +-[0000:59]-+-00.0  Intel Corporation Device 09a2
+ |           +-00.1  Intel Corporation Device 09a4
+ |           +-00.2  Intel Corporation Device 09a3
+ |           +-00.4  Intel Corporation Device 0b23
+ |           \-01.0-[5a]--
+ +-[0000:48]-+-00.0  Intel Corporation Device 09a2
+ |           +-00.1  Intel Corporation Device 09a4
+ |           +-00.2  Intel Corporation Device 09a3
+ |           +-00.4  Intel Corporation Device 0b23
+ |           +-00.5  Intel Corporation Volume Management Device NVMe RAID Controller
+ |           +-01.0  Intel Corporation Device 09ab
+ |           +-03.0  Intel Corporation Device 09ab
+ |           +-05.0  Intel Corporation Device 09ab
+ |           \-07.0  Intel Corporation Device 09ab
+ +-[0000:37]-+-00.0  Intel Corporation Device 09a2
+ |           +-00.1  Intel Corporation Device 09a4
+ |           +-00.2  Intel Corporation Device 09a3
+ |           +-00.4  Intel Corporation Device 0b23
+ |           \-01.0-[38-3c]----00.0-[39-3c]--+-00.0-[3a]--+-00.0  NVIDIA Corporation Device 2b85
+ |                                           |            \-00.1  NVIDIA Corporation Device 22e8
+ |                                           +-01.0-[3b]--+-00.0  NVIDIA Corporation Device 2b85
+ |                                           |            \-00.1  NVIDIA Corporation Device 22e8
+ |                                           \-02.0-[3c]----00.0  Broadcom / LSI Device 02b2
+ +-[0000:26]-+-00.0  Intel Corporation Device 09a2
+ |           +-00.1  Intel Corporation Device 09a4
+ |           +-00.2  Intel Corporation Device 09a3
+ |           +-00.4  Intel Corporation Device 0b23
+ |           \-01.0-[27-2b]----00.0-[28-2b]--+-00.0-[29]--+-00.0  NVIDIA Corporation Device 2b85
+ |                                           |            \-00.1  NVIDIA Corporation Device 22e8
+ |                                           +-01.0-[2a]--+-00.0  NVIDIA Corporation Device 2b85
+ |                                           |            \-00.1  NVIDIA Corporation Device 22e8
+ |                                           \-1f.0-[2b]----00.0  Broadcom / LSI PCIe Switch management endpoint
+ +-[0000:15]-+-00.0  Intel Corporation Device 09a2
+ |           +-00.1  Intel Corporation Device 09a4
+ |           +-00.2  Intel Corporation Device 09a3
+ |           +-00.4  Intel Corporation Device 0b23
+ |           \-01.0-[16]----00.0  Mellanox Technologies MT2910 Family [ConnectX-7]
+ \-[0000:00]-+-00.0  Intel Corporation Device 09a2
+             +-00.1  Intel Corporation Device 09a4
+             +-00.2  Intel Corporation Device 09a3
+             +-00.4  Intel Corporation Device 0b23
+             +-0c.0-[01-02]----00.0-[02]----00.0  ASPEED Technology, Inc. ASPEED Graphics Family
+             +-14.0  Intel Corporation Device 1bcd
+             +-14.2  Intel Corporation Device 1bce
+             +-14.4  Intel Corporation Device 1bfe
+             +-15.0  Intel Corporation Device 1bff
+             +-16.0  Intel Corporation Device 1be0
+             +-16.1  Intel Corporation Device 1be1
+             +-16.4  Intel Corporation Device 1be4
+             +-17.0  Intel Corporation Device 1ba2
+             +-18.0  Intel Corporation Device 1bf2
+             +-19.0  Intel Corporation Device 1bd2
+             +-1f.0  Intel Corporation Device 1b81
+             +-1f.3  Intel Corporation Device 1bc8
+             +-1f.4  Intel Corporation Device 1bc9
+             \-1f.5  Intel Corporation Device 1bca

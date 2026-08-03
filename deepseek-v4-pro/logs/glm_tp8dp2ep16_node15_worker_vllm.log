@@ -1,0 +1,992 @@
+WARNING 07-28 06:06:36 [envs.py:2041] Unknown vLLM environment variable detected: VLLM_BUILD_COMMIT
+WARNING 07-28 06:06:36 [envs.py:2041] Unknown vLLM environment variable detected: VLLM_BUILD_PIPELINE
+WARNING 07-28 06:06:36 [envs.py:2041] Unknown vLLM environment variable detected: VLLM_BUILD_URL
+WARNING 07-28 06:06:36 [envs.py:2041] Unknown vLLM environment variable detected: VLLM_IMAGE_TAG
+INFO 07-28 06:06:47 [model.py:619] Resolved architecture: GlmMoeDsaForCausalLM
+INFO 07-28 06:06:47 [model.py:1776] Using max model len 8192
+INFO 07-28 06:06:47 [scheduler.py:252] Chunked prefill is enabled with max_num_batched_tokens=32768.
+INFO 07-28 06:06:47 [vllm.py:1042] Asynchronous scheduling is enabled.
+INFO 07-28 06:06:47 [vllm.py:1052] Disabling NCCL for DP synchronization when using async scheduling.
+WARNING 07-28 06:06:47 [vllm.py:1096] Enforce eager set, disabling torch.compile and CUDAGraphs. This is equivalent to setting -cc.mode=none -cc.cudagraph_mode=none
+WARNING 07-28 06:06:47 [vllm.py:1144] Inductor compilation was disabled by user settings, optimizations settings that are only active during inductor compilation will be ignored.
+INFO 07-28 06:06:47 [kernel.py:292] Final IR op priority after setting platform defaults: IrOpPriorityConfig(rms_norm=['vllm_c', 'native'], fused_add_rms_norm=['vllm_c', 'native'])
+INFO 07-28 06:06:47 [vllm.py:1322] Cudagraph is disabled under eager mode
+INFO 07-28 06:06:47 [compilation.py:312] Enabled custom fusions: norm_quant, act_quant
+INFO 07-28 06:06:47 [serve.py:227] Launching 1 data parallel engine(s) in headless mode, with head node address tcp://10.10.3.16:13345.
+(EngineCore_DP1 pid=536) INFO 07-28 06:06:56 [core.py:114] Initializing a V1 LLM engine (v0.25.1) with config: model='/model', speculative_config=None, tokenizer='/model', skip_tokenizer_init=False, tokenizer_mode=auto, revision=None, tokenizer_revision=None, trust_remote_code=True, dtype=torch.bfloat16, max_seq_len=8192, download_dir=None, load_format=auto, tensor_parallel_size=8, pipeline_parallel_size=1, data_parallel_size=2, decode_context_parallel_size=1, dcp_comm_backend=ag_rs, disable_custom_all_reduce=True, quantization=fp8, quantization_config=None, enforce_eager=True, enable_return_routed_experts=False, kv_cache_dtype=auto, device_config=cuda, structured_outputs_config=StructuredOutputsConfig(backend='auto', disable_any_whitespace=False, disable_additional_properties=False, reasoning_parser='', reasoning_parser_plugin='', enable_in_reasoning=False), observability_config=ObservabilityConfig(show_hidden_metrics_for_version=None, otlp_traces_endpoint=None, collect_detailed_traces=None, kv_cache_metrics=False, kv_cache_metrics_sample=0.01, cudagraph_metrics=False, enable_layerwise_nvtx_tracing=False, enable_mfu_metrics=False, enable_mm_processor_stats=False, enable_logging_iteration_details=False, jit_monitor_mode='warn', jit_monitor_verbose=False), seed=0, served_model_name=glm-5.2-fp8, enable_prefix_caching=False, enable_chunked_prefill=True, pooler_config=None, compilation_config={'mode': <CompilationMode.NONE: 0>, 'debug_dump_path': None, 'cache_dir': '', 'compile_cache_save_format': 'binary', 'backend': 'inductor', 'custom_ops': ['+quant_fp8', 'all', '+quant_fp8'], 'ir_enable_torch_wrap': False, 'splitting_ops': [], 'compile_mm_encoder': False, 'cudagraph_mm_encoder': False, 'encoder_cudagraph_token_budgets': [], 'encoder_cudagraph_max_vision_items_per_batch': 0, 'encoder_cudagraph_max_frames_per_batch': None, 'compile_sizes': [], 'compile_ranges_endpoints': [32768], 'inductor_compile_config': {'enable_auto_functionalized_v2': False, 'size_asserts': False, 'alignment_asserts': False, 'scalar_asserts': False, 'combo_kernels': True, 'benchmark_combo_kernel': True}, 'inductor_passes': {}, 'cudagraph_mode': <CUDAGraphMode.NONE: 0>, 'cudagraph_num_of_warmups': 0, 'cudagraph_capture_sizes': [], 'cudagraph_copy_inputs': False, 'cudagraph_specialize_lora': True, 'use_inductor_graph_partition': False, 'pass_config': {'fuse_norm_quant': True, 'fuse_act_quant': True, 'fuse_attn_quant': False, 'enable_sp': False, 'fuse_gemm_comms': False, 'fuse_allreduce_rms': False, 'fuse_rope_kvcache_cat_mla': False, 'fuse_act_padding': False}, 'max_cudagraph_capture_size': 0, 'dynamic_shapes_config': {'type': <DynamicShapesType.BACKED: 'backed'>, 'evaluate_guards': False, 'assume_32_bit_indexing': False}, 'local_cache_dir': None, 'fast_moe_cold_start': False, 'static_all_moe_layers': []}, kernel_config=KernelConfig(ir_op_priority=IrOpPriorityConfig(rms_norm=['vllm_c', 'native'], fused_add_rms_norm=['vllm_c', 'native']), enable_flashinfer_autotune=False, enable_cutedsl_warmup=False, moe_backend='auto', linear_backend='auto')
+(EngineCore_DP1 pid=536) WARNING 07-28 06:06:56 [multiproc_executor.py:1067] Reducing Torch parallelism from 112 threads to 1 to avoid unnecessary CPU contention. Set OMP_NUM_THREADS in the external environment to tune this value as needed.
+(EngineCore_DP1 pid=536) INFO 07-28 06:06:56 [multiproc_executor.py:140] DP group leader: node_rank=0, node_rank_within_dp=0, master_addr=127.0.0.1, mq_connect_ip=10.10.3.15 (local), world_size=8, local_world_size=8
+(Worker pid=903) INFO 07-28 06:07:07 [parallel_state.py:1607] world_size=16 rank=8 local_rank=0 distributed_init_method=tcp://10.10.3.16:55787 backend=nccl
+(Worker pid=904) INFO 07-28 06:07:07 [parallel_state.py:1607] world_size=16 rank=9 local_rank=1 distributed_init_method=tcp://10.10.3.16:55787 backend=nccl
+(Worker pid=905) INFO 07-28 06:07:08 [parallel_state.py:1607] world_size=16 rank=10 local_rank=2 distributed_init_method=tcp://10.10.3.16:55787 backend=nccl
+(Worker pid=909) INFO 07-28 06:07:08 [parallel_state.py:1607] world_size=16 rank=14 local_rank=6 distributed_init_method=tcp://10.10.3.16:55787 backend=nccl
+(Worker pid=910) INFO 07-28 06:07:08 [parallel_state.py:1607] world_size=16 rank=15 local_rank=7 distributed_init_method=tcp://10.10.3.16:55787 backend=nccl
+(Worker pid=907) INFO 07-28 06:07:08 [parallel_state.py:1607] world_size=16 rank=12 local_rank=4 distributed_init_method=tcp://10.10.3.16:55787 backend=nccl
+(Worker pid=906) INFO 07-28 06:07:08 [parallel_state.py:1607] world_size=16 rank=11 local_rank=3 distributed_init_method=tcp://10.10.3.16:55787 backend=nccl
+(Worker pid=908) INFO 07-28 06:07:08 [parallel_state.py:1607] world_size=16 rank=13 local_rank=5 distributed_init_method=tcp://10.10.3.16:55787 backend=nccl
+(Worker pid=903) INFO 07-28 06:07:09 [pynccl.py:113] vLLM is using nccl==2.28.9
+(Worker pid=903) WARNING 07-28 06:07:09 [symm_mem.py:66] SymmMemCommunicator: Device capability 12.0 not supported, communicator is not available.
+(Worker pid=909) WARNING 07-28 06:07:09 [symm_mem.py:66] SymmMemCommunicator: Device capability 12.0 not supported, communicator is not available.
+(Worker pid=907) WARNING 07-28 06:07:09 [symm_mem.py:66] SymmMemCommunicator: Device capability 12.0 not supported, communicator is not available.
+(Worker pid=910) WARNING 07-28 06:07:09 [symm_mem.py:66] SymmMemCommunicator: Device capability 12.0 not supported, communicator is not available.
+(Worker pid=908) WARNING 07-28 06:07:09 [symm_mem.py:66] SymmMemCommunicator: Device capability 12.0 not supported, communicator is not available.
+(Worker pid=904) WARNING 07-28 06:07:09 [symm_mem.py:66] SymmMemCommunicator: Device capability 12.0 not supported, communicator is not available.
+(Worker pid=905) WARNING 07-28 06:07:09 [symm_mem.py:66] SymmMemCommunicator: Device capability 12.0 not supported, communicator is not available.
+(Worker pid=906) WARNING 07-28 06:07:09 [symm_mem.py:66] SymmMemCommunicator: Device capability 12.0 not supported, communicator is not available.
+ubuntu:909:909 [6] NCCL INFO ENV/Plugin: Could not find: libnccl-env.so
+ubuntu:909:909 [6] NCCL INFO cudaDriverVersion 13000
+ubuntu:909:909 [6] NCCL INFO NCCL_SOCKET_IFNAME set by environment to eth0
+ubuntu:909:909 [6] NCCL INFO Bootstrap: Using eth0:10.10.3.15<0>
+ubuntu:909:909 [6] NCCL INFO NCCL version 2.28.9+cuda13.0
+ubuntu:909:909 [6] NCCL INFO NET/Plugin: Could not find: libnccl-net.so
+ubuntu:909:909 [6] NCCL INFO NCCL_IB_DISABLE set by environment to 0.
+ubuntu:909:909 [6] NCCL INFO NCCL_SOCKET_IFNAME set by environment to eth0
+ubuntu:909:909 [6] NCCL INFO NCCL_IB_HCA set to mlx5_0,mlx5_1,mlx5_2,mlx5_3,mlx5_4,mlx5_5,mlx5_6,mlx5_7
+ubuntu:909:909 [6] NCCL INFO NET/IB : Using [0]mlx5_0:1/IB [1]mlx5_1:1/IB [2]mlx5_2:1/IB [3]mlx5_3:1/IB [4]mlx5_4:1/IB [5]mlx5_5:1/IB [6]mlx5_6:1/IB [7]mlx5_7:1/IB [RO]; OOB eth0:10.10.3.15<0>
+ubuntu:909:909 [6] NCCL INFO Initialized NET plugin IB
+ubuntu:909:909 [6] NCCL INFO Assigned NET plugin IB to comm
+ubuntu:909:909 [6] NCCL INFO Assigned GIN plugin GIN_IB_GDAKI to comm
+ubuntu:909:909 [6] NCCL INFO Using network IB
+ubuntu:909:909 [6] NCCL INFO DMA-BUF is available on GPU device 6
+ubuntu:909:909 [6] NCCL INFO ncclCommInitRank comm 0x11524740 rank 6 nranks 8 cudaDev 6 nvmlDev 6 busId f6000 commId 0xe2a8c6fbfc87152d - Init START
+ubuntu:909:909 [6] NCCL INFO RAS client listening socket at 127.0.0.1<28028>
+ubuntu:909:909 [6] NCCL INFO Bootstrap timings total 0.171519 (create 0.000031, send 0.000111, recv 0.002449, ring 0.168708, delay 0.000000)
+ubuntu:909:909 [6] NCCL INFO NCCL_NET_GDR_LEVEL set by environment to PHB
+ubuntu:909:909 [6] NCCL INFO ncclTopoGetCpuAffinity: Affinity for GPU 6 is 56-111,168-223. (GPU affinity = 56-111,168-223 ; CPU affinity = 0-223).
+ubuntu:909:909 [6] NCCL INFO NVLS multicast support is not available on dev 6 (NVLS_NCHANNELS 0)
+ubuntu:909:909 [6] NCCL INFO comm 0x11524740 rank 6 nRanks 8 nNodes 2 localRanks 4 localRank 2 MNNVL 0
+ubuntu:909:909 [6] NCCL INFO Trees [0] 7/-1/-1->6->5 [1] 5/-1/-1->6->7 [2] 7/-1/-1->6->5 [3] 5/-1/-1->6->7
+ubuntu:909:909 [6] NCCL INFO P2P Chunksize set to 131072
+ubuntu:909:909 [6] NCCL INFO PROFILER/Plugin: Could not find: libnccl-profiler.so
+ubuntu:909:909 [6] NCCL INFO Check P2P Type isAllDirectP2p 0 directMode 0 isAllCudaP2p 1
+ubuntu:909:1256 [0] NCCL INFO [Proxy Service] Device 6 CPU core 200
+ubuntu:909:1258 [0] NCCL INFO [Proxy Service UDS] Device 6 CPU core 178
+ubuntu:909:909 [6] NCCL INFO TUNER/Plugin: Could not find: libnccl-tuner.so
+ubuntu:909:909 [6] NCCL INFO threadThresholds 8/8/64 | 64/8/64 | 512 | 512
+ubuntu:909:909 [6] NCCL INFO 4 coll channels, 4 collnet channels, 0 nvls channels, 4 p2p channels, 2 p2p channels per peer
+ubuntu:909:909 [6] NCCL INFO ncclCommInitRank comm 0x11524740 rank 6 nranks 8 cudaDev 6 nvmlDev 6 busId f6000 commId 0xe2a8c6fbfc87152d - Init COMPLETE
+ubuntu:909:909 [6] NCCL INFO Init timings - ncclCommInitRank: rank 6 nranks 8 total 0.43 (kernels 0.16, alloc 0.05, bootstrap 0.17, allgathers 0.01, topo 0.02, graphs 0.00, connections 0.01, rest 0.00)
+ubuntu:909:909 [6] NCCL INFO Channel 00/0 : 6[6] -> 7[7] via P2P/CUMEM
+ubuntu:909:909 [6] NCCL INFO Channel 01/0 : 6[6] -> 7[7] via P2P/CUMEM
+ubuntu:909:909 [6] NCCL INFO Channel 02/0 : 6[6] -> 7[7] via P2P/CUMEM
+ubuntu:909:909 [6] NCCL INFO Channel 03/0 : 6[6] -> 7[7] via P2P/CUMEM
+ubuntu:909:909 [6] NCCL INFO Channel 00 : 6[6] -> 5[5] via SHM/direct/direct
+ubuntu:909:909 [6] NCCL INFO Channel 01 : 6[6] -> 5[5] via SHM/direct/direct
+ubuntu:909:909 [6] NCCL INFO Channel 02 : 6[6] -> 5[5] via SHM/direct/direct
+ubuntu:909:909 [6] NCCL INFO Channel 03 : 6[6] -> 5[5] via SHM/direct/direct
+ubuntu:909:909 [6] NCCL INFO Connected all trees
+ubuntu:909:909 [6] NCCL INFO Initialized NET plugin IB
+ubuntu:909:909 [6] NCCL INFO Assigned NET plugin IB to comm
+ubuntu:909:909 [6] NCCL INFO Assigned GIN plugin GIN_IB_GDAKI to comm
+ubuntu:909:909 [6] NCCL INFO Using network IB
+ubuntu:909:909 [6] NCCL INFO DMA-BUF is available on GPU device 6
+ubuntu:909:909 [6] NCCL INFO ncclCommInitRank comm 0x19468320 rank 1 nranks 2 cudaDev 6 nvmlDev 6 busId f6000 commId 0x362bcba2382b75ubuntu:910:910 [7] NCCL INFO ENV/Plugin: Could not find: libnccl-env.so
+ubuntu:910:910 [7] NCCL INFO cudaDriverVersion 13000
+ubuntu:910:910 [7] NCCL INFO NCCL_SOCKET_IFNAME set by environment to eth0
+ubuntu:910:910 [7] NCCL INFO Bootstrap: Using eth0:10.10.3.15<0>
+ubuntu:910:910 [7] NCCL INFO NCCL version 2.28.9+cuda13.0
+ubuntu:910:910 [7] NCCL INFO NET/Plugin: Could not find: libnccl-net.so
+ubuntu:910:910 [7] NCCL INFO NCCL_IB_DISABLE set by environment to 0.
+ubuntu:910:910 [7] NCCL INFO NCCL_SOCKET_IFNAME set by environment to eth0
+ubuntu:910:910 [7] NCCL INFO NCCL_IB_HCA set to mlx5_0,mlx5_1,mlx5_2,mlx5_3,mlx5_4,mlx5_5,mlx5_6,mlx5_7
+ubuntu:910:910 [7] NCCL INFO NET/IB : Using [0]mlx5_0:1/IB [1]mlx5_1:1/IB [2]mlx5_2:1/IB [3]mlx5_3:1/IB [4]mlx5_4:1/IB [5]mlx5_5:1/IB [6]mlx5_6:1/IB [7]mlx5_7:1/IB [RO]; OOB eth0:10.10.3.15<0>
+ubuntu:910:910 [7] NCCL INFO Initialized NET plugin IB
+ubuntu:910:910 [7] NCCL INFO Assigned NET plugin IB to comm
+ubuntu:910:910 [7] NCCL INFO Assigned GIN plugin GIN_IB_GDAKI to comm
+ubuntu:910:910 [7] NCCL INFO Using network IB
+ubuntu:910:910 [7] NCCL INFO DMA-BUF is available on GPU device 7
+ubuntu:910:910 [7] NCCL INFO ncclCommInitRank comm 0x113011f0 rank 7 nranks 8 cudaDev 7 nvmlDev 7 busId f9000 commId 0xe2a8c6fbfc87152d - Init START
+ubuntu:910:910 [7] NCCL INFO RAS client listening socket at 127.0.0.1<28028>
+ubuntu:910:910 [7] NCCL INFO Bootstrap timings total 0.169121 (create 0.000024, send 0.000103, recv 0.168567, ring 0.000125, delay 0.000000)
+ubuntu:910:910 [7] NCCL INFO NCCL_NET_GDR_LEVEL set by environment to PHB
+ubuntu:910:910 [7] NCCL INFO ncclTopoGetCpuAffinity: Affinity for GPU 7 is 56-111,168-223. (GPU affinity = 56-111,168-223 ; CPU affinity = 0-223).
+ubuntu:910:910 [7] NCCL INFO NVLS multicast support is not available on dev 7 (NVLS_NCHANNELS 0)
+ubuntu:910:910 [7] NCCL INFO comm 0x113011f0 rank 7 nRanks 8 nNodes 2 localRanks 4 localRank 3 MNNVL 0
+ubuntu:910:910 [7] NCCL INFO Trees [0] -1/-1/-1->7->6 [1] 6/-1/-1->7->3 [2] -1/-1/-1->7->6 [3] 6/3/-1->7->-1
+ubuntu:910:910 [7] NCCL INFO P2P Chunksize set to 131072
+ubuntu:910:910 [7] NCCL INFO PROFILER/Plugin: Could not find: libnccl-profiler.so
+ubuntu:910:910 [7] NCCL INFO Check P2P Type isAllDirectP2p 0 directMode 0 isAllCudaP2p 1
+ubuntu:910:1257 [0] NCCL INFO [Proxy Service] Device 7 CPU core 105
+ubuntu:910:1260 [0] NCCL INFO [Proxy Service UDS] Device 7 CPU core 98
+ubuntu:910:910 [7] NCCL INFO TUNER/Plugin: Could not find: libnccl-tuner.so
+ubuntu:910:910 [7] NCCL INFO threadThresholds 8/8/64 | 64/8/64 | 512 | 512
+ubuntu:910:910 [7] NCCL INFO 4 coll channels, 4 collnet channels, 0 nvls channels, 4 p2p channels, 2 p2p channels per peer
+ubuntu:910:910 [7] NCCL INFO ncclCommInitRank comm 0x113011f0 rank 7 nranks 8 cudaDev 7 nvmlDev 7 busId f9000 commId 0xe2a8c6fbfc87152d - Init COMPLETE
+ubuntu:910:910 [7] NCCL INFO Init timings - ncclCommInitRank: rank 7 nranks 8 total 0.42 (kernels 0.16, alloc 0.06, bootstrap 0.17, allgathers 0.01, topo 0.02, graphs 0.00, connections 0.01, rest 0.00)
+ubuntu:910:1274 [0] NCCL INFO [Proxy Progress] Device 7 CPU core 200
+ubuntu:910:910 [7] NCCL INFO Channel 01/0 : 3[3] -> 7[7] [receive] via NET/IB/11/GDRDMA
+ubuntu:910:910 [7] NCCL INFO Channel 03/0 : 3[3] -> 7[7] [receive] via NET/IB/11/GDRDMA
+ubuntu:910:910 [7] NCCL INFO Channel 01/0 : 7[7] -> 3[3] [send] via NET/IB/11/GDRDMA
+ubuntu:910:910 [7] NCCL INFO Channel 03/0 : 7[7] -> 3[3] [send] via NET/IB/11/GDRDMA
+ubuntu:910:910 [7] NCCL INFO Channel 00/0 : 7[7] -> 6[6] via P2P/CUMEM
+ubuntu:910:910 [7] NCCL INFO Channel 01/0 : 7[7] -> 6[6] via P2P/CUMEM
+ubuntu:910:910 [7] NCCL INFO Channel 02/0 : 7[7] -> 6[6] via P2P/CUMEM
+ubuntu:910:910 [7] NCCL INFO Channel 03/0 : 7[7] -> 6[6] via P2P/CUMEM
+ubuntu:910:910 [7] NCCL INFO Connected all trees
+ubuntu:910:910 [7] NCCL INFO Initialized NET plugin IB
+ubuntu:910:910 [7] NCCL INFO Assigned NET plugin IB to comm
+ubuntu:910:910 [7] NCCL INFO Assigned GIN plugin GIN_IB_GDAKI to comm
+ubuntu:910:910 [7] NCCL INFO Using network IB
+ubuntu:910:910 [7] NCCL INFO DMA-BUF is available on GPU device 7
+ubuntu:910:910 [7] NCCL Iubuntu:907:907 [4] NCCL INFO ENV/Plugin: Could not find: libnccl-env.so
+ubuntu:907:907 [4] NCCL INFO cudaDriverVersion 13000
+ubuntu:907:907 [4] NCCL INFO NCCL_SOCKET_IFNAME set by environment to eth0
+ubuntu:907:907 [4] NCCL INFO Bootstrap: Using eth0:10.10.3.15<0>
+ubuntu:907:907 [4] NCCL INFO NCCL version 2.28.9+cuda13.0
+ubuntu:907:907 [4] NCCL INFO NET/Plugin: Could not find: libnccl-net.so
+ubuntu:907:907 [4] NCCL INFO NCCL_IB_DISABLE set by environment to 0.
+ubuntu:907:907 [4] NCCL INFO NCCL_SOCKET_IFNAME set by environment to eth0
+ubuntu:907:907 [4] NCCL INFO NCCL_IB_HCA set to mlx5_0,mlx5_1,mlx5_2,mlx5_3,mlx5_4,mlx5_5,mlx5_6,mlx5_7
+ubuntu:907:907 [4] NCCL INFO NET/IB : Using [0]mlx5_0:1/IB [1]mlx5_1:1/IB [2]mlx5_2:1/IB [3]mlx5_3:1/IB [4]mlx5_4:1/IB [5]mlx5_5:1/IB [6]mlx5_6:1/IB [7]mlx5_7:1/IB [RO]; OOB eth0:10.10.3.15<0>
+ubuntu:907:907 [4] NCCL INFO Initialized NET plugin IB
+ubuntu:907:907 [4] NCCL INFO Assigned NET plugin IB to comm
+ubuntu:907:907 [4] NCCL INFO Assigned GIN plugin GIN_IB_GDAKI to comm
+ubuntu:907:907 [4] NCCL INFO Using network IB
+ubuntu:907:907 [4] NCCL INFO DMA-BUF is available on GPU device 4
+ubuntu:907:907 [4] NCCL INFO ncclCommInitRank comm 0x116def70 rank 4 nranks 8 cudaDev 4 nvmlDev 4 busId 86000 commId 0xe2a8c6fbfc87152d - Init START
+ubuntu:907:907 [4] NCCL INFO RAS client listening socket at 127.0.0.1<28028>
+ubuntu:907:907 [4] NCCL INFO Bootstrap timings total 0.185510 (create 0.000029, send 0.000105, recv 0.007925, ring 0.168694, delay 0.000000)
+ubuntu:907:907 [4] NCCL INFO NCCL_NET_GDR_LEVEL set by environment to PHB
+ubuntu:907:907 [4] NCCL INFO ncclTopoGetCpuAffinity: Affinity for GPU 4 is 56-111,168-223. (GPU affinity = 56-111,168-223 ; CPU affinity = 0-223).
+ubuntu:907:907 [4] NCCL INFO NVLS multicast support is not available on dev 4 (NVLS_NCHANNELS 0)
+ubuntu:907:907 [4] NCCL INFO comm 0x116def70 rank 4 nRanks 8 nNodes 2 localRanks 4 localRank 0 MNNVL 0
+ubuntu:907:907 [4] NCCL INFO Trees [0] 5/-1/-1->4->0 [1] -1/-1/-1->4->5 [2] 5/0/-1->4->-1 [3] -1/-1/-1->4->5
+ubuntu:907:907 [4] NCCL INFO P2P Chunksize set to 131072
+ubuntu:907:907 [4] NCCL INFO PROFILER/Plugin: Could not find: libnccl-profiler.so
+ubuntu:907:907 [4] NCCL INFO Check P2P Type isAllDirectP2p 0 directMode 0 isAllCudaP2p 1
+ubuntu:907:1259 [0] NCCL INFO [Proxy Service] Device 4 CPU core 82
+ubuntu:907:1262 [0] NCCL INFO [Proxy Service UDS] Device 4 CPU core 110
+ubuntu:907:907 [4] NCCL INFO TUNER/Plugin: Could not find: libnccl-tuner.so
+ubuntu:907:907 [4] NCCL INFO threadThresholds 8/8/64 | 64/8/64 | 512 | 512
+ubuntu:907:907 [4] NCCL INFO 4 coll channels, 4 collnet channels, 0 nvls channels, 4 p2p channels, 2 p2p channels per peer
+ubuntu:907:907 [4] NCCL INFO ncclCommInitRank comm 0x116def70 rank 4 nranks 8 cudaDev 4 nvmlDev 4 busId 86000 commId 0xe2a8c6fbfc87152d - Init COMPLETE
+ubuntu:907:907 [4] NCCL INFO Init timings - ncclCommInitRank: rank 4 nranks 8 total 0.38 (kernels 0.12, alloc 0.03, bootstrap 0.19, allgathers 0.01, topo 0.02, graphs 0.00, connections 0.01, rest 0.00)
+ubuntu:907:907 [4] NCCL INFO Channel 00/0 : 4[4] -> 5[5] via P2P/CUMEM
+ubuntu:907:907 [4] NCCL INFO Channel 01/0 : 4[4] -> 5[5] via P2P/CUMEM
+ubuntu:907:907 [4] NCCL INFO Channel 02/0 : 4[4] -> 5[5] via P2P/CUMEM
+ubuntu:907:907 [4] NCCL INFO Channel 03/0 : 4[4] -> 5[5] via P2P/CUMEM
+ubuntu:907:1275 [0] NCCL INFO [Proxy Progress] Device 4 CPU core 105
+ubuntu:907:907 [4] NCCL INFO Channel 00/0 : 0[0] -> 4[4] [receive] via NET/IB/10/GDRDMA
+ubuntu:907:907 [4] NCCL INFO Channel 02/0 : 0[0] -> 4[4] [receive] via NET/IB/10/GDRDMA
+ubuntu:907:907 [4] NCCL INFO Channel 00/0 : 4[4] -> 0[0] [send] via NET/IB/10/GDRDMA
+ubuntu:907:907 [4] NCCL INFO Channel 02/0 : 4[4] -> 0[0] [send] via NET/IB/10/GDRDMA
+ubuntu:907:907 [4] NCCL INFO Connected all trees
+ubuntu:907:907 [4] NCCL INFO Initialized NET plugin IB
+ubuntu:907:907 [4] NCCL INFO Assigned NET plugin IB to comm
+ubuntu:907:907 [4] NCCL INFO Assigned GIN plugin GIN_IB_GDAKI to comm
+ubuntu:907:907 [4] NCCL INFO Using network IB
+ubuntu:907:907 [4] NCCL INFO DMA-BUF is available on GPU device 4
+ubuntu:907:907 [4] NCCL Iubuntu:905:905 [2] NCCL INFO ENV/Plugin: Could not find: libnccl-env.so
+ubuntu:905:905 [2] NCCL INFO cudaDriverVersion 13000
+ubuntu:905:905 [2] NCCL INFO NCCL_SOCKET_IFNAME set by environment to eth0
+ubuntu:905:905 [2] NCCL INFO Bootstrap: Using eth0:10.10.3.15<0>
+ubuntu:905:905 [2] NCCL INFO NCCL version 2.28.9+cuda13.0
+ubuntu:905:905 [2] NCCL INFO NET/Plugin: Could not find: libnccl-net.so
+ubuntu:905:905 [2] NCCL INFO NCCL_IB_DISABLE set by environment to 0.
+ubuntu:905:905 [2] NCCL INFO NCCL_SOCKET_IFNAME set by environment to eth0
+ubuntu:905:905 [2] NCCL INFO NCCL_IB_HCA set to mlx5_0,mlx5_1,mlx5_2,mlx5_3,mlx5_4,mlx5_5,mlx5_6,mlx5_7
+ubuntu:905:905 [2] NCCL INFO NET/IB : Using [0]mlx5_0:1/IB [1]mlx5_1:1/IB [2]mlx5_2:1/IB [3]mlx5_3:1/IB [4]mlx5_4:1/IB [5]mlx5_5:1/IB [6]mlx5_6:1/IB [7]mlx5_7:1/IB [RO]; OOB eth0:10.10.3.15<0>
+ubuntu:905:905 [2] NCCL INFO Initialized NET plugin IB
+ubuntu:905:905 [2] NCCL INFO Assigned NET plugin IB to comm
+ubuntu:905:905 [2] NCCL INFO Assigned GIN plugin GIN_IB_GDAKI to comm
+ubuntu:905:905 [2] NCCL INFO Using network IB
+ubuntu:905:905 [2] NCCL INFO DMA-BUF is available on GPU device 2
+ubuntu:905:905 [2] NCCL INFO ncclCommInitRank comm 0x112f7fa0 rank 2 nranks 8 cudaDev 2 nvmlDev 2 busId 76000 commId 0xe2a8c6fbfc87152d - Init START
+ubuntu:905:905 [2] NCCL INFO RAS client listening socket at 127.0.0.1<28028>
+ubuntu:905:905 [2] NCCL INFO Bootstrap timings total 0.142287 (create 0.000014, send 0.000053, recv 0.000103, ring 0.141980, delay 0.000000)
+ubuntu:905:905 [2] NCCL INFO NCCL_NET_GDR_LEVEL set by environment to PHB
+ubuntu:905:905 [2] NCCL INFO ncclTopoGetCpuAffinity: Affinity for GPU 2 is 0-55,112-167. (GPU affinity = 0-55,112-167 ; CPU affinity = 0-223).
+ubuntu:905:905 [2] NCCL INFO NVLS multicast support is not available on dev 2 (NVLS_NCHANNELS 0)
+ubuntu:905:905 [2] NCCL INFO comm 0x112f7fa0 rank 2 nRanks 8 nNodes 2 localRanks 4 localRank 2 MNNVL 0
+ubuntu:905:905 [2] NCCL INFO Trees [0] 3/-1/-1->2->1 [1] 1/-1/-1->2->3 [2] 3/-1/-1->2->1 [3] 1/-1/-1->2->3
+ubuntu:905:905 [2] NCCL INFO P2P Chunksize set to 131072
+ubuntu:905:905 [2] NCCL INFO PROFILER/Plugin: Could not find: libnccl-profiler.so
+ubuntu:905:905 [2] NCCL INFO Check P2P Type isAllDirectP2p 0 directMode 0 isAllCudaP2p 1
+ubuntu:905:1264 [0] NCCL INFO [Proxy Service] Device 2 CPU core 160
+ubuntu:905:1265 [0] NCCL INFO [Proxy Service UDS] Device 2 CPU core 134
+ubuntu:905:905 [2] NCCL INFO TUNER/Plugin: Could not find: libnccl-tuner.so
+ubuntu:905:905 [2] NCCL INFO threadThresholds 8/8/64 | 64/8/64 | 512 | 512
+ubuntu:905:905 [2] NCCL INFO 4 coll channels, 4 collnet channels, 0 nvls channels, 4 p2p channels, 2 p2p channels per peer
+ubuntu:905:905 [2] NCCL INFO ncclCommInitRank comm 0x112f7fa0 rank 2 nranks 8 cudaDev 2 nvmlDev 2 busId 76000 commId 0xe2a8c6fbfc87152d - Init COMPLETE
+ubuntu:905:905 [2] NCCL INFO Init timings - ncclCommInitRank: rank 2 nranks 8 total 0.43 (kernels 0.16, alloc 0.08, bootstrap 0.14, allgathers 0.01, topo 0.02, graphs 0.00, connections 0.01, rest 0.00)
+ubuntu:905:905 [2] NCCL INFO Channel 00/0 : 2[2] -> 3[3] via P2P/CUMEM
+ubuntu:905:905 [2] NCCL INFO Channel 01/0 : 2[2] -> 3[3] via P2P/CUMEM
+ubuntu:905:905 [2] NCCL INFO Channel 02/0 : 2[2] -> 3[3] via P2P/CUMEM
+ubuntu:905:905 [2] NCCL INFO Channel 03/0 : 2[2] -> 3[3] via P2P/CUMEM
+ubuntu:905:905 [2] NCCL INFO Channel 00 : 2[2] -> 1[1] via SHM/direct/direct
+ubuntu:905:905 [2] NCCL INFO Channel 01 : 2[2] -> 1[1] via SHM/direct/direct
+ubuntu:905:905 [2] NCCL INFO Channel 02 : 2[2] -> 1[1] via SHM/direct/direct
+ubuntu:905:905 [2] NCCL INFO Channel 03 : 2[2] -> 1[1] via SHM/direct/direct
+ubuntu:905:905 [2] NCCL INFO Connected all trees
+ubuntu:905:905 [2] NCCL INFO Initialized NET plugin IB
+ubuntu:905:905 [2] NCCL INFO Assigned NET plugin IB to comm
+ubuntu:905:905 [2] NCCL INFO Assigned GIN plugin GIN_IB_GDAKI to comm
+ubuntu:905:905 [2] NCCL INFO Using network IB
+ubuntu:905:905 [2] NCCL INFO DMA-BUF is available on GPU device 2
+ubuntu:905:905 [2] NCCL INFO ncclCommInitRank comm 0x1923b520 rank 1 nranks 2 cudaDev 2 nvmlDev 2 busId 76000 commId 0xa84c4da4354f4a5f -ubuntu:904:904 [1] NCCL INFO ENV/Plugin: Could not find: libnccl-env.so
+ubuntu:904:904 [1] NCCL INFO cudaDriverVersion 13000
+ubuntu:904:904 [1] NCCL INFO NCCL_SOCKET_IFNAME set by environment to eth0
+ubuntu:904:904 [1] NCCL INFO Bootstrap: Using eth0:10.10.3.15<0>
+ubuntu:904:904 [1] NCCL INFO NCCL version 2.28.9+cuda13.0
+ubuntu:904:904 [1] NCCL INFO NET/Plugin: Could not find: libnccl-net.so
+ubuntu:904:904 [1] NCCL INFO NCCL_IB_DISABLE set by environment to 0.
+ubuntu:904:904 [1] NCCL INFO NCCL_SOCKET_IFNAME set by environment to eth0
+ubuntu:904:904 [1] NCCL INFO NCCL_IB_HCA set to mlx5_0,mlx5_1,mlx5_2,mlx5_3,mlx5_4,mlx5_5,mlx5_6,mlx5_7
+ubuntu:904:904 [1] NCCL INFO NET/IB : Using [0]mlx5_0:1/IB [1]mlx5_1:1/IB [2]mlx5_2:1/IB [3]mlx5_3:1/IB [4]mlx5_4:1/IB [5]mlx5_5:1/IB [6]mlx5_6:1/IB [7]mlx5_7:1/IB [RO]; OOB eth0:10.10.3.15<0>
+ubuntu:904:904 [1] NCCL INFO Initialized NET plugin IB
+ubuntu:904:904 [1] NCCL INFO Assigned NET plugin IB to comm
+ubuntu:904:904 [1] NCCL INFO Assigned GIN plugin GIN_IB_GDAKI to comm
+ubuntu:904:904 [1] NCCL INFO Using network IB
+ubuntu:904:904 [1] NCCL INFO DMA-BUF is available on GPU device 1
+ubuntu:904:904 [1] NCCL INFO ncclCommInitRank comm 0x1187a020 rank 1 nranks 8 cudaDev 1 nvmlDev 1 busId 9000 commId 0xe2a8c6fbfc87152d - Init START
+ubuntu:904:904 [1] NCCL INFO RAS client listening socket at 127.0.0.1<28028>
+ubuntu:904:904 [1] NCCL INFO Bootstrap timings total 0.143029 (create 0.000018, send 0.000067, recv 0.000814, ring 0.000180, delay 0.000000)
+ubuntu:904:904 [1] NCCL INFO NCCL_NET_GDR_LEVEL set by environment to PHB
+ubuntu:904:904 [1] NCCL INFO ncclTopoGetCpuAffinity: Affinity for GPU 1 is 0-55,112-167. (GPU affinity = 0-55,112-167 ; CPU affinity = 0-223).
+ubuntu:904:904 [1] NCCL INFO NVLS multicast support is not available on dev 1 (NVLS_NCHANNELS 0)
+ubuntu:904:904 [1] NCCL INFO comm 0x1187a020 rank 1 nRanks 8 nNodes 2 localRanks 4 localRank 1 MNNVL 0
+ubuntu:904:904 [1] NCCL INFO Trees [0] 2/-1/-1->1->0 [1] 0/-1/-1->1->2 [2] 2/-1/-1->1->0 [3] 0/-1/-1->1->2
+ubuntu:904:904 [1] NCCL INFO P2P Chunksize set to 131072
+ubuntu:904:904 [1] NCCL INFO PROFILER/Plugin: Could not find: libnccl-profiler.so
+ubuntu:904:904 [1] NCCL INFO Check P2P Type isAllDirectP2p 0 directMode 0 isAllCudaP2p 1
+ubuntu:904:1270 [0] NCCL INFO [Proxy Service] Device 1 CPU core 160
+ubuntu:904:1271 [0] NCCL INFO [Proxy Service UDS] Device 1 CPU core 134
+ubuntu:904:904 [1] NCCL INFO TUNER/Plugin: Could not find: libnccl-tuner.so
+ubuntu:904:904 [1] NCCL INFO threadThresholds 8/8/64 | 64/8/64 | 512 | 512
+ubuntu:904:904 [1] NCCL INFO 4 coll channels, 4 collnet channels, 0 nvls channels, 4 p2p channels, 2 p2p channels per peer
+ubuntu:904:904 [1] NCCL INFO ncclCommInitRank comm 0x1187a020 rank 1 nranks 8 cudaDev 1 nvmlDev 1 busId 9000 commId 0xe2a8c6fbfc87152d - Init COMPLETE
+ubuntu:904:904 [1] NCCL INFO Init timings - ncclCommInitRank: rank 1 nranks 8 total 0.42 (kernels 0.16, alloc 0.08, bootstrap 0.14, allgathers 0.01, topo 0.02, graphs 0.00, connections 0.01, rest 0.00)
+ubuntu:904:904 [1] NCCL INFO Channel 00 : 1[1] -> 2[2] via SHM/direct/direct
+ubuntu:904:904 [1] NCCL INFO Channel 01 : 1[1] -> 2[2] via SHM/direct/direct
+ubuntu:904:904 [1] NCCL INFO Channel 02 : 1[1] -> 2[2] via SHM/direct/direct
+ubuntu:904:904 [1] NCCL INFO Channel 03 : 1[1] -> 2[2] via SHM/direct/direct
+ubuntu:904:904 [1] NCCL INFO Channel 00/0 : 1[1] -> 0[0] via P2P/CUMEM
+ubuntu:904:904 [1] NCCL INFO Channel 01/0 : 1[1] -> 0[0] via P2P/CUMEM
+ubuntu:904:904 [1] NCCL INFO Channel 02/0 : 1[1] -> 0[0] via P2P/CUMEM
+ubuntu:904:904 [1] NCCL INFO Channel 03/0 : 1[1] -> 0[0] via P2P/CUMEM
+ubuntu:904:904 [1] NCCL INFO Connected all trees
+ubuntu:904:904 [1] NCCL INFO Initialized NET plugin IB
+ubuntu:904:904 [1] NCCL INFO Assigned NET plugin IB to comm
+ubuntu:904:904 [1] NCCL INFO Assigned GIN plugin GIN_IB_GDAKI to comm
+ubuntu:904:904 [1] NCCL INFO Using network IB
+ubuntu:904:904 [1] NCCL INFO DMA-BUF is available on GPU device 1
+ubuntu:904:904 [1] NCCL INFO ncclCommInitRank comm 0x197bec00 rank 1 nranks 2 cudaDev 1 nvmlDev 1 busId 9000 commId 0xfe139c47cd4b790 - Iniubuntu:908:908 [5] NCCL INFO ENV/Plugin: Could not find: libnccl-env.so
+ubuntu:908:908 [5] NCCL INFO cudaDriverVersion 13000
+ubuntu:908:908 [5] NCCL INFO NCCL_SOCKET_IFNAME set by environment to eth0
+ubuntu:908:908 [5] NCCL INFO Bootstrap: Using eth0:10.10.3.15<0>
+ubuntu:908:908 [5] NCCL INFO NCCL version 2.28.9+cuda13.0
+ubuntu:908:908 [5] NCCL INFO NET/Plugin: Could not find: libnccl-net.so
+ubuntu:908:908 [5] NCCL INFO NCCL_IB_DISABLE set by environment to 0.
+ubuntu:908:908 [5] NCCL INFO NCCL_SOCKET_IFNAME set by environment to eth0
+ubuntu:908:908 [5] NCCL INFO NCCL_IB_HCA set to mlx5_0,mlx5_1,mlx5_2,mlx5_3,mlx5_4,mlx5_5,mlx5_6,mlx5_7
+ubuntu:908:908 [5] NCCL INFO NET/IB : Using [0]mlx5_0:1/IB [1]mlx5_1:1/IB [2]mlx5_2:1/IB [3]mlx5_3:1/IB [4]mlx5_4:1/IB [5]mlx5_5:1/IB [6]mlx5_6:1/IB [7]mlx5_7:1/IB [RO]; OOB eth0:10.10.3.15<0>
+ubuntu:908:908 [5] NCCL INFO Initialized NET plugin IB
+ubuntu:908:908 [5] NCCL INFO Assigned NET plugin IB to comm
+ubuntu:908:908 [5] NCCL INFO Assigned GIN plugin GIN_IB_GDAKI to comm
+ubuntu:908:908 [5] NCCL INFO Using network IB
+ubuntu:908:908 [5] NCCL INFO DMA-BUF is available on GPU device 5
+ubuntu:908:908 [5] NCCL INFO ncclCommInitRank comm 0x119c4500 rank 5 nranks 8 cudaDev 5 nvmlDev 5 busId 89000 commId 0xe2a8c6fbfc87152d - Init START
+ubuntu:908:908 [5] NCCL INFO RAS client listening socket at 127.0.0.1<28028>
+ubuntu:908:908 [5] NCCL INFO Bootstrap timings total 0.177665 (create 0.000026, send 0.000104, recv 0.006277, ring 0.170832, delay 0.000001)
+ubuntu:908:908 [5] NCCL INFO NCCL_NET_GDR_LEVEL set by environment to PHB
+ubuntu:908:908 [5] NCCL INFO ncclTopoGetCpuAffinity: Affinity for GPU 5 is 56-111,168-223. (GPU affinity = 56-111,168-223 ; CPU affinity = 0-223).
+ubuntu:908:908 [5] NCCL INFO NVLS multicast support is not available on dev 5 (NVLS_NCHANNELS 0)
+ubuntu:908:908 [5] NCCL INFO comm 0x119c4500 rank 5 nRanks 8 nNodes 2 localRanks 4 localRank 1 MNNVL 0
+ubuntu:908:908 [5] NCCL INFO Trees [0] 6/-1/-1->5->4 [1] 4/-1/-1->5->6 [2] 6/-1/-1->5->4 [3] 4/-1/-1->5->6
+ubuntu:908:908 [5] NCCL INFO P2P Chunksize set to 131072
+ubuntu:908:908 [5] NCCL INFO PROFILER/Plugin: Could not find: libnccl-profiler.so
+ubuntu:908:908 [5] NCCL INFO Check P2P Type isAllDirectP2p 0 directMode 0 isAllCudaP2p 1
+ubuntu:908:1263 [0] NCCL INFO [Proxy Service UDS] Device 5 CPU core 169
+ubuntu:908:1261 [0] NCCL INFO [Proxy Service] Device 5 CPU core 99
+ubuntu:908:908 [5] NCCL INFO TUNER/Plugin: Could not find: libnccl-tuner.so
+ubuntu:908:908 [5] NCCL INFO threadThresholds 8/8/64 | 64/8/64 | 512 | 512
+ubuntu:908:908 [5] NCCL INFO 4 coll channels, 4 collnet channels, 0 nvls channels, 4 p2p channels, 2 p2p channels per peer
+ubuntu:908:908 [5] NCCL INFO ncclCommInitRank comm 0x119c4500 rank 5 nranks 8 cudaDev 5 nvmlDev 5 busId 89000 commId 0xe2a8c6fbfc87152d - Init COMPLETE
+ubuntu:908:908 [5] NCCL INFO Init timings - ncclCommInitRank: rank 5 nranks 8 total 0.42 (kernels 0.16, alloc 0.05, bootstrap 0.18, allgathers 0.01, topo 0.02, graphs 0.00, connections 0.01, rest 0.00)
+ubuntu:908:908 [5] NCCL INFO Channel 00 : 5[5] -> 6[6] via SHM/direct/direct
+ubuntu:908:908 [5] NCCL INFO Channel 01 : 5[5] -> 6[6] via SHM/direct/direct
+ubuntu:908:908 [5] NCCL INFO Channel 02 : 5[5] -> 6[6] via SHM/direct/direct
+ubuntu:908:908 [5] NCCL INFO Channel 03 : 5[5] -> 6[6] via SHM/direct/direct
+ubuntu:908:908 [5] NCCL INFO Channel 00/0 : 5[5] -> 4[4] via P2P/CUMEM
+ubuntu:908:908 [5] NCCL INFO Channel 01/0 : 5[5] -> 4[4] via P2P/CUMEM
+ubuntu:908:908 [5] NCCL INFO Channel 02/0 : 5[5] -> 4[4] via P2P/CUMEM
+ubuntu:908:908 [5] NCCL INFO Channel 03/0 : 5[5] -> 4[4] via P2P/CUMEM
+ubuntu:908:908 [5] NCCL INFO Connected all trees
+ubuntu:908:908 [5] NCCL INFO Initialized NET plugin IB
+ubuntu:908:908 [5] NCCL INFO Assigned NET plugin IB to comm
+ubuntu:908:908 [5] NCCL INFO Assigned GIN plugin GIN_IB_GDAKI to comm
+ubuntu:908:908 [5] NCCL INFO Using network IB
+ubuntu:908:908 [5] NCCL INFO DMA-BUF is available on GPU device 5
+ubuntu:908:908 [5] NCCL INFO ncclCommInitRank comm 0x19908140 rank 1 nranks 2 cudaDev 5 nvmlDev 5 busId 89000 commId 0x3922c43387843a0ubuntu:906:906 [3] NCCL INFO ENV/Plugin: Could not find: libnccl-env.so
+ubuntu:906:906 [3] NCCL INFO cudaDriverVersion 13000
+ubuntu:906:906 [3] NCCL INFO NCCL_SOCKET_IFNAME set by environment to eth0
+ubuntu:906:906 [3] NCCL INFO Bootstrap: Using eth0:10.10.3.15<0>
+ubuntu:906:906 [3] NCCL INFO NCCL version 2.28.9+cuda13.0
+ubuntu:906:906 [3] NCCL INFO NET/Plugin: Could not find: libnccl-net.so
+ubuntu:906:906 [3] NCCL INFO NCCL_IB_DISABLE set by environment to 0.
+ubuntu:906:906 [3] NCCL INFO NCCL_SOCKET_IFNAME set by environment to eth0
+ubuntu:906:906 [3] NCCL INFO NCCL_IB_HCA set to mlx5_0,mlx5_1,mlx5_2,mlx5_3,mlx5_4,mlx5_5,mlx5_6,mlx5_7
+ubuntu:906:906 [3] NCCL INFO NET/IB : Using [0]mlx5_0:1/IB [1]mlx5_1:1/IB [2]mlx5_2:1/IB [3]mlx5_3:1/IB [4]mlx5_4:1/IB [5]mlx5_5:1/IB [6]mlx5_6:1/IB [7]mlx5_7:1/IB [RO]; OOB eth0:10.10.3.15<0>
+ubuntu:906:906 [3] NCCL INFO Initialized NET plugin IB
+ubuntu:906:906 [3] NCCL INFO Assigned NET plugin IB to comm
+ubuntu:906:906 [3] NCCL INFO Assigned GIN plugin GIN_IB_GDAKI to comm
+ubuntu:906:906 [3] NCCL INFO Using network IB
+ubuntu:906:906 [3] NCCL INFO DMA-BUF is available on GPU device 3
+ubuntu:906:906 [3] NCCL INFO ncclCommInitRank comm 0x10370480 rank 3 nranks 8 cudaDev 3 nvmlDev 3 busId 79000 commId 0xe2a8c6fbfc87152d - Init START
+ubuntu:906:906 [3] NCCL INFO RAS client listening socket at 127.0.0.1<28028>
+ubuntu:906:906 [3] NCCL INFO Bootstrap timings total 0.169001 (create 0.000015, send 0.000048, recv 0.000052, ring 0.141918, delay 0.000000)
+ubuntu:906:906 [3] NCCL INFO NCCL_NET_GDR_LEVEL set by environment to PHB
+ubuntu:906:906 [3] NCCL INFO ncclTopoGetCpuAffinity: Affinity for GPU 3 is 0-55,112-167. (GPU affinity = 0-55,112-167 ; CPU affinity = 0-223).
+ubuntu:906:906 [3] NCCL INFO NVLS multicast support is not available on dev 3 (NVLS_NCHANNELS 0)
+ubuntu:906:906 [3] NCCL INFO comm 0x10370480 rank 3 nRanks 8 nNodes 2 localRanks 4 localRank 3 MNNVL 0
+ubuntu:906:906 [3] NCCL INFO Trees [0] -1/-1/-1->3->2 [1] 2/7/-1->3->-1 [2] -1/-1/-1->3->2 [3] 2/-1/-1->3->7
+ubuntu:906:906 [3] NCCL INFO P2P Chunksize set to 131072
+ubuntu:906:906 [3] NCCL INFO PROFILER/Plugin: Could not find: libnccl-profiler.so
+ubuntu:906:906 [3] NCCL INFO Check P2P Type isAllDirectP2p 0 directMode 0 isAllCudaP2p 1
+ubuntu:906:1269 [0] NCCL INFO [Proxy Service UDS] Device 3 CPU core 153
+ubuntu:906:1267 [0] NCCL INFO [Proxy Service] Device 3 CPU core 50
+ubuntu:906:906 [3] NCCL INFO TUNER/Plugin: Could not find: libnccl-tuner.so
+ubuntu:906:906 [3] NCCL INFO threadThresholds 8/8/64 | 64/8/64 | 512 | 512
+ubuntu:906:906 [3] NCCL INFO 4 coll channels, 4 collnet channels, 0 nvls channels, 4 p2p channels, 2 p2p channels per peer
+ubuntu:906:906 [3] NCCL INFO ncclCommInitRank comm 0x10370480 rank 3 nranks 8 cudaDev 3 nvmlDev 3 busId 79000 commId 0xe2a8c6fbfc87152d - Init COMPLETE
+ubuntu:906:906 [3] NCCL INFO Init timings - ncclCommInitRank: rank 3 nranks 8 total 0.42 (kernels 0.16, alloc 0.06, bootstrap 0.17, allgathers 0.01, topo 0.02, graphs 0.00, connections 0.01, rest 0.00)
+ubuntu:906:1272 [0] NCCL INFO [Proxy Progress] Device 3 CPU core 160
+ubuntu:906:906 [3] NCCL INFO Channel 01/0 : 7[7] -> 3[3] [receive] via NET/IB/9/GDRDMA
+ubuntu:906:906 [3] NCCL INFO Channel 03/0 : 7[7] -> 3[3] [receive] via NET/IB/9/GDRDMA
+ubuntu:906:906 [3] NCCL INFO Channel 01/0 : 3[3] -> 7[7] [send] via NET/IB/9/GDRDMA
+ubuntu:906:906 [3] NCCL INFO Channel 03/0 : 3[3] -> 7[7] [send] via NET/IB/9/GDRDMA
+ubuntu:906:906 [3] NCCL INFO Channel 00/0 : 3[3] -> 2[2] via P2P/CUMEM
+ubuntu:906:906 [3] NCCL INFO Channel 01/0 : 3[3] -> 2[2] via P2P/CUMEM
+ubuntu:906:906 [3] NCCL INFO Channel 02/0 : 3[3] -> 2[2] via P2P/CUMEM
+ubuntu:906:906 [3] NCCL INFO Channel 03/0 : 3[3] -> 2[2] via P2P/CUMEM
+ubuntu:906:906 [3] NCCL INFO Connected all trees
+ubuntu:906:906 [3] NCCL INFO Initialized NET plugin IB
+ubuntu:906:906 [3] NCCL INFO Assigned NET plugin IB to comm
+ubuntu:906:906 [3] NCCL INFO Assigned GIN plugin GIN_IB_GDAKI to comm
+ubuntu:906:906 [3] NCCL INFO Using network IB
+ubuntu:906:906 [3] NCCL INFO DMA-BUF is available on GPU device 3
+ubuntu:906:906 [3] NCCL INFO ncclubuntu:903:903 [0] NCCL INFO ENV/Plugin: Could not find: libnccl-env.so
+ubuntu:903:903 [0] NCCL INFO NCCL_SOCKET_IFNAME set by environment to eth0
+ubuntu:903:903 [0] NCCL INFO Bootstrap: Using eth0:10.10.3.15<0>
+ubuntu:903:903 [0] NCCL INFO cudaDriverVersion 13000
+ubuntu:903:903 [0] NCCL INFO NCCL version 2.28.9+cuda13.0
+ubuntu:903:903 [0] NCCL INFO NET/Plugin: Could not find: libnccl-net.so
+ubuntu:903:903 [0] NCCL INFO NCCL_IB_DISABLE set by environment to 0.
+ubuntu:903:903 [0] NCCL INFO NCCL_SOCKET_IFNAME set by environment to eth0
+ubuntu:903:903 [0] NCCL INFO NCCL_IB_HCA set to mlx5_0,mlx5_1,mlx5_2,mlx5_3,mlx5_4,mlx5_5,mlx5_6,mlx5_7
+ubuntu:903:903 [0] NCCL INFO NET/IB : Using [0]mlx5_0:1/IB [1]mlx5_1:1/IB [2]mlx5_2:1/IB [3]mlx5_3:1/IB [4]mlx5_4:1/IB [5]mlx5_5:1/IB [6]mlx5_6:1/IB [7]mlx5_7:1/IB [RO]; OOB eth0:10.10.3.15<0>
+ubuntu:903:903 [0] NCCL INFO Initialized NET plugin IB
+ubuntu:903:903 [0] NCCL INFO Assigned NET plugin IB to comm
+ubuntu:903:903 [0] NCCL INFO Assigned GIN plugin GIN_IB_GDAKI to comm
+ubuntu:903:903 [0] NCCL INFO Using network IB
+ubuntu:903:903 [0] NCCL INFO DMA-BUF is available on GPU device 0
+ubuntu:903:903 [0] NCCL INFO ncclCommInitRank comm 0x103d7010 rank 0 nranks 8 cudaDev 0 nvmlDev 0 busId 6000 commId 0xe2a8c6fbfc87152d - Init START
+ubuntu:903:903 [0] NCCL INFO RAS client listening socket at 127.0.0.1<28028>
+ubuntu:903:903 [0] NCCL INFO Bootstrap timings total 0.000683 (create 0.000035, send 0.000113, recv 0.000086, ring 0.000185, delay 0.000000)
+ubuntu:903:903 [0] NCCL INFO NCCL_NET_GDR_LEVEL set by environment to PHB
+ubuntu:903:903 [0] NCCL INFO ncclTopoGetCpuAffinity: Affinity for GPU 0 is 0-55,112-167. (GPU affinity = 0-55,112-167 ; CPU affinity = 0-223).
+ubuntu:903:903 [0] NCCL INFO NVLS multicast support is not available on dev 0 (NVLS_NCHANNELS 0)
+ubuntu:903:903 [0] NCCL INFO comm 0x103d7010 rank 0 nRanks 8 nNodes 2 localRanks 4 localRank 0 MNNVL 0
+ubuntu:903:903 [0] NCCL INFO Channel 00/04 : 0 1 2 3 4 5 6 7
+ubuntu:903:903 [0] NCCL INFO Channel 01/04 : 0 1 2 3 4 5 6 7
+ubuntu:903:903 [0] NCCL INFO Channel 02/04 : 0 1 2 3 4 5 6 7
+ubuntu:903:903 [0] NCCL INFO Channel 03/04 : 0 1 2 3 4 5 6 7
+ubuntu:903:903 [0] NCCL INFO Trees [0] 1/4/-1->0->-1 [1] -1/-1/-1->0->1 [2] 1/-1/-1->0->4 [3] -1/-1/-1->0->1
+ubuntu:903:903 [0] NCCL INFO P2P Chunksize set to 131072
+ubuntu:903:903 [0] NCCL INFO PROFILER/Plugin: Could not find: libnccl-profiler.so
+ubuntu:903:903 [0] NCCL INFO Check P2P Type isAllDirectP2p 0 directMode 0 isAllCudaP2p 1
+ubuntu:903:1266 [0] NCCL INFO [Proxy Service] Device 0 CPU core 50
+ubuntu:903:1268 [0] NCCL INFO [Proxy Service UDS] Device 0 CPU core 8
+ubuntu:903:903 [0] NCCL INFO TUNER/Plugin: Could not find: libnccl-tuner.so
+ubuntu:903:903 [0] NCCL INFO threadThresholds 8/8/64 | 64/8/64 | 512 | 512
+ubuntu:903:903 [0] NCCL INFO 4 coll channels, 4 collnet channels, 0 nvls channels, 4 p2p channels, 2 p2p channels per peer
+ubuntu:903:903 [0] NCCL INFO CC Off, workFifoBytes 1048576
+ubuntu:903:903 [0] NCCL INFO ncclCommInitRank comm 0x103d7010 rank 0 nranks 8 cudaDev 0 nvmlDev 0 busId 6000 commId 0xe2a8c6fbfc87152d - Init COMPLETE
+ubuntu:903:903 [0] NCCL INFO Init timings - ncclCommInitRank: rank 0 nranks 8 total 0.24 (kernels 0.12, alloc 0.07, bootstrap 0.00, allgathers 0.01, topo 0.02, graphs 0.00, connections 0.01, rest 0.00)
+ubuntu:903:903 [0] NCCL INFO Channel 00/0 : 0[0] -> 1[1] via P2P/CUMEM
+ubuntu:903:903 [0] NCCL INFO Channel 01/0 : 0[0] -> 1[1] via P2P/CUMEM
+ubuntu:903:903 [0] NCCL INFO Channel 02/0 : 0[0] -> 1[1] via P2P/CUMEM
+ubuntu:903:903 [0] NCCL INFO Channel 03/0 : 0[0] -> 1[1] via P2P/CUMEM
+ubuntu:903:1273 [0] NCCL INFO [Proxy Progress] Device 0 CPU core 8
+ubuntu:903:903 [0] NCCL INFO Channel 00/0 : 4[4] -> 0[0] [receive] via NET/IB/8/GDRDMA
+ubuntu:903:903 [0] NCCL INFO Channel 02/0 : 4[4] -> 0[0] [receive] via NET/IB/8/GDRDMA
+ubuntu:903:903 [0] NCCL INFO Channel 00/0 : 0[0] -> 4[4] [send] via NET/IB/8/GDRDMA
+ubuntu:903:903 [0] NCCL INFO Channel 02/0 : 0[0] -> 4[4] [send] via NET/IB/8/GDRDMA
+ubuntu:903:903 [0] NCCL INFO Connected all trees
+ubuntu:903:903 [0] NCCL INFO Initialized NET plugin IB
+ubuntu:903:903 [0] NCCL INFO Assigned NET plugin IB to comm
+ubuntu:903:903 [0] NCCL INFO Assigned GIN plugin GIN_IB_GDAKI to comm
+ubuntu:903:903 [0] NCCL INFO Using network IB
+ubuntu:903:903 [0] NCCL INFO DMA-BUF is available on GPU device 0
+ubuntu:903:903 [0] NCCL INFO ncclCommInitRank comm 0x182f38f0 rank 1 nranks 2 cudaDev 0 nvmlDev 0 busId 6000 commId 0x7d0389d12c7ddc9e - Init START
+ubuntu:903:903 [0] NCCL INFO Bootstrap timings total 0.001066 (create 0.000011, send 0.000187, recv 0.000444, ring 0.000185, delay 0.000000)
+ubuntu:903:903 [0] NCCL INFO ncclTopoGetCpuAffinity: Affinity for GPU 0 is 0-55,112-167. (GPU affinity = 0-55,112-167 ; CPU affinity = 0-223).
+ubuntu:903:903 [0] NCCL INFO comm 0x182f38f0 rank 1 nRanks 2 nNodes 2 localRanks 1 localRank 0 MNNVL 0
+ubuntu:903:903 [0] NCCL INFO Trees [0] -1/-1/-1->1->0 [1] -1/-1/-1->1->0 [2] 0/-1/-1->1->-1 [3] 0/-1/-1->1->-1
+ubuntu:903:903 [0] NCCL INFO P2P Chunksize set to 131072
+ubuntu:903:903 [0] NCCL INFO Check P2P Type isAllDirectP2p 1 directMode 0 isAllCudaP2p 1
+ubuntu:903:1468 [0] NCCL INFO [Proxy Service] Device 0 CPU core 42
+ubuntu:903:1469 [0] NCCL INFO [Proxy Service UDS] Device 0 CPU core 28
+ubuntu:903:903 [0] NCCL INFO threadThresholds 8/8/64 | 16/8/64 | 512 | 512
+ubuntu:903:903 [0] NCCL INFO 4 coll channels, 4 collnet channels, 0 nvls channels, 4 p2p channels, 2 p2p channels per peer
+ubuntu:903:903 [0] NCCL INFO ncclCommInitRank comm 0x182f38f0 rank 1 nranks 2 cudaDev 0 nvmlDev 0 busId 6000 commId 0x7d0389d12c7ddc9e - Init COMPLETE
+ubuntu:903:903 [0] NCCL INFO Init timings - ncclCommInitRank: rank 1 nranks 2 total 0.01 (kernels 0.00, alloc 0.00, bootstrap 0.00, allgathers 0.00, topo 0.00, graphs 0.00, connections 0.00, rest 0.00)
+ubuntu:903:1475 [0] NCCL INFO [Proxy Progress] Device 0 CPU core 17
+ubuntu:903:903 [0] NCCL INFO Channel 00/0 : 0[0] -> 1[0] [receive] via NET/IB/0/GDRDMA
+ubuntu:903:903 [0] NCCL INFO Channel 01/0 : 0[0] -> 1[0] [receive] via NET/IB/0/GDRDMA
+ubuntu:903:903 [0] NCCL INFO Channel 02/0 : 0[0] -> 1[0] [receive] via NET/IB/0/GDRDMA
+ubuntu:903:903 [0] NCCL INFO Channel 03/0 : 0[0] -> 1[0] [receive] via NET/IB/0/GDRDMA
+ubuntu:903:903 [0] NCCL INFO Channel 00/0 : 1[0] -> 0[0] [send] via NET/IB/0/GDRDMA
+ubuntu:903:903 [0] NCCL INFO Channel 01/0 : 1[0] -> 0[0] [send] via NET/IB/0/GDRDMA
+ubuntu:903:903 [0] NCCL INFO Channel 02/0 : 1[0] -> 0[0] [send] via NET/IB/0/GDRDMA
+ubuntu:903:903 [0] NCCL INFO Channel 03/0 : 1[0] -> 0[0] [send] via NET/IB/0/GDRDMA
+ubuntu:903:903 [0] NCCL INFO Connected all rings, use ring PXN 0 GDR 1
+ubuntu:903:903 [0] NCCL INFO Initialized NET plugin IB
+ubuntu:903:903 [0] NCCL INFO Assigned NET plugin IB to comm
+ubuntu:903:903 [0] NCCL INFO Assigned GIN plugin GIN_IB_GDAKI to comm
+ubuntu:903:903 [0] NCCL INFO Using network IB
+ubuntu:903:903 [0] NCCL INFO DMA-BUF is available on GPU device 0
+ubuntu:903:903 [0] NCCL INFO ncclCommInitRank comm 0x18e3f6a0 rank 8 nranks 16 cudaDev 0 nvmlDev 0 busId 6000 commId 0xb789f0a5b3e4ffb3 - Init START
+ubuntu:903:903 [0] NCCL INFO Bootstrap timings total 0.003315 (create 0.000012, send 0.000236, recv 0.001218, ring 0.001773, delay 0.000000)
+ubuntu:903:903 [0] NCCL INFO ncclTopoGetCpuAffinity: Affinity for GPU 0 is 0-55,112-167. (GPU affinity = 0-55,112-167 ; CPU affinity = 0-223).
+ubuntu:903:903 [0] NCCL INFO NVLS multicast support is not available on dev 0 (NVLS_NCHANNELS 0)
+ubuntu:903:903 [0] NCCL INFO comm 0x18e3f6a0 rank 8 nRanks 16 nNodes 4 localRanks 4 localRank 0 MNNVL 0
+ubuntu:903:903 [0] NCCL INFO Trees [0] 9/4/12->8->0 [1] -1/-1/-1->8->9 [2] 9/-1/-1->8->4 [3] -1/-1/-1->8->9
+ubuntu:903:903 [0] NCCL INFO P2P Chunksize set to 131072
+ubuntu:903:903 [0] NCCL INFO Check P2P Type isAllDirectP2p 0 directMode 0 isAllCudaP2p 1
+ubuntu:903:1524 [0] NCCL INFO [Proxy Service] Device 0 CPU core 17
+ubuntu:903:1526 [0] NCCL INFO [Proxy Service UDS] Device 0 CPU core 134
+ubuntu:903:903 [0] NCCL INFO threadThresholds 8/8/64 | 128/8/64 | 512 | 512
+ubuntu:903:903 [0] NCCL INFO 4 coll channels, 4 collnet channels, 0 nvls channels, 4 p2p channels, 1 p2p channels per peer
+ubuntCommInitRank comm 0x182a57c0 rank 1 nranks 2 cudaDev 3 nvmlDev 3 busId 79000 commId 0x2f1fd4e6ad9078e2 - Init START
+ubuntu:906:906 [3] NCCL INFO Bootstrap timings total 0.001139 (create 0.000012, send 0.000206, recv 0.000423, ring 0.000238, delay 0.000000)
+ubuntu:906:906 [3] NCCL INFO ncclTopoGetCpuAffinity: Affinity for GPU 3 is 0-55,112-167. (GPU affinity = 0-55,112-167 ; CPU affinity = 0-223).
+ubuntu:906:906 [3] NCCL INFO comm 0x182a57c0 rank 1 nRanks 2 nNodes 2 localRanks 1 localRank 0 MNNVL 0
+ubuntu:906:906 [3] NCCL INFO Trees [0] -1/-1/-1->1->0 [1] -1/-1/-1->1->0 [2] 0/-1/-1->1->-1 [3] 0/-1/-1->1->-1
+ubuntu:906:906 [3] NCCL INFO P2P Chunksize set to 131072
+ubuntu:906:906 [3] NCCL INFO Check P2P Type isAllDirectP2p 1 directMode 0 isAllCudaP2p 1
+ubuntu:906:1465 [0] NCCL INFO [Proxy Service] Device 3 CPU core 42
+ubuntu:906:906 [3] NCCL INFO threadThresholds 8/8/64 | 16/8/64 | 512 | 512
+ubuntu:906:906 [3] NCCL INFO 4 coll channels, 4 collnet channels, 0 nvls channels, 4 p2p channels, 2 p2p channels per peer
+ubuntu:906:906 [3] NCCL INFO ncclCommInitRank comm 0x182a57c0 rank 1 nranks 2 cudaDev 3 nvmlDev 3 busId 79000 commId 0x2f1fd4e6ad9078e2 - Init COMPLETE
+ubuntu:906:906 [3] NCCL INFO Init timings - ncclCommInitRank: rank 1 nranks 2 total 0.01 (kernels 0.00, alloc 0.00, bootstrap 0.00, allgathers 0.00, topo 0.00, graphs 0.00, connections 0.00, rest 0.00)
+ubuntu:906:1466 [0] NCCL INFO [Proxy Service UDS] Device 3 CPU core 49
+ubuntu:906:1474 [0] NCCL INFO [Proxy Progress] Device 3 CPU core 160
+ubuntu:906:906 [3] NCCL INFO Channel 00/0 : 0[3] -> 1[3] [receive] via NET/IB/2/GDRDMA
+ubuntu:906:906 [3] NCCL INFO Channel 01/0 : 0[3] -> 1[3] [receive] via NET/IB/2/GDRDMA
+ubuntu:906:906 [3] NCCL INFO Channel 02/0 : 0[3] -> 1[3] [receive] via NET/IB/2/GDRDMA
+ubuntu:906:906 [3] NCCL INFO Channel 03/0 : 0[3] -> 1[3] [receive] via NET/IB/2/GDRDMA
+ubuntu:906:906 [3] NCCL INFO Channel 00/0 : 1[3] -> 0[3] [send] via NET/IB/2/GDRDMA
+ubuntu:906:906 [3] NCCL INFO Channel 01/0 : 1[3] -> 0[3] [send] via NET/IB/2/GDRDMA
+ubuntu:906:906 [3] NCCL INFO Channel 02/0 : 1[3] -> 0[3] [send] via NET/IB/2/GDRDMA
+ubuntu:906:906 [3] NCCL INFO Channel 03/0 : 1[3] -> 0[3] [send] via NET/IB/2/GDRDMA
+ubuntu:906:906 [3] NCCL INFO Connected all rings, use ring PXN 0 GDR 1
+ubuntu:906:906 [3] NCCL INFO Initialized NET plugin IB
+ubuntu:906:906 [3] NCCL INFO Assigned NET plugin IB to comm
+ubuntu:906:906 [3] NCCL INFO Assigned GIN plugin GIN_IB_GDAKI to comm
+ubuntu:906:906 [3] NCCL INFO Using network IB
+ubuntu:906:906 [3] NCCL INFO DMA-BUF is available on GPU device 3
+ubuntu:906:906 [3] NCCL INFO ncclCommInitRank comm 0x18df15e0 rank 11 nranks 16 cudaDev 3 nvmlDev 3 busId 79000 commId 0xb789f0a5b3e4ffb3 - Init START
+ubuntu:906:906 [3] NCCL INFO Bootstrap timings total 0.003188 (create 0.000014, send 0.000234, recv 0.000804, ring 0.001838, delay 0.000000)
+ubuntu:906:906 [3] NCCL INFO ncclTopoGetCpuAffinity: Affinity for GPU 3 is 0-55,112-167. (GPU affinity = 0-55,112-167 ; CPU affinity = 0-223).
+ubuntu:906:906 [3] NCCL INFO NVLS multicast support is not available on dev 3 (NVLS_NCHANNELS 0)
+ubuntu:906:906 [3] NCCL INFO comm 0x18df15e0 rank 11 nRanks 16 nNodes 4 localRanks 4 localRank 3 MNNVL 0
+ubuntu:906:906 [3] NCCL INFO Trees [0] -1/-1/-1->11->10 [1] 10/7/15->11->3 [2] -1/-1/-1->11->10 [3] 10/-1/-1->11->7
+ubuntu:906:906 [3] NCCL INFO P2P Chunksize set to 131072
+ubuntu:906:906 [3] NCCL INFO Check P2P Type isAllDirectP2p 0 directMode 0 isAllCudaP2p 1
+ubuntu:906:1516 [0] NCCL INFO [Proxy Service] Device 3 CPU core 146
+ubuntu:906:1517 [0] NCCL INFO [Proxy Service UDS] Device 3 CPU core 153
+ubuntu:906:906 [3] NCCL INFO threadThresholds 8/8/64 | 128/8/64 | 512 | 512
+ubuntu:906:906 [3] NCCL INFO 4 coll channels, 4 collnet channels, 0 nvls channels, 4 p2p channels, 1 p2p channels per peer
+ubuntu:906:906 [3] NCCL INFO ncclCommInitRank comm 0x18df15e0 rank 11 nranks 16 cudaDev 3 nvmlDev 3 busId 79000 commId 0xb789f0a5b3e4ffb3 - Init COMPLETE
+ubuntu:906:906 [3] NCCL INFO Init timings - ncclCommInitRank: rank 11 nranks 16 total 0.04 (kernels 0.00, alloc 0.00, bootstrap 0.00,NFO ncclCommInitRank comm 0x19613360 rank 1 nranks 2 cudaDev 4 nvmlDev 4 busId 86000 commId 0x87f409e8cec9cab0 - Init START
+ubuntu:907:907 [4] NCCL INFO Bootstrap timings total 0.001148 (create 0.000010, send 0.000216, recv 0.000407, ring 0.000244, delay 0.000000)
+ubuntu:907:907 [4] NCCL INFO ncclTopoGetCpuAffinity: Affinity for GPU 4 is 56-111,168-223. (GPU affinity = 56-111,168-223 ; CPU affinity = 0-223).
+ubuntu:907:907 [4] NCCL INFO comm 0x19613360 rank 1 nRanks 2 nNodes 2 localRanks 1 localRank 0 MNNVL 0
+ubuntu:907:907 [4] NCCL INFO Trees [0] -1/-1/-1->1->0 [1] -1/-1/-1->1->0 [2] 0/-1/-1->1->-1 [3] 0/-1/-1->1->-1
+ubuntu:907:907 [4] NCCL INFO P2P Chunksize set to 131072
+ubuntu:907:907 [4] NCCL INFO Check P2P Type isAllDirectP2p 1 directMode 0 isAllCudaP2p 1
+ubuntu:907:1454 [0] NCCL INFO [Proxy Service] Device 4 CPU core 105
+ubuntu:907:1455 [0] NCCL INFO [Proxy Service UDS] Device 4 CPU core 187
+ubuntu:907:907 [4] NCCL INFO threadThresholds 8/8/64 | 16/8/64 | 512 | 512
+ubuntu:907:907 [4] NCCL INFO 4 coll channels, 4 collnet channels, 0 nvls channels, 4 p2p channels, 2 p2p channels per peer
+ubuntu:907:907 [4] NCCL INFO ncclCommInitRank comm 0x19613360 rank 1 nranks 2 cudaDev 4 nvmlDev 4 busId 86000 commId 0x87f409e8cec9cab0 - Init COMPLETE
+ubuntu:907:907 [4] NCCL INFO Init timings - ncclCommInitRank: rank 1 nranks 2 total 0.01 (kernels 0.00, alloc 0.00, bootstrap 0.00, allgathers 0.00, topo 0.00, graphs 0.00, connections 0.00, rest 0.00)
+ubuntu:907:1470 [0] NCCL INFO [Proxy Progress] Device 4 CPU core 178
+ubuntu:907:907 [4] NCCL INFO Channel 00/0 : 0[4] -> 1[4] [receive] via NET/IB/5/GDRDMA
+ubuntu:907:907 [4] NCCL INFO Channel 01/0 : 0[4] -> 1[4] [receive] via NET/IB/5/GDRDMA
+ubuntu:907:907 [4] NCCL INFO Channel 02/0 : 0[4] -> 1[4] [receive] via NET/IB/5/GDRDMA
+ubuntu:907:907 [4] NCCL INFO Channel 03/0 : 0[4] -> 1[4] [receive] via NET/IB/5/GDRDMA
+ubuntu:907:907 [4] NCCL INFO Channel 00/0 : 1[4] -> 0[4] [send] via NET/IB/5/GDRDMA
+ubuntu:907:907 [4] NCCL INFO Channel 01/0 : 1[4] -> 0[4] [send] via NET/IB/5/GDRDMA
+ubuntu:907:907 [4] NCCL INFO Channel 02/0 : 1[4] -> 0[4] [send] via NET/IB/5/GDRDMA
+ubuntu:907:907 [4] NCCL INFO Channel 03/0 : 1[4] -> 0[4] [send] via NET/IB/5/GDRDMA
+ubuntu:907:907 [4] NCCL INFO Connected all rings, use ring PXN 0 GDR 1
+ubuntu:907:907 [4] NCCL INFO Initialized NET plugin IB
+ubuntu:907:907 [4] NCCL INFO Assigned NET plugin IB to comm
+ubuntu:907:907 [4] NCCL INFO Assigned GIN plugin GIN_IB_GDAKI to comm
+ubuntu:907:907 [4] NCCL INFO Using network IB
+ubuntu:907:907 [4] NCCL INFO DMA-BUF is available on GPU device 4
+ubuntu:907:907 [4] NCCL INFO ncclCommInitRank comm 0x1a15f180 rank 12 nranks 16 cudaDev 4 nvmlDev 4 busId 86000 commId 0xb789f0a5b3e4ffb3 - Init START
+ubuntu:907:907 [4] NCCL INFO Bootstrap timings total 0.003762 (create 0.000011, send 0.000234, recv 0.002048, ring 0.001401, delay 0.000000)
+ubuntu:907:907 [4] NCCL INFO ncclTopoGetCpuAffinity: Affinity for GPU 4 is 56-111,168-223. (GPU affinity = 56-111,168-223 ; CPU affinity = 0-223).
+ubuntu:907:907 [4] NCCL INFO NVLS multicast support is not available on dev 4 (NVLS_NCHANNELS 0)
+ubuntu:907:907 [4] NCCL INFO comm 0x1a15f180 rank 12 nRanks 16 nNodes 4 localRanks 4 localRank 0 MNNVL 0
+ubuntu:907:907 [4] NCCL INFO Trees [0] 13/-1/-1->12->8 [1] -1/-1/-1->12->13 [2] 13/4/-1->12->-1 [3] -1/-1/-1->12->13
+ubuntu:907:907 [4] NCCL INFO P2P Chunksize set to 131072
+ubuntu:907:907 [4] NCCL INFO Check P2P Type isAllDirectP2p 0 directMode 0 isAllCudaP2p 1
+ubuntu:907:1521 [0] NCCL INFO [Proxy Service] Device 4 CPU core 183
+ubuntu:907:1527 [0] NCCL INFO [Proxy Service UDS] Device 4 CPU core 201
+ubuntu:907:907 [4] NCCL INFO threadThresholds 8/8/64 | 128/8/64 | 512 | 512
+ubuntu:907:907 [4] NCCL INFO 4 coll channels, 4 collnet channels, 0 nvls channels, 4 p2p channels, 1 p2p channels per peer
+ubuntu:907:907 [4] NCCL INFO ncclCommInitRank comm 0x1a15f180 rank 12 nranks 16 cudaDev 4 nvmlDev 4 busId 86000 commId 0xb789f0a5b3e4ffb3 - Init COMPLETE
+ubuntu:907:907 [4] NCCL INFO Init timings - ncclCommInitRank: rank 12 nranks 16 total 0.04 (kernels 0.00, alloc 0.NFO ncclCommInitRank comm 0x19236fc0 rank 1 nranks 2 cudaDev 7 nvmlDev 7 busId f9000 commId 0xb9fce600f379428f - Init START
+ubuntu:910:910 [7] NCCL INFO Bootstrap timings total 0.001183 (create 0.000011, send 0.000221, recv 0.000453, ring 0.000228, delay 0.000000)
+ubuntu:910:910 [7] NCCL INFO ncclTopoGetCpuAffinity: Affinity for GPU 7 is 56-111,168-223. (GPU affinity = 56-111,168-223 ; CPU affinity = 0-223).
+ubuntu:910:910 [7] NCCL INFO comm 0x19236fc0 rank 1 nRanks 2 nNodes 2 localRanks 1 localRank 0 MNNVL 0
+ubuntu:910:910 [7] NCCL INFO Trees [0] -1/-1/-1->1->0 [1] -1/-1/-1->1->0 [2] 0/-1/-1->1->-1 [3] 0/-1/-1->1->-1
+ubuntu:910:910 [7] NCCL INFO P2P Chunksize set to 131072
+ubuntu:910:910 [7] NCCL INFO Check P2P Type isAllDirectP2p 1 directMode 0 isAllCudaP2p 1
+ubuntu:910:1448 [0] NCCL INFO [Proxy Service] Device 7 CPU core 105
+ubuntu:910:1449 [0] NCCL INFO [Proxy Service UDS] Device 7 CPU core 200
+ubuntu:910:910 [7] NCCL INFO threadThresholds 8/8/64 | 16/8/64 | 512 | 512
+ubuntu:910:910 [7] NCCL INFO 4 coll channels, 4 collnet channels, 0 nvls channels, 4 p2p channels, 2 p2p channels per peer
+ubuntu:910:910 [7] NCCL INFO ncclCommInitRank comm 0x19236fc0 rank 1 nranks 2 cudaDev 7 nvmlDev 7 busId f9000 commId 0xb9fce600f379428f - Init COMPLETE
+ubuntu:910:910 [7] NCCL INFO Init timings - ncclCommInitRank: rank 1 nranks 2 total 0.01 (kernels 0.00, alloc 0.00, bootstrap 0.00, allgathers 0.00, topo 0.00, graphs 0.00, connections 0.00, rest 0.00)
+ubuntu:910:1467 [0] NCCL INFO [Proxy Progress] Device 7 CPU core 187
+ubuntu:910:910 [7] NCCL INFO Channel 00/0 : 0[7] -> 1[7] [receive] via NET/IB/7/GDRDMA
+ubuntu:910:910 [7] NCCL INFO Channel 01/0 : 0[7] -> 1[7] [receive] via NET/IB/7/GDRDMA
+ubuntu:910:910 [7] NCCL INFO Channel 02/0 : 0[7] -> 1[7] [receive] via NET/IB/7/GDRDMA
+ubuntu:910:910 [7] NCCL INFO Channel 03/0 : 0[7] -> 1[7] [receive] via NET/IB/7/GDRDMA
+ubuntu:910:910 [7] NCCL INFO Channel 00/0 : 1[7] -> 0[7] [send] via NET/IB/7/GDRDMA
+ubuntu:910:910 [7] NCCL INFO Channel 01/0 : 1[7] -> 0[7] [send] via NET/IB/7/GDRDMA
+ubuntu:910:910 [7] NCCL INFO Channel 02/0 : 1[7] -> 0[7] [send] via NET/IB/7/GDRDMA
+ubuntu:910:910 [7] NCCL INFO Channel 03/0 : 1[7] -> 0[7] [send] via NET/IB/7/GDRDMA
+ubuntu:910:910 [7] NCCL INFO Connected all rings, use ring PXN 0 GDR 1
+ubuntu:910:910 [7] NCCL INFO Initialized NET plugin IB
+ubuntu:910:910 [7] NCCL INFO Assigned NET plugin IB to comm
+ubuntu:910:910 [7] NCCL INFO Assigned GIN plugin GIN_IB_GDAKI to comm
+ubuntu:910:910 [7] NCCL INFO Using network IB
+ubuntu:910:910 [7] NCCL INFO DMA-BUF is available on GPU device 7
+ubuntu:910:910 [7] NCCL INFO ncclCommInitRank comm 0x19d82d80 rank 15 nranks 16 cudaDev 7 nvmlDev 7 busId f9000 commId 0xb789f0a5b3e4ffb3 - Init START
+ubuntu:910:910 [7] NCCL INFO Bootstrap timings total 0.003929 (create 0.000011, send 0.000208, recv 0.000941, ring 0.002491, delay 0.000000)
+ubuntu:910:910 [7] NCCL INFO ncclTopoGetCpuAffinity: Affinity for GPU 7 is 56-111,168-223. (GPU affinity = 56-111,168-223 ; CPU affinity = 0-223).
+ubuntu:910:910 [7] NCCL INFO NVLS multicast support is not available on dev 7 (NVLS_NCHANNELS 0)
+ubuntu:910:910 [7] NCCL INFO comm 0x19d82d80 rank 15 nRanks 16 nNodes 4 localRanks 4 localRank 3 MNNVL 0
+ubuntu:910:910 [7] NCCL INFO Trees [0] -1/-1/-1->15->14 [1] 14/-1/-1->15->11 [2] -1/-1/-1->15->14 [3] 14/7/-1->15->-1
+ubuntu:910:910 [7] NCCL INFO P2P Chunksize set to 131072
+ubuntu:910:910 [7] NCCL INFO Check P2P Type isAllDirectP2p 0 directMode 0 isAllCudaP2p 1
+ubuntu:910:1529 [0] NCCL INFO [Proxy Service] Device 7 CPU core 178
+ubuntu:910:1531 [0] NCCL INFO [Proxy Service UDS] Device 7 CPU core 193
+ubuntu:910:910 [7] NCCL INFO threadThresholds 8/8/64 | 128/8/64 | 512 | 512
+ubuntu:910:910 [7] NCCL INFO 4 coll channels, 4 collnet channels, 0 nvls channels, 4 p2p channels, 1 p2p channels per peer
+ubuntu:910:910 [7] NCCL INFO ncclCommInitRank comm 0x19d82d80 rank 15 nranks 16 cudaDev 7 nvmlDev 7 busId f9000 commId 0xb789f0a5b3e4ffb3 - Init COMPLETE
+ubuntu:910:910 [7] NCCL INFO Init timings - ncclCommInitRank: rank 15 nranks 16 total 0.04 (kernels 0.00, alloc 0t START
+ubuntu:904:904 [1] NCCL INFO Bootstrap timings total 0.001247 (create 0.000012, send 0.000225, recv 0.000502, ring 0.000210, delay 0.000000)
+ubuntu:904:904 [1] NCCL INFO ncclTopoGetCpuAffinity: Affinity for GPU 1 is 0-55,112-167. (GPU affinity = 0-55,112-167 ; CPU affinity = 0-223).
+ubuntu:904:904 [1] NCCL INFO comm 0x197bec00 rank 1 nRanks 2 nNodes 2 localRanks 1 localRank 0 MNNVL 0
+ubuntu:904:904 [1] NCCL INFO Trees [0] -1/-1/-1->1->0 [1] -1/-1/-1->1->0 [2] 0/-1/-1->1->-1 [3] 0/-1/-1->1->-1
+ubuntu:904:904 [1] NCCL INFO P2P Chunksize set to 131072
+ubuntu:904:904 [1] NCCL INFO Check P2P Type isAllDirectP2p 1 directMode 0 isAllCudaP2p 1
+ubuntu:904:1461 [0] NCCL INFO [Proxy Service UDS] Device 1 CPU core 28
+ubuntu:904:1460 [0] NCCL INFO [Proxy Service] Device 1 CPU core 49
+ubuntu:904:904 [1] NCCL INFO threadThresholds 8/8/64 | 16/8/64 | 512 | 512
+ubuntu:904:904 [1] NCCL INFO 4 coll channels, 4 collnet channels, 0 nvls channels, 4 p2p channels, 2 p2p channels per peer
+ubuntu:904:904 [1] NCCL INFO ncclCommInitRank comm 0x197bec00 rank 1 nranks 2 cudaDev 1 nvmlDev 1 busId 9000 commId 0xfe139c47cd4b790 - Init COMPLETE
+ubuntu:904:904 [1] NCCL INFO Init timings - ncclCommInitRank: rank 1 nranks 2 total 0.01 (kernels 0.00, alloc 0.00, bootstrap 0.00, allgathers 0.00, topo 0.00, graphs 0.00, connections 0.00, rest 0.00)
+ubuntu:904:1471 [0] NCCL INFO [Proxy Progress] Device 1 CPU core 160
+ubuntu:904:904 [1] NCCL INFO Channel 00/0 : 0[1] -> 1[1] [receive] via NET/IB/1/GDRDMA
+ubuntu:904:904 [1] NCCL INFO Channel 01/0 : 0[1] -> 1[1] [receive] via NET/IB/1/GDRDMA
+ubuntu:904:904 [1] NCCL INFO Channel 02/0 : 0[1] -> 1[1] [receive] via NET/IB/1/GDRDMA
+ubuntu:904:904 [1] NCCL INFO Channel 03/0 : 0[1] -> 1[1] [receive] via NET/IB/1/GDRDMA
+ubuntu:904:904 [1] NCCL INFO Channel 00/0 : 1[1] -> 0[1] [send] via NET/IB/1/GDRDMA
+ubuntu:904:904 [1] NCCL INFO Channel 01/0 : 1[1] -> 0[1] [send] via NET/IB/1/GDRDMA
+ubuntu:904:904 [1] NCCL INFO Channel 02/0 : 1[1] -> 0[1] [send] via NET/IB/1/GDRDMA
+ubuntu:904:904 [1] NCCL INFO Channel 03/0 : 1[1] -> 0[1] [send] via NET/IB/1/GDRDMA
+ubuntu:904:904 [1] NCCL INFO Connected all rings, use ring PXN 0 GDR 1
+ubuntu:904:904 [1] NCCL INFO Initialized NET plugin IB
+ubuntu:904:904 [1] NCCL INFO Assigned NET plugin IB to comm
+ubuntu:904:904 [1] NCCL INFO Assigned GIN plugin GIN_IB_GDAKI to comm
+ubuntu:904:904 [1] NCCL INFO Using network IB
+ubuntu:904:904 [1] NCCL INFO DMA-BUF is available on GPU device 1
+ubuntu:904:904 [1] NCCL INFO ncclCommInitRank comm 0x1a30ea30 rank 9 nranks 16 cudaDev 1 nvmlDev 1 busId 9000 commId 0xb789f0a5b3e4ffb3 - Init START
+ubuntu:904:904 [1] NCCL INFO Bootstrap timings total 0.003283 (create 0.000014, send 0.000208, recv 0.001426, ring 0.001566, delay 0.000000)
+ubuntu:904:904 [1] NCCL INFO ncclTopoGetCpuAffinity: Affinity for GPU 1 is 0-55,112-167. (GPU affinity = 0-55,112-167 ; CPU affinity = 0-223).
+ubuntu:904:904 [1] NCCL INFO NVLS multicast support is not available on dev 1 (NVLS_NCHANNELS 0)
+ubuntu:904:904 [1] NCCL INFO comm 0x1a30ea30 rank 9 nRanks 16 nNodes 4 localRanks 4 localRank 1 MNNVL 0
+ubuntu:904:904 [1] NCCL INFO Trees [0] 10/-1/-1->9->8 [1] 8/-1/-1->9->10 [2] 10/-1/-1->9->8 [3] 8/-1/-1->9->10
+ubuntu:904:904 [1] NCCL INFO P2P Chunksize set to 131072
+ubuntu:904:904 [1] NCCL INFO Check P2P Type isAllDirectP2p 0 directMode 0 isAllCudaP2p 1
+ubuntu:904:1522 [0] NCCL INFO [Proxy Service] Device 1 CPU core 51
+ubuntu:904:1525 [0] NCCL INFO [Proxy Service UDS] Device 1 CPU core 153
+ubuntu:904:904 [1] NCCL INFO threadThresholds 8/8/64 | 128/8/64 | 512 | 512
+ubuntu:904:904 [1] NCCL INFO 4 coll channels, 4 collnet channels, 0 nvls channels, 4 p2p channels, 1 p2p channels per peer
+ubuntu:904:904 [1] NCCL INFO ncclCommInitRank comm 0x1a30ea30 rank 9 nranks 16 cudaDev 1 nvmlDev 1 busId 9000 commId 0xb789f0a5b3e4ffb3 - Init COMPLETE
+ubuntu:904:904 [1] NCCL INFO Init timings - ncclCommInitRank: rank 9 nranks 16 total 0.04 (kernels 0.00, alloc 0.00, bootstrap 0.00, allgathers 0.01, topo 0.01, graphs 0.00, connections 0.01, rest 0.00)
+ubuntu:904:904 [1] NCCL INFO Channel 00 : 9[1] -> 1 - Init START
+ubuntu:908:908 [5] NCCL INFO Bootstrap timings total 0.001211 (create 0.000011, send 0.000254, recv 0.000456, ring 0.000256, delay 0.000000)
+ubuntu:908:908 [5] NCCL INFO ncclTopoGetCpuAffinity: Affinity for GPU 5 is 56-111,168-223. (GPU affinity = 56-111,168-223 ; CPU affinity = 0-223).
+ubuntu:908:908 [5] NCCL INFO comm 0x19908140 rank 1 nRanks 2 nNodes 2 localRanks 1 localRank 0 MNNVL 0
+ubuntu:908:908 [5] NCCL INFO Trees [0] -1/-1/-1->1->0 [1] -1/-1/-1->1->0 [2] 0/-1/-1->1->-1 [3] 0/-1/-1->1->-1
+ubuntu:908:908 [5] NCCL INFO P2P Chunksize set to 131072
+ubuntu:908:908 [5] NCCL INFO Check P2P Type isAllDirectP2p 1 directMode 0 isAllCudaP2p 1
+ubuntu:908:1462 [0] NCCL INFO [Proxy Service] Device 5 CPU core 69
+ubuntu:908:1463 [0] NCCL INFO [Proxy Service UDS] Device 5 CPU core 105
+ubuntu:908:908 [5] NCCL INFO threadThresholds 8/8/64 | 16/8/64 | 512 | 512
+ubuntu:908:908 [5] NCCL INFO 4 coll channels, 4 collnet channels, 0 nvls channels, 4 p2p channels, 2 p2p channels per peer
+ubuntu:908:908 [5] NCCL INFO ncclCommInitRank comm 0x19908140 rank 1 nranks 2 cudaDev 5 nvmlDev 5 busId 89000 commId 0x3922c43387843a0 - Init COMPLETE
+ubuntu:908:908 [5] NCCL INFO Init timings - ncclCommInitRank: rank 1 nranks 2 total 0.01 (kernels 0.00, alloc 0.00, bootstrap 0.00, allgathers 0.00, topo 0.00, graphs 0.00, connections 0.00, rest 0.00)
+ubuntu:908:1473 [0] NCCL INFO [Proxy Progress] Device 5 CPU core 69
+ubuntu:908:908 [5] NCCL INFO Channel 00/0 : 0[5] -> 1[5] [receive] via NET/IB/10/GDRDMA
+ubuntu:908:908 [5] NCCL INFO Channel 01/0 : 0[5] -> 1[5] [receive] via NET/IB/10/GDRDMA
+ubuntu:908:908 [5] NCCL INFO Channel 02/0 : 0[5] -> 1[5] [receive] via NET/IB/10/GDRDMA
+ubuntu:908:908 [5] NCCL INFO Channel 03/0 : 0[5] -> 1[5] [receive] via NET/IB/10/GDRDMA
+ubuntu:908:908 [5] NCCL INFO Channel 00/0 : 1[5] -> 0[5] [send] via NET/IB/10/GDRDMA
+ubuntu:908:908 [5] NCCL INFO Channel 01/0 : 1[5] -> 0[5] [send] via NET/IB/10/GDRDMA
+ubuntu:908:908 [5] NCCL INFO Channel 02/0 : 1[5] -> 0[5] [send] via NET/IB/10/GDRDMA
+ubuntu:908:908 [5] NCCL INFO Channel 03/0 : 1[5] -> 0[5] [send] via NET/IB/10/GDRDMA
+ubuntu:908:908 [5] NCCL INFO Connected all rings, use ring PXN 0 GDR 1
+ubuntu:908:908 [5] NCCL INFO Initialized NET plugin IB
+ubuntu:908:908 [5] NCCL INFO Assigned NET plugin IB to comm
+ubuntu:908:908 [5] NCCL INFO Assigned GIN plugin GIN_IB_GDAKI to comm
+ubuntu:908:908 [5] NCCL INFO Using network IB
+ubuntu:908:908 [5] NCCL INFO DMA-BUF is available on GPU device 5
+ubuntu:908:908 [5] NCCL INFO ncclCommInitRank comm 0x1a457f70 rank 13 nranks 16 cudaDev 5 nvmlDev 5 busId 89000 commId 0xb789f0a5b3e4ffb3 - Init START
+ubuntu:908:908 [5] NCCL INFO Bootstrap timings total 0.003252 (create 0.000013, send 0.000232, recv 0.001720, ring 0.001197, delay 0.000000)
+ubuntu:908:908 [5] NCCL INFO ncclTopoGetCpuAffinity: Affinity for GPU 5 is 56-111,168-223. (GPU affinity = 56-111,168-223 ; CPU affinity = 0-223).
+ubuntu:908:908 [5] NCCL INFO NVLS multicast support is not available on dev 5 (NVLS_NCHANNELS 0)
+ubuntu:908:908 [5] NCCL INFO comm 0x1a457f70 rank 13 nRanks 16 nNodes 4 localRanks 4 localRank 1 MNNVL 0
+ubuntu:908:908 [5] NCCL INFO Trees [0] 14/-1/-1->13->12 [1] 12/-1/-1->13->14 [2] 14/-1/-1->13->12 [3] 12/-1/-1->13->14
+ubuntu:908:908 [5] NCCL INFO P2P Chunksize set to 131072
+ubuntu:908:908 [5] NCCL INFO Check P2P Type isAllDirectP2p 0 directMode 0 isAllCudaP2p 1
+ubuntu:908:1520 [0] NCCL INFO [Proxy Service] Device 5 CPU core 174
+ubuntu:908:1523 [0] NCCL INFO [Proxy Service UDS] Device 5 CPU core 70
+ubuntu:908:908 [5] NCCL INFO threadThresholds 8/8/64 | 128/8/64 | 512 | 512
+ubuntu:908:908 [5] NCCL INFO 4 coll channels, 4 collnet channels, 0 nvls channels, 4 p2p channels, 1 p2p channels per peer
+ubuntu:908:908 [5] NCCL INFO ncclCommInitRank comm 0x1a457f70 rank 13 nranks 16 cudaDev 5 nvmlDev 5 busId 89000 commId 0xb789f0a5b3e4ffb3 - Init COMPLETE
+ubuntu:908:908 [5] NCCL INFO Init timings - ncclCommInitRank: rank 13 nranks 16 total 0.04 (kernels 0.00, alloc 0.00, bootstrap 0.00, allgathers 0.01, topo 0.01, graphs 0.00, connections 0.01, rest 0.00)
+ubuntu:908:908 Init START
+ubuntu:905:905 [2] NCCL INFO Bootstrap timings total 0.001120 (create 0.000012, send 0.000228, recv 0.000429, ring 0.000208, delay 0.000000)
+ubuntu:905:905 [2] NCCL INFO ncclTopoGetCpuAffinity: Affinity for GPU 2 is 0-55,112-167. (GPU affinity = 0-55,112-167 ; CPU affinity = 0-223).
+ubuntu:905:905 [2] NCCL INFO comm 0x1923b520 rank 1 nRanks 2 nNodes 2 localRanks 1 localRank 0 MNNVL 0
+ubuntu:905:905 [2] NCCL INFO Trees [0] -1/-1/-1->1->0 [1] -1/-1/-1->1->0 [2] 0/-1/-1->1->-1 [3] 0/-1/-1->1->-1
+ubuntu:905:905 [2] NCCL INFO P2P Chunksize set to 131072
+ubuntu:905:905 [2] NCCL INFO Check P2P Type isAllDirectP2p 1 directMode 0 isAllCudaP2p 1
+ubuntu:905:1458 [0] NCCL INFO [Proxy Service] Device 2 CPU core 153
+ubuntu:905:1459 [0] NCCL INFO [Proxy Service UDS] Device 2 CPU core 133
+ubuntu:905:905 [2] NCCL INFO threadThresholds 8/8/64 | 16/8/64 | 512 | 512
+ubuntu:905:905 [2] NCCL INFO 4 coll channels, 4 collnet channels, 0 nvls channels, 4 p2p channels, 2 p2p channels per peer
+ubuntu:905:905 [2] NCCL INFO ncclCommInitRank comm 0x1923b520 rank 1 nranks 2 cudaDev 2 nvmlDev 2 busId 76000 commId 0xa84c4da4354f4a5f - Init COMPLETE
+ubuntu:905:905 [2] NCCL INFO Init timings - ncclCommInitRank: rank 1 nranks 2 total 0.01 (kernels 0.00, alloc 0.00, bootstrap 0.00, allgathers 0.00, topo 0.00, graphs 0.00, connections 0.00, rest 0.00)
+ubuntu:905:1472 [0] NCCL INFO [Proxy Progress] Device 2 CPU core 124
+ubuntu:905:905 [2] NCCL INFO Channel 00/0 : 0[2] -> 1[2] [receive] via NET/IB/9/GDRDMA
+ubuntu:905:905 [2] NCCL INFO Channel 01/0 : 0[2] -> 1[2] [receive] via NET/IB/9/GDRDMA
+ubuntu:905:905 [2] NCCL INFO Channel 02/0 : 0[2] -> 1[2] [receive] via NET/IB/9/GDRDMA
+ubuntu:905:905 [2] NCCL INFO Channel 03/0 : 0[2] -> 1[2] [receive] via NET/IB/9/GDRDMA
+ubuntu:905:905 [2] NCCL INFO Channel 00/0 : 1[2] -> 0[2] [send] via NET/IB/9/GDRDMA
+ubuntu:905:905 [2] NCCL INFO Channel 01/0 : 1[2] -> 0[2] [send] via NET/IB/9/GDRDMA
+ubuntu:905:905 [2] NCCL INFO Channel 02/0 : 1[2] -> 0[2] [send] via NET/IB/9/GDRDMA
+ubuntu:905:905 [2] NCCL INFO Channel 03/0 : 1[2] -> 0[2] [send] via NET/IB/9/GDRDMA
+ubuntu:905:905 [2] NCCL INFO Connected all rings, use ring PXN 0 GDR 1
+ubuntu:905:905 [2] NCCL INFO Initialized NET plugin IB
+ubuntu:905:905 [2] NCCL INFO Assigned NET plugin IB to comm
+ubuntu:905:905 [2] NCCL INFO Assigned GIN plugin GIN_IB_GDAKI to comm
+ubuntu:905:905 [2] NCCL INFO Using network IB
+ubuntu:905:905 [2] NCCL INFO DMA-BUF is available on GPU device 2
+ubuntu:905:905 [2] NCCL INFO ncclCommInitRank comm 0x19d8b350 rank 10 nranks 16 cudaDev 2 nvmlDev 2 busId 76000 commId 0xb789f0a5b3e4ffb3 - Init START
+ubuntu:905:905 [2] NCCL INFO Bootstrap timings total 0.003328 (create 0.000013, send 0.000242, recv 0.000991, ring 0.001566, delay 0.000000)
+ubuntu:905:905 [2] NCCL INFO ncclTopoGetCpuAffinity: Affinity for GPU 2 is 0-55,112-167. (GPU affinity = 0-55,112-167 ; CPU affinity = 0-223).
+ubuntu:905:905 [2] NCCL INFO NVLS multicast support is not available on dev 2 (NVLS_NCHANNELS 0)
+ubuntu:905:905 [2] NCCL INFO comm 0x19d8b350 rank 10 nRanks 16 nNodes 4 localRanks 4 localRank 2 MNNVL 0
+ubuntu:905:905 [2] NCCL INFO Trees [0] 11/-1/-1->10->9 [1] 9/-1/-1->10->11 [2] 11/-1/-1->10->9 [3] 9/-1/-1->10->11
+ubuntu:905:905 [2] NCCL INFO P2P Chunksize set to 131072
+ubuntu:905:905 [2] NCCL INFO Check P2P Type isAllDirectP2p 0 directMode 0 isAllCudaP2p 1
+ubuntu:905:1518 [0] NCCL INFO [Proxy Service] Device 2 CPU core 134
+ubuntu:905:1519 [0] NCCL INFO [Proxy Service UDS] Device 2 CPU core 160
+ubuntu:905:905 [2] NCCL INFO threadThresholds 8/8/64 | 128/8/64 | 512 | 512
+ubuntu:905:905 [2] NCCL INFO 4 coll channels, 4 collnet channels, 0 nvls channels, 4 p2p channels, 1 p2p channels per peer
+ubuntu:905:905 [2] NCCL INFO ncclCommInitRank comm 0x19d8b350 rank 10 nranks 16 cudaDev 2 nvmlDev 2 busId 76000 commId 0xb789f0a5b3e4ffb3 - Init COMPLETE
+ubuntu:905:905 [2] NCCL INFO Init timings - ncclCommInitRank: rank 10 nranks 16 total 0.04 (kernels 0.00, alloc 0.00, bootstrap 0.00, allgathers 0.01, topo 0.01, graphs 0.00, connections 0.01, rest 0.00)
+ubuntu:905:905 [2] NCCL INFO Chaf1 - Init START
+ubuntu:909:909 [6] NCCL INFO Bootstrap timings total 0.001097 (create 0.000010, send 0.000199, recv 0.000442, ring 0.000200, delay 0.000000)
+ubuntu:909:909 [6] NCCL INFO ncclTopoGetCpuAffinity: Affinity for GPU 6 is 56-111,168-223. (GPU affinity = 56-111,168-223 ; CPU affinity = 0-223).
+ubuntu:909:909 [6] NCCL INFO comm 0x19468320 rank 1 nRanks 2 nNodes 2 localRanks 1 localRank 0 MNNVL 0
+ubuntu:909:909 [6] NCCL INFO Trees [0] -1/-1/-1->1->0 [1] -1/-1/-1->1->0 [2] 0/-1/-1->1->-1 [3] 0/-1/-1->1->-1
+ubuntu:909:909 [6] NCCL INFO P2P Chunksize set to 131072
+ubuntu:909:909 [6] NCCL INFO Check P2P Type isAllDirectP2p 1 directMode 0 isAllCudaP2p 1
+ubuntu:909:1444 [0] NCCL INFO [Proxy Service UDS] Device 6 CPU core 84
+ubuntu:909:1443 [0] NCCL INFO [Proxy Service] Device 6 CPU core 69
+ubuntu:909:909 [6] NCCL INFO threadThresholds 8/8/64 | 16/8/64 | 512 | 512
+ubuntu:909:909 [6] NCCL INFO 4 coll channels, 4 collnet channels, 0 nvls channels, 4 p2p channels, 2 p2p channels per peer
+ubuntu:909:909 [6] NCCL INFO ncclCommInitRank comm 0x19468320 rank 1 nranks 2 cudaDev 6 nvmlDev 6 busId f6000 commId 0x362bcba2382b75f1 - Init COMPLETE
+ubuntu:909:909 [6] NCCL INFO Init timings - ncclCommInitRank: rank 1 nranks 2 total 0.01 (kernels 0.00, alloc 0.00, bootstrap 0.00, allgathers 0.00, topo 0.00, graphs 0.00, connections 0.00, rest 0.00)
+ubuntu:909:1464 [0] NCCL INFO [Proxy Progress] Device 6 CPU core 105
+ubuntu:909:909 [6] NCCL INFO Channel 00/0 : 0[6] -> 1[6] [receive] via NET/IB/6/GDRDMA
+ubuntu:909:909 [6] NCCL INFO Channel 01/0 : 0[6] -> 1[6] [receive] via NET/IB/6/GDRDMA
+ubuntu:909:909 [6] NCCL INFO Channel 02/0 : 0[6] -> 1[6] [receive] via NET/IB/6/GDRDMA
+ubuntu:909:909 [6] NCCL INFO Channel 03/0 : 0[6] -> 1[6] [receive] via NET/IB/6/GDRDMA
+ubuntu:909:909 [6] NCCL INFO Channel 00/0 : 1[6] -> 0[6] [send] via NET/IB/6/GDRDMA
+ubuntu:909:909 [6] NCCL INFO Channel 01/0 : 1[6] -> 0[6] [send] via NET/IB/6/GDRDMA
+ubuntu:909:909 [6] NCCL INFO Channel 02/0 : 1[6] -> 0[6] [send] via NET/IB/6/GDRDMA
+ubuntu:909:909 [6] NCCL INFO Channel 03/0 : 1[6] -> 0[6] [send] via NET/IB/6/GDRDMA
+ubuntu:909:909 [6] NCCL INFO Connected all rings, use ring PXN 0 GDR 1
+ubuntu:909:909 [6] NCCL INFO Initialized NET plugin IB
+ubuntu:909:909 [6] NCCL INFO Assigned NET plugin IB to comm
+ubuntu:909:909 [6] NCCL INFO Assigned GIN plugin GIN_IB_GDAKI to comm
+ubuntu:909:909 [6] NCCL INFO Using network IB
+ubuntu:909:909 [6] NCCL INFO DMA-BUF is available on GPU device 6
+ubuntu:909:909 [6] NCCL INFO ncclCommInitRank comm 0x19fb8150 rank 14 nranks 16 cudaDev 6 nvmlDev 6 busId f6000 commId 0xb789f0a5b3e4ffb3 - Init START
+ubuntu:909:909 [6] NCCL INFO Bootstrap timings total 0.003934 (create 0.000011, send 0.000242, recv 0.000711, ring 0.001385, delay 0.000000)
+ubuntu:909:909 [6] NCCL INFO ncclTopoGetCpuAffinity: Affinity for GPU 6 is 56-111,168-223. (GPU affinity = 56-111,168-223 ; CPU affinity = 0-223).
+ubuntu:909:909 [6] NCCL INFO NVLS multicast support is not available on dev 6 (NVLS_NCHANNELS 0)
+ubuntu:909:909 [6] NCCL INFO comm 0x19fb8150 rank 14 nRanks 16 nNodes 4 localRanks 4 localRank 2 MNNVL 0
+ubuntu:909:909 [6] NCCL INFO Trees [0] 15/-1/-1->14->13 [1] 13/-1/-1->14->15 [2] 15/-1/-1->14->13 [3] 13/-1/-1->14->15
+ubuntu:909:909 [6] NCCL INFO P2P Chunksize set to 131072
+ubuntu:909:909 [6] NCCL INFO Check P2P Type isAllDirectP2p 0 directMode 0 isAllCudaP2p 1
+ubuntu:909:1528 [0] NCCL INFO [Proxy Service] Device 6 CPU core 174
+ubuntu:909:1530 [0] NCCL INFO [Proxy Service UDS] Device 6 CPU core 81
+ubuntu:909:909 [6] NCCL INFO threadThresholds 8/8/64 | 128/8/64 | 512 | 512
+ubuntu:909:909 [6] NCCL INFO 4 coll channels, 4 collnet channels, 0 nvls channels, 4 p2p channels, 1 p2p channels per peer
+ubuntu:909:909 [6] NCCL INFO ncclCommInitRank comm 0x19fb8150 rank 14 nranks 16 cudaDev 6 nvmlDev 6 busId f6000 commId 0xb789f0a5b3e4ffb3 - Init COMPLETE
+ubuntu:909:909 [6] NCCL INFO Init timings - ncclCommInitRank: rank 14 nranks 16 total 0.04 (kernels 0.00, alloc 0.00, bootstrap 0.00, allgathers 0.01, topo 0.01, graphs 0.00, connections 0.01, rest 0.00)
+ubuntu:909:909 [6] (Worker pid=903) INFO 07-28 06:07:10 [parallel_state.py:1942] rank 8 in world size 16 is assigned as DP rank 1, PP rank 0, PCP rank 0, TP rank 0, EP rank 8, EPLB rank N/A
+(Worker_DP1_TP0_EP8 pid=903) INFO 07-28 06:07:10 [deep_gemm.py:175] deep_gemm not found in site-packages, trying vendored vllm.third_party.deep_gemm
+(Worker_DP1_TP0_EP8 pid=903) INFO 07-28 06:07:11 [deep_gemm.py:202] DeepGEMM PDL enabled on vllm.third_party.deep_gemm.
+(Worker_DP1_TP0_EP8 pid=903) INFO 07-28 06:07:11 [deep_gemm.py:120] DeepGEMM E8M0 enabled on current platform.
+(Worker_DP1_TP0_EP8 pid=903) INFO 07-28 06:07:11 [cuda.py:476] Using FLASHINFER_MLA_SPARSE_SM120 attention backend out of potential backends: ['FLASHINFER_MLA_SPARSE_SM120'].
+(Worker_DP1_TP0_EP8 pid=903) INFO 07-28 06:07:11 [mla_attention.py:420] Using fp8_ds_mla KV cache format for FLASHINFER_MLA_SPARSE_SM120 backend.
+(Worker_DP1_TP0_EP8 pid=903) INFO 07-28 06:07:11 [selector.py:174] Using FLASH_ATTN MLA prefill backend.
+(Worker_DP1_TP0_EP8 pid=903) INFO 07-28 06:07:11 [expert_map_manager.py:245] [EP Rank 8/16] Expert parallelism is enabled. Expert placement strategy: linear. Local/global number of experts: 16/256. Experts local to global index map: 0->128, 1->129, 2->130, 3->131, 4->132, 5->133, 6->134, 7->135, 8->136, 9->137, 10->138, 11->139, 12->140, 13->141, 14->142, 15->143.
+(Worker_DP1_TP0_EP8 pid=903) INFO 07-28 06:07:11 [fp8.py:405] Using DEEPGEMM Fp8 MoE backend out of potential backends: ['AITER', 'FLASHINFER_TRTLLM', 'FLASHINFER_CUTLASS', 'DEEPGEMM', 'TRITON', 'MARLIN', 'HUMMING', 'BATCHED_DEEPGEMM', 'BATCHED_TRITON', 'XPU', 'CPU', 'HPC'].
+(Worker_DP1_TP0_EP8 pid=903) INFO 07-28 06:07:11 [weight_utils.py:849] Filesystem type for checkpoints: EXT4. Checkpoint size: 703.74 GiB. Available RAM: 1471.21 GiB.
+(Worker_DP1_TP0_EP8 pid=903) INFO 07-28 06:07:11 [weight_utils.py:872] Auto-prefetch is disabled because the filesystem (EXT4) is not a recognized network FS (NFS/Lustre). If you want to force prefetching, start vLLM with --safetensors-load-strategy=prefetch.
+(Worker_DP1_TP0_EP8 pid=903) INFO 07-28 06:07:21 [default_loader.py:430] Loading weights took 9.62 seconds
+(Worker_DP1_TP0_EP8 pid=903) INFO 07-28 06:07:24 [fp8.py:688] Using MoEPrepareAndFinalizeNaiveDPEPModular
+(Worker_DP1_TP5_EP13 pid=908) INFO 07-28 06:07:27 [interface.py:620] Setting kv cache block size to 64 for DEEPSEEK_V32_INDEXER backend.
+(Worker_DP1_TP0_EP8 pid=903) INFO 07-28 06:07:27 [gpu_model_runner.py:5306] Model loading took 49.66 GiB memory and 15.371793 seconds
+(Worker_DP1_TP0_EP8 pid=903) INFO 07-28 06:07:27 [interface.py:620] Setting kv cache block size to 64 for DEEPSEEK_V32_INDEXER backend.
+(Worker_DP1_TP2_EP10 pid=905) INFO 07-28 06:07:27 [interface.py:620] Setting kv cache block size to 64 for DEEPSEEK_V32_INDEXER backend.
+(Worker_DP1_TP7_EP15 pid=910) INFO 07-28 06:07:27 [interface.py:620] Setting kv cache block size to 64 for DEEPSEEK_V32_INDEXER backend.
+(Worker_DP1_TP6_EP14 pid=909) INFO 07-28 06:07:27 [interface.py:620] Setting kv cache block size to 64 for DEEPSEEK_V32_INDEXER backend.
+(Worker_DP1_TP4_EP12 pid=907) INFO 07-28 06:07:27 [interface.py:620] Setting kv cache block size to 64 for DEEPSEEK_V32_INDEXER backend.
+(Worker_DP1_TP3_EP11 pid=906) INFO 07-28 06:07:27 [interface.py:620] Setting kv cache block size to 64 for DEEPSEEK_V32_INDEXER backend.
+(Worker_DP1_TP1_EP9 pid=904) INFO 07-28 06:07:27 [interface.py:620] Setting kv cache block size to 64 for DEEPSEEK_V32_INDEXER backend.
+(Worker_DP1_TP0_EP8 pid=903) INFO 07-28 06:07:27 [dp_utils.py:28] Using CPU all reduce to synchronize DP padding between ranks.
+u:903:903 [0] NCCL INFO ncclCommInitRank comm 0x18e3f6a0 rank 8 nranks 16 cudaDev 0 nvmlDev 0 busId 6000 commId 0xb789f0a5b3e4ffb3 - Init COMPLETE
+ubuntu:903:903 [0] NCCL INFO Init timings - ncclCommInitRank: rank 8 nranks 16 total 0.04 (kernels 0.00, alloc 0.00, bootstrap 0.00, allgathers 0.01, topo 0.01, graphs 0.00, connections 0.01, rest 0.00)
+ubuntu:903:903 [0] NCCL INFO Channel 00/0 : 8[0] -> 9[1] via P2P/CUMEM
+ubuntu:903:903 [0] NCCL INFO Channel 01/0 : 8[0] -> 9[1] via P2P/CUMEM
+ubuntu:903:903 [0] NCCL INFO Channel 02/0 : 8[0] -> 9[1] via P2P/CUMEM
+ubuntu:903:903 [0] NCCL INFO Channel 03/0 : 8[0] -> 9[1] via P2P/CUMEM
+ubuntu:903:1534 [0] NCCL INFO [Proxy Progress] Device 0 CPU core 51
+ubuntu:903:903 [0] NCCL INFO Channel 00/0 : 4[4] -> 8[0] [receive] via NET/IB/0/GDRDMA
+ubuntu:903:903 [0] NCCL INFO Channel 02/0 : 4[4] -> 8[0] [receive] via NET/IB/0/GDRDMA
+ubuntu:903:903 [0] NCCL INFO Channel 00/0 : 8[0] -> 12[4] [send] via NET/IB/0/GDRDMA
+ubuntu:903:903 [0] NCCL INFO Channel 00/0 : 0[0] -> 8[0] [receive] via NET/IB/0/GDRDMA
+ubuntu:903:903 [0] NCCL INFO Channel 00/0 : 8[0] -> 0[0] [send] via NET/IB/0/GDRDMA
+ubuntu:903:903 [0] NCCL INFO Channel 00/0 : 12[4] -> 8[0] [receive] via NET/IB/0/GDRDMA
+ubuntu:903:903 [0] NCCL INFO Channel 00/0 : 8[0] -> 4[4] [send] via NET/IB/0/GDRDMA
+ubuntu:903:903 [0] NCCL INFO Channel 02/0 : 8[0] -> 4[4] [send] via NET/IB/0/GDRDMA
+ubuntu:903:903 [0] NCCL INFO Connected all trees
+ubuntu:903:903 [0] NCCL INFO Channel 00/0 : 7[7] -> 0[0] [receive] via NET/IB/8/GDRDMA
+ubuntu:903:903 [0] NCCL INFO Channel 01/0 : 7[7] -> 0[0] [receive] via NET/IB/8/GDRDMA
+ubuntu:903:903 [0] NCCL INFO Channel 02/0 : 7[7] -> 0[0] [receive] via NET/IB/8/GDRDMA
+ubuntu:903:903 [0] NCCL INFO Channel 03/0 : 7[7] -> 0[0] [receive] via NET/IB/8/GDRDMA
+ubuntu:903:903 [0] NCCL INFO Connected all rings, use ring PXN 0 GDR 1
+ubuntu:903:903 [0] NCCL INFO Channel 00/0 : 7[7] -> 8[0] [receive] via NET/IB/0/GDRDMA
+ubuntu:903:903 [0] NCCL INFO Channel 01/0 : 7[7] -> 8[0] [receive] via NET/IB/0/GDRDMA
+ubuntu:903:903 [0] NCCL INFO Channel 02/0 : 7[7] -> 8[0] [receive] via NET/IB/0/GDRDMA
+ubuntu:903:903 [0] NCCL INFO Channel 03/0 : 7[7] -> 8[0] [receive] via NET/IB/0/GDRDMA
+ubuntu:903:903 [0] NCCL INFO Connected all rings, use ring PXN 0 GDR 1
+ubuntu:903:903 [0] NCCL INFO Comm config Blocking set to 1
+ubuntu:903:903 [0] NCCL INFO Initialized NET plugin IB
+ubuntu:903:903 [0] NCCL INFO Assigned NET plugin IB to comm
+ubuntu:903:903 [0] NCCL INFO Assigned GIN plugin GIN_IB_GDAKI to comm
+ubuntu:903:903 [0] NCCL INFO Using network IB
+ubuntu:903:903 [0] NCCL INFO DMA-BUF is available on GPU device 0
+ubuntu:903:903 [0] NCCL INFO ncclCommInitRankConfig comm 0x48d95ff0 rank 0 nranks 8 cudaDev 0 nvmlDev 0 busId 6000 commId 0xe06284c759c062e2 - Init START
+ubuntu:903:903 [0] NCCL INFO Bootstrap timings total 0.001133 (create 0.000010, send 0.000113, recv 0.000779, ring 0.000157, delay 0.000000)
+ubuntu:903:903 [0] NCCL INFO ncclTopoGetCpuAffinity: Affinity for GPU 0 is 0-55,112-167. (GPU affinity = 0-55,112-167 ; CPU affinity = 0-223).
+ubuntu:903:903 [0] NCCL INFO NVLS multicast support is not available on dev 0 (NVLS_NCHANNELS 0)
+ubuntu:903:903 [0] NCCL INFO comm 0x48d95ff0 rank 0 nRanks 8 nNodes 2 localRanks 4 localRank 0 MNNVL 0
+ubuntu:903:903 [0] NCCL INFO Channel 00/04 : 0 1 2 3 4 5 6 7
+ubuntu:903:903 [0] NCCL INFO Channel 01/04 : 0 1 2 3 4 5 6 7
+ubuntu:903:903 [0] NCCL INFO Channel 02/04 : 0 1 2 3 4 5 6 7
+ubuntu:903:903 [0] NCCL INFO Channel 03/04 : 0 1 2 3 4 5 6 7
+ubuntu:903:903 [0] NCCL INFO Trees [0] 1/4/-1->0->-1 [1] -1/-1/-1->0->1 [2] 1/-1/-1->0->4 [3] -1/-1/-1->0->1
+ubuntu:903:903 [0] NCCL INFO P2P Chunksize set to 131072
+ubuntu:903:903 [0] NCCL INFO Check P2P Type isAllDirectP2p 0 directMode 0 isAllCudaP2p 1
+ubuntu:903:3118 [0] NCCL INFO [Proxy Service] Device 0 CPU core 10
+ubuntu:903:3125 [0] NCCL INFO [Proxy Service UDS] Device 0 CPU core 136
+ubuntu:903:903 [0] NCCL INFO threadThresholds 8/8/64 | 64/8/64 | 512 | 512
+ubuntu:903:903 [0] NCCL INFO 4 coll channels, 4 collnet channels, 0 nvls channels, 4 p2p channels, 2 p2p channels 00, bootstrap 0.00, allgathers 0.01, topo 0.01, graphs 0.00, connections 0.01, rest 0.00)
+ubuntu:907:907 [4] NCCL INFO Channel 00/0 : 12[4] -> 13[5] via P2P/CUMEM
+ubuntu:907:907 [4] NCCL INFO Channel 01/0 : 12[4] -> 13[5] via P2P/CUMEM
+ubuntu:907:907 [4] NCCL INFO Channel 02/0 : 12[4] -> 13[5] via P2P/CUMEM
+ubuntu:907:907 [4] NCCL INFO Channel 03/0 : 12[4] -> 13[5] via P2P/CUMEM
+ubuntu:907:1532 [0] NCCL INFO [Proxy Progress] Device 4 CPU core 179
+ubuntu:907:907 [4] NCCL INFO Channel 00/0 : 8[0] -> 12[4] [receive] via NET/IB/5/GDRDMA
+ubuntu:907:907 [4] NCCL INFO Channel 02/0 : 4[4] -> 12[4] [receive] via NET/IB/5/GDRDMA
+ubuntu:907:907 [4] NCCL INFO Channel 02/0 : 12[4] -> 4[4] [send] via NET/IB/5/GDRDMA
+ubuntu:907:907 [4] NCCL INFO Channel 00/0 : 12[4] -> 8[0] [send] via NET/IB/5/GDRDMA
+ubuntu:907:907 [4] NCCL INFO Connected all trees
+ubuntu:907:907 [4] NCCL INFO Channel 00/0 : 3[3] -> 4[4] [receive] via NET/IB/10/GDRDMA
+ubuntu:907:907 [4] NCCL INFO Channel 01/0 : 3[3] -> 4[4] [receive] via NET/IB/10/GDRDMA
+ubuntu:907:907 [4] NCCL INFO Channel 02/0 : 3[3] -> 4[4] [receive] via NET/IB/10/GDRDMA
+ubuntu:907:907 [4] NCCL INFO Channel 03/0 : 3[3] -> 4[4] [receive] via NET/IB/10/GDRDMA
+ubuntu:907:907 [4] NCCL INFO Connected all rings, use ring PXN 0 GDR 1
+ubuntu:907:907 [4] NCCL INFO Channel 00/0 : 11[3] -> 12[4] [receive] via NET/IB/5/GDRDMA
+ubuntu:907:907 [4] NCCL INFO Channel 01/0 : 11[3] -> 12[4] [receive] via NET/IB/5/GDRDMA
+ubuntu:907:907 [4] NCCL INFO Channel 02/0 : 11[3] -> 12[4] [receive] via NET/IB/5/GDRDMA
+ubuntu:907:907 [4] NCCL INFO Channel 03/0 : 11[3] -> 12[4] [receive] via NET/IB/5/GDRDMA
+ubuntu:907:907 [4] NCCL INFO Connected all rings, use ring PXN 0 GDR 1
+ubuntu:907:907 [4] NCCL INFO Comm config Blocking set to 1
+ubuntu:907:907 [4] NCCL INFO Initialized NET plugin IB
+ubuntu:907:907 [4] NCCL INFO Assigned NET plugin IB to comm
+ubuntu:907:907 [4] NCCL INFO Assigned GIN plugin GIN_IB_GDAKI to comm
+ubuntu:907:907 [4] NCCL INFO Using network IB
+ubuntu:907:907 [4] NCCL INFO DMA-BUF is available on GPU device 4
+ubuntu:907:907 [4] NCCL INFO ncclCommInitRankConfig comm 0x4a09d0a0 rank 4 nranks 8 cudaDev 4 nvmlDev 4 busId 86000 commId 0xe06284c759c062e2 - Init START
+ubuntu:907:907 [4] NCCL INFO Bootstrap timings total 0.000691 (create 0.000035, send 0.000099, recv 0.000256, ring 0.000215, delay 0.000000)
+ubuntu:907:907 [4] NCCL INFO ncclTopoGetCpuAffinity: Affinity for GPU 4 is 56-111,168-223. (GPU affinity = 56-111,168-223 ; CPU affinity = 0-223).
+ubuntu:907:907 [4] NCCL INFO NVLS multicast support is not available on dev 4 (NVLS_NCHANNELS 0)
+ubuntu:907:907 [4] NCCL INFO comm 0x4a09d0a0 rank 4 nRanks 8 nNodes 2 localRanks 4 localRank 0 MNNVL 0
+ubuntu:907:907 [4] NCCL INFO Trees [0] 5/-1/-1->4->0 [1] -1/-1/-1->4->5 [2] 5/0/-1->4->-1 [3] -1/-1/-1->4->5
+ubuntu:907:907 [4] NCCL INFO P2P Chunksize set to 131072
+ubuntu:907:907 [4] NCCL INFO Check P2P Type isAllDirectP2p 0 directMode 0 isAllCudaP2p 1
+ubuntu:907:3116 [0] NCCL INFO [Proxy Service] Device 4 CPU core 81
+ubuntu:907:3119 [0] NCCL INFO [Proxy Service UDS] Device 4 CPU core 204
+ubuntu:907:907 [4] NCCL INFO threadThresholds 8/8/64 | 64/8/64 | 512 | 512
+ubuntu:907:907 [4] NCCL INFO 4 coll channels, 4 collnet channels, 0 nvls channels, 4 p2p channels, 2 p2p channels per peer
+ubuntu:907:907 [4] NCCL INFO ncclCommInitRankConfig comm 0x4a09d0a0 rank 4 nranks 8 cudaDev 4 nvmlDev 4 busId 86000 commId 0xe06284c759c062e2 - Init COMPLETE
+ubuntu:907:907 [4] NCCL INFO Init timings - ncclCommInitRankConfig: rank 4 nranks 8 total 0.04 (kernels 0.00, alloc 0.00, bootstrap 0.00, allgathers 0.01, topo 0.02, graphs 0.01, connections 0.01, rest 0.00)
+ubuntu:907:3132 [0] NCCL INFO [Proxy Progress] Device 4 CPU core 214
+ubuntu:907:907 [4] NCCL INFO Channel 00/0 : 3[3] -> 4[4] [receive] via NET/IB/5/GDRDMA
+ubuntu:907:907 [4] NCCL INFO Channel 01/0 : 3[3] -> 4[4] [receive] via NET/IB/5/GDRDMA
+ubuntu:907:907 [4] NCCL INFO Channel 02/0 : 3[3] -> 4[4] [receive] via NET/IB/5/GDRDMA
+ubuntu:907:907 [4] NCCL INFO Channel 03/0 : 3[3] -> 4[4] [receive] via NET/IB/5/GDRDMA
+ubuntu:907:907 [4] NCCL IN allgathers 0.01, topo 0.01, graphs 0.00, connections 0.01, rest 0.00)
+ubuntu:906:1533 [0] NCCL INFO [Proxy Progress] Device 3 CPU core 28
+ubuntu:906:906 [3] NCCL INFO Channel 01/0 : 7[7] -> 11[3] [receive] via NET/IB/9/GDRDMA
+ubuntu:906:906 [3] NCCL INFO Channel 03/0 : 7[7] -> 11[3] [receive] via NET/IB/9/GDRDMA
+ubuntu:906:906 [3] NCCL INFO Channel 01/0 : 11[3] -> 15[7] [send] via NET/IB/9/GDRDMA
+ubuntu:906:906 [3] NCCL INFO Channel 01/0 : 3[3] -> 11[3] [receive] via NET/IB/9/GDRDMA
+ubuntu:906:906 [3] NCCL INFO Channel 01/0 : 11[3] -> 3[3] [send] via NET/IB/9/GDRDMA
+ubuntu:906:906 [3] NCCL INFO Channel 01/0 : 15[7] -> 11[3] [receive] via NET/IB/9/GDRDMA
+ubuntu:906:906 [3] NCCL INFO Channel 01/0 : 11[3] -> 7[7] [send] via NET/IB/9/GDRDMA
+ubuntu:906:906 [3] NCCL INFO Channel 03/0 : 11[3] -> 7[7] [send] via NET/IB/9/GDRDMA
+ubuntu:906:906 [3] NCCL INFO Channel 00/0 : 11[3] -> 10[2] via P2P/CUMEM
+ubuntu:906:906 [3] NCCL INFO Channel 01/0 : 11[3] -> 10[2] via P2P/CUMEM
+ubuntu:906:906 [3] NCCL INFO Channel 02/0 : 11[3] -> 10[2] via P2P/CUMEM
+ubuntu:906:906 [3] NCCL INFO Channel 03/0 : 11[3] -> 10[2] via P2P/CUMEM
+ubuntu:906:906 [3] NCCL INFO Connected all trees
+ubuntu:906:906 [3] NCCL INFO Channel 00/0 : 3[3] -> 4[4] [send] via NET/IB/8/GDRDMA
+ubuntu:906:906 [3] NCCL INFO Channel 01/0 : 3[3] -> 4[4] [send] via NET/IB/8/GDRDMA
+ubuntu:906:906 [3] NCCL INFO Channel 02/0 : 3[3] -> 4[4] [send] via NET/IB/8/GDRDMA
+ubuntu:906:906 [3] NCCL INFO Channel 03/0 : 3[3] -> 4[4] [send] via NET/IB/8/GDRDMA
+ubuntu:906:906 [3] NCCL INFO Connected all rings, use ring PXN 0 GDR 1
+ubuntu:906:906 [3] NCCL INFO Channel 00/0 : 11[3] -> 12[4] [send] via NET/IB/0/GDRDMA
+ubuntu:906:906 [3] NCCL INFO Channel 01/0 : 11[3] -> 12[4] [send] via NET/IB/0/GDRDMA
+ubuntu:906:906 [3] NCCL INFO Channel 02/0 : 11[3] -> 12[4] [send] via NET/IB/0/GDRDMA
+ubuntu:906:906 [3] NCCL INFO Channel 03/0 : 11[3] -> 12[4] [send] via NET/IB/0/GDRDMA
+ubuntu:906:906 [3] NCCL INFO Connected all rings, use ring PXN 0 GDR 1
+ubuntu:906:906 [3] NCCL INFO Comm config Blocking set to 1
+ubuntu:906:906 [3] NCCL INFO Initialized NET plugin IB
+ubuntu:906:906 [3] NCCL INFO Assigned NET plugin IB to comm
+ubuntu:906:906 [3] NCCL INFO Assigned GIN plugin GIN_IB_GDAKI to comm
+ubuntu:906:906 [3] NCCL INFO Using network IB
+ubuntu:906:906 [3] NCCL INFO DMA-BUF is available on GPU device 3
+ubuntu:906:906 [3] NCCL INFO ncclCommInitRankConfig comm 0x48ce0ab0 rank 3 nranks 8 cudaDev 3 nvmlDev 3 busId 79000 commId 0xe06284c759c062e2 - Init START
+ubuntu:906:906 [3] NCCL INFO Bootstrap timings total 0.000723 (create 0.000036, send 0.000113, recv 0.000205, ring 0.000303, delay 0.000000)
+ubuntu:906:906 [3] NCCL INFO ncclTopoGetCpuAffinity: Affinity for GPU 3 is 0-55,112-167. (GPU affinity = 0-55,112-167 ; CPU affinity = 0-223).
+ubuntu:906:906 [3] NCCL INFO NVLS multicast support is not available on dev 3 (NVLS_NCHANNELS 0)
+ubuntu:906:906 [3] NCCL INFO comm 0x48ce0ab0 rank 3 nRanks 8 nNodes 2 localRanks 4 localRank 3 MNNVL 0
+ubuntu:906:906 [3] NCCL INFO Trees [0] -1/-1/-1->3->2 [1] 2/7/-1->3->-1 [2] -1/-1/-1->3->2 [3] 2/-1/-1->3->7
+ubuntu:906:906 [3] NCCL INFO P2P Chunksize set to 131072
+ubuntu:906:906 [3] NCCL INFO Check P2P Type isAllDirectP2p 0 directMode 0 isAllCudaP2p 1
+ubuntu:906:3124 [0] NCCL INFO [Proxy Service] Device 3 CPU core 127
+ubuntu:906:3128 [0] NCCL INFO [Proxy Service UDS] Device 3 CPU core 50
+ubuntu:906:906 [3] NCCL INFO threadThresholds 8/8/64 | 64/8/64 | 512 | 512
+ubuntu:906:906 [3] NCCL INFO 4 coll channels, 4 collnet channels, 0 nvls channels, 4 p2p channels, 2 p2p channels per peer
+ubuntu:906:906 [3] NCCL INFO ncclCommInitRankConfig comm 0x48ce0ab0 rank 3 nranks 8 cudaDev 3 nvmlDev 3 busId 79000 commId 0xe06284c759c062e2 - Init COMPLETE
+ubuntu:906:906 [3] NCCL INFO Init timings - ncclCommInitRankConfig: rank 3 nranks 8 total 0.04 (kernels 0.00, alloc 0.00, bootstrap 0.00, allgathers 0.01, topo 0.02, graphs 0.00, connections 0.01, rest 0.00)
+ubuntu:906:906 [3] NCCL INFO Channel 00/0 : 3[3] -> 4[4] [send] via NET/IB/0/GDRDMA
+ubuntu:906:3135 [0] NCCL INFO [Proxy Progress] Device 3 CPU cor.00, bootstrap 0.00, allgathers 0.01, topo 0.01, graphs 0.00, connections 0.01, rest 0.00)
+ubuntu:910:1535 [0] NCCL INFO [Proxy Progress] Device 7 CPU core 202
+ubuntu:910:910 [7] NCCL INFO Channel 01/0 : 11[3] -> 15[7] [receive] via NET/IB/6/GDRDMA
+ubuntu:910:910 [7] NCCL INFO Channel 03/0 : 7[7] -> 15[7] [receive] via NET/IB/6/GDRDMA
+ubuntu:910:910 [7] NCCL INFO Channel 03/0 : 15[7] -> 7[7] [send] via NET/IB/6/GDRDMA
+ubuntu:910:910 [7] NCCL INFO Channel 01/0 : 15[7] -> 11[3] [send] via NET/IB/6/GDRDMA
+ubuntu:910:910 [7] NCCL INFO Channel 00/0 : 15[7] -> 14[6] via P2P/CUMEM
+ubuntu:910:910 [7] NCCL INFO Channel 01/0 : 15[7] -> 14[6] via P2P/CUMEM
+ubuntu:910:910 [7] NCCL INFO Channel 02/0 : 15[7] -> 14[6] via P2P/CUMEM
+ubuntu:910:910 [7] NCCL INFO Channel 03/0 : 15[7] -> 14[6] via P2P/CUMEM
+ubuntu:910:910 [7] NCCL INFO Connected all trees
+ubuntu:910:910 [7] NCCL INFO Channel 00/0 : 7[7] -> 0[0] [send] via NET/IB/10/GDRDMA
+ubuntu:910:910 [7] NCCL INFO Channel 01/0 : 7[7] -> 0[0] [send] via NET/IB/10/GDRDMA
+ubuntu:910:910 [7] NCCL INFO Channel 02/0 : 7[7] -> 0[0] [send] via NET/IB/10/GDRDMA
+ubuntu:910:910 [7] NCCL INFO Channel 03/0 : 7[7] -> 0[0] [send] via NET/IB/10/GDRDMA
+ubuntu:910:910 [7] NCCL INFO Connected all rings, use ring PXN 0 GDR 1
+ubuntu:910:910 [7] NCCL INFO Channel 00/0 : 15[7] -> 0[0] [send] via NET/IB/5/GDRDMA
+ubuntu:910:910 [7] NCCL INFO Channel 01/0 : 15[7] -> 0[0] [send] via NET/IB/5/GDRDMA
+ubuntu:910:910 [7] NCCL INFO Channel 02/0 : 15[7] -> 0[0] [send] via NET/IB/5/GDRDMA
+ubuntu:910:910 [7] NCCL INFO Channel 03/0 : 15[7] -> 0[0] [send] via NET/IB/5/GDRDMA
+ubuntu:910:910 [7] NCCL INFO Connected all rings, use ring PXN 0 GDR 1
+ubuntu:910:910 [7] NCCL INFO Comm config Blocking set to 1
+ubuntu:910:910 [7] NCCL INFO Initialized NET plugin IB
+ubuntu:910:910 [7] NCCL INFO Assigned NET plugin IB to comm
+ubuntu:910:910 [7] NCCL INFO Assigned GIN plugin GIN_IB_GDAKI to comm
+ubuntu:910:910 [7] NCCL INFO Using network IB
+ubuntu:910:910 [7] NCCL INFO DMA-BUF is available on GPU device 7
+ubuntu:910:910 [7] NCCL INFO ncclCommInitRankConfig comm 0x49c97680 rank 7 nranks 8 cudaDev 7 nvmlDev 7 busId f9000 commId 0xe06284c759c062e2 - Init START
+ubuntu:910:910 [7] NCCL INFO Bootstrap timings total 0.000720 (create 0.000036, send 0.000113, recv 0.000115, ring 0.000302, delay 0.000000)
+ubuntu:910:910 [7] NCCL INFO ncclTopoGetCpuAffinity: Affinity for GPU 7 is 56-111,168-223. (GPU affinity = 56-111,168-223 ; CPU affinity = 0-223).
+ubuntu:910:910 [7] NCCL INFO NVLS multicast support is not available on dev 7 (NVLS_NCHANNELS 0)
+ubuntu:910:910 [7] NCCL INFO comm 0x49c97680 rank 7 nRanks 8 nNodes 2 localRanks 4 localRank 3 MNNVL 0
+ubuntu:910:910 [7] NCCL INFO Trees [0] -1/-1/-1->7->6 [1] 6/-1/-1->7->3 [2] -1/-1/-1->7->6 [3] 6/3/-1->7->-1
+ubuntu:910:910 [7] NCCL INFO P2P Chunksize set to 131072
+ubuntu:910:910 [7] NCCL INFO Check P2P Type isAllDirectP2p 0 directMode 0 isAllCudaP2p 1
+ubuntu:910:3121 [0] NCCL INFO [Proxy Service] Device 7 CPU core 210
+ubuntu:910:3131 [0] NCCL INFO [Proxy Service UDS] Device 7 CPU core 81
+ubuntu:910:910 [7] NCCL INFO threadThresholds 8/8/64 | 64/8/64 | 512 | 512
+ubuntu:910:910 [7] NCCL INFO 4 coll channels, 4 collnet channels, 0 nvls channels, 4 p2p channels, 2 p2p channels per peer
+ubuntu:910:910 [7] NCCL INFO ncclCommInitRankConfig comm 0x49c97680 rank 7 nranks 8 cudaDev 7 nvmlDev 7 busId f9000 commId 0xe06284c759c062e2 - Init COMPLETE
+ubuntu:910:910 [7] NCCL INFO Init timings - ncclCommInitRankConfig: rank 7 nranks 8 total 0.04 (kernels 0.00, alloc 0.00, bootstrap 0.00, allgathers 0.00, topo 0.02, graphs 0.00, connections 0.01, rest 0.00)
+ubuntu:910:3134 [0] NCCL INFO [Proxy Progress] Device 7 CPU core 189
+ubuntu:910:910 [7] NCCL INFO Channel 00/0 : 7[7] -> 0[0] [send] via NET/IB/5/GDRDMA
+ubuntu:910:910 [7] NCCL INFO Channel 01/0 : 7[7] -> 0[0] [send] via NET/IB/5/GDRDMA
+ubuntu:910:910 [7] NCCL INFO Channel 02/0 : 7[7] -> 0[0] [send] via NET/IB/5/GDRDMA
+ubuntu:910:910 [7] NCCL INFO Channel 03/0 : 7[7] -> 0[0] [send] via NET/IB/5/GDRDMA
+ubuntu:910:910 [7] NCCL INFO Connected all rings, use ring PXN (Worker_DP1_TP0_EP8 pid=903) INFO 07-28 06:07:52 [gpu_worker.py:538] Available KV cache memory: 19.88 GiB
+(EngineCore_DP1 pid=536) INFO 07-28 06:07:52 [kv_cache_utils.py:2146] GPU KV cache size: 395,072 tokens
+(EngineCore_DP1 pid=536) INFO 07-28 06:07:52 [kv_cache_utils.py:2147] Maximum concurrency for 8,192 tokens per request: 48.23x
+(Worker_DP1_TP0_EP8 pid=903) INFO 07-28 06:07:52 [indexer.py:297] DSA indexer decode path: use_flattening=False (next_n=1, use_fp4_indexer_cache=False)
+(EngineCore_DP1 pid=536) INFO 07-28 06:08:53 [shm_broadcast.py:705] No available shared memory broadcast block found in 60 seconds. This typically happens when some processes are hanging or doing some time-consuming work (e.g. compilation, weight/kv cache quantization).
+(Worker_DP1_TP5_EP13 pid=908) INFO 07-28 06:09:24 [kernel_warmup.py:93] Skipping FlashInfer autotune because it is disabled.
+(Worker_DP1_TP3_EP11 pid=906) INFO 07-28 06:09:24 [kernel_warmup.py:93] Skipping FlashInfer autotune because it is disabled.
+(Worker_DP1_TP1_EP9 pid=904) INFO 07-28 06:09:24 [kernel_warmup.py:93] Skipping FlashInfer autotune because it is disabled.
+(Worker_DP1_TP6_EP14 pid=909) INFO 07-28 06:09:24 [kernel_warmup.py:93] Skipping FlashInfer autotune because it is disabled.
+(Worker_DP1_TP0_EP8 pid=903) INFO 07-28 06:09:24 [kernel_warmup.py:93] Skipping FlashInfer autotune because it is disabled.
+(Worker_DP1_TP7_EP15 pid=910) INFO 07-28 06:09:24 [kernel_warmup.py:93] Skipping FlashInfer autotune because it is disabled.
+(Worker_DP1_TP4_EP12 pid=907) INFO 07-28 06:09:24 [kernel_warmup.py:93] Skipping FlashInfer autotune because it is disabled.
+(Worker_DP1_TP2_EP10 pid=905) INFO 07-28 06:09:24 [kernel_warmup.py:93] Skipping FlashInfer autotune because it is disabled.
+(Worker_DP1_TP4_EP12 pid=907) INFO 07-28 06:09:36 [jit_monitor.py:73] Kernel JIT monitor activated; monitored JIT compilations during inference will use mode=warn.
+(Worker_DP1_TP2_EP10 pid=905) INFO 07-28 06:09:36 [jit_monitor.py:73] Kernel JIT monitor activated; monitored JIT compilations during inference will use mode=warn.
+(Worker_DP1_TP5_EP13 pid=908) INFO 07-28 06:09:36 [jit_monitor.py:73] Kernel JIT monitor activated; monitored JIT compilations during inference will use mode=warn.
+(Worker_DP1_TP7_EP15 pid=910) INFO 07-28 06:09:36 [jit_monitor.py:73] Kernel JIT monitor activated; monitored JIT compilations during inference will use mode=warn.
+(Worker_DP1_TP1_EP9 pid=904) INFO 07-28 06:09:36 [jit_monitor.py:73] Kernel JIT monitor activated; monitored JIT compilations during inference will use mode=warn.
+(Worker_DP1_TP0_EP8 pid=903) INFO 07-28 06:09:36 [jit_monitor.py:73] Kernel JIT monitor activated; monitored JIT compilations during inference will use mode=warn.
+(Worker_DP1_TP6_EP14 pid=909) INFO 07-28 06:09:36 [jit_monitor.py:73] Kernel JIT monitor activated; monitored JIT compilations during inference will use mode=warn.
+(Worker_DP1_TP3_EP11 pid=906) INFO 07-28 06:09:36 [jit_monitor.py:73] Kernel JIT monitor activated; monitored JIT compilations during inference will use mode=warn.
+(EngineCore_DP1 pid=536) INFO 07-28 06:09:36 [core.py:344] init engine (profile, create kv cache, warmup model) took 129.13 s
+(EngineCore_DP1 pid=536) INFO 07-28 06:09:37 [vllm.py:1042] Asynchronous scheduling is enabled.
+(EngineCore_DP1 pid=536) WARNING 07-28 06:09:37 [vllm.py:1096] Enforce eager set, disabling torch.compile and CUDAGraphs. This is equivalent to setting -cc.mode=none -cc.cudagraph_mode=none
+(EngineCore_DP1 pid=536) WARNING 07-28 06:09:37 [vllm.py:1144] Inductor compilation was disabled by user settings, optimizations settings that are only active during inductor compilation will be ignored.
+(EngineCore_DP1 pid=536) INFO 07-28 06:09:37 [kernel.py:292] Final IR op priority after setting platform defaults: IrOpPriorityConfig(rms_norm=['vllm_c', 'native'], fused_add_rms_norm=['vllm_c', 'native'])
+(EngineCore_DP1 pid=536) INFO 07-28 06:09:37 [vllm.py:1322] Cudagraph is disabled under eager mode
+(EngineCore_DP1 pid=536) INFO 07-28 06:09:37 [compilation.py:312] Enabled custom fusions: norm_quant, act_quant
+(Worker_DP1_TP0_EP8 pid=903) WARNING 07-28 06:11:32 [jit_monitor.py:129] Triton kernel JIT compilation during inference: _count_expert_num_tokens. This causes a latency spike; consider extending warmup to cover this shape/config.
+(Worker_DP1_TP0_EP8 pid=903) WARNING 07-28 06:11:44 [jit_monitor.py:129] Triton kernel JIT compilation during inference: _fwd_kernel_ep_scatter_1. This causes a latency spike; consider extending warmup to cover this shape/config.
+(Worker_DP1_TP0_EP8 pid=903) WARNING 07-28 06:11:44 [jit_monitor.py:129] Triton kernel JIT compilation during inference: _fwd_kernel_ep_scatter_2. This causes a latency spike; consider extending warmup to cover this shape/config.
+(Worker_DP1_TP0_EP8 pid=903) WARNING 07-28 06:11:44 [jit_monitor.py:129] Triton kernel JIT compilation during inference: _fwd_kernel_ep_gather. This causes a latency spike; consider extending warmup to cover this shape/config.
+(Worker_DP1_TP0_EP8 pid=903) WARNING 07-28 06:18:09 [jit_monitor.py:129] Triton kernel JIT compilation during inference: _convert_req_index_to_global_index_kernel. This causes a latency spike; consider extending warmup to cover this shape/config.

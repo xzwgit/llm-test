@@ -1,0 +1,73 @@
+========== 1. 查找模型 ==========
+/nvme1/deepseek-ai/DeepSeek-V4-Flash/inference/config.json
+/nvme1/deepseek-ai/DeepSeek-V4-Flash/config.json
+/data/DeepSeek-R1-Distill-Qwen-14B/config.json
+/data/DeepSeek-R1-Distill-Llama-70B/config.json
+
+========== 2. 模型目录容量 ==========
+
+MODEL_DIR=/nvme1/deepseek-ai/DeepSeek-V4-Flash/inference
+96K	/nvme1/deepseek-ai/DeepSeek-V4-Flash/inference
+0
+
+MODEL_DIR=/nvme1/deepseek-ai/DeepSeek-V4-Flash
+149G	/nvme1/deepseek-ai/DeepSeek-V4-Flash
+46
+
+MODEL_DIR=/data/DeepSeek-R1-Distill-Qwen-14B
+28G	/data/DeepSeek-R1-Distill-Qwen-14B
+4
+
+MODEL_DIR=/data/DeepSeek-R1-Distill-Llama-70B
+132G	/data/DeepSeek-R1-Distill-Llama-70B
+17
+
+========== 3. GPU ==========
+0, NVIDIA RTX PRO 6000 Blackwell Server Edition, 97887 MiB, 580.105.08
+1, NVIDIA RTX PRO 6000 Blackwell Server Edition, 97887 MiB, 580.105.08
+2, NVIDIA RTX PRO 6000 Blackwell Server Edition, 97887 MiB, 580.105.08
+3, NVIDIA RTX PRO 6000 Blackwell Server Edition, 97887 MiB, 580.105.08
+4, NVIDIA RTX PRO 6000 Blackwell Server Edition, 97887 MiB, 580.105.08
+5, NVIDIA RTX PRO 6000 Blackwell Server Edition, 97887 MiB, 580.105.08
+6, NVIDIA RTX PRO 6000 Blackwell Server Edition, 97887 MiB, 580.105.08
+7, NVIDIA RTX PRO 6000 Blackwell Server Edition, 97887 MiB, 580.105.08
+
+========== 4. 镜像 ==========
+IMAGE=[vllm/vllm-openai:deepseekv4-cu130] ID=sha256:de29f7f2299e27df0d0c45dbedcd22d8b5312f2ed746aab95cab5acb1d046ff3 Created=2026-04-24T21:22:49.276673915Z
+
+========== 5. 运行环境 ==========
+vLLM: 0.1.dev15833+g62d441ee8
+PyTorch: 2.11.0+cu130
+CUDA: 13.0
+GPU count: 8
+GPU: NVIDIA RTX PRO 6000 Blackwell Server Edition
+Capability: (12, 0)
+deep_ep: FOUND
+deep_gemm: MISSING
+flashinfer: FOUND
+flash_mla: MISSING
+
+========== 6. vLLM参数支持 ==========
+  --all2all-backend {allgather_reducescatter,deepep_high_throughput,deepep_low_latency,flashinfer_all2allv,flashinfer_nvlink_one_sided,flashinfer_nvlink_two_sided,mori,naive,nixl_ep,pplx}
+  --data-parallel-size DATA_PARALLEL_SIZE, -dp DATA_PARALLEL_SIZE
+  --enable-eplb, --no-enable-eplb
+  --enable-expert-parallel, --no-enable-expert-parallel, -ep
+  --tensor-parallel-size TENSOR_PARALLEL_SIZE, -tp TENSOR_PARALLEL_SIZE
+  --enable-prefix-caching, --no-enable-prefix-caching
+  --max-num-batched-tokens MAX_NUM_BATCHED_TOKENS
+  --max-num-seqs MAX_NUM_SEQS
+
+========== 7. 模型配置 ==========
+config: /nvme1/deepseek-ai/DeepSeek-V4-Flash/inference/config.json
+architectures: None
+model_type: None
+torch_dtype: None
+num_hidden_layers: None
+hidden_size: None
+n_routed_experts: 256
+n_shared_experts: 1
+num_experts_per_tok: None
+moe_intermediate_size: None
+max_position_embeddings: None
+quantization_config: None
+expert_dtype: fp4

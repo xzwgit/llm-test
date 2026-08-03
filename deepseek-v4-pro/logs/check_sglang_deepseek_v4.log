@@ -1,0 +1,332 @@
+
+================================================
+IMAGE=lmsysorg/sglang:latest
+================================================
+ID=sha256:663867442f321ded36228bafd889fd1db05cbef7a7c8ea6e072df33234dabbfd Created=2026-07-14T05:02:14.585286334Z
+PyTorch: 2.11.0+cu130
+CUDA: 13.0
+GPU: NVIDIA RTX PRO 6000 Blackwell Server Edition
+Capability: (12, 0)
+SGLang: 0.5.15.post1
+deep_gemm: FOUND
+sgl_kernel: FOUND
+flashinfer: FOUND
+tilelang: FOUND
+
+DeepSeek/并行相关参数：
+  Example: sglang serve --model-path <model> [options]
+usage: sglang serve [-h] --model-path MODEL_PATH
+                    [--max-running-requests MAX_RUNNING_REQUESTS]
+                    [--max-total-tokens MAX_TOTAL_TOKENS]
+                    [--node-rank NODE_RANK] [--tp-size TP_SIZE]
+                    [--dp-size DP_SIZE]
+                    [--attn-cp-size ATTN_CP_SIZE] [--moe-dp-size MOE_DP_SIZE]
+                    [--enable-cache-report] [--strip-thinking-cache]
+                    [--attention-backend {triton,torch_native,flex_attention,dsa,nsa,dsv4,compressed,cutlass_mla,fa3,fa4,flashinfer,flashmla,trtllm_mla,cutedsl_mla,tokenspeed_mla,trtllm_mha,dual_chunk_flash_attn,aiter,wave,intel_amx,ascend,intel_xpu}]
+                    [--decode-attention-backend {triton,torch_native,flex_attention,dsa,nsa,dsv4,compressed,cutlass_mla,fa3,fa4,flashinfer,flashmla,trtllm_mla,cutedsl_mla,tokenspeed_mla,trtllm_mha,dual_chunk_flash_attn,aiter,wave,intel_amx,ascend,intel_xpu}]
+                    [--prefill-attention-backend {triton,torch_native,flex_attention,dsa,nsa,dsv4,compressed,cutlass_mla,fa3,fa4,flashinfer,flashmla,trtllm_mla,cutedsl_mla,tokenspeed_mla,trtllm_mha,dual_chunk_flash_attn,aiter,wave,intel_amx,ascend,intel_xpu}]
+                    [--mm-attention-backend {sdpa,fa3,fa4,triton_attn,ascend_attn,aiter_attn,flashinfer_cudnn,amx_attn,xpu_attn}]
+                    [--fp8-gemm-backend {auto,deep_gemm,flashinfer_trtllm,flashinfer_cutlass,flashinfer_deepgemm,cutlass,triton,aiter}]
+                    [--dsa-paged-mqa-logits-backend {auto,deepgemm,cutedsl,aiter}]
+                    [--cuda-graph-config CUDA_GRAPH_CONFIG]
+                    [--cuda-graph-backend-decode {full,breakable,tc_piecewise,disabled}]
+                    [--cuda-graph-backend-prefill {full,breakable,tc_piecewise,disabled}]
+                    [--cuda-graph-max-bs-decode CUDA_GRAPH_MAX_BS_DECODE]
+                    [--cuda-graph-max-bs-prefill CUDA_GRAPH_MAX_BS_PREFILL]
+                    [--cuda-graph-bs-decode CUDA_GRAPH_BS_DECODE [CUDA_GRAPH_BS_DECODE ...]]
+                    [--cuda-graph-bs-prefill CUDA_GRAPH_BS_PREFILL [CUDA_GRAPH_BS_PREFILL ...]]
+                    [--cuda-graph-tc-compiler {eager,inductor}]
+                    [--disable-prefill-cuda-graph]
+                    [--disable-decode-cuda-graph]
+                    [--disable-cuda-graph-padding]
+                    [--enable-profile-cuda-graph] [--enable-cudagraph-gc]
+                    [--debug-cuda-graph] [--enable-layerwise-nvtx-marker]
+                    [--enable-deepseek-v4-fp4-indexer]
+                    [--speculative-draft-model-path SPECULATIVE_DRAFT_MODEL_PATH]
+                    [--speculative-draft-attention-backend SPECULATIVE_DRAFT_ATTENTION_BACKEND]
+                    [--speculative-moe-runner-backend {auto,deep_gemm,triton,triton_kernel,flashinfer_trtllm,experimental_sgl_trtllm,flashinfer_trtllm_routed,flashinfer_cutlass,flashinfer_mxfp4,flashinfer_cutedsl,cutlass,aiter,marlin}]
+                    [--speculative-moe-a2a-backend {none,deepep,mooncake,nixl,mori,ascend_fuseep,flashinfer,megamoe}]
+                    [--ep-size EP_SIZE]
+                    [--moe-a2a-backend {none,deepep,mooncake,nixl,mori,ascend_fuseep,flashinfer,megamoe}]
+                    [--moe-runner-backend {auto,deep_gemm,triton,triton_kernel,flashinfer_trtllm,experimental_sgl_trtllm,flashinfer_trtllm_routed,flashinfer_cutlass,flashinfer_mxfp4,flashinfer_cutedsl,cutlass,aiter,marlin}]
+                    [--enable-eplb] [--eplb-algorithm EPLB_ALGORITHM]
+                    [--moe-dense-tp-size MOE_DENSE_TP_SIZE]
+                    [--enable-deepep-waterfill] [--elastic-ep-rejoin]
+                    [--enable-linear-replayssm]
+                    [--reasoning-parser {auto,apertus2509,deepseek-r1,deepseek-v3,deepseek-v4,glm45,hunyuan,gpt-oss,kimi,kimi_k2,mimo,poolside_v1,qwen3,qwen3-thinking,minimax,minimax-append-think,step3,step3p5,mistral,nemotron_3,interns1,gemma4,cohere_command4}]
+                    [--tool-call-parser {auto,apertus2509,cohere_command4,deepseekv3,deepseekv31,deepseekv32,deepseekv4,glm,glm45,glm47,gpt-oss,kimi_k2,lfm2,llama3,mimo,minicpm5,mistral,poolside_v1,pythonic,qwen,qwen25,qwen3_coder,step3,step3p5,minimax-m2,trinity,interns1,hermes,hunyuan,gigachat3,gemma4}]
+                    [--cuda-graph-max-bs CUDA_GRAPH_MAX_BS_DECODE]
+                    [--cuda-graph-bs CUDA_GRAPH_BS_DECODE [CUDA_GRAPH_BS_DECODE ...]]
+                    [--disable-cuda-graph] [--enable-breakable-cuda-graph]
+                    [--disable-piecewise-cuda-graph]
+                    [--enforce-piecewise-cuda-graph]
+                    [--piecewise-cuda-graph-tokens CUDA_GRAPH_BS_PREFILL [CUDA_GRAPH_BS_PREFILL ...]]
+                    [--piecewise-cuda-graph-compiler {eager,inductor}]
+                    [--piecewise-cuda-graph-max-tokens CUDA_GRAPH_MAX_BS_PREFILL]
+  --model-path MODEL_PATH, --model MODEL_PATH
+  --max-running-requests MAX_RUNNING_REQUESTS
+  --max-total-tokens MAX_TOTAL_TOKENS
+                        Triton attention / linear-attn / Mamba backends; not
+  --tp-size TP_SIZE, --tensor-parallel-size TP_SIZE
+  --dp-size DP_SIZE, --data-parallel-size DP_SIZE
+  --moe-dp-size MOE_DP_SIZE, --moe-data-parallel-size MOE_DP_SIZE
+                        gathered_buffer. Without this, the cuda graph runner
+  --enable-cache-report
+  --attention-backend {triton,torch_native,flex_attention,dsa,nsa,dsv4,compressed,cutlass_mla,fa3,fa4,flashinfer,flashmla,trtllm_mla,cutedsl_mla,tokenspeed_mla,trtllm_mha,dual_chunk_flash_attn,aiter,wave,intel_amx,ascend,intel_xpu}
+  --decode-attention-backend {triton,torch_native,flex_attention,dsa,nsa,dsv4,compressed,cutlass_mla,fa3,fa4,flashinfer,flashmla,trtllm_mla,cutedsl_mla,tokenspeed_mla,trtllm_mha,dual_chunk_flash_attn,aiter,wave,intel_amx,ascend,intel_xpu}
+                        priority over --attention-backend).
+  --prefill-attention-backend {triton,torch_native,flex_attention,dsa,nsa,dsv4,compressed,cutlass_mla,fa3,fa4,flashinfer,flashmla,trtllm_mla,cutedsl_mla,tokenspeed_mla,trtllm_mha,dual_chunk_flash_attn,aiter,wave,intel_amx,ascend,intel_xpu}
+                        priority over --attention-backend).
+  --mm-attention-backend {sdpa,fa3,fa4,triton_attn,ascend_attn,aiter_attn,flashinfer_cudnn,amx_attn,xpu_attn}
+                        Set multimodal attention backend.
+  --fp8-gemm-backend {auto,deep_gemm,flashinfer_trtllm,flashinfer_cutlass,flashinfer_deepgemm,cutlass,triton,aiter}
+                        based on hardware), 'deep_gemm' (JIT-compiled; enabled
+                        (SM100) when DeepGEMM is installed),
+                        groupwise FP8 GEMM), 'flashinfer_deepgemm' (Hopper
+                        DSA (DeepSeek Sparse Attention) prefill backend. If
+                        DSA (DeepSeek Sparse Attention) decode backend. If not
+  --dsa-paged-mqa-logits-backend {auto,deepgemm,cutedsl,aiter}
+                        'auto' (default; DeepGEMM on CUDA, aiter on ROCm),
+                        'deepgemm', 'cutedsl' (CuTe DSL kernel, SM 100
+  --cuda-graph-config CUDA_GRAPH_CONFIG
+                        Per-phase CUDA graph settings as JSON, e.g. '{"decode"
+                        per-phase --cuda-graph-* convenience flags and over
+  --cuda-graph-backend-decode {full,breakable,tc_piecewise,disabled}
+                        cuda_graph_config[decode].backend.
+  --cuda-graph-backend-prefill {full,breakable,tc_piecewise,disabled}
+                        cuda_graph_config[prefill].backend.
+  --cuda-graph-max-bs-decode CUDA_GRAPH_MAX_BS_DECODE
+                        Maximum batch size captured for the decode cuda graph.
+  --cuda-graph-max-bs-prefill CUDA_GRAPH_MAX_BS_PREFILL
+  --cuda-graph-bs-decode CUDA_GRAPH_BS_DECODE [CUDA_GRAPH_BS_DECODE ...]
+                        cuda graph.
+  --cuda-graph-bs-prefill CUDA_GRAPH_BS_PREFILL [CUDA_GRAPH_BS_PREFILL ...]
+                        prefill cuda graph.
+  --cuda-graph-tc-compiler {eager,inductor}
+  --disable-prefill-cuda-graph
+                        Disable the prefill-phase CUDA graph. Convenience for
+                        --cuda-graph-backend-prefill=disabled.
+  --disable-decode-cuda-graph
+                        Disable the decode-phase CUDA graph. Convenience for
+                        --cuda-graph-backend-decode=disabled.
+  --disable-cuda-graph-padding
+                        Disable cuda graph when padding is needed. Still uses
+                        cuda graph when padding is not needed.
+  --enable-profile-cuda-graph
+                        Enable profiling of cuda graph capture.
+  --enable-cudagraph-gc
+                        Enable garbage collection during CUDA graph capture.
+  --debug-cuda-graph    Enable debug/eager mode for CUDA graph using breakable
+                        CUDA graph. When enabled, graph breaks are inserted so
+                        the CUDA graph capture / replay path. Useful for
+                        debugging CUDA graph capture / replay issues.
+  --enable-deepseek-v4-fp4-indexer
+  --speculative-draft-model-path SPECULATIVE_DRAFT_MODEL_PATH, --speculative-draft-model SPECULATIVE_DRAFT_MODEL_PATH
+                        Attention backend for speculative decoding operations
+  --speculative-draft-attention-backend SPECULATIVE_DRAFT_ATTENTION_BACKEND
+                        Attention backend for speculative decoding drafting.
+  --speculative-moe-runner-backend {auto,deep_gemm,triton,triton_kernel,flashinfer_trtllm,experimental_sgl_trtllm,flashinfer_trtllm_routed,flashinfer_cutlass,flashinfer_mxfp4,flashinfer_cutedsl,cutlass,aiter,marlin}
+  --speculative-moe-a2a-backend {none,deepep,mooncake,nixl,mori,ascend_fuseep,flashinfer,megamoe}
+  --ep-size EP_SIZE, --expert-parallel-size EP_SIZE, --ep EP_SIZE
+                        The expert parallelism size.
+  --moe-a2a-backend {none,deepep,mooncake,nixl,mori,ascend_fuseep,flashinfer,megamoe}
+  --moe-runner-backend {auto,deep_gemm,triton,triton_kernel,flashinfer_trtllm,experimental_sgl_trtllm,flashinfer_trtllm_routed,flashinfer_cutlass,flashinfer_mxfp4,flashinfer_cutedsl,cutlass,aiter,marlin}
+                        Select the mode when enable DeepEP or MoriEP MoE,
+                        expert parallel.
+  --enable-eplb         Enable EPLB algorithm
+  --moe-dense-tp-size MOE_DENSE_TP_SIZE
+  --enable-deepep-waterfill
+                        Enable DeepEP Waterfill: dispatch the shared expert as
+                        Automatically sets --moe-a2a-backend deepep,
+                        or low_latency for production decode so CUDA graph
+                        remains enabled. Supported on DeepSeek-V3/R1 with EP
+                        Waterfill (--enable-deepep-waterfill) still routes
+  --enable-linear-replayssm
+                        Enable the ReplaySSM buffered output-only linear-attn
+                        value, uses model-path as HF repo ID. Otherwise,
+                        the DFlash formula (disabled when max-running-requests
+                        backend flashinfer; auto-disables CUDA graph, radix
+  --reasoning-parser {auto,apertus2509,deepseek-r1,deepseek-v3,deepseek-v4,glm45,hunyuan,gpt-oss,kimi,kimi_k2,mimo,poolside_v1,qwen3,qwen3-thinking,minimax,minimax-append-think,step3,step3p5,mistral,nemotron_3,interns1,gemma4,cohere_command4}
+  --tool-call-parser {auto,apertus2509,cohere_command4,deepseekv3,deepseekv31,deepseekv32,deepseekv4,glm,glm45,glm47,gpt-oss,kimi_k2,lfm2,llama3,mimo,minicpm5,mistral,poolside_v1,pythonic,qwen,qwen25,qwen3_coder,step3,step3p5,minimax-m2,trinity,interns1,hermes,hunyuan,gigachat3,gemma4}
+  --cuda-graph-max-bs CUDA_GRAPH_MAX_BS_DECODE
+                        Deprecated alias for --cuda-graph-max-bs-decode.
+  --cuda-graph-bs CUDA_GRAPH_BS_DECODE [CUDA_GRAPH_BS_DECODE ...]
+                        Deprecated alias for --cuda-graph-bs-decode.
+  --disable-cuda-graph  Deprecated. Use --cuda-graph-
+  --enable-breakable-cuda-graph
+                        Deprecated alias for --cuda-graph-backend-
+  --disable-piecewise-cuda-graph
+                        Deprecated alias for --cuda-graph-backend-
+  --enforce-piecewise-cuda-graph
+                        Deprecated alias for --cuda-graph-backend-
+  --piecewise-cuda-graph-tokens CUDA_GRAPH_BS_PREFILL [CUDA_GRAPH_BS_PREFILL ...]
+                        Deprecated alias for --cuda-graph-bs-prefill.
+  --piecewise-cuda-graph-compiler {eager,inductor}
+                        Deprecated alias for --cuda-graph-tc-compiler.
+  --piecewise-cuda-graph-max-tokens CUDA_GRAPH_MAX_BS_PREFILL
+                        Deprecated alias for --cuda-graph-max-bs-prefill.
+
+================================================
+IMAGE=lmsysorg/sglang:dev
+================================================
+ID=sha256:c9736b395756049fe12e7dee3f8c47fb2def7da4ba1aeaafbe7c2779adf75740 Created=2026-07-14T01:14:40.750582234Z
+PyTorch: 2.11.0+cu130
+CUDA: 13.0
+GPU: NVIDIA RTX PRO 6000 Blackwell Server Edition
+Capability: (12, 0)
+SGLang: 0.0.0.dev1+gee464fedc
+deep_gemm: FOUND
+sgl_kernel: FOUND
+flashinfer: FOUND
+tilelang: FOUND
+
+DeepSeek/并行相关参数：
+  Example: sglang serve --model-path <model> [options]
+usage: sglang serve [-h] --model-path MODEL_PATH
+                    [--max-running-requests MAX_RUNNING_REQUESTS]
+                    [--max-total-tokens MAX_TOTAL_TOKENS]
+                    [--node-rank NODE_RANK] [--tp-size TP_SIZE]
+                    [--dp-size DP_SIZE]
+                    [--attn-cp-size ATTN_CP_SIZE] [--moe-dp-size MOE_DP_SIZE]
+                    [--enable-cache-report]
+                    [--attention-backend {triton,torch_native,flex_attention,dsa,nsa,dsv4,compressed,cutlass_mla,fa3,fa4,flashinfer,flashmla,trtllm_mla,cutedsl_mla,tokenspeed_mla,trtllm_mha,dual_chunk_flash_attn,aiter,wave,intel_amx,ascend,intel_xpu}]
+                    [--decode-attention-backend {triton,torch_native,flex_attention,dsa,nsa,dsv4,compressed,cutlass_mla,fa3,fa4,flashinfer,flashmla,trtllm_mla,cutedsl_mla,tokenspeed_mla,trtllm_mha,dual_chunk_flash_attn,aiter,wave,intel_amx,ascend,intel_xpu}]
+                    [--prefill-attention-backend {triton,torch_native,flex_attention,dsa,nsa,dsv4,compressed,cutlass_mla,fa3,fa4,flashinfer,flashmla,trtllm_mla,cutedsl_mla,tokenspeed_mla,trtllm_mha,dual_chunk_flash_attn,aiter,wave,intel_amx,ascend,intel_xpu}]
+                    [--mm-attention-backend {sdpa,fa3,fa4,triton_attn,ascend_attn,aiter_attn,flashinfer_cudnn,amx_attn,xpu_attn}]
+                    [--fp8-gemm-backend {auto,deep_gemm,flashinfer_trtllm,flashinfer_cutlass,flashinfer_deepgemm,cutlass,triton,aiter}]
+                    [--dsa-paged-mqa-logits-backend {auto,deepgemm,cutedsl,aiter}]
+                    [--cuda-graph-config CUDA_GRAPH_CONFIG]
+                    [--cuda-graph-backend-decode {full,breakable,tc_piecewise,disabled}]
+                    [--cuda-graph-backend-prefill {full,breakable,tc_piecewise,disabled}]
+                    [--cuda-graph-max-bs-decode CUDA_GRAPH_MAX_BS_DECODE]
+                    [--cuda-graph-max-bs-prefill CUDA_GRAPH_MAX_BS_PREFILL]
+                    [--cuda-graph-bs-decode CUDA_GRAPH_BS_DECODE [CUDA_GRAPH_BS_DECODE ...]]
+                    [--cuda-graph-bs-prefill CUDA_GRAPH_BS_PREFILL [CUDA_GRAPH_BS_PREFILL ...]]
+                    [--cuda-graph-tc-compiler {eager,inductor}]
+                    [--disable-prefill-cuda-graph]
+                    [--disable-decode-cuda-graph]
+                    [--disable-cuda-graph-padding]
+                    [--enable-profile-cuda-graph] [--enable-cudagraph-gc]
+                    [--debug-cuda-graph] [--enable-layerwise-nvtx-marker]
+                    [--enable-deepseek-v4-fp4-indexer]
+                    [--speculative-draft-model-path SPECULATIVE_DRAFT_MODEL_PATH]
+                    [--speculative-draft-attention-backend SPECULATIVE_DRAFT_ATTENTION_BACKEND]
+                    [--speculative-moe-runner-backend {auto,deep_gemm,triton,triton_kernel,flashinfer_trtllm,experimental_sgl_trtllm,flashinfer_trtllm_routed,flashinfer_cutlass,flashinfer_mxfp4,flashinfer_cutedsl,cutlass,aiter,marlin,humming}]
+                    [--speculative-moe-a2a-backend {none,deepep,mooncake,nixl,mori,ascend_fuseep,flashinfer,megamoe}]
+                    [--ep-size EP_SIZE]
+                    [--moe-a2a-backend {none,deepep,mooncake,nixl,mori,ascend_fuseep,flashinfer,megamoe}]
+                    [--moe-runner-backend {auto,deep_gemm,triton,triton_kernel,flashinfer_trtllm,experimental_sgl_trtllm,flashinfer_trtllm_routed,flashinfer_cutlass,flashinfer_mxfp4,flashinfer_cutedsl,cutlass,aiter,marlin,humming}]
+                    [--enable-eplb] [--eplb-algorithm EPLB_ALGORITHM]
+                    [--moe-dense-tp-size MOE_DENSE_TP_SIZE]
+                    [--enable-waterfill] [--elastic-ep-rejoin]
+                    [--enable-linear-replayssm]
+                    [--reasoning-parser {auto,apertus2509,deepseek-r1,deepseek-v3,deepseek-v4,glm45,hunyuan,gpt-oss,kimi,kimi_k2,mimo,poolside_v1,qwen3,qwen3-thinking,minimax,minimax-append-think,minimax-m3,step3,step3p5,mistral,nemotron_3,interns1,gemma4,cohere_command4}]
+                    [--tool-call-parser {auto,apertus2509,cohere_command4,deepseekv3,deepseekv31,deepseekv32,deepseekv4,glm,glm45,glm47,gpt-oss,kimi_k2,lfm2,llama3,mimo,minicpm5,mistral,poolside_v1,pythonic,qwen,qwen25,qwen3_coder,step3,step3p5,minimax-m2,minimax-m3,trinity,interns1,hermes,hunyuan,gigachat3,gemma4}]
+                    [--cuda-graph-max-bs CUDA_GRAPH_MAX_BS_DECODE]
+                    [--cuda-graph-bs CUDA_GRAPH_BS_DECODE [CUDA_GRAPH_BS_DECODE ...]]
+                    [--disable-cuda-graph] [--enable-breakable-cuda-graph]
+                    [--disable-piecewise-cuda-graph]
+                    [--enforce-piecewise-cuda-graph]
+                    [--piecewise-cuda-graph-tokens CUDA_GRAPH_BS_PREFILL [CUDA_GRAPH_BS_PREFILL ...]]
+                    [--piecewise-cuda-graph-compiler {eager,inductor}]
+                    [--piecewise-cuda-graph-max-tokens CUDA_GRAPH_MAX_BS_PREFILL]
+  --model-path MODEL_PATH, --model MODEL_PATH
+  --max-running-requests MAX_RUNNING_REQUESTS
+  --max-total-tokens MAX_TOTAL_TOKENS
+                        Triton attention / linear-attn / Mamba backends; not
+  --tp-size TP_SIZE, --tensor-parallel-size TP_SIZE
+  --dp-size DP_SIZE, --data-parallel-size DP_SIZE
+  --moe-dp-size MOE_DP_SIZE, --moe-data-parallel-size MOE_DP_SIZE
+                        gathered_buffer. Without this, the cuda graph runner
+  --enable-cache-report
+  --attention-backend {triton,torch_native,flex_attention,dsa,nsa,dsv4,compressed,cutlass_mla,fa3,fa4,flashinfer,flashmla,trtllm_mla,cutedsl_mla,tokenspeed_mla,trtllm_mha,dual_chunk_flash_attn,aiter,wave,intel_amx,ascend,intel_xpu}
+  --decode-attention-backend {triton,torch_native,flex_attention,dsa,nsa,dsv4,compressed,cutlass_mla,fa3,fa4,flashinfer,flashmla,trtllm_mla,cutedsl_mla,tokenspeed_mla,trtllm_mha,dual_chunk_flash_attn,aiter,wave,intel_amx,ascend,intel_xpu}
+                        priority over --attention-backend).
+  --prefill-attention-backend {triton,torch_native,flex_attention,dsa,nsa,dsv4,compressed,cutlass_mla,fa3,fa4,flashinfer,flashmla,trtllm_mla,cutedsl_mla,tokenspeed_mla,trtllm_mha,dual_chunk_flash_attn,aiter,wave,intel_amx,ascend,intel_xpu}
+                        priority over --attention-backend).
+  --mm-attention-backend {sdpa,fa3,fa4,triton_attn,ascend_attn,aiter_attn,flashinfer_cudnn,amx_attn,xpu_attn}
+                        Set multimodal attention backend.
+  --fp8-gemm-backend {auto,deep_gemm,flashinfer_trtllm,flashinfer_cutlass,flashinfer_deepgemm,cutlass,triton,aiter}
+                        based on hardware), 'deep_gemm' (JIT-compiled; enabled
+                        (SM100) when DeepGEMM is installed),
+                        groupwise FP8 GEMM), 'flashinfer_deepgemm' (Hopper
+                        DSA (DeepSeek Sparse Attention) prefill backend. If
+                        DSA (DeepSeek Sparse Attention) decode backend. If not
+  --dsa-paged-mqa-logits-backend {auto,deepgemm,cutedsl,aiter}
+                        'auto' (default; DeepGEMM on CUDA, aiter on ROCm),
+                        'deepgemm', 'cutedsl' (CuTe DSL kernel, SM 100
+  --cuda-graph-config CUDA_GRAPH_CONFIG
+                        Per-phase CUDA graph settings as JSON, e.g. '{"decode"
+                        per-phase --cuda-graph-* convenience flags and over
+  --cuda-graph-backend-decode {full,breakable,tc_piecewise,disabled}
+                        cuda_graph_config[decode].backend.
+  --cuda-graph-backend-prefill {full,breakable,tc_piecewise,disabled}
+                        cuda_graph_config[prefill].backend.
+  --cuda-graph-max-bs-decode CUDA_GRAPH_MAX_BS_DECODE
+                        Maximum batch size captured for the decode cuda graph.
+  --cuda-graph-max-bs-prefill CUDA_GRAPH_MAX_BS_PREFILL
+  --cuda-graph-bs-decode CUDA_GRAPH_BS_DECODE [CUDA_GRAPH_BS_DECODE ...]
+                        cuda graph.
+  --cuda-graph-bs-prefill CUDA_GRAPH_BS_PREFILL [CUDA_GRAPH_BS_PREFILL ...]
+                        prefill cuda graph.
+  --cuda-graph-tc-compiler {eager,inductor}
+  --disable-prefill-cuda-graph
+                        Disable the prefill-phase CUDA graph. Convenience for
+                        --cuda-graph-backend-prefill=disabled.
+  --disable-decode-cuda-graph
+                        Disable the decode-phase CUDA graph. Convenience for
+                        --cuda-graph-backend-decode=disabled.
+  --disable-cuda-graph-padding
+                        Disable cuda graph when padding is needed. Still uses
+                        cuda graph when padding is not needed.
+  --enable-profile-cuda-graph
+                        Enable profiling of cuda graph capture.
+  --enable-cudagraph-gc
+                        Enable garbage collection during CUDA graph capture.
+  --debug-cuda-graph    Enable debug/eager mode for CUDA graph using breakable
+                        CUDA graph. When enabled, graph breaks are inserted so
+                        the CUDA graph capture / replay path. Useful for
+                        debugging CUDA graph capture / replay issues.
+  --enable-deepseek-v4-fp4-indexer
+  --speculative-draft-model-path SPECULATIVE_DRAFT_MODEL_PATH, --speculative-draft-model SPECULATIVE_DRAFT_MODEL_PATH
+                        reaches the cuda-graph tier the forward is already
+                        for anyway -- both the cuda-graph bucket round-up and
+                        Attention backend for speculative decoding operations
+  --speculative-draft-attention-backend SPECULATIVE_DRAFT_ATTENTION_BACKEND
+                        Attention backend for speculative decoding drafting.
+  --speculative-moe-runner-backend {auto,deep_gemm,triton,triton_kernel,flashinfer_trtllm,experimental_sgl_trtllm,flashinfer_trtllm_routed,flashinfer_cutlass,flashinfer_mxfp4,flashinfer_cutedsl,cutlass,aiter,marlin,humming}
+  --speculative-moe-a2a-backend {none,deepep,mooncake,nixl,mori,ascend_fuseep,flashinfer,megamoe}
+  --ep-size EP_SIZE, --expert-parallel-size EP_SIZE, --ep EP_SIZE
+                        The expert parallelism size.
+  --moe-a2a-backend {none,deepep,mooncake,nixl,mori,ascend_fuseep,flashinfer,megamoe}
+  --moe-runner-backend {auto,deep_gemm,triton,triton_kernel,flashinfer_trtllm,experimental_sgl_trtllm,flashinfer_trtllm_routed,flashinfer_cutlass,flashinfer_mxfp4,flashinfer_cutedsl,cutlass,aiter,marlin,humming}
+                        Select the mode when enable DeepEP or MoriEP MoE,
+                        expert parallel.
+  --enable-eplb         Enable EPLB algorithm
+  --moe-dense-tp-size MOE_DENSE_TP_SIZE
+                        rank. Supports DeepEP and MegaMOE MoE A2A backends,
+                        DeepEP decode so CUDA graph remains enabled. Supported
+  --enable-linear-replayssm
+                        Enable the ReplaySSM buffered output-only linear-attn
+                        value, uses model-path as HF repo ID. Otherwise,
+                        the DFlash formula (disabled when max-running-requests
+                        backend flashinfer; auto-disables CUDA graph, radix
+  --reasoning-parser {auto,apertus2509,deepseek-r1,deepseek-v3,deepseek-v4,glm45,hunyuan,gpt-oss,kimi,kimi_k2,mimo,poolside_v1,qwen3,qwen3-thinking,minimax,minimax-append-think,minimax-m3,step3,step3p5,mistral,nemotron_3,interns1,gemma4,cohere_command4}
+  --tool-call-parser {auto,apertus2509,cohere_command4,deepseekv3,deepseekv31,deepseekv32,deepseekv4,glm,glm45,glm47,gpt-oss,kimi_k2,lfm2,llama3,mimo,minicpm5,mistral,poolside_v1,pythonic,qwen,qwen25,qwen3_coder,step3,step3p5,minimax-m2,minimax-m3,trinity,interns1,hermes,hunyuan,gigachat3,gemma4}
+  --cuda-graph-max-bs CUDA_GRAPH_MAX_BS_DECODE
+                        Deprecated alias for --cuda-graph-max-bs-decode.
+  --cuda-graph-bs CUDA_GRAPH_BS_DECODE [CUDA_GRAPH_BS_DECODE ...]
+                        Deprecated alias for --cuda-graph-bs-decode.
+  --disable-cuda-graph  Deprecated. Use --cuda-graph-
+  --enable-breakable-cuda-graph
+                        Deprecated alias for --cuda-graph-backend-
+  --disable-piecewise-cuda-graph
+                        Deprecated alias for --cuda-graph-backend-
+  --enforce-piecewise-cuda-graph
+                        Deprecated alias for --cuda-graph-backend-
+  --piecewise-cuda-graph-tokens CUDA_GRAPH_BS_PREFILL [CUDA_GRAPH_BS_PREFILL ...]
+                        Deprecated alias for --cuda-graph-bs-prefill.
+  --piecewise-cuda-graph-compiler {eager,inductor}
+                        Deprecated alias for --cuda-graph-tc-compiler.
+  --piecewise-cuda-graph-max-tokens CUDA_GRAPH_MAX_BS_PREFILL
+                        Deprecated alias for --cuda-graph-max-bs-prefill.
