@@ -266,6 +266,25 @@ bash /root/dsv4pro/scripts/start_server02.sh
 
 注: 用 completion + "重复文本" 任务强制输出到 max_tokens(16384)。
 
+
+
+### 6.9 16K/16K 专业版重测 (含 Input/Output token 拆分, 512K上下文)
+
+| 并发 | TTFT(s) | Latency avg(s) | Input tok/req | Output tok/req | Input tput | Output tput | Total tput | 成功 |
+|---|---|---|---|---|---|---|---|---|
+| 1 | 0.11 | 178.9 | 7012 | 16384 | 39.2 | 91.6 | 130.8 | 1/1 |
+| 2 | 0.12 | 178.1 | 7012 | 16384 | 78.5 | 183.5 | 262.0 | 2/2 |
+| 4 | 0.13 | 215.4 | 7012 | 16384 | 129.1 | 301.8 | 430.9 | 4/4 |
+| 8 | 0.25 | 321.6 | 7012 | 16384 | 173.3 | 404.9 | 578.1 | 8/8 |
+| **16** | 10.46 | 350.5 | 7012 | 16384 | 316.5 | **739.6** | **1056.1** | 16/16 |
+
+注:
+- Input throughput: 处理输入 prompt 的速度 (prefill 能力)
+- Output throughput: 生成 token 的速度 (decode 能力) ← 核心性能指标
+- Total throughput: 输入+输出合计
+- TTFT 在 C≤8 时 <0.3s (prefix cache 命中); C=16 时 10.5s (prefill 排队)
+- per-req 的 Input/Output 稳定 (7012/16384), 说明所有请求完整执行
+
 ## 七、横向对比分析
 
 ### 7.1 不同输入长度 (C=32, 512K上下文)
