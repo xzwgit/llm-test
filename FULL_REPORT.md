@@ -149,6 +149,23 @@ vllm serve deepseek-ai/DeepSeek-V4-Pro \
 # 其余参数与 server01 完全一致
 ```
 
+
+
+### 4.4 启动脚本 (推荐用法)
+
+两台机已生成标准启动脚本 (含 `--max-num-batched-tokens 8192` 优化):
+
+\`\`\`bash
+# server01 (主节点)
+bash /root/dsv4pro/scripts/start_server01.sh
+
+# server02 (headless, 在 server01 启动后再跑)
+bash /root/dsv4pro/scripts/start_server02.sh
+\`\`\`
+
+脚本也已归档到本仓库: `deepseek-v4-pro/scripts/`
+调优参数说明见: `deepseek-v4-pro/docs/tuning_guide.md`
+
 ## 五、显存分解 (每卡 96GB)
 
 | 项目 | 占用 | 说明 |
