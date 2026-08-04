@@ -114,3 +114,86 @@ python bench_ultimate.py --in-len 125 --out-tokens 16384 -c 1 2 4 8 16
 # 32K/32K
 python bench_ultimate.py --in-len 255 --out-tokens 32768 -c 1 2 4
 ```
+
+---
+
+## 六、官方工具 vllm bench serve 数据 (4K/4K)
+
+> 工具: `vllm bench serve` (官方) + `vllm_bench_wrap.sh` (封装)
+> 数据集: random + `--ignore-eos` (强制输出, 随机token, 标准测法)
+> 与上面 bench_ultimate.py 的差异见第七节
+
+### 6.1 4K/4K 完整数据 (含 TPOT/p99)
+
+| C | Output tput | Total tput | TTFT mean(ms) | TTFT p99(ms) | TPOT mean(ms) | ITL mean(ms) | MTP% |
+|---|---|---|---|---|---|---|---|
+| 1 | 69.9 | 139.9 | 159 | 184 | 14.3 | 29.3 | 52.5 |
+| 4 | 173.3 | 346.7 | 746 | 1341 | 19.3 | 35.9 | 42.3 |
+| 16 | 411.5 | 823.5 | 2892 | 5558 | 34.2 | 64.2 | 43.5 |
+| 32 | 407.0 | 814.5 | 19485 | 22826 | 53.0 | 96.1 | 37.5 |
+
+新增指标说明:
+- **TPOT** (Time Per Output Token): 每个输出token的平均耗时(不含首token), 越低越好
+- **TTFT p99**: 99分位首token延迟 (尾部延迟, 反映最慢请求)
+- **Peak concurrent**: 实际峰值并发 (受调度影响可能略高于设定值)
+
+### 6.2 关键观察 (官方工具)
+
+1. **C=16→32 吞吐不再增长** (823→814), 说明 4K/4K 在 C=16 已达算力饱和
+2. **TPOT 随并发恶化**: C=1 14.3ms → C=32 53ms (3.7倍), 因 decode 排队
+3. **TTFT p99 尾部延迟严重**: C=32 达 22.8s (部分请求等很久才轮到 prefill)
+4. **MTP 接受率 37-52%**: 随机token难预测, position0接受60%, position1仅14-30%
+
+---
+
+## 七、两套工具差异分析 (重要)
+
+### 7.1 数据对比 (4K/4K)
+
+| 指标 | bench_ultimate.py | vllm bench serve | 差异原因 |
+|---|---|---|---|
+| **MTP 接受率** | 84-89% | 37-52% | ★ 核心差异 (见下) |
+| **C=1 Output tput** | 93.1 tok/s | 69.9 tok/s | MTP接受多→decode快 |
+| **C=32 Output tput** | 1263.5 tok/s | 407.0 tok/s | 同上, 差距放大 |
+| **Prefix cache** | 0-75% | 0% | ① |
+| **TPOT** | 未测 | 14-53ms | ② |
+
+### 7.2 差异根因
+
+**① MTP 接受率差异 (核心)**
+
+| 工具 | 输出内容 | 草稿模型可预测性 | 接受率 |
+|---|---|---|---|
+| bench_ultimate.py | "重复文本" (语义连贯) | 高 (模式重复, 易猜) | 84-89% |
+| vllm bench serve | `--ignore-eos` 随机token | 低 (无语义, 难猜) | 37-52% |
+| **真实对话** | 正常语言 | 中等 | **约 60-70%** (估) |
+
+MTP 投机解码的接受率高度依赖"草稿模型能否猜对下一个token":
+- 重复文本: 草稿模型学到模式, 几乎全猜对 → 接受率高 → decode 快
+- 随机token: 草稿模型猜不对 → 接受率低 → 退化为单步decode → 慢
+- 真实场景介于两者之间
+
+**② Prefix cache 差异**
+- bench_ultimate.py: 用固定prompt重复测试 → prefix cache 命中率高 (相同前缀复用)
+- vllm bench serve: random dataset 每次prompt不同 → prefix cache 0% (标准公平测法)
+
+**③ 数据集差异**
+- bench_ultimate.py: 真实prompt内容 (虽是重复段落, 但有语义)
+- vllm bench serve: 随机token填充 (无语义, 纯测算力)
+
+### 7.3 哪个数据更可信
+
+**取决于测试目的**:
+| 目的 | 用哪个工具 | 理由 |
+|---|---|---|
+| **算力上限测试** (公平对比硬件) | vllm bench serve | 标准化, 无语义加成, 可复现 |
+| **真实场景预估** | bench_ultimate.py | 含prefix cache和MTP真实效果 |
+| **横向对比其他模型** | vllm bench serve | 官方工具, 业界通用 |
+| **Agent多轮场景** | bench_ultimate.py | prefix cache 反映真实agent行为 |
+
+### 7.4 结论
+
+两套工具数据**都有效, 反映不同侧面**:
+- vllm bench 的 4K/4K C=16 总吞吐 823 tok/s 是**纯算力基线** (无MTP/PC加成)
+- bench_ultimate 的 4K/4K C=16 总吞吐 925 tok/s 含**真实场景加成** (MTP 88% + PC 75%)
+- 真实部署性能介于两者之间, 偏向 bench_ultimate (因正常对话MTP接受率约60-70%)
