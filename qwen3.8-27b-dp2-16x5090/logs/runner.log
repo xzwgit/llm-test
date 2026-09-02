@@ -1,0 +1,53 @@
+[16:24:25] START 1k1k-c1 (in=1024 out=1024 c=1)
+[16:24:45] DONE  1k1k-c1 rc=0
+[16:24:45] START 1k1k-c2 (in=1024 out=1024 c=2)
+[16:25:02] DONE  1k1k-c2 rc=0
+[16:25:02] START 1k1k-c4 (in=1024 out=1024 c=4)
+[16:25:20] DONE  1k1k-c4 rc=0
+[16:25:20] START 1k1k-c16 (in=1024 out=1024 c=16)
+[16:25:38] DONE  1k1k-c16 rc=0
+[16:25:38] START 1k1k-c32 (in=1024 out=1024 c=32)
+[16:26:01] DONE  1k1k-c32 rc=0
+[16:26:01] START 1k1k-c64 (in=1024 out=1024 c=64)
+[16:26:26] DONE  1k1k-c64 rc=0
+[16:26:26] START 4k4k-c1 (in=4096 out=4096 c=1)
+[16:27:09] DONE  4k4k-c1 rc=0
+[16:27:09] START 4k4k-c2 (in=4096 out=4096 c=2)
+[16:27:56] DONE  4k4k-c2 rc=0
+[16:27:56] START 4k4k-c4 (in=4096 out=4096 c=4)
+[16:28:40] DONE  4k4k-c4 rc=0
+[16:28:40] START 4k4k-c16 (in=4096 out=4096 c=16)
+[16:29:32] DONE  4k4k-c16 rc=0
+[16:29:32] START 4k4k-c32 (in=4096 out=4096 c=32)
+[16:30:36] DONE  4k4k-c32 rc=0
+[16:30:36] START 8k8k-c1 (in=8192 out=8192 c=1)
+[16:32:13] DONE  8k8k-c1 rc=0
+[16:32:13] START 8k8k-c2 (in=8192 out=8192 c=2)
+[16:33:41] DONE  8k8k-c2 rc=0
+[16:33:41] START 8k8k-c4 (in=8192 out=8192 c=4)
+[16:35:13] DONE  8k8k-c4 rc=0
+[16:35:13] START 8k8k-c16 (in=8192 out=8192 c=16)
+[16:37:10] DONE  8k8k-c16 rc=0
+[16:37:10] START 8k8k-c32 (in=8192 out=8192 c=32)
+[16:39:16] DONE  8k8k-c32 rc=0
+[16:39:16] START 4k32k-c1 (in=4096 out=32768 c=1)
+[16:45:48] DONE  4k32k-c1 rc=0
+[16:45:48] START 4k32k-c2 (in=4096 out=32768 c=2)
+[16:52:36] DONE  4k32k-c2 rc=0
+[16:52:36] START 4k32k-c4 (in=4096 out=32768 c=4)
+[16:59:37] DONE  4k32k-c4 rc=0
+[16:59:37] START 4k32k-c16 (in=4096 out=32768 c=16)
+[17:09:53] DONE  4k32k-c16 rc=0
+[17:09:53] START 4k32k-c32 (in=4096 out=32768 c=32)
+[17:20:10] DONE  4k32k-c32 rc=0
+[17:20:10] START 8k32k-c1 (in=8192 out=32768 c=1)
+[17:27:08] DONE  8k32k-c1 rc=0
+[17:27:08] START 8k32k-c2 (in=8192 out=32768 c=2)
+[17:33:07] DONE  8k32k-c2 rc=0
+[17:33:07] START 8k32k-c4 (in=8192 out=32768 c=4)
+[17:39:56] DONE  8k32k-c4 rc=0
+[17:39:56] START 8k32k-c16 (in=8192 out=32768 c=16)
+[17:48:24] DONE  8k32k-c16 rc=0
+[17:48:24] START 8k32k-c32 (in=8192 out=32768 c=32)
+[17:58:16] DONE  8k32k-c32 rc=0
+ALL DONE 17:58:16

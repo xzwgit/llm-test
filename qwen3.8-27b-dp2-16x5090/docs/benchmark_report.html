@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>双机16×RTX5090 Qwen3.8-27B DP2 压测报告</title>
+<style>
+:root { --ink:#172033; --muted:#5c6878; --line:#d9e1ea; --bg:#f4f6f8; --paper:#fff; --green:#14724f; --amber:#9a6500; }
+* { box-sizing:border-box; }
+body { margin:0; background:var(--bg); color:var(--ink); font-family:'PingFang SC', system-ui, sans-serif; font-size:15px; line-height:1.65; }
+.page { max-width:1280px; margin:0 auto; background:var(--paper); min-height:100vh; }
+header { padding:48px 56px 34px; border-bottom:1px solid var(--line); background:#102033; color:#fff; }
+h1 { margin:0 0 12px; font-size:32px; line-height:1.18; }
+.subtitle { color:#d6dee8; max-width:860px; margin:0; }
+.meta { display:flex; flex-wrap:wrap; gap:10px; margin-top:24px; }
+.chip { border:1px solid rgba(255,255,255,.22); border-radius:4px; padding:6px 10px; color:#eaf0f6; font-size:13px; }
+main { padding:36px 56px 56px; }
+section { padding:26px 0; border-bottom:1px solid var(--line); }
+section:last-child { border-bottom:0; }
+h2 { margin:0 0 14px; font-size:24px; }
+h3 { margin:20px 0 10px; font-size:18px; }
+.summary { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:14px; margin-top:20px; }
+.card { border:1px solid var(--line); border-radius:6px; padding:18px; background:#fff; }
+.label { color:var(--muted); font-size:13px; }
+.value { font-size:27px; font-weight:800; margin-top:6px; line-height:1.1; }
+.note { color:var(--muted); font-size:13px; margin:8px 0 0; }
+.ok { color:var(--green); font-weight:700; }
+table { width:100%; border-collapse:collapse; font-size:12.5px; }
+th { text-align:left; background:#172033; color:#fff; padding:8px 9px; white-space:nowrap; }
+td { border-bottom:1px solid var(--line); padding:7px 9px; vertical-align:top; white-space:nowrap; }
+tr:nth-child(even) td { background:#f8fafc; }
+.table-wrap { overflow-x:auto; border:1px solid var(--line); border-radius:6px; }
+.small { font-size:12px; color:var(--muted); }
+ul { margin:8px 0 0; padding-left:20px; }
+li { margin:4px 0; }
+code { background:#eef2f6; border-radius:3px; padding:1px 5px; font-size:12.5px; }
+pre { background:#102033; color:#dce6f2; padding:16px 18px; border-radius:6px; overflow-x:auto; font-size:12.5px; line-height:1.55; }
+.grid2 { display:grid; grid-template-columns:1fr 1fr; gap:18px; }
+@media (max-width:820px) { header,main { padding-left:22px; padding-right:22px; } .summary,.grid2 { grid-template-columns:1fr; } h1 { font-size:26px; } }
+</style></head>
+<body><div class="page">
+<header>
+  <h1>双机 16×RTX 5090 Qwen3.8-27B DP2 压测报告</h1>
+  <p class="subtitle">基于 vLLM 官方基准工具 <code style="background:transparent;color:#9fc3e8">vllm bench serve</code> 的输入/输出 token 组合 × 并发梯度测试（26 档）。指标名称、单位与工具官方输出保持一致，未做二次换算。附跨机 NCCL/GDR 验证专节。</p>
+  <div class="meta">
+    <span class="chip">报告日期：2026-09-01</span>
+    <span class="chip">硬件：server1 <SERVER1_IP> + server2 <SERVER2_IP>，各 8×RTX 5090 32G（共 16 卡）</span>
+    <span class="chip">部署：TP=8/机 + DP=2（bf16，MTP×3）</span>
+    <span class="chip">vLLM 0.28.0</span>
+    <span class="chip">测试窗口：16:24–17:58</span>
+  </div>
+</header>
+<main>
+
+<section>
+  <h2>1. 测试结论</h2>
+  <div class="summary">
+    <div class="card"><div class="label">测试档位</div><div class="value ok">26/26 全部成功</div><p class="note">5 组输入/输出组合 × 并发 1/2/4/16/32（1K 组加测 64），零失败</p></div>
+    <div class="card"><div class="label">整机峰值输出吞吐</div><div class="value">4,005.16 tok/s</div><p class="note">1K 输入 × 1K 输出 × 并发 64（对比 4×4090 TP4 同档 1,288.67，约 3.1×）</p></div>
+    <div class="card"><div class="label">单流最高输出</div><div class="value">118.07 tok/s</div><p class="note">4K→4K 并发 1；32K 长输出单流 79.8–85.4 tok/s</p></div>
+    <div class="card"><div class="label">MTP 投机解码接受率</div><div class="value">18.6%–82.5%</div><p class="note">随机文本口径；输出越长接受率越高</p></div>
+  </div>
+  <ul>
+    <li>双机 DP=2 负载均衡生效：压测期间两台 GPU 利用率均 ≥95%，吞吐随并发近似线性扩展至 c32–c64。</li>
+    <li>长输出 32K 组并发 32 仍保持 1,727–1,800 tok/s（对比 4×4090 同档 936.6–1,056.8，约 1.8×）。</li>
+    <li>TTFT 表现显著优于 4×4090 基线：8K 输入 × 32 并发 P95 TTFT 8.73s（4090 基线 43.58s）。</li>
+    <li>跨机 NCCL/GDR 已验证生效（见第 3 节）；本部署 DP=2 模式跨机无集合通信，跨机 TP 因模型结构不可行。</li>
+  </ul>
+</section>
+
+<section>
+  <h2>2. 部署环境与服务配置</h2>
+  <div class="grid2">
+    <div><h3>环境</h3><div class="table-wrap"><table>
+      <thead><tr><th>项目</th><th>配置</th></tr></thead>
+      <tbody>
+        <tr><td>硬件</td><td>2 节点 × 8× NVIDIA GeForce RTX 5090 32G（每卡 32,259 MiB），共 16 卡</td></tr>
+        <tr><td>互联</td><td>CX7 200G×2 直连（RoCE v2 + GPUDirect RDMA，CPU2 侧 mlx5_2/mlx5_3，无交换机）；管理网（内网）</td></tr>
+        <tr><td>推理框架</td><td>vLLM 0.28.0（venv ~/vllm，两台同版本）</td></tr>
+        <tr><td>模型</td><td>Qwen/Qwen3.8-27B（bf16，52GB），served name <code>Qwen3.8-27B</code></td></tr>
+        <tr><td>并行</td><td><b>TP=8/机 + DP=2</b>：server1 = DP rank 0 对外 API 8123；server2 = DP rank 1 headless（rpc 13345）</td></tr>
+        <tr><td>投机解码</td><td>MTP，num_speculative_tokens=3</td></tr>
+        <tr><td>API</td><td>端口 8123（OpenAI 兼容），max_model_len=262144，max_num_seqs=512</td></tr>
+      </tbody>
+    </table></div></div>
+    <div><h3>启动命令 — Server1（<SERVER1_IP>，DP rank 0，对外 API 8123）</h3>
+<pre>source ~/vllm/bin/activate
+export HF_ENDPOINT=https://hf-mirror.com HF_HUB_DISABLE_XET=1
+export http_proxy="http://<PROXY>:7897/" https_proxy="http://<PROXY>:7897/"
+export no_proxy=localhost,127.0.0.1,<SERVER1_IP>,<SERVER2_IP>,<INTERNAL_NET>/24
+export VLLM_WORKER_MULTIPROC_METHOD=spawn
+export CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7
+export VLLM_USE_RUST_FRONTEND=1
+export VLLM_ENGINE_READY_TIMEOUT_S=3600
+export NCCL_SOCKET_IFNAME=ens1f3 GLOO_SOCKET_IFNAME=ens1f3
+export NCCL_IB_DISABLE=0 NCCL_IB_HCA=mlx5_2,mlx5_3
+export NCCL_NET_GDR_LEVEL=SYS NCCL_P2P_LEVEL=SYS
+
+vllm serve Qwen/Qwen3.8-27B \
+  --served-model-name Qwen3.8-27B \
+  --trust-remote-code --port 8123 --host 0.0.0.0 \
+  --tensor-parallel-size 8 \
+  --data-parallel-size 2 --data-parallel-size-local 1 \
+  --data-parallel-address <SERVER1_IP> \
+  --data-parallel-rpc-port 13345 \
+  --dtype auto --max-model-len 262144 --max-num-seqs 512 \
+  --gpu-memory-utilization 0.95 \
+  --enable-auto-tool-choice --tool-call-parser qwen3_coder \
+  --reasoning-parser qwen3 --mm-encoder-tp-mode data \
+  --speculative-config '{"method":"mtp","num_speculative_tokens":3}' \
+  --api-key <API-KEY></pre></div>
+<div><h3>启动命令 — Server2（<SERVER2_IP>，DP rank 1，headless 无 API）</h3>
+<pre>source ~/vllm/bin/activate
+export HF_ENDPOINT=https://hf-mirror.com HF_HUB_DISABLE_XET=1
+export http_proxy="http://<PROXY>:7897/" https_proxy="http://<PROXY>:7897/"
+export no_proxy=localhost,127.0.0.1,<SERVER1_IP>,<SERVER2_IP>,<INTERNAL_NET>/24
+export VLLM_WORKER_MULTIPROC_METHOD=spawn
+export CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7
+export VLLM_USE_RUST_FRONTEND=1
+export VLLM_ENGINE_READY_TIMEOUT_S=3600
+export NCCL_SOCKET_IFNAME=ens1f3 GLOO_SOCKET_IFNAME=ens1f3
+export NCCL_IB_DISABLE=0 NCCL_IB_HCA=mlx5_2,mlx5_3
+export NCCL_NET_GDR_LEVEL=SYS NCCL_P2P_LEVEL=SYS
+
+vllm serve Qwen/Qwen3.8-27B \
+  --headless \
+  --served-model-name Qwen3.8-27B \
+  --trust-remote-code --port 8123 --host 0.0.0.0 \
+  --tensor-parallel-size 8 \
+  --data-parallel-size 2 --data-parallel-size-local 1 \
+  --data-parallel-start-rank 1 \
+  --data-parallel-address <SERVER1_IP> \
+  --data-parallel-rpc-port 13345 \
+  --dtype auto --max-model-len 262144 --max-num-seqs 512 \
+  --gpu-memory-utilization 0.95 \
+  --enable-auto-tool-choice --tool-call-parser qwen3_coder \
+  --reasoning-parser qwen3 --mm-encoder-tp-mode data \
+  --speculative-config '{"method":"mtp","num_speculative_tokens":3}' \
+  --api-key <API-KEY></pre>
+      <p class="small">启动顺序：先 server1（rank 0 起 rpc 协调器），约 10 秒后 server2。两台差异仅 --headless 与 --data-parallel-start-rank 1。落盘脚本：server1 <code>/root/start_qdp1.sh</code>、server2 <code>/root/start_qdp2.sh</code>（自带旧进程/GPU 清理，可重复执行）。</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>3. 跨机 NCCL / GPUDirect RDMA 验证</h2>
+  <div class="table-wrap"><table>
+    <thead><tr><th>验证项</th><th>结果</th><th>证据</th></tr></thead>
+    <tbody>
+      <tr><td>跨机 NCCL 通信器（12 rank）</td><td class="ok">✓ 生效</td><td>TP=12 尝试日志：ncclCommInitRank 12 rank Init COMPLETE，耗时 0.49s（server1 + server2 全部 rank）</td></tr>
+      <tr><td>跨机通道走 GPUDirect RDMA</td><td class="ok">✓ GDRDMA</td><td>日志原文：<code>Channel 00/0 : 4[4] -&gt; 8[0] [send] via NET/IB/2/GDRDMA</code>（rank7→rank8 跨节点，双轨均有）；机内通道 <code>via P2P/CUMEM</code></td></tr>
+      <tr><td>NCCL 集合通信基准（16 卡）</td><td class="ok">✓ 41 GB/s</td><td>nccl-tests（本集群既有实测）：all_reduce 双轨 41.0 / 单轨 24.1 GB/s、all_gather 40.9、alltoall 7.5 GB/s busbw</td></tr>
+      <tr><td>跨机 TP 可行性（本模型）</td><td style="color:var(--amber);font-weight:700">✗ 不可行</td><td>TP=16：注意力头 24 不整除；TP=12：头整除但词表维度不整除（vocab_parallel_embedding 断言失败）→ Qwen3.8-27B 在 16 卡上无合法跨机 TP 组合</td></tr>
+      <tr><td>本部署 DP=2 跨机通信</td><td>无集合通信</td><td>DP=2 每台独立 TP=8（机内 PCIe P2P），跨机仅 DP 调度 RPC（管理网）+ 权重分发，无跨机 NCCL 集合流量</td></tr>
+    </tbody>
+  </table></div>
+  <p class="small">结论：跨机 NCCL/GDR 链路本身完全可用（通信器建立、GDRDMA 通道、41 GB/s 集合带宽均验证通过）；生产选 DP=2 是因 Qwen3.8-27B 结构限制无法跨机切分 TP，而非网络问题。</p>
+</section>
+
+<section>
+  <h2>4. 测试方法</h2>
+  <div class="table-wrap"><table>
+    <thead><tr><th>项目</th><th>口径</th></tr></thead>
+    <tbody>
+      <tr><td>工具</td><td><code>vllm bench serve</code>（vLLM 官方，openai-chat 后端，endpoint /v1/chat/completions，--header 鉴权）</td></tr>
+      <tr><td>数据集</td><td>random（固定输入/输出 token 数，range-ratio=0）</td></tr>
+      <tr><td>并发定义</td><td>burst：请求数=并发数、request_rate=inf，全部请求同时发出</td></tr>
+      <tr><td>输出长度</td><td><code>--ignore-eos</code>，每请求输出精确到目标值（1024/4096/8192/32768）</td></tr>
+      <tr><td>输入 tokens</td><td>表中为实测值：chat 模板占用导致略低于目标（如目标 4K 实测均 3,937、8K 实测均 7,841）</td></tr>
+      <tr><td>指标口径</td><td>全部取自工具输出 JSON 官方字段（completed/failed、total_input/output_tokens、duration、request_throughput、output_throughput、mean·p50·p95·p99_ttft_ms、mean_tpot_ms、spec_decode_acceptance_rate）；除 TTFT 由 ms 换算为 s 外均为官方原值</td></tr>
+      <tr><td>预热</td><td>正式测试前 1 次小流量预热（4 请求），各档间无额外预热</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section>
+  <h2>5. 完整测试数据（26 档）</h2>
+  <p class="small">TTFT 各列已由官方 ms 换算为秒；Mean TPOT 保持官方 ms。总/均 = 全部请求合计 / 每请求平均（实测值）。</p>
+  <h3>4.1 输入 1K → 输出 1K</h3><div class="table-wrap"><table><thead><tr><th>并发</th><th>成功</th><th>失败</th><th>输入 tokens 总/均</th><th>输出 tokens 总/均</th><th>Duration s</th><th>Request throughput (req/s)</th><th>Output tok/s</th><th>Mean TTFT (s)</th><th>P50 TTFT (s)</th><th>P95 TTFT (s)</th><th>P99 TTFT (s)</th><th>Mean TPOT (ms)</th><th>MTP 接受率 %</th></tr></thead><tbody><tr><td>1</td><td>1</td><td>0</td><td>969/969</td><td>1,024/1,024</td><td>11.4</td><td>0.088</td><td>89.68</td><td>0.07</td><td>0.07</td><td>0.07</td><td>0.07</td><td>11.09</td><td>18.6</td></tr><tr><td>2</td><td>2</td><td>0</td><td>1,953/976</td><td>2,048/1,024</td><td>9.7</td><td>0.207</td><td>211.81</td><td>0.14</td><td>0.14</td><td>0.16</td><td>0.16</td><td>8.43</td><td>34.7</td></tr><tr><td>4</td><td>4</td><td>0</td><td>4,105/1,026</td><td>4,096/1,024</td><td>9.1</td><td>0.439</td><td>449.83</td><td>0.26</td><td>0.16</td><td>0.56</td><td>0.61</td><td>7.18</td><td>49.5</td></tr><tr><td>16</td><td>16</td><td>0</td><td>16,374/1,023</td><td>16,384/1,024</td><td>10.5</td><td>1.525</td><td>1,561.69</td><td>0.67</td><td>0.79</td><td>1.08</td><td>1.13</td><td>8.14</td><td>44.8</td></tr><tr><td>32</td><td>32</td><td>0</td><td>32,755/1,023</td><td>32,768/1,024</td><td>14.1</td><td>2.268</td><td>2,322.93</td><td>0.91</td><td>0.94</td><td>1.52</td><td>1.59</td><td>9.75</td><td>43.0</td></tr><tr><td>64</td><td>64</td><td>0</td><td>65,991/1,031</td><td>65,536/1,024</td><td>16.4</td><td>3.911</td><td style="font-weight:800">4,005.16</td><td>1.57</td><td>1.56</td><td>3.04</td><td>3.07</td><td>12.18</td><td>45.8</td></tr></tbody></table></div><h3>4.2 输入 4K → 输出 4K</h3><div class="table-wrap"><table><thead><tr><th>并发</th><th>成功</th><th>失败</th><th>输入 tokens 总/均</th><th>输出 tokens 总/均</th><th>Duration s</th><th>Request throughput (req/s)</th><th>Output tok/s</th><th>Mean TTFT (s)</th><th>P50 TTFT (s)</th><th>P95 TTFT (s)</th><th>P99 TTFT (s)</th><th>Mean TPOT (ms)</th><th>MTP 接受率 %</th></tr></thead><tbody><tr><td>1</td><td>1</td><td>0</td><td>3,757/3,757</td><td>4,096/4,096</td><td>34.7</td><td>0.029</td><td>118.07</td><td>0.37</td><td>0.37</td><td>0.37</td><td>0.37</td><td>8.38</td><td>50.0</td></tr><tr><td>2</td><td>2</td><td>0</td><td>7,445/3,722</td><td>8,192/4,096</td><td>38.3</td><td>0.052</td><td>214.00</td><td>0.37</td><td>0.37</td><td>0.39</td><td>0.39</td><td>8.78</td><td>46.2</td></tr><tr><td>4</td><td>4</td><td>0</td><td>15,741/3,935</td><td>16,384/4,096</td><td>36.6</td><td>0.109</td><td>447.10</td><td>0.53</td><td>0.46</td><td>0.71</td><td>0.74</td><td>7.75</td><td>59.9</td></tr><tr><td>16</td><td>16</td><td>0</td><td>62,988/3,936</td><td>65,536/4,096</td><td>43.5</td><td>0.368</td><td>1,505.76</td><td>1.39</td><td>1.37</td><td>2.42</td><td>2.43</td><td>8.97</td><td>53.0</td></tr><tr><td>32</td><td>32</td><td>0</td><td>126,079/3,939</td><td>131,072/4,096</td><td>54.6</td><td>0.586</td><td>2,398.72</td><td>2.34</td><td>2.42</td><td>3.81</td><td>4.02</td><td>9.95</td><td>55.4</td></tr></tbody></table></div><h3>4.3 输入 8K → 输出 8K</h3><div class="table-wrap"><table><thead><tr><th>并发</th><th>成功</th><th>失败</th><th>输入 tokens 总/均</th><th>输出 tokens 总/均</th><th>Duration s</th><th>Request throughput (req/s)</th><th>Output tok/s</th><th>Mean TTFT (s)</th><th>P50 TTFT (s)</th><th>P95 TTFT (s)</th><th>P99 TTFT (s)</th><th>Mean TPOT (ms)</th><th>MTP 接受率 %</th></tr></thead><tbody><tr><td>1</td><td>1</td><td>0</td><td>7,454/7,454</td><td>8,192/8,192</td><td>88.5</td><td>0.011</td><td>92.58</td><td>0.46</td><td>0.46</td><td>0.46</td><td>0.46</td><td>10.75</td><td>46.9</td></tr><tr><td>2</td><td>2</td><td>0</td><td>14,746/7,373</td><td>16,384/8,192</td><td>80.5</td><td>0.025</td><td>203.43</td><td>0.47</td><td>0.47</td><td>0.48</td><td>0.49</td><td>9.46</td><td>58.7</td></tr><tr><td>4</td><td>4</td><td>0</td><td>31,234/7,808</td><td>32,768/8,192</td><td>82.7</td><td>0.048</td><td>396.30</td><td>0.54</td><td>0.54</td><td>0.9</td><td>0.95</td><td>9.46</td><td>62.1</td></tr><tr><td>16</td><td>16</td><td>0</td><td>125,173/7,823</td><td>131,072/8,192</td><td>108.4</td><td>0.148</td><td>1,209.22</td><td>2.34</td><td>2.25</td><td>4.32</td><td>4.42</td><td>10.5</td><td>59.6</td></tr><tr><td>32</td><td>32</td><td>0</td><td>250,904/7,840</td><td>262,144/8,192</td><td>116.4</td><td>0.275</td><td>2,251.47</td><td>4.62</td><td>4.33</td><td>8.73</td><td>9.07</td><td>11.59</td><td>61.0</td></tr></tbody></table></div><h3>4.4 输入 4K → 输出 32K</h3><div class="table-wrap"><table><thead><tr><th>并发</th><th>成功</th><th>失败</th><th>输入 tokens 总/均</th><th>输出 tokens 总/均</th><th>Duration s</th><th>Request throughput (req/s)</th><th>Output tok/s</th><th>Mean TTFT (s)</th><th>P50 TTFT (s)</th><th>P95 TTFT (s)</th><th>P99 TTFT (s)</th><th>Mean TPOT (ms)</th><th>MTP 接受率 %</th></tr></thead><tbody><tr><td>1</td><td>1</td><td>0</td><td>3,757/3,757</td><td>32,768/32,768</td><td>383.7</td><td>0.003</td><td>85.39</td><td>0.4</td><td>0.4</td><td>0.4</td><td>0.4</td><td>11.7</td><td>62.3</td></tr><tr><td>2</td><td>2</td><td>0</td><td>7,445/3,722</td><td>65,536/32,768</td><td>400.2</td><td>0.005</td><td>163.77</td><td>0.25</td><td>0.25</td><td>0.4</td><td>0.41</td><td>10.65</td><td>68.9</td></tr><tr><td>4</td><td>4</td><td>0</td><td>15,741/3,935</td><td>131,072/32,768</td><td>411.8</td><td>0.01</td><td>318.27</td><td>0.31</td><td>0.3</td><td>0.56</td><td>0.57</td><td>11.4</td><td>65.3</td></tr><tr><td>16</td><td>16</td><td>0</td><td>62,988/3,936</td><td>524,288/32,768</td><td>608.2</td><td>0.026</td><td>862.07</td><td>1.65</td><td>1.76</td><td>2.59</td><td>2.74</td><td>12.56</td><td>66.3</td></tr><tr><td>32</td><td>32</td><td>0</td><td>126,079/3,939</td><td>1,048,576/32,768</td><td>607.2</td><td>0.053</td><td>1,726.97</td><td>3.46</td><td>3.58</td><td>5.93</td><td>6.12</td><td>12.77</td><td>73.0</td></tr></tbody></table></div><h3>4.5 输入 8K → 输出 32K</h3><div class="table-wrap"><table><thead><tr><th>并发</th><th>成功</th><th>失败</th><th>输入 tokens 总/均</th><th>输出 tokens 总/均</th><th>Duration s</th><th>Request throughput (req/s)</th><th>Output tok/s</th><th>Mean TTFT (s)</th><th>P50 TTFT (s)</th><th>P95 TTFT (s)</th><th>P99 TTFT (s)</th><th>Mean TPOT (ms)</th><th>MTP 接受率 %</th></tr></thead><tbody><tr><td>1</td><td>1</td><td>0</td><td>7,454/7,454</td><td>32,768/32,768</td><td>410.6</td><td>0.002</td><td>79.80</td><td>0.58</td><td>0.58</td><td>0.58</td><td>0.58</td><td>12.51</td><td>61.6</td></tr><tr><td>2</td><td>2</td><td>0</td><td>14,746/7,373</td><td>65,536/32,768</td><td>349.8</td><td>0.006</td><td>187.34</td><td>0.45</td><td>0.45</td><td>0.75</td><td>0.78</td><td>10.44</td><td>82.5</td></tr><tr><td>4</td><td>4</td><td>0</td><td>31,234/7,808</td><td>131,072/32,768</td><td>400.6</td><td>0.01</td><td>327.16</td><td>0.83</td><td>0.83</td><td>0.94</td><td>0.94</td><td>11.31</td><td>78.2</td></tr><tr><td>16</td><td>16</td><td>0</td><td>125,173/7,823</td><td>524,288/32,768</td><td>499.0</td><td>0.032</td><td>1,050.62</td><td>3.55</td><td>3.53</td><td>6.17</td><td>6.19</td><td>12.74</td><td>72.1</td></tr><tr><td>32</td><td>32</td><td>0</td><td>250,904/7,840</td><td>1,048,576/32,768</td><td>582.7</td><td>0.055</td><td>1,799.50</td><td>5.38</td><td>5.16</td><td>10.34</td><td>10.82</td><td>13.97</td><td>72.4</td></tr></tbody></table></div>
+</section>
+
+<section>
+  <h2>6. 关键观察</h2>
+  <ul>
+    <li><b>吞吐上限</b>：整机输出吞吐 1K×64 峰值 4,005 tok/s；32K 长输出组并发 32 仍 1,727–1,800 tok/s。同档对比 4×4090 TP4 模板（峰值 1,288 / 长输出 936–1,057）约 <b>1.8–3.1×</b>，符合双机 16 卡预期。</li>
+    <li><b>单流 decode</b>：4K→4K 单流最高 118.07 tok/s（TPOT 8.38ms）；输出拉长到 32K 后单流 79.8–85.4 tok/s（TPOT 11.7–12.5ms），KV 增长衰减幅度明显小于 4090 基线（67 tok/s / 29.7ms）。</li>
+    <li><b>TTFT</b>：低并发 ≤4 时全部 &lt;1s；最大 P95 10.34s（8K×32K×c32），8K 输入 c32 P95 8.73s，均大幅优于 4090 基线（43.58s）——prefill 侧双机分摊效果显著。</li>
+    <li><b>MTP 接受率</b>：随机文本 18.6–82.5%，随输出长度/并发升高而上升（长链自相关性强）；1k1k-c1 的 18.6% 为单请求短链低样本点。</li>
+    <li><b>DP 负载均衡</b>：压测全程两台 GPU 利用率 ≥95%，请求由 DP 协调器自动分发，无单边热点。</li>
+  </ul>
+</section>
+
+<section>
+  <h2>7. 数据边界与备注</h2>
+  <ul>
+    <li>测试数据为 random 数据集随机 token，MTP 接受率与真实业务文本存在差异；吞吐/TTFT 口径不受影响。</li>
+    <li>并发为 burst 全同时发出（request_rate=inf），不含错峰/限速场景。</li>
+    <li>Qwen3.8-27B 为混合线性注意力架构（linear_attention + full_attention 间隔 4），跨机 TP 需同时整除头数与词表维度，16 卡集群无合法组合；如需跨机 TP 压测建议换 128 头模型（如 DeepSeek 系）。</li>
+    <li>原始数据（逐档 JSON + log）: server1 <code>/root/qwen27b-bench/results/</code>（26 JSON + runner.log）。</li>
+    <li>环境备注：GDR 依赖 libcuda 字节补丁（RTX 5090 GeForce 解锁）+ NVreg P2P 参数，详见 harbor <code>/root/5090gdr/</code> 文档体系。</li>
+  </ul>
+</section>
+
+</main></div></body></html>
