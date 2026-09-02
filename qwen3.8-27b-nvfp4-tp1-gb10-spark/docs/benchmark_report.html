@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Qwen3.8-27B-NVFP4 DGX Spark(GB10) 单机 TP1 压测报告</title>
+<style>
+:root { --ink:#172033; --muted:#5c6878; --line:#d9e1ea; --bg:#f4f6f8; --paper:#fff; --green:#14724f; --amber:#9a6500; --red:#a03123; }
+* { box-sizing:border-box; }
+body { margin:0; background:var(--bg); color:var(--ink); font-family:'PingFang SC', system-ui, sans-serif; font-size:15px; line-height:1.65; }
+.page { max-width:1280px; margin:0 auto; background:var(--paper); min-height:100vh; }
+header { padding:48px 56px 34px; border-bottom:1px solid var(--line); background:#102033; color:#fff; }
+h1 { margin:0 0 12px; font-size:32px; line-height:1.18; }
+.subtitle { color:#d6dee8; max-width:820px; margin:0; }
+.meta { display:flex; flex-wrap:wrap; gap:10px; margin-top:24px; }
+.chip { border:1px solid rgba(255,255,255,.22); border-radius:4px; padding:6px 10px; color:#eaf0f6; font-size:13px; }
+main { padding:36px 56px 56px; }
+section { padding:26px 0; border-bottom:1px solid var(--line); }
+section:last-child { border-bottom:0; }
+h2 { margin:0 0 14px; font-size:24px; }
+h3 { margin:20px 0 10px; font-size:18px; }
+.summary { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:14px; margin-top:20px; }
+.card { border:1px solid var(--line); border-radius:6px; padding:18px; background:#fff; }
+.label { color:var(--muted); font-size:13px; }
+.value { font-size:27px; font-weight:800; margin-top:6px; line-height:1.1; }
+.note { color:var(--muted); font-size:13px; margin:8px 0 0; }
+.ok { color:var(--green); font-weight:700; }
+.bad { color:var(--red); font-weight:700; }
+table { width:100%; border-collapse:collapse; font-size:12.5px; }
+th { text-align:left; background:#172033; color:#fff; padding:8px 9px; white-space:nowrap; }
+td { border-bottom:1px solid var(--line); padding:7px 9px; vertical-align:top; white-space:nowrap; }
+tr:nth-child(even) td { background:#f8fafc; }
+.table-wrap { overflow-x:auto; border:1px solid var(--line); border-radius:6px; }
+.small { font-size:12px; color:var(--muted); }
+ul { margin:8px 0 0; padding-left:20px; }
+li { margin:4px 0; }
+code { background:#eef2f6; border-radius:3px; padding:1px 5px; font-size:12.5px; }
+pre { background:#102033; color:#dce6f2; padding:16px 18px; border-radius:6px; overflow-x:auto; font-size:12.5px; line-height:1.55; }
+.grid2 { display:grid; grid-template-columns:1fr 1fr; gap:18px; }
+@media (max-width: 820px) { header, main { padding-left:22px; padding-right:22px; } .summary, .grid2 { grid-template-columns:1fr; } h1 { font-size:26px; } }
+</style>
+</head>
+<body>
+<div class="page">
+<header>
+  <h1>Qwen3.8-27B-NVFP4（unsloth）DGX Spark（GB10）单机 TP1 压测报告</h1>
+  <p class="subtitle">基于 vLLM 官方基准工具 <code style="background:transparent;color:#9fc3e8">vllm bench serve</code> 的部分矩阵测试，含同机 Qwen3.6-27B-NVFP4（nvidia 官方包）对照。指标名称、单位与工具官方输出保持一致。</p>
+  <div class="meta">
+    <span class="chip">报告日期：2026-09-02</span>
+    <span class="chip">硬件：DGX Spark（GB10，SM121，121G 统一内存）</span>
+    <span class="chip">模型：unsloth/Qwen3.8-27B-NVFP4（TP=1，MTP=3）</span>
+    <span class="chip">vLLM nightly 0.28.1rc1.dev283</span>
+    <span class="chip">范围：3 组 9 档（部分矩阵）+ 同机对照</span>
+  </div>
+</header>
+<main>
+
+<section>
+  <h2>1. 测试结论</h2>
+  <div class="summary">
+    <div class="card"><div class="label">测试档位</div><div class="value ok">9/9 全部成功</div><p class="note">3 组输入/输出组合 × 并发 1/2/4，零失败</p></div>
+    <div class="card"><div class="label">单流 decode</div><div class="value">17–24 tok/s</div><p class="note">TPOT 41–58 ms，明显慢于同机 Qwen3.6-NVFP4</p></div>
+    <div class="card"><div class="label">对比官方 NVFP4 包</div><div class="value bad">吞吐 -10~35%</div><p class="note">vs nvidia/Qwen3.6-27B-NVFP4（Marlin）同机同口径 9 档</p></div>
+    <div class="card"><div class="label">MTP 接受率</div><div class="value">38.7–70.8%</div><p class="note">接受长度 2.16–3.12</p></div>
+  </div>
+  <ul>
+    <li>unsloth 包（compressed-tensors 量化）在 SM121 上走 <b>FlashInfer CuteDSL NVFP4 kernel</b>，相比 nvidia 官方包（modelopt/Marlin）<b>吞吐全面低 10~35%、TPOT 恶化 15~55%</b>，decode 是主要短板；TTFT 互有胜负。</li>
+    <li>同一 kernel 路径的连带代价：KV cache 池 50.33 GiB（vs 官方包 64.98 GiB，<b>-22%</b>，因 CuteDSL 峰值激活/workspace 预留大）；首次启动 autotune 极慢（每 profile ~11s），需 <code>VLLM_ENGINE_READY_TIMEOUT_S=3600</code> 才能完成首次启动（结果进 cache 后恢复正常）。</li>
+    <li>外部佐证：MiaAI-Lab（DGX Spark 部署仓库作者）2026-09-02 在 issue #186 回复"fp8 fits very well and much higher quality"，同样不建议当前在 GB10 用 NVFP4。</li>
+  </ul>
+</section>
+
+<section>
+  <h2>2. 部署环境与服务配置</h2>
+  <div class="grid2">
+    <div><h3>环境</h3><div class="table-wrap"><table>
+      <thead><tr><th>项目</th><th>配置</th></tr></thead>
+      <tbody>
+        <tr><td>硬件</td><td>DGX Spark（NVIDIA GB10，SM121，121G 统一内存；nvidia-smi 不报显存数字，以下为启动日志口径）</td></tr>
+        <tr><td>显存拆分（启动日志）</td><td>权重 22.47 GiB（含 MTP 头）+ KV cache 50.33 GiB + 其余为峰值激活/workspace 与 CUDA graph</td></tr>
+        <tr><td>KV cache 容量</td><td>1,420,556 tokens（256K 满长并发上限约 5.42 路）；KV dtype fp8_e4m3（checkpoint 自带）</td></tr>
+        <tr><td>推理框架</td><td>vLLM 0.28.1rc1.dev283+g300f68832（nightly，venv ~/vllm，Rust frontend）</td></tr>
+        <tr><td>模型</td><td>unsloth/Qwen3.8-27B-NVFP4（quantization=compressed-tensors），served name <code>Qwen3.8-27B</code></td></tr>
+        <tr><td>kernel 路径</td><td><b>FlashInferCuteDslNvFp4W4A16</b>（NVFP4 GEMM）+ FLASHINFER attention（xqa decode）——与官方包的 Marlin 路径不同</td></tr>
+        <tr><td>API</td><td>端口 8123（OpenAI 兼容接口），max_model_len=262144</td></tr>
+        <tr><td>启动要点</td><td>首次启动必须 <code>export VLLM_ENGINE_READY_TIMEOUT_S=3600</code>（CuteDSL autotune 约 8~9 分钟，默认 600s 超时会导致启动失败）；autotune 结果进 flashinfer cache 后，后续启动恢复正常</td></tr>
+      </tbody>
+    </table></div></div>
+    <div><h3>启动命令</h3>
+<pre>export HF_ENDPOINT=https://hf-mirror.com
+export HF_HUB_DISABLE_XET=1
+export VLLM_WORKER_MULTIPROC_METHOD=spawn
+export CUDA_VISIBLE_DEVICES=0
+export VLLM_USE_RUST_FRONTEND=1
+export VLLM_ENGINE_READY_TIMEOUT_S=3600
+
+vllm serve unsloth/Qwen3.8-27B-NVFP4 \
+  --served-model-name Qwen3.8-27B \
+  --trust-remote-code \
+  --tensor-parallel-size 1 \
+  --host 0.0.0.0 --port 8123 \
+  --gpu-memory-utilization 0.95 \
+  --max-model-len 262144 \
+  --max-num-batched-tokens 32768 \
+  --enable-chunked-prefill \
+  --async-scheduling \
+  --enable-prefix-caching \
+  --speculative-config '{"method":"mtp","num_speculative_tokens":3}' \
+  --load-format fastsafetensors \
+  --reasoning-parser qwen3 \
+  --tool-call-parser qwen3_coder \
+  --enable-auto-tool-choice \
+  --api-key &lt;内网约定&gt;</pre>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>3. 测试方法</h2>
+  <div class="table-wrap"><table>
+    <thead><tr><th>项目</th><th>口径</th></tr></thead>
+    <tbody>
+      <tr><td>工具</td><td><code>vllm bench serve</code>（vLLM 官方，openai-chat 后端，endpoint /v1/chat/completions）</td></tr>
+      <tr><td>压测客户端位置</td><td>独立 x86 服务器远程打被测机（压测流量不占用被测机 CPU/内存）</td></tr>
+      <tr><td>数据集 / 并发</td><td>random（固定输入/输出 token 数）× burst 并发（请求数=并发数）</td></tr>
+      <tr><td>输出长度</td><td><code>--ignore-eos</code>，每请求输出精确到目标值（1024/4096/8192）</td></tr>
+      <tr><td>输入 tokens</td><td>表中为<b>实测值</b>（chat 模板占用导致略低于目标）</td></tr>
+      <tr><td>热身</td><td>正式测试前 3 次热身请求，排除冷启动污染</td></tr>
+      <tr><td>对照数据</td><td>同机同口径的 nvidia/Qwen3.6-27B-NVFP4 9 档（见第 5 节），对照报告另存</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section>
+  <h2>4. 测试数据（3 组 9 档，按输入/输出组合分表）</h2>
+  <p class="small">TTFT 各列已由官方输出的 ms 换算为 <b>秒 s</b>（÷1000）；Mean TPOT 保持官方 <b>ms</b> 原单位。总/均 = 全部请求合计 / 每请求平均（实测值）。</p>
+
+  <h3>4.1 输入 1K → 输出 1K</h3>
+  <div class="table-wrap"><table>
+    <thead><tr><th>并发</th><th>成功</th><th>失败</th><th>输入 tokens 总/均</th><th>输出 tokens 总/均</th><th>Duration s</th><th>Request throughput (req/s)</th><th>Output tok/s</th><th>Mean TTFT (s)</th><th>P50 (s)</th><th>P95 (s)</th><th>Mean TPOT (ms)</th><th>MTP 接受率 %</th><th>MTP 接受长</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td>1</td><td>0</td><td>1078/1078</td><td>1024/1024</td><td>59.9</td><td>0.017</td><td>17.09</td><td>0.69</td><td>0.69</td><td>0.69</td><td>57.88</td><td>38.7</td><td>2.16</td></tr>
+      <tr><td>2</td><td>2</td><td>0</td><td>2155/1078</td><td>2048/1024</td><td>58.2</td><td>0.034</td><td>35.18</td><td>1.31</td><td>1.31</td><td>1.43</td><td>50.33</td><td>51.2</td><td>2.54</td></tr>
+      <tr><td>4</td><td>4</td><td>0</td><td>4307/1077</td><td>4096/1024</td><td>69.9</td><td>0.057</td><td>58.59</td><td>3.63</td><td>4.12</td><td>4.12</td><td>60.97</td><td>41.4</td><td>2.24</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>4.2 输入 4K → 输出 4K</h3>
+  <div class="table-wrap"><table>
+    <thead><tr><th>并发</th><th>成功</th><th>失败</th><th>输入 tokens 总/均</th><th>输出 tokens 总/均</th><th>Duration s</th><th>Request throughput (req/s)</th><th>Output tok/s</th><th>Mean TTFT (s)</th><th>P50 (s)</th><th>P95 (s)</th><th>Mean TPOT (ms)</th><th>MTP 接受率 %</th><th>MTP 接受长</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td>1</td><td>0</td><td>4150/4150</td><td>4096/4096</td><td>214.5</td><td>0.005</td><td>19.09</td><td>2.82</td><td>2.82</td><td>2.82</td><td>51.70</td><td>48.2</td><td>2.45</td></tr>
+      <tr><td>2</td><td>2</td><td>0</td><td>8299/4150</td><td>8192/4096</td><td>204.6</td><td>0.010</td><td>40.04</td><td>6.74</td><td>6.74</td><td>6.74</td><td>46.43</td><td>59.9</td><td>2.80</td></tr>
+      <tr><td>4</td><td>4</td><td>0</td><td>16595/4149</td><td>16384/4096</td><td>219.8</td><td>0.018</td><td>74.53</td><td>10.82</td><td>13.02</td><td>13.02</td><td>47.62</td><td>64.8</td><td>2.95</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>4.3 输入 8K → 输出 8K</h3>
+  <div class="table-wrap"><table>
+    <thead><tr><th>并发</th><th>成功</th><th>失败</th><th>输入 tokens 总/均</th><th>输出 tokens 总/均</th><th>Duration s</th><th>Request throughput (req/s)</th><th>Output tok/s</th><th>Mean TTFT (s)</th><th>P50 (s)</th><th>P95 (s)</th><th>Mean TPOT (ms)</th><th>MTP 接受率 %</th><th>MTP 接受长</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td>1</td><td>0</td><td>8246/8246</td><td>8192/8192</td><td>345.3</td><td>0.003</td><td>23.72</td><td>5.47</td><td>5.47</td><td>5.47</td><td>41.49</td><td>69.2</td><td>3.08</td></tr>
+      <tr><td>2</td><td>2</td><td>0</td><td>16491/8246</td><td>16384/8192</td><td>439.9</td><td>0.005</td><td>37.24</td><td>11.43</td><td>11.43</td><td>11.66</td><td>48.82</td><td>56.7</td><td>2.70</td></tr>
+      <tr><td>4</td><td>4</td><td>0</td><td>32979/8245</td><td>32768/8192</td><td>428.9</td><td>0.009</td><td>76.40</td><td>18.11</td><td>22.07</td><td>22.66</td><td>46.35</td><td>70.8</td><td>3.12</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section>
+  <h2>5. 同机对照：Qwen3.6-NVFP4（官方包 Marlin）vs Qwen3.8-NVFP4（unsloth CuteDSL）</h2>
+  <p class="small">同一台 GB10、同参数、同口径 9 档。注意该对照混合三个变量：模型代际（3.6 vs 3.8）、量化包（modelopt vs compressed-tensors）、kernel 路径（Marlin vs CuteDSL）。</p>
+  <div class="table-wrap"><table>
+    <thead><tr><th>档位</th><th>Output tok/s（3.6 → 3.8）</th><th>差幅</th><th>TPOT ms（3.6 → 3.8）</th><th>MTP 接受率 %（3.6 → 3.8）</th></tr></thead>
+    <tbody>
+      <tr><td>1K→1K c1</td><td>26.21 → 17.09</td><td><span class="bad">-34.8%</span></td><td>37.4 → 57.9</td><td>63.5 → 38.7</td></tr>
+      <tr><td>1K→1K c2</td><td>49.66 → 35.18</td><td><span class="bad">-29.1%</span></td><td>36.8 → 50.3</td><td>68.3 → 51.2</td></tr>
+      <tr><td>1K→1K c4</td><td>77.62 → 58.59</td><td><span class="bad">-24.5%</span></td><td>41.2 → 61.0</td><td>63.5 → 41.4</td></tr>
+      <tr><td>4K→4K c1</td><td>28.82 → 19.09</td><td><span class="bad">-33.7%</span></td><td>33.9 → 51.7</td><td>74.7 → 48.2</td></tr>
+      <tr><td>4K→4K c2</td><td>46.16 → 40.04</td><td>-13.3%</td><td>38.4 → 46.4</td><td>65.1 → 59.9</td></tr>
+      <tr><td>4K→4K c4</td><td>86.23 → 74.53</td><td>-13.6%</td><td>38.6 → 47.6</td><td>74.0 → 64.8</td></tr>
+      <tr><td>8K→8K c1</td><td>29.52 → 23.72</td><td>-19.6%</td><td>33.2 → 41.5</td><td>77.9 → 69.2</td></tr>
+      <tr><td>8K→8K c2</td><td>57.56 → 37.24</td><td><span class="bad">-35.3%</span></td><td>32.2 → 48.8</td><td>85.9 → 56.7</td></tr>
+      <tr><td>8K→8K c4</td><td>84.80 → 76.40</td><td>-9.9%</td><td>39.4 → 46.4</td><td>75.9 → 70.8</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section>
+  <h2>6. 数据边界与备注</h2>
+  <ul>
+    <li><b>测试范围</b>：仅 1K→1K、4K→4K、8K→8K × 并发 1/2/4；4K→32K、8K→32K 两组及 16/32/64 高并发档<b>未测试</b>（部分矩阵）。</li>
+    <li>KV cache 为 fp8_e4m3（checkpoint 自带）；KV 池 50.33 GiB 比官方包路线少 22%，根因是 CuteDSL kernel 峰值激活/workspace 预留大。</li>
+    <li>prefix caching 虽开启但被 MTP+Mamba 架构自动禁用（跨请求前缀复用不可用）。</li>
+    <li>首次启动需调大引擎就绪超时（autotune 约 8~9 分钟）；结果进 flashinfer autotune cache 后恢复正常。</li>
+    <li>结论适用范围：SM121（GB10）上 compressed-tensors 路线的 NVFP4；不代表原生 FP4 硬件（B200 等）上的 NVFP4 表现。</li>
+    <li>原始数据：压测机本地 <code>/root/qwen27b-bench/results-spark44-qwen38/</code>（9 个 JSON + 逐档 log）；对照数据 <code>results-spark44/</code>。</li>
+  </ul>
+</section>
+
+</main>
+</div>
+</body>
+</html>
