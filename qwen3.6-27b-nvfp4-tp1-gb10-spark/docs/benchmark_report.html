@@ -50,7 +50,6 @@ pre { background:#102033; color:#dce6f2; padding:16px 18px; border-radius:6px; o
     <span class="chip">硬件：DGX Spark（GB10，SM121，121G 统一内存）</span>
     <span class="chip">模型：Qwen3.6-27B-NVFP4（TP=1，MTP=3）</span>
     <span class="chip">vLLM nightly 0.28.1rc1.dev283</span>
-    <span class="chip">测试窗口：08:01–08:29</span>
     <span class="chip">范围：3 组 9 档（部分矩阵）</span>
   </div>
 </header>
@@ -73,8 +72,7 @@ pre { background:#102033; color:#dce6f2; padding:16px 18px; border-radius:6px; o
 
 <section>
   <h2>2. 部署环境与服务配置</h2>
-  <div class="grid2">
-    <div><h3>环境</h3><div class="table-wrap"><table>
+  <div class="table-wrap"><table>
       <thead><tr><th>项目</th><th>配置</th></tr></thead>
       <tbody>
         <tr><td>硬件</td><td>DGX Spark（NVIDIA GB10，SM121，GPU 可用显存 121.69 GiB 统一内存；nvidia-smi 不报显存数字，以下为启动日志口径）</td></tr>
@@ -86,9 +84,10 @@ pre { background:#102033; color:#dce6f2; padding:16px 18px; border-radius:6px; o
         <tr><td>调度</td><td>chunked prefill 32768；异步调度开启；prefix caching 开启但被 MTP+Mamba 架构禁用（见边界）</td></tr>
         <tr><td>gpu-memory-utilization</td><td>0.95——本机上限（0.96/0.98 实测无法启动，激活/graph 峰值余量不足）</td></tr>
       </tbody>
-    </table></div></div>
-    <div><h3>启动命令</h3>
-<pre>export HF_ENDPOINT=https://hf-mirror.com
+    </table></div>
+
+  <h3>启动命令</h3>
+  <pre>export HF_ENDPOINT=https://hf-mirror.com
 export HF_HUB_DISABLE_XET=1
 export VLLM_WORKER_MULTIPROC_METHOD=spawn
 export CUDA_VISIBLE_DEVICES=0
@@ -111,8 +110,6 @@ vllm serve nvidia/Qwen3.6-27B-NVFP4 \
   --tool-call-parser qwen3_coder \
   --enable-auto-tool-choice \
   --mm-encoder-tp-mode data</pre>
-    </div>
-  </div>
 </section>
 
 <section>

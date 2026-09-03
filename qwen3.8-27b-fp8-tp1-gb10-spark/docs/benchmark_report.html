@@ -72,8 +72,7 @@ pre { background:#102033; color:#dce6f2; padding:16px 18px; border-radius:6px; o
 
 <section>
   <h2>2. 部署环境与服务配置</h2>
-  <div class="grid2">
-    <div><h3>环境</h3><div class="table-wrap"><table>
+  <div class="table-wrap"><table>
       <thead><tr><th>项目</th><th>配置</th></tr></thead>
       <tbody>
         <tr><td>硬件</td><td>DGX Spark（NVIDIA GB10，SM121，121G 统一内存；nvidia-smi 不报显存数字，以下为启动日志口径）</td></tr>
@@ -84,9 +83,10 @@ pre { background:#102033; color:#dce6f2; padding:16px 18px; border-radius:6px; o
         <tr><td>API</td><td>端口 8123（OpenAI 兼容接口），max_model_len=262144</td></tr>
         <tr><td>启动备注</td><td>autotune 秒级完成（无 CuteDSL 慢调优问题）；<code>VLLM_ENGINE_READY_TIMEOUT_S=3600</code> 为保险项非必需</td></tr>
       </tbody>
-    </table></div></div>
-    <div><h3>启动命令</h3>
-<pre>export HF_ENDPOINT=https://hf-mirror.com
+    </table></div>
+
+  <h3>启动命令</h3>
+  <pre>export HF_ENDPOINT=https://hf-mirror.com
 export HF_HUB_DISABLE_XET=1
 export VLLM_WORKER_MULTIPROC_METHOD=spawn
 export CUDA_VISIBLE_DEVICES=0
@@ -109,8 +109,6 @@ vllm serve /home/nvidia/Qwen3.8-27B-FP8 \
   --tool-call-parser qwen3_coder \
   --enable-auto-tool-choice \
   --api-key &lt;内网约定&gt;</pre>
-    </div>
-  </div>
 </section>
 
 <section>
