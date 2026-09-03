@@ -66,7 +66,6 @@ pre { background:#102033; color:#dce6f2; padding:16px 18px; border-radius:6px; o
   <ul>
     <li>unsloth 包（compressed-tensors 量化）在 SM121 上走 <b>FlashInfer CuteDSL NVFP4 kernel</b>（无原生 FP4 计算单元，weight-only 路径），TPOT 41–58 ms，decode 为主短板；TTFT 0.69–18.11 s。</li>
     <li>该 kernel 路径的连带特征：KV cache 池 50.33 GiB（容量 1,420,556 tokens，256K 满长并发约 5.42 路）；首次启动 autotune 极慢（每 profile ~11s，全程约 8~9 分钟），需 <code>VLLM_ENGINE_READY_TIMEOUT_S=3600</code> 才能完成首次启动（结果进 cache 后恢复正常）。</li>
-    <li>外部参考：MiaAI-Lab（DGX Spark 部署仓库作者）2026-09-02 在 issue #186 表态当前不建议在 GB10 用 NVFP4 路线。</li>
   </ul>
 </section>
 
@@ -170,7 +169,6 @@ vllm serve unsloth/Qwen3.8-27B-NVFP4 \
     <li>KV cache 为 fp8_e4m3（checkpoint 自带）；KV 池 50.33 GiB。</li>
     <li>prefix caching 虽开启但被 MTP+Mamba 架构自动禁用（跨请求前缀复用不可用）。</li>
     <li>首次启动需调大引擎就绪超时（autotune 约 8~9 分钟）；结果进 flashinfer autotune cache 后恢复正常。</li>
-    <li>结论适用范围：SM121（GB10）上 compressed-tensors 路线的 NVFP4；不代表原生 FP4 硬件（B200 等）上的 NVFP4 表现。</li>
     <li>原始数据：压测机本地 <code>/root/qwen27b-bench/results-spark44-qwen38/</code>（9 个 JSON + 逐档 log）。</li>
   </ul>
 </section>

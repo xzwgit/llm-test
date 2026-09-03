@@ -7,10 +7,9 @@
 - 单流 decode 14–17 tok/s（TPOT 58–78 ms）；并发 4 聚合 47.1–52.0 tok/s
 - MTP 接受率 45.4–76.8%，接受长度 2.36–3.30
 - **关键发现：该官方 FP8 checkpoint 的 KV cache 为 bf16（未量化）**——
-  KV 容量仅 1,014,183 tokens（256K 满长并发约 3.87 路），decode 每 step 读 KV
+  KV 容量 1,014,183 tokens（256K 满长并发约 3.87 路），decode 每 step 读 KV
   数据量为量化 KV 的 2 倍，带宽密集的 decode 直接受累
 - GEMM 走 CutlassFp8BlockScaled（"Not enough SMs for max_autotune_gemm"）
-- 注：issue #186 的 "fp8 fits well" 指量化 KV 的 DeepSeek 栈，不适用于本包
 
 ## 范围说明（部分矩阵）
 - 已测：1K→1K、4K→4K、8K→8K × 并发 1/2/4

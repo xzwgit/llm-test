@@ -189,7 +189,7 @@ vllm serve nvidia/Qwen3.6-27B-NVFP4 \
     <li><b>单流速度</b>：26–30 tok/s（TPOT 32–37 ms），随并发数增加 TPOT 基本稳定（decode 未过载），并发 4 聚合吞吐 78–86 tok/s。</li>
     <li><b>MTP 表现好</b>：档均值接受率 63.5–85.9%、接受长度 2.91–3.58；被测机服务日志显示单请求稳态段接受率 96.9%、平均接受长度 3.91（MTP=3 上限 4.0），长输出场景投机解码收益显著。</li>
     <li><b>prefill 是短板</b>：GB10 算力有限（启动日志 "Not enough SMs to use max_autotune_gemm"），8K 输入并发 4 的 P95 TTFT 达 22.66 s；重输入业务建议关注 TTFT 或考虑 prefill 侧优化。</li>
-    <li><b>NVFP4 走 Marlin</b>：SM121 无原生 FP4 计算单元，权重以 weight-only Marlin kernel 运行，GEMM 密集阶段打折——本报告数据即该路径实际水平，与原生 FP4 硬件（如 B200）不可直接类比。</li>
+    <li><b>NVFP4 走 Marlin</b>：SM121 无原生 FP4 计算单元，权重以 weight-only Marlin kernel 运行，GEMM 密集阶段打折——本报告数据即该路径实际水平。</li>
   </ul>
 </section>
 

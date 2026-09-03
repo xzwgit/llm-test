@@ -65,8 +65,7 @@ pre { background:#102033; color:#dce6f2; padding:16px 18px; border-radius:6px; o
   </div>
   <ul>
     <li><b>关键发现：该官方 FP8 checkpoint 的 KV cache 为 bf16（未量化）</b>——启动日志 <code>kv_cache_dtype=auto</code>，KV 容量 1,014,183 tokens（256K 满长并发约 3.87 路）。decode 每 step 读全部 KV，bf16 的读取数据量是量化 KV 的 2 倍，带宽密集的 decode 直接受累（TPOT 58–78 ms）。</li>
-    <li>GEMM 走 CutlassFp8BlockScaled kernel（非 Marlin/FlashInferFP8），且平台提示 "Not enough SMs to use max_autotune_gemm"——SM121 上该 kernel 效率一般。</li>
-    <li>外部参考：MiaAI-Lab issue #186 所说 "fp8 fits very well" 指其 DeepSeek 栈（dspark 用 nvfp4_ds_mla 量化 KV），不能外推到 Qwen 官方 FP8 包（其 KV 为 bf16）。</li>
+    <li>GEMM 走 CutlassFp8BlockScaled kernel，且平台提示 "Not enough SMs to use max_autotune_gemm"。</li>
   </ul>
 </section>
 
@@ -168,7 +167,6 @@ vllm serve /home/nvidia/Qwen3.8-27B-FP8 \
     <li>KV cache bf16 为该官方 FP8 checkpoint 自带行为（非启动参数指定）；如需 KV 量化需显式传 <code>--kv-cache-dtype fp8</code>（未在本轮测试）。</li>
     <li>权重以本地目录方式加载（<code>~/Qwen3.8-27B-FP8</code> 平铺结构）。</li>
     <li>prefix caching 虽开启但被 MTP+Mamba 架构自动禁用。</li>
-    <li>结论适用范围：SM121（GB10）+ vLLM nightly 0.28.1rc1；不代表原生 FP8 硬件（B200/GB300 等）上的表现。</li>
     <li>原始数据：压测机本地 <code>/root/qwen27b-bench/results-spark44-fp8/</code>（9 个 JSON + 逐档 log）。</li>
   </ul>
 </section>
