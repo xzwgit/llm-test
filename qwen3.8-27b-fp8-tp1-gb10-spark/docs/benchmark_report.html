@@ -44,13 +44,13 @@ pre { background:#102033; color:#dce6f2; padding:16px 18px; border-radius:6px; o
 <div class="page">
 <header>
   <h1>Qwen3.8-27B-FP8（官方包）DGX Spark（GB10）单机 TP1 压测报告</h1>
-  <p class="subtitle">基于 vLLM 官方基准工具 <code style="background:transparent;color:#9fc3e8">vllm bench serve</code> 的部分矩阵测试，含同机三方对照（Qwen3.6-NVFP4 官方包 / Qwen3.8-NVFP4 unsloth 包 / 本报告 FP8 包）。指标名称、单位与工具官方输出保持一致。</p>
+  <p class="subtitle">基于 vLLM 官方基准工具 <code style="background:transparent;color:#9fc3e8">vllm bench serve</code> 的部分矩阵测试。指标名称、单位与工具官方输出保持一致。</p>
   <div class="meta">
     <span class="chip">报告日期：2026-09-03</span>
     <span class="chip">硬件：DGX Spark（GB10，SM121，121G 统一内存）</span>
     <span class="chip">模型：Qwen3.8-27B-FP8（TP=1，MTP=3）</span>
     <span class="chip">vLLM nightly 0.28.1rc1.dev283</span>
-    <span class="chip">范围：3 组 9 档（部分矩阵）+ 三方对照</span>
+    <span class="chip">范围：3 组 9 档（部分矩阵）</span>
   </div>
 </header>
 <main>
@@ -59,15 +59,14 @@ pre { background:#102033; color:#dce6f2; padding:16px 18px; border-radius:6px; o
   <h2>1. 测试结论</h2>
   <div class="summary">
     <div class="card"><div class="label">测试档位</div><div class="value ok">9/9 全部成功</div><p class="note">3 组输入/输出组合 × 并发 1/2/4，零失败</p></div>
-    <div class="card"><div class="label">单流 decode</div><div class="value">14–17 tok/s</div><p class="note">TPOT 58–78 ms，三方对照中最慢</p></div>
-    <div class="card"><div class="label">三方排序（实测）</div><div class="value">NVFP4官方 &gt; NVFP4unsloth &gt; <span class="bad">FP8</span></div><p class="note">FP8 比 unsloth-NVFP4 再慢 17~36%</p></div>
+    <div class="card"><div class="label">单流 decode</div><div class="value">14–17 tok/s</div><p class="note">TPOT 58–78 ms</p></div>
+    <div class="card"><div class="label">并发 4 聚合吞吐</div><div class="value">47.1–52.0 tok/s</div><p class="note">1K/4K/8K 组并发 4 档</p></div>
     <div class="card"><div class="label">MTP 接受率</div><div class="value">45.4–76.8%</div><p class="note">接受长度 2.36–3.30</p></div>
   </div>
   <ul>
-    <li><b>意外结论：官方 FP8 包在 GB10 上是三个方案中最慢的</b>（吞吐 14–52 tok/s），比 unsloth NVFP4 再低 17~36%、比官方 NVFP4 包低 39~48%。</li>
-    <li><b>根因一（主）：该 FP8 包的 KV cache 为 bf16（未量化）</b>——启动日志 <code>kv_cache_dtype=auto</code> 且 KV 容量仅 101 万 token（三方最小）。decode 每 step 读全部 KV，bf16 的读取数据量是 fp8 KV 的 2 倍，带宽密集的 decode 直接受累（TPOT 58–78 ms 三方最差）。</li>
-    <li><b>根因二：GEMM 走 CutlassFp8BlockScaled kernel</b>（非 Marlin/FlashInferFP8），且平台提示 "Not enough SMs to use max_autotune_gemm"——SM121 上该 kernel 效率一般。</li>
-    <li>外部观点修正：MiaAI-Lab issue #186 所说 "fp8 fits very well" 指其 DeepSeek 栈（dspark 用 nvfp4_ds_mla 量化 KV），不能外推到 Qwen 官方 FP8 包（其 KV 恰为 bf16）。</li>
+    <li><b>关键发现：该官方 FP8 checkpoint 的 KV cache 为 bf16（未量化）</b>——启动日志 <code>kv_cache_dtype=auto</code>，KV 容量 1,014,183 tokens（256K 满长并发约 3.87 路）。decode 每 step 读全部 KV，bf16 的读取数据量是量化 KV 的 2 倍，带宽密集的 decode 直接受累（TPOT 58–78 ms）。</li>
+    <li>GEMM 走 CutlassFp8BlockScaled kernel（非 Marlin/FlashInferFP8），且平台提示 "Not enough SMs to use max_autotune_gemm"——SM121 上该 kernel 效率一般。</li>
+    <li>外部参考：MiaAI-Lab issue #186 所说 "fp8 fits very well" 指其 DeepSeek 栈（dspark 用 nvfp4_ds_mla 量化 KV），不能外推到 Qwen 官方 FP8 包（其 KV 为 bf16）。</li>
   </ul>
 </section>
 
@@ -79,7 +78,7 @@ pre { background:#102033; color:#dce6f2; padding:16px 18px; border-radius:6px; o
       <tbody>
         <tr><td>硬件</td><td>DGX Spark（NVIDIA GB10，SM121，121G 统一内存；nvidia-smi 不报显存数字，以下为启动日志口径）</td></tr>
         <tr><td>权重加载</td><td>29.28 GiB（本地路径 <code>~/Qwen3.8-27B-FP8</code>，含 MTP 头），比 NVFP4 包大 ~6.8 GiB</td></tr>
-        <tr><td>KV cache</td><td><b>bf16（未量化）</b>，容量 1,014,183 tokens（256K 满长并发上限约 3.87 路）——三方最小</td></tr>
+        <tr><td>KV cache</td><td><b>bf16（未量化）</b>，容量 1,014,183 tokens（256K 满长并发上限约 3.87 路）</td></tr>
         <tr><td>kernel 路径</td><td>CutlassFp8BlockScaledMMKernel（FP8 GEMM）+ <b>FlashAttention</b>（attention 后端）</td></tr>
         <tr><td>推理框架</td><td>vLLM 0.28.1rc1.dev283+g300f68832（nightly，venv ~/vllm，Rust frontend）</td></tr>
         <tr><td>API</td><td>端口 8123（OpenAI 兼容接口），max_model_len=262144</td></tr>
@@ -125,7 +124,6 @@ vllm serve /home/nvidia/Qwen3.8-27B-FP8 \
       <tr><td>输出长度</td><td><code>--ignore-eos</code>，每请求输出精确到目标值</td></tr>
       <tr><td>输入 tokens</td><td>表中为<b>实测值</b>（chat 模板占用导致略低于目标）</td></tr>
       <tr><td>热身</td><td>正式测试前 3 次热身请求</td></tr>
-      <tr><td>对照数据</td><td>同机同口径 9 档 × 2（见第 5 节三方对照）</td></tr>
     </tbody>
   </table></div>
 </section>
@@ -166,38 +164,14 @@ vllm serve /home/nvidia/Qwen3.8-27B-FP8 \
 </section>
 
 <section>
-  <h2>5. 三方同机对照（同参数同口径 9 档）</h2>
-  <p class="small">A = nvidia/Qwen3.6-27B-NVFP4（modelopt/Marlin，KV fp8 自带）；B = unsloth/Qwen3.8-27B-NVFP4（compressed-tensors/CuteDSL，KV fp8 自带）；C = Qwen3.8-27B-FP8 官方包（Cutlass FP8，<b>KV bf16 未量化</b>）。</p>
-  <div class="table-wrap"><table>
-    <thead><tr><th>档位</th><th>A: 3.6-NVFP4</th><th>B: 3.8-NVFP4</th><th>C: 3.8-FP8</th><th>C vs B</th><th>C vs A</th><th>TPOT (A/B/C) ms</th><th>KV 容量 (A/B/C)</th></tr></thead>
-    <tbody>
-      <tr><td>1K→1K c1</td><td>26.21</td><td>17.09</td><td>14.18</td><td><span class="bad">-17.1%</span></td><td>-45.9%</td><td>37.4 / 57.9 / 70.1</td><td rowspan="9">183万 / 142万 / <b>101万</b><br>KV: fp8 / fp8 / <b>bf16</b></td></tr>
-      <tr><td>1K→1K c2</td><td>49.66</td><td>35.18</td><td>27.01</td><td><span class="bad">-23.2%</span></td><td>-45.6%</td><td>36.8 / 50.3 / 69.2</td></tr>
-      <tr><td>1K→1K c4</td><td>77.62</td><td>58.59</td><td>47.14</td><td><span class="bad">-19.5%</span></td><td>-39.3%</td><td>41.2 / 61.0 / 78.0</td></tr>
-      <tr><td>4K→4K c1</td><td>28.82</td><td>19.09</td><td>15.91</td><td><span class="bad">-16.7%</span></td><td>-44.8%</td><td>33.9 / 51.7 / 62.4</td></tr>
-      <tr><td>4K→4K c2</td><td>46.16</td><td>40.04</td><td>26.19</td><td><span class="bad">-34.6%</span></td><td>-43.3%</td><td>38.4 / 46.4 / 68.8</td></tr>
-      <tr><td>4K→4K c4</td><td>86.23</td><td>74.53</td><td>47.44</td><td><span class="bad">-36.3%</span></td><td>-45.0%</td><td>38.6 / 47.6 / 68.5</td></tr>
-      <tr><td>8K→8K c1</td><td>29.52</td><td>23.72</td><td>16.99</td><td><span class="bad">-28.4%</span></td><td>-42.4%</td><td>33.2 / 41.5 / 58.4</td></tr>
-      <tr><td>8K→8K c2</td><td>57.56</td><td>37.24</td><td>30.15</td><td><span class="bad">-19.1%</span></td><td>-47.6%</td><td>32.2 / 48.8 / 59.9</td></tr>
-      <tr><td>8K→8K c4</td><td>84.80</td><td>76.40</td><td>51.97</td><td><span class="bad">-32.0%</span></td><td>-38.7%</td><td>39.4 / 46.4 / 65.5</td></tr>
-    </tbody>
-  </table></div>
-  <ul>
-    <li><b>TPOT 与 KV dtype 强相关</b>：KV fp8 的 A（32~41ms）&lt; KV fp8 的 B（41~61ms）&lt; KV bf16 的 C（58~78ms）——decode 带宽随 KV 每字节翻倍而恶化的规律清晰可见。</li>
-    <li><b>本机跑 Qwen 的实测排序：官方 NVFP4 包 &gt; unsloth NVFP4 &gt; 官方 FP8</b>；Qwen3.8 在 GB10 上当前最优解是 unsloth-NVFP4。</li>
-    <li>待验证项：FP8 + <code>--kv-cache-dtype fp8</code>（KV 带宽减半，预期 TPOT 改善；需注意 attention 后端可能切换）。</li>
-  </ul>
-</section>
-
-<section>
-  <h2>6. 数据边界与备注</h2>
+  <h2>5. 数据边界与备注</h2>
   <ul>
     <li><b>测试范围</b>：仅 1K→1K、4K→4K、8K→8K × 并发 1/2/4（部分矩阵）；4K→32K、8K→32K 及 16/32/64 高并发档未测。</li>
     <li>KV cache bf16 为该官方 FP8 checkpoint 自带行为（非启动参数指定）；如需 KV 量化需显式传 <code>--kv-cache-dtype fp8</code>（未在本轮测试）。</li>
     <li>权重以本地目录方式加载（<code>~/Qwen3.8-27B-FP8</code> 平铺结构）。</li>
-    <li>prefix caching 虽开启但被 MTP+Mamba 架构自动禁用（三个方案一致）。</li>
+    <li>prefix caching 虽开启但被 MTP+Mamba 架构自动禁用。</li>
     <li>结论适用范围：SM121（GB10）+ vLLM nightly 0.28.1rc1；不代表原生 FP8 硬件（B200/GB300 等）上的表现。</li>
-    <li>原始数据：压测机本地 <code>/root/qwen27b-bench/results-spark44-fp8/</code>（9 个 JSON + 逐档 log）；对照 <code>results-spark44/</code>、<code>results-spark44-qwen38/</code>。</li>
+    <li>原始数据：压测机本地 <code>/root/qwen27b-bench/results-spark44-fp8/</code>（9 个 JSON + 逐档 log）。</li>
   </ul>
 </section>
 
