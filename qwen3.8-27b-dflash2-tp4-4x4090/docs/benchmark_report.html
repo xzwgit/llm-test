@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Qwen3.8-27B-FP8 + DFlash2 4×RTX 4090 TP4 压测报告</title>
+<style>
+:root { --ink:#172033; --muted:#5c6878; --line:#d9e1ea; --bg:#f4f6f8; --paper:#fff; --green:#14724f; }
+* { box-sizing:border-box; }
+body { margin:0; background:var(--bg); color:var(--ink); font-family:'PingFang SC', system-ui, sans-serif; font-size:15px; line-height:1.65; }
+.page { max-width:1280px; margin:0 auto; background:var(--paper); min-height:100vh; }
+header { padding:48px 56px 34px; border-bottom:1px solid var(--line); background:#102033; color:#fff; }
+h1 { margin:0 0 12px; font-size:32px; line-height:1.18; }
+.subtitle { color:#d6dee8; max-width:820px; margin:0; }
+.meta { display:flex; flex-wrap:wrap; gap:10px; margin-top:24px; }
+.chip { border:1px solid rgba(255,255,255,.22); border-radius:4px; padding:6px 10px; color:#eaf0f6; font-size:13px; }
+main { padding:36px 56px 56px; }
+section { padding:26px 0; border-bottom:1px solid var(--line); }
+section:last-child { border-bottom:0; }
+h2 { margin:0 0 14px; font-size:24px; }
+h3 { margin:20px 0 10px; font-size:18px; }
+.summary { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:14px; margin-top:20px; }
+.card { border:1px solid var(--line); border-radius:6px; padding:18px; background:#fff; }
+.label { color:var(--muted); font-size:13px; }
+.value { font-size:27px; font-weight:800; margin-top:6px; line-height:1.1; }
+.note { color:var(--muted); font-size:13px; margin:8px 0 0; }
+.ok { color:var(--green); font-weight:700; }
+table { width:100%; border-collapse:collapse; font-size:12.5px; }
+th { text-align:left; background:#172033; color:#fff; padding:8px 9px; white-space:nowrap; }
+td { border-bottom:1px solid var(--line); padding:7px 9px; vertical-align:top; white-space:nowrap; }
+tr:nth-child(even) td { background:#f8fafc; }
+.table-wrap { overflow-x:auto; border:1px solid var(--line); border-radius:6px; }
+.small { font-size:12px; color:var(--muted); }
+ul { margin:8px 0 0; padding-left:20px; }
+li { margin:4px 0; }
+code { background:#eef2f6; border-radius:3px; padding:1px 5px; font-size:12.5px; }
+pre { background:#102033; color:#dce6f2; padding:16px 18px; border-radius:6px; overflow-x:auto; font-size:12.5px; line-height:1.55; }
+@media (max-width: 820px) { header, main { padding-left:22px; padding-right:22px; } .summary { grid-template-columns:1fr; } h1 { font-size:26px; } }
+</style>
+</head>
+<body>
+<div class="page">
+<header>
+  <h1>Qwen3.8-27B-FP8 + DFlash2（投机解码）4×RTX 4090 TP4 压测报告</h1>
+  <p class="subtitle">基于 vLLM 官方基准工具 <code style="background:transparent;color:#9fc3e8">vllm bench serve</code> 的输入/输出 token 组合 × 并发梯度测试。指标名称、单位与工具官方输出保持一致。</p>
+  <div class="meta">
+    <span class="chip">报告日期：2026-08-26</span>
+    <span class="chip">硬件：4×RTX 4090 48G（GPU 4-7）</span>
+    <span class="chip">模型：Qwen3.8-27B-FP8（TP=4，DFlash2 num_spec=3）</span>
+    <span class="chip">vLLM nightly 0.26.1rc1.dev1177（docker）</span>
+    <span class="chip">范围：4 组 21 档</span>
+  </div>
+</header>
+<main>
+
+<section>
+  <h2>1. 测试结论</h2>
+  <div class="summary">
+    <div class="card"><div class="label">测试档位</div><div class="value ok">21/21 全部成功</div><p class="note">4 组输入/输出组合 × 并发 1/2/4/16/32（1K 组加测 64），零失败</p></div>
+    <div class="card"><div class="label">单流 decode</div><div class="value">79–117 tok/s</div><p class="note">并发 1 各组 TPOT 8–12 ms</p></div>
+    <div class="card"><div class="label">峰值聚合吞吐</div><div class="value">1,064.90 tok/s</div><p class="note">1K→1K 并发 64</p></div>
+    <div class="card"><div class="label">DFlash2 接受率</div><div class="value">28.9–61.0%</div><p class="note">接受长度 1.87–2.83（num_spec=3）</p></div>
+  </div>
+  <ul>
+    <li>DFlash2 draft 深度为 3，随机 token 数据集下接受率 28.9~61.0%、平均接受长度 1.87~2.83。</li>
+    <li>32K 长输出组（4K→32K）并发 32 聚合 773.04 tok/s；1K→1K 并发 64 达 1,064.90 tok/s。</li>
+  </ul>
+</section>
+
+<section>
+  <h2>2. 部署环境与服务配置</h2>
+  <div class="table-wrap"><table>
+    <thead><tr><th>项目</th><th>配置</th></tr></thead>
+    <tbody>
+      <tr><td>硬件</td><td>8×RTX 4090 48G 服务器，本次使用 GPU 4/5/6/7（TP=4；GPU 3 另有其他进程占用，未参与）</td></tr>
+      <tr><td>运行方式</td><td>docker 容器 <code>vllm/vllm-openai:nightly</code>（vLLM 0.26.1rc1.dev1177+ga9a17e709）</td></tr>
+      <tr><td>模型</td><td>Qwen/Qwen3.8-27B-FP8，served name <code>Qwen3.8-27B</code>；权重走 Marlin kernel（SM8.9 无原生 FP8）</td></tr>
+      <tr><td>投机解码</td><td><code>--speculative-config {"method":"dflash","model":"incoai/Qwen3.8-27B-DFlash2","num_speculative_tokens":3}</code></td></tr>
+      <tr><td>KV cache</td><td>约 152 万 tokens（256K 满长请求并发上限约 5.8 路）</td></tr>
+      <tr><td>API</td><td>端口 8124（OpenAI 兼容接口），max_model_len=262144</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>启动命令（docker）</h3>
+<pre>docker run --name qwen27b-dflash \
+  --gpus '"device=4,5,6,7"' \
+  --ipc=host \
+  -p 8124:8000 \
+  -v /mnt/nvme1/.cache/huggingface:/root/.cache/huggingface/hub \
+  vllm/vllm-openai:nightly \
+  Qwen/Qwen3.8-27B-FP8 \
+  --served-model-name Qwen3.8-27B \
+  --trust-remote-code \
+  --tensor-parallel-size 4 \
+  --dtype auto \
+  --max-model-len 262144 \
+  --max-num-seqs 512 \
+  --gpu-memory-utilization 0.95 \
+  --enable-auto-tool-choice \
+  --tool-call-parser qwen3_coder \
+  --reasoning-parser qwen3 \
+  --mm-encoder-tp-mode data \
+  --speculative-config '{"method":"dflash","model":"incoai/Qwen3.8-27B-DFlash2","num_speculative_tokens":3}' \
+  --api-key &lt;内网约定&gt;</pre>
+</section>
+
+<section>
+  <h2>3. 测试方法</h2>
+  <div class="table-wrap"><table>
+    <thead><tr><th>项目</th><th>口径</th></tr></thead>
+    <tbody>
+      <tr><td>工具</td><td><code>vllm bench serve</code>（vLLM 官方，openai-chat 后端，endpoint /v1/chat/completions）</td></tr>
+      <tr><td>数据集 / 并发</td><td>random（固定输入/输出 token 数）× burst 并发（请求数=并发数）</td></tr>
+      <tr><td>输出长度</td><td><code>--ignore-eos</code>，每请求输出精确到目标值（1024/4096/8192/32768）</td></tr>
+      <tr><td>输入 tokens</td><td>表中为<b>实测值</b>（chat 模板占用导致略低于目标）</td></tr>
+      <tr><td>指标口径</td><td>全部取自工具输出 JSON 官方字段；除 TTFT 由 ms 换算为 s（÷1000）外，其余数值均为官方原值</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section>
+  <h2>4. 测试数据（4 组 21 档，按输入/输出组合分表）</h2>
+  <p class="small">TTFT 各列已由官方输出的 ms 换算为 <b>秒 s</b>（÷1000）；Mean TPOT 保持官方 <b>ms</b> 原单位。总/均 = 全部请求合计 / 每请求平均（实测值）。</p>
+
+  <h3>4.0 指标含义</h3>
+  <div class="table-wrap"><table>
+    <thead><tr><th>列</th><th>含义</th></tr></thead>
+    <tbody>
+      <tr><td>并发</td><td>该档 burst 同时发出的请求数（等于该档总请求数，全部同时开跑）</td></tr>
+      <tr><td>成功 / 失败</td><td>该档完成 / 失败的请求数（官方字段 completed/failed）</td></tr>
+      <tr><td>输入 tokens 总/均</td><td>全部请求实际输入（prompt）token 合计 / 每请求平均——<b>实测值</b></td></tr>
+      <tr><td>输出 tokens 总/均</td><td>全部请求实际输出 token 合计 / 每请求平均；<code>ignore_eos</code> 下精确等于目标值</td></tr>
+      <tr><td>Duration s</td><td>该档整段测试耗时：从第一个请求发出到最后一个请求完成（官方字段 duration）</td></tr>
+      <tr><td>Request throughput (req/s)</td><td>成功请求数 ÷ Duration，每秒完成的请求数</td></tr>
+      <tr><td>Output tok/s</td><td>输出 tokens 总量 ÷ Duration，整机每秒产出的生成 token 数（官方字段 output_throughput）</td></tr>
+      <tr><td>Mean TTFT (s)</td><td>首 token 延迟平均值：从发出请求到收到第 1 个生成 token 的耗时</td></tr>
+      <tr><td>P50 / P95 TTFT (s)</td><td>首 token 延迟的 50 / 95 分位</td></tr>
+      <tr><td>Mean TPOT (ms)</td><td>首 token 之后平均每个输出 token 的耗时；单流速度 ≈ 1000 ÷ TPOT</td></tr>
+      <tr><td>DFlash2 接受率 %</td><td>投机解码 draft token 被主模型接受的比例</td></tr>
+      <tr><td>DFlash2 接受长</td><td>每轮投机平均被接受的 token 数（含 1 个真 token；num_spec=3 上限 4.0）</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>4.1 输入 1K → 输出 1K</h3>
+  <div class="table-wrap"><table>
+    <thead><tr><th>并发</th><th>成功</th><th>失败</th><th>输入 tokens 总/均</th><th>输出 tokens 总/均</th><th>Duration s</th><th>Request throughput (req/s)</th><th>Output tok/s</th><th>Mean TTFT (s)</th><th>P50 (s)</th><th>P95 (s)</th><th>Mean TPOT (ms)</th><th>接受率 %</th><th>接受长</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td>1</td><td>0</td><td>969/969</td><td>1024/1024</td><td>8.7</td><td>0.115</td><td>117.44</td><td>0.41</td><td>0.41</td><td>0.41</td><td>8.12</td><td>40.5</td><td>2.22</td></tr>
+      <tr><td>2</td><td>2</td><td>0</td><td>1953/976</td><td>2048/1024</td><td>10.0</td><td>0.201</td><td>205.49</td><td>0.37</td><td>0.37</td><td>0.48</td><td>9.05</td><td>37.4</td><td>2.12</td></tr>
+      <tr><td>4</td><td>4</td><td>0</td><td>4105/1026</td><td>4096/1024</td><td>13.7</td><td>0.291</td><td>298.20</td><td>0.72</td><td>0.83</td><td>0.97</td><td>11.87</td><td>28.9</td><td>1.87</td></tr>
+      <tr><td>16</td><td>16</td><td>0</td><td>16374/1023</td><td>16384/1024</td><td>23.4</td><td>0.683</td><td>699.39</td><td>2.14</td><td>2.13</td><td>3.73</td><td>17.13</td><td>38.9</td><td>2.17</td></tr>
+      <tr><td>32</td><td>32</td><td>0</td><td>32755/1024</td><td>32768/1024</td><td>36.2</td><td>0.885</td><td>905.98</td><td>4.13</td><td>4.08</td><td>7.60</td><td>26.91</td><td>40.4</td><td>2.21</td></tr>
+      <tr><td>64</td><td>64</td><td>0</td><td>65991/1031</td><td>65536/1024</td><td>61.5</td><td>1.040</td><td><b>1064.90</b></td><td>8.36</td><td>8.08</td><td>16.22</td><td>46.66</td><td>39.7</td><td>2.19</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>4.2 输入 4K → 输出 4K</h3>
+  <div class="table-wrap"><table>
+    <thead><tr><th>并发</th><th>成功</th><th>失败</th><th>输入 tokens 总/均</th><th>输出 tokens 总/均</th><th>Duration s</th><th>Request throughput (req/s)</th><th>Output tok/s</th><th>Mean TTFT (s)</th><th>P50 (s)</th><th>P95 (s)</th><th>Mean TPOT (ms)</th><th>接受率 %</th><th>接受长</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td>1</td><td>0</td><td>3757/3757</td><td>4096/4096</td><td>43.3</td><td>0.023</td><td>94.66</td><td>0.89</td><td>0.89</td><td>0.89</td><td>10.35</td><td>37.7</td><td>2.13</td></tr>
+      <tr><td>2</td><td>2</td><td>0</td><td>7784/3892</td><td>8192/4096</td><td>46.9</td><td>0.043</td><td>87.32</td><td>1.30</td><td>1.30</td><td>1.68</td><td>11.03</td><td>30.7</td><td>1.92</td></tr>
+      <tr><td>4</td><td>4</td><td>0</td><td>15741/3935</td><td>16384/4096</td><td>59.0</td><td>0.068</td><td>277.78</td><td>2.03</td><td>2.03</td><td>2.85</td><td>12.98</td><td>34.6</td><td>2.04</td></tr>
+      <tr><td>16</td><td>16</td><td>0</td><td>62988/3937</td><td>65536/4096</td><td>101.1</td><td>0.158</td><td>648.00</td><td>7.05</td><td>7.06</td><td>13.13</td><td>20.55</td><td>34.5</td><td>2.03</td></tr>
+      <tr><td>32</td><td>32</td><td>0</td><td>126079/3940</td><td>131072/4096</td><td>170.2</td><td>0.188</td><td>770.24</td><td>13.37</td><td>12.74</td><td>26.08</td><td>32.67</td><td>35.5</td><td>2.07</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>4.3 输入 8K → 输出 8K</h3>
+  <div class="table-wrap"><table>
+    <thead><tr><th>并发</th><th>成功</th><th>失败</th><th>输入 tokens 总/均</th><th>输出 tokens 总/均</th><th>Duration s</th><th>Request throughput (req/s)</th><th>Output tok/s</th><th>Mean TTFT (s)</th><th>P50 (s)</th><th>P95 (s)</th><th>Mean TPOT (ms)</th><th>接受率 %</th><th>接受长</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td>1</td><td>0</td><td>7454/7454</td><td>8192/8192</td><td>84.4</td><td>0.012</td><td>97.06</td><td>1.19</td><td>1.19</td><td>1.19</td><td>10.16</td><td>55.9</td><td>2.68</td></tr>
+      <tr><td>2</td><td>2</td><td>0</td><td>14746/7373</td><td>16384/8192</td><td>89.6</td><td>0.022</td><td>182.93</td><td>1.94</td><td>1.94</td><td>2.28</td><td>10.53</td><td>57.5</td><td>2.73</td></tr>
+      <tr><td>4</td><td>4</td><td>0</td><td>31234/7808</td><td>32768/8192</td><td>122.6</td><td>0.033</td><td>267.17</td><td>2.88</td><td>3.12</td><td>3.70</td><td>13.94</td><td>43.3</td><td>2.30</td></tr>
+      <tr><td>16</td><td>16</td><td>0</td><td>125173/7823</td><td>131072/8192</td><td>206.7</td><td>0.077</td><td>634.19</td><td>8.70</td><td>8.29</td><td>16.67</td><td>20.26</td><td>43.9</td><td>2.32</td></tr>
+      <tr><td>32</td><td>32</td><td>0</td><td>250904/7841</td><td>262144/8192</td><td>363.8</td><td>0.088</td><td>720.58</td><td>20.50</td><td>18.85</td><td>43.34</td><td>36.18</td><td>39.6</td><td>2.19</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>4.4 输入 4K → 输出 32K</h3>
+  <div class="table-wrap"><table>
+    <thead><tr><th>并发</th><th>成功</th><th>失败</th><th>输入 tokens 总/均</th><th>输出 tokens 总/均</th><th>Duration s</th><th>Request throughput (req/s)</th><th>Output tok/s</th><th>Mean TTFT (s)</th><th>P50 (s)</th><th>P95 (s)</th><th>Mean TPOT (ms)</th><th>接受率 %</th><th>接受长</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td>1</td><td>0</td><td>3757/3757</td><td>32768/32768</td><td>411.6</td><td>0.002</td><td>79.61</td><td>0.36</td><td>0.36</td><td>0.36</td><td>12.55</td><td>59.9</td><td>2.80</td></tr>
+      <tr><td>2</td><td>2</td><td>0</td><td>7445/3722</td><td>65536/32768</td><td>435.4</td><td>0.005</td><td>150.52</td><td>0.52</td><td>0.52</td><td>0.66</td><td>12.88</td><td>61.0</td><td>2.83</td></tr>
+      <tr><td>4</td><td>4</td><td>0</td><td>15741/3935</td><td>131072/32768</td><td>489.4</td><td>0.008</td><td>267.83</td><td>0.75</td><td>0.81</td><td>1.11</td><td>14.60</td><td>57.2</td><td>2.72</td></tr>
+      <tr><td>16</td><td>16</td><td>0</td><td>62988/3937</td><td>524288/32768</td><td>818.9</td><td>0.020</td><td>640.23</td><td>2.33</td><td>2.15</td><td>4.07</td><td>21.46</td><td>51.2</td><td>2.54</td></tr>
+      <tr><td>32</td><td>32</td><td>0</td><td>126079/3940</td><td>1048576/32768</td><td>1356.4</td><td>0.024</td><td>773.04</td><td>5.99</td><td>4.22</td><td>14.56</td><td>37.00</td><td>48.4</td><td>2.45</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section>
+  <h2>5. 数据边界与备注</h2>
+  <ul>
+    <li><b>测试范围</b>：1K→1K、4K→4K、8K→8K、4K→32K 四组 × 并发 1/2/4/16/32（1K 组加测 64）；8K→32K 组未测。</li>
+    <li>运行环境为 docker 容器（nightly 镜像）；容器内 GPU 重新编号 0-3。</li>
+    <li>权重走 Marlin kernel（SM8.9 无原生 FP8 计算，weight-only 路径），属该平台正常日志与行为。</li>
+    <li>测试数据为 random 数据集随机 token；并发为 burst 全同时发出，不含错峰/限速场景。</li>
+    <li>原始数据：被测机本地 <code>/root/qwen27b-bench/results-dflash/</code>（21 个 JSON + 逐档 log）。</li>
+  </ul>
+</section>
+
+</main>
+</div>
+</body>
+</html>

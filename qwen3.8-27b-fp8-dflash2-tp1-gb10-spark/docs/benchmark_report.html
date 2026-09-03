@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Qwen3.8-27B-FP8 + DFlash2 DGX Spark(GB10) 单机 TP1 压测报告</title>
+<style>
+:root { --ink:#172033; --muted:#5c6878; --line:#d9e1ea; --bg:#f4f6f8; --paper:#fff; --green:#14724f; }
+* { box-sizing:border-box; }
+body { margin:0; background:var(--bg); color:var(--ink); font-family:'PingFang SC', system-ui, sans-serif; font-size:15px; line-height:1.65; }
+.page { max-width:1280px; margin:0 auto; background:var(--paper); min-height:100vh; }
+header { padding:48px 56px 34px; border-bottom:1px solid var(--line); background:#102033; color:#fff; }
+h1 { margin:0 0 12px; font-size:32px; line-height:1.18; }
+.subtitle { color:#d6dee8; max-width:820px; margin:0; }
+.meta { display:flex; flex-wrap:wrap; gap:10px; margin-top:24px; }
+.chip { border:1px solid rgba(255,255,255,.22); border-radius:4px; padding:6px 10px; color:#eaf0f6; font-size:13px; }
+main { padding:36px 56px 56px; }
+section { padding:26px 0; border-bottom:1px solid var(--line); }
+section:last-child { border-bottom:0; }
+h2 { margin:0 0 14px; font-size:24px; }
+h3 { margin:20px 0 10px; font-size:18px; }
+.summary { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:14px; margin-top:20px; }
+.card { border:1px solid var(--line); border-radius:6px; padding:18px; background:#fff; }
+.label { color:var(--muted); font-size:13px; }
+.value { font-size:27px; font-weight:800; margin-top:6px; line-height:1.1; }
+.note { color:var(--muted); font-size:13px; margin:8px 0 0; }
+.ok { color:var(--green); font-weight:700; }
+table { width:100%; border-collapse:collapse; font-size:12.5px; }
+th { text-align:left; background:#172033; color:#fff; padding:8px 9px; white-space:nowrap; }
+td { border-bottom:1px solid var(--line); padding:7px 9px; vertical-align:top; white-space:nowrap; }
+tr:nth-child(even) td { background:#f8fafc; }
+.table-wrap { overflow-x:auto; border:1px solid var(--line); border-radius:6px; }
+.small { font-size:12px; color:var(--muted); }
+ul { margin:8px 0 0; padding-left:20px; }
+li { margin:4px 0; }
+code { background:#eef2f6; border-radius:3px; padding:1px 5px; font-size:12.5px; }
+pre { background:#102033; color:#dce6f2; padding:16px 18px; border-radius:6px; overflow-x:auto; font-size:12.5px; line-height:1.55; }
+@media (max-width: 820px) { header, main { padding-left:22px; padding-right:22px; } .summary { grid-template-columns:1fr; } h1 { font-size:26px; } }
+</style>
+</head>
+<body>
+<div class="page">
+<header>
+  <h1>Qwen3.8-27B-FP8 + DFlash2（投机解码）DGX Spark（GB10）单机 TP1 压测报告</h1>
+  <p class="subtitle">基于 vLLM 官方基准工具 <code style="background:transparent;color:#9fc3e8">vllm bench serve</code> 的部分矩阵测试。指标名称、单位与工具官方输出保持一致。</p>
+  <div class="meta">
+    <span class="chip">报告日期：2026-09-03</span>
+    <span class="chip">硬件：DGX Spark（GB10，SM121，121G 统一内存）</span>
+    <span class="chip">模型：Qwen3.8-27B-FP8（TP=1，DFlash2 num_spec=7）</span>
+    <span class="chip">vLLM nightly 0.28.1rc1.dev283</span>
+    <span class="chip">范围：3 组 9 档（部分矩阵）</span>
+  </div>
+</header>
+<main>
+
+<section>
+  <h2>1. 测试结论</h2>
+  <div class="summary">
+    <div class="card"><div class="label">测试档位</div><div class="value ok">9/9 全部成功</div><p class="note">3 组输入/输出组合 × 并发 1/2/4，零失败</p></div>
+    <div class="card"><div class="label">单流 decode</div><div class="value">9.9–17.7 tok/s</div><p class="note">TPOT 56–111 ms</p></div>
+    <div class="card"><div class="label">并发 4 聚合吞吐</div><div class="value">33.0–44.0 tok/s</div><p class="note">1K/4K/8K 组并发 4 档</p></div>
+    <div class="card"><div class="label">DFlash2 接受率</div><div class="value">13.7–30.2%</div><p class="note">接受长度 1.96–3.11（num_spec=7）</p></div>
+  </div>
+  <ul>
+    <li>DFlash2 draft 深度为 7（本版 vLLM 0.28.1rc1 支持深度 7 启动）；随机 token 数据集下接受率 13.7~30.2%、平均接受长度 1.96~3.11——深度 7 的后段 draft 大量被拒，验证开销显著（4K 组 TPOT 达 89~111 ms）。</li>
+    <li>主模型为官方 FP8 包（KV cache bf16，容量 1,014,183 tokens）；GEMM 走 CutlassFp8BlockScaled kernel。</li>
+  </ul>
+</section>
+
+<section>
+  <h2>2. 部署环境与服务配置</h2>
+  <div class="table-wrap"><table>
+    <thead><tr><th>项目</th><th>配置</th></tr></thead>
+    <tbody>
+      <tr><td>硬件</td><td>DGX Spark（NVIDIA GB10，SM121，121G 统一内存；nvidia-smi 不报显存数字，以下为启动日志口径）</td></tr>
+      <tr><td>模型</td><td>Qwen3.8-27B-FP8（本地权重目录），served name <code>Qwen3.8-27B</code></td></tr>
+      <tr><td>投机解码</td><td><code>--speculative-config {"method":"dflash","model":"incoai/Qwen3.8-27B-DFlash2","num_speculative_tokens":7}</code></td></tr>
+      <tr><td>KV cache</td><td>bf16（checkpoint 自带，未量化），容量 1,014,183 tokens（256K 满长并发上限约 3.87 路）</td></tr>
+      <tr><td>kernel 路径</td><td>CutlassFp8BlockScaled（FP8 GEMM）+ FlashAttention（attention 后端）</td></tr>
+      <tr><td>推理框架</td><td>vLLM 0.28.1rc1.dev283+g300f68832（nightly，venv ~/vllm，Rust frontend）</td></tr>
+      <tr><td>API</td><td>端口 8123（OpenAI 兼容接口），max_model_len=262144</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>启动命令</h3>
+<pre>export HF_ENDPOINT=https://hf-mirror.com
+export HF_HUB_DISABLE_XET=1
+export VLLM_WORKER_MULTIPROC_METHOD=spawn
+export CUDA_VISIBLE_DEVICES=0
+export VLLM_USE_RUST_FRONTEND=1
+export VLLM_ENGINE_READY_TIMEOUT_S=3600
+
+vllm serve /home/nvidia/Qwen3.8-27B-FP8 \
+  --served-model-name Qwen3.8-27B \
+  --trust-remote-code \
+  --tensor-parallel-size 1 \
+  --gpu-memory-utilization 0.95 \
+  --max-model-len 262144 \
+  --max-num-batched-tokens 32768 \
+  --enable-chunked-prefill \
+  --async-scheduling \
+  --enable-prefix-caching \
+  --speculative-config '{"method":"dflash","model":"incoai/Qwen3.8-27B-DFlash2","num_speculative_tokens":7}' \
+  --load-format fastsafetensors \
+  --reasoning-parser qwen3 \
+  --tool-call-parser qwen3_coder \
+  --enable-auto-tool-choice \
+  --host 0.0.0.0 --port 8123 \
+  --api-key &lt;内网约定&gt;</pre>
+</section>
+
+<section>
+  <h2>3. 测试方法</h2>
+  <div class="table-wrap"><table>
+    <thead><tr><th>项目</th><th>口径</th></tr></thead>
+    <tbody>
+      <tr><td>工具</td><td><code>vllm bench serve</code>（vLLM 官方，openai-chat 后端）</td></tr>
+      <tr><td>压测客户端位置</td><td>独立 x86 服务器远程打被测机</td></tr>
+      <tr><td>数据集 / 并发</td><td>random（固定输入/输出 token 数）× burst 并发（请求数=并发数）</td></tr>
+      <tr><td>输出长度</td><td><code>--ignore-eos</code>，每请求输出精确到目标值</td></tr>
+      <tr><td>输入 tokens</td><td>表中为<b>实测值</b>（chat 模板占用导致略低于目标）</td></tr>
+      <tr><td>热身</td><td>正式测试前 3 次热身请求</td></tr>
+      <tr><td>指标口径</td><td>全部取自工具输出 JSON 官方字段；除 TTFT 由 ms 换算为 s（÷1000）外，其余数值均为官方原值</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section>
+  <h2>4. 测试数据（3 组 9 档，按输入/输出组合分表）</h2>
+  <p class="small">TTFT 各列已由官方输出的 ms 换算为 <b>秒 s</b>（÷1000）；Mean TPOT 保持官方 <b>ms</b> 原单位。总/均 = 全部请求合计 / 每请求平均（实测值）。指标含义同系列报告 4.0 节（并发/成功失败/输入输出 tokens/Duration/Request throughput/Output tok/s/TTFT 均值与分位/TPOT/DFlash2 接受率与接受长）。</p>
+
+  <h3>4.1 输入 1K → 输出 1K</h3>
+  <div class="table-wrap"><table>
+    <thead><tr><th>并发</th><th>成功</th><th>失败</th><th>输入 tokens 总/均</th><th>输出 tokens 总/均</th><th>Duration s</th><th>Request throughput (req/s)</th><th>Output tok/s</th><th>Mean TTFT (s)</th><th>P50 (s)</th><th>P95 (s)</th><th>Mean TPOT (ms)</th><th>接受率 %</th><th>接受长</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td>1</td><td>0</td><td>969/969</td><td>1024/1024</td><td>68.8</td><td>0.015</td><td>14.88</td><td>0.74</td><td>0.74</td><td>0.74</td><td>66.52</td><td>21.9</td><td>2.53</td></tr>
+      <tr><td>2</td><td>2</td><td>0</td><td>1953/976</td><td>2048/1024</td><td>92.4</td><td>0.022</td><td>22.17</td><td>1.23</td><td>1.23</td><td>1.23</td><td>74.90</td><td>23.6</td><td>2.65</td></tr>
+      <tr><td>4</td><td>4</td><td>0</td><td>4105/1026</td><td>4096/1024</td><td>93.1</td><td>0.043</td><td>43.99</td><td>3.59</td><td>3.59</td><td>3.59</td><td>75.33</td><td>24.3</td><td>2.70</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>4.2 输入 4K → 输出 4K</h3>
+  <div class="table-wrap"><table>
+    <thead><tr><th>并发</th><th>成功</th><th>失败</th><th>输入 tokens 总/均</th><th>输出 tokens 总/均</th><th>Duration s</th><th>Request throughput (req/s)</th><th>Output tok/s</th><th>Mean TTFT (s)</th><th>P50 (s)</th><th>P95 (s)</th><th>Mean TPOT (ms)</th><th>接受率 %</th><th>接受长</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td>1</td><td>0</td><td>3757/3757</td><td>4096/4096</td><td>412.0</td><td>0.002</td><td>9.94</td><td>2.20</td><td>2.20</td><td>2.20</td><td>100.08</td><td>13.7</td><td>1.96</td></tr>
+      <tr><td>2</td><td>2</td><td>0</td><td>7445/3722</td><td>8192/4096</td><td>517.8</td><td>0.004</td><td>15.82</td><td>3.55</td><td>3.55</td><td>3.66</td><td>110.63</td><td>16.9</td><td>2.18</td></tr>
+      <tr><td>4</td><td>4</td><td>0</td><td>15741/3935</td><td>16384/4096</td><td>497.2</td><td>0.008</td><td>32.96</td><td>10.47</td><td>10.47</td><td>10.91</td><td>89.53</td><td>25.5</td><td>2.79</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>4.3 输入 8K → 输出 8K</h3>
+  <div class="table-wrap"><table>
+    <thead><tr><th>并发</th><th>成功</th><th>失败</th><th>输入 tokens 总/均</th><th>输出 tokens 总/均</th><th>Duration s</th><th>Request throughput (req/s)</th><th>Output tok/s</th><th>Mean TTFT (s)</th><th>P50 (s)</th><th>P95 (s)</th><th>Mean TPOT (ms)</th><th>接受率 %</th><th>接受长</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td>1</td><td>0</td><td>7454/7454</td><td>8192/8192</td><td>464.2</td><td>0.002</td><td>17.65</td><td>3.26</td><td>3.26</td><td>3.26</td><td>56.28</td><td>28.1</td><td>2.96</td></tr>
+      <tr><td>2</td><td>2</td><td>0</td><td>14746/7373</td><td>16384/8192</td><td>616.5</td><td>0.003</td><td>26.58</td><td>6.12</td><td>6.12</td><td>6.27</td><td>74.52</td><td>26.7</td><td>2.87</td></tr>
+      <tr><td>4</td><td>4</td><td>0</td><td>31234/7808</td><td>32768/8192</td><td>891.3</td><td>0.004</td><td>36.76</td><td>14.97</td><td>14.97</td><td>15.40</td><td>88.45</td><td>30.2</td><td>3.11</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section>
+  <h2>5. 数据边界与备注</h2>
+  <ul>
+    <li><b>测试范围</b>：仅 1K→1K、4K→4K、8K→8K × 并发 1/2/4（部分矩阵）；4K→32K、8K→32K 及 16/32/64 高并发档未测。</li>
+    <li>本配置为 Qwen3.8-27B-FP8 主模型 + DFlash2 draft（深度 7）；KV cache bf16 为 checkpoint 自带行为。</li>
+    <li>prefix caching 虽开启但被投机解码 + Mamba 架构自动禁用。</li>
+    <li>测试数据为 random 数据集随机 token；并发为 burst 全同时发出。</li>
+    <li>原始数据：压测机本地 <code>/root/qwen27b-bench/results-spark44-dflash7-fp8/</code>（9 个 JSON + 逐档 log）。</li>
+  </ul>
+</section>
+
+</main>
+</div>
+</body>
+</html>
