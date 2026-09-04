@@ -86,6 +86,20 @@
   <li>矩阵：输入→输出 = 1K→1K / 4K→4K / 8K→8K 三组 × 并发（=请求数）1 / 2 / 4，共 9 档；每档前 warmup 3 次。</li>
   <li>TTFT 已换算为秒（s）；TPOT 为毫秒（ms）；总耗时为该档全部请求完成用时。</li>
 </ul>
+<h3>3.1 指标含义</h3>
+<table>
+  <tr><th>列</th><th style="text-align:left">含义</th></tr>
+  <tr><td>并发</td><td style="text-align:left">该档 burst 同时发出的请求数（等于该档总请求数，全部同时开跑）</td></tr>
+  <tr><td>成功请求数</td><td style="text-align:left">该档完成 / 失败的请求数（官方字段 completed/failed；本测试全部成功）</td></tr>
+  <tr><td>输入 tokens</td><td style="text-align:left">全部请求实际输入（prompt）token 合计——实测值</td></tr>
+  <tr><td>输出 tokens</td><td style="text-align:left">全部请求实际输出 token 合计；ignore_eos 下精确等于目标值</td></tr>
+  <tr><td>Output token throughput (tok/s)</td><td style="text-align:left">输出 tokens 总量 ÷ Duration，整机每秒产出的生成 token 数（官方字段 output_throughput）</td></tr>
+  <tr><td>TTFT 均值 / P99 (s)</td><td style="text-align:left">首 token 延迟平均值 / 99 分位：从发出请求到收到第 1 个生成 token 的耗时（官方字段 mean_ttft_ms / p99_ttft_ms 换算为秒）</td></tr>
+  <tr><td>TPOT 均值 (ms)</td><td style="text-align:left">首 token 之后平均每个输出 token 的耗时；单流速度 ≈ 1000 ÷ TPOT（官方字段 mean_tpot_ms）</td></tr>
+  <tr><td>总耗时 (s)</td><td style="text-align:left">该档整段测试耗时：从第一个请求发出到最后一个请求完成（官方字段 duration）</td></tr>
+  <tr><td>decode (tok/s)</td><td style="text-align:left">（第 5~7 节场景组）单请求生成速度：输出 tokens ÷（总耗时 − TTFT），流式请求以首 token 时刻分隔</td></tr>
+  <tr><td>接受率 / 接受长度</td><td style="text-align:left">（服务端日志口径）投机解码 draft token 被主模型接受的比例 / 每轮平均被接受的 token 数（DSPARK 实际配置 num_steps=1、num_draft_tokens=8）</td></tr>
+</table>
 </section>
 
 <section>
