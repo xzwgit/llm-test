@@ -119,6 +119,7 @@ vllm serve /home/nvidia/Qwen3.8-27B-FP8 \
       <tr><td>数据集 / 并发</td><td>random（固定输入/输出 token 数）× burst 并发（请求数=并发数）</td></tr>
       <tr><td>输出长度</td><td><code>--ignore-eos</code>，每请求输出精确到目标值</td></tr>
       <tr><td>输入 tokens</td><td>表中为<b>实测值</b>（chat 模板占用导致略低于目标）</td></tr>
+      <tr><td>指标口径</td><td>全部取自工具输出 JSON 官方字段（successful/failed、total_input/output_tokens、duration、request_throughput、output_throughput、mean·p50·p95_ttft_ms、mean_tpot_ms）；除 TTFT 由 ms 换算为 s（÷1000）外，其余数值均为官方原值；接受率/接受长取自被测服务日志</td></tr>
       <tr><td>热身</td><td>正式测试前 3 次热身请求</td></tr>
       <tr><td>指标口径</td><td>全部取自工具输出 JSON 官方字段；除 TTFT 由 ms 换算为 s（÷1000）外，其余数值均为官方原值</td></tr>
     </tbody>
@@ -127,6 +128,25 @@ vllm serve /home/nvidia/Qwen3.8-27B-FP8 \
 
 <section>
   <h2>4. 测试数据（3 组 9 档，按输入/输出组合分表）</h2>
+<h3>4.0 指标含义</h3>
+  <div class="table-wrap"><table>
+    <thead><tr><th>列</th><th>含义</th></tr></thead>
+    <tbody>
+      <tr><td>并发</td><td>该档 burst 同时发出的请求数（等于该档总请求数，全部同时开跑）</td></tr>
+      <tr><td>成功 / 失败</td><td>该档完成 / 失败的请求数（Successful requests / Failed，官方字段 completed/failed）</td></tr>
+      <tr><td>输入 tokens 总/均</td><td>全部请求实际输入（prompt）token 合计 / 每请求平均——实测值，非目标值</td></tr>
+      <tr><td>输出 tokens 总/均</td><td>全部请求实际输出（completion）token 合计 / 每请求平均——实测值；ignore_eos 下精确等于目标值</td></tr>
+      <tr><td>Duration s</td><td>该档整段测试耗时：从第一个请求发出到最后一个请求完成（Benchmark duration，官方字段 duration）</td></tr>
+      <tr><td>Request throughput (req/s)</td><td>成功请求数 ÷ Duration，每秒完成的请求数（官方字段 request_throughput）</td></tr>
+      <tr><td>Output tok/s</td><td>输出 tokens 总量 ÷ Duration，整机每秒产出的生成 token 数（官方字段 output_throughput），衡量生成吞吐</td></tr>
+      <tr><td>Mean TTFT (s)</td><td>首 token 延迟平均值：从发出请求到收到第 1 个生成 token 的耗时（Time To First Token）</td></tr>
+      <tr><td>P50 / P95 TTFT (s)</td><td>首 token 延迟的 50 / 95 分位——50% / 95% 的请求快于该值；P95 是尾延迟常用指标</td></tr>
+      <tr><td>Mean TPOT (ms)</td><td>首 token 之后平均每个输出 token 的耗时（Time Per Output Token），决定稳定吐字速度；单流速度 ≈ 1000 ÷ TPOT</td></tr>
+      <tr><td>DFlash2 接受率 %</td><td>投机解码 draft token 被主模型接受的比例，越高加速效果越好</td></tr>
+      <tr><td>DFlash2 接受长</td><td>每轮投机平均被接受的 token 数（含 1 个真 token；num_spec=7 上限 8.0）</td></tr>
+    </tbody>
+  </table></div>
+
   <p class="small">TTFT 各列已由官方输出的 ms 换算为 <b>秒 s</b>（÷1000）；Mean TPOT 保持官方 <b>ms</b> 原单位。总/均 = 全部请求合计 / 每请求平均（实测值）。指标含义同系列报告 4.0 节（并发/成功失败/输入输出 tokens/Duration/Request throughput/Output tok/s/TTFT 均值与分位/TPOT/DFlash2 接受率与接受长）。</p>
 
   <h3>4.1 输入 1K → 输出 1K</h3>

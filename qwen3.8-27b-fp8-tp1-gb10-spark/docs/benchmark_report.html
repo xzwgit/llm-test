@@ -120,6 +120,7 @@ vllm serve /home/nvidia/Qwen3.8-27B-FP8 \
       <tr><td>数据集 / 并发</td><td>random（固定输入/输出 token 数）× burst 并发（请求数=并发数）</td></tr>
       <tr><td>输出长度</td><td><code>--ignore-eos</code>，每请求输出精确到目标值</td></tr>
       <tr><td>输入 tokens</td><td>表中为<b>实测值</b>（chat 模板占用导致略低于目标）</td></tr>
+      <tr><td>指标口径</td><td>全部取自工具输出 JSON 官方字段（successful/failed、total_input/output_tokens、duration、request_throughput、output_throughput、mean·p50·p95_ttft_ms、mean_tpot_ms）；除 TTFT 由 ms 换算为 s（÷1000）外，其余数值均为官方原值</td></tr>
       <tr><td>热身</td><td>正式测试前 3 次热身请求</td></tr>
     </tbody>
   </table></div>
@@ -127,35 +128,54 @@ vllm serve /home/nvidia/Qwen3.8-27B-FP8 \
 
 <section>
   <h2>4. 测试数据（3 组 9 档，按输入/输出组合分表）</h2>
+<h3>4.0 指标含义</h3>
+  <div class="table-wrap"><table>
+    <thead><tr><th>列</th><th>含义</th></tr></thead>
+    <tbody>
+      <tr><td>并发</td><td>该档 burst 同时发出的请求数（等于该档总请求数，全部同时开跑）</td></tr>
+      <tr><td>成功 / 失败</td><td>该档完成 / 失败的请求数（Successful requests / Failed，官方字段 completed/failed）</td></tr>
+      <tr><td>输入 tokens 总/均</td><td>全部请求实际输入（prompt）token 合计 / 每请求平均——实测值，非目标值</td></tr>
+      <tr><td>输出 tokens 总/均</td><td>全部请求实际输出（completion）token 合计 / 每请求平均——实测值；ignore_eos 下精确等于目标值</td></tr>
+      <tr><td>Duration s</td><td>该档整段测试耗时：从第一个请求发出到最后一个请求完成（Benchmark duration，官方字段 duration）</td></tr>
+      <tr><td>Request throughput (req/s)</td><td>成功请求数 ÷ Duration，每秒完成的请求数（官方字段 request_throughput）</td></tr>
+      <tr><td>Output tok/s</td><td>输出 tokens 总量 ÷ Duration，整机每秒产出的生成 token 数（官方字段 output_throughput），衡量生成吞吐</td></tr>
+      <tr><td>Mean TTFT (s)</td><td>首 token 延迟平均值：从发出请求到收到第 1 个生成 token 的耗时（Time To First Token）</td></tr>
+      <tr><td>P50 / P95 / P99 TTFT (s)</td><td>首 token 延迟的 50 / 95 / 99 分位——50% / 95% / 99% 的请求快于该值；P95 是尾延迟常用指标，P99 反映最慢 1% 请求</td></tr>
+      <tr><td>Mean TPOT (ms)</td><td>首 token 之后平均每个输出 token 的耗时（Time Per Output Token），决定稳定吐字速度；单流速度 ≈ 1000 ÷ TPOT</td></tr>
+      <tr><td>MTP 接受率 %</td><td>投机解码 draft token 被主模型接受的比例，越高加速效果越好</td></tr>
+      <tr><td>MTP 接受长</td><td>每轮投机平均被接受的 token 数（含 1 个真 token；num_spec=3 上限 4.0）</td></tr>
+    </tbody>
+  </table></div>
+
   <p class="small">TTFT 各列已由官方输出的 ms 换算为 <b>秒 s</b>（÷1000）；Mean TPOT 保持官方 <b>ms</b> 原单位。总/均 = 全部请求合计 / 每请求平均（实测值）。</p>
 
   <h3>4.1 输入 1K → 输出 1K</h3>
   <div class="table-wrap"><table>
-    <thead><tr><th>并发</th><th>成功</th><th>失败</th><th>输入 tokens 总/均</th><th>输出 tokens 总/均</th><th>Duration s</th><th>Request throughput (req/s)</th><th>Output tok/s</th><th>Mean TTFT (s)</th><th>P50 (s)</th><th>P95 (s)</th><th>Mean TPOT (ms)</th><th>MTP 接受率 %</th><th>MTP 接受长</th></tr></thead>
+    <thead><tr><th>并发</th><th>成功</th><th>失败</th><th>输入 tokens 总/均</th><th>输出 tokens 总/均</th><th>Duration s</th><th>Request throughput (req/s)</th><th>Output tok/s</th><th>Mean TTFT (s)</th><th>P50 (s)</th><th>P95 (s)</th><th>P99 (s)</th><th>Mean TPOT (ms)</th><th>MTP 接受率 %</th><th>MTP 接受长</th></tr></thead>
     <tbody>
-      <tr><td>1</td><td>1</td><td>0</td><td>969/969</td><td>1024/1024</td><td>72.2</td><td>0.014</td><td>14.18</td><td>0.48</td><td>0.48</td><td>0.48</td><td>70.14</td><td>53.7</td><td>2.61</td></tr>
-      <tr><td>2</td><td>2</td><td>0</td><td>1953/976</td><td>2048/1024</td><td>75.8</td><td>0.026</td><td>27.01</td><td>0.93</td><td>0.93</td><td>1.01</td><td>69.19</td><td>50.7</td><td>2.52</td></tr>
-      <tr><td>4</td><td>4</td><td>0</td><td>4105/1026</td><td>4096/1024</td><td>86.9</td><td>0.046</td><td>47.14</td><td>3.16</td><td>3.68</td><td>3.68</td><td>78.00</td><td>45.4</td><td>2.36</td></tr>
+      <tr><td>1</td><td>1</td><td>0</td><td>969/969</td><td>1024/1024</td><td>72.2</td><td>0.014</td><td>14.18</td><td>0.48</td><td>0.48</td><td>0.48</td><td>0.48</td><td>0.48</td><td>70.14</td><td>53.7</td><td>2.61</td></tr>
+      <tr><td>2</td><td>2</td><td>0</td><td>1953/976</td><td>2048/1024</td><td>75.8</td><td>0.026</td><td>27.01</td><td>0.93</td><td>0.93</td><td>1.01</td><td>1.02</td><td>1.02</td><td>69.19</td><td>50.7</td><td>2.52</td></tr>
+      <tr><td>4</td><td>4</td><td>0</td><td>4105/1026</td><td>4096/1024</td><td>86.9</td><td>0.046</td><td>47.14</td><td>3.16</td><td>3.68</td><td>3.68</td><td>3.68</td><td>3.68</td><td>78.00</td><td>45.4</td><td>2.36</td></tr>
     </tbody>
   </table></div>
 
   <h3>4.2 输入 4K → 输出 4K</h3>
   <div class="table-wrap"><table>
-    <thead><tr><th>并发</th><th>成功</th><th>失败</th><th>输入 tokens 总/均</th><th>输出 tokens 总/均</th><th>Duration s</th><th>Request throughput (req/s)</th><th>Output tok/s</th><th>Mean TTFT (s)</th><th>P50 (s)</th><th>P95 (s)</th><th>Mean TPOT (ms)</th><th>MTP 接受率 %</th><th>MTP 接受长</th></tr></thead>
+    <thead><tr><th>并发</th><th>成功</th><th>失败</th><th>输入 tokens 总/均</th><th>输出 tokens 总/均</th><th>Duration s</th><th>Request throughput (req/s)</th><th>Output tok/s</th><th>Mean TTFT (s)</th><th>P50 (s)</th><th>P95 (s)</th><th>P99 (s)</th><th>Mean TPOT (ms)</th><th>MTP 接受率 %</th><th>MTP 接受长</th></tr></thead>
     <tbody>
-      <tr><td>1</td><td>1</td><td>0</td><td>3757/3757</td><td>4096/4096</td><td>257.4</td><td>0.004</td><td>15.91</td><td>1.94</td><td>1.94</td><td>1.94</td><td>62.39</td><td>66.8</td><td>3.00</td></tr>
-      <tr><td>2</td><td>2</td><td>0</td><td>7445/3722</td><td>8192/4096</td><td>312.8</td><td>0.006</td><td>26.19</td><td>6.09</td><td>6.09</td><td>6.09</td><td>68.84</td><td>53.8</td><td>2.61</td></tr>
-      <tr><td>4</td><td>4</td><td>0</td><td>15741/3935</td><td>16384/4096</td><td>345.3</td><td>0.012</td><td>47.44</td><td>11.44</td><td>12.94</td><td>12.95</td><td>68.45</td><td>61.4</td><td>2.84</td></tr>
+      <tr><td>1</td><td>1</td><td>0</td><td>3757/3757</td><td>4096/4096</td><td>257.4</td><td>0.004</td><td>15.91</td><td>1.94</td><td>1.94</td><td>1.94</td><td>1.94</td><td>1.94</td><td>62.39</td><td>66.8</td><td>3.00</td></tr>
+      <tr><td>2</td><td>2</td><td>0</td><td>7445/3722</td><td>8192/4096</td><td>312.8</td><td>0.006</td><td>26.19</td><td>6.09</td><td>6.09</td><td>6.09</td><td>6.09</td><td>6.09</td><td>68.84</td><td>53.8</td><td>2.61</td></tr>
+      <tr><td>4</td><td>4</td><td>0</td><td>15741/3935</td><td>16384/4096</td><td>345.3</td><td>0.012</td><td>47.44</td><td>11.44</td><td>12.94</td><td>12.95</td><td>12.95</td><td>12.95</td><td>68.45</td><td>61.4</td><td>2.84</td></tr>
     </tbody>
   </table></div>
 
   <h3>4.3 输入 8K → 输出 8K</h3>
   <div class="table-wrap"><table>
-    <thead><tr><th>并发</th><th>成功</th><th>失败</th><th>输入 tokens 总/均</th><th>输出 tokens 总/均</th><th>Duration s</th><th>Request throughput (req/s)</th><th>Output tok/s</th><th>Mean TTFT (s)</th><th>P50 (s)</th><th>P95 (s)</th><th>Mean TPOT (ms)</th><th>MTP 接受率 %</th><th>MTP 接受长</th></tr></thead>
+    <thead><tr><th>并发</th><th>成功</th><th>失败</th><th>输入 tokens 总/均</th><th>输出 tokens 总/均</th><th>Duration s</th><th>Request throughput (req/s)</th><th>Output tok/s</th><th>Mean TTFT (s)</th><th>P50 (s)</th><th>P95 (s)</th><th>P99 (s)</th><th>Mean TPOT (ms)</th><th>MTP 接受率 %</th><th>MTP 接受长</th></tr></thead>
     <tbody>
-      <tr><td>1</td><td>1</td><td>0</td><td>7454/7454</td><td>8192/8192</td><td>482.1</td><td>0.002</td><td>16.99</td><td>3.91</td><td>3.91</td><td>3.91</td><td>58.38</td><td>76.8</td><td>3.30</td></tr>
-      <tr><td>2</td><td>2</td><td>0</td><td>14746/7373</td><td>16384/8192</td><td>543.5</td><td>0.004</td><td>30.15</td><td>9.11</td><td>9.11</td><td>9.19</td><td>59.94</td><td>70.9</td><td>3.13</td></tr>
-      <tr><td>4</td><td>4</td><td>0</td><td>31234/7808</td><td>32768/8192</td><td>630.5</td><td>0.006</td><td>51.97</td><td>20.10</td><td>24.13</td><td>24.37</td><td>65.45</td><td>72.6</td><td>3.18</td></tr>
+      <tr><td>1</td><td>1</td><td>0</td><td>7454/7454</td><td>8192/8192</td><td>482.1</td><td>0.002</td><td>16.99</td><td>3.91</td><td>3.91</td><td>3.91</td><td>3.91</td><td>3.91</td><td>58.38</td><td>76.8</td><td>3.30</td></tr>
+      <tr><td>2</td><td>2</td><td>0</td><td>14746/7373</td><td>16384/8192</td><td>543.5</td><td>0.004</td><td>30.15</td><td>9.11</td><td>9.11</td><td>9.19</td><td>9.2</td><td>9.2</td><td>59.94</td><td>70.9</td><td>3.13</td></tr>
+      <tr><td>4</td><td>4</td><td>0</td><td>31234/7808</td><td>32768/8192</td><td>630.5</td><td>0.006</td><td>51.97</td><td>20.10</td><td>24.13</td><td>24.37</td><td>24.37</td><td>24.37</td><td>65.45</td><td>72.6</td><td>3.18</td></tr>
     </tbody>
   </table></div>
 </section>

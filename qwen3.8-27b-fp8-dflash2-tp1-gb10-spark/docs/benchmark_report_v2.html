@@ -82,16 +82,19 @@ vllm serve Qwen/Qwen3.8-27B-FP8 \
 <table>
   <tr><th>列</th><th style="text-align:left">含义</th></tr>
   <tr><td>并发</td><td style="text-align:left">该档 burst 同时发出的请求数（等于该档总请求数，全部同时开跑）</td></tr>
-  <tr><td>成功请求数</td><td style="text-align:left">该档完成 / 失败的请求数（官方字段 completed/failed；本测试全部成功）</td></tr>
-  <tr><td>输入 tokens</td><td style="text-align:left">全部请求实际输入（prompt）token 合计——实测值</td></tr>
-  <tr><td>输出 tokens</td><td style="text-align:left">全部请求实际输出 token 合计；ignore_eos 下精确等于目标值</td></tr>
-  <tr><td>Output token throughput (tok/s)</td><td style="text-align:left">输出 tokens 总量 ÷ Duration，整机每秒产出的生成 token 数（官方字段 output_throughput）</td></tr>
-  <tr><td>TTFT 均值 (s)</td><td style="text-align:left">首 token 延迟平均值：从发出请求到收到第 1 个生成 token 的耗时</td></tr>
-  <tr><td>TTFT P99 (s)</td><td style="text-align:left">首 token 延迟 99 分位（尾部延迟；官方字段 p99_ttft_ms 换算为秒）</td></tr>
-  <tr><td>TPOT 均值 (ms)</td><td style="text-align:left">首 token 之后平均每个输出 token 的耗时；单流速度 ≈ 1000 ÷ TPOT（官方字段 mean_tpot_ms）</td></tr>
-  <tr><td>总耗时 (s)</td><td style="text-align:left">该档整段测试耗时：从第一个请求发出到最后一个请求完成（官方字段 duration）</td></tr>
+  <tr><td>成功请求数</td><td style="text-align:left">该档完成 / 失败的请求数（Successful requests / Failed，官方字段 completed/failed；本测试全部成功）</td></tr>
+  <tr><td>输入 tokens</td><td style="text-align:left">全部请求实际输入（prompt）token 合计——实测值，非目标值</td></tr>
+  <tr><td>输出 tokens</td><td style="text-align:left">全部请求实际输出（completion）token 合计；ignore_eos 下精确等于目标值</td></tr>
+  <tr><td>Output token throughput (tok/s)</td><td style="text-align:left">输出 tokens 总量 ÷ Duration，整机每秒产出的生成 token 数（官方字段 output_throughput），衡量生成吞吐</td></tr>
+  <tr><td>TTFT 均值 / P99 (s)</td><td style="text-align:left">首 token 延迟（Time To First Token）：从发出请求到收到第 1 个生成 token 的耗时；P99 = 99% 的请求快于该值，尾延迟指标（官方字段 mean_ttft_ms / p99_ttft_ms 换算为秒）</td></tr>
+  <tr><td>TPOT 均值 (ms)</td><td style="text-align:left">首 token 之后平均每个输出 token 的耗时（Time Per Output Token），决定稳定吐字速度；单流速度 ≈ 1000 ÷ TPOT（官方字段 mean_tpot_ms）</td></tr>
+  <tr><td>总耗时 (s)</td><td style="text-align:left">该档整段测试耗时：从第一个请求发出到最后一个请求完成（Benchmark duration，官方字段 duration）</td></tr>
+
+  
 </table>
+
 <p>工具与口径：<code>vllm bench serve</code>（官方），backend <code>openai-chat</code>，random 数据集 + <code>--ignore-eos</code>，每档前 warmup 3 次。TTFT 换算为秒。</p>
+<p><b>指标口径</b>：全部取自工具输出 JSON 官方字段（successful/failed、total_input/output_tokens、duration、request_throughput、output_throughput、mean·p50·p99_ttft_ms、mean_tpot_ms）；除 TTFT 由 ms 换算为 s（÷1000）外，其余数值均为官方原值；接受率/接受长度为服务端日志口径。</p>
 
 <h3>3.1 输入 1K → 输出 1K</h3>
 <table>
