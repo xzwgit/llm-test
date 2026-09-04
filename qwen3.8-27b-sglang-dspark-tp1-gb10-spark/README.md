@@ -39,4 +39,4 @@
 ## 备注
 
 - DSPARK 投机在任何文本类型上均为正贡献（结构化 4~5x、自然语言 1.3~2.7x、随机 1.7~2.9x）
-- Mamba/GDN 状态随 radix cache 复用（与 vLLM 行为不同，见报告第 6 节）
+- Mamba/GDN 状态随 radix cache 复用（行为细节见报告第 6 节）

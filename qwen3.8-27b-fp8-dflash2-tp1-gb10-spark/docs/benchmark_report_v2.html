@@ -32,7 +32,7 @@
 <b>被测配置</b>：DGX Spark（单机单卡 GB10，121GB 统一内存）· vLLM nightly <code>0.28.1rc1.dev283+g300f68832</code> · 主模型 <code>Qwen/Qwen3.8-27B-FP8</code>（Cutlass FP8，KV bf16）· 投机解码 <b>DFlash2 num_speculative_tokens=7</b>（draft：incoai/Qwen3.8-27B-DFlash2）· chunked prefill 32768 · 256K 上下文
 </div>
 <ul>
-  <li>本版本（v2）为<b>场景化测试版</b>：在上一版九档基础上，补齐 Agent 任务流 12 轮、真实文本单流 5 组、prefix cache 验证、多轮对话与热态长输出（测试项目与同机另一推理框架的报告对齐，便于同口径查阅）。</li>
+  <li><b>测试范围</b>：随机 token 九档、Agent 任务流 12 轮、真实文本单流 5 组、prefix cache 验证 3 次、多轮对话 5 轮、热态长输出 3 组。</li>
   <li><b>随机 token 标准口径</b>（vllm bench serve，官方工具）：单请求 decode <b>15.5 ~ 20.9 tok/s</b>（TPOT 47.3~64.0 ms）；并发 4 聚合 <b>43.5 ~ 44.7 tok/s</b>（1K/4K），8K×c4 36.6。</li>
   <li><b>Agent 工具调用场景</b>：decode <b>40.0 ~ 47.5 tok/s</b>（结构化输出投机加速明显），TTFT 0.24~1.13 s 且逐轮抬升。</li>
   <li><b>TTFT 显著受投机调度挤压</b>：冷态 8K 输入 2.86 s（单流）、8K×c4 达 22.66 s；长输入冷 prefill 慢（20.5K token 首次 15.0~22.4 s）。</li>
@@ -109,7 +109,7 @@ vllm serve Qwen/Qwen3.8-27B-FP8 \
 
 <section>
 <h2>4. Agent 任务流模拟（12 轮）</h2>
-<p>与另一框架测试同一脚本：system 含 6 个工具定义，每轮追加模型输出与工具返回结果；流式请求；关闭思考，max_tokens=200。</p>
+<p>方法：system 含 6 个工具定义，每轮追加模型输出与工具返回结果；流式请求；关闭思考，max_tokens=200。</p>
 <table>
   <tr><th>轮次</th><th>输入 tokens</th><th>输出 tokens</th><th>TTFT (s)</th><th>decode (tok/s)</th><th>输出类型</th></tr>
   <tr><td>1</td><td>320</td><td>26</td><td>0.24</td><td>40.1</td><td>工具调用 JSON</td></tr>
@@ -157,40 +157,24 @@ vllm serve Qwen/Qwen3.8-27B-FP8 \
 </ul>
 </section>
 
-<section>
-<h2>7. 同机同口径框架对照（v2 与 SGLang 版两次实测数据）</h2>
-<div class="note">下表数据均来自本机（同卡同模型规模）两次独立实测：本报告（vLLM+DFlash2）与同日 SGLang 定制镜像测试（RadixArk NVFP4+DSPARK，见《1xGB10-Qwen3.8-27B-SGLang-DSpark-TP1压测报告.html》）。测试脚本、口径、客户端完全相同。</div>
-<table>
-  <tr><th>指标</th><th>SGLang + DSPARK</th><th>vLLM + DFlash2（本报告）</th></tr>
-  <tr><td>单流 decode·随机 token（各档）</td><td>21.6 ~ 35.8 tok/s</td><td>15.5 ~ 20.9 tok/s</td></tr>
-  <tr><td>单流 decode·真实文本</td><td>16.9 ~ 28.6 tok/s</td><td>11.9 ~ 16.5 tok/s</td></tr>
-  <tr><td>Agent 工具调用轮 decode</td><td>52.2 ~ 69.0 tok/s</td><td>40.0 ~ 47.5 tok/s</td></tr>
-  <tr><td>Agent 12 轮 TTFT</td><td>0.18~0.25 s（平稳）</td><td>0.24~1.13 s（逐轮抬升）</td></tr>
-  <tr><td>8K×c4 聚合输出吞吐</td><td>69.1 tok/s</td><td>36.6 tok/s</td></tr>
-  <tr><td>8K×c4 TTFT 均值</td><td>4.08 s</td><td>22.66 s</td></tr>
-  <tr><td>缓存命中（同前缀第 2 次请求）</td><td>立即命中（0.24 s）</td><td>未命中（15.0 s），第 3 次起命中（0.78 s）</td></tr>
-  <tr><td>冷 prefill 20.5K token</td><td>6.56 s</td><td>15.0 ~ 22.4 s</td></tr>
-</table>
-<p>两次实测中 SGLang 路线在全部场景占优：decode 快 30~90%，TTFT 与缓存行为差距更大（2~5 倍）。两条投机路线在结构化输出上均有明显加速，DSPARK 幅度更高。</p>
-</section>
 
 <section>
-<h2>8. 结论</h2>
+<h2>7. 结论</h2>
 <ul>
   <li><b>单流 decode</b>：随机口径 15.5~20.9 tok/s；真实文本 11.9~16.5 tok/s；Agent 工具调用 40.0~47.5 tok/s（单流最高观测值 47.5）。</li>
   <li><b>聚合吞吐</b>：并发 4 时 1K/4K 档 43.5/44.7 tok/s，8K 档 36.6 tok/s。</li>
   <li><b>TTFT 是主要短板</b>：投机调度压缩 prefill 预算，8K×c4 达 22.66 s、冷 20.5K prefill 15~22 s；多轮 Agent 场景 TTFT 逐轮抬升。</li>
   <li><b>prefix cache 延迟一轮生效</b>：同前缀第 2 次请求仍完整重算，第 3 次起命中；对"每个新对话首两轮"的体验影响直接。</li>
-  <li>结构化输出（工具调用 JSON）投机加速明显（约 3 倍于自然语言轮），但整体幅度低于同机 DSPARK 路线。</li>
+  <li>结构化输出（工具调用 JSON）投机加速明显（约 3 倍于自然语言轮）。</li>
 </ul>
 </section>
 
 <section>
-<h2>9. 数据边界与备注</h2>
+<h2>8. 数据边界与备注</h2>
 <ul>
   <li><b>测试范围</b>：九档随机 token + Agent 12 轮 + 真实文本 5 组 + 缓存验证 3 次 + 多轮 5 轮 + 热态长输出 3 组。长输出（32K）组、8 以上并发未测试。</li>
   <li>主模型为 FP8 包（KV bf16），与 NVFP4 包的 KV 精度不同；投机解码参数 num_speculative_tokens=7 全程生效。</li>
-  <li>接受率：vLLM 服务日志未提供与 SGLang 等价的逐周期接受率输出，本报告以工具轮/自然语言轮的速度差表征投机效果。</li>
+  <li>接受率：vLLM 服务日志无逐周期接受率输出，本报告以工具轮/自然语言轮的速度差表征投机效果。</li>
   <li>原始数据：压测机 <code>/root/qwen27b-bench/results-spark44-dflash7-fp8-v2/</code>（9 JSON+log）；补充组 log：<code>supplement_b_dflash2.log</code>、<code>realtext_dflash2.log</code>、<code>realtext_nothink_dflash2.log</code>、<code>prefix_cache_dflash2.log</code>、<code>supplement_a_dflash2.log</code>；服务日志 被测机 <code>~/vllm_dflash2_v2.log</code>。</li>
 </ul>
 </section>

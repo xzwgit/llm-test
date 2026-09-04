@@ -15,12 +15,12 @@
 - `logs/` - 9 档官方输出 JSON
 
 
-## v2 场景化测试（2026-09-04 追加）
+## v2 扩展测试（2026-09-04 追加）
 
-- `docs/benchmark_report_v2.html` - v2 报告（九档 + Agent 12 轮 + 真实文本 5 组 + prefix cache 验证 + 多轮/热态）
+- `docs/benchmark_report_v2.html` - v2 报告（随机 token 九档 + Agent 任务流 12 轮 + 真实文本 5 组 + prefix cache 验证 + 多轮对话/热态长输出）
 - `logs/v2/` - v2 九档 JSON
 
-### v2 结论速览
+### v2 测试结果
 
 | 场景 | 结果 |
 |---|---|

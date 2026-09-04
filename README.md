@@ -17,7 +17,7 @@ LLM 部署与性能测试归档。每个子目录是一个独立测试项目，�
 | [qwen3.8-27b-nvfp4-tp1-gb10-spark](qwen3.8-27b-nvfp4-tp1-gb10-spark/) | 2026-09 | unsloth NVFP4 包, DGX Spark(GB10) 9 档部分矩阵 |
 | [qwen3.8-27b-fp8-tp1-gb10-spark](qwen3.8-27b-fp8-tp1-gb10-spark/) | 2026-09 | 官方 FP8 包（KV bf16）, DGX Spark(GB10) 9 档 |
 | [qwen3.8-27b-dflash2-tp4-4x4090](qwen3.8-27b-dflash2-tp4-4x4090/) | 2026-08 | DFlash2(spec=3) 投机解码, 4×RTX 4090 TP4, 21 档（docker nightly） |
-| [qwen3.8-27b-fp8-dflash2-tp1-gb10-spark](qwen3.8-27b-fp8-dflash2-tp1-gb10-spark/) | 2026-09 | FP8 主模型 + DFlash2(spec=7), DGX Spark(GB10) 9 档 + v2 场景化（Agent/多轮/缓存） |
+| [qwen3.8-27b-fp8-dflash2-tp1-gb10-spark](qwen3.8-27b-fp8-dflash2-tp1-gb10-spark/) | 2026-09 | FP8 主模型 + DFlash2(spec=7), DGX Spark(GB10) 九档 + v2（Agent/多轮/缓存验证） |
 | [qwen3.8-27b-sglang-dspark-tp1-gb10-spark](qwen3.8-27b-sglang-dspark-tp1-gb10-spark/) | 2026-09 | SGLang 定制镜像 + RadixArk NVFP4 + DSPARK, DGX Spark(GB10) 9 档 + 场景化全套 + 无投机对照 |
 
 ### Qwen3.6-27B
