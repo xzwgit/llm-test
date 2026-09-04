@@ -141,40 +141,59 @@ vllm serve Qwen/Qwen3.8-27B-FP8 \
       <tr><td>P50 / P95 / P99 TTFT (s)</td><td>首 token 延迟的 50 / 95 / 99 分位——50% / 95% / 99% 的请求快于该值；P95 是尾延迟常用指标（官方字段 median_ttft_ms / p95_ttft_ms / p99_ttft_ms 换算为秒）</td></tr>
       <tr><td>Mean TPOT (ms)</td><td>首 token 之后平均每个输出 token 的耗时（Time Per Output Token），决定稳定吐字速度；单流速度 ≈ 1000 ÷ TPOT</td></tr>
       <tr><td>Duration s</td><td>该档整段测试耗时：从第一个请求发出到最后一个请求完成（Benchmark duration，官方字段 duration）</td></tr>
+      <tr><td>DFlash2 接受率 %</td><td>投机解码 draft token 被主模型接受的比例（服务端 SpecDecoding 日志 Avg Draft acceptance rate，按档位时间窗归集均值），越高加速效果越好</td></tr>
+      <tr><td>DFlash2 接受长</td><td>每轮投机平均被接受的 token 数（Mean acceptance length，含 1 个真 token；num_spec=7 上限 8.0）</td></tr>
       <tr><td>decode (tok/s)</td><td>（第 5~7 节场景组）单请求生成速度：输出 tokens ÷（总耗时 − TTFT），流式请求以首 token 时刻分隔</td></tr>
     </tbody>
   </table></div>
 
   <h3>4.1 输入 1K → 输出 1K</h3>
   <div class="table-wrap"><table>
-    <thead><tr><th>并发</th><th>成功</th><th>失败</th><th>输入 tokens 总/均</th><th>输出 tokens 总/均</th><th>Duration s</th><th>Request throughput (req/s)</th><th>Output tok/s</th><th>Mean TTFT (s)</th><th>P50 TTFT (s)</th><th>P95 TTFT (s)</th><th>P99 TTFT (s)</th><th>Mean TPOT (ms)</th></tr></thead>
+    <thead><tr><th>并发</th><th>成功</th><th>失败</th><th>输入 tokens 总/均</th><th>输出 tokens 总/均</th><th>Duration s</th><th>Request throughput (req/s)</th><th>Output tok/s</th><th>Mean TTFT (s)</th><th>P50 TTFT (s)</th><th>P95 TTFT (s)</th><th>P99 TTFT (s)</th><th>Mean TPOT (ms)</th><th>DFlash2 接受率 %</th><th>DFlash2 接受长</th></tr></thead>
     <tbody>
-      <tr><td>1</td><td>1</td><td>0</td><td>969/969</td><td>1,024/1,024</td><td>66.0</td><td>0.0152</td><td>15.52</td><td>0.47</td><td>0.47</td><td>0.47</td><td>0.47</td><td>64.0</td></tr>
-      <tr><td>2</td><td>2</td><td>0</td><td>1,953/976</td><td>2,048/1,024</td><td>80.1</td><td>0.0250</td><td>25.56</td><td>0.89</td><td>0.89</td><td>0.98</td><td>0.99</td><td>73.7</td></tr>
-      <tr><td>4</td><td>4</td><td>0</td><td>4,105/1,026</td><td>4,096/1,024</td><td>94.1</td><td>0.0425</td><td>43.54</td><td>2.25</td><td>2.48</td><td>2.49</td><td>2.49</td><td>75.9</td></tr>
+      <tr><td>1</td><td>1</td><td>0</td><td>969/969</td><td>1,024/1,024</td><td>66.0</td><td>0.0152</td><td>15.52</td><td>0.47</td><td>0.47</td><td>0.47</td><td>0.47</td><td>64.0<td>19.4</td><td>2.36</td></tr>
+      <tr><td>2</td><td>2</td><td>0</td><td>1,953/976</td><td>2,048/1,024</td><td>80.1</td><td>0.0250</td><td>25.56</td><td>0.89</td><td>0.89</td><td>0.98</td><td>0.99</td><td>73.7<td>19.9</td><td>2.39</td></tr>
+      <tr><td>4</td><td>4</td><td>0</td><td>4,105/1,026</td><td>4,096/1,024</td><td>94.1</td><td>0.0425</td><td>43.54</td><td>2.25</td><td>2.48</td><td>2.49</td><td>2.49</td><td>75.9<td>20.0</td><td>2.4</td></tr>
     </tbody>
   </table></div>
 
   <h3>4.2 输入 4K → 输出 4K</h3>
   <div class="table-wrap"><table>
-    <thead><tr><th>并发</th><th>成功</th><th>失败</th><th>输入 tokens 总/均</th><th>输出 tokens 总/均</th><th>Duration s</th><th>Request throughput (req/s)</th><th>Output tok/s</th><th>Mean TTFT (s)</th><th>P50 TTFT (s)</th><th>P95 TTFT (s)</th><th>P99 TTFT (s)</th><th>Mean TPOT (ms)</th></tr></thead>
+    <thead><tr><th>并发</th><th>成功</th><th>失败</th><th>输入 tokens 总/均</th><th>输出 tokens 总/均</th><th>Duration s</th><th>Request throughput (req/s)</th><th>Output tok/s</th><th>Mean TTFT (s)</th><th>P50 TTFT (s)</th><th>P95 TTFT (s)</th><th>P99 TTFT (s)</th><th>Mean TPOT (ms)</th><th>DFlash2 接受率 %</th><th>DFlash2 接受长</th></tr></thead>
     <tbody>
-      <tr><td>1</td><td>1</td><td>0</td><td>3,757/3,757</td><td>4,096/4,096</td><td>195.8</td><td>0.0051</td><td>20.92</td><td>1.92</td><td>1.92</td><td>1.92</td><td>1.92</td><td>47.3</td></tr>
-      <tr><td>2</td><td>2</td><td>0</td><td>7,445/3,722</td><td>8,192/4,096</td><td>352.2</td><td>0.0057</td><td>23.26</td><td>6.11</td><td>6.11</td><td>6.11</td><td>6.11</td><td>63.0</td></tr>
-      <tr><td>4</td><td>4</td><td>0</td><td>15,741/3,935</td><td>16,384/4,096</td><td>366.6</td><td>0.0109</td><td>44.69</td><td>11.18</td><td>11.18</td><td>11.6</td><td>11.6</td><td>83.4</td></tr>
+      <tr><td>1</td><td>1</td><td>0</td><td>3,757/3,757</td><td>4,096/4,096</td><td>195.8</td><td>0.0051</td><td>20.92</td><td>1.92</td><td>1.92</td><td>1.92</td><td>1.92</td><td>47.3<td>36.5</td><td>3.56</td></tr>
+      <tr><td>2</td><td>2</td><td>0</td><td>7,445/3,722</td><td>8,192/4,096</td><td>352.2</td><td>0.0057</td><td>23.26</td><td>6.11</td><td>6.11</td><td>6.11</td><td>6.11</td><td>63.0<td>25.1</td><td>2.76</td></tr>
+      <tr><td>4</td><td>4</td><td>0</td><td>15,741/3,935</td><td>16,384/4,096</td><td>366.6</td><td>0.0109</td><td>44.69</td><td>11.18</td><td>11.18</td><td>11.6</td><td>11.6</td><td>83.4<td>19.7</td><td>2.38</td></tr>
     </tbody>
   </table></div>
 
   <h3>4.3 输入 8K → 输出 8K</h3>
   <div class="table-wrap"><table>
-    <thead><tr><th>并发</th><th>成功</th><th>失败</th><th>输入 tokens 总/均</th><th>输出 tokens 总/均</th><th>Duration s</th><th>Request throughput (req/s)</th><th>Output tok/s</th><th>Mean TTFT (s)</th><th>P50 TTFT (s)</th><th>P95 TTFT (s)</th><th>P99 TTFT (s)</th><th>Mean TPOT (ms)</th></tr></thead>
+    <thead><tr><th>并发</th><th>成功</th><th>失败</th><th>输入 tokens 总/均</th><th>输出 tokens 总/均</th><th>Duration s</th><th>Request throughput (req/s)</th><th>Output tok/s</th><th>Mean TTFT (s)</th><th>P50 TTFT (s)</th><th>P95 TTFT (s)</th><th>P99 TTFT (s)</th><th>Mean TPOT (ms)</th><th>DFlash2 接受率 %</th><th>DFlash2 接受长</th></tr></thead>
     <tbody>
-      <tr><td>1</td><td>1</td><td>0</td><td>7,454/7,454</td><td>8,192/8,192</td><td>467.6</td><td>0.0021</td><td>17.52</td><td>2.86</td><td>2.86</td><td>2.86</td><td>2.86</td><td>56.7</td></tr>
-      <tr><td>2</td><td>2</td><td>0</td><td>14,746/7,373</td><td>16,384/8,192</td><td>600.5</td><td>0.0033</td><td>27.28</td><td>9.24</td><td>9.24</td><td>9.24</td><td>9.24</td><td>62.2</td></tr>
-      <tr><td>4</td><td>4</td><td>0</td><td>31,234/7,808</td><td>32,768/8,192</td><td>895.9</td><td>0.0045</td><td>36.57</td><td>22.66</td><td>25.15</td><td>25.16</td><td>25.16</td><td>73.3</td></tr>
+      <tr><td>1</td><td>1</td><td>0</td><td>7,454/7,454</td><td>8,192/8,192</td><td>467.6</td><td>0.0021</td><td>17.52</td><td>2.86</td><td>2.86</td><td>2.86</td><td>2.86</td><td>56.7<td>27.5</td><td>2.93</td></tr>
+      <tr><td>2</td><td>2</td><td>0</td><td>14,746/7,373</td><td>16,384/8,192</td><td>600.5</td><td>0.0033</td><td>27.28</td><td>9.24</td><td>9.24</td><td>9.24</td><td>9.24</td><td>62.2<td>27.9</td><td>2.96</td></tr>
+      <tr><td>4</td><td>4</td><td>0</td><td>31,234/7,808</td><td>32,768/8,192</td><td>895.9</td><td>0.0045</td><td>36.57</td><td>22.66</td><td>25.15</td><td>25.16</td><td>25.16</td><td>73.3<td>22.0</td><td>2.54</td></tr>
     </tbody>
   </table></div>
-  <p class="small">36 个请求全部成功。TTFT 随输入长度与并发显著恶化（8K×并发4 均值 22.66 s）——投机解码开启后调度器分给 prefill 的 token 预算被压缩，长输入需多次 interleaved prefill。</p>
+    <h3>4.4 投机解码逐档明细（服务端日志口径）</h3>
+  <div class="table-wrap"><table>
+    <thead><tr><th>档位</th><th>Accepted tokens（被接受）</th><th>Drafted tokens（草稿总产出）</th><th>接受率 %</th><th>接受长</th></tr></thead>
+    <tbody>
+      <tr><td>1K×c1</td><td>560</td><td>2,625</td><td>19.4</td><td>2.36</td></tr>
+      <tr><td>1K×c2</td><td>1,199</td><td>6,202</td><td>19.9</td><td>2.39</td></tr>
+      <tr><td>1K×c4</td><td>2,416</td><td>11,361</td><td>20.0</td><td>2.40</td></tr>
+      <tr><td>4K×c1</td><td>2,925</td><td>8,393</td><td>36.5</td><td>3.56</td></tr>
+      <tr><td>4K×c2</td><td>5,265</td><td>20,874</td><td>25.1</td><td>2.76</td></tr>
+      <tr><td>4K×c4</td><td>9,582</td><td>47,838</td><td>19.7</td><td>2.38</td></tr>
+      <tr><td>8K×c1</td><td>5,195</td><td>18,809</td><td>27.5</td><td>2.93</td></tr>
+      <tr><td>8K×c2</td><td>10,939</td><td>39,389</td><td>27.9</td><td>2.96</td></tr>
+      <tr><td>8K×c4</td><td>20,979</td><td>83,258</td><td>22.0</td><td>2.54</td></tr>
+    </tbody>
+  </table></div>
+  <p class="small">取自服务端 <code>SpecDecoding metrics</code> 周期日志（每 10s 一条）按各档时间窗归集：接受率/接受长为窗口内均值，Accepted/Drafted tokens 为窗口内合计。Drafted 约为 Accepted 的 4 倍——num_spec=7 的 draft 大部分被拒。</p>
+
+<p class="small">36 个请求全部成功。TTFT 随输入长度与并发显著恶化（8K×并发4 均值 22.66 s）——投机解码开启后调度器分给 prefill 的 token 预算被压缩，长输入需多次 interleaved prefill。</p>
 </section>
 
 <section>
@@ -249,7 +268,7 @@ vllm serve Qwen/Qwen3.8-27B-FP8 \
   <ul>
     <li><b>测试范围</b>：随机 token 九档（1K/4K/8K × 并发 1/2/4）；Agent 任务流 12 轮；真实文本单流 5 组；缓存验证 3 次；多轮对话 5 轮；热态长输出 3 组。长输出（32K）组、8 以上并发未测试。</li>
     <li>主模型为 FP8 包（KV bf16）；投机解码参数 num_speculative_tokens=7 全程生效。</li>
-    <li>接受率：vLLM 服务日志无逐周期接受率输出，本报告以工具轮/自然语言轮的速度差表征投机效果。</li>
+    <li>接受率/接受长/Accepted/Drafted tokens 均取自服务端 SpecDecoding 周期日志按档位时间窗归集（服务端口径，与压测工具指标体系相互独立）；第 5 节工具轮/自然语言轮的速度差可交叉印证投机效果。</li>
     <li>随机口径与官方工具一致（random 数据集 + ignore-eos）；TPOT/TTFT P99 取自工具 JSON 原生输出，TTFT 已由 ms 换算为 s。</li>
     <li>原始数据：压测机 <code>/root/qwen27b-bench/results-spark44-dflash7-fp8-v2/</code>（9 JSON + 逐档 log）；场景组 log：<code>supplement_b_dflash2.log</code>、<code>realtext_dflash2.log</code>、<code>realtext_nothink_dflash2.log</code>、<code>prefix_cache_dflash2.log</code>、<code>supplement_a_dflash2.log</code>；服务日志 被测机 <code>~/vllm_dflash2_v2.log</code>。</li>
   </ul>
