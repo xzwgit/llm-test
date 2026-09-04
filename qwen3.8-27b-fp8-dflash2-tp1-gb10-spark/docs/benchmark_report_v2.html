@@ -2,59 +2,91 @@
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
-<title>1xGB10 Qwen3.8-27B FP8 DFlash2 压测报告 v2</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Qwen3.8-27B-FP8 + DFlash2 1×DGX Spark(GB10) TP1 压测报告 v2</title>
 <style>
-  body { font-family: "Microsoft YaHei", "Segoe UI", sans-serif; max-width: 1080px; margin: 24px auto; padding: 0 20px; color: #1f2937; line-height: 1.65; }
-  h1 { font-size: 26px; border-bottom: 3px solid #2563eb; padding-bottom: 10px; }
-  h2 { font-size: 20px; color: #1e40af; margin-top: 36px; border-left: 5px solid #2563eb; padding-left: 10px; }
-  h3 { font-size: 16px; color: #374151; margin-top: 22px; }
-  table { border-collapse: collapse; width: 100%; margin: 14px 0; font-size: 14px; }
-  th, td { border: 1px solid #d1d5db; padding: 7px 10px; text-align: right; }
-  th { background: #eff6ff; color: #1e3a8a; text-align: center; }
-  tr:nth-child(even) { background: #f9fafb; }
-  td:first-child, th:first-child { text-align: center; }
-  code { background: #f3f4f6; padding: 1px 5px; border-radius: 3px; font-size: 13px; }
-  pre { background: #0f172a; color: #e2e8f0; padding: 16px 18px; border-radius: 8px; overflow-x: auto; font-size: 13px; line-height: 1.55; }
-  pre code { background: none; color: inherit; padding: 0; }
-  .note { background: #fefce8; border-left: 4px solid #eab308; padding: 10px 14px; margin: 14px 0; font-size: 14px; }
-  .env { background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 8px; padding: 14px 18px; margin: 14px 0; }
-  .metric { color: #dc2626; font-weight: bold; }
-  ul { margin: 8px 0; }
+:root { --ink:#172033; --muted:#5c6878; --line:#d9e1ea; --bg:#f4f6f8; --paper:#fff; --green:#14724f; }
+* { box-sizing:border-box; }
+body { margin:0; background:var(--bg); color:var(--ink); font-family:'PingFang SC', 'Microsoft YaHei', system-ui, sans-serif; font-size:15px; line-height:1.65; }
+.page { max-width:1280px; margin:0 auto; background:var(--paper); min-height:100vh; }
+header { padding:48px 56px 34px; border-bottom:1px solid var(--line); background:#102033; color:#fff; }
+h1 { margin:0 0 12px; font-size:32px; line-height:1.18; }
+.subtitle { color:#d6dee8; max-width:820px; margin:0; }
+.meta { display:flex; flex-wrap:wrap; gap:10px; margin-top:24px; }
+.chip { border:1px solid rgba(255,255,255,.22); border-radius:4px; padding:6px 10px; color:#eaf0f6; font-size:13px; }
+main { padding:36px 56px 56px; }
+section { padding:26px 0; border-bottom:1px solid var(--line); }
+section:last-child { border-bottom:0; }
+h2 { margin:0 0 14px; font-size:24px; }
+h3 { margin:20px 0 10px; font-size:18px; }
+.summary { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:14px; margin-top:20px; }
+.card { border:1px solid var(--line); border-radius:6px; padding:18px; background:#fff; }
+.label { color:var(--muted); font-size:13px; }
+.value { font-size:27px; font-weight:800; margin-top:6px; line-height:1.1; }
+.note { color:var(--muted); font-size:13px; margin:8px 0 0; }
+.ok { color:var(--green); font-weight:700; }
+table { width:100%; border-collapse:collapse; font-size:12.5px; }
+th { text-align:left; background:#172033; color:#fff; padding:8px 9px; white-space:nowrap; }
+td { border-bottom:1px solid var(--line); padding:7px 9px; vertical-align:top; white-space:nowrap; }
+tr:nth-child(even) td { background:#f8fafc; }
+.table-wrap { overflow-x:auto; border:1px solid var(--line); border-radius:6px; margin:14px 0; }
+.small { font-size:12px; color:var(--muted); }
+ul { margin:8px 0 0; padding-left:20px; }
+li { margin:4px 0; }
+code { background:#eef2f6; border-radius:3px; padding:1px 5px; font-size:12.5px; }
+pre { background:#102033; color:#dce6f2; padding:16px 18px; border-radius:6px; overflow-x:auto; font-size:12.5px; line-height:1.55; }
+pre code { background:transparent; color:inherit; padding:0; }
+.cmd-note { background:#fefce8; border-left:4px solid #eab308; padding:10px 14px; margin:12px 0; font-size:13px; }
+@media (max-width: 820px) { header, main { padding-left:22px; padding-right:22px; } .summary { grid-template-columns:1fr; } h1 { font-size:26px; } }
 </style>
 </head>
 <body>
-
-<h1>1×GB10 · Qwen3.8-27B（FP8）· vLLM DFlash2 压测报告（v2）</h1>
+<div class="page">
+<header>
+  <h1>Qwen3.8-27B-FP8 + DFlash2（投机解码）· 1×DGX Spark（GB10）TP1 压测报告（v2）</h1>
+  <p class="subtitle">基于 vLLM 官方基准工具 <code style="background:transparent;color:#9fc3e8">vllm bench serve</code> 的输入/输出 token 组合 × 并发梯度测试，另含 Agent 任务流、真实文本、prefix cache 验证等场景组。指标名称、单位与工具官方输出保持一致。</p>
+  <div class="meta">
+    <span class="chip">报告日期：2026-09-04</span>
+    <span class="chip">硬件：1×DGX Spark（GB10，121GB 统一内存）</span>
+    <span class="chip">模型：Qwen3.8-27B-FP8（TP=1，DFlash2 num_spec=7）</span>
+    <span class="chip">vLLM nightly 0.28.1rc1.dev283（宿主机）</span>
+    <span class="chip">范围：随机 9 档 + 场景组</span>
+  </div>
+</header>
+<main>
 
 <section>
-<h2>1. 概述</h2>
-<div class="env">
-<b>被测配置</b>：DGX Spark（单机单卡 GB10，121GB 统一内存）· vLLM nightly <code>0.28.1rc1.dev283+g300f68832</code> · 主模型 <code>Qwen/Qwen3.8-27B-FP8</code>（Cutlass FP8，KV bf16）· 投机解码 <b>DFlash2 num_speculative_tokens=7</b>（draft：incoai/Qwen3.8-27B-DFlash2）· chunked prefill 32768 · 256K 上下文
-</div>
-<ul>
-  <li><b>测试范围</b>：随机 token 九档、Agent 任务流 12 轮、真实文本单流 5 组、prefix cache 验证 3 次、多轮对话 5 轮、热态长输出 3 组。</li>
-  <li><b>随机 token 标准口径</b>（vllm bench serve，官方工具）：单请求 decode <b>15.5 ~ 20.9 tok/s</b>（TPOT 47.3~64.0 ms）；并发 4 聚合 <b>43.5 ~ 44.7 tok/s</b>（1K/4K），8K×c4 36.6。</li>
-  <li><b>Agent 工具调用场景</b>：decode <b>40.0 ~ 47.5 tok/s</b>（结构化输出投机加速明显），TTFT 0.24~1.13 s 且逐轮抬升。</li>
-  <li><b>TTFT 显著受投机调度挤压</b>：冷态 8K 输入 2.86 s（单流）、8K×c4 达 22.66 s；长输入冷 prefill 慢（20.5K token 首次 15.0~22.4 s）。</li>
-  <li><b>prefix cache 延迟一轮命中</b>：相同 13.8K 前缀连续三次请求，TTFT 15.0 s → 14.98 s（未命中）→ <b>0.78 s（第三次才命中）</b>；多轮对话同样表现为前两轮冷、第三轮起命中（1.1 s 量级）。</li>
-</ul>
+  <h2>1. 测试结论</h2>
+  <div class="summary">
+    <div class="card"><div class="label">测试档位</div><div class="value ok">9/9 全部成功</div><p class="note">3 组输入/输出组合 × 并发 1/2/4，零失败；场景组另计</p></div>
+    <div class="card"><div class="label">单流 decode（随机 token）</div><div class="value">15.5–20.9 tok/s</div><p class="note">并发 1 各组 TPOT 47.3~64.0 ms</p></div>
+    <div class="card"><div class="label">Agent 工具调用峰值</div><div class="value">47.5 tok/s</div><p class="note">工具调用 JSON 轮 40.0~47.5；TTFT 0.24~1.13 s 逐轮抬升</p></div>
+    <div class="card"><div class="label">Prefix cache 命中</div><div class="value">第 3 次起 0.78 s</div><p class="note">同前缀第 2 次未命中（15.0 s 重算）——延迟一轮生效</p></div>
+  </div>
+  <ul>
+    <li>聚合吞吐：并发 4 时 1K/4K 档 43.5/44.7 tok/s，8K 档 36.6 tok/s。</li>
+    <li>TTFT 受投机调度挤压明显：8K×并发4 均值 22.66 s；冷 20.5K token prefill 需 15.0~22.4 s（chunked prefill 32768 未完全兑现）。</li>
+    <li>结构化输出（工具调用 JSON）投机加速约 3 倍（自然语言轮 10.3~31.6）。</li>
+  </ul>
 </section>
 
 <section>
-<h2>2. 部署环境与服务配置</h2>
-<table>
-  <tr><th>项目</th><th>配置</th></tr>
-  <tr><td>硬件</td><td style="text-align:left">NVIDIA DGX Spark（GB10，SM121），1× 121GB 统一内存，单卡 TP1</td></tr>
-  <tr><td>推理框架</td><td style="text-align:left">vLLM 0.28.1rc1.dev283+g300f68832（宿主机 venv，Rust frontend）</td></tr>
-  <tr><td>主模型</td><td style="text-align:left">Qwen/Qwen3.8-27B-FP8（HF cache 标准结构；权重 Cutlass FP8 路径，KV cache bf16）</td></tr>
-  <tr><td>Draft 模型</td><td style="text-align:left">incoai/Qwen3.8-27B-DFlash2（DFlash2DraftModel）</td></tr>
-  <tr><td>投机解码</td><td style="text-align:left">dflash，num_speculative_tokens=7</td></tr>
-  <tr><td>调度</td><td style="text-align:left">max-model-len 262144 · max-num-batched-tokens 32768 · chunked prefill · async-scheduling · prefix-caching 开启（Mamba 混合架构下实际行为见第 6 节）</td></tr>
-  <tr><td>压测客户端</td><td style="text-align:left">独立 x86 服务器远程打，工具 <code>vllm bench serve</code>（官方）</td></tr>
-</table>
+  <h2>2. 部署环境与服务配置</h2>
+  <div class="table-wrap"><table>
+    <thead><tr><th>项目</th><th>配置</th></tr></thead>
+    <tbody>
+      <tr><td>硬件</td><td>NVIDIA DGX Spark（GB10，SM121），1× 121GB 统一内存，单卡 TP1</td></tr>
+      <tr><td>推理框架</td><td>vLLM nightly <code>0.28.1rc1.dev283+g300f68832</code>（宿主机 venv，Rust frontend）</td></tr>
+      <tr><td>主模型</td><td>Qwen/Qwen3.8-27B-FP8（HF cache 标准结构；权重 Cutlass FP8 路径，KV cache bf16）</td></tr>
+      <tr><td>Draft 模型</td><td>incoai/Qwen3.8-27B-DFlash2（DFlash2DraftModel）</td></tr>
+      <tr><td>投机解码</td><td>dflash，num_speculative_tokens=7</td></tr>
+      <tr><td>调度</td><td>max-model-len 262144 · max-num-batched-tokens 32768 · chunked prefill · async-scheduling · prefix-caching 开启（Mamba 混合架构下实际行为见第 7 节）</td></tr>
+      <tr><td>压测客户端</td><td>独立 x86 服务器远程打（不在被测机上跑）</td></tr>
+    </tbody>
+  </table></div>
 
-<h3>启动命令（实际使用）</h3>
-<pre><code>export HF_HUB_OFFLINE=1 HF_HUB_DISABLE_XET=1
+  <h3>启动命令（实际使用）</h3>
+  <pre><code>export HF_HUB_OFFLINE=1 HF_HUB_DISABLE_XET=1
 export VLLM_WORKER_MULTIPROC_METHOD=spawn CUDA_VISIBLE_DEVICES=0
 export VLLM_USE_RUST_FRONTEND=1 VLLM_ENGINE_READY_TIMEOUT_S=3600
 vllm serve Qwen/Qwen3.8-27B-FP8 \
@@ -73,127 +105,156 @@ vllm serve Qwen/Qwen3.8-27B-FP8 \
   --tool-call-parser qwen3_coder \
   --enable-auto-tool-choice \
   --host 0.0.0.0 --port 8123 --api-key abc.12345</code></pre>
-<div class="note">启动至就绪约 5 分钟。模型与 draft 均已在被测机 HF cache（离线模式加载）。</div>
+  <p class="cmd-note">主模型与 draft 均已在被测机 HF cache（离线模式加载）；启动至就绪约 5 分钟。</p>
 </section>
 
 <section>
-<h2>3. 压测数据（随机 token 标准口径，九档）</h2>
-<h3>3.0 指标含义</h3>
-<table>
-  <tr><th>列</th><th style="text-align:left">含义</th></tr>
-  <tr><td>并发</td><td style="text-align:left">该档 burst 同时发出的请求数（等于该档总请求数，全部同时开跑）</td></tr>
-  <tr><td>成功请求数</td><td style="text-align:left">该档完成 / 失败的请求数（Successful requests / Failed，官方字段 completed/failed；本测试全部成功）</td></tr>
-  <tr><td>输入 tokens</td><td style="text-align:left">全部请求实际输入（prompt）token 合计——实测值，非目标值</td></tr>
-  <tr><td>输出 tokens</td><td style="text-align:left">全部请求实际输出（completion）token 合计；ignore_eos 下精确等于目标值</td></tr>
-  <tr><td>Output token throughput (tok/s)</td><td style="text-align:left">输出 tokens 总量 ÷ Duration，整机每秒产出的生成 token 数（官方字段 output_throughput），衡量生成吞吐</td></tr>
-  <tr><td>TTFT 均值 / P99 (s)</td><td style="text-align:left">首 token 延迟（Time To First Token）：从发出请求到收到第 1 个生成 token 的耗时；P99 = 99% 的请求快于该值，尾延迟指标（官方字段 mean_ttft_ms / p99_ttft_ms 换算为秒）</td></tr>
-  <tr><td>TPOT 均值 (ms)</td><td style="text-align:left">首 token 之后平均每个输出 token 的耗时（Time Per Output Token），决定稳定吐字速度；单流速度 ≈ 1000 ÷ TPOT（官方字段 mean_tpot_ms）</td></tr>
-  <tr><td>总耗时 (s)</td><td style="text-align:left">该档整段测试耗时：从第一个请求发出到最后一个请求完成（Benchmark duration，官方字段 duration）</td></tr>
-
-  
-</table>
-
-<p>工具与口径：<code>vllm bench serve</code>（官方），backend <code>openai-chat</code>，random 数据集 + <code>--ignore-eos</code>，每档前 warmup 3 次。TTFT 换算为秒。</p>
-<p><b>指标口径</b>：全部取自工具输出 JSON 官方字段（successful/failed、total_input/output_tokens、duration、request_throughput、output_throughput、mean·p50·p99_ttft_ms、mean_tpot_ms）；除 TTFT 由 ms 换算为 s（÷1000）外，其余数值均为官方原值；接受率/接受长度为服务端日志口径。</p>
-
-<h3>3.1 输入 1K → 输出 1K</h3>
-<table>
-  <tr><th>并发</th><th>成功请求数</th><th>输入 tokens</th><th>输出 tokens</th><th>Output token throughput (tok/s)</th><th>TTFT 均值 (s)</th><th>TTFT P99 (s)</th><th>TPOT 均值 (ms)</th><th>总耗时 (s)</th></tr>
-  <tr><td>1</td><td>1/1</td><td>969</td><td>1,024</td><td>15.5</td><td>0.47</td><td>0.47</td><td>64.0</td><td>66</td></tr>
-  <tr><td>2</td><td>2/2</td><td>1,953</td><td>2,048</td><td>25.6</td><td>0.89</td><td>0.99</td><td>73.7</td><td>80</td></tr>
-  <tr><td>4</td><td>4/4</td><td>4,105</td><td>4,096</td><td>43.5</td><td>2.25</td><td>2.49</td><td>75.9</td><td>94</td></tr>
-</table>
-
-<h3>3.2 输入 4K → 输出 4K</h3>
-<table>
-  <tr><th>并发</th><th>成功请求数</th><th>输入 tokens</th><th>输出 tokens</th><th>Output token throughput (tok/s)</th><th>TTFT 均值 (s)</th><th>TTFT P99 (s)</th><th>TPOT 均值 (ms)</th><th>总耗时 (s)</th></tr>
-  <tr><td>1</td><td>1/1</td><td>3,757</td><td>4,096</td><td>20.9</td><td>1.92</td><td>1.92</td><td>47.3</td><td>196</td></tr>
-  <tr><td>2</td><td>2/2</td><td>7,445</td><td>8,192</td><td>23.3</td><td>6.11</td><td>6.11</td><td>63.0</td><td>352</td></tr>
-  <tr><td>4</td><td>4/4</td><td>15,741</td><td>16,384</td><td>44.7</td><td>11.18</td><td>11.60</td><td>83.4</td><td>367</td></tr>
-</table>
-
-<h3>3.3 输入 8K → 输出 8K</h3>
-<table>
-  <tr><th>并发</th><th>成功请求数</th><th>输入 tokens</th><th>输出 tokens</th><th>Output token throughput (tok/s)</th><th>TTFT 均值 (s)</th><th>TTFT P99 (s)</th><th>TPOT 均值 (ms)</th><th>总耗时 (s)</th></tr>
-  <tr><td>1</td><td>1/1</td><td>7,454</td><td>8,192</td><td>17.5</td><td>2.86</td><td>2.86</td><td>56.7</td><td>468</td></tr>
-  <tr><td>2</td><td>2/2</td><td>14,746</td><td>16,384</td><td>27.3</td><td>9.24</td><td>9.24</td><td>62.2</td><td>601</td></tr>
-  <tr><td>4</td><td>4/4</td><td>31,234</td><td>32,768</td><td>36.6</td><td>22.66</td><td>25.16</td><td>73.3</td><td>896</td></tr>
-</table>
-
-<div class="note">36 个请求全部成功。TTFT 随输入长度与并发显著恶化（8K×c4 均值 22.66 s）——投机解码开启后调度器分给 prefill 的 token 预算被压缩，长输入需多次 interleaved prefill。</div>
+  <h2>3. 测试方法</h2>
+  <div class="table-wrap"><table>
+    <thead><tr><th>项目</th><th>口径</th></tr></thead>
+    <tbody>
+      <tr><td>工具</td><td><code>vllm bench serve</code>（vLLM 官方，openai-chat 后端，endpoint /v1/chat/completions）</td></tr>
+      <tr><td>压测客户端位置</td><td>独立 x86 服务器远程打被测机</td></tr>
+      <tr><td>数据集 / 并发</td><td>random（固定输入/输出 token 数）× burst 并发（请求数=并发数）</td></tr>
+      <tr><td>输出长度</td><td><code>--ignore-eos</code>，每请求输出精确到目标值（1024/4096/8192）</td></tr>
+      <tr><td>输入 tokens</td><td>表中为<b>实测值</b>（chat 模板占用导致略低于目标）</td></tr>
+      <tr><td>热身</td><td>正式测试前 3 次热身请求</td></tr>
+      <tr><td>指标口径</td><td>全部取自工具输出 JSON 官方字段（successful/failed、total_input/output_tokens、duration、request_throughput、output_throughput、mean·p50·p99_ttft_ms、mean_tpot_ms）；除 TTFT 由 ms 换算为 s（÷1000）外，其余数值均为官方原值</td></tr>
+    </tbody>
+  </table></div>
 </section>
 
 <section>
-<h2>4. Agent 任务流模拟（12 轮）</h2>
-<p>方法：system 含 6 个工具定义，每轮追加模型输出与工具返回结果；流式请求；关闭思考，max_tokens=200。</p>
-<table>
-  <tr><th>轮次</th><th>输入 tokens</th><th>输出 tokens</th><th>TTFT (s)</th><th>decode (tok/s)</th><th>输出类型</th></tr>
-  <tr><td>1</td><td>320</td><td>26</td><td>0.24</td><td>40.1</td><td>工具调用 JSON</td></tr>
-  <tr><td>2</td><td>513</td><td>26</td><td>0.48</td><td>40.0</td><td>工具调用 JSON</td></tr>
-  <tr><td>3</td><td>641</td><td>51</td><td>0.52</td><td>44.9</td><td>工具调用 JSON</td></tr>
-  <tr><td>4</td><td>745</td><td>31</td><td>0.54</td><td><span class="metric">47.5</span></td><td>工具调用 JSON</td></tr>
-  <tr><td>5</td><td>845</td><td>42</td><td>0.59</td><td>43.0</td><td>工具调用 JSON</td></tr>
-  <tr><td>6</td><td>995</td><td>200</td><td>0.65</td><td>23.8</td><td>自然语言总结</td></tr>
-  <tr><td>7</td><td>1,230</td><td>45</td><td>0.77</td><td>10.3</td><td>自然语言解释</td></tr>
-  <tr><td>8</td><td>1,442</td><td>200</td><td>0.88</td><td>31.6</td><td>自然语言总结</td></tr>
-  <tr><td>9~12</td><td>1,745~2,098</td><td>13~61</td><td>0.72~1.13</td><td>11.3~31.1</td><td>收尾/混合</td></tr>
-</table>
-<ul>
-  <li>工具调用 JSON 轮 decode <b>40.0~47.5 tok/s</b>（本测试单流最高观测值 47.5），结构化输出下投机解码同样有明显加速（自然语言轮 10.3~31.6）。</li>
-  <li>TTFT 从首轮 0.24 s 逐轮升至 ~1.1 s：上下文递增部分需增量 prefill，且投机调度下 prefill 预算受限。</li>
-</ul>
+  <h2>4. 完整测试数据（随机 token，3 组 9 档）</h2>
+
+  <h3>4.0 指标含义</h3>
+  <div class="table-wrap"><table>
+    <thead><tr><th>列</th><th>含义</th></tr></thead>
+    <tbody>
+      <tr><td>并发</td><td>该档 burst 同时发出的请求数（等于该档总请求数，全部同时开跑）</td></tr>
+      <tr><td>成功 / 失败</td><td>该档完成 / 失败的请求数（Successful requests / Failed，官方字段 completed/failed；本测试全部成功）</td></tr>
+      <tr><td>输入 tokens</td><td>全部请求实际输入（prompt）token 合计——实测值，非目标值</td></tr>
+      <tr><td>输出 tokens</td><td>全部请求实际输出（completion）token 合计；ignore_eos 下精确等于目标值</td></tr>
+      <tr><td>Output tok/s</td><td>输出 tokens 总量 ÷ Duration，整机每秒产出的生成 token 数（官方字段 output_throughput），衡量生成吞吐</td></tr>
+      <tr><td>Mean TTFT (s)</td><td>首 token 延迟平均值：从发出请求到收到第 1 个生成 token 的耗时（Time To First Token）</td></tr>
+      <tr><td>TTFT P99 (s)</td><td>首 token 延迟 99 分位——99% 的请求快于该值，尾延迟指标（官方字段 p99_ttft_ms 换算为秒）</td></tr>
+      <tr><td>Mean TPOT (ms)</td><td>首 token 之后平均每个输出 token 的耗时（Time Per Output Token），决定稳定吐字速度；单流速度 ≈ 1000 ÷ TPOT</td></tr>
+      <tr><td>Duration s</td><td>该档整段测试耗时：从第一个请求发出到最后一个请求完成（Benchmark duration，官方字段 duration）</td></tr>
+      <tr><td>decode (tok/s)</td><td>（第 5~7 节场景组）单请求生成速度：输出 tokens ÷（总耗时 − TTFT），流式请求以首 token 时刻分隔</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>4.1 输入 1K → 输出 1K</h3>
+  <div class="table-wrap"><table>
+    <thead><tr><th>并发</th><th>成功</th><th>失败</th><th>输入 tokens</th><th>输出 tokens</th><th>Output tok/s</th><th>Mean TTFT (s)</th><th>TTFT P99 (s)</th><th>Mean TPOT (ms)</th><th>Duration s</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td>1</td><td>0</td><td>969</td><td>1,024</td><td>15.5</td><td>0.47</td><td>0.47</td><td>64.0</td><td>66</td></tr>
+      <tr><td>2</td><td>2</td><td>0</td><td>1,953</td><td>2,048</td><td>25.6</td><td>0.89</td><td>0.99</td><td>73.7</td><td>80</td></tr>
+      <tr><td>4</td><td>4</td><td>0</td><td>4,105</td><td>4,096</td><td>43.5</td><td>2.25</td><td>2.49</td><td>75.9</td><td>94</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>4.2 输入 4K → 输出 4K</h3>
+  <div class="table-wrap"><table>
+    <thead><tr><th>并发</th><th>成功</th><th>失败</th><th>输入 tokens</th><th>输出 tokens</th><th>Output tok/s</th><th>Mean TTFT (s)</th><th>TTFT P99 (s)</th><th>Mean TPOT (ms)</th><th>Duration s</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td>1</td><td>0</td><td>3,757</td><td>4,096</td><td>20.9</td><td>1.92</td><td>1.92</td><td>47.3</td><td>196</td></tr>
+      <tr><td>2</td><td>2</td><td>0</td><td>7,445</td><td>8,192</td><td>23.3</td><td>6.11</td><td>6.11</td><td>63.0</td><td>352</td></tr>
+      <tr><td>4</td><td>4</td><td>0</td><td>15,741</td><td>16,384</td><td>44.7</td><td>11.18</td><td>11.60</td><td>83.4</td><td>367</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>4.3 输入 8K → 输出 8K</h3>
+  <div class="table-wrap"><table>
+    <thead><tr><th>并发</th><th>成功</th><th>失败</th><th>输入 tokens</th><th>输出 tokens</th><th>Output tok/s</th><th>Mean TTFT (s)</th><th>TTFT P99 (s)</th><th>Mean TPOT (ms)</th><th>Duration s</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td>1</td><td>0</td><td>7,454</td><td>8,192</td><td>17.5</td><td>2.86</td><td>2.86</td><td>56.7</td><td>468</td></tr>
+      <tr><td>2</td><td>2</td><td>0</td><td>14,746</td><td>16,384</td><td>27.3</td><td>9.24</td><td>9.24</td><td>62.2</td><td>601</td></tr>
+      <tr><td>4</td><td>4</td><td>0</td><td>31,234</td><td>32,768</td><td>36.6</td><td>22.66</td><td>25.16</td><td>73.3</td><td>896</td></tr>
+    </tbody>
+  </table></div>
+  <p class="small">36 个请求全部成功。TTFT 随输入长度与并发显著恶化（8K×并发4 均值 22.66 s）——投机解码开启后调度器分给 prefill 的 token 预算被压缩，长输入需多次 interleaved prefill。</p>
 </section>
 
 <section>
-<h2>5. 真实文本单流</h2>
-<table>
-  <tr><th>场景</th><th>输入 tokens</th><th>输出 tokens</th><th>总耗时 (s)</th><th>decode 速率 (tok/s)</th></tr>
-  <tr><td>中文长文（默认思考）</td><td>79</td><td>2,048</td><td>169.1</td><td>12.1</td></tr>
-  <tr><td>英文长文（默认思考）</td><td>91</td><td>2,048</td><td>160.1</td><td>12.8</td></tr>
-  <tr><td>代码生成（默认思考）</td><td>78</td><td>2,048</td><td>130.8</td><td>15.7</td></tr>
-  <tr><td>中文长文（关闭思考）</td><td>39</td><td>1,247</td><td>104.5</td><td>11.9</td></tr>
-  <tr><td>英文长文（关闭思考）</td><td>43</td><td>2,025</td><td>122.6</td><td>16.5</td></tr>
-</table>
+  <h2>5. Agent 任务流模拟（12 轮）</h2>
+  <p class="small">方法：模拟单 agent 工具调用循环 12 轮——system 含 6 个工具定义，首轮下达巡检任务，此后每轮将模型输出与对应工具返回结果（JSON）追加进上下文；流式请求分离 TTFT 与 decode；关闭思考，max_tokens=200。</p>
+  <div class="table-wrap"><table>
+    <thead><tr><th>轮次</th><th>输入 tokens</th><th>输出 tokens</th><th>TTFT (s)</th><th>decode (tok/s)</th><th>输出类型</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td>320</td><td>26</td><td>0.24</td><td>40.1</td><td>工具调用 JSON</td></tr>
+      <tr><td>2</td><td>513</td><td>26</td><td>0.48</td><td>40.0</td><td>工具调用 JSON</td></tr>
+      <tr><td>3</td><td>641</td><td>51</td><td>0.52</td><td>44.9</td><td>工具调用 JSON</td></tr>
+      <tr><td>4</td><td>745</td><td>31</td><td>0.54</td><td>47.5</td><td>工具调用 JSON</td></tr>
+      <tr><td>5</td><td>845</td><td>42</td><td>0.59</td><td>43.0</td><td>工具调用 JSON</td></tr>
+      <tr><td>6</td><td>995</td><td>200</td><td>0.65</td><td>23.8</td><td>自然语言总结</td></tr>
+      <tr><td>7</td><td>1,230</td><td>45</td><td>0.77</td><td>10.3</td><td>自然语言解释</td></tr>
+      <tr><td>8</td><td>1,442</td><td>200</td><td>0.88</td><td>31.6</td><td>自然语言总结</td></tr>
+      <tr><td>9~12</td><td>1,745~2,098</td><td>13~61</td><td>0.72~1.13</td><td>11.3~31.1</td><td>收尾/混合</td></tr>
+    </tbody>
+  </table></div>
+  <ul>
+    <li>工具调用 JSON 轮 decode <b>40.0~47.5 tok/s</b>（本测试单流最高观测值 47.5），结构化输出下投机解码同样有明显加速（自然语言轮 10.3~31.6）。</li>
+    <li>TTFT 从首轮 0.24 s 逐轮升至 ~1.1 s：上下文递增部分需增量 prefill，且投机调度下 prefill 预算受限。</li>
+  </ul>
 </section>
 
 <section>
-<h2>6. Prefix Cache 行为（本测试重点观察项）</h2>
-<p>方法：同一 13,860 token 长前缀请求连续发送 3 次（max_tokens=1，总时长近似 TTFT）。</p>
-<table>
-  <tr><th>次序</th><th>输入 tokens</th><th>总时长 ≈ TTFT (s)</th><th>判定</th></tr>
-  <tr><td>第 1 次</td><td>13,860</td><td>15.02</td><td>冷 prefill</td></tr>
-  <tr><td>第 2 次</td><td>13,860</td><td><span class="metric">14.98</span></td><td><b>未命中</b>（仍完整重算 prefill）</td></tr>
-  <tr><td>第 3 次</td><td>13,860</td><td>0.78</td><td>命中</td></tr>
-</table>
-<ul>
-  <li><b>缓存命中存在一轮延迟</b>：相同前缀的第二次请求并未命中（Mamba 混合架构的状态缓存写入/生效时机晚于请求间隔）；第三次起命中，TTFT 0.78 s。</li>
-  <li>多轮对话（8K 文档 system，逐轮追加）同样表现：第 1/2 轮 TTFT 22.35/22.74 s（冷），第 3~5 轮 1.07~1.13 s（命中）。</li>
-  <li>热态同前缀长输出（输出 1,024 × 3 问）：TTFT 0.82~1.00 s，decode 13.0~15.0 tok/s，总吞吐（输入+输出）÷ 总耗时口径 <b>270~311 tok/s</b>。</li>
-  <li>冷 prefill 20.5K token 需 15.0~22.4 s——投机解码开启后 prefill token 预算被压缩（batched 32768 未完全兑现），是长输入场景 TTFT 的主要短板。</li>
-</ul>
-</section>
-
-
-<section>
-<h2>7. 结论</h2>
-<ul>
-  <li><b>单流 decode</b>：随机口径 15.5~20.9 tok/s；真实文本 11.9~16.5 tok/s；Agent 工具调用 40.0~47.5 tok/s（单流最高观测值 47.5）。</li>
-  <li><b>聚合吞吐</b>：并发 4 时 1K/4K 档 43.5/44.7 tok/s，8K 档 36.6 tok/s。</li>
-  <li><b>TTFT 是主要短板</b>：投机调度压缩 prefill 预算，8K×c4 达 22.66 s、冷 20.5K prefill 15~22 s；多轮 Agent 场景 TTFT 逐轮抬升。</li>
-  <li><b>prefix cache 延迟一轮生效</b>：同前缀第 2 次请求仍完整重算，第 3 次起命中；对"每个新对话首两轮"的体验影响直接。</li>
-  <li>结构化输出（工具调用 JSON）投机加速明显（约 3 倍于自然语言轮）。</li>
-</ul>
+  <h2>6. 真实文本单流</h2>
+  <div class="table-wrap"><table>
+    <thead><tr><th>场景</th><th>输入 tokens</th><th>输出 tokens</th><th>总耗时 (s)</th><th>decode (tok/s)</th></tr></thead>
+    <tbody>
+      <tr><td>中文长文（默认思考）</td><td>79</td><td>2,048</td><td>169.1</td><td>12.1</td></tr>
+      <tr><td>英文长文（默认思考）</td><td>91</td><td>2,048</td><td>160.1</td><td>12.8</td></tr>
+      <tr><td>代码生成（默认思考）</td><td>78</td><td>2,048</td><td>130.8</td><td>15.7</td></tr>
+      <tr><td>中文长文（关闭思考）</td><td>39</td><td>1,247</td><td>104.5</td><td>11.9</td></tr>
+      <tr><td>英文长文（关闭思考）</td><td>43</td><td>2,025</td><td>122.6</td><td>16.5</td></tr>
+    </tbody>
+  </table></div>
 </section>
 
 <section>
-<h2>8. 数据边界与备注</h2>
-<ul>
-  <li><b>测试范围</b>：九档随机 token + Agent 12 轮 + 真实文本 5 组 + 缓存验证 3 次 + 多轮 5 轮 + 热态长输出 3 组。长输出（32K）组、8 以上并发未测试。</li>
-  <li>主模型为 FP8 包（KV bf16），与 NVFP4 包的 KV 精度不同；投机解码参数 num_speculative_tokens=7 全程生效。</li>
-  <li>接受率：vLLM 服务日志无逐周期接受率输出，本报告以工具轮/自然语言轮的速度差表征投机效果。</li>
-  <li>原始数据：压测机 <code>/root/qwen27b-bench/results-spark44-dflash7-fp8-v2/</code>（9 JSON+log）；补充组 log：<code>supplement_b_dflash2.log</code>、<code>realtext_dflash2.log</code>、<code>realtext_nothink_dflash2.log</code>、<code>prefix_cache_dflash2.log</code>、<code>supplement_a_dflash2.log</code>；服务日志 被测机 <code>~/vllm_dflash2_v2.log</code>。</li>
-</ul>
+  <h2>7. Prefix Cache 行为</h2>
+  <p class="small">方法：同一 13,860 token 长前缀请求连续发送 3 次（max_tokens=1，总时长近似 TTFT）。</p>
+  <div class="table-wrap"><table>
+    <thead><tr><th>次序</th><th>输入 tokens</th><th>总耗时 ≈ TTFT (s)</th><th>判定</th></tr></thead>
+    <tbody>
+      <tr><td>第 1 次</td><td>13,860</td><td>15.02</td><td>冷 prefill</td></tr>
+      <tr><td>第 2 次</td><td>13,860</td><td>14.98</td><td><b>未命中</b>（仍完整重算 prefill）</td></tr>
+      <tr><td>第 3 次</td><td>13,860</td><td>0.78</td><td>命中</td></tr>
+    </tbody>
+  </table></div>
+  <ul>
+    <li><b>缓存命中存在一轮延迟</b>：相同前缀的第二次请求并未命中（Mamba 混合架构的状态缓存写入/生效时机晚于请求间隔）；第三次起命中，TTFT 0.78 s。</li>
+    <li>多轮对话（8K 文档 system，逐轮追加）同样表现：第 1/2 轮 TTFT 22.35/22.74 s（冷），第 3~5 轮 1.07~1.13 s（命中）。</li>
+    <li>热态同前缀长输出（输出 1,024 × 3 问）：TTFT 0.82~1.00 s，decode 13.0~15.0 tok/s，总吞吐（输入+输出）÷ 总耗时口径 270~311 tok/s。</li>
+    <li>冷 prefill 20.5K token 需 15.0~22.4 s——投机解码开启后 prefill token 预算被压缩，是长输入场景 TTFT 的主要短板。</li>
+  </ul>
 </section>
 
+<section>
+  <h2>8. 结论</h2>
+  <ul>
+    <li><b>单流 decode</b>：随机口径 15.5~20.9 tok/s；真实文本 11.9~16.5 tok/s；Agent 工具调用 40.0~47.5 tok/s（单流最高观测值 47.5）。</li>
+    <li><b>聚合吞吐</b>：并发 4 时 1K/4K 档 43.5/44.7 tok/s，8K 档 36.6 tok/s。</li>
+    <li><b>TTFT 是主要短板</b>：投机调度压缩 prefill 预算，8K×c4 达 22.66 s、冷 20.5K prefill 15~22 s；多轮 Agent 场景 TTFT 逐轮抬升。</li>
+    <li><b>prefix cache 延迟一轮生效</b>：同前缀第 2 次请求仍完整重算，第 3 次起命中；对"每个新对话首两轮"的体验影响直接。</li>
+    <li>结构化输出（工具调用 JSON）投机加速明显（约 3 倍于自然语言轮）。</li>
+  </ul>
+</section>
+
+<section>
+  <h2>9. 数据边界与备注</h2>
+  <ul>
+    <li><b>测试范围</b>：随机 token 九档（1K/4K/8K × 并发 1/2/4）；Agent 任务流 12 轮；真实文本单流 5 组；缓存验证 3 次；多轮对话 5 轮；热态长输出 3 组。长输出（32K）组、8 以上并发未测试。</li>
+    <li>主模型为 FP8 包（KV bf16）；投机解码参数 num_speculative_tokens=7 全程生效。</li>
+    <li>接受率：vLLM 服务日志无逐周期接受率输出，本报告以工具轮/自然语言轮的速度差表征投机效果。</li>
+    <li>随机口径与官方工具一致（random 数据集 + ignore-eos）；TPOT/TTFT P99 取自工具 JSON 原生输出，TTFT 已由 ms 换算为 s。</li>
+    <li>原始数据：压测机 <code>/root/qwen27b-bench/results-spark44-dflash7-fp8-v2/</code>（9 JSON + 逐档 log）；场景组 log：<code>supplement_b_dflash2.log</code>、<code>realtext_dflash2.log</code>、<code>realtext_nothink_dflash2.log</code>、<code>prefix_cache_dflash2.log</code>、<code>supplement_a_dflash2.log</code>；服务日志 被测机 <code>~/vllm_dflash2_v2.log</code>。</li>
+  </ul>
+</section>
+
+</main>
+</div>
 </body>
 </html>
