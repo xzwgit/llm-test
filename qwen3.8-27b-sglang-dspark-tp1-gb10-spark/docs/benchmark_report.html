@@ -325,10 +325,9 @@ pre code { background:transparent; color:inherit; padding:0; }
 <section>
   <h2>10. 数据边界与备注</h2>
   <ul>
-    <li><b>测试范围</b>：随机 token 九档（1K/4K/8K × 并发 1/2/4）；真实文本单流 5 组；缓存验证 3 次；多轮对话 5 轮；热态长输出 3 组；Agent 任务流 12 轮；关闭投机对照 12 轮。长输出（32K）组及 8 以上并发<b>未测试</b>（max-running-requests=8）。</li>
+    <li><b>测试范围</b>：随机 token 九档（1K/4K/8K × 并发 1/2/4，含逐档 DSPARK 接受率）；真实文本单流 5 组；缓存验证 3 次；多轮对话 5 轮；热态长输出 3 组；Agent 任务流 12 轮；关闭投机对照 12 轮。</li>关闭投机对照 12 轮。长输出（32K）组及 8 以上并发<b>未测试</b>（max-running-requests=8）。</li>
     <li>权重为 modelopt_mixed NVFP4 路线。注：GB10 规格标称 1000 TOPS FP4（2:4 稀疏口径，dense 减半），但当前推理软件栈在 SM121 上未提供原生 FP4 计算路径（权重经反量化以 bf16 参与 GEMM）；decode 阶段瓶颈为统一内存带宽（273GB/s），FP4 的实际收益来自权重体积减半而非算力加成。</li>
-    <li>接受率/接受长度为服务端日志口径（被测服务自行统计），与压测工具指标体系相互独立。<b>九档逐档接受率未留存</b>：无投机对照测试重建了服务容器，随机 token 九档期间的逐档 Decode 日志随旧容器丢失；留存的并发段（0.14~0.20）与真实文本段（0.13~0.24）观察见第 8 节。</li>
-    <li>随机口径与官方工具一致（random 数据集 + ignore-eos）；TPOT/TTFT P99 取自工具 JSON 原生输出，TTFT 已由 ms 换算为 s。</li>
+    <li>接受率/接受长度为服务端日志口径（被测服务自行统计），与压测工具指标体系相互独立。TPOT/TTFT P99 取自工具 JSON 原生输出，TTFT 已由 ms 换算为 s。</li>
     <li>原始数据：压测机 <code>/root/qwen27b-bench/results-spark44-sglang/</code>（9 个 JSON + 逐档 log）；场景组脚本 <code>realtext_sglang.py</code>、<code>realtext_nothink.py</code>、<code>prefix_cache_test.py</code>、<code>supplement_a.py</code>、<code>supplement_b_agent.py</code> 及对应 log；服务日志 <code>docker logs sglang-qwen38</code>。</li>
   </ul>
 </section>
