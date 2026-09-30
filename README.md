@@ -9,6 +9,16 @@ LLM 部署与性能测试归档。每个子目录是一个独立测试项目，�
 |---|---|---|
 | [deepseek-v4-pro](deepseek-v4-pro/) | 2026-08 | DP2+MTP 部署, 多上下文压测, SM120 补丁与调优 |
 
+### DeepSeek-V4.1-Flash
+| 测试 | 日期 | 说明 |
+|---|---|---|
+| [deepseek-v4.1-flash-tp8-8xb300](deepseek-v4.1-flash-tp8-8xb300/) | 2026-09 | 8×B300 SXM6（SM100）TP8, 1M 上下文, 官方镜像与本地 uv 环境两组独立数据 |
+
+### DeepSeek-V4-Flash-0731
+| 测试 | 日期 | 说明 |
+|---|---|---|
+| [deepseek-v4-flash-0731-tp8-8xb300](deepseek-v4-flash-0731-tp8-8xb300/) | 2026-09 | 8×B300 SXM6（SM100）TP8, 官方镜像 + DSpark(spec=7), 冷/热两轮测量 |
+
 ### Qwen3.8-27B
 | 测试 | 日期 | 说明 |
 |---|---|---|
