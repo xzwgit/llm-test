@@ -1,0 +1,21 @@
+VERIFICATION (8x RTX PRO 6000, SM120, 100 KB SMEM opt-in 101376 B, CUDA 13.2, tilelang 0.1.15)
+==========================================================================================
+BEFORE (upstream 66258df): 4 launch failures
+  test_engram_sinkhorn_step_reduce[num_partials=507,head_dim=256]   smem 131072 > limit
+  test_engram_sinkhorn_step_reduce[num_partials=507,head_dim=5120]  smem 131072 > limit
+  test_engram_sinkhorn_step_reduce[num_partials=564,head_dim=256]   smem 145408 > limit
+  test_engram_sinkhorn_step_reduce[num_partials=564,head_dim=5120]  smem 145408 > limit
+  (tvm.error.InternalError: Failed to set the allowed dynamic shared memory size)
+
+AFTER this patch:
+  pytest tests/engram/test_engram_sinkhorn.py -k step_reduce
+  -> 4 passed, 2 skipped   (564/5120 now runs with num_stages=1, smem 71*256*4 = 72704 B)
+
+Tolerance analysis (see tolerance_simulation.py): with the launch fixed, one element of
+[564 x 5120] still exceeded assert_close's float32 default rtol (1.40e-6 vs 1.3e-6 allowed).
+A pure-torch row-serial loop reproduces 1.27e-6..1.53e-6 with 0-2 violating columns per seed,
+proving the residual is fp32 accumulation-order rounding, not a kernel defect. The test now
+compares through a float64 reference with rtol=3e-6.
+
+Datacenter behavior: num_rows * blk_d * 4 * 2 <= budget keeps the original 2-stage schedule;
+chunking and accumulation order are unchanged in all cases.

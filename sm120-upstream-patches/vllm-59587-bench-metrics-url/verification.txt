@@ -1,0 +1,16 @@
+VERIFICATION (same live PD deployment as PR body)
+==========================================================================================
+curl {router}:8130/metrics          -> 405 Method Not Allowed (router does not proxy /metrics)
+curl {decode}:8123/metrics          -> 8 x vllm:spec_decode_* series present
+
+bench via router WITHOUT the flag: no acceptance section at all.
+bench via router WITH --metrics-url http://{decode}:8123:
+
+  Successful requests:                     4
+  Acceptance rate (%):                     28.62
+  Acceptance length:                       2.43
+    Position 0:                            60.24
+    Position 1:                            35.86
+    Position 2:                            21.89
+    Position 3:                            14.67
+    Position 4:                            10.41

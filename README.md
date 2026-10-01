@@ -57,3 +57,7 @@ LLM 部署与性能测试归档。每个子目录是一个独立测试项目，�
 ## 环境要求
 
 见各子项目 docs/；压测客户端一律跑在独立服务器上远程打被测机。
+
+## SM120 upstream patches
+
+- [SM120 upstream patches (vLLM x3 + TileKernels)](sm120-upstream-patches/) — verified patches + evidence from our 8x RTX PRO 6000 cluster: NIXL PD loopback diagnostic, PD troubleshooting docs, bench --metrics-url, sinkhorn SMEM fix

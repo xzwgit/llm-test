@@ -1,0 +1,18 @@
+VERIFICATION (2-node SM120 PD: DeepSeek-V4.1-Flash, TP8+TP8, NixlConnector, vllm-router front-end)
+==========================================================================================
+Repro (producer started WITHOUT VLLM_NIXL_SIDE_CHANNEL_HOST), request via router
+at 2026-10-01 17:46:36 -- the new diagnostic fires on the decode node:
+
+  (Worker_TP6) ERROR 10-01 17:46:36 [base_worker.py:1387] NIXL transfer failure: handshake_failed
+  RuntimeError: Remote NIXL agent engine ID mismatch: the handshake reached this instance itself
+  (expected f4c020d3-341d-428b-88b0-e2454..., received <decoder's own engine ID>).
+  ... Set VLLM_NIXL_SIDE_CHANNEL_HOST on the remote instance to an address reachable from here.
+
+Before the patch, the same scenario printed only:
+  RuntimeError: Remote NIXL agent engine ID mismatch. Expected <producer>, received <decoder>.
+
+Healthy path (producer restarted WITH VLLM_NIXL_SIDE_CHANNEL_HOST=<fabric-ip>):
+  - engine-ID mismatch errors: delta 0 across a request
+  - decode workers report: 'NIXL compatibility check passed' + 'Transfer plan: local_tp=8, remote_tp=8'
+  - request output: 17*19 = 323 (correct)
+No behavior change outside the loopback case.
