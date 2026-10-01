@@ -1,0 +1,142 @@
+{
+ "rounds": 12,
+ "tool_call_ok": 12,
+ "total_prompt_tok": 22170,
+ "total_completion_tok": 2835,
+ "mean_t1_s": 0.29,
+ "mean_t2_s": 0.9,
+ "rows": [
+  {
+   "round": 1,
+   "city": "北京",
+   "tool_call": true,
+   "city_arg": "北京",
+   "t_round1_s": 0.31,
+   "t_round2_s": 0.28,
+   "prompt_tok": 533,
+   "completion_tok": 120,
+   "ans_head": "北京目前气温 **18°C**，天气 **多云转晴**，湿度 42%，东南风 3 级。整体比较舒适，适合外出。"
+  },
+  {
+   "round": 2,
+   "city": "上海",
+   "tool_call": true,
+   "city_arg": "上海",
+   "t_round1_s": 0.26,
+   "t_round2_s": 0.69,
+   "prompt_tok": 772,
+   "completion_tok": 192,
+   "ans_head": "上海现在气温 19℃，天气为多云转晴，湿度 43%，东南风 3 级。\n\n（补充上次未回复的北京：北京 18℃，多云转晴，"
+  },
+  {
+   "round": 3,
+   "city": "广州",
+   "tool_call": true,
+   "city_arg": "广州",
+   "t_round1_s": 0.64,
+   "t_round2_s": 0.58,
+   "prompt_tok": 1011,
+   "completion_tok": 240,
+   "ans_head": "广州目前气温 **20°C**，天气为 **多云转晴**，湿度 44%，东南风 3 级。"
+  },
+  {
+   "round": 4,
+   "city": "深圳",
+   "tool_call": true,
+   "city_arg": "深圳",
+   "t_round1_s": 0.23,
+   "t_round2_s": 0.78,
+   "prompt_tok": 1250,
+   "completion_tok": 214,
+   "ans_head": "深圳现在气温 **21°C**，天气 **多云转晴**，湿度 45%，东南风 3 级。"
+  },
+  {
+   "round": 5,
+   "city": "杭州",
+   "tool_call": true,
+   "city_arg": "杭州",
+   "t_round1_s": 0.5,
+   "t_round2_s": 0.25,
+   "prompt_tok": 1489,
+   "completion_tok": 151,
+   "ans_head": "杭州目前气温 **22°C**，天气为**多云转晴**，湿度 46%，东南风 3 级。"
+  },
+  {
+   "round": 6,
+   "city": "成都",
+   "tool_call": true,
+   "city_arg": "成都",
+   "t_round1_s": 0.23,
+   "t_round2_s": 0.99,
+   "prompt_tok": 1728,
+   "completion_tok": 241,
+   "ans_head": "成都现在气温 **23°C**，天气状况为 **多云转晴**，湿度 47%，东南风 3 级。\n\n另外提醒一下：从北京到成"
+  },
+  {
+   "round": 7,
+   "city": "武汉",
+   "tool_call": true,
+   "city_arg": "武汉",
+   "t_round1_s": 0.23,
+   "t_round2_s": 1.51,
+   "prompt_tok": 1967,
+   "completion_tok": 319,
+   "ans_head": "武汉目前气温 24°C，天气为多云转晴，湿度 48%，东南风 3 级。\n\n另外提醒一下：从北京到武汉这一连串查询结果里，"
+  },
+  {
+   "round": 8,
+   "city": "西安",
+   "tool_call": true,
+   "city_arg": "西安",
+   "t_round1_s": 0.23,
+   "t_round2_s": 1.26,
+   "prompt_tok": 2206,
+   "completion_tok": 293,
+   "ans_head": "西安目前气温 **25°C**，天气状况为 **多云转晴**（湿度 49%，东南风 3 级）。\n\n不过提醒一下：从北京到"
+  },
+  {
+   "round": 9,
+   "city": "南京",
+   "tool_call": true,
+   "city_arg": "南京",
+   "t_round1_s": 0.23,
+   "t_round2_s": 1.66,
+   "prompt_tok": 2445,
+   "completion_tok": 370,
+   "ans_head": "南京目前气温 26°C，天气为多云转晴，湿度 50%，东南风 3 级。"
+  },
+  {
+   "round": 10,
+   "city": "重庆",
+   "tool_call": true,
+   "city_arg": "重庆",
+   "t_round1_s": 0.22,
+   "t_round2_s": 1.0,
+   "prompt_tok": 2684,
+   "completion_tok": 260,
+   "ans_head": "重庆目前气温 **27°C**，天气状况为 **多云转晴**，湿度 51%，东南风 3 级。\n\n另外提醒一下：刚才连续查"
+  },
+  {
+   "round": 11,
+   "city": "天津",
+   "tool_call": true,
+   "city_arg": "天津",
+   "t_round1_s": 0.22,
+   "t_round2_s": 0.71,
+   "prompt_tok": 2923,
+   "completion_tok": 197,
+   "ans_head": "天津目前气温 **28°C**，天气状况为 **多云转晴**，湿度 52%，东南风 3 级。"
+  },
+  {
+   "round": 12,
+   "city": "苏州",
+   "tool_call": true,
+   "city_arg": "苏州",
+   "t_round1_s": 0.22,
+   "t_round2_s": 1.12,
+   "prompt_tok": 3162,
+   "completion_tok": 238,
+   "ans_head": "苏州目前气温 **29°C**，天气状况为 **多云转晴**，湿度 53%，东南风 3 级。\n\n另外提醒一下：从北京到苏"
+  }
+ ]
+}

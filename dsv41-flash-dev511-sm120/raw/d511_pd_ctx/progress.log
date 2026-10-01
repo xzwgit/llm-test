@@ -1,0 +1,15 @@
+[21:33:48] 128K_c1 start
+[21:34:44] 128K_c1 ok=4 tput=87.44 ttft=6428.75 tpot=5.16
+[21:34:44] 128K_c2 start
+[21:35:42] 128K_c2 ok=8 tput=176.30 ttft=3839.89 tpot=6.59
+[21:35:42] 128K_c4 start
+[21:36:44] 128K_c4 ok=12 tput=256.44 ttft=4283.43 tpot=8.03
+[21:36:44] 256K_c1 start
+[21:37:38] 256K_c1 ok=3 tput=69.71 ttft=7471.56 tpot=7.05
+[21:37:38] 256K_c2 start
+[21:38:33] 256K_c2 ok=6 tput=152.95 ttft=4255.10 tpot=7.89
+[21:38:33] 512K_c1 start
+[21:39:39] 512K_c1 ok=2 tput=37.15 ttft=18190.61 tpot=9.16
+[21:39:39] 1M_c1 start
+[21:41:46] 1M_c1 ok=2 tput=18.72 ttft=47992.78 tpot=6.57
+=== CTX ALL DONE ===

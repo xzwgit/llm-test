@@ -1,0 +1,21 @@
+[21:17:05] 1K_c1 start
+[21:17:57] 1K_c1 ok=8 tput=178.75 ttft=148.36 tpot=5.45
+[21:17:57] 1K_c4 start
+[21:19:18] 1K_c4 ok=32 tput=439.86 ttft=204.91 tpot=8.55
+[21:19:18] 1K_c8 start
+[21:21:14] 1K_c8 ok=64 tput=597.46 ttft=223.48 tpot=12.60
+[21:21:14] 1K_c16 start
+[21:23:57] 1K_c16 ok=128 tput=840.39 ttft=726.38 tpot=17.53
+[21:23:57] 1K_c32 start
+[21:25:24] 1K_c32 ok=96 tput=1213.74 ttft=417.67 tpot=23.68
+[21:25:24] 1K_c64 start
+[21:26:45] 1K_c64 ok=128 tput=1766.17 ttft=760.33 tpot=30.78
+[21:26:45] 128K_c1 start
+[21:26:55] 128K_c1 ok=0 tput=0.00 ttft=0.00 tpot=0.00
+[21:26:55] 128K_c4 start
+[21:27:09] 128K_c4 ok=0 tput=0.00 ttft=0.00 tpot=0.00
+[21:27:09] 256K_c1 start
+[21:27:20] 256K_c1 ok=0 tput=0.00 ttft=0.00 tpot=0.00
+[21:27:20] 512K_c1 start
+[21:27:32] 512K_c1 ok=0 tput=0.00 ttft=0.00 tpot=0.00
+=== ALL DONE ===
