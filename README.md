@@ -5,6 +5,7 @@ LLM 部署与性能测试归档。每个子目录是一个独立测试项目，�
 ## 模型索引
 
 ### DeepSeek-V4-Pro
+- [DeepSeek-V4.1-Flash · PD disagg + KV CPU offload + 1M concurrency · 8x RTX PRO 6000 (SM120)](dsv41-flash-pd-offload-1m-sm120/) — first SM120 PD deployment, vision+PD, DSpark dual-pool, 1M ramp to c20 (no hard failure), 232x TTFT from CPU offload
 | 测试 | 日期 | 说明 |
 |---|---|---|
 | [deepseek-v4-pro](deepseek-v4-pro/) | 2026-08 | DP2+MTP 部署, 多上下文压测, SM120 补丁与调优 |

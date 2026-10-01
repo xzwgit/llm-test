@@ -1,0 +1,17 @@
+[14:46:59] prefill_32768_c4 start
+[14:47:21] prefill_32768_c4 ok=12 total_tput=27113.85
+[14:47:21] prefill_32768_c16 start
+[14:48:26] prefill_32768_c16 ok=48 total_tput=30714.87
+[14:48:26] prefill_32768_c32 start
+[14:50:09] prefill_32768_c32 ok=96 total_tput=38131.84
+[14:50:09] prefill_131072_c4 start
+[14:50:56] prefill_131072_c4 ok=12 total_tput=47691.91
+[14:50:56] prefill_131072_c16 start
+[14:54:14] prefill_131072_c16 ok=48 total_tput=39130.59
+[14:54:14] prefill_131072_c32 start
+[14:59:26] prefill_131072_c32 ok=96 total_tput=51701.60
+[14:59:26] decode_c32 start
+[15:01:16] decode_c32 ok=16 out_tput=1264.37 tpot=11.06
+[15:01:16] decode_c64 start
+[15:04:26] decode_c64 ok=32 out_tput=1427.02 tpot=17.29
+=== RATIO BENCH DONE ===

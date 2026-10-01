@@ -1,0 +1,81 @@
+[12:17:53] tier c=1 start (np=1)
+[12:19:31] tier c=1 done rc=0 ok=1 fail=0 ttft=80565.75ms tput=11.88
+  health=200 gpuD=91541 MiB
+  D preempt/oom: 0
+[12:19:31] tier c=2 start (np=2)
+[12:21:17] tier c=2 done rc=0 ok=2 fail=0 ttft=80314.61ms tput=23.07
+  health=200 gpuD=91541 MiB
+  D preempt/oom: 0
+[12:21:17] tier c=3 start (np=3)
+[12:23:14] tier c=3 done rc=0 ok=3 fail=0 ttft=80358.16ms tput=32.52
+  health=200 gpuD=91541 MiB
+  D preempt/oom: 0
+[12:23:14] tier c=4 start (np=4)
+[12:25:29] tier c=4 done rc=0 ok=4 fail=0 ttft=80691.48ms tput=38.29
+  health=200 gpuD=91541 MiB
+  D preempt/oom: 0
+[12:25:29] tier c=5 start (np=5)
+[12:27:56] tier c=5 done rc=0 ok=5 fail=0 ttft=80829.77ms tput=44.92
+  health=200 gpuD=91541 MiB
+  D preempt/oom: 0
+[12:27:56] tier c=6 start (np=6)
+[12:30:21] tier c=6 done rc=0 ok=6 fail=0 ttft=54487.12ms tput=58.52
+  health=200 gpuD=91541 MiB
+  D preempt/oom: 0
+[12:30:21] tier c=7 start (np=7)
+[12:32:42] tier c=7 done rc=0 ok=7 fail=0 ttft=47125.48ms tput=73.48
+  health=200 gpuD=91541 MiB
+  D preempt/oom: 0
+[12:32:42] tier c=8 start (np=8)
+[12:35:30] tier c=8 done rc=0 ok=8 fail=0 ttft=81754.95ms tput=68.94
+  health=200 gpuD=93777 MiB
+  D preempt/oom: 0
+[12:35:30] tier c=9 start (np=9)
+[12:38:05] tier c=9 done rc=0 ok=9 fail=0 ttft=37198.03ms tput=91.55
+  health=200 gpuD=93777 MiB
+  D preempt/oom: 0
+[12:38:05] tier c=10 start (np=10)
+[12:41:03] tier c=10 done rc=0 ok=10 fail=0 ttft=81953.27ms tput=86.31
+  health=200 gpuD=93777 MiB
+  D preempt/oom: 0
+[12:41:03] tier c=11 start (np=11)
+[12:44:18] tier c=11 done rc=0 ok=11 fail=0 ttft=82012.96ms tput=87.21
+  health=200 gpuD=93777 MiB
+  D preempt/oom: 0
+[12:44:18] tier c=12 start (np=12)
+[12:47:34] tier c=12 done rc=0 ok=12 fail=0 ttft=82638.42ms tput=98.46
+  health=200 gpuD=93777 MiB
+  D preempt/oom: 0
+[12:47:34] tier c=13 start (np=13)
+[12:51:34] tier c=13 done rc=0 ok=13 fail=0 ttft=98995.57ms tput=82.13
+  health=200 gpuD=93777 MiB
+  D preempt/oom: 0
+[12:51:34] tier c=14 start (np=14)
+[13:01:19] tier c=14 done rc=0 ok=14 fail=0 ttft=217518.07ms tput=28.41
+  health=200 gpuD=93777 MiB
+  D preempt/oom: 0
+[13:01:19] tier c=15 start (np=15)
+[13:11:43] tier c=15 done rc=0 ok=15 fail=0 ttft=218026.78ms tput=28.62
+  health=200 gpuD=93777 MiB
+  D preempt/oom: 0
+[13:11:43] tier c=16 start (np=16)
+[13:24:56] tier c=16 done rc=0 ok=16 fail=0 ttft=315369.56ms tput=23.44
+  health=200 gpuD=93777 MiB
+  D preempt/oom: 0
+[13:24:56] tier c=17 start (np=17)
+[13:40:45] tier c=17 done rc=0 ok=17 fail=0 ttft=330684.11ms tput=20.44
+  health=200 gpuD=93777 MiB
+  D preempt/oom: 0
+[13:40:45] tier c=18 start (np=18)
+[14:01:07] tier c=18 done rc=0 ok=18 fail=0 ttft=465460.71ms tput=16.46
+  health=200 gpuD=93777 MiB
+  D preempt/oom: 0
+[14:01:07] tier c=19 start (np=19)
+[14:18:03] tier c=19 done rc=0 ok=19 fail=0 ttft=349714.85ms tput=21.41
+  health=200 gpuD=93777 MiB
+  D preempt/oom: 0
+[14:18:03] tier c=20 start (np=20)
+[14:41:46] tier c=20 done rc=0 ok=20 fail=0 ttft=605337.48ms tput=15.67
+  health=200 gpuD=93777 MiB
+  D preempt/oom: 0
+[14:41:46] tier c=21 start (np=21)

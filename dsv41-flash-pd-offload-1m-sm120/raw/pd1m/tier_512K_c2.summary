@@ -1,0 +1,13 @@
+Successful requests:                     4         
+Failed requests:                         0         
+Benchmark duration (s):                  73.22     
+Total input tokens:                      2097272   
+Total generated tokens:                  4096      
+Request throughput (req/s):              0.05      
+Output token throughput (tok/s):         55.94     
+Total token throughput (tok/s):          28699.45  
+Mean TTFT (ms):                          22609.22  
+Median TTFT (ms):                        16518.83  
+P99 TTFT (ms):                           56175.29  
+Mean TPOT (ms):                          6.92      
+Mean ITL (ms):                           18.15     

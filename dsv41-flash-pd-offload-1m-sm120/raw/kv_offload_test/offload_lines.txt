@@ -1,0 +1,15 @@
+(Worker_TP6 pid=536710) INFO 10-01 15:19:32 [simple_cpu_offload_connector.py:149] SimpleCPUOffloadConnector: role=WORKER, per_rank=25.00 GB, world_size=8, mode=eager, backend=cpu, disk=none
+(Worker_TP3 pid=536707) INFO 10-01 15:19:32 [simple_cpu_offload_connector.py:149] SimpleCPUOffloadConnector: role=WORKER, per_rank=25.00 GB, world_size=8, mode=eager, backend=cpu, disk=none
+(Worker_TP1 pid=536705) INFO 10-01 15:19:32 [worker.py:213] SimpleCPUOffloadWorker [CPU]: 1 tensors, 229573 CPU blocks (25.00 GB)
+(Worker_TP2 pid=536706) INFO 10-01 15:19:32 [worker.py:213] SimpleCPUOffloadWorker [CPU]: 1 tensors, 229573 CPU blocks (25.00 GB)
+(Worker_TP6 pid=536710) INFO 10-01 15:19:32 [worker.py:213] SimpleCPUOffloadWorker [CPU]: 1 tensors, 229573 CPU blocks (25.00 GB)
+(Worker_TP3 pid=536707) INFO 10-01 15:19:32 [worker.py:213] SimpleCPUOffloadWorker [CPU]: 1 tensors, 229573 CPU blocks (25.00 GB)
+(Worker_TP5 pid=536709) INFO 10-01 15:19:32 [worker.py:213] SimpleCPUOffloadWorker [CPU]: 1 tensors, 229573 CPU blocks (25.00 GB)
+(Worker_TP4 pid=536708) INFO 10-01 15:19:32 [worker.py:213] SimpleCPUOffloadWorker [CPU]: 1 tensors, 229573 CPU blocks (25.00 GB)
+(Worker_TP7 pid=536711) INFO 10-01 15:19:32 [worker.py:213] SimpleCPUOffloadWorker [CPU]: 1 tensors, 229573 CPU blocks (25.00 GB)
+(Worker_TP0 pid=536704) INFO 10-01 15:19:32 [worker.py:213] SimpleCPUOffloadWorker [CPU]: 1 tensors, 229573 CPU blocks (25.00 GB)
+(EngineCore pid=536327) INFO 10-01 15:20:08 [factory.py:62] Creating v1 connector with name: SimpleCPUOffloadConnector and engine_id: f94a4416-602e-49f1-abcd-64cc4c004345
+(EngineCore pid=536327) WARNING 10-01 15:20:08 [simple_cpu_offload_connector.py:95] cpu_bytes_to_use_per_rank (25.00 GB) != cpu_bytes_to_use/world_size (1.00 GB). Using per-rank value.
+(EngineCore pid=536327) INFO 10-01 15:20:08 [simple_cpu_offload_connector.py:149] SimpleCPUOffloadConnector: role=SCHEDULER, per_rank=25.00 GB, world_size=8, mode=eager, backend=cpu, disk=none
+(EngineCore pid=536327) INFO 10-01 15:20:08 [manager.py:193] SimpleCPUOffloadScheduler: Allocating 229573 offload blocks (25.00 GB, mode=eager, backend=cpu)
+(EngineCore pid=536327) INFO 10-01 15:20:09 [vllm.py:1399] Resolved Engram configuration: EngramConfig(cpu_offload=True, embedding_across_dp=False, dp_shared_memory=False, use_thp=False)

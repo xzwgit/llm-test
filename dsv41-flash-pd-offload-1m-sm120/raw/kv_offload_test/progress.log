@@ -1,0 +1,14 @@
+[15:21:08] round 1 start
+[15:33:36] round 1 done ttft=59312.00ms dur=675.93s in_tok=13110200
+[15:33:36] round 2 start
+[15:35:33] round 2 done ttft=255.28ms dur=42.95s in_tok=13110200
+== offload-related log lines:
+(Worker_TP6 pid=536710) INFO 10-01 15:19:32 [simple_cpu_offload_connector.py:149] SimpleCPUOffloadConnector: role=WORKER, per_rank=25.00 GB, world_size=8, mode=eager, backend=cpu, disk=none
+(Worker_TP3 pid=536707) INFO 10-01 15:19:32 [simple_cpu_offload_connector.py:149] SimpleCPUOffloadConnector: role=WORKER, per_rank=25.00 GB, world_size=8, mode=eager, backend=cpu, disk=none
+(Worker_TP1 pid=536705) INFO 10-01 15:19:32 [worker.py:213] SimpleCPUOffloadWorker [CPU]: 1 tensors, 229573 CPU blocks (25.00 GB)
+(Worker_TP2 pid=536706) INFO 10-01 15:19:32 [worker.py:213] SimpleCPUOffloadWorker [CPU]: 1 tensors, 229573 CPU blocks (25.00 GB)
+(Worker_TP6 pid=536710) INFO 10-01 15:19:32 [worker.py:213] SimpleCPUOffloadWorker [CPU]: 1 tensors, 229573 CPU blocks (25.00 GB)
+(Worker_TP3 pid=536707) INFO 10-01 15:19:32 [worker.py:213] SimpleCPUOffloadWorker [CPU]: 1 tensors, 229573 CPU blocks (25.00 GB)
+(Worker_TP5 pid=536709) INFO 10-01 15:19:32 [worker.py:213] SimpleCPUOffloadWorker [CPU]: 1 tensors, 229573 CPU blocks (25.00 GB)
+(Worker_TP4 pid=536708) INFO 10-01 15:19:32 [worker.py:213] SimpleCPUOffloadWorker [CPU]: 1 tensors, 229573 CPU blocks (25.00 GB)
+=== OFFLOAD TEST DONE ===
