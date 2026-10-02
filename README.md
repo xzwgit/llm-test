@@ -5,7 +5,7 @@ LLM 部署与性能测试归档。每个子目录是一个独立测试项目，�
 ## 模型索引
 
 ### DeepSeek-V4-Pro
-- [DeepSeek-V4.1-Flash · vLLM dev511 · SM120](dsv41-flash-dev511-sm120/) — PD 1M context full suite, mHC+AR fusion, #57292 still required
+- [DSV4.1-Flash · FlashInfer CUTLASS MoE on SM120](dsv41-flashinfer-cutlass-sm120/) — first successful deployment, JIT header fix, autotune timeout workaround, DeepGEMM comparison\n- [DeepSeek-V4.1-Flash · vLLM dev511 · SM120](dsv41-flash-dev511-sm120/) — PD 1M context full suite, mHC+AR fusion, #57292 still required
 - [DeepSeek-V4.1-Flash · PD disagg + KV CPU offload + 1M concurrency · 8x RTX PRO 6000 (SM120)](dsv41-flash-pd-offload-1m-sm120/) — first SM120 PD deployment, vision+PD, DSpark dual-pool, 1M ramp to c20 (no hard failure), 232x TTFT from CPU offload
 | 测试 | 日期 | 说明 |
 |---|---|---|
