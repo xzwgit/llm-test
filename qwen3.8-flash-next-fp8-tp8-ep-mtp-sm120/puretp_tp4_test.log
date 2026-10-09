@@ -1,0 +1,603 @@
+(MainProcess pid=2156549) INFO 10-09 12:14:10 [api_utils.py:347] 
+(MainProcess pid=2156549) INFO 10-09 12:14:10 [api_utils.py:347]        █     █     █▄   ▄█
+(MainProcess pid=2156549) INFO 10-09 12:14:10 [api_utils.py:347]  ▄▄ ▄█ █     █     █ ▀▄▀ █  version 0.31.1rc1.dev158+gab905a885
+(MainProcess pid=2156549) INFO 10-09 12:14:10 [api_utils.py:347]   █▄█▀ █     █     █     █  model   /data/models/Qwen3.8-Flash-Next-FP8
+(MainProcess pid=2156549) INFO 10-09 12:14:10 [api_utils.py:347]    ▀▀  ▀▀▀▀▀ ▀▀▀▀▀ ▀     ▀
+(MainProcess pid=2156549) INFO 10-09 12:14:10 [api_utils.py:347] 
+(MainProcess pid=2156549) INFO 10-09 12:14:10 [api_utils.py:286] non-default args: {'model_tag': '/data/models/Qwen3.8-Flash-Next-FP8', 'api_server_count': 1, 'host': '0.0.0.0', 'port': 8123, 'api_key': '***', 'model': '/data/models/Qwen3.8-Flash-Next-FP8', 'trust_remote_code': True, 'max_model_len': 32768, 'served_model_name': ['qwen-puretp-test'], 'tensor_parallel_size': 4, 'max_num_seqs': 64}
+(MainProcess pid=2156549) INFO 10-09 12:14:10 [model.py:730] Resolved architecture: Qwen4ExpForConditionalGeneration
+(MainProcess pid=2156549) INFO 10-09 12:14:10 [model.py:2141] Using max model len 32768
+(MainProcess pid=2156549) INFO 10-09 12:14:11 [scheduler.py:307] Chunked prefill is enabled with max_num_batched_tokens=8192.
+(MainProcess pid=2156549) INFO 10-09 12:14:11 [config.py:688] Mamba cache mode is set to 'align' for Qwen4ExpForConditionalGeneration by default when prefix caching is enabled
+(MainProcess pid=2156549) INFO 10-09 12:14:11 [vllm.py:1442] Resolved Engram configuration: EngramConfig(cpu_offload=True, embedding_across_dp=False, dp_shared_memory=False, use_thp=False)
+(MainProcess pid=2156549) INFO 10-09 12:14:11 [vllm.py:848] Auto-enabling VLLM_USE_BREAKABLE_CUDAGRAPH=1. Set VLLM_USE_BREAKABLE_CUDAGRAPH=0 to opt out.
+(MainProcess pid=2156549) INFO 10-09 12:14:11 [kernel.py:467] Final IR op priority after setting platform defaults: IrOpPriorityConfig(rms_norm=['vllm_c', 'native'], fused_add_rms_norm=['vllm_c', 'native'], gelu_and_mul_sparse=['triton', 'native'])
+(MainProcess pid=2156549) INFO 10-09 12:14:11 [compilation.py:317] Enabled custom fusions: norm_quant, act_quant
+(MainProcess pid=2156549) INFO 10-09 12:14:16 [utils.py:362] Launching Rust frontend: /root/vllm31/lib/python3.12/site-packages/vllm/vllm-rs frontend --listen-fd 39 --input-listener-fd 76 --output-listener-fd 77 --engine-start-index 0 --engine-count 1 --data-parallel-size 1 --args-json {"api_key": "***", "engine_ready_timeout_secs": 1800, "host": "0.0.0.0", "http_timeout_keep_alive": 5, "max_model_len": 32768, "max_num_seqs": 64, "model": "/data/models/Qwen3.8-Flash-Next-FP8", "model_tag": "/data/models/Qwen3.8-Flash-Next-FP8", "port": 8123, "served_model_name": ["qwen-puretp-test"], "tensor_parallel_size": 4, "trust_remote_code": true}
+[0;36m(RustFrontend pid=2157737)[0m [32mINFO[0m [90m10-09 12:14:16[0m [90m[cmd/src/main.rs:38][0m capping tokio worker threads, set TOKIO_WORKER_THREADS to override [3mavailable_parallelism[0m[2m=[0m224 [3mcapped_worker_threads[0m[2m=[0m32
+[0;36m(RustFrontend pid=2157737)[0m [32mINFO[0m [90m10-09 12:14:16[0m [90m[hf.rs:227][0m loading tokenizer with fastokens [3mpath[0m[2m=[0m/data/models/Qwen3.8-Flash-Next-FP8/tokenizer.json
+(EngineCore pid=2157203) INFO 10-09 12:14:16 [core.py:130] Initializing a V1 LLM engine (v0.31.1rc1.dev158+gab905a885) with config: model='/data/models/Qwen3.8-Flash-Next-FP8', speculative_config=None, tokenizer='/data/models/Qwen3.8-Flash-Next-FP8', skip_tokenizer_init=False, tokenizer_mode=auto, revision=None, tokenizer_revision=None, trust_remote_code=True, dtype=torch.bfloat16, max_seq_len=32768, download_dir=None, load_format=auto, tensor_parallel_size=4, pipeline_parallel_size=1, data_parallel_size=1, decode_context_parallel_size=1, dcp_comm_backend=ag_rs, disable_custom_all_reduce=False, quantization=fp8, quantization_config=None, enforce_eager=False, aux_output_config=AuxOutputConfig(enable_return_routed_experts=False, max_bytes=None), kv_cache_dtype=auto, device_config=cuda, structured_outputs_config=StructuredOutputsConfig(backend='auto', disable_any_whitespace=False, disable_additional_properties=False, reasoning_parser='', reasoning_parser_plugin='', enable_in_reasoning=False), observability_config=ObservabilityConfig(show_hidden_metrics_for_version=None, otlp_traces_endpoint=None, collect_detailed_traces=None, per_request_spec_decode_metrics='none', kv_cache_metrics=False, kv_cache_metrics_sample=0.01, custom_histogram_buckets=None, cudagraph_metrics=False, enable_layerwise_nvtx_tracing=False, enable_mfu_metrics=False, enable_mm_processor_stats=False, enable_logging_iteration_details=False, jit_monitor_mode='warn', jit_monitor_verbose=False), seed=0, served_model_name=qwen-puretp-test, enable_prefix_caching=True, enable_chunked_prefill=True, pooler_config=None, compilation_config={'mode': <CompilationMode.NONE: 0>, 'debug_dump_path': None, 'cache_dir': '', 'compile_cache_save_format': 'binary', 'backend': 'inductor', 'custom_ops': ['+quant_fp8', 'all', '+quant_fp8'], 'ir_enable_torch_wrap': False, 'splitting_ops': [], 'compile_mm_encoder': False, 'cudagraph_mm_encoder': False, 'encoder_cudagraph_token_budgets': [], 'encoder_cudagraph_max_vision_items_per_batch': 0, 'encoder_cudagraph_max_frames_per_batch': None, 'cudagraph_decoder_replay': True, 'decoder_replay_cudagraph_capture_sizes': [], 'decoder_replay_trim_threshold': 768, 'compile_sizes': [], 'compile_ranges_endpoints': [8192], 'inductor_compile_config': {'enable_auto_functionalized_v2': False, 'combo_kernels': True, 'benchmark_combo_kernel': True}, 'inductor_passes': {}, 'cudagraph_mode': <CUDAGraphMode.FULL_AND_PIECEWISE: (2, 1)>, 'cudagraph_num_of_warmups': 1, 'cudagraph_capture_sizes': [1, 2, 4, 8, 16, 24, 32, 40, 48, 56, 64, 72, 80, 88, 96, 104, 112, 120, 128], 'cudagraph_copy_inputs': False, 'cudagraph_specialize_lora': True, 'use_inductor_graph_partition': False, 'pass_config': {'fuse_norm_quant': True, 'fuse_act_quant': True, 'fuse_attn_quant': False, 'fuse_allreduce_rms': False, 'enable_qk_norm_rope_fusion': False, 'fuse_rope_kvcache_cat_mla': False, 'fuse_act_padding': False, 'fuse_qk_norm_rope_kvcache': False}, 'max_cudagraph_capture_size': 128, 'dynamic_shapes_config': {'type': <DynamicShapesType.BACKED: 'backed'>, 'evaluate_guards': False, 'assume_32_bit_indexing': False}, 'local_cache_dir': None, 'fast_moe_cold_start': False, 'static_all_moe_layers': []}, kernel_config=KernelConfig(ir_op_priority=IrOpPriorityConfig(rms_norm=['vllm_c', 'native'], fused_add_rms_norm=['vllm_c', 'native'], gelu_and_mul_sparse=['triton', 'native']), enable_flashinfer_autotune=True, enable_rocm_segmented_attn_autotune=False, enable_cutedsl_warmup=True, enable_jit_warmup=True, moe_backend='auto', sparse_indexer_topk_backend='auto', linear_backend='auto', linear_backend_per_quant=None)
+(EngineCore pid=2157203) INFO 10-09 12:14:16 [multiproc_executor.py:153] DP group leader: node_rank=0, node_rank_within_dp=0, master_addr=127.0.0.1, mq_connect_ip=10.10.3.154 (local), world_size=4, local_world_size=4
+[0;36m(RustFrontend pid=2157737)[0m [32mINFO[0m [90m10-09 12:14:16[0m [90m[hf/mod.rs:72][0m loaded text backend with Hugging Face model files [3mmodel_id[0m[2m=[0m"/data/models/Qwen3.8-Flash-Next-FP8"
+[0;36m(RustFrontend pid=2157737)[0m [32mINFO[0m [90m10-09 12:14:16[0m [90m[hf/mod.rs:140][0m loaded dedicated chat template file, overriding tokenizer_config chat_template [3mpath[0m[2m=[0m/data/models/Qwen3.8-Flash-Next-FP8/chat_template.jinja
+[0;36m(RustFrontend pid=2157737)[0m [32mINFO[0m [90m10-09 12:14:16[0m [90m[hf.rs:103][0m loaded chat backend with Hugging Face model files [3mmodel_id[0m[2m=[0m"/data/models/Qwen3.8-Flash-Next-FP8" [3mmodel_type[0m[2m=[0m"qwen4_exp" [3mrenderer[0m[2m=[0mhf
+[0;36m(RustFrontend pid=2157737)[0m [32mINFO[0m [90m10-09 12:14:16[0m [90m[server/src/lib.rs:109][0m resolved coordinator mode [3mengine_count[0m[2m=[0m1 [3mmodel_is_moe[0m[2m=[0mtrue [3mcoordinator_mode[0m[2m=[0mNone
+(Worker pid=2157977) INFO 10-09 12:14:21 [parallel_state.py:1906] world_size=4 rank=0 local_rank=0 distributed_init_method=file:///tmp/vllm_dist_02b691c421824187a0e94574da842dce backend=nccl
+(Worker pid=2158359) INFO 10-09 12:14:26 [parallel_state.py:1906] world_size=4 rank=1 local_rank=1 distributed_init_method=file:///tmp/vllm_dist_02b691c421824187a0e94574da842dce backend=nccl
+(Worker pid=2158886) INFO 10-09 12:14:30 [parallel_state.py:1906] world_size=4 rank=2 local_rank=2 distributed_init_method=file:///tmp/vllm_dist_02b691c421824187a0e94574da842dce backend=nccl
+(Worker pid=2159445) INFO 10-09 12:14:34 [parallel_state.py:1906] world_size=4 rank=3 local_rank=3 distributed_init_method=file:///tmp/vllm_dist_02b691c421824187a0e94574da842dce backend=nccl
+(Worker pid=2157977) INFO 10-09 12:14:35 [pynccl.py:148] vLLM is using nccl==2.29.7
+(Worker pid=2157977) WARNING 10-09 12:14:36 [symm_mem.py:67] SymmMemCommunicator: Device capability 12.0 not supported, communicator is not available.
+(Worker pid=2158886) WARNING 10-09 12:14:36 [symm_mem.py:67] SymmMemCommunicator: Device capability 12.0 not supported, communicator is not available.
+(Worker pid=2159445) WARNING 10-09 12:14:36 [symm_mem.py:67] SymmMemCommunicator: Device capability 12.0 not supported, communicator is not available.
+(Worker pid=2158359) WARNING 10-09 12:14:36 [symm_mem.py:67] SymmMemCommunicator: Device capability 12.0 not supported, communicator is not available.
+(Worker pid=2157977) WARNING 10-09 12:14:36 [flashinfer_all_reduce.py:407] FlashInfer All Reduce is disabled because it is not supported for world_size=4.
+(Worker pid=2158886) WARNING 10-09 12:14:36 [flashinfer_all_reduce.py:407] FlashInfer All Reduce is disabled because it is not supported for world_size=4.
+(Worker pid=2159445) WARNING 10-09 12:14:36 [flashinfer_all_reduce.py:407] FlashInfer All Reduce is disabled because it is not supported for world_size=4.
+(Worker pid=2158359) WARNING 10-09 12:14:36 [flashinfer_all_reduce.py:407] FlashInfer All Reduce is disabled because it is not supported for world_size=4.
+(Worker pid=2159445) WARNING 10-09 12:14:36 [custom_all_reduce.py:271] Custom allreduce is disabled because it's not supported on more than two PCIe-only GPUs. To silence this warning, specify disable_custom_all_reduce=True explicitly.
+(Worker pid=2158359) WARNING 10-09 12:14:36 [custom_all_reduce.py:271] Custom allreduce is disabled because it's not supported on more than two PCIe-only GPUs. To silence this warning, specify disable_custom_all_reduce=True explicitly.
+(Worker pid=2158886) WARNING 10-09 12:14:36 [custom_all_reduce.py:271] Custom allreduce is disabled because it's not supported on more than two PCIe-only GPUs. To silence this warning, specify disable_custom_all_reduce=True explicitly.
+(Worker pid=2157977) WARNING 10-09 12:14:36 [custom_all_reduce.py:271] Custom allreduce is disabled because it's not supported on more than two PCIe-only GPUs. To silence this warning, specify disable_custom_all_reduce=True explicitly.
+(Worker pid=2157977) INFO 10-09 12:14:36 [cuda_communicator.py:351] Using ['PYNCCL'] all-reduce backends (in dispatch order) for group 'tp:0' out of potential backends: ['FLASHINFER_PCIE_IPC', 'FLASHINFER', 'NCCL_SYMM_MEM', 'QUICK_REDUCE', 'AITER_CUSTOM', 'CUSTOM', 'SYMM_MEM', 'PYNCCL'].
+(Worker pid=2157977) INFO 10-09 12:14:36 [cuda_communicator.py:351] Using ['PYNCCL'] all-reduce backends (in dispatch order) for group 'ep:0' out of potential backends: ['FLASHINFER_PCIE_IPC', 'FLASHINFER', 'NCCL_SYMM_MEM', 'QUICK_REDUCE', 'AITER_CUSTOM', 'CUSTOM', 'SYMM_MEM', 'PYNCCL'].
+(Worker pid=2157977) INFO 10-09 12:14:36 [parallel_state.py:2350] rank 0 in world size 4 is assigned as DP rank 0, PP rank 0, PCP rank 0, TP rank 0, ETP rank 0, EP rank 0, EPLB rank N/A
+(Worker pid=2157977) INFO 10-09 12:14:36 [gpu_worker.py:499] Using V2 Model Runner
+(Worker_TP0 pid=2157977) INFO 10-09 12:14:37 [model_runner.py:381] Loading model from scratch...
+(Worker_TP0 pid=2157977) INFO 10-09 12:14:37 [cuda.py:585] Using backend AttentionBackendEnum.FLASH_ATTN for vit attention
+(Worker_TP0 pid=2157977) INFO 10-09 12:14:37 [mm_encoder_attention.py:372] Using AttentionBackendEnum.FLASH_ATTN for MMEncoderAttention.
+(Worker_TP0 pid=2157977) INFO 10-09 12:14:37 [qwen_gdn_linear_attn.py:221] Using FlashInfer GDN prefill kernel (requested=auto, head_k_dim=128).
+(Worker_TP0 pid=2157977) INFO 10-09 12:14:37 [fp8.py:381] FP8 MoE block scales refined from [128, 128] to [32, 32] to fit the TP-sharded intermediate size 160.
+(Worker_TP0 pid=2157977) INFO 10-09 12:14:37 [fp8.py:525] Using TRITON Fp8 MoE backend out of potential backends: ['AITER', 'FLASHINFER_TRTLLM', 'FLASHINFER_CUTLASS', 'DEEPGEMM', 'TRITON', 'MARLIN', 'HUMMING', 'BATCHED_DEEPGEMM', 'BATCHED_TRITON', 'XPU', 'CPU_W8A8', 'CPU', 'HPC'].
+(Worker_TP2 pid=2158886) INFO 10-09 12:14:40 [ngram_embedding.py:232] Initialized PLE embedding language_model.model.layers.1.ple.ple_embedding.ngram_embedding: quantization_method=Qwen4ExpPLEFp8EmbeddingMethod, weight_dtype=torch.float8_e4m3fn, weight_device=cpu, pinned=True
+(Worker_TP3 pid=2159445) INFO 10-09 12:14:40 [ngram_embedding.py:232] Initialized PLE embedding language_model.model.layers.1.ple.ple_embedding.ngram_embedding: quantization_method=Qwen4ExpPLEFp8EmbeddingMethod, weight_dtype=torch.float8_e4m3fn, weight_device=cpu, pinned=True
+(Worker_TP1 pid=2158359) INFO 10-09 12:14:40 [ngram_embedding.py:232] Initialized PLE embedding language_model.model.layers.1.ple.ple_embedding.ngram_embedding: quantization_method=Qwen4ExpPLEFp8EmbeddingMethod, weight_dtype=torch.float8_e4m3fn, weight_device=cpu, pinned=True
+(Worker_TP0 pid=2157977) INFO 10-09 12:14:40 [ngram_embedding.py:232] Initialized PLE embedding language_model.model.layers.1.ple.ple_embedding.ngram_embedding: quantization_method=Qwen4ExpPLEFp8EmbeddingMethod, weight_dtype=torch.float8_e4m3fn, weight_device=cpu, pinned=True
+(Worker_TP0 pid=2157977) INFO 10-09 12:14:40 [flash_attn.py:1171] Using FlashAttention version 2
+(Worker_TP0 pid=2157977) WARNING 10-09 12:14:40 [compilation.py:1346] Op 'quant_fp8' not present in model, enabling with '+quant_fp8' has no effect
+(Worker_TP0 pid=2157977) INFO 10-09 12:14:40 [base_loader.py:81] Initializing model took 3.384585 seconds
+(Worker_TP2 pid=2158886) WARNING 10-09 12:14:41 [utils.py:325] Attempted to load weight layers.0.linear_attn.A_log with dtype torch.bfloat16 into parameter with dtype torch.float32
+(Worker_TP3 pid=2159445) WARNING 10-09 12:14:41 [utils.py:325] Attempted to load weight layers.0.linear_attn.A_log with dtype torch.bfloat16 into parameter with dtype torch.float32
+(Worker_TP0 pid=2157977) INFO 10-09 12:14:41 [weight_utils.py:1108] Filesystem type for checkpoints: EXT4. Checkpoint size: 172.78 GiB. Available RAM: 1415.35 GiB.
+(Worker_TP0 pid=2157977) INFO 10-09 12:14:41 [weight_utils.py:1131] Auto-prefetch is disabled because the filesystem (EXT4) is not a recognized network FS (NFS/Lustre). If you want to force prefetching, start vLLM with --safetensors-load-strategy=prefetch.
+
+Loading safetensors checkpoint shards:   0% Completed | 0/131 [00:00<?, ?it/s]
+(Worker_TP1 pid=2158359) WARNING 10-09 12:14:41 [utils.py:325] Attempted to load weight layers.0.linear_attn.A_log with dtype torch.bfloat16 into parameter with dtype torch.float32
+(Worker_TP0 pid=2157977) WARNING 10-09 12:14:41 [utils.py:325] Attempted to load weight layers.0.linear_attn.A_log with dtype torch.bfloat16 into parameter with dtype torch.float32
+
+Loading safetensors checkpoint shards:   1% Completed | 1/131 [00:00<01:30,  1.44it/s]
+
+Loading safetensors checkpoint shards:   2% Completed | 2/131 [00:00<00:48,  2.68it/s]
+(Worker_TP2 pid=2158886) WARNING 10-09 12:14:41 [utils.py:325] Attempted to load weight layers.1.linear_attn.A_log with dtype torch.bfloat16 into parameter with dtype torch.float32
+(Worker_TP3 pid=2159445) WARNING 10-09 12:14:47 [utils.py:325] Attempted to load weight layers.1.linear_attn.A_log with dtype torch.bfloat16 into parameter with dtype torch.float32
+(Worker_TP1 pid=2158359) WARNING 10-09 12:14:48 [utils.py:325] Attempted to load weight layers.1.linear_attn.A_log with dtype torch.bfloat16 into parameter with dtype torch.float32
+(Worker_TP0 pid=2157977) WARNING 10-09 12:14:48 [utils.py:325] Attempted to load weight layers.1.linear_attn.A_log with dtype torch.bfloat16 into parameter with dtype torch.float32
+
+Loading safetensors checkpoint shards:   2% Completed | 3/131 [00:07<06:42,  3.14s/it]
+
+Loading safetensors checkpoint shards:   3% Completed | 4/131 [00:07<04:09,  1.97s/it]
+(Worker_TP2 pid=2158886) WARNING 10-09 12:14:49 [utils.py:325] Attempted to load weight ngram_embedding.weight_scale with dtype torch.bfloat16 into parameter with dtype torch.float32
+(Worker_TP2 pid=2158886) WARNING 10-09 12:14:49 [utils.py:325] Attempted to load weight layers.10.linear_attn.A_log with dtype torch.bfloat16 into parameter with dtype torch.float32
+
+Loading safetensors checkpoint shards:   4% Completed | 5/131 [00:08<03:30,  1.67s/it]
+
+Loading safetensors checkpoint shards:   5% Completed | 7/131 [00:08<01:46,  1.16it/s]
+
+Loading safetensors checkpoint shards:   7% Completed | 9/131 [00:08<01:04,  1.89it/s]
+
+Loading safetensors checkpoint shards:   8% Completed | 11/131 [00:09<00:46,  2.60it/s]
+(Worker_TP3 pid=2159445) WARNING 10-09 12:14:50 [utils.py:325] Attempted to load weight ngram_embedding.weight_scale with dtype torch.bfloat16 into parameter with dtype torch.float32
+(Worker_TP2 pid=2158886) WARNING 10-09 12:14:50 [utils.py:325] Attempted to load weight layers.12.linear_attn.A_log with dtype torch.bfloat16 into parameter with dtype torch.float32
+
+Loading safetensors checkpoint shards:   9% Completed | 12/131 [00:09<00:45,  2.63it/s]
+(Worker_TP3 pid=2159445) WARNING 10-09 12:14:50 [utils.py:325] Attempted to load weight layers.10.linear_attn.A_log with dtype torch.bfloat16 into parameter with dtype torch.float32
+
+Loading safetensors checkpoint shards:  10% Completed | 13/131 [00:09<00:41,  2.84it/s]
+(Worker_TP0 pid=2157977) WARNING 10-09 12:14:50 [utils.py:325] Attempted to load weight ngram_embedding.weight_scale with dtype torch.bfloat16 into parameter with dtype torch.float32
+(Worker_TP0 pid=2157977) WARNING 10-09 12:14:50 [utils.py:325] Attempted to load weight layers.10.linear_attn.A_log with dtype torch.bfloat16 into parameter with dtype torch.float32
+
+Loading safetensors checkpoint shards:  28% Completed | 37/131 [00:09<00:04, 22.77it/s]
+(Worker_TP2 pid=2158886) WARNING 10-09 12:14:50 [utils.py:325] Attempted to load weight layers.13.linear_attn.A_log with dtype torch.bfloat16 into parameter with dtype torch.float32
+(Worker_TP1 pid=2158359) WARNING 10-09 12:14:51 [utils.py:325] Attempted to load weight ngram_embedding.weight_scale with dtype torch.bfloat16 into parameter with dtype torch.float32
+(Worker_TP1 pid=2158359) WARNING 10-09 12:14:51 [utils.py:325] Attempted to load weight layers.10.linear_attn.A_log with dtype torch.bfloat16 into parameter with dtype torch.float32
+(Worker_TP2 pid=2158886) WARNING 10-09 12:14:53 [utils.py:325] Attempted to load weight layers.14.linear_attn.A_log with dtype torch.bfloat16 into parameter with dtype torch.float32
+(Worker_TP3 pid=2159445) WARNING 10-09 12:14:55 [utils.py:325] Attempted to load weight layers.12.linear_attn.A_log with dtype torch.bfloat16 into parameter with dtype torch.float32
+(Worker_TP1 pid=2158359) WARNING 10-09 12:14:58 [utils.py:325] Attempted to load weight layers.12.linear_attn.A_log with dtype torch.bfloat16 into parameter with dtype torch.float32
+
+Loading safetensors checkpoint shards:  28% Completed | 37/131 [00:20<00:04, 22.77it/s]
+(Worker_TP0 pid=2157977) WARNING 10-09 12:15:01 [utils.py:325] Attempted to load weight layers.12.linear_attn.A_log with dtype torch.bfloat16 into parameter with dtype torch.float32
+
+Loading safetensors checkpoint shards:  31% Completed | 41/131 [00:20<00:46,  1.94it/s]
+(Worker_TP3 pid=2159445) WARNING 10-09 12:15:02 [utils.py:325] Attempted to load weight layers.13.linear_attn.A_log with dtype torch.bfloat16 into parameter with dtype torch.float32
+
+Loading safetensors checkpoint shards:  32% Completed | 42/131 [00:21<00:44,  2.02it/s]
+(Worker_TP1 pid=2158359) WARNING 10-09 12:15:02 [utils.py:325] Attempted to load weight layers.13.linear_attn.A_log with dtype torch.bfloat16 into parameter with dtype torch.float32
+(Worker_TP2 pid=2158886) WARNING 10-09 12:15:02 [utils.py:325] Attempted to load weight layers.16.linear_attn.A_log with dtype torch.bfloat16 into parameter with dtype torch.float32
+(Worker_TP0 pid=2157977) WARNING 10-09 12:15:04 [utils.py:325] Attempted to load weight layers.13.linear_attn.A_log with dtype torch.bfloat16 into parameter with dtype torch.float32
+(Worker_TP3 pid=2159445) WARNING 10-09 12:15:08 [utils.py:325] Attempted to load weight layers.14.linear_attn.A_log with dtype torch.bfloat16 into parameter with dtype torch.float32
+(Worker_TP1 pid=2158359) WARNING 10-09 12:15:09 [utils.py:325] Attempted to load weight layers.14.linear_attn.A_log with dtype torch.bfloat16 into parameter with dtype torch.float32
+(Worker_TP0 pid=2157977) WARNING 10-09 12:15:09 [utils.py:325] Attempted to load weight layers.14.linear_attn.A_log with dtype torch.bfloat16 into parameter with dtype torch.float32
+(Worker_TP2 pid=2158886) WARNING 10-09 12:15:09 [utils.py:325] Attempted to load weight layers.17.linear_attn.A_log with dtype torch.bfloat16 into parameter with dtype torch.float32
+
+Loading safetensors checkpoint shards:  36% Completed | 47/131 [00:34<01:37,  1.17s/it]
+
+Loading safetensors checkpoint shards:  37% Completed | 48/131 [00:35<01:30,  1.09s/it]
+(Worker_TP2 pid=2158886) WARNING 10-09 12:15:16 [utils.py:325] Attempted to load weight layers.18.linear_attn.A_log with dtype torch.bfloat16 into parameter with dtype torch.float32
+(Worker_TP1 pid=2158359) WARNING 10-09 12:15:16 [utils.py:325] Attempted to load weight layers.16.linear_attn.A_log with dtype torch.bfloat16 into parameter with dtype torch.float32
+(Worker_TP3 pid=2159445) WARNING 10-09 12:15:16 [utils.py:325] Attempted to load weight layers.16.linear_attn.A_log with dtype torch.bfloat16 into parameter with dtype torch.float32
+(Worker_TP0 pid=2157977) WARNING 10-09 12:15:16 [utils.py:325] Attempted to load weight layers.16.linear_attn.A_log with dtype torch.bfloat16 into parameter with dtype torch.float32
+(Worker_TP1 pid=2158359) WARNING 10-09 12:15:20 [utils.py:325] Attempted to load weight layers.17.linear_attn.A_log with dtype torch.bfloat16 into parameter with dtype torch.float32
+(Worker_TP3 pid=2159445) WARNING 10-09 12:15:22 [utils.py:325] Attempted to load weight layers.17.linear_attn.A_log with dtype torch.bfloat16 into parameter with dtype torch.float32
+(Worker_TP0 pid=2157977) WARNING 10-09 12:15:22 [utils.py:325] Attempted to load weight layers.17.linear_attn.A_log with dtype torch.bfloat16 into parameter with dtype torch.float32
+(Worker_TP1 pid=2158359) WARNING 10-09 12:15:22 [utils.py:325] Attempted to load weight layers.18.linear_attn.A_log with dtype torch.bfloat16 into parameter with dtype torch.float32
+
+Loading safetensors checkpoint shards:  40% Completed | 52/131 [00:41<01:38,  1.24s/it]
+(Worker_TP2 pid=2158886) WARNING 10-09 12:15:25 [utils.py:325] Attempted to load weight layers.2.linear_attn.A_log with dtype torch.bfloat16 into parameter with dtype torch.float32
+(Worker_TP3 pid=2159445) WARNING 10-09 12:15:27 [utils.py:325] Attempted to load weight layers.18.linear_attn.A_log with dtype torch.bfloat16 into parameter with dtype torch.float32
+(Worker_TP0 pid=2157977) WARNING 10-09 12:15:28 [utils.py:325] Attempted to load weight layers.18.linear_attn.A_log with dtype torch.bfloat16 into parameter with dtype torch.float32
+(Worker_TP2 pid=2158886) WARNING 10-09 12:15:31 [utils.py:325] Attempted to load weight layers.20.linear_attn.A_log with dtype torch.bfloat16 into parameter with dtype torch.float32
+
+Loading safetensors checkpoint shards:  42% Completed | 55/131 [00:54<02:32,  2.00s/it]
+
+Loading safetensors checkpoint shards:  43% Completed | 56/131 [00:54<02:15,  1.81s/it]
+(Worker_TP1 pid=2158359) WARNING 10-09 12:15:36 [utils.py:325] Attempted to load weight layers.2.linear_attn.A_log with dtype torch.bfloat16 into parameter with dtype torch.float32
+(Worker_TP2 pid=2158886) WARNING 10-09 12:15:38 [utils.py:325] Attempted to load weight layers.21.linear_attn.A_log with dtype torch.bfloat16 into parameter with dtype torch.float32
+(Worker_TP3 pid=2159445) WARNING 10-09 12:15:40 [utils.py:325] Attempted to load weight layers.2.linear_attn.A_log with dtype torch.bfloat16 into parameter with dtype torch.float32
+(Worker_TP0 pid=2157977) WARNING 10-09 12:15:42 [utils.py:325] Attempted to load weight layers.2.linear_attn.A_log with dtype torch.bfloat16 into parameter with dtype torch.float32
+
+Loading safetensors checkpoint shards:  44% Completed | 58/131 [01:01<02:38,  2.16s/it]
+(Worker_TP1 pid=2158359) WARNING 10-09 12:15:42 [utils.py:325] Attempted to load weight layers.20.linear_attn.A_log with dtype torch.bfloat16 into parameter with dtype torch.float32
+(Worker_TP2 pid=2158886) WARNING 10-09 12:15:45 [utils.py:325] Attempted to load weight layers.22.linear_attn.A_log with dtype torch.bfloat16 into parameter with dtype torch.float32
+(Worker_TP3 pid=2159445) WARNING 10-09 12:15:47 [utils.py:325] Attempted to load weight layers.20.linear_attn.A_log with dtype torch.bfloat16 into parameter with dtype torch.float32
+(Worker_TP0 pid=2157977) WARNING 10-09 12:15:48 [utils.py:325] Attempted to load weight layers.20.linear_attn.A_log with dtype torch.bfloat16 into parameter with dtype torch.float32
+
+Loading safetensors checkpoint shards:  46% Completed | 60/131 [01:07<02:54,  2.46s/it]
+(Worker_TP1 pid=2158359) WARNING 10-09 12:15:49 [utils.py:325] Attempted to load weight layers.21.linear_attn.A_log with dtype torch.bfloat16 into parameter with dtype torch.float32
+
+Loading safetensors checkpoint shards:  47% Completed | 61/131 [01:08<02:27,  2.11s/it]
+(Worker_TP3 pid=2159445) WARNING 10-09 12:15:50 [utils.py:325] Attempted to load weight layers.21.linear_attn.A_log with dtype torch.bfloat16 into parameter with dtype torch.float32
+(Worker_TP0 pid=2157977) WARNING 10-09 12:15:55 [utils.py:325] Attempted to load weight layers.21.linear_attn.A_log with dtype torch.bfloat16 into parameter with dtype torch.float32
+
+Loading safetensors checkpoint shards:  47% Completed | 62/131 [01:14<03:22,  2.94s/it]
+(Worker_TP1 pid=2158359) WARNING 10-09 12:15:55 [utils.py:325] Attempted to load weight layers.22.linear_attn.A_log with dtype torch.bfloat16 into parameter with dtype torch.float32
+(Worker_TP3 pid=2159445) WARNING 10-09 12:15:55 [utils.py:325] Attempted to load weight layers.22.linear_attn.A_log with dtype torch.bfloat16 into parameter with dtype torch.float32
+
+Loading safetensors checkpoint shards:  48% Completed | 63/131 [01:15<02:41,  2.37s/it]
+(Worker_TP2 pid=2158886) WARNING 10-09 12:15:56 [utils.py:325] Attempted to load weight layers.24.linear_attn.A_log with dtype torch.bfloat16 into parameter with dtype torch.float32
+(Worker_TP0 pid=2157977) WARNING 10-09 12:15:59 [utils.py:325] Attempted to load weight layers.22.linear_attn.A_log with dtype torch.bfloat16 into parameter with dtype torch.float32
+
+Loading safetensors checkpoint shards:  49% Completed | 64/131 [01:18<02:59,  2.68s/it]
+
+Loading safetensors checkpoint shards:  50% Completed | 65/131 [01:18<02:16,  2.07s/it]
+(Worker_TP2 pid=2158886) WARNING 10-09 12:16:02 [utils.py:325] Attempted to load weight layers.25.linear_attn.A_log with dtype torch.bfloat16 into parameter with dtype torch.float32
+(Worker_TP1 pid=2158359) WARNING 10-09 12:16:06 [utils.py:325] Attempted to load weight layers.24.linear_attn.A_log with dtype torch.bfloat16 into parameter with dtype torch.float32
+
+Loading safetensors checkpoint shards:  50% Completed | 66/131 [01:25<03:25,  3.16s/it]
+
+Loading safetensors checkpoint shards:  51% Completed | 67/131 [01:25<02:30,  2.35s/it]
+(Worker_TP3 pid=2159445) WARNING 10-09 12:16:08 [utils.py:325] Attempted to load weight layers.24.linear_attn.A_log with dtype torch.bfloat16 into parameter with dtype torch.float32
+(Worker_TP2 pid=2158886) WARNING 10-09 12:16:09 [utils.py:325] Attempted to load weight layers.26.linear_attn.A_log with dtype torch.bfloat16 into parameter with dtype torch.float32
+(Worker_TP1 pid=2158359) WARNING 10-09 12:16:12 [utils.py:325] Attempted to load weight layers.25.linear_attn.A_log with dtype torch.bfloat16 into parameter with dtype torch.float32
+(Worker_TP0 pid=2157977) WARNING 10-09 12:16:12 [utils.py:325] Attempted to load weight layers.24.linear_attn.A_log with dtype torch.bfloat16 into parameter with dtype torch.float32
+
+Loading safetensors checkpoint shards:  52% Completed | 68/131 [01:31<03:39,  3.49s/it]
+
+Loading safetensors checkpoint shards:  53% Completed | 69/131 [01:31<02:37,  2.54s/it]
+(Worker_TP3 pid=2159445) WARNING 10-09 12:16:13 [utils.py:325] Attempted to load weight layers.25.linear_attn.A_log with dtype torch.bfloat16 into parameter with dtype torch.float32
+(Worker_TP1 pid=2158359) WARNING 10-09 12:16:19 [utils.py:325] Attempted to load weight layers.26.linear_attn.A_log with dtype torch.bfloat16 into parameter with dtype torch.float32
+(Worker_TP0 pid=2157977) WARNING 10-09 12:16:19 [utils.py:325] Attempted to load weight layers.25.linear_attn.A_log with dtype torch.bfloat16 into parameter with dtype torch.float32
+
+Loading safetensors checkpoint shards:  53% Completed | 70/131 [01:38<03:47,  3.73s/it]
+(Worker_TP3 pid=2159445) WARNING 10-09 12:16:19 [utils.py:325] Attempted to load weight layers.26.linear_attn.A_log with dtype torch.bfloat16 into parameter with dtype torch.float32
+
+Loading safetensors checkpoint shards:  54% Completed | 71/131 [01:38<02:41,  2.69s/it]
+(Worker_TP2 pid=2158886) WARNING 10-09 12:16:19 [utils.py:325] Attempted to load weight layers.28.linear_attn.A_log with dtype torch.bfloat16 into parameter with dtype torch.float32
+(Worker_TP0 pid=2157977) WARNING 10-09 12:16:21 [utils.py:325] Attempted to load weight layers.26.linear_attn.A_log with dtype torch.bfloat16 into parameter with dtype torch.float32
+
+Loading safetensors checkpoint shards:  55% Completed | 72/131 [01:40<02:23,  2.44s/it]
+
+Loading safetensors checkpoint shards:  56% Completed | 73/131 [01:40<01:42,  1.76s/it]
+(Worker_TP1 pid=2158359) WARNING 10-09 12:16:26 [utils.py:325] Attempted to load weight layers.28.linear_attn.A_log with dtype torch.bfloat16 into parameter with dtype torch.float32
+(Worker_TP2 pid=2158886) WARNING 10-09 12:16:26 [utils.py:325] Attempted to load weight layers.29.linear_attn.A_log with dtype torch.bfloat16 into parameter with dtype torch.float32
+
+Loading safetensors checkpoint shards:  56% Completed | 74/131 [01:45<02:32,  2.68s/it]
+(Worker_TP3 pid=2159445) WARNING 10-09 12:16:26 [utils.py:325] Attempted to load weight layers.28.linear_attn.A_log with dtype torch.bfloat16 into parameter with dtype torch.float32
+
+Loading safetensors checkpoint shards:  57% Completed | 75/131 [01:45<01:48,  1.93s/it]
+(Worker_TP1 pid=2158359) WARNING 10-09 12:16:31 [utils.py:325] Attempted to load weight layers.29.linear_attn.A_log with dtype torch.bfloat16 into parameter with dtype torch.float32
+(Worker_TP0 pid=2157977) WARNING 10-09 12:16:33 [utils.py:325] Attempted to load weight layers.28.linear_attn.A_log with dtype torch.bfloat16 into parameter with dtype torch.float32
+
+Loading safetensors checkpoint shards:  58% Completed | 76/131 [01:52<03:03,  3.34s/it]
+
+Loading safetensors checkpoint shards:  59% Completed | 77/131 [01:52<02:09,  2.39s/it]
+(Worker_TP3 pid=2159445) WARNING 10-09 12:16:33 [utils.py:325] Attempted to load weight layers.29.linear_attn.A_log with dtype torch.bfloat16 into parameter with dtype torch.float32
+(Worker_TP2 pid=2158886) WARNING 10-09 12:16:37 [utils.py:325] Attempted to load weight layers.30.linear_attn.A_log with dtype torch.bfloat16 into parameter with dtype torch.float32
+(Worker_TP0 pid=2157977) WARNING 10-09 12:16:40 [utils.py:325] Attempted to load weight layers.29.linear_attn.A_log with dtype torch.bfloat16 into parameter with dtype torch.float32
+
+Loading safetensors checkpoint shards:  60% Completed | 78/131 [01:59<03:11,  3.62s/it]
+
+Loading safetensors checkpoint shards:  60% Completed | 79/131 [01:59<02:14,  2.58s/it]
+(Worker_TP1 pid=2158359) WARNING 10-09 12:16:41 [utils.py:325] Attempted to load weight layers.30.linear_attn.A_log with dtype torch.bfloat16 into parameter with dtype torch.float32
+(Worker_TP3 pid=2159445) WARNING 10-09 12:16:41 [utils.py:325] Attempted to load weight layers.30.linear_attn.A_log with dtype torch.bfloat16 into parameter with dtype torch.float32
+
+Loading safetensors checkpoint shards:  61% Completed | 80/131 [02:05<03:07,  3.67s/it]
+
+Loading safetensors checkpoint shards:  62% Completed | 81/131 [02:05<02:10,  2.62s/it]
+(Worker_TP2 pid=2158886) WARNING 10-09 12:16:46 [utils.py:325] Attempted to load weight layers.32.linear_attn.A_log with dtype torch.bfloat16 into parameter with dtype torch.float32
+(Worker_TP0 pid=2157977) WARNING 10-09 12:16:53 [utils.py:325] Attempted to load weight layers.30.linear_attn.A_log with dtype torch.bfloat16 into parameter with dtype torch.float32
+
+Loading safetensors checkpoint shards:  63% Completed | 82/131 [02:12<03:08,  3.85s/it]
+
+Loading safetensors checkpoint shards:  63% Completed | 83/131 [02:12<02:11,  2.74s/it]
+(Worker_TP2 pid=2158886) WARNING 10-09 12:16:53 [utils.py:325] Attempted to load weight layers.33.linear_attn.A_log with dtype torch.bfloat16 into parameter with dtype torch.float32
+(Worker_TP1 pid=2158359) WARNING 10-09 12:16:54 [utils.py:325] Attempted to load weight layers.32.linear_attn.A_log with dtype torch.bfloat16 into parameter with dtype torch.float32
+(Worker_TP3 pid=2159445) WARNING 10-09 12:16:54 [utils.py:325] Attempted to load weight layers.32.linear_attn.A_log with dtype torch.bfloat16 into parameter with dtype torch.float32
+(Worker_TP2 pid=2158886) WARNING 10-09 12:17:00 [utils.py:325] Attempted to load weight layers.34.linear_attn.A_log with dtype torch.bfloat16 into parameter with dtype torch.float32
+
+Loading safetensors checkpoint shards:  64% Completed | 84/131 [02:19<03:04,  3.92s/it]
+(Worker_TP1 pid=2158359) WARNING 10-09 12:17:00 [utils.py:325] Attempted to load weight layers.33.linear_attn.A_log with dtype torch.bfloat16 into parameter with dtype torch.float32
+(Worker_TP3 pid=2159445) WARNING 10-09 12:17:00 [utils.py:325] Attempted to load weight layers.33.linear_attn.A_log with dtype torch.bfloat16 into parameter with dtype torch.float32
+
+Loading safetensors checkpoint shards:  65% Completed | 85/131 [02:19<02:07,  2.78s/it]
+(Worker_TP0 pid=2157977) WARNING 10-09 12:17:06 [utils.py:325] Attempted to load weight layers.32.linear_attn.A_log with dtype torch.bfloat16 into parameter with dtype torch.float32
+
+Loading safetensors checkpoint shards:  66% Completed | 86/131 [02:25<02:48,  3.75s/it]
+(Worker_TP1 pid=2158359) WARNING 10-09 12:17:06 [utils.py:325] Attempted to load weight layers.34.linear_attn.A_log with dtype torch.bfloat16 into parameter with dtype torch.float32
+(Worker_TP3 pid=2159445) WARNING 10-09 12:17:06 [utils.py:325] Attempted to load weight layers.34.linear_attn.A_log with dtype torch.bfloat16 into parameter with dtype torch.float32
+
+Loading safetensors checkpoint shards:  66% Completed | 87/131 [02:25<01:57,  2.67s/it]
+(Worker_TP0 pid=2157977) WARNING 10-09 12:17:07 [utils.py:325] Attempted to load weight layers.33.linear_attn.A_log with dtype torch.bfloat16 into parameter with dtype torch.float32
+
+Loading safetensors checkpoint shards:  67% Completed | 88/131 [02:26<01:34,  2.21s/it]
+
+Loading safetensors checkpoint shards:  68% Completed | 89/131 [02:26<01:07,  1.60s/it]
+(Worker_TP2 pid=2158886) WARNING 10-09 12:17:13 [utils.py:325] Attempted to load weight layers.36.linear_attn.A_log with dtype torch.bfloat16 into parameter with dtype torch.float32
+(Worker_TP1 pid=2158359) WARNING 10-09 12:17:13 [utils.py:325] Attempted to load weight layers.36.linear_attn.A_log with dtype torch.bfloat16 into parameter with dtype torch.float32
+(Worker_TP0 pid=2157977) WARNING 10-09 12:17:13 [utils.py:325] Attempted to load weight layers.34.linear_attn.A_log with dtype torch.bfloat16 into parameter with dtype torch.float32
+
+Loading safetensors checkpoint shards:  69% Completed | 90/131 [02:32<01:53,  2.78s/it]
+(Worker_TP3 pid=2159445) WARNING 10-09 12:17:13 [utils.py:325] Attempted to load weight layers.36.linear_attn.A_log with dtype torch.bfloat16 into parameter with dtype torch.float32
+
+Loading safetensors checkpoint shards:  69% Completed | 91/131 [02:32<01:19,  2.00s/it]
+(Worker_TP1 pid=2158359) WARNING 10-09 12:17:17 [utils.py:325] Attempted to load weight layers.37.linear_attn.A_log with dtype torch.bfloat16 into parameter with dtype torch.float32
+(Worker_TP2 pid=2158886) WARNING 10-09 12:17:19 [utils.py:325] Attempted to load weight layers.37.linear_attn.A_log with dtype torch.bfloat16 into parameter with dtype torch.float32
+(Worker_TP3 pid=2159445) WARNING 10-09 12:17:19 [utils.py:325] Attempted to load weight layers.37.linear_attn.A_log with dtype torch.bfloat16 into parameter with dtype torch.float32
+
+Loading safetensors checkpoint shards:  70% Completed | 92/131 [02:38<02:09,  3.31s/it]
+
+Loading safetensors checkpoint shards:  71% Completed | 93/131 [02:39<01:29,  2.36s/it]
+(Worker_TP2 pid=2158886) WARNING 10-09 12:17:23 [utils.py:325] Attempted to load weight layers.38.linear_attn.A_log with dtype torch.bfloat16 into parameter with dtype torch.float32
+(Worker_TP1 pid=2158359) WARNING 10-09 12:17:23 [utils.py:325] Attempted to load weight layers.38.linear_attn.A_log with dtype torch.bfloat16 into parameter with dtype torch.float32
+(Worker_TP3 pid=2159445) WARNING 10-09 12:17:26 [utils.py:325] Attempted to load weight layers.38.linear_attn.A_log with dtype torch.bfloat16 into parameter with dtype torch.float32
+(Worker_TP0 pid=2157977) WARNING 10-09 12:17:26 [utils.py:325] Attempted to load weight layers.36.linear_attn.A_log with dtype torch.bfloat16 into parameter with dtype torch.float32
+
+Loading safetensors checkpoint shards:  72% Completed | 94/131 [02:45<02:16,  3.68s/it]
+
+Loading safetensors checkpoint shards:  73% Completed | 95/131 [02:45<01:34,  2.62s/it]
+(Worker_TP0 pid=2157977) WARNING 10-09 12:17:33 [utils.py:325] Attempted to load weight layers.37.linear_attn.A_log with dtype torch.bfloat16 into parameter with dtype torch.float32
+
+Loading safetensors checkpoint shards:  73% Completed | 96/131 [02:52<02:14,  3.84s/it]
+
+Loading safetensors checkpoint shards:  74% Completed | 97/131 [02:52<01:32,  2.74s/it]
+(Worker_TP2 pid=2158886) WARNING 10-09 12:17:35 [utils.py:325] Attempted to load weight layers.4.linear_attn.A_log with dtype torch.bfloat16 into parameter with dtype torch.float32
+(Worker_TP1 pid=2158359) WARNING 10-09 12:17:37 [utils.py:325] Attempted to load weight layers.4.linear_attn.A_log with dtype torch.bfloat16 into parameter with dtype torch.float32
+(Worker_TP3 pid=2159445) WARNING 10-09 12:17:39 [utils.py:325] Attempted to load weight layers.4.linear_attn.A_log with dtype torch.bfloat16 into parameter with dtype torch.float32
+(Worker_TP0 pid=2157977) WARNING 10-09 12:17:40 [utils.py:325] Attempted to load weight layers.38.linear_attn.A_log with dtype torch.bfloat16 into parameter with dtype torch.float32
+
+Loading safetensors checkpoint shards:  75% Completed | 98/131 [02:59<02:07,  3.88s/it]
+
+Loading safetensors checkpoint shards:  76% Completed | 99/131 [02:59<01:28,  2.77s/it]
+(Worker_TP2 pid=2158886) WARNING 10-09 12:17:42 [utils.py:325] Attempted to load weight layers.40.linear_attn.A_log with dtype torch.bfloat16 into parameter with dtype torch.float32
+(Worker_TP1 pid=2158359) WARNING 10-09 12:17:43 [utils.py:325] Attempted to load weight layers.40.linear_attn.A_log with dtype torch.bfloat16 into parameter with dtype torch.float32
+(Worker_TP3 pid=2159445) WARNING 10-09 12:17:46 [utils.py:325] Attempted to load weight layers.40.linear_attn.A_log with dtype torch.bfloat16 into parameter with dtype torch.float32
+
+Loading safetensors checkpoint shards:  76% Completed | 100/131 [03:05<01:52,  3.63s/it]
+(Worker_TP2 pid=2158886) WARNING 10-09 12:17:46 [utils.py:325] Attempted to load weight layers.41.linear_attn.A_log with dtype torch.bfloat16 into parameter with dtype torch.float32
+
+Loading safetensors checkpoint shards:  77% Completed | 101/131 [03:05<01:17,  2.59s/it]
+(Worker_TP1 pid=2158359) WARNING 10-09 12:17:47 [utils.py:325] Attempted to load weight layers.41.linear_attn.A_log with dtype torch.bfloat16 into parameter with dtype torch.float32
+(Worker_TP3 pid=2159445) WARNING 10-09 12:17:49 [utils.py:325] Attempted to load weight layers.41.linear_attn.A_log with dtype torch.bfloat16 into parameter with dtype torch.float32
+(Worker_TP0 pid=2157977) WARNING 10-09 12:17:52 [utils.py:325] Attempted to load weight layers.4.linear_attn.A_log with dtype torch.bfloat16 into parameter with dtype torch.float32
+
+Loading safetensors checkpoint shards:  78% Completed | 102/131 [03:11<01:48,  3.74s/it]
+
+Loading safetensors checkpoint shards:  79% Completed | 103/131 [03:11<01:14,  2.67s/it]
+(Worker_TP2 pid=2158886) WARNING 10-09 12:17:53 [utils.py:325] Attempted to load weight layers.42.linear_attn.A_log with dtype torch.bfloat16 into parameter with dtype torch.float32
+(Worker_TP1 pid=2158359) WARNING 10-09 12:17:53 [utils.py:325] Attempted to load weight layers.42.linear_attn.A_log with dtype torch.bfloat16 into parameter with dtype torch.float32
+(Worker_TP3 pid=2159445) WARNING 10-09 12:17:56 [utils.py:325] Attempted to load weight layers.42.linear_attn.A_log with dtype torch.bfloat16 into parameter with dtype torch.float32
+(Worker_TP0 pid=2157977) WARNING 10-09 12:17:59 [utils.py:325] Attempted to load weight layers.40.linear_attn.A_log with dtype torch.bfloat16 into parameter with dtype torch.float32
+
+Loading safetensors checkpoint shards:  79% Completed | 104/131 [03:18<01:45,  3.90s/it]
+
+Loading safetensors checkpoint shards:  80% Completed | 105/131 [03:18<01:12,  2.78s/it]
+(Worker_TP0 pid=2157977) WARNING 10-09 12:18:04 [utils.py:325] Attempted to load weight layers.41.linear_attn.A_log with dtype torch.bfloat16 into parameter with dtype torch.float32
+
+Loading safetensors checkpoint shards:  81% Completed | 106/131 [03:23<01:21,  3.27s/it]
+
+Loading safetensors checkpoint shards:  82% Completed | 107/131 [03:23<00:56,  2.33s/it]
+(Worker_TP3 pid=2159445) WARNING 10-09 12:18:04 [utils.py:325] Attempted to load weight layers.44.linear_attn.A_log with dtype torch.bfloat16 into parameter with dtype torch.float32
+(Worker_TP1 pid=2158359) WARNING 10-09 12:18:05 [utils.py:325] Attempted to load weight layers.44.linear_attn.A_log with dtype torch.bfloat16 into parameter with dtype torch.float32
+(Worker_TP2 pid=2158886) WARNING 10-09 12:18:06 [utils.py:325] Attempted to load weight layers.44.linear_attn.A_log with dtype torch.bfloat16 into parameter with dtype torch.float32
+(Worker_TP3 pid=2159445) WARNING 10-09 12:18:09 [utils.py:325] Attempted to load weight layers.45.linear_attn.A_log with dtype torch.bfloat16 into parameter with dtype torch.float32
+(Worker_TP0 pid=2157977) WARNING 10-09 12:18:10 [utils.py:325] Attempted to load weight layers.42.linear_attn.A_log with dtype torch.bfloat16 into parameter with dtype torch.float32
+
+Loading safetensors checkpoint shards:  82% Completed | 108/131 [03:29<01:21,  3.52s/it]
+
+Loading safetensors checkpoint shards:  83% Completed | 109/131 [03:29<00:55,  2.51s/it]
+(Worker_TP1 pid=2158359) WARNING 10-09 12:18:12 [utils.py:325] Attempted to load weight layers.45.linear_attn.A_log with dtype torch.bfloat16 into parameter with dtype torch.float32
+(Worker_TP2 pid=2158886) WARNING 10-09 12:18:12 [utils.py:325] Attempted to load weight layers.45.linear_attn.A_log with dtype torch.bfloat16 into parameter with dtype torch.float32
+
+Loading safetensors checkpoint shards:  84% Completed | 110/131 [03:31<00:49,  2.38s/it]
+(Worker_TP3 pid=2159445) WARNING 10-09 12:18:12 [utils.py:325] Attempted to load weight layers.46.linear_attn.A_log with dtype torch.bfloat16 into parameter with dtype torch.float32
+
+Loading safetensors checkpoint shards:  85% Completed | 111/131 [03:32<00:34,  1.71s/it]
+(Worker_TP1 pid=2158359) WARNING 10-09 12:18:16 [utils.py:325] Attempted to load weight layers.46.linear_attn.A_log with dtype torch.bfloat16 into parameter with dtype torch.float32
+(Worker_TP0 pid=2157977) WARNING 10-09 12:18:18 [utils.py:325] Attempted to load weight layers.44.linear_attn.A_log with dtype torch.bfloat16 into parameter with dtype torch.float32
+
+Loading safetensors checkpoint shards:  85% Completed | 112/131 [03:37<00:55,  2.91s/it]
+
+Loading safetensors checkpoint shards:  86% Completed | 113/131 [03:37<00:37,  2.08s/it]
+(Worker_TP2 pid=2158886) WARNING 10-09 12:18:19 [utils.py:325] Attempted to load weight layers.46.linear_attn.A_log with dtype torch.bfloat16 into parameter with dtype torch.float32
+(Worker_TP0 pid=2157977) WARNING 10-09 12:18:25 [utils.py:325] Attempted to load weight layers.45.linear_attn.A_log with dtype torch.bfloat16 into parameter with dtype torch.float32
+
+Loading safetensors checkpoint shards:  87% Completed | 114/131 [03:44<00:57,  3.41s/it]
+(Worker_TP3 pid=2159445) WARNING 10-09 12:18:25 [utils.py:325] Attempted to load weight layers.5.linear_attn.A_log with dtype torch.bfloat16 into parameter with dtype torch.float32
+(Worker_TP1 pid=2158359) WARNING 10-09 12:18:25 [utils.py:325] Attempted to load weight layers.5.linear_attn.A_log with dtype torch.bfloat16 into parameter with dtype torch.float32
+
+Loading safetensors checkpoint shards:  88% Completed | 115/131 [03:44<00:38,  2.43s/it]
+(Worker_TP2 pid=2158886) WARNING 10-09 12:18:25 [utils.py:325] Attempted to load weight layers.5.linear_attn.A_log with dtype torch.bfloat16 into parameter with dtype torch.float32
+(Worker_TP0 pid=2157977) WARNING 10-09 12:18:32 [utils.py:325] Attempted to load weight layers.46.linear_attn.A_log with dtype torch.bfloat16 into parameter with dtype torch.float32
+
+Loading safetensors checkpoint shards:  89% Completed | 116/131 [03:51<00:55,  3.71s/it]
+
+Loading safetensors checkpoint shards:  89% Completed | 117/131 [03:51<00:36,  2.64s/it]
+(Worker_TP1 pid=2158359) WARNING 10-09 12:18:32 [utils.py:325] Attempted to load weight layers.6.linear_attn.A_log with dtype torch.bfloat16 into parameter with dtype torch.float32
+(Worker_TP3 pid=2159445) WARNING 10-09 12:18:32 [utils.py:325] Attempted to load weight layers.6.linear_attn.A_log with dtype torch.bfloat16 into parameter with dtype torch.float32
+(Worker_TP2 pid=2158886) WARNING 10-09 12:18:32 [utils.py:325] Attempted to load weight layers.6.linear_attn.A_log with dtype torch.bfloat16 into parameter with dtype torch.float32
+
+Loading safetensors checkpoint shards:  90% Completed | 118/131 [03:51<00:24,  1.91s/it]
+
+Loading safetensors checkpoint shards:  91% Completed | 119/131 [03:51<00:16,  1.38s/it]
+(Worker_TP0 pid=2157977) WARNING 10-09 12:18:39 [utils.py:325] Attempted to load weight layers.5.linear_attn.A_log with dtype torch.bfloat16 into parameter with dtype torch.float32
+
+Loading safetensors checkpoint shards:  92% Completed | 120/131 [03:58<00:32,  2.96s/it]
+
+Loading safetensors checkpoint shards:  92% Completed | 121/131 [03:58<00:21,  2.12s/it]
+(Worker_TP1 pid=2158359) WARNING 10-09 12:18:43 [utils.py:325] Attempted to load weight layers.8.linear_attn.A_log with dtype torch.bfloat16 into parameter with dtype torch.float32
+(Worker_TP2 pid=2158886) WARNING 10-09 12:18:45 [utils.py:325] Attempted to load weight layers.8.linear_attn.A_log with dtype torch.bfloat16 into parameter with dtype torch.float32
+(Worker_TP3 pid=2159445) WARNING 10-09 12:18:45 [utils.py:325] Attempted to load weight layers.8.linear_attn.A_log with dtype torch.bfloat16 into parameter with dtype torch.float32
+(Worker_TP0 pid=2157977) WARNING 10-09 12:18:46 [utils.py:325] Attempted to load weight layers.6.linear_attn.A_log with dtype torch.bfloat16 into parameter with dtype torch.float32
+
+Loading safetensors checkpoint shards:  93% Completed | 122/131 [04:05<00:31,  3.50s/it]
+
+Loading safetensors checkpoint shards:  94% Completed | 123/131 [04:05<00:19,  2.50s/it]
+(Worker_TP1 pid=2158359) WARNING 10-09 12:18:50 [utils.py:325] Attempted to load weight layers.9.linear_attn.A_log with dtype torch.bfloat16 into parameter with dtype torch.float32
+(Worker_TP2 pid=2158886) WARNING 10-09 12:18:51 [utils.py:325] Attempted to load weight layers.9.linear_attn.A_log with dtype torch.bfloat16 into parameter with dtype torch.float32
+(Worker_TP3 pid=2159445) WARNING 10-09 12:18:52 [utils.py:325] Attempted to load weight layers.9.linear_attn.A_log with dtype torch.bfloat16 into parameter with dtype torch.float32
+
+Loading safetensors checkpoint shards:  95% Completed | 124/131 [04:12<00:26,  3.78s/it]
+
+Loading safetensors checkpoint shards:  95% Completed | 125/131 [04:12<00:16,  2.69s/it]
+(Worker_TP0 pid=2157977) WARNING 10-09 12:18:57 [utils.py:325] Attempted to load weight layers.8.linear_attn.A_log with dtype torch.bfloat16 into parameter with dtype torch.float32
+
+Loading safetensors checkpoint shards:  96% Completed | 126/131 [04:16<00:15,  3.13s/it]
+
+Loading safetensors checkpoint shards:  97% Completed | 127/131 [04:16<00:08,  2.23s/it]
+(Worker_TP0 pid=2157977) WARNING 10-09 12:18:57 [utils.py:325] Attempted to load weight layers.9.linear_attn.A_log with dtype torch.bfloat16 into parameter with dtype torch.float32
+
+Loading safetensors checkpoint shards:  98% Completed | 128/131 [04:16<00:04,  1.60s/it]
+
+Loading safetensors checkpoint shards:  98% Completed | 129/131 [04:16<00:02,  1.16s/it]
+
+Loading safetensors checkpoint shards:  99% Completed | 130/131 [04:17<00:00,  1.17it/s]
+(Worker_TP1 pid=2158359) INFO 10-09 12:18:58 [model_runner.py:413] Model loading took 32.82 GiB memory and 261.269622 seconds
+
+Loading safetensors checkpoint shards: 100% Completed | 131/131 [04:17<00:00,  1.96s/it]
+
+(Worker_TP0 pid=2157977) INFO 10-09 12:18:58 [default_loader.py:494] Loading weights took 257.07 seconds
+(Worker_TP0 pid=2157977) INFO 10-09 12:18:58 [fp8.py:856] Using MoEPrepareAndFinalizeNoDPEPModular
+(Worker_TP1 pid=2158359) INFO 10-09 12:18:58 [interface.py:1099] Setting attention block size to 784 tokens to ensure that attention page size is >= mamba page size.
+(Worker_TP1 pid=2158359) INFO 10-09 12:18:58 [interface.py:1123] Padding mamba page size by 0.13% to ensure that mamba page size and attention page size are exactly equal.
+(Worker_TP3 pid=2159445) INFO 10-09 12:18:58 [model_runner.py:413] Model loading took 32.82 GiB memory and 261.678252 seconds
+(Worker_TP2 pid=2158886) INFO 10-09 12:18:58 [model_runner.py:413] Model loading took 32.82 GiB memory and 261.666348 seconds
+(Worker_TP3 pid=2159445) INFO 10-09 12:18:58 [interface.py:1099] Setting attention block size to 784 tokens to ensure that attention page size is >= mamba page size.
+(Worker_TP3 pid=2159445) INFO 10-09 12:18:58 [interface.py:1123] Padding mamba page size by 0.13% to ensure that mamba page size and attention page size are exactly equal.
+(Worker_TP2 pid=2158886) INFO 10-09 12:18:58 [interface.py:1099] Setting attention block size to 784 tokens to ensure that attention page size is >= mamba page size.
+(Worker_TP2 pid=2158886) INFO 10-09 12:18:58 [interface.py:1123] Padding mamba page size by 0.13% to ensure that mamba page size and attention page size are exactly equal.
+(Worker_TP0 pid=2157977) INFO 10-09 12:18:58 [model_runner.py:413] Model loading took 32.82 GiB memory and 262.077289 seconds
+(Worker_TP0 pid=2157977) INFO 10-09 12:18:58 [topk_topp_sampler.py:124] Using FlashInfer for top-p & top-k sampling.
+(Worker_TP0 pid=2157977) INFO 10-09 12:18:58 [torch_utils.py:287] Reducing Torch threads from 56 to 1 for serving. Set OMP_NUM_THREADS in the external environment to override.
+(Worker_TP0 pid=2157977) INFO 10-09 12:18:58 [interface.py:1099] Setting attention block size to 784 tokens to ensure that attention page size is >= mamba page size.
+(Worker_TP0 pid=2157977) INFO 10-09 12:18:58 [interface.py:1123] Padding mamba page size by 0.13% to ensure that mamba page size and attention page size are exactly equal.
+(EngineCore pid=2157203) INFO 10-09 12:18:58 [torch_utils.py:287] Reducing Torch threads from 56 to 1 for serving. Set OMP_NUM_THREADS in the external environment to override.
+(EngineCore pid=2157203) INFO 10-09 12:18:58 [utils.py:347] Using BLNHC KV cache layout.
+(Worker_TP0 pid=2157977) INFO 10-09 12:19:02 [encoder_runner.py:131] Encoder cache will be initialized with a budget of 16384 tokens, and profiled with 1 image items of the maximum feature size.
+(Worker_TP0 pid=2157977) INFO 10-09 12:19:11 [deep_gemm.py:224] DeepGEMM PDL enabled on deep_gemm.
+(Worker_TP0 pid=2157977) INFO 10-09 12:19:11 [deep_gemm.py:136] DeepGEMM E8M0 enabled on current platform.
+(Worker_TP0 pid=2157977) WARNING 10-09 12:19:11 [fused_moe.py:1163] Using default MoE config. Performance might be sub-optimal! Config file not found at /root/vllm31/lib/python3.12/site-packages/vllm/model_executor/layers/fused_moe/configs/E=512,N=160,device_name=NVIDIA_RTX_PRO_6000_Blackwell_Server_Edition,dtype=fp8_w8a8,block_shape=[32,32].json
+(Worker_TP0 pid=2157977) INFO 10-09 12:19:13 [breakable_cudagraph.py:294] Breakable CUDA graph enabled
+
+Capturing CUDA graphs (PIECEWISE):   0%|          | 0/19 [00:00<?, ?it/s]
+Capturing CUDA graphs (PIECEWISE):   5%|▌         | 1/19 [00:04<01:29,  4.97s/it]
+Capturing CUDA graphs (PIECEWISE):  11%|█         | 2/19 [00:05<00:39,  2.34s/it]
+Capturing CUDA graphs (PIECEWISE):  16%|█▌        | 3/19 [00:05<00:21,  1.33s/it]
+Capturing CUDA graphs (PIECEWISE):  21%|██        | 4/19 [00:05<00:12,  1.18it/s]
+Capturing CUDA graphs (PIECEWISE):  26%|██▋       | 5/19 [00:05<00:08,  1.70it/s]
+Capturing CUDA graphs (PIECEWISE):  32%|███▏      | 6/19 [00:05<00:05,  2.34it/s]
+Capturing CUDA graphs (PIECEWISE):  37%|███▋      | 7/19 [00:06<00:03,  3.06it/s]
+Capturing CUDA graphs (PIECEWISE):  42%|████▏     | 8/19 [00:06<00:02,  3.84it/s]
+Capturing CUDA graphs (PIECEWISE):  47%|████▋     | 9/19 [00:07<00:04,  2.03it/s]
+Capturing CUDA graphs (PIECEWISE):  53%|█████▎    | 10/19 [00:07<00:03,  2.42it/s]
+Capturing CUDA graphs (PIECEWISE):  58%|█████▊    | 11/19 [00:07<00:03,  2.49it/s]
+Capturing CUDA graphs (PIECEWISE):  68%|██████▊   | 13/19 [00:08<00:01,  3.20it/s]
+Capturing CUDA graphs (PIECEWISE):  74%|███████▎  | 14/19 [00:08<00:01,  2.60it/s]
+Capturing CUDA graphs (PIECEWISE):  79%|███████▉  | 15/19 [00:09<00:01,  2.36it/s]
+Capturing CUDA graphs (PIECEWISE):  84%|████████▍ | 16/19 [00:09<00:01,  2.54it/s]
+Capturing CUDA graphs (PIECEWISE):  89%|████████▉ | 17/19 [00:10<00:00,  2.26it/s]
+Capturing CUDA graphs (PIECEWISE):  95%|█████████▍| 18/19 [00:10<00:00,  2.44it/s]
+Capturing CUDA graphs (PIECEWISE): 100%|██████████| 19/19 [00:11<00:00,  2.14it/s]
+Capturing CUDA graphs (PIECEWISE): 100%|██████████| 19/19 [00:11<00:00,  1.70it/s]
+
+Capturing CUDA graphs (FULL):   0%|          | 0/2 [00:00<?, ?it/s]
+Capturing CUDA graphs (FULL):  50%|█████     | 1/2 [00:00<00:00,  9.31it/s]
+Capturing CUDA graphs (FULL): 100%|██████████| 2/2 [00:00<00:00,  9.41it/s]
+Capturing CUDA graphs (FULL): 100%|██████████| 2/2 [00:00<00:00,  9.38it/s]
+(Worker_TP0 pid=2157977) INFO 10-09 12:19:25 [model_runner.py:1108] Graph capturing finished in 12 secs, took 0.50 GiB
+(Worker_TP2 pid=2158886) INFO 10-09 12:19:25 [model_runner.py:1108] Graph capturing finished in 12 secs, took 0.50 GiB
+(Worker_TP3 pid=2159445) INFO 10-09 12:19:25 [model_runner.py:1108] Graph capturing finished in 12 secs, took 0.50 GiB
+(Worker_TP1 pid=2158359) INFO 10-09 12:19:25 [model_runner.py:1108] Graph capturing finished in 12 secs, took 0.50 GiB
+(Worker_TP0 pid=2157977) INFO 10-09 12:19:26 [gpu_worker.py:724] Available KV cache memory: 51.91 GiB
+(Worker_TP0 pid=2157977) INFO 10-09 12:19:26 [gpu_worker.py:739] CUDA graph memory profiling is enabled (default since v0.21.0). The current --gpu-memory-utilization=0.9200 is equivalent to --gpu-memory-utilization=0.9145 without CUDA graph memory profiling. To maintain the same effective KV cache size as before, increase --gpu-memory-utilization to 0.9255. To disable, set VLLM_MEMORY_PROFILER_ESTIMATE_CUDAGRAPHS=0.
+(Worker_TP1 pid=2158359) INFO 10-09 12:19:26 [gpu_worker.py:739] CUDA graph memory profiling is enabled (default since v0.21.0). The current --gpu-memory-utilization=0.9200 is equivalent to --gpu-memory-utilization=0.9145 without CUDA graph memory profiling. To maintain the same effective KV cache size as before, increase --gpu-memory-utilization to 0.9255. To disable, set VLLM_MEMORY_PROFILER_ESTIMATE_CUDAGRAPHS=0.
+(Worker_TP2 pid=2158886) INFO 10-09 12:19:26 [gpu_worker.py:739] CUDA graph memory profiling is enabled (default since v0.21.0). The current --gpu-memory-utilization=0.9200 is equivalent to --gpu-memory-utilization=0.9145 without CUDA graph memory profiling. To maintain the same effective KV cache size as before, increase --gpu-memory-utilization to 0.9255. To disable, set VLLM_MEMORY_PROFILER_ESTIMATE_CUDAGRAPHS=0.
+(Worker_TP3 pid=2159445) INFO 10-09 12:19:26 [gpu_worker.py:739] CUDA graph memory profiling is enabled (default since v0.21.0). The current --gpu-memory-utilization=0.9200 is equivalent to --gpu-memory-utilization=0.9145 without CUDA graph memory profiling. To maintain the same effective KV cache size as before, increase --gpu-memory-utilization to 0.9255. To disable, set VLLM_MEMORY_PROFILER_ESTIMATE_CUDAGRAPHS=0.
+(EngineCore pid=2157203) INFO 10-09 12:19:26 [kv_cache_utils.py:2570] GPU KV cache size: 3,497,823 tokens, Maximum concurrency for 32,768 tokens per request: 106.75x
+(EngineCore pid=2157203) INFO 10-09 12:19:26 [kv_cache_utils.py:854] kv cache group sizes (784, 784, 784, 784, 4, 784)
+(EngineCore pid=2157203) INFO 10-09 12:19:26 [kv_cache_utils.py:855] kv lcm block sizes 784
+(Worker_TP0 pid=2157977) INFO 10-09 12:19:26 [kernel_warmup.py:173] JIT kernel warmup starting.
+(Worker_TP1 pid=2158359) INFO 10-09 12:19:26 [kernel_warmup.py:173] JIT kernel warmup starting.
+(Worker_TP0 pid=2157977) INFO 10-09 12:19:26 [kernel_warmup.py:186] JIT kernel warmup finished in 0.00s.
+(Worker_TP0 pid=2157977) INFO 10-09 12:19:26 [qwen_triton_warmup.py:296] Warming up Qwen GDN Triton kernels for model_type=qwen4_exp_text.
+(Worker_TP3 pid=2159445) INFO 10-09 12:19:26 [kernel_warmup.py:173] JIT kernel warmup starting.
+(Worker_TP2 pid=2158886) INFO 10-09 12:19:26 [kernel_warmup.py:173] JIT kernel warmup starting.
+(Worker_TP1 pid=2158359) INFO 10-09 12:19:26 [kernel_warmup.py:186] JIT kernel warmup finished in 0.00s.
+(Worker_TP1 pid=2158359) INFO 10-09 12:19:26 [qwen_triton_warmup.py:296] Warming up Qwen GDN Triton kernels for model_type=qwen4_exp_text.
+(Worker_TP3 pid=2159445) INFO 10-09 12:19:26 [kernel_warmup.py:186] JIT kernel warmup finished in 0.00s.
+(Worker_TP3 pid=2159445) INFO 10-09 12:19:26 [qwen_triton_warmup.py:296] Warming up Qwen GDN Triton kernels for model_type=qwen4_exp_text.
+(Worker_TP2 pid=2158886) INFO 10-09 12:19:26 [kernel_warmup.py:186] JIT kernel warmup finished in 0.00s.
+(Worker_TP2 pid=2158886) INFO 10-09 12:19:26 [qwen_triton_warmup.py:296] Warming up Qwen GDN Triton kernels for model_type=qwen4_exp_text.
+(Worker_TP0 pid=2157977) INFO 10-09 12:19:27 [qwen_vl_triton_warmup.py:57] Warmed position embedding and vision rotary kernels on grids=[(1, 16, 16), (1, 16, 2), (1, 2, 16), (1, 2, 2)].
+(Worker_TP2 pid=2158886) INFO 10-09 12:19:27 [qwen_vl_triton_warmup.py:57] Warmed position embedding and vision rotary kernels on grids=[(1, 16, 16), (1, 16, 2), (1, 2, 16), (1, 2, 2)].
+(Worker_TP1 pid=2158359) INFO 10-09 12:19:27 [qwen_vl_triton_warmup.py:57] Warmed position embedding and vision rotary kernels on grids=[(1, 16, 16), (1, 16, 2), (1, 2, 16), (1, 2, 2)].
+(Worker_TP3 pid=2159445) INFO 10-09 12:19:27 [qwen_vl_triton_warmup.py:57] Warmed position embedding and vision rotary kernels on grids=[(1, 16, 16), (1, 16, 2), (1, 2, 16), (1, 2, 2)].
+(Worker_TP0 pid=2157977) INFO 10-09 12:19:27 [qwen_vl_triton_warmup.py:98] Warmed M-RoPE Triton kernels.
+(Worker_TP2 pid=2158886) INFO 10-09 12:19:27 [qwen_vl_triton_warmup.py:98] Warmed M-RoPE Triton kernels.
+(Worker_TP1 pid=2158359) INFO 10-09 12:19:27 [qwen_vl_triton_warmup.py:98] Warmed M-RoPE Triton kernels.
+(Worker_TP0 pid=2157977) INFO 10-09 12:19:27 [mamba_triton_warmup.py:42] Warmed Mamba batch_memcpy_kernel.
+(Worker_TP0 pid=2157977) INFO 10-09 12:19:27 [qwen4_exp_qsa_warmup.py:71] Warmed up Qwen4Exp QSA decode kernels: ((1, 1),).
+(Worker_TP2 pid=2158886) INFO 10-09 12:19:27 [mamba_triton_warmup.py:42] Warmed Mamba batch_memcpy_kernel.
+(Worker_TP2 pid=2158886) INFO 10-09 12:19:27 [qwen4_exp_qsa_warmup.py:71] Warmed up Qwen4Exp QSA decode kernels: ((1, 1),).
+(Worker_TP1 pid=2158359) INFO 10-09 12:19:27 [mamba_triton_warmup.py:42] Warmed Mamba batch_memcpy_kernel.
+(Worker_TP3 pid=2159445) INFO 10-09 12:19:27 [qwen_vl_triton_warmup.py:98] Warmed M-RoPE Triton kernels.
+(Worker_TP1 pid=2158359) INFO 10-09 12:19:27 [qwen4_exp_qsa_warmup.py:71] Warmed up Qwen4Exp QSA decode kernels: ((1, 1),).
+(Worker_TP3 pid=2159445) INFO 10-09 12:19:27 [mamba_triton_warmup.py:42] Warmed Mamba batch_memcpy_kernel.
+(Worker_TP3 pid=2159445) INFO 10-09 12:19:27 [qwen4_exp_qsa_warmup.py:71] Warmed up Qwen4Exp QSA decode kernels: ((1, 1),).
+(Worker_TP0 pid=2157977) INFO 10-09 12:19:30 [qwen4_exp_qsa_warmup.py:85] Warmed up Qwen4Exp QSA sparse attention kernels: ((32, 4, 1), (32, 8, 1), (32, 8, 8), (64, 2, 2), (64, 4, 2), (64, 8, 8), (64, 33, 8)).
+(Worker_TP0 pid=2157977) INFO 10-09 12:19:30 [kernel_warmup.py:95] Warming up ll_bf16 router GEMM kernels for shapes: ((2560, 512),).
+(Worker_TP1 pid=2158359) INFO 10-09 12:19:30 [qwen4_exp_qsa_warmup.py:85] Warmed up Qwen4Exp QSA sparse attention kernels: ((32, 4, 1), (32, 8, 1), (32, 8, 8), (64, 2, 2), (64, 4, 2), (64, 8, 8), (64, 33, 8)).
+(Worker_TP2 pid=2158886) INFO 10-09 12:19:30 [qwen4_exp_qsa_warmup.py:85] Warmed up Qwen4Exp QSA sparse attention kernels: ((32, 4, 1), (32, 8, 1), (32, 8, 8), (64, 2, 2), (64, 4, 2), (64, 8, 8), (64, 33, 8)).
+(Worker_TP3 pid=2159445) INFO 10-09 12:19:30 [qwen4_exp_qsa_warmup.py:85] Warmed up Qwen4Exp QSA sparse attention kernels: ((32, 4, 1), (32, 8, 1), (32, 8, 8), (64, 2, 2), (64, 4, 2), (64, 8, 8), (64, 33, 8)).
+(Worker_TP0 pid=2157977) INFO 10-09 12:19:30 [cutedsl_warmup.py:107] Warming up CuTeDSL compile_units=6 names=('Qwen4Exp HC down+SiLU GEMM',).
+
+Compiling CuTeDSL kernels:   0%|          | 0/6 [00:00<?, ?it/s]
+Compiling CuTeDSL kernels:  33%|███▎      | 2/6 [00:00<00:00, 11.54it/s]
+Compiling CuTeDSL kernels:  67%|██████▋   | 4/6 [00:00<00:00,  5.96it/s]
+Compiling CuTeDSL kernels:  83%|████████▎ | 5/6 [00:00<00:00,  5.58it/s]
+Compiling CuTeDSL kernels: 100%|██████████| 6/6 [00:01<00:00,  5.37it/s]
+Compiling CuTeDSL kernels: 100%|██████████| 6/6 [00:01<00:00,  5.81it/s]
+(Worker_TP0 pid=2157977) INFO 10-09 12:19:31 [kernel_warmup.py:460] Using FlashInfer autotune cache file: /root/.cache/vllm/flashinfer_autotune_cache/0.7.1rc5/120f/a37f7c023c2291ded8e695dabfc0f52835c54c827789b75615f63e14dd159a71/autotune_configs_dp0_rank0.json
+2026-10-09 12:19:31,913 - INFO - autotuner.py:1048 - flashinfer.jit: [Autotuner]: Autotuning process starts ...
+2026-10-09 12:19:31,913 - INFO - autotuner.py:1048 - flashinfer.jit: [Autotuner]: Autotuning process starts ...
+2026-10-09 12:19:31,913 - INFO - autotuner.py:1048 - flashinfer.jit: [Autotuner]: Autotuning process starts ...
+2026-10-09 12:19:31,913 - INFO - autotuner.py:1048 - flashinfer.jit: [Autotuner]: Autotuning process starts ...
+(Worker_TP0 pid=2157977) INFO 10-09 12:19:31 [kernel_warmup.py:372] Running FlashInfer autotune with 8192 tokens and token buckets (1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 768, 1024, 1280, 1536, 1792, 2048, 2560, 3072, 3584, 4096, 8192).
+(Worker_TP3 pid=2159445) INFO 10-09 12:19:31 [kernel_warmup.py:372] Running FlashInfer autotune with 8192 tokens and token buckets (1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 768, 1024, 1280, 1536, 1792, 2048, 2560, 3072, 3584, 4096, 8192).
+(Worker_TP1 pid=2158359) INFO 10-09 12:19:31 [kernel_warmup.py:372] Running FlashInfer autotune with 8192 tokens and token buckets (1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 768, 1024, 1280, 1536, 1792, 2048, 2560, 3072, 3584, 4096, 8192).
+(Worker_TP2 pid=2158886) INFO 10-09 12:19:31 [kernel_warmup.py:372] Running FlashInfer autotune with 8192 tokens and token buckets (1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 768, 1024, 1280, 1536, 1792, 2048, 2560, 3072, 3584, 4096, 8192).
+2026-10-09 12:19:32,519 - INFO - autotuner.py:1071 - flashinfer.jit: [Autotuner]: Autotuning process ends
+2026-10-09 12:19:32,519 - INFO - autotuner.py:1071 - flashinfer.jit: [Autotuner]: Autotuning process ends
+2026-10-09 12:19:32,519 - INFO - autotuner.py:1071 - flashinfer.jit: [Autotuner]: Autotuning process ends
+2026-10-09 12:19:32,519 - INFO - autotuner.py:1071 - flashinfer.jit: [Autotuner]: Autotuning process ends
+
+Capturing CUDA graphs (PIECEWISE):   0%|          | 0/19 [00:00<?, ?it/s]
+Capturing CUDA graphs (PIECEWISE):   5%|▌         | 1/19 [00:00<00:02,  7.99it/s]
+Capturing CUDA graphs (PIECEWISE):  11%|█         | 2/19 [00:00<00:02,  8.37it/s]
+Capturing CUDA graphs (PIECEWISE):  16%|█▌        | 3/19 [00:00<00:01,  8.49it/s]
+Capturing CUDA graphs (PIECEWISE):  21%|██        | 4/19 [00:00<00:01,  8.53it/s]
+Capturing CUDA graphs (PIECEWISE):  26%|██▋       | 5/19 [00:00<00:01,  8.45it/s]
+Capturing CUDA graphs (PIECEWISE):  32%|███▏      | 6/19 [00:00<00:01,  8.44it/s]
+Capturing CUDA graphs (PIECEWISE):  37%|███▋      | 7/19 [00:00<00:01,  8.44it/s]
+Capturing CUDA graphs (PIECEWISE):  42%|████▏     | 8/19 [00:00<00:01,  8.43it/s]
+Capturing CUDA graphs (PIECEWISE):  53%|█████▎    | 10/19 [00:01<00:00,  9.28it/s]
+Capturing CUDA graphs (PIECEWISE):  63%|██████▎   | 12/19 [00:01<00:00,  9.63it/s]
+Capturing CUDA graphs (PIECEWISE):  74%|███████▎  | 14/19 [00:01<00:00,  9.93it/s]
+Capturing CUDA graphs (PIECEWISE):  84%|████████▍ | 16/19 [00:01<00:00, 10.12it/s]
+Capturing CUDA graphs (PIECEWISE):  95%|█████████▍| 18/19 [00:01<00:00, 10.28it/s]
+Capturing CUDA graphs (PIECEWISE): 100%|██████████| 19/19 [00:01<00:00,  9.51it/s]
+
+Capturing CUDA graphs (FULL):   0%|          | 0/11 [00:00<?, ?it/s]
+Capturing CUDA graphs (FULL):  18%|█▊        | 2/11 [00:00<00:00, 10.24it/s]
+Capturing CUDA graphs (FULL):  36%|███▋      | 4/11 [00:00<00:00, 10.60it/s]
+Capturing CUDA graphs (FULL):  55%|█████▍    | 6/11 [00:00<00:00, 10.74it/s]
+Capturing CUDA graphs (FULL):  73%|███████▎  | 8/11 [00:00<00:00, 10.83it/s]
+Capturing CUDA graphs (FULL):  91%|█████████ | 10/11 [00:00<00:00, 10.87it/s]
+Capturing CUDA graphs (FULL): 100%|██████████| 11/11 [00:01<00:00, 10.86it/s]
+(Worker_TP2 pid=2158886) INFO 10-09 12:19:37 [model_runner.py:1108] Graph capturing finished in 4 secs, took 0.12 GiB
+(Worker_TP2 pid=2158886) INFO 10-09 12:19:37 [gpu_worker.py:936] CUDA graph pool memory: 0.12 GiB (actual), 0.52 GiB (estimated), difference: 0.4 GiB (323.8%).
+(Worker_TP2 pid=2158886) INFO 10-09 12:19:37 [gpu_worker.py:999] Free memory on device (93.9/94.97 GiB) on startup. Desired GPU memory utilization is (0.92, 87.37 GiB). Actual usage is 33.91 GiB for consumed memory (weights + non-torch), 1.56 GiB for peak activation, and 0.12 GiB for CUDAGraph memory. Replace gpu_memory_utilization config with `--kv-cache-memory=55443045008` (51.64 GiB) to fit into requested memory, or `--kv-cache-memory=62449514496` (58.16 GiB) to fully utilize gpu memory. Current kv cache memory in use is 51.9 GiB.
+(Worker_TP1 pid=2158359) INFO 10-09 12:19:37 [model_runner.py:1108] Graph capturing finished in 4 secs, took 0.12 GiB
+(Worker_TP1 pid=2158359) INFO 10-09 12:19:37 [gpu_worker.py:936] CUDA graph pool memory: 0.12 GiB (actual), 0.52 GiB (estimated), difference: 0.4 GiB (323.8%).
+(Worker_TP1 pid=2158359) INFO 10-09 12:19:37 [gpu_worker.py:999] Free memory on device (93.9/94.97 GiB) on startup. Desired GPU memory utilization is (0.92, 87.37 GiB). Actual usage is 33.91 GiB for consumed memory (weights + non-torch), 1.56 GiB for peak activation, and 0.12 GiB for CUDAGraph memory. Replace gpu_memory_utilization config with `--kv-cache-memory=55443045008` (51.64 GiB) to fit into requested memory, or `--kv-cache-memory=62449514496` (58.16 GiB) to fully utilize gpu memory. Current kv cache memory in use is 51.9 GiB.
+(Worker_TP3 pid=2159445) INFO 10-09 12:19:37 [model_runner.py:1108] Graph capturing finished in 4 secs, took 0.12 GiB
+(Worker_TP3 pid=2159445) INFO 10-09 12:19:37 [gpu_worker.py:936] CUDA graph pool memory: 0.12 GiB (actual), 0.52 GiB (estimated), difference: 0.4 GiB (323.8%).
+(Worker_TP3 pid=2159445) INFO 10-09 12:19:37 [gpu_worker.py:999] Free memory on device (93.9/94.97 GiB) on startup. Desired GPU memory utilization is (0.92, 87.37 GiB). Actual usage is 33.91 GiB for consumed memory (weights + non-torch), 1.56 GiB for peak activation, and 0.12 GiB for CUDAGraph memory. Replace gpu_memory_utilization config with `--kv-cache-memory=55443045008` (51.64 GiB) to fit into requested memory, or `--kv-cache-memory=62449514496` (58.16 GiB) to fully utilize gpu memory. Current kv cache memory in use is 51.9 GiB.
+(Worker_TP0 pid=2157977) INFO 10-09 12:19:37 [model_runner.py:1108] Graph capturing finished in 4 secs, took 0.12 GiB
+(Worker_TP0 pid=2157977) INFO 10-09 12:19:37 [gpu_worker.py:936] CUDA graph pool memory: 0.12 GiB (actual), 0.52 GiB (estimated), difference: 0.4 GiB (323.8%).
+(Worker_TP0 pid=2157977) INFO 10-09 12:19:37 [gpu_worker.py:999] Free memory on device (93.9/94.97 GiB) on startup. Desired GPU memory utilization is (0.92, 87.37 GiB). Actual usage is 33.91 GiB for consumed memory (weights + non-torch), 1.56 GiB for peak activation, and 0.12 GiB for CUDAGraph memory. Replace gpu_memory_utilization config with `--kv-cache-memory=55444224656` (51.64 GiB) to fit into requested memory, or `--kv-cache-memory=62450694144` (58.16 GiB) to fully utilize gpu memory. Current kv cache memory in use is 51.91 GiB.
+(Worker_TP2 pid=2158886) INFO 10-09 12:19:38 [jit_monitor.py:84] Kernel JIT monitor activated; monitored JIT compilations during inference will use mode=warn.
+(Worker_TP1 pid=2158359) INFO 10-09 12:19:38 [jit_monitor.py:84] Kernel JIT monitor activated; monitored JIT compilations during inference will use mode=warn.
+(Worker_TP3 pid=2159445) INFO 10-09 12:19:38 [jit_monitor.py:84] Kernel JIT monitor activated; monitored JIT compilations during inference will use mode=warn.
+(Worker_TP0 pid=2157977) INFO 10-09 12:19:38 [jit_monitor.py:84] Kernel JIT monitor activated; monitored JIT compilations during inference will use mode=warn.
+(EngineCore pid=2157203) INFO 10-09 12:19:38 [core.py:394] init engine (profile, create kv cache, warmup model) took 39.63 s
+[0;36m(RustFrontend pid=2157737)[0m [32mINFO[0m [90m10-09 12:19:42[0m [90m[transport.rs:379][0m bootstrapped engines connected [3mengine_count[0m[2m=[0m1
+(EngineCore pid=2157203) INFO 10-09 12:19:42 [vllm.py:1442] Resolved Engram configuration: EngramConfig(cpu_offload=True, embedding_across_dp=False, dp_shared_memory=False, use_thp=False)
+[0;36m(RustFrontend pid=2157737)[0m [32mINFO[0m [90m10-09 12:19:42[0m [90m[routes.rs:108][0m scale-out endpoints are disabled; pass --enable-scale-out to enable them
+[0;36m(RustFrontend pid=2157737)[0m [32mINFO[0m [90m10-09 12:19:42[0m [90m[server/src/lib.rs:210][0m starting vLLM server [3mmodel[0m[2m=[0m"qwen-puretp-test"
+[0;36m(RustFrontend pid=2157737)[0m [32mINFO[0m [90m10-09 12:19:42[0m [90m[server/src/lib.rs:322][0m OpenAI server is ready to accept requests [3mbind_address[0m[2m=[0m"0.0.0.0:8123" [3mscheme[0m[2m=[0m"http" [3mmodel[0m[2m=[0m"qwen-puretp-test"
+(MainProcess pid=2156549) INFO 10-09 12:19:42 [utils.py:541] Waiting for API servers to complete ...
+(EngineCore pid=2157203) INFO 10-09 12:19:42 [kernel.py:467] Final IR op priority after setting platform defaults: IrOpPriorityConfig(rms_norm=['vllm_c', 'native'], fused_add_rms_norm=['vllm_c', 'native'], gelu_and_mul_sparse=['triton', 'native'])
+(EngineCore pid=2157203) INFO 10-09 12:19:42 [compilation.py:317] Enabled custom fusions: norm_quant, act_quant
+[0;36m(RustFrontend pid=2157737)[0m [32mINFO[0m [90m10-09 12:20:08[0m [90m[runtime.rs:48][0m capping request runtime worker threads, set VLLM_RS_REQUEST_WORKER_THREADS to override [3mavailable_parallelism[0m[2m=[0m224 [3mcapped_worker_threads[0m[2m=[0m32
+[0;36m(RustFrontend pid=2157737)[0m [32mINFO[0m [90m10-09 12:20:08[0m [90m[default/mod.rs:226][0m chat_completions{[3mrequest_id[0m[2m=[0mchatcmpl-1dea3126}: reasoning parsing disabled
+[0;36m(RustFrontend pid=2157737)[0m [32mINFO[0m [90m10-09 12:20:12[0m [90m[log_stats.rs:273][0m Avg prompt tput: 6.4 toks/s, Avg generation tput: 4.7 toks/s, Reqs Running: 0, Waiting: 0, GPU KV cache used: 0.0%, Prefix cache hit rate: 0.0%
+[0;36m(RustFrontend pid=2157737)[0m [32mINFO[0m [90m10-09 12:20:22[0m [90m[log_stats.rs:273][0m Avg prompt tput: 1.0 toks/s, Avg generation tput: 51.2 toks/s, Reqs Running: 0, Waiting: 0, GPU KV cache used: 0.0%, Prefix cache hit rate: 0.0%
+[0;36m(RustFrontend pid=2157737)[0m [32mINFO[0m [90m10-09 12:20:32[0m [90m[log_stats.rs:273][0m Avg prompt tput: 0.0 toks/s, Avg generation tput: 0.0 toks/s, Reqs Running: 0, Waiting: 0, GPU KV cache used: 0.0%, Prefix cache hit rate: 0.0%
+(EngineCore pid=2157203) ERROR 10-09 12:20:46 [multiproc_executor.py:314] Worker proc VllmWorker-0 died unexpectedly (exit code: None), shutting down executor.
+(EngineCore pid=2157203) INFO 10-09 12:20:46 [multiproc_executor.py:478] [shutdown] Executor: waiting for worker exit count=4
+(EngineCore pid=2157203) INFO 10-09 12:20:49 [multiproc_executor.py:485] [shutdown] Executor: all workers exited gracefully
+(EngineCore pid=2157203) ERROR 10-09 12:20:49 [core.py:1497] EngineCore encountered a fatal error.
+(EngineCore pid=2157203) ERROR 10-09 12:20:49 [core.py:1497] Traceback (most recent call last):
+(EngineCore pid=2157203) ERROR 10-09 12:20:49 [core.py:1497]   File "/root/vllm31/lib/python3.12/site-packages/vllm/v1/engine/core.py", line 1481, in run_engine_core
+(EngineCore pid=2157203) ERROR 10-09 12:20:49 [core.py:1497]     engine_core.run_busy_loop()
+(EngineCore pid=2157203) ERROR 10-09 12:20:49 [core.py:1497]   File "/root/vllm31/lib/python3.12/site-packages/vllm/v1/fault_tolerance/engine_core_sentinel.py", line 178, in run_with_fault_tolerance
+(EngineCore pid=2157203) ERROR 10-09 12:20:49 [core.py:1497]     busy_loop_func(self)
+(EngineCore pid=2157203) ERROR 10-09 12:20:49 [core.py:1497]   File "/root/vllm31/lib/python3.12/site-packages/vllm/v1/engine/core.py", line 1536, in run_busy_loop
+(EngineCore pid=2157203) ERROR 10-09 12:20:49 [core.py:1497]     self._process_input_queue()
+(EngineCore pid=2157203) ERROR 10-09 12:20:49 [core.py:1497]   File "/root/vllm31/lib/python3.12/site-packages/vllm/v1/engine/core.py", line 1574, in _process_input_queue
+(EngineCore pid=2157203) ERROR 10-09 12:20:49 [core.py:1497]     self._handle_client_request(*req)
+(EngineCore pid=2157203) ERROR 10-09 12:20:49 [core.py:1497]   File "/root/vllm31/lib/python3.12/site-packages/vllm/v1/engine/core.py", line 1687, in _handle_client_request
+(EngineCore pid=2157203) ERROR 10-09 12:20:49 [core.py:1497]     raise RuntimeError("Executor failed.")
+(EngineCore pid=2157203) ERROR 10-09 12:20:49 [core.py:1497] RuntimeError: Executor failed.
+Process EngineCore:
+Traceback (most recent call last):
+  File "/root/.local/share/uv/python/cpython-3.12.13-linux-x86_64-gnu/lib/python3.12/multiprocessing/process.py", line 314, in _bootstrap
+    self.run()
+  File "/root/.local/share/uv/python/cpython-3.12.13-linux-x86_64-gnu/lib/python3.12/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/root/vllm31/lib/python3.12/site-packages/vllm/v1/engine/core.py", line 1499, in run_engine_core
+    raise e
+  File "/root/vllm31/lib/python3.12/site-packages/vllm/v1/engine/core.py", line 1481, in run_engine_core
+    engine_core.run_busy_loop()
+  File "/root/vllm31/lib/python3.12/site-packages/vllm/v1/fault_tolerance/engine_core_sentinel.py", line 178, in run_with_fault_tolerance
+    busy_loop_func(self)
+  File "/root/vllm31/lib/python3.12/site-packages/vllm/v1/engine/core.py", line 1536, in run_busy_loop
+    self._process_input_queue()
+  File "/root/vllm31/lib/python3.12/site-packages/vllm/v1/engine/core.py", line 1574, in _process_input_queue
+    self._handle_client_request(*req)
+  File "/root/vllm31/lib/python3.12/site-packages/vllm/v1/engine/core.py", line 1687, in _handle_client_request
+    raise RuntimeError("Executor failed.")
+RuntimeError: Executor failed.
+/root/.local/share/uv/python/cpython-3.12.13-linux-x86_64-gnu/lib/python3.12/multiprocessing/resource_tracker.py:279: UserWarning: resource_tracker: There appear to be 4 leaked semaphore objects to clean up at shutdown
+  warnings.warn('resource_tracker: There appear to be %d '
+/root/.local/share/uv/python/cpython-3.12.13-linux-x86_64-gnu/lib/python3.12/multiprocessing/resource_tracker.py:279: UserWarning: resource_tracker: There appear to be 5 leaked shared_memory objects to clean up at shutdown
+  warnings.warn('resource_tracker: There appear to be %d '

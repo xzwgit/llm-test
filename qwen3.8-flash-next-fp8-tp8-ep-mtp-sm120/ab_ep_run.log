@@ -1,0 +1,217 @@
+########## AB START Fri Oct  9 04:27:48 AM UTC 2026 ##########
+===== ARM EP: using current service =====
+===== ARM EP tier c1 04:27:48 =====
+Request throughput (req/s):              0.08      
+Output token throughput (tok/s):         86.78     
+Peak output token throughput (tok/s):    69.00     
+Peak concurrent requests:                1.00      
+Total token throughput (tok/s):          173.56    
+---------------Time to First Token----------------
+Mean TTFT (ms):                          95.62     
+Median TTFT (ms):                        95.62     
+P99 TTFT (ms):                           95.62     
+-----Time per Output Token (excl. 1st token)------
+Mean TPOT (ms):                          10.46     
+Median TPOT (ms):                        10.46     
+P99 TPOT (ms):                           10.46     
+---------------Inter-token Latency----------------
+Mean ITL (ms):                           14.50     
+Median ITL (ms):                         14.52     
+P99 ITL (ms):                            14.67     
+---------------Speculative Decoding---------------
+Acceptance rate (%):                     12.94     
+Acceptance length:                       1.39      
+Drafts:                                  737       
+Draft tokens:                            2211      
+Accepted tokens:                         286       
+Per-position acceptance (%):
+  Position 0:                            22.93     
+  Position 1:                            10.04     
+  Position 2:                            5.83      
+==================================================
+===== ARM EP tier c2 04:28:05 =====
+Request throughput (req/s):              0.15      
+Output token throughput (tok/s):         149.08    
+Peak output token throughput (tok/s):    126.00    
+Peak concurrent requests:                2.00      
+Total token throughput (tok/s):          298.16    
+---------------Time to First Token----------------
+Mean TTFT (ms):                          398.27    
+Median TTFT (ms):                        398.27    
+P99 TTFT (ms):                           718.39    
+-----Time per Output Token (excl. 1st token)------
+Mean TPOT (ms):                          10.14     
+Median TPOT (ms):                        10.14     
+P99 TPOT (ms):                           11.71     
+---------------Inter-token Latency----------------
+Mean ITL (ms):                           17.55     
+Median ITL (ms):                         16.04     
+P99 ITL (ms):                            16.38     
+---------------Speculative Decoding---------------
+Acceptance rate (%):                     24.52     
+Acceptance length:                       1.74      
+Drafts:                                  1180      
+Draft tokens:                            3540      
+Accepted tokens:                         868       
+Per-position acceptance (%):
+  Position 0:                            37.63     
+  Position 1:                            22.63     
+  Position 2:                            13.31     
+==================================================
+===== ARM EP tier c4 04:28:25 =====
+Request throughput (req/s):              0.34      
+Output token throughput (tok/s):         348.60    
+Peak output token throughput (tok/s):    220.00    
+Peak concurrent requests:                4.00      
+Total token throughput (tok/s):          697.19    
+---------------Time to First Token----------------
+Mean TTFT (ms):                          284.94    
+Median TTFT (ms):                        105.44    
+P99 TTFT (ms):                           834.46    
+-----Time per Output Token (excl. 1st token)------
+Mean TPOT (ms):                          8.66      
+Median TPOT (ms):                        8.38      
+P99 TPOT (ms):                           11.14     
+---------------Inter-token Latency----------------
+Mean ITL (ms):                           19.50     
+Median ITL (ms):                         18.47     
+P99 ITL (ms):                            19.38     
+---------------Speculative Decoding---------------
+Acceptance rate (%):                     41.97     
+Acceptance length:                       2.26      
+Drafts:                                  1813      
+Draft tokens:                            5439      
+Accepted tokens:                         2283      
+Per-position acceptance (%):
+  Position 0:                            60.01     
+  Position 1:                            46.00     
+  Position 2:                            19.91     
+==================================================
+===== ARM EP tier c8 04:28:42 =====
+Request throughput (req/s):              0.68      
+Output token throughput (tok/s):         697.76    
+Peak output token throughput (tok/s):    376.00    
+Peak concurrent requests:                8.00      
+Total token throughput (tok/s):          1395.51   
+---------------Time to First Token----------------
+Mean TTFT (ms):                          295.49    
+Median TTFT (ms):                        99.71     
+P99 TTFT (ms):                           988.75    
+-----Time per Output Token (excl. 1st token)------
+Mean TPOT (ms):                          9.04      
+Median TPOT (ms):                        9.19      
+P99 TPOT (ms):                           11.02     
+---------------Inter-token Latency----------------
+Mean ITL (ms):                           22.75     
+Median ITL (ms):                         21.38     
+P99 ITL (ms):                            54.37     
+---------------Speculative Decoding---------------
+Acceptance rate (%):                     50.87     
+Acceptance length:                       2.53      
+Drafts:                                  3246      
+Draft tokens:                            9738      
+Accepted tokens:                         4954      
+Per-position acceptance (%):
+  Position 0:                            68.85     
+  Position 1:                            52.83     
+  Position 2:                            30.93     
+==================================================
+===== ARM EP tier c16 04:28:59 =====
+Request throughput (req/s):              1.16      
+Output token throughput (tok/s):         1186.39   
+Peak output token throughput (tok/s):    672.00    
+Peak concurrent requests:                16.00     
+Total token throughput (tok/s):          2372.78   
+---------------Time to First Token----------------
+Mean TTFT (ms):                          375.05    
+Median TTFT (ms):                        177.25    
+P99 TTFT (ms):                           1071.64   
+-----Time per Output Token (excl. 1st token)------
+Mean TPOT (ms):                          10.41     
+Median TPOT (ms):                        10.49     
+P99 TPOT (ms):                           12.87     
+---------------Inter-token Latency----------------
+Mean ITL (ms):                           25.79     
+Median ITL (ms):                         24.29     
+P99 ITL (ms):                            64.50     
+---------------Speculative Decoding---------------
+Acceptance rate (%):                     49.53     
+Acceptance length:                       2.49      
+Drafts:                                  6590      
+Draft tokens:                            19770     
+Accepted tokens:                         9792      
+Per-position acceptance (%):
+  Position 0:                            67.34     
+  Position 1:                            53.22     
+  Position 2:                            28.03     
+==================================================
+===== ARM EP tier c32 04:29:19 =====
+Request throughput (req/s):              1.94      
+Output token throughput (tok/s):         1983.96   
+Peak output token throughput (tok/s):    1024.00   
+Peak concurrent requests:                32.00     
+Total token throughput (tok/s):          3967.92   
+---------------Time to First Token----------------
+Mean TTFT (ms):                          326.58    
+Median TTFT (ms):                        287.38    
+P99 TTFT (ms):                           620.18    
+-----Time per Output Token (excl. 1st token)------
+Mean TPOT (ms):                          12.30     
+Median TPOT (ms):                        12.55     
+P99 TPOT (ms):                           14.95     
+---------------Inter-token Latency----------------
+Mean ITL (ms):                           31.62     
+Median ITL (ms):                         31.48     
+P99 ITL (ms):                            89.17     
+---------------Speculative Decoding---------------
+Acceptance rate (%):                     52.71     
+Acceptance length:                       2.58      
+Drafts:                                  12698     
+Draft tokens:                            38094     
+Accepted tokens:                         20078     
+Per-position acceptance (%):
+  Position 0:                            69.92     
+  Position 1:                            54.74     
+  Position 2:                            33.46     
+==================================================
+===== ARM EP agent run1 04:29:41 =====
+{
+ "wall_s": 14.69,
+ "sessions": 4,
+ "errors": 0,
+ "error_detail": [],
+ "total_out_tokens": 6990,
+ "aggregate_out_tok_s": 475.8,
+ "turn_latency_mean_s": 0.0,
+ "per_session_first_last": []
+}
+===== ARM EP agent run2 04:29:56 =====
+{
+ "wall_s": 13.75,
+ "sessions": 4,
+ "errors": 0,
+ "error_detail": [],
+ "total_out_tokens": 6847,
+ "aggregate_out_tok_s": 497.8,
+ "turn_latency_mean_s": 0.0,
+ "per_session_first_last": []
+}
+===== ARM EP acceptance tail =====
+[0;36m(RustFrontend pid=2188444)[0m [32mINFO[0m [90m10-09 12:29:37[0m [90m[log_stats.rs:302][0m SpecDecoding metrics: Mean acceptance length: 2.68, Accepted throughput: 1665.04 tokens/s, Drafted throughput: 2976.19 tokens/s, Accepted: 16651 tokens, Drafted: 29763 tokens, Per-position acceptance rate: 0.738, 0.584, 0.357, Avg Draft acceptance rate: 55.9%
+[0;36m(RustFrontend pid=2188444)[0m [32mINFO[0m [90m10-09 12:29:47[0m [90m[log_stats.rs:302][0m SpecDecoding metrics: Mean acceptance length: 2.61, Accepted throughput: 438.60 tokens/s, Drafted throughput: 818.09 tokens/s, Accepted: 4386 tokens, Drafted: 8181 tokens, Per-position acceptance rate: 0.665, 0.548, 0.396, Avg Draft acceptance rate: 53.6%
+[0;36m(RustFrontend pid=2188444)[0m [32mINFO[0m [90m10-09 12:29:57[0m [90m[log_stats.rs:302][0m SpecDecoding metrics: Mean acceptance length: 3.38, Accepted throughput: 313.40 tokens/s, Drafted throughput: 394.50 tokens/s, Accepted: 3134 tokens, Drafted: 3945 tokens, Per-position acceptance rate: 0.881, 0.795, 0.707, Avg Draft acceptance rate: 79.4%
+[0;36m(RustFrontend pid=2188444)[0m [32mINFO[0m [90m10-09 12:30:07[0m [90m[log_stats.rs:302][0m SpecDecoding metrics: Mean acceptance length: 3.27, Accepted throughput: 357.61 tokens/s, Drafted throughput: 472.82 tokens/s, Accepted: 3576 tokens, Drafted: 4728 tokens, Per-position acceptance rate: 0.859, 0.748, 0.662, Avg Draft acceptance rate: 75.6%
+GPU: 3 MiB 3 MiB 3 MiB 3 MiB 3 MiB 3 MiB 3 MiB 3 MiB 
+remaining vllm procs: 4
+PORTS_FREE
+===== ARM NOEP booting =====
+BOOT FAILED, sig:
+(Worker_TP7 pid=2235353) ERROR 10-09 12:31:05 [multiproc_executor.py:952]     raise ValueError(
+(Worker_TP7 pid=2235353) ERROR 10-09 12:31:05 [multiproc_executor.py:952] ValueError: The output_size of gate's and up's weight = 80 is not divisible by weight quantization block_n = 128.
+(Worker_TP6 pid=2234948) ERROR 10-09 12:31:05 [multiproc_executor.py:952]     raise ValueError(
+ARM NOEP could not start — AB is EP-only
+GPU: 0 MiB 0 MiB 0 MiB 0 MiB 0 MiB 0 MiB 0 MiB 0 MiB 
+remaining vllm procs: 3
+PORTS_FREE
+READY after ~110s
+########## AB END Fri Oct  9 04:33:05 AM UTC 2026 ##########

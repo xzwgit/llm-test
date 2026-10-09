@@ -1,0 +1,22 @@
+TP8 without EP — load-time rejection (flashnext_tp8noep_boot.log, 2026-10-09)
+
+(Worker_TP7 pid=2235353) ERROR 10-09 12:31:05 [multiproc_executor.py:952]     validate_fp8_block_shape_moe(
+(Worker_TP7 pid=2235353) ERROR 10-09 12:31:05 [multiproc_executor.py:952]   File "/root/vllm31/lib/python3.12/site-packages/vllm/model_executor/layers/quantization/utils/fp8_utils.py", line 1359, in validate_fp8_block_shape_moe
+(Worker_TP7 pid=2235353) ERROR 10-09 12:31:05 [multiproc_executor.py:952]     raise ValueError(
+(Worker_TP7 pid=2235353) ERROR 10-09 12:31:05 [multiproc_executor.py:952] ValueError: The output_size of gate's and up's weight = 80 is not divisible by weight quantization block_n = 128.
+(EngineCore pid=2231834) INFO 10-09 12:31:05 [multiproc_executor.py:478] [shutdown] Executor: waiting for worker exit count=8
+(Worker_TP6 pid=2234948) ERROR 10-09 12:31:05 [multiproc_executor.py:952] WorkerProc failed to start.
+(Worker_TP6 pid=2234948) ERROR 10-09 12:31:05 [multiproc_executor.py:952] Traceback (most recent call last):
+(Worker_TP6 pid=2234948) ERROR 10-09 12:31:05 [multiproc_executor.py:952]   File "/root/vllm31/lib/python3.12/site-packages/vllm/v1/executor/multiproc_executor.py", line 919, in worker_main
+(Worker_TP6 pid=2234948) ERROR 10-09 12:31:05 [multiproc_executor.py:952]     worker = WorkerProc(*args, **kwargs)
+(Worker_TP6 pid=2234948) ERROR 10-09 12:31:05 [multiproc_executor.py:952]              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP6 pid=2234948) ERROR 10-09 12:31:05 [multiproc_executor.py:952]   File "/root/vllm31/lib/python3.12/site-packages/vllm/tracing/otel.py", line 175, in sync_wrapper
+(Worker_TP6 pid=2234948) ERROR 10-09 12:31:05 [multiproc_executor.py:952]     return func(*args, **kwargs)
+--
+(Worker_TP6 pid=2234948) ERROR 10-09 12:31:05 [multiproc_executor.py:952]     validate_fp8_block_shape_moe(
+(Worker_TP6 pid=2234948) ERROR 10-09 12:31:05 [multiproc_executor.py:952]   File "/root/vllm31/lib/python3.12/site-packages/vllm/model_executor/layers/quantization/utils/fp8_utils.py", line 1359, in validate_fp8_block_shape_moe
+(Worker_TP6 pid=2234948) ERROR 10-09 12:31:05 [multiproc_executor.py:952]     raise ValueError(
+(Worker_TP6 pid=2234948) ERROR 10-09 12:31:05 [multiproc_executor.py:952] ValueError: The output_size of gate's and up's weight = 80 is not divisible by weight quantization block_n = 128.
+(Worker_TP4 pid=2234082) ERROR 10-09 12:31:05 [multiproc_executor.py:952] WorkerProc failed to start.
+(Worker_TP4 pid=2234082) ERROR 10-09 12:31:05 [multiproc_executor.py:952] Traceback (most recent call last):
+(Worker_TP4 pid=2234082) ERROR 10-09 12:31:05 [multiproc_executor.py:952]   File "/root/vllm31/lib/python3.12/site-packages/vllm/v1/executor/multiproc_executor.py", line 919, in worker_main

@@ -32,6 +32,7 @@ LLM 部署与性能测试归档。每个子目录是一个独立测试项目，�
 | [qwen3.8-27b-fp8-dflash2-tp1-gb10-spark](qwen3.8-27b-fp8-dflash2-tp1-gb10-spark/) | 2026-09 | FP8 主模型 + DFlash2(spec=7), DGX Spark(GB10) 九档 + v2（Agent/多轮/缓存验证） |
 | [qwen3.8-27b-fp8-dflash2-tp8-8x5090](qwen3.8-27b-fp8-dflash2-tp8-8x5090/) | 2026-09 | FP8 + DFlash2(spec=7), 8×RTX 5090 TP8, 26 档矩阵 14 档有效（含两次崩溃记录） |
 | [qwen3.8-27b-sglang-dspark-tp1-gb10-spark](qwen3.8-27b-sglang-dspark-tp1-gb10-spark/) | 2026-09 | SGLang 定制镜像 + RadixArk NVFP4 + DSPARK, DGX Spark(GB10) 9 档 + 场景化全套 + 无投机对照 |
+- [Qwen3.8-Flash-Next-FP8 TP8+EP+MTP (SM120 x8)](qwen3.8-flash-next-fp8-tp8-ep-mtp-sm120/) — official vLLM 0.31.1 + FI 0.7.1rc5(+#6161 patch); 6-tier matrix c1~c32 (c32 1984 tok/s), agent 476-498 tok/s, MTP accept 75%/len 3.25; pure-TP boundary TP4-works/TP8-rejected
 
 ### Qwen3.6-27B
 | 测试 | 日期 | 说明 |
