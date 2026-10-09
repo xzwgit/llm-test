@@ -1,0 +1,103 @@
+########## TOOLS-AB START Fri Oct  9 07:03:01 AM UTC 2026 ##########
+===== ARM qwen3_coder boot =====
+ARM qwen3_coder READY
+===== coder run1 07:05:08 =====
+Traceback (most recent call last):
+  File "/root/vllm31/agent_tools_sim.py", line 126, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/root/vllm31/agent_tools_sim.py", line 105, in main
+    result = CANNED.get(name, "{}").format(**{**{"node": "gpu-03", "metric": "gpu_util", "replicas": 2}, **argsd})
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+KeyError: '"node"'
+exit=1
+===== coder run2 07:05:09 =====
+Traceback (most recent call last):
+  File "/root/vllm31/agent_tools_sim.py", line 126, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/root/vllm31/agent_tools_sim.py", line 105, in main
+    result = CANNED.get(name, "{}").format(**{**{"node": "gpu-03", "metric": "gpu_util", "replicas": 2}, **argsd})
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+KeyError: '"node"'
+exit=1
+===== ARM hermes boot =====
+ARM hermes READY
+===== hermes run1 07:07:18 =====
+{
+ "turns": 6,
+ "tool_call_turns": 0,
+ "raw_xml_leak": 5,
+ "errors": 0,
+ "latencies": [
+  0.277,
+  0.383,
+  0.429,
+  0.352,
+  0.267,
+  1.667
+ ],
+ "calls_by_tool": {},
+ "lat_mean_s": 0.562,
+ "structured_tool_calls_ok": false
+}
+exit=1
+===== cleanup =====
+GPU: 3 MiB 3 MiB 3 MiB 3 MiB 3 MiB 3 MiB 3 MiB 3 MiB 
+remaining vllm procs: 4
+PORTS_FREE
+GPU final: 3 MiB 3 MiB 3 MiB 3 MiB 3 MiB 3 MiB 3 MiB 3 MiB 
+########## TOOLS-AB END Fri Oct  9 07:07:34 AM UTC 2026 ##########
+########## CODER-RERUN START Fri Oct  9 07:09:42 AM UTC 2026 ##########
+coder READY 07:11:49
+===== coder-fixed run1 07:11:59 =====
+{
+ "turns": 6,
+ "tool_call_turns": 3,
+ "raw_xml_leak": 0,
+ "errors": 0,
+ "latencies": [
+  0.277,
+  1.467,
+  0.391,
+  0.873,
+  0.311,
+  1.277
+ ],
+ "calls_by_tool": {
+  "get_gpu_alert": 2,
+  "scale_node": 1
+ },
+ "lat_mean_s": 0.766,
+ "structured_tool_calls_ok": true
+}
+exit=0
+===== coder-fixed run2 07:12:04 =====
+{
+ "turns": 6,
+ "tool_call_turns": 3,
+ "raw_xml_leak": 0,
+ "errors": 0,
+ "latencies": [
+  0.255,
+  1.462,
+  0.306,
+  0.872,
+  0.31,
+  1.275
+ ],
+ "calls_by_tool": {
+  "get_gpu_alert": 2,
+  "scale_node": 1
+ },
+ "lat_mean_s": 0.747,
+ "structured_tool_calls_ok": true
+}
+exit=0
+[0;36m(RustFrontend pid=2882780)[0m [32mINFO[0m [90m10-09 15:12:03[0m [90m[log_stats.rs:302][0m SpecDecoding metrics: Mean acceptance length: 3.15, Accepted throughput: 53.20 tokens/s, Drafted throughput: 74.10 tokens/s, Accepted: 532 tokens, Drafted: 741 tokens, Per-position acceptance rate: 0.850, 0.704, 0.599, Avg Draft acceptance rate: 71.8%
+[0;36m(RustFrontend pid=2882780)[0m [32mINFO[0m [90m10-09 15:12:13[0m [90m[log_stats.rs:302][0m SpecDecoding metrics: Mean acceptance length: 3.04, Accepted throughput: 64.40 tokens/s, Drafted throughput: 94.80 tokens/s, Accepted: 644 tokens, Drafted: 948 tokens, Per-position acceptance rate: 0.823, 0.658, 0.557, Avg Draft acceptance rate: 67.9%
+GPU: 3 MiB 3 MiB 3 MiB 3 MiB 3 MiB 3 MiB 3 MiB 3 MiB 
+remaining vllm procs: 4
+PORTS_FREE
+GPU final: 3 MiB 3 MiB 3 MiB 3 MiB 3 MiB 3 MiB 3 MiB 3 MiB 
+########## CODER-RERUN END Fri Oct  9 07:12:26 AM UTC 2026 ##########
