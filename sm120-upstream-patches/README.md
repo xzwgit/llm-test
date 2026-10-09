@@ -28,3 +28,15 @@ tilekernels-37-sinkhorn-smem/             kernel.patch + test.patch + verificati
 The recurring wall on SM120 is the **100 KB shared-memory budget per block** (228 KB on datacenter sm_100/sm_103) — kernels and infrastructure sized for datacenter parts fail at launch or silently misbehave. Beyond that: PD-disaggregation operational gaps that only appear when you actually deploy two nodes. All four patches were verified end-to-end on our 2-node SM120 cluster before submission; none is speculative.
 
 The TileKernels patch keeps the original accumulation order (bitwise-identical results on datacenter parts) and only reduces the copy-pipeline depth when the device budget requires it; the accompanying test fix replaces a default-tolerance comparison that a pure-torch row-serial loop already exceeds at num_partials=564 (a shape only consumer Blackwell's 188-SM count generates).
+
+## vllm PR #57662 — NIXL region dedup (mixed-attention silent corruption, fixes #57661)
+
+Upstream PR by @G-haoyu; we applied it to our 2-node SM120 P/D setup (vLLM dev382) and verified
+zero corruption with the full-feature config (DSpark in both pools + vision + KV fp8):
+16+ benchmark tiers, vision objective suite 10/10, long-form Chinese clean.
+
+- `pr57662.diff` — the patch as applied to `base_worker.py` (on-box backups: `.bak57661/.orig`)
+- `patch_57661.py` — the applier script we used
+
+Note: the PR entered merge-conflict state on 2026-09-28 and awaits the author's rebase;
+this diff is the bridge we run locally until it lands.
