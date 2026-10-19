@@ -15,6 +15,7 @@ LLM 部署与性能测试归档。每个子目录是一个独立测试项目，�
 | 测试 | 日期 | 说明 |
 |---|---|---|
 | [deepseek-v4.1-flash-tp8-8xb300](deepseek-v4.1-flash-tp8-8xb300/) | 2026-09 | 8×B300 SXM6（SM100）TP8, 1M 上下文, 官方镜像与本地 uv 环境两组独立数据 |
+| [dsv41-flash-1017-sm120](dsv41-flash-1017-sm120/) | 2026-10 | 最新 nightly(dev24)+torch2.14+#60762 · 1017 权重 25 档零失败(1K/长上下文/64K ramp) + 相位探针(1017 未复现) + NVFP4 KV 拒证 + DSpark×1017 chat 损坏定案(vllm#62417) |
 
 ### DeepSeek-V4-Flash-0731
 | 测试 | 日期 | 说明 |

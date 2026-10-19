@@ -1,0 +1,234 @@
+########## AGENT-K-AB START Mon Oct 19 05:57:21 AM UTC 2026 ##########
+===== leg k=3 05:57:21 =====
+k=3 READY (323 verified) after ~100s 05:59:06
+--- k=3 tool sanity
+{"id":"chatcmpl-36da9e0f","object":"chat.completion","created":1792389556,"model":"deepseek-v4.1-flash","choices":[{"index":0,"message":{"role":"assistant","content":null,"reasoning":")to invoketo invoketo invoketo invoketo invoketo invoketo invoketo invoketo invoketo invoketo invoketo invoketo invoketo invoketo invoketo invoketo invoketo invoketo invoketo invoketo invoketo invoketo invoketo invoketo invoketo invoketo invoketo invoketo invoketo invoketo invoketo invoketo invoketo invoketo invoketo invoketo invoketo invoketo invoketo invoketo invoketo invoketo invoketo invoketo invoketo invoketo invoketo invoketo invoketo invoketo invoketo invoketo invoketo invoketo invoketo invoketo invoketo invoketo invoketo invoketo invoketo invoketo invoketo invoketo invoketo invoketo invoketo invoketo invoketo invoketo invoketo invoketo invoketo invoketo invoketo invoketo invoketo invoketo invoketo invoketo invoketo invoketo invoketo invoketo invok"},"logprobs":null,"finish_reason":"length","stop_reason":null,"token_ids":null}],"usage":{"prompt_tokens":304,"total_tokens":560,"completion_tokens":256,"prompt_tokens_details":null,"completion_tokens_details":{"reasoning_tokens":256}},"metrics":null,"system_fingerprint":null,"prompt_logprobs":null,"prompt_token_ids":null,"kv_transfer_params":null,"ec_transfer_params":null}
+--- k=3 agent run1 05:59:17
+{
+ "turns": 12,
+ "tool_call_turns": 0,
+ "raw_xml_leak": 0,
+ "errors": 0,
+ "latencies": [
+  2.169,
+  2.115,
+  2.193,
+  0.809,
+  2.184,
+  2.149,
+  2.183,
+  2.135,
+  2.106,
+  2.096,
+  2.105,
+  2.098
+ ],
+ "calls_by_tool": {},
+ "lat_mean_s": 2.028,
+ "structured_tool_calls_ok": false
+}
+exit=1
+--- k=3 agent run2 05:59:42
+{
+ "turns": 12,
+ "tool_call_turns": 0,
+ "raw_xml_leak": 0,
+ "errors": 0,
+ "latencies": [
+  2.12,
+  2.118,
+  0.492,
+  2.03,
+  2.133,
+  2.15,
+  2.109,
+  2.157,
+  2.106,
+  2.094,
+  2.092,
+  2.093
+ ],
+ "calls_by_tool": {},
+ "lat_mean_s": 1.974,
+ "structured_tool_calls_ok": false
+}
+exit=1
+--- k=3 agent run3 06:00:05
+{
+ "turns": 12,
+ "tool_call_turns": 0,
+ "raw_xml_leak": 0,
+ "errors": 0,
+ "latencies": [
+  2.098,
+  2.099,
+  2.118,
+  2.225,
+  2.128,
+  2.106,
+  2.014,
+  2.118,
+  2.069,
+  2.089,
+  2.083,
+  2.076
+ ],
+ "calls_by_tool": {},
+ "lat_mean_s": 2.102,
+ "structured_tool_calls_ok": false
+}
+exit=1
+--- k=3 acceptance windows:
+[0;36m(RustFrontend pid=1596644)[0m [32mINFO[0m [90m10-19 13:59:16[0m [90m[log_stats.rs:302][0m SpecDecoding metrics: Mean acceptance length: 2.00, Accepted throughput: 0.40 tokens/s, Drafted throughput: 1.20 tokens/s, Accepted: 4 tokens, Drafted: 12 tokens, Per-position acceptance rate: 0.500, 0.250, 0.250, Avg Draft acceptance rate: 33.3%
+[0;36m(RustFrontend pid=1596644)[0m [32mINFO[0m [90m10-19 13:59:26[0m [90m[log_stats.rs:302][0m SpecDecoding metrics: Mean acceptance length: 3.60, Accepted throughput: 151.20 tokens/s, Drafted throughput: 174.60 tokens/s, Accepted: 1512 tokens, Drafted: 1746 tokens, Per-position acceptance rate: 0.904, 0.859, 0.835, Avg Draft acceptance rate: 86.6%
+[0;36m(RustFrontend pid=1596644)[0m [32mINFO[0m [90m10-19 13:59:36[0m [90m[log_stats.rs:302][0m SpecDecoding metrics: Mean acceptance length: 3.88, Accepted throughput: 177.59 tokens/s, Drafted throughput: 185.09 tokens/s, Accepted: 1776 tokens, Drafted: 1851 tokens, Per-position acceptance rate: 0.974, 0.956, 0.948, Avg Draft acceptance rate: 95.9%
+[0;36m(RustFrontend pid=1596644)[0m [32mINFO[0m [90m10-19 13:59:46[0m [90m[log_stats.rs:302][0m SpecDecoding metrics: Mean acceptance length: 3.94, Accepted throughput: 182.11 tokens/s, Drafted throughput: 186.01 tokens/s, Accepted: 1821 tokens, Drafted: 1860 tokens, Per-position acceptance rate: 0.987, 0.977, 0.973, Avg Draft acceptance rate: 97.9%
+[0;36m(RustFrontend pid=1596644)[0m [32mINFO[0m [90m10-19 13:59:56[0m [90m[log_stats.rs:302][0m SpecDecoding metrics: Mean acceptance length: 3.75, Accepted throughput: 171.91 tokens/s, Drafted throughput: 187.81 tokens/s, Accepted: 1719 tokens, Drafted: 1878 tokens, Per-position acceptance rate: 0.946, 0.906, 0.895, Avg Draft acceptance rate: 91.5%
+[0;36m(RustFrontend pid=1596644)[0m [32mINFO[0m [90m10-19 14:00:06[0m [90m[log_stats.rs:302][0m SpecDecoding metrics: Mean acceptance length: 3.95, Accepted throughput: 181.09 tokens/s, Drafted throughput: 184.19 tokens/s, Accepted: 1811 tokens, Drafted: 1842 tokens, Per-position acceptance rate: 0.989, 0.982, 0.979, Avg Draft acceptance rate: 98.3%
+[0;36m(RustFrontend pid=1596644)[0m [32mINFO[0m [90m10-19 14:00:16[0m [90m[log_stats.rs:302][0m SpecDecoding metrics: Mean acceptance length: 3.81, Accepted throughput: 178.49 tokens/s, Drafted throughput: 190.79 tokens/s, Accepted: 1785 tokens, Drafted: 1908 tokens, Per-position acceptance rate: 0.956, 0.931, 0.920, Avg Draft acceptance rate: 93.6%
+[0;36m(RustFrontend pid=1596644)[0m [32mINFO[0m [90m10-19 14:00:26[0m [90m[log_stats.rs:302][0m SpecDecoding metrics: Mean acceptance length: 3.91, Accepted throughput: 183.00 tokens/s, Drafted throughput: 188.70 tokens/s, Accepted: 1830 tokens, Drafted: 1887 tokens, Per-position acceptance rate: 0.978, 0.967, 0.965, Avg Draft acceptance rate: 97.0%
+===== leg k=3 DONE 06:00:31 =====
+===== leg k=4 06:00:31 =====
+k=4 READY (323 verified) after ~110s 06:02:29
+--- k=4 tool sanity
+{"id":"chatcmpl-5cb368bc","object":"chat.completion","created":1792389759,"model":"deepseek-v4.1-flash","choices":[{"index":0,"message":{"role":"assistant","content":null,"reasoning":")to invoketheto invoketheto invoketheto invoketheto invoketheto invoketheto invoketheto invoketheto invoketheto invoketheto invoketheto invoketheto invoketheto invoketheto invoketheto invoketheto invoketheto invoketheto invoketheto invoketheto invoketheto invoketheto invoketheto invoketheto invoketheto invoketheto invoketheto invoketheto invoketheto invoketheto invoketheto invoketheto invoketheto invoketheto invoketheto invoketheto invoketheto invoketheto invoketheto invoketheto invoketheto invoketheto invoketheto invoketheto invoketheto invoketheto invoketheto invoketheto invoketheto invoketheto invoketheto invoketheto invoketheto invoketheto invoketheto invoketheto invoketheto invoketheto invoketheto invoketheto invoketheto invoketheto invoketheto invok"},"logprobs":null,"finish_reason":"length","stop_reason":null,"token_ids":null}],"usage":{"prompt_tokens":304,"total_tokens":560,"completion_tokens":256,"prompt_tokens_details":null,"completion_tokens_details":{"reasoning_tokens":256}},"metrics":null,"system_fingerprint":null,"prompt_logprobs":null,"prompt_token_ids":null,"kv_transfer_params":null,"ec_transfer_params":null}
+--- k=4 agent run1 06:02:40
+{"error_at_turn": 7, "detail": "HTTP Error 500: Internal Server Error"}
+{
+ "turns": 7,
+ "tool_call_turns": 0,
+ "raw_xml_leak": 0,
+ "errors": 1,
+ "latencies": [
+  1.926,
+  1.915,
+  2.017,
+  1.996,
+  1.977,
+  3.053,
+  1.834
+ ],
+ "calls_by_tool": {},
+ "lat_mean_s": 2.103,
+ "structured_tool_calls_ok": false
+}
+exit=1
+--- k=4 agent run2 06:02:55
+{"error_at_turn": 0, "detail": "HTTP Error 500: Internal Server Error"}
+{
+ "turns": 0,
+ "tool_call_turns": 0,
+ "raw_xml_leak": 0,
+ "errors": 1,
+ "latencies": [],
+ "calls_by_tool": {},
+ "lat_mean_s": 0.0,
+ "structured_tool_calls_ok": false
+}
+exit=1
+--- k=4 agent run3 06:02:55
+{"error_at_turn": 0, "detail": "HTTP Error 500: Internal Server Error"}
+{
+ "turns": 0,
+ "tool_call_turns": 0,
+ "raw_xml_leak": 0,
+ "errors": 1,
+ "latencies": [],
+ "calls_by_tool": {},
+ "lat_mean_s": 0.0,
+ "structured_tool_calls_ok": false
+}
+exit=1
+--- k=4 acceptance windows:
+[0;36m(RustFrontend pid=1602010)[0m [32mINFO[0m [90m10-19 14:02:38[0m [90m[log_stats.rs:302][0m SpecDecoding metrics: Mean acceptance length: 3.50, Accepted throughput: 0.50 tokens/s, Drafted throughput: 0.80 tokens/s, Accepted: 5 tokens, Drafted: 8 tokens, Per-position acceptance rate: 1.000, 0.500, 0.500, 0.500, Avg Draft acceptance rate: 62.5%
+[0;36m(RustFrontend pid=1602010)[0m [32mINFO[0m [90m10-19 14:02:48[0m [90m[log_stats.rs:302][0m SpecDecoding metrics: Mean acceptance length: 4.61, Accepted throughput: 181.81 tokens/s, Drafted throughput: 201.61 tokens/s, Accepted: 1818 tokens, Drafted: 2016 tokens, Per-position acceptance rate: 0.950, 0.915, 0.897, 0.845, Avg Draft acceptance rate: 90.2%
+===== leg k=4 DONE 06:02:55 =====
+===== leg k=5 06:02:55 =====
+k=5 READY (323 verified) after ~100s 06:04:50
+--- k=5 tool sanity
+{"id":"chatcmpl-8c311e66","object":"chat.completion","created":1792389900,"model":"deepseek-v4.1-flash","choices":[{"index":0,"message":{"role":"assistant","content":null,"reasoning":")  *MUST*  *MUST*  *MUST*  *MUST*  *MUST*  *MUST*  *MUST*  *MUST*  *MUST*  *MUST*  *MUST*  *MUST*  *MUST*  *MUST*  *MUST*  *MUST*  *MUST*  *MUST*  *MUST*  *MUST*  *MUST*  *MUST*  *MUST*  *MUST*  *MUST*  *MUST*  *MUST*  *MUST*  *MUST*  *MUST*  *MUST*  *MUST*  *MUST*  *MUST*  *MUST*  *MUST*  *MUST*  *MUST*  *MUST*  *MUST*  *MUST*  *MUST*  *MUST*  *MUST*  *MUST*  *MUST*  *MUST*  *MUST*  *MUST*  *MUST*  *MUST*"},"logprobs":null,"finish_reason":"length","stop_reason":null,"token_ids":null}],"usage":{"prompt_tokens":304,"total_tokens":560,"completion_tokens":256,"prompt_tokens_details":null,"completion_tokens_details":{"reasoning_tokens":256}},"metrics":null,"system_fingerprint":null,"prompt_logprobs":null,"prompt_token_ids":null,"kv_transfer_params":null,"ec_transfer_params":null}
+--- k=5 agent run1 06:05:01
+{
+ "turns": 12,
+ "tool_call_turns": 0,
+ "raw_xml_leak": 0,
+ "errors": 0,
+ "latencies": [
+  1.622,
+  1.612,
+  1.71,
+  1.924,
+  1.763,
+  1.878,
+  1.594,
+  1.721,
+  1.603,
+  1.587,
+  3.244,
+  3.767
+ ],
+ "calls_by_tool": {},
+ "lat_mean_s": 2.002,
+ "structured_tool_calls_ok": false
+}
+exit=1
+--- k=5 agent run2 06:05:25
+{
+ "turns": 12,
+ "tool_call_turns": 0,
+ "raw_xml_leak": 0,
+ "errors": 0,
+ "latencies": [
+  1.669,
+  1.612,
+  1.729,
+  1.852,
+  1.598,
+  1.7,
+  1.605,
+  1.574,
+  2.287,
+  1.602,
+  1.594,
+  1.644
+ ],
+ "calls_by_tool": {},
+ "lat_mean_s": 1.706,
+ "structured_tool_calls_ok": false
+}
+exit=1
+--- k=5 agent run3 06:05:45
+{
+ "turns": 12,
+ "tool_call_turns": 0,
+ "raw_xml_leak": 0,
+ "errors": 0,
+ "latencies": [
+  1.652,
+  1.6,
+  1.734,
+  1.935,
+  1.71,
+  2.159,
+  0.976,
+  1.604,
+  1.596,
+  1.554,
+  1.556,
+  1.553
+ ],
+ "calls_by_tool": {},
+ "lat_mean_s": 1.636,
+ "structured_tool_calls_ok": false
+}
+exit=1
+--- k=5 acceptance windows:
+[0;36m(RustFrontend pid=1606950)[0m [32mINFO[0m [90m10-19 14:04:56[0m [90m[log_stats.rs:302][0m SpecDecoding metrics: Mean acceptance length: 1.69, Accepted throughput: 10.80 tokens/s, Drafted throughput: 78.00 tokens/s, Accepted: 108 tokens, Drafted: 780 tokens, Per-position acceptance rate: 0.346, 0.115, 0.096, 0.077, 0.058, Avg Draft acceptance rate: 13.8%
+[0;36m(RustFrontend pid=1606950)[0m [32mINFO[0m [90m10-19 14:05:06[0m [90m[log_stats.rs:302][0m SpecDecoding metrics: Mean acceptance length: 5.41, Accepted throughput: 149.81 tokens/s, Drafted throughput: 170.01 tokens/s, Accepted: 1498 tokens, Drafted: 1700 tokens, Per-position acceptance rate: 0.932, 0.888, 0.871, 0.862, 0.853, Avg Draft acceptance rate: 88.1%
+[0;36m(RustFrontend pid=1606950)[0m [32mINFO[0m [90m10-19 14:05:16[0m [90m[log_stats.rs:302][0m SpecDecoding metrics: Mean acceptance length: 5.50, Accepted throughput: 248.20 tokens/s, Drafted throughput: 276.00 tokens/s, Accepted: 2482 tokens, Drafted: 2760 tokens, Per-position acceptance rate: 0.929, 0.906, 0.895, 0.888, 0.879, Avg Draft acceptance rate: 89.9%
+[0;36m(RustFrontend pid=1606950)[0m [32mINFO[0m [90m10-19 14:05:26[0m [90m[log_stats.rs:302][0m SpecDecoding metrics: Mean acceptance length: 3.46, Accepted throughput: 138.99 tokens/s, Drafted throughput: 281.98 tokens/s, Accepted: 1390 tokens, Drafted: 2820 tokens, Per-position acceptance rate: 0.908, 0.438, 0.411, 0.362, 0.346, Avg Draft acceptance rate: 49.3%
+[0;36m(RustFrontend pid=1606950)[0m [32mINFO[0m [90m10-19 14:05:36[0m [90m[log_stats.rs:302][0m SpecDecoding metrics: Mean acceptance length: 5.61, Accepted throughput: 249.70 tokens/s, Drafted throughput: 271.00 tokens/s, Accepted: 2497 tokens, Drafted: 2710 tokens, Per-position acceptance rate: 0.954, 0.930, 0.917, 0.906, 0.900, Avg Draft acceptance rate: 92.1%
+[0;36m(RustFrontend pid=1606950)[0m [32mINFO[0m [90m10-19 14:05:46[0m [90m[log_stats.rs:302][0m SpecDecoding metrics: Mean acceptance length: 5.18, Accepted throughput: 238.90 tokens/s, Drafted throughput: 285.50 tokens/s, Accepted: 2389 tokens, Drafted: 2855 tokens, Per-position acceptance rate: 0.858, 0.844, 0.835, 0.828, 0.818, Avg Draft acceptance rate: 83.7%
+[0;36m(RustFrontend pid=1606950)[0m [32mINFO[0m [90m10-19 14:05:56[0m [90m[log_stats.rs:302][0m SpecDecoding metrics: Mean acceptance length: 5.20, Accepted throughput: 229.31 tokens/s, Drafted throughput: 273.02 tokens/s, Accepted: 2293 tokens, Drafted: 2730 tokens, Per-position acceptance rate: 0.925, 0.855, 0.826, 0.802, 0.791, Avg Draft acceptance rate: 84.0%
+===== leg k=5 DONE 06:06:05 =====
+########## AGENT-K-AB DONE Mon Oct 19 06:06:20 AM UTC 2026 ##########

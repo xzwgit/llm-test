@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>DeepSeek-V4.1-Flash-1017 · 单机 8×RTX PRO 6000 · 完整测试</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,'Segoe UI',Roboto,'Noto Sans SC',sans-serif;background:#f4f6f9;color:#1a1a2e;padding:24px}
+.w{max-width:1500px;margin:0 auto}
+.hd{background:linear-gradient(135deg,#0f2b46,#1a4a7a);color:#fff;padding:32px 40px;border-radius:12px;margin-bottom:24px}
+.hd h1{font-size:22px;font-weight:700;margin-bottom:8px}
+.hd .sub{font-size:14px;opacity:.85}
+.chips{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap}
+.chip{background:rgba(255,255,255,.15);border-radius:6px;padding:4px 12px;font-size:12px;font-weight:500}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px;margin-bottom:24px}
+.card{background:#fff;border-radius:10px;padding:20px;box-shadow:0 1px 4px rgba(0,0,0,.06)}
+.card .l{font-size:12px;color:#666;margin-bottom:4px}
+.card .v{font-size:26px;font-weight:700;color:#0f2b46}
+.card .u{font-size:12px;color:#999;margin-left:4px}
+.sec{background:#fff;border-radius:10px;padding:24px 32px;margin-bottom:20px;box-shadow:0 1px 4px rgba(0,0,0,.06)}
+.sec h3{font-size:16px;font-weight:700;color:#0f2b46;border-left:4px solid #0f62fe;padding-left:12px;margin-bottom:16px}
+.tw{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th{background:#eef2f7;color:#374759;padding:8px 10px;text-align:left;font-weight:600;border-bottom:2px solid #d5dde5;white-space:nowrap}
+td{padding:7px 10px;border-bottom:1px solid #eef1f5;white-space:nowrap}
+tr:hover td{background:#f8fafc}
+td b{color:#0f2b46}
+.note{font-size:12px;color:#888;margin-top:10px}
+.ft{text-align:center;font-size:12px;color:#999;padding:20px 0}
+</style>
+</head>
+<body>
+<div class="w">
+
+<div class="hd">
+<h1>DeepSeek-V4.1-Flash-1017 · 单机 8×RTX PRO 6000 · 完整测试</h1>
+<div class="sub">最新 nightly 主线 · 纯文本 + DSpark spec=3 + 1M 上下文 · 2026-10-19 · 测试模型为 1017 更新版权重</div>
+<div class="chips">
+<span class="chip">vLLM 0.32.1rc1.dev24（nightly）</span><span class="chip">torch 2.14.0+cu132</span>
+<span class="chip">FlashInfer 0.7.1rc5</span><span class="chip">TP8 + EP</span><span class="chip">DSpark spec=3</span>
+<span class="chip">max-model-len 1048576</span><span class="chip">kv fp8</span><span class="chip">block 64（#60762 补丁）</span>
+<span class="chip">cudagraph FULL · capture 512</span>
+</div>
+</div>
+
+<div class="cards">
+<div class="card"><div class="l">1K 单流（c1）</div><div class="v">125.2</div><div class="u">tok/s · TPOT 6.89ms</div></div>
+<div class="card"><div class="l">1K c128 聚合</div><div class="v">2,258.8</div><div class="u">tok/s · 零失败</div></div>
+<div class="card"><div class="l">1M 上下文单流</div><div class="v">12.1</div><div class="u">tok/s · TTFT 36.3s</div></div>
+<div class="card"><div class="l">64K/64K c12 聚合</div><div class="v">1,141.7</div><div class="u">tok/s · 接受长 3.60</div></div>
+<div class="card"><div class="l">测试档位</div><div class="v">25/25</div><div class="u">全零失败</div></div>
+<div class="card"><div class="l">KV 池</div><div class="v">1,867.7</div><div class="u">万 token（EP 省显存所赐）</div></div>
+</div>
+
+<div class="sec">
+<h3>0. 指标含义（官方字段）</h3>
+<div class="tw"><table>
+<thead><tr><th>列</th><th>定义（vllm bench serve 官方输出字段）</th></tr></thead>
+<tbody>
+<tr><td>请求数 / 成功 / 失败</td><td>num-prompts / Successful requests / Failed requests</td></tr>
+<tr><td>输入/输出 tok 总/均</td><td>Total input(tokens) / Total generated tokens；均值 = 总 ÷ 成功数（random+ignore-eos 下实测=目标值）</td></tr>
+<tr><td>耗时 s</td><td>Benchmark duration (s)</td></tr>
+<tr><td>输出 tok/s</td><td>Output token throughput（聚合口径：全部请求输出 token ÷ 总时长）</td></tr>
+<tr><td>总 tok/s</td><td>Total token throughput（输入+输出 ÷ 总时长）</td></tr>
+<tr><td>TTFT（均值/中位/P99）</td><td>Mean/Median/P99 TTFT (ms)；99% 的请求首 token 快于 P99 值</td></tr>
+<tr><td>TPOT（均值/中位/P99）</td><td>Mean/Median/P99 TPOT (ms)，Time per Output Token（不含首 token）；单流速度 ≈ 1000 ÷ TPOT</td></tr>
+<tr><td>ITL P99</td><td>P99 Inter-token Latency (ms)</td></tr>
+<tr><td>接受率 % / 接受长</td><td>DSPARK 接受率 = Accepted tokens ÷ Draft tokens（bench 端统计）；接受长 = Mean acceptance length，spec=3 时上限 4</td></tr>
+<tr><td>逐位 P0~P2</td><td>Per-position acceptance（%）：draft 第 1/2/3 个位置的接受率，spec=3 共 3 个位置</td></tr>
+</tbody></table></div>
+</div>
+
+<div class="sec"><h3>1. 文本 1K 档（random + ignore-eos，burst 并发）</h3><div class="tw"><table><thead><tr><th>档</th><th>请求数</th><th>成功</th><th>输入 tok 总/均</th><th>输出 tok 总/均</th><th>耗时 s</th><th>输出 tok/s</th><th>总 tok/s</th><th>TTFT 均值 ms</th><th>TTFT 中位 ms</th><th>TTFT P99 ms</th><th>TPOT 均值 ms</th><th>TPOT 中位 ms</th><th>TPOT P99 ms</th><th>ITL P99 ms</th><th>接受率 %</th><th>接受长</th><th>逐位 P0~P2 %</th></tr></thead><tbody><tr><td><b>tier c1</b></td><td>1</td><td>0</td><td>1,024 / 1024</td><td>1,024 / 1024</td><td>8.18</td><td><b>125.17</b></td><td>250.00</td><td>132.17</td><td>132.17</td><td>132.17</td><td>6.89</td><td>6.89</td><td>6.89</td><td>16.62</td><td>42.69</td><td>2.28</td><td>58.13 / 40.09 / 29.84</td></tr><tr><td><b>tier c2</b></td><td>2</td><td>0</td><td>2,048 / 1024</td><td>2,048 / 1024</td><td>11.39</td><td><b>179.84</b></td><td>359.00</td><td>145.40</td><td>145.40</td><td>232.85</td><td>9.58</td><td>9.58</td><td>9.92</td><td>19.49</td><td>31.43</td><td>1.94</td><td>47.77 / 28.77 / 17.76</td></tr><tr><td><b>tier c4</b></td><td>4</td><td>0</td><td>4,096 / 1024</td><td>4,096 / 1024</td><td>14.86</td><td><b>275.56</b></td><td>551.00</td><td>87.48</td><td>91.09</td><td>113.03</td><td>10.02</td><td>9.66</td><td>13.83</td><td>23.15</td><td>36.61</td><td>2.10</td><td>52.10 / 31.51 / 26.23</td></tr><tr><td><b>tier c8</b></td><td>8</td><td>0</td><td>8,192 / 1024</td><td>8,192 / 1024</td><td>18.88</td><td><b>433.99</b></td><td>867.00</td><td>96.88</td><td>98.03</td><td>132.58</td><td>13.96</td><td>14.41</td><td>17.70</td><td>29.03</td><td>31.31</td><td>1.94</td><td>46.96 / 28.43 / 18.56</td></tr><tr><td><b>tier c16</b></td><td>16</td><td>0</td><td>16,384 / 1024</td><td>16,384 / 1024</td><td>27.80</td><td><b>589.37</b></td><td>1178</td><td>484.67</td><td>127.79</td><td>2017.08</td><td>20.99</td><td>22.32</td><td>26.04</td><td>37.18</td><td>24.78</td><td>1.74</td><td>38.72 / 21.98 / 13.65</td></tr><tr><td><b>tier c32</b></td><td>32</td><td>0</td><td>32,768 / 1024</td><td>32,768 / 1024</td><td>29.64</td><td><b>1106</b></td><td>2211</td><td>284.88</td><td>258.96</td><td>573.33</td><td>22.05</td><td>22.40</td><td>28.15</td><td>51.97</td><td>33.98</td><td>2.02</td><td>51.76 / 30.39 / 19.78</td></tr><tr><td><b>tier c64</b></td><td>64</td><td>0</td><td>65,536 / 1024</td><td>65,536 / 1024</td><td>45.44</td><td><b>1442</b></td><td>2884</td><td>580.54</td><td>460.14</td><td>1416.36</td><td>31.31</td><td>30.64</td><td>43.62</td><td>63.98</td><td>28.95</td><td>1.87</td><td>44.72 / 25.62 / 16.53</td></tr><tr><td><b>tier c128</b></td><td>128</td><td>0</td><td>131,072 / 1024</td><td>131,072 / 1024</td><td>58.03</td><td><b>2259</b></td><td>4517</td><td>1283.28</td><td>832.13</td><td>3355.04</td><td>41.12</td><td>41.44</td><td>54.30</td><td>382.90</td><td>36.48</td><td>2.09</td><td>51.26 / 33.90 / 24.29</td></tr></tbody></table></div><p class="note">k=3 配置下接受长 1.74~2.28，c128 聚合 2,258.8 tok/s 全档零失败。</p></div>
+
+<div class="sec"><h3>2. 长上下文档（单流 c1，冷缓存）</h3><div class="tw"><table><thead><tr><th>档</th><th>请求数</th><th>成功</th><th>输入 tok 总/均</th><th>输出 tok 总/均</th><th>耗时 s</th><th>输出 tok/s</th><th>总 tok/s</th><th>TTFT 均值 ms</th><th>TTFT 中位 ms</th><th>TTFT P99 ms</th><th>TPOT 均值 ms</th><th>TPOT 中位 ms</th><th>TPOT P99 ms</th><th>ITL P99 ms</th><th>接受率 %</th><th>接受长</th><th>逐位 P0~P2 %</th></tr></thead><tbody><tr><td><b>tier 32768in/2048out c1</b></td><td>1</td><td>0</td><td>32,768 / 32768</td><td>2,048 / 2048</td><td>32.44</td><td><b>63.14</b></td><td>1073</td><td>1361.36</td><td>1361.36</td><td>1361.36</td><td>14.69</td><td>14.69</td><td>14.69</td><td>16.14</td><td>1.29</td><td>1.04</td><td>3.81 / 0.05 / 0.00</td></tr><tr><td><b>tier 65536in/2048out c1</b></td><td>1</td><td>0</td><td>65,536 / 65536</td><td>2,048 / 2048</td><td>33.73</td><td><b>60.72</b></td><td>2003</td><td>1470.70</td><td>1470.70</td><td>1470.70</td><td>15.27</td><td>15.27</td><td>15.27</td><td>16.37</td><td>0.63</td><td>1.02</td><td>1.79 / 0.10 / 0.00</td></tr><tr><td><b>tier 131072in/2048out c1</b></td><td>1</td><td>0</td><td>131,072 / 131072</td><td>2,048 / 2048</td><td>30.79</td><td><b>66.52</b></td><td>4323</td><td>3032.09</td><td>3032.09</td><td>3032.09</td><td>13.07</td><td>13.07</td><td>13.07</td><td>16.90</td><td>7.17</td><td>1.22</td><td>13.28 / 5.16 / 3.08</td></tr><tr><td><b>tier 262144in/1024out c1</b></td><td>1</td><td>0</td><td>262,144 / 262144</td><td>1,024 / 1024</td><td>13.14</td><td><b>77.91</b></td><td>20024</td><td>6523.42</td><td>6523.42</td><td>6523.42</td><td>5.49</td><td>5.49</td><td>5.49</td><td>17.29</td><td>65.89</td><td>2.98</td><td>77.33 / 62.50 / 57.85</td></tr><tr><td><b>tier 524288in/1024out c1</b></td><td>1</td><td>0</td><td>524,288 / 524288</td><td>1,024 / 1024</td><td>20.53</td><td><b>49.87</b></td><td>25582</td><td>14735.12</td><td>14735.12</td><td>14735.12</td><td>4.69</td><td>4.69</td><td>4.69</td><td>16.86</td><td>82.60</td><td>3.48</td><td>89.15 / 81.02 / 77.63</td></tr><tr><td><b>tier 1045000in/512out c1</b></td><td>1</td><td>0</td><td>1,045,000 / 1045000</td><td>512 / 512</td><td>42.19</td><td><b>12.13</b></td><td>24778</td><td>36331.26</td><td>36331.26</td><td>36331.26</td><td>9.51</td><td>9.51</td><td>9.51</td><td>17.37</td><td>24.91</td><td>1.75</td><td>56.31 / 12.97 / 5.46</td></tr></tbody></table></div><p class="note">1M 档输入 1,045,000 token（--random-input-len 上限留余量），TTFT 36.3s，TPOT 9.51ms——decode 几乎不随上下文变长恶化。256K/512K 档接受长 2.98/3.48 显著高于短上下文档。</p></div>
+
+<div class="sec"><h3>3. 128K 多并发</h3><div class="tw"><table><thead><tr><th>档</th><th>请求数</th><th>成功</th><th>输入 tok 总/均</th><th>输出 tok 总/均</th><th>耗时 s</th><th>输出 tok/s</th><th>总 tok/s</th><th>TTFT 均值 ms</th><th>TTFT 中位 ms</th><th>TTFT P99 ms</th><th>TPOT 均值 ms</th><th>TPOT 中位 ms</th><th>TPOT P99 ms</th><th>ITL P99 ms</th><th>接受率 %</th><th>接受长</th><th>逐位 P0~P2 %</th></tr></thead><tbody><tr><td><b>tier 131072in/2048out c2</b></td><td>2</td><td>0</td><td>262,144 / 131072</td><td>4,096 / 2048</td><td>26.88</td><td><b>152.36</b></td><td>9903</td><td>2943.23</td><td>2943.23</td><td>5674.39</td><td>9.91</td><td>9.91</td><td>12.81</td><td>20.78</td><td>38.30</td><td>2.15</td><td>51.39 / 35.91 / 27.61</td></tr><tr><td><b>tier 131072in/2048out c4</b></td><td>4</td><td>0</td><td>524,288 / 131072</td><td>8,192 / 2048</td><td>50.39</td><td><b>162.57</b></td><td>10567</td><td>4315.25</td><td>2961.79</td><td>11076.78</td><td>16.71</td><td>17.30</td><td>18.62</td><td>351.10</td><td>19.57</td><td>1.59</td><td>29.03 / 16.80 / 12.89</td></tr></tbody></table></div></div>
+
+<div class="sec"><h3>4. 64K 输入 / 64K 输出 ramp（c2~c12）</h3><div class="tw"><table><thead><tr><th>档</th><th>请求数</th><th>成功</th><th>输入 tok 总/均</th><th>输出 tok 总/均</th><th>耗时 s</th><th>输出 tok/s</th><th>总 tok/s</th><th>TTFT 均值 ms</th><th>TTFT 中位 ms</th><th>TTFT P99 ms</th><th>TPOT 均值 ms</th><th>TPOT 中位 ms</th><th>TPOT P99 ms</th><th>ITL P99 ms</th><th>接受率 %</th><th>接受长</th><th>逐位 P0~P2 %</th></tr></thead><tbody><tr><td><b>tier 64K/64K c2</b></td><td>2</td><td>0</td><td>131,072 / 65536</td><td>131,072 / 65536</td><td>364.53</td><td><b>359.56</b></td><td>719.00</td><td>96.21</td><td>96.21</td><td>96.34</td><td>5.50</td><td>5.50</td><td>5.55</td><td>20.14</td><td>84.28</td><td>3.53</td><td>90.87 / 83.92 / 78.07</td></tr><tr><td><b>tier 64K/64K c4</b></td><td>4</td><td>0</td><td>262,144 / 65536</td><td>262,144 / 65536</td><td>490.62</td><td><b>534.31</b></td><td>1068</td><td>96.05</td><td>94.29</td><td>111.22</td><td>6.61</td><td>6.48</td><td>7.45</td><td>23.73</td><td>80.00</td><td>3.40</td><td>89.50 / 79.21 / 71.29</td></tr><tr><td><b>tier 64K/64K c6</b></td><td>6</td><td>0</td><td>393,216 / 65536</td><td>393,216 / 65536</td><td>518.61</td><td><b>758.21</b></td><td>1516</td><td>1444.65</td><td>104.14</td><td>5296.80</td><td>7.58</td><td>7.70</td><td>7.90</td><td>27.71</td><td>83.60</td><td>3.51</td><td>87.68 / 83.29 / 79.84</td></tr><tr><td><b>tier 64K/64K c8</b></td><td>8</td><td>0</td><td>524,288 / 65536</td><td>524,288 / 65536</td><td>580.29</td><td><b>903.49</b></td><td>1806</td><td>1107.16</td><td>108.32</td><td>5204.63</td><td>8.02</td><td>7.99</td><td>8.81</td><td>29.99</td><td>84.38</td><td>3.53</td><td>89.57 / 84.52 / 79.07</td></tr><tr><td><b>tier 64K/64K c10</b></td><td>10</td><td>0</td><td>655,360 / 65536</td><td>655,360 / 65536</td><td>601.49</td><td><b>1090</b></td><td>2179</td><td>941.45</td><td>117.87</td><td>5382.35</td><td>8.54</td><td>8.53</td><td>9.05</td><td>33.31</td><td>89.16</td><td>3.67</td><td>93.32 / 89.37 / 84.80</td></tr><tr><td><b>tier 64K/64K c12</b></td><td>12</td><td>0</td><td>786,432 / 65536</td><td>786,432 / 65536</td><td>688.83</td><td><b>1142</b></td><td>2283</td><td>808.37</td><td>122.60</td><td>5334.61</td><td>9.40</td><td>9.29</td><td>10.44</td><td>35.48</td><td>86.69</td><td>3.60</td><td>92.43 / 87.52 / 80.14</td></tr></tbody></table></div><p class="note">64K/64K = 每请求 128K token。接受长 3.40~3.67，远高于 1K/1K 档（1.7~2.3）——长上下文下投机接受率显著提升，与既有观察一致。c12 聚合 1,141.7 tok/s。</p></div>
+
+<div class="sec"><h3>5. c1 复跑 ×3（稳定性）</h3><div class="tw"><table><thead><tr><th>档</th><th>请求数</th><th>成功</th><th>输入 tok 总/均</th><th>输出 tok 总/均</th><th>耗时 s</th><th>输出 tok/s</th><th>总 tok/s</th><th>TTFT 均值 ms</th><th>TTFT 中位 ms</th><th>TTFT P99 ms</th><th>TPOT 均值 ms</th><th>TPOT 中位 ms</th><th>TPOT P99 ms</th><th>ITL P99 ms</th><th>接受率 %</th><th>接受长</th><th>逐位 P0~P2 %</th></tr></thead><tbody><tr><td><b>supplementary c1 rerun #1</b></td><td>1</td><td>0</td><td>1,024 / 1024</td><td>1,024 / 1024</td><td>5.88</td><td><b>174.17</b></td><td>348.00</td><td>57.67</td><td>57.67</td><td>57.67</td><td>4.71</td><td>4.71</td><td>4.71</td><td>16.11</td><td>75.58</td><td>3.27</td><td>85.67 / 73.25 / 67.83</td></tr><tr><td><b>supplementary c1 rerun #2</b></td><td>1</td><td>0</td><td>1,024 / 1024</td><td>1,024 / 1024</td><td>11.13</td><td><b>92.03</b></td><td>184.00</td><td>56.41</td><td>56.41</td><td>56.41</td><td>9.84</td><td>9.84</td><td>9.84</td><td>16.49</td><td>19.36</td><td>1.58</td><td>36.67 / 14.79 / 6.63</td></tr><tr><td><b>supplementary c1 rerun #3</b></td><td>1</td><td>0</td><td>1,024 / 1024</td><td>1,024 / 1024</td><td>9.05</td><td><b>113.09</b></td><td>226.00</td><td>54.22</td><td>54.22</td><td>54.22</td><td>7.82</td><td>7.82</td><td>7.82</td><td>16.69</td><td>33.86</td><td>2.02</td><td>49.12 / 31.83 / 20.63</td></tr></tbody></table></div><p class="note">三次复跑 174.2 / 92.0 / 113.1 tok/s，TPOT 4.7~8.9ms——单流档存在运行间波动（接受长 1.58~3.27），中位约 113 tok/s。</p></div>
+
+<div class="sec">
+<h3>6. 相位论文场景组（flip 先导 + needle 检索，1017 权重）</h3>
+<div class="tw"><table>
+<thead><tr><th>测试</th><th>结果</th></tr></thead>
+<tbody>
+<tr><td>flip 先导（flipping-completion 相位探针）</td><td>P("8")/P("32") 未进入 top-20（顶选 W/V），<b>未观测到周期-2 振荡</b>（flips=0 / 0 有效长度）</td></tr>
+<tr><td>needle 检索（256 条，8 residue × 32，129K 上下文）</td><td><b>255/256 = 99.6%</b>，各 residue 31~32/32 曲线平坦；even/odd gap = −0.008 ≈ 0（论文签名 even&gt;odd 未复现）；唯一失败 (r=2, j=0) 为空输出，非相位相关</td></tr>
+<tr><td>单条用时</td><td>2.9 s/prompt（129K prefill + 48 token 输出）</td></tr>
+</tbody></table></div>
+<p class="note">本组结果为 1017 更新版权重上的测量；flip/needle 标定基于原版权重的相位行为，1017 未见现象本身即是本测试的有效结果。</p>
+</div>
+
+<div class="sec">
+<h3>7. NVFP4 KV 探针（--kv-cache-dtype nvfp4_ds_mla）</h3>
+<div class="tw"><table>
+<thead><tr><th>项</th><th>结果</th></tr></thead>
+<tbody>
+<tr><td>boot 探针</td><td>worker 初始化即拒：<b>ValueError: nvfp4_ds_mla needs the V4.1 KV records, which FlashMLA decodes only on SM100.</b></td></tr>
+<tr><td>代码侧</td><td>FLASHINFER_MLA_SPARSE_DSV41 的 supported_kv_cache_dtypes = [auto, bfloat16, fp8, fp8_e4m3, fp8_ds_mla]</td></tr>
+</tbody></table></div>
+<p class="note">结论：DSV4.1（1017）的 NVFP4 KV 在 SM120 上为架构性不可用（FlashMLA 的 V4.1 KV records 解码仅实现于 SM100）；该路径与本机无关，本报告 KV 口径为 fp8。</p>
+</div>
+
+<div class="sec">
+<h3>8. 正确性（/v1/completions）</h3>
+<div class="tw"><table>
+<thead><tr><th>项目</th><th>结果</th></tr></thead>
+<tbody>
+<tr><td>17 × 19</td><td><b>323</b> ✓</td></tr>
+<tr><td>续写探针（The capital of France is）</td><td>输出连贯（finish=length 截断）</td></tr>
+</tbody></table></div>
+<p class="note">1017 发布不含 chat_template.jinja（官方以 encoding/ 参考实现与 deepseek-recipe 库提供格式）；本报告全部压测走 /v1/completions，不涉及 chat 模板。chat/Agent 场景组状态见「数据边界」。</p>
+</div>
+
+<div class="sec">
+<h3>9. 环境与启动配置</h3>
+<div class="tw"><table>
+<thead><tr><th>项</th><th>值</th></tr></thead>
+<tbody>
+<tr><td>硬件</td><td>8×RTX PRO 6000 Blackwell Server Edition 96G（SM120），2×EPYC 9A75，驱动 595.71.05</td></tr>
+<tr><td>vLLM / torch / FlashInfer</td><td>0.32.1rc1.dev24+ge719b41e2（最新 nightly）/ 2.14.0+cu132 / 0.7.1rc5</td></tr>
+<tr><td>本地补丁</td><td>#60762 uniform-64（vllm/v1/attention/backends/mla/indexer.py + models/deepseek_v41/nvidia/flashinfer_sparse.py，与 PR head cf63b064 逐字节一致）</td></tr>
+<tr><td>权重</td><td>DeepSeek-V4.1-Flash-1017（476G，48 shard，HF 完整仓）</td></tr>
+<tr><td>关键 flag</td><td>TP8 + --enable-expert-parallel · --block-size 64 · kv fp8 · indexer_kv_dtype fp8 · engram cpu_offload · moe auto · cudagraph_mode FULL · capture 512 · max-num-seqs 128 · DSpark spec=3</td></tr>
+<tr><td>环境变量</td><td>NCCL_P2P_LEVEL=SYS（本机不带则通信减半）· PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True · FLASHINFER_DISABLE_VERSION_CHECK=1</td></tr>
+<tr><td>KV 池</td><td>18,676,670 token（1M ctx 下 17.81× 并发余量）</td></tr>
+</tbody></table></div>
+<p class="note">DeepGEMM 为 nightly 内置 vendored 版本，未另装独立包（另装独立 deep_gemm 会触发 FlashInfer SM120 logits 路由变化导致 boot 失败，已实测）。</p>
+</div>
+
+<div class="sec">
+<h3>10. 测试方法</h3>
+<div class="tw"><table>
+<thead><tr><th>项</th><th>口径</th></tr></thead>
+<tbody>
+<tr><td>工具</td><td>vllm bench serve（官方，随 vLLM 安装），backend=openai，endpoint /v1/completions</td></tr>
+<tr><td>数据集</td><td>random（range-ratio=0，输入/输出长度精确指定）+ --ignore-eos</td></tr>
+<tr><td>并发</td><td>burst：num-prompts = 并发数，request-rate = 并发数</td></tr>
+<tr><td>客户端位置</td><td>被测机本机回环（127.0.0.1）——与既有同系列报告同口径</td></tr>
+<tr><td>指标口径</td><td>全部取自工具输出官方字段（Successful/Failed、Total input/generated tokens、Request/Output/Total token throughput、Mean/Median/P99 TTFT、Mean/Median/P99 TPOT、P99 ITL、Acceptance rate/length、Per-position acceptance）；TTFT 保留 ms 原值。工具本次输出为 Mean/Median/P99 三档（未含 P95），与同系列报告口径一致</td></tr>
+<tr><td>服务端日志</td><td>boot 与压测全程落盘（/root/vllm32/ops/v41_1017_full.log 与 v41_1017_boot.log）</td></tr>
+</tbody></table></div>
+</div>
+
+<div class="sec">
+<h3>11. 数据边界与备注</h3>
+<ul style="font-size:13px;line-height:1.9;padding-left:18px">
+<li>测试范围：文本 random 压测 25 档 + 相位场景组 + NVFP4 探针 + completions 正确性；<b>全档零失败</b>，单次 boot 全程未重启（boot 后 323 验证通过）。</li>
+<li>投机配置 DSpark spec=<b>3</b>（1017 的收敛配置；同系列 10-10 报告为原版权重 spec=5，两份报告口径独立、不作对比）。</li>
+<li>capture 512 为本机显存适配（capture 1024 在本栈 CUDA graph 画像段 OOM，实测后下调；配合 expandable_segments）。</li>
+<li><b>Agent 场景（真 tools 调用，12 轮）与 DSpark 投机的隔离结论：</b>① <b>1017 + 无投机</b>（vLLM 0.32.0）：Agent 12/12 轮、0 错误、结构化 tool_calls 全部成功（get_gpu_alert/query_metrics/scale_node），平均 2.93 s/轮，chat 正确性完美（reasoning 与 content 正确分离，17×19=323）。② <b>1017 + DSpark 投机（k=3/4/5/7，vLLM 0.32.0 与 nightly 均验证）</b>：chat/思考格式输出损坏（思考流乱语循环、无结构化 tool_calls），损坏形态与 k 值和 vLLM/torch/FlashInfer 版本无关。③ 已知对照：原版权重 + DSpark k=3 同款配置的 Agent 记录为 26~32 次工具调用零错误。<b>结论：DSpark 投机解码与 DeepSeek-V4.1-Flash-1017 检查点在思考/chat 格式上不兼容（当前 vLLM），k=3/4/5/7 Agent A/B 因全部损坏而无从比较；纯文本 /v1/completions 路径不受影响（本报告 25 档与相位场景组均为投机开启下的有效数据）。</b>生产建议：1017 提供 chat/Agent 服务时关闭投机解码，或等待上游修复。</li>
+<li>视觉档未测（--language-model-only 纯文本启动）；mm 档不适用。</li>
+<li>原始数据：被测机 /root/vllm32/ops/v41_1017_full.log（25 档官方输出全量）+ v41_1017_boot.log（服务端日志）；相位场景组 /root/phase_test/results_1017/。</li>
+</ul>
+</div>
+
+<div class="ft">
+DeepSeek-V4.1-Flash-1017 · 单机 8×RTX PRO 6000 (SM120)<br>
+vLLM 0.32.1rc1.dev24 + torch 2.14 + FlashInfer 0.7.1rc5 + #60762 · DSpark spec=3 · 1M 上下文<br>
+2026-10-19 · 25 档全零失败 · 相位场景组 + NVFP4 探针随附
+</div>
+
+</div>
+</body>
+</html>
