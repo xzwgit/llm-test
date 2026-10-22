@@ -1,0 +1,26 @@
+{
+ "turns": 12,
+ "tool_call_turns": 4,
+ "raw_xml_leak": 0,
+ "errors": 0,
+ "latencies": [
+  0.395,
+  1.199,
+  2.434,
+  3.069,
+  0.331,
+  2.969,
+  0.115,
+  0.348,
+  0.323,
+  3.161,
+  0.197,
+  0.113
+ ],
+ "calls_by_tool": {
+  "get_gpu_alert": 3,
+  "query_metrics": 3
+ },
+ "lat_mean_s": 1.221,
+ "structured_tool_calls_ok": true
+}
