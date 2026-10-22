@@ -47,3 +47,12 @@ Same env (vLLM 0.32.0 + FlashInfer 0.7.2 + #62535) with a **uniform matrix**: pe
 - Agent-window speculative acceptance from server-side SpecDecoding windowed counters: k3 60.3% (acclen 2.83) / k4 50.8% (3.03) / k5 55.1% (3.76); consistency check acclen ~= 1 + rate x k holds
 - Full report: `docs/DSV4.1-Flash-1017-PRO6000D-FlashInfer072-DSpark-k345-unified-matrix.html`
 - Raw logs carry the full BOOT CMD line (api-key redacted)
+
+
+## Multimodal enabled (2026-10-22)
+
+Same recipe minus `--language-model-only` (vision tower loaded; image modality active, video disabled by model spec). Boot ~90-126s, zero OOM at util 0.90/131K/DSpark k=3; KV pool essentially unchanged vs text-only (6,255,239 tokens - vision costs ~0.04% of the pool).
+
+- E2E graded test (`vl_e2e.py`): image 512/1024/2048 squared x c1/c4, red-circle + text-in-image graded -> **15/15 pass**. TTFT 0.12s (512) -> 0.19s (2048); c4 concurrency does not raise TTFT materially.
+- Official `vllm bench mm-processor` (TP8; note TP=1 default cannot fit the 476G model - OOM evidence in `mmproc.log`): HF processor mean 8.9ms / encoder forward mean 28.5ms (P99 43.8ms) across 30 random-mm prompts at three resolutions. Requires pandas in the venv for the results table (`vllm[bench]`).
+- Raw: `logs/multimodal/`

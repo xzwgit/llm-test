@@ -44,3 +44,8 @@ Cross-machine highlights vs RTX 6000D 84G: aggregate tiers +5-13% (1K c128 k3 19
 NOTE: vllm engine log timestamps on this host are LOCAL time (UTC+8); tier markers are UTC.
 
 Full report: `docs/DSV4.1-Flash-1017-PRO6000-96G-FlashInfer072-DSpark-k345-unified-matrix.html`
+
+
+## Multimodal enabled (2026-10-22)
+
+Same recipe minus `--language-model-only`. Boot ~100-208s, zero OOM. E2E graded test identical to the 6000D run: **15/15 pass**; TTFT 0.13s (512) -> 0.19s (2048), overall latency ~8-10% lower than the 84G machine, consistent with the text matrix gap. `vllm bench mm-processor` not re-run here (single-GPU default OOMs on this model; see the 6000D dir for the TP8 numbers). Raw: `logs/multimodal/`
