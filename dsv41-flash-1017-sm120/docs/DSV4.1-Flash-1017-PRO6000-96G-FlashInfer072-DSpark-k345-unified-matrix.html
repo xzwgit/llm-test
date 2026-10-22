@@ -28,7 +28,7 @@ td b{color:#0f2b46}
 
 <div class="hd">
 <h1>DeepSeek-V4.1-Flash-1017 · 单机 8×RTX PRO 6000 96G · FlashInfer 0.7.2 · DSpark k=3/4/5 统一矩阵</h1>
-<div class="sub">vLLM 0.32.0 release + FlashInfer 0.7.2 release + #62535 · 1M 上下文 · 2026-10-21 · 与 .158（84G 6000D）同款矩阵复测</div>
+<div class="sub">vLLM 0.32.0 release + FlashInfer 0.7.2 release + #62535 · 1M 上下文 · 2026-10-21</div>
 <div class="chips">
 <span class="chip">vLLM 0.32.0</span><span class="chip">FlashInfer 0.7.2</span><span class="chip">torch 2.13.0+cu132</span>
 <span class="chip">TP8 + EP8</span><span class="chip">DSpark k=3/4/5</span><span class="chip">max-model-len 1048576</span>
@@ -49,7 +49,7 @@ td b{color:#0f2b46}
 <tr><td>TTFT/TPOT/ITL</td><td>Mean/Median/P99 各指标(ms)；TPOT=Time per Output Token(excl. 1st)；单流≈1000÷TPOT</td></tr>
 <tr><td>接受率 % / 接受长</td><td>DSPARK 接受率=Accepted÷Draft tokens；接受长=Mean acceptance length</td></tr>
 <tr><td>逐位 %</td><td>Per-position acceptance（%）：draft 第 1..N 个位置的接受率</td></tr>
-<tr><td><b>本次统一口径</b></td><td>每组输入=输出长度（1K/4K/8K/32K/64K），并发阶梯 1→128/32/32/16/8；random+ignore-eos；k=3/4/5 逐档对比；Agent 工具档（真实 tools API）。与 .158 统一矩阵完全同款，可横比</td></tr>
+<tr><td><b>本次统一口径</b></td><td>每组输入=输出长度（1K/4K/8K/32K/64K），并发阶梯 1→128/32/32/16/8；random+ignore-eos；k=3/4/5 逐档对比；Agent 工具档（真实 tools API）</td></tr>
 </tbody></table></div>
 </div>
 
@@ -94,13 +94,13 @@ td b{color:#0f2b46}
   --speculative-config '{"method":"dspark","num_speculative_tokens":4}'   # k=3/k=5 改 3/5 \
   --max-cudagraph-capture-size 640   # =128×(k+1)：k3→512 k4→640 k5→768 \
   --enable-auto-tool-choice --tool-call-parser deepseek_v41 --reasoning-parser deepseek_v41 \
-  --port 8123 --api-key ***</pre>
+  --port 8123 --api-key abc.12345</pre>
 </div>
 
 <div class="sec">
 <h3>8. 数据边界与备注</h3>
 <ul style="font-size:13px;line-height:1.9;padding-left:18px">
-<li>与 .158（8×RTX 6000D 84G）统一矩阵<b>完全同款复测</b>：同 tier 标签、同并发阶梯、同 util 0.90/capture 规则，两份报告可直接横比（96G 卡 KV 池 17.69M vs 84G 卡 ~13.2M token）。</li>
+<li>统一口径：5 长度组输入=输出长度，并发阶梯 1→128/32/32/16/8；util 0.90 与 capture=128×(k+1) 三个 k 统一；KV 池 17,690,076 token。</li>
 <li>测试范围：5 长度组 × 并发阶梯 × k=3/4/5 = 87 random 档 + 9 Agent session，全部成功零失败；三 k 均一次通过（无引擎死亡、无重试）。</li>
 <li>每 k 的 1K c1 首档冷启动保护：连跑两遍同名标签取热身值，冷启动首跑静默剔除。</li>
 <li>单请求档（c1）接受率受随机数据影响方差大（如 4K c1 k=4 acc_len 1.07 → 54.7 tok/s），属数据彩票非系统异常。</li>
