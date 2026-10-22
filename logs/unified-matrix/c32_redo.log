@@ -1,0 +1,824 @@
+########## C32-REDO START Wed Oct 21 09:16:13 AM UTC 2026 ##########
+########## REDO k=3 BOOT (capture=512 util=0.90) Wed Oct 21 09:16:19 AM UTC 2026 ##########
+BOOT CMD: /root/vllm-fi02/bin/vllm serve /data/models/DeepSeek-V4.1-Flash-1017 --tensor-parallel-size 8 --enable-expert-parallel --kv-cache-dtype fp8 --attention-config {backend:FLASHINFER_MLA_SPARSE_DSV41,indexer_kv_dtype:fp8} --engram-config {cpu_offload:true} --moe-backend auto --compilation-config {cudagraph_mode:FULL} --language-model-only --max-model-len 1048576 --max-num-seqs 128 --gpu-memory-utilization 0.90 --speculative-config {method:dspark,num_speculative_tokens:3} --max-cudagraph-capture-size 512 --enable-auto-tool-choice --tool-call-parser deepseek_v41 --reasoning-parser deepseek_v41 --port 8123 --api-key *** (同 v3 全参)
+k=3 READY after ~90s 09:17:49
+===== warmup 8K/8K c8 k=3 09:17:54 =====
+Namespace(subparser='bench', bench_type='serve', dispatch_function=<function BenchmarkServingSubcommand.cmd at 0x742053d65bc0>, trust_remote_code=False, seed=0, num_prompts=8, dataset_name='random', no_stream=False, dataset_path=None, no_oversample=False, skip_chat_template=False, enable_multimodal_chat=False, disable_shuffle=False, custom_output_len=256, custom_ensure_client_side_data=False, spec_bench_output_len=256, spec_bench_category=None, sharegpt_output_len=None, timed_trace_chunk_hash_size=16, timed_trace_sec_multiplier=1, timed_trace_label_timestamp='timestamp', timed_trace_label_input_length='input_length', timed_trace_label_output_length='output_length', timed_trace_label_hash_ids='hash_ids', blazedit_min_distance=0.0, blazedit_max_distance=1.0, asr_max_audio_len_sec=inf, asr_min_audio_len_sec=0.0, random_input_len=8192, random_output_len=8192, random_range_ratio='0.0', random_prefix_len=0, random_batch_size=1, no_reranker=False, random_mm_base_items_per_request=1, random_mm_num_mm_items_range_ratio=0.0, random_mm_limit_mm_per_prompt={'image': 255, 'video': 1}, random_mm_bucket_config={(256, 256, 1): 0.5, (720, 1280, 1): 0.5, (720, 1280, 16): 0.0}, hf_subset=None, hf_split=None, hf_name=None, hf_output_len=None, bfcl_categories=None, prefix_repetition_prefix_len=256, prefix_repetition_suffix_len=256, prefix_repetition_num_prefixes=10, prefix_repetition_output_len=128, speed_bench_dataset_subset='qualitative', speed_bench_output_len=4096, speed_bench_category=None, label=None, backend='openai', base_url='http://127.0.0.1:8123', host='127.0.0.1', port=8000, endpoint='/v1/completions', header=None, max_concurrency=None, model='deepseek-v4.1-flash', input_len=None, output_len=None, tokenizer='/data/models/DeepSeek-V4.1-Flash-1017', tokenizer_mode='auto', use_beam_search=False, logprobs=None, request_rate=8.0, burstiness=1.0, probe_request_rate=0.0, disable_tqdm=False, num_warmups=0, profile=False, save_result=False, save_detailed=False, append_result=False, metadata=None, result_dir=None, result_filename=None, ignore_eos=True, self_timed=None, percentile_metrics=None, metric_percentiles='99', goodput=None, request_id_prefix='bench-978e8acb-', top_p=None, top_k=None, min_p=None, temperature=None, frequency_penalty=None, presence_penalty=None, repetition_penalty=None, served_model_name=None, lora_modules=None, lora_assignment='random', ramp_up_strategy=None, ramp_up_start_rps=None, ramp_up_end_rps=None, ready_check_timeout_sec=0, chat_template_kwargs=None, extra_body=None, skip_tokenizer_init=False, insecure=False, plot_timeline=False, timeline_itl_thresholds='25,50', plot_dataset_stats=False, log_config_file=None, logging_config=LoggingConfig(log_level='INFO', formatter='text', configure_logging=True, pylogging_config_file=None))
+(MainProcess pid=757041) INFO 10-21 09:17:59 [config.py:908] Detected quantization_config.scale_fmt=ue8m0; enabling UE8M0 for DeepGEMM.
+(MainProcess pid=757041) INFO 10-21 09:17:59 [utils.py:88] Sampling input_len from [8192, 8192] and output_len from [8192, 8192]
+WARNING: vllm bench serve no longer sets temperature==0 (greedy) in requests by default. The default will be determined on the server side and can be model/API specific. For the old behavior, include --temperature=0.
+Starting initial single prompt test run...
+Skipping endpoint ready check.
+Starting main benchmark run...
+Traffic request rate: 8.0
+Burstiness factor: 1.0 (Poisson process)
+Maximum request concurrency: None
+  0%|          | 0/8 [00:00<?, ?it/s] 12%|█▎        | 1/8 [01:24<09:48, 84.09s/it] 25%|██▌       | 2/8 [01:36<04:11, 41.87s/it] 38%|███▊      | 3/8 [01:37<01:56, 23.23s/it] 50%|█████     | 4/8 [01:39<00:59, 14.77s/it] 62%|██████▎   | 5/8 [01:48<00:38, 12.83s/it] 75%|███████▌  | 6/8 [01:49<00:17,  8.67s/it] 88%|████████▊ | 7/8 [02:00<00:09,  9.40s/it]100%|██████████| 8/8 [02:03<00:00,  7.43s/it]100%|██████████| 8/8 [02:03<00:00, 15.42s/it]
+tip: install termplotlib and gnuplot to plot the metrics
+============ Serving Benchmark Result ============
+Successful requests:                     8         
+Failed requests:                         0         
+Request rate configured (RPS):           8.00      
+Benchmark duration (s):                  123.34    
+Total input tokens:                      65536     
+Total generated tokens:                  65536     
+Request throughput (req/s):              0.06      
+Output token throughput (tok/s):         531.34    
+Peak output token throughput (tok/s):    264.00    
+Peak concurrent requests:                8.00      
+Total token throughput (tok/s):          1062.68   
+---------------Time to First Token----------------
+Mean TTFT (ms):                          1848.88   
+Median TTFT (ms):                        1953.68   
+P99 TTFT (ms):                           2679.37   
+-----Time per Output Token (excl. 1st token)------
+Mean TPOT (ms):                          12.51     
+Median TPOT (ms):                        12.27     
+P99 TPOT (ms):                           14.84     
+---------------Inter-token Latency----------------
+Mean ITL (ms):                           31.91     
+Median ITL (ms):                         32.45     
+P99 ITL (ms):                            33.90     
+---------------Speculative Decoding---------------
+Acceptance rate (%):                     51.75     
+Acceptance length:                       2.55      
+Drafts:                                  25677     
+Draft tokens:                            77031     
+Accepted tokens:                         39862     
+Per-position acceptance (%):
+  Position 0:                            66.42     
+  Position 1:                            50.77     
+  Position 2:                            38.05     
+==================================================
+===== tier 8K/8K c32 k=3 rerun#1 09:20:03 =====
+Namespace(subparser='bench', bench_type='serve', dispatch_function=<function BenchmarkServingSubcommand.cmd at 0x7df4d397e0c0>, trust_remote_code=False, seed=0, num_prompts=32, dataset_name='random', no_stream=False, dataset_path=None, no_oversample=False, skip_chat_template=False, enable_multimodal_chat=False, disable_shuffle=False, custom_output_len=256, custom_ensure_client_side_data=False, spec_bench_output_len=256, spec_bench_category=None, sharegpt_output_len=None, timed_trace_chunk_hash_size=16, timed_trace_sec_multiplier=1, timed_trace_label_timestamp='timestamp', timed_trace_label_input_length='input_length', timed_trace_label_output_length='output_length', timed_trace_label_hash_ids='hash_ids', blazedit_min_distance=0.0, blazedit_max_distance=1.0, asr_max_audio_len_sec=inf, asr_min_audio_len_sec=0.0, random_input_len=8192, random_output_len=8192, random_range_ratio='0.0', random_prefix_len=0, random_batch_size=1, no_reranker=False, random_mm_base_items_per_request=1, random_mm_num_mm_items_range_ratio=0.0, random_mm_limit_mm_per_prompt={'image': 255, 'video': 1}, random_mm_bucket_config={(256, 256, 1): 0.5, (720, 1280, 1): 0.5, (720, 1280, 16): 0.0}, hf_subset=None, hf_split=None, hf_name=None, hf_output_len=None, bfcl_categories=None, prefix_repetition_prefix_len=256, prefix_repetition_suffix_len=256, prefix_repetition_num_prefixes=10, prefix_repetition_output_len=128, speed_bench_dataset_subset='qualitative', speed_bench_output_len=4096, speed_bench_category=None, label=None, backend='openai', base_url='http://127.0.0.1:8123', host='127.0.0.1', port=8000, endpoint='/v1/completions', header=None, max_concurrency=None, model='deepseek-v4.1-flash', input_len=None, output_len=None, tokenizer='/data/models/DeepSeek-V4.1-Flash-1017', tokenizer_mode='auto', use_beam_search=False, logprobs=None, request_rate=32.0, burstiness=1.0, probe_request_rate=0.0, disable_tqdm=False, num_warmups=0, profile=False, save_result=False, save_detailed=False, append_result=False, metadata=None, result_dir=None, result_filename=None, ignore_eos=True, self_timed=None, percentile_metrics=None, metric_percentiles='99', goodput=None, request_id_prefix='bench-5dbc81c9-', top_p=None, top_k=None, min_p=None, temperature=None, frequency_penalty=None, presence_penalty=None, repetition_penalty=None, served_model_name=None, lora_modules=None, lora_assignment='random', ramp_up_strategy=None, ramp_up_start_rps=None, ramp_up_end_rps=None, ready_check_timeout_sec=0, chat_template_kwargs=None, extra_body=None, skip_tokenizer_init=False, insecure=False, plot_timeline=False, timeline_itl_thresholds='25,50', plot_dataset_stats=False, log_config_file=None, logging_config=LoggingConfig(log_level='INFO', formatter='text', configure_logging=True, pylogging_config_file=None))
+(MainProcess pid=760062) INFO 10-21 09:20:08 [config.py:908] Detected quantization_config.scale_fmt=ue8m0; enabling UE8M0 for DeepGEMM.
+(MainProcess pid=760062) INFO 10-21 09:20:08 [utils.py:88] Sampling input_len from [8192, 8192] and output_len from [8192, 8192]
+WARNING: vllm bench serve no longer sets temperature==0 (greedy) in requests by default. The default will be determined on the server side and can be model/API specific. For the old behavior, include --temperature=0.
+Starting initial single prompt test run...
+Skipping endpoint ready check.
+Starting main benchmark run...
+Traffic request rate: 32.0
+Burstiness factor: 1.0 (Poisson process)
+Maximum request concurrency: None
+  0%|          | 0/32 [00:00<?, ?it/s]  3%|▎         | 1/32 [02:07<1:05:38, 127.05s/it]  6%|▋         | 2/32 [02:07<26:16, 52.54s/it]     9%|▉         | 3/32 [02:07<13:49, 28.60s/it] 12%|█▎        | 4/32 [02:10<08:38, 18.53s/it] 16%|█▌        | 5/32 [02:12<05:33, 12.36s/it] 19%|█▉        | 6/32 [02:14<03:56,  9.09s/it] 22%|██▏       | 7/32 [02:17<02:51,  6.87s/it] 25%|██▌       | 8/32 [02:18<02:05,  5.22s/it] 28%|██▊       | 9/32 [02:19<01:30,  3.95s/it] 31%|███▏      | 10/32 [02:21<01:11,  3.25s/it] 34%|███▍      | 11/32 [02:23<01:02,  2.95s/it] 38%|███▊      | 12/32 [02:26<00:56,  2.81s/it] 41%|████      | 13/32 [02:27<00:43,  2.30s/it] 44%|████▍     | 14/32 [02:29<00:38,  2.14s/it] 47%|████▋     | 15/32 [02:29<00:27,  1.63s/it] 50%|█████     | 16/32 [02:31<00:25,  1.57s/it] 53%|█████▎    | 17/32 [02:32<00:21,  1.40s/it] 56%|█████▋    | 18/32 [02:34<00:21,  1.56s/it] 59%|█████▉    | 19/32 [02:37<00:29,  2.23s/it] 62%|██████▎   | 20/32 [02:40<00:29,  2.49s/it] 66%|██████▌   | 21/32 [02:43<00:26,  2.39s/it] 69%|██████▉   | 22/32 [02:43<00:17,  1.72s/it] 72%|███████▏  | 23/32 [02:45<00:17,  1.96s/it] 75%|███████▌  | 24/32 [02:46<00:11,  1.46s/it] 78%|███████▊  | 25/32 [02:46<00:08,  1.24s/it] 81%|████████▏ | 26/32 [02:53<00:16,  2.75s/it] 84%|████████▍ | 27/32 [02:56<00:15,  3.08s/it] 88%|████████▊ | 28/32 [03:19<00:35,  8.79s/it] 91%|█████████ | 29/32 [03:25<00:23,  7.98s/it] 94%|█████████▍| 30/32 [03:42<00:21, 10.70s/it] 97%|█████████▋| 31/32 [03:43<00:07,  7.89s/it]100%|██████████| 32/32 [03:46<00:00,  6.41s/it]100%|██████████| 32/32 [03:46<00:00,  7.08s/it]
+tip: install termplotlib and gnuplot to plot the metrics
+============ Serving Benchmark Result ============
+Successful requests:                     32        
+Failed requests:                         0         
+Request rate configured (RPS):           32.00     
+Benchmark duration (s):                  226.49    
+Total input tokens:                      262144    
+Total generated tokens:                  262144    
+Request throughput (req/s):              0.14      
+Output token throughput (tok/s):         1157.40   
+Peak output token throughput (tok/s):    704.00    
+Peak concurrent requests:                32.00     
+Total token throughput (tok/s):          2314.80   
+---------------Time to First Token----------------
+Mean TTFT (ms):                          3703.85   
+Median TTFT (ms):                        3527.73   
+P99 TTFT (ms):                           8746.28   
+-----Time per Output Token (excl. 1st token)------
+Mean TPOT (ms):                          18.95     
+Median TPOT (ms):                        17.94     
+P99 TPOT (ms):                           27.14     
+---------------Inter-token Latency----------------
+Mean ITL (ms):                           50.88     
+Median ITL (ms):                         52.32     
+P99 ITL (ms):                            54.89     
+---------------Speculative Decoding---------------
+Acceptance rate (%):                     56.21     
+Acceptance length:                       2.69      
+Drafts:                                  97583     
+Draft tokens:                            292749    
+Accepted tokens:                         164567    
+Per-position acceptance (%):
+  Position 0:                            66.35     
+  Position 1:                            55.24     
+  Position 2:                            47.06     
+==================================================
+===== tier 8K/8K c32 k=3 rerun#2 09:23:56 =====
+Namespace(subparser='bench', bench_type='serve', dispatch_function=<function BenchmarkServingSubcommand.cmd at 0x73d12a77a0c0>, trust_remote_code=False, seed=0, num_prompts=32, dataset_name='random', no_stream=False, dataset_path=None, no_oversample=False, skip_chat_template=False, enable_multimodal_chat=False, disable_shuffle=False, custom_output_len=256, custom_ensure_client_side_data=False, spec_bench_output_len=256, spec_bench_category=None, sharegpt_output_len=None, timed_trace_chunk_hash_size=16, timed_trace_sec_multiplier=1, timed_trace_label_timestamp='timestamp', timed_trace_label_input_length='input_length', timed_trace_label_output_length='output_length', timed_trace_label_hash_ids='hash_ids', blazedit_min_distance=0.0, blazedit_max_distance=1.0, asr_max_audio_len_sec=inf, asr_min_audio_len_sec=0.0, random_input_len=8192, random_output_len=8192, random_range_ratio='0.0', random_prefix_len=0, random_batch_size=1, no_reranker=False, random_mm_base_items_per_request=1, random_mm_num_mm_items_range_ratio=0.0, random_mm_limit_mm_per_prompt={'image': 255, 'video': 1}, random_mm_bucket_config={(256, 256, 1): 0.5, (720, 1280, 1): 0.5, (720, 1280, 16): 0.0}, hf_subset=None, hf_split=None, hf_name=None, hf_output_len=None, bfcl_categories=None, prefix_repetition_prefix_len=256, prefix_repetition_suffix_len=256, prefix_repetition_num_prefixes=10, prefix_repetition_output_len=128, speed_bench_dataset_subset='qualitative', speed_bench_output_len=4096, speed_bench_category=None, label=None, backend='openai', base_url='http://127.0.0.1:8123', host='127.0.0.1', port=8000, endpoint='/v1/completions', header=None, max_concurrency=None, model='deepseek-v4.1-flash', input_len=None, output_len=None, tokenizer='/data/models/DeepSeek-V4.1-Flash-1017', tokenizer_mode='auto', use_beam_search=False, logprobs=None, request_rate=32.0, burstiness=1.0, probe_request_rate=0.0, disable_tqdm=False, num_warmups=0, profile=False, save_result=False, save_detailed=False, append_result=False, metadata=None, result_dir=None, result_filename=None, ignore_eos=True, self_timed=None, percentile_metrics=None, metric_percentiles='99', goodput=None, request_id_prefix='bench-fd964424-', top_p=None, top_k=None, min_p=None, temperature=None, frequency_penalty=None, presence_penalty=None, repetition_penalty=None, served_model_name=None, lora_modules=None, lora_assignment='random', ramp_up_strategy=None, ramp_up_start_rps=None, ramp_up_end_rps=None, ready_check_timeout_sec=0, chat_template_kwargs=None, extra_body=None, skip_tokenizer_init=False, insecure=False, plot_timeline=False, timeline_itl_thresholds='25,50', plot_dataset_stats=False, log_config_file=None, logging_config=LoggingConfig(log_level='INFO', formatter='text', configure_logging=True, pylogging_config_file=None))
+(MainProcess pid=764818) INFO 10-21 09:24:01 [config.py:908] Detected quantization_config.scale_fmt=ue8m0; enabling UE8M0 for DeepGEMM.
+(MainProcess pid=764818) INFO 10-21 09:24:01 [utils.py:88] Sampling input_len from [8192, 8192] and output_len from [8192, 8192]
+WARNING: vllm bench serve no longer sets temperature==0 (greedy) in requests by default. The default will be determined on the server side and can be model/API specific. For the old behavior, include --temperature=0.
+Starting initial single prompt test run...
+Skipping endpoint ready check.
+Starting main benchmark run...
+Traffic request rate: 32.0
+Burstiness factor: 1.0 (Poisson process)
+Maximum request concurrency: None
+  0%|          | 0/32 [00:00<?, ?it/s]  3%|▎         | 1/32 [01:59<1:01:45, 119.54s/it]  6%|▋         | 2/32 [02:04<26:08, 52.28s/it]    12%|█▎        | 4/32 [02:04<09:07, 19.57s/it] 16%|█▌        | 5/32 [02:06<06:14, 13.87s/it] 19%|█▉        | 6/32 [02:09<04:38, 10.70s/it] 22%|██▏       | 7/32 [02:12<03:24,  8.18s/it] 25%|██▌       | 8/32 [02:13<02:28,  6.21s/it] 28%|██▊       | 9/32 [02:17<02:04,  5.42s/it] 31%|███▏      | 10/32 [02:17<01:25,  3.89s/it] 38%|███▊      | 12/32 [02:19<00:50,  2.50s/it] 41%|████      | 13/32 [02:19<00:38,  2.01s/it] 44%|████▍     | 14/32 [02:20<00:28,  1.60s/it] 47%|████▋     | 15/32 [02:22<00:29,  1.72s/it] 50%|█████     | 16/32 [02:25<00:31,  1.98s/it] 53%|█████▎    | 17/32 [02:26<00:26,  1.76s/it] 56%|█████▋    | 18/32 [02:26<00:18,  1.31s/it] 59%|█████▉    | 19/32 [02:29<00:23,  1.79s/it] 62%|██████▎   | 20/32 [02:31<00:21,  1.75s/it] 66%|██████▌   | 21/32 [02:35<00:26,  2.43s/it] 69%|██████▉   | 22/32 [02:36<00:20,  2.05s/it] 72%|███████▏  | 23/32 [02:38<00:18,  2.10s/it] 75%|███████▌  | 24/32 [02:39<00:14,  1.83s/it] 78%|███████▊  | 25/32 [02:40<00:10,  1.56s/it] 84%|████████▍ | 27/32 [02:41<00:04,  1.07it/s] 88%|████████▊ | 28/32 [02:42<00:04,  1.12s/it] 91%|█████████ | 29/32 [02:45<00:05,  1.67s/it] 94%|█████████▍| 30/32 [02:48<00:03,  1.89s/it] 97%|█████████▋| 31/32 [02:58<00:04,  4.27s/it]100%|██████████| 32/32 [02:59<00:00,  3.12s/it]100%|██████████| 32/32 [02:59<00:00,  5.60s/it]
+tip: install termplotlib and gnuplot to plot the metrics
+============ Serving Benchmark Result ============
+Successful requests:                     32        
+Failed requests:                         0         
+Request rate configured (RPS):           32.00     
+Benchmark duration (s):                  179.07    
+Total input tokens:                      262144    
+Total generated tokens:                  262144    
+Request throughput (req/s):              0.18      
+Output token throughput (tok/s):         1463.91   
+Peak output token throughput (tok/s):    736.00    
+Peak concurrent requests:                32.00     
+Total token throughput (tok/s):          2927.82   
+---------------Time to First Token----------------
+Mean TTFT (ms):                          168.29    
+Median TTFT (ms):                        170.21    
+P99 TTFT (ms):                           239.95    
+-----Time per Output Token (excl. 1st token)------
+Mean TPOT (ms):                          17.83     
+Median TPOT (ms):                        17.64     
+P99 TPOT (ms):                           21.71     
+---------------Inter-token Latency----------------
+Mean ITL (ms):                           50.81     
+Median ITL (ms):                         52.82     
+P99 ITL (ms):                            54.66     
+---------------Speculative Decoding---------------
+Acceptance rate (%):                     61.68     
+Acceptance length:                       2.85      
+Drafts:                                  91968     
+Draft tokens:                            275904    
+Accepted tokens:                         170189    
+Per-position acceptance (%):
+  Position 0:                            71.71     
+  Position 1:                            60.90     
+  Position 2:                            52.45     
+==================================================
+[0;36m(RustFrontend pid=752611)[0m [32mINFO[0m [90m10-21 09:23:49[0m [90m[log_stats.rs:302][0m SpecDecoding metrics: Mean acceptance length: 2.59, Accepted throughput: 178.40 tokens/s, Drafted throughput: 335.69 tokens/s, Accepted: 1784 tokens, Drafted: 3357 tokens, Per-position acceptance rate: 0.674, 0.501, 0.419, Avg Draft acceptance rate: 53.1%
+[0;36m(RustFrontend pid=752611)[0m [32mINFO[0m [90m10-21 09:23:59[0m [90m[log_stats.rs:302][0m SpecDecoding metrics: Mean acceptance length: 2.30, Accepted throughput: 76.50 tokens/s, Drafted throughput: 176.09 tokens/s, Accepted: 765 tokens, Drafted: 1761 tokens, Per-position acceptance rate: 0.588, 0.414, 0.302, Avg Draft acceptance rate: 43.4%
+[0;36m(RustFrontend pid=752611)[0m [32mINFO[0m [90m10-21 09:24:09[0m [90m[log_stats.rs:302][0m SpecDecoding metrics: Mean acceptance length: 1.07, Accepted throughput: 29.20 tokens/s, Drafted throughput: 1170.90 tokens/s, Accepted: 292 tokens, Drafted: 11709 tokens, Per-position acceptance rate: 0.051, 0.015, 0.008, Avg Draft acceptance rate: 2.5%
+[0;36m(RustFrontend pid=752611)[0m [32mINFO[0m [90m10-21 09:24:19[0m [90m[log_stats.rs:302][0m SpecDecoding metrics: Mean acceptance length: 1.51, Accepted throughput: 326.71 tokens/s, Drafted throughput: 1920.07 tokens/s, Accepted: 3267 tokens, Drafted: 19200 tokens, Per-position acceptance rate: 0.272, 0.145, 0.093, Avg Draft acceptance rate: 17.0%
+[0;36m(RustFrontend pid=752611)[0m [32mINFO[0m [90m10-21 09:24:29[0m [90m[log_stats.rs:302][0m SpecDecoding metrics: Mean acceptance length: 2.01, Accepted throughput: 620.28 tokens/s, Drafted throughput: 1843.14 tokens/s, Accepted: 6203 tokens, Drafted: 18432 tokens, Per-position acceptance rate: 0.467, 0.312, 0.230, Avg Draft acceptance rate: 33.7%
+[0;36m(RustFrontend pid=752611)[0m [32mINFO[0m [90m10-21 09:24:39[0m [90m[log_stats.rs:302][0m SpecDecoding metrics: Mean acceptance length: 2.47, Accepted throughput: 882.14 tokens/s, Drafted throughput: 1804.88 tokens/s, Accepted: 8821 tokens, Drafted: 18048 tokens, Per-position acceptance rate: 0.632, 0.469, 0.365, Avg Draft acceptance rate: 48.9%
+[0;36m(RustFrontend pid=752611)[0m [32mINFO[0m [90m10-21 09:24:49[0m [90m[log_stats.rs:302][0m SpecDecoding metrics: Mean acceptance length: 2.69, Accepted throughput: 1012.90 tokens/s, Drafted throughput: 1795.21 tokens/s, Accepted: 10129 tokens, Drafted: 17952 tokens, Per-position acceptance rate: 0.688, 0.551, 0.453, Avg Draft acceptance rate: 56.4%
+[0;36m(RustFrontend pid=752611)[0m [32mINFO[0m [90m10-21 09:24:59[0m [90m[log_stats.rs:302][0m SpecDecoding metrics: Mean acceptance length: 2.87, Accepted throughput: 1135.96 tokens/s, Drafted throughput: 1823.94 tokens/s, Accepted: 11360 tokens, Drafted: 18240 tokens, Per-position acceptance rate: 0.749, 0.610, 0.510, Avg Draft acceptance rate: 62.3%
+[0;36m(RustFrontend pid=752611)[0m [32mINFO[0m [90m10-21 09:25:09[0m [90m[log_stats.rs:302][0m SpecDecoding metrics: Mean acceptance length: 3.11, Accepted throughput: 1287.67 tokens/s, Drafted throughput: 1833.69 tokens/s, Accepted: 12876 tokens, Drafted: 18336 tokens, Per-position acceptance rate: 0.806, 0.702, 0.599, Avg Draft acceptance rate: 70.2%
+[0;36m(RustFrontend pid=752611)[0m [32mINFO[0m [90m10-21 09:25:19[0m [90m[log_stats.rs:302][0m SpecDecoding metrics: Mean acceptance length: 3.12, Accepted throughput: 1279.16 tokens/s, Drafted throughput: 1814.35 tokens/s, Accepted: 12792 tokens, Drafted: 18144 tokens, Per-position acceptance rate: 0.808, 0.705, 0.602, Avg Draft acceptance rate: 70.5%
+[0;36m(RustFrontend pid=752611)[0m [32mINFO[0m [90m10-21 09:25:29[0m [90m[log_stats.rs:302][0m SpecDecoding metrics: Mean acceptance length: 3.22, Accepted throughput: 1328.32 tokens/s, Drafted throughput: 1795.22 tokens/s, Accepted: 13283 tokens, Drafted: 17952 tokens, Per-position acceptance rate: 0.830, 0.740, 0.650, Avg Draft acceptance rate: 74.0%
+[0;36m(RustFrontend pid=752611)[0m [32mINFO[0m [90m10-21 09:25:39[0m [90m[log_stats.rs:302][0m SpecDecoding metrics: Mean acceptance length: 3.30, Accepted throughput: 1378.21 tokens/s, Drafted throughput: 1795.21 tokens/s, Accepted: 13782 tokens, Drafted: 17952 tokens, Per-position acceptance rate: 0.852, 0.768, 0.682, Avg Draft acceptance rate: 76.8%
+[0;36m(RustFrontend pid=752611)[0m [32mINFO[0m [90m10-21 09:25:49[0m [90m[log_stats.rs:302][0m SpecDecoding metrics: Mean acceptance length: 3.29, Accepted throughput: 1367.52 tokens/s, Drafted throughput: 1795.23 tokens/s, Accepted: 13675 tokens, Drafted: 17952 tokens, Per-position acceptance rate: 0.850, 0.760, 0.675, Avg Draft acceptance rate: 76.2%
+[0;36m(RustFrontend pid=752611)[0m [32mINFO[0m [90m10-21 09:25:59[0m [90m[log_stats.rs:302][0m SpecDecoding metrics: Mean acceptance length: 3.30, Accepted throughput: 1368.88 tokens/s, Drafted throughput: 1785.58 tokens/s, Accepted: 13689 tokens, Drafted: 17856 tokens, Per-position acceptance rate: 0.856, 0.764, 0.679, Avg Draft acceptance rate: 76.7%
+[0;36m(RustFrontend pid=752611)[0m [32mINFO[0m [90m10-21 09:26:09[0m [90m[log_stats.rs:302][0m SpecDecoding metrics: Mean acceptance length: 3.27, Accepted throughput: 1309.72 tokens/s, Drafted throughput: 1727.13 tokens/s, Accepted: 13097 tokens, Drafted: 17271 tokens, Per-position acceptance rate: 0.858, 0.752, 0.664, Avg Draft acceptance rate: 75.8%
+[0;36m(RustFrontend pid=752611)[0m [32mINFO[0m [90m10-21 09:26:19[0m [90m[log_stats.rs:302][0m SpecDecoding metrics: Mean acceptance length: 3.15, Accepted throughput: 1092.97 tokens/s, Drafted throughput: 1527.25 tokens/s, Accepted: 10930 tokens, Drafted: 15273 tokens, Per-position acceptance rate: 0.824, 0.711, 0.612, Avg Draft acceptance rate: 71.6%
+[0;36m(RustFrontend pid=752611)[0m [32mINFO[0m [90m10-21 09:26:29[0m [90m[log_stats.rs:302][0m SpecDecoding metrics: Mean acceptance length: 3.31, Accepted throughput: 953.38 tokens/s, Drafted throughput: 1236.88 tokens/s, Accepted: 9534 tokens, Drafted: 12369 tokens, Per-position acceptance rate: 0.874, 0.766, 0.672, Avg Draft acceptance rate: 77.1%
+[0;36m(RustFrontend pid=752611)[0m [32mINFO[0m [90m10-21 09:26:39[0m [90m[log_stats.rs:302][0m SpecDecoding metrics: Mean acceptance length: 3.46, Accepted throughput: 782.78 tokens/s, Drafted throughput: 953.38 tokens/s, Accepted: 7828 tokens, Drafted: 9534 tokens, Per-position acceptance rate: 0.893, 0.819, 0.751, Avg Draft acceptance rate: 82.1%
+[0;36m(RustFrontend pid=752611)[0m [32mINFO[0m [90m10-21 09:26:49[0m [90m[log_stats.rs:302][0m SpecDecoding metrics: Mean acceptance length: 3.53, Accepted throughput: 513.91 tokens/s, Drafted throughput: 610.52 tokens/s, Accepted: 5139 tokens, Drafted: 6105 tokens, Per-position acceptance rate: 0.908, 0.842, 0.775, Avg Draft acceptance rate: 84.2%
+[0;36m(RustFrontend pid=752611)[0m [32mINFO[0m [90m10-21 09:26:59[0m [90m[log_stats.rs:302][0m SpecDecoding metrics: Mean acceptance length: 3.93, Accepted throughput: 281.69 tokens/s, Drafted throughput: 288.59 tokens/s, Accepted: 2817 tokens, Drafted: 2886 tokens, Per-position acceptance rate: 0.985, 0.976, 0.967, Avg Draft acceptance rate: 97.6%
+########## REDO k=4 BOOT (capture=640 util=0.90) Wed Oct 21 09:27:22 AM UTC 2026 ##########
+BOOT CMD: /root/vllm-fi02/bin/vllm serve /data/models/DeepSeek-V4.1-Flash-1017 --tensor-parallel-size 8 --enable-expert-parallel --kv-cache-dtype fp8 --attention-config {backend:FLASHINFER_MLA_SPARSE_DSV41,indexer_kv_dtype:fp8} --engram-config {cpu_offload:true} --moe-backend auto --compilation-config {cudagraph_mode:FULL} --language-model-only --max-model-len 1048576 --max-num-seqs 128 --gpu-memory-utilization 0.90 --speculative-config {method:dspark,num_speculative_tokens:4} --max-cudagraph-capture-size 640 --enable-auto-tool-choice --tool-call-parser deepseek_v41 --reasoning-parser deepseek_v41 --port 8123 --api-key *** (同 v3 全参)
+k=4 READY after ~90s 09:28:52
+===== warmup 8K/8K c8 k=4 09:28:57 =====
+Namespace(subparser='bench', bench_type='serve', dispatch_function=<function BenchmarkServingSubcommand.cmd at 0x7f66be57e020>, trust_remote_code=False, seed=0, num_prompts=8, dataset_name='random', no_stream=False, dataset_path=None, no_oversample=False, skip_chat_template=False, enable_multimodal_chat=False, disable_shuffle=False, custom_output_len=256, custom_ensure_client_side_data=False, spec_bench_output_len=256, spec_bench_category=None, sharegpt_output_len=None, timed_trace_chunk_hash_size=16, timed_trace_sec_multiplier=1, timed_trace_label_timestamp='timestamp', timed_trace_label_input_length='input_length', timed_trace_label_output_length='output_length', timed_trace_label_hash_ids='hash_ids', blazedit_min_distance=0.0, blazedit_max_distance=1.0, asr_max_audio_len_sec=inf, asr_min_audio_len_sec=0.0, random_input_len=8192, random_output_len=8192, random_range_ratio='0.0', random_prefix_len=0, random_batch_size=1, no_reranker=False, random_mm_base_items_per_request=1, random_mm_num_mm_items_range_ratio=0.0, random_mm_limit_mm_per_prompt={'image': 255, 'video': 1}, random_mm_bucket_config={(256, 256, 1): 0.5, (720, 1280, 1): 0.5, (720, 1280, 16): 0.0}, hf_subset=None, hf_split=None, hf_name=None, hf_output_len=None, bfcl_categories=None, prefix_repetition_prefix_len=256, prefix_repetition_suffix_len=256, prefix_repetition_num_prefixes=10, prefix_repetition_output_len=128, speed_bench_dataset_subset='qualitative', speed_bench_output_len=4096, speed_bench_category=None, label=None, backend='openai', base_url='http://127.0.0.1:8123', host='127.0.0.1', port=8000, endpoint='/v1/completions', header=None, max_concurrency=None, model='deepseek-v4.1-flash', input_len=None, output_len=None, tokenizer='/data/models/DeepSeek-V4.1-Flash-1017', tokenizer_mode='auto', use_beam_search=False, logprobs=None, request_rate=8.0, burstiness=1.0, probe_request_rate=0.0, disable_tqdm=False, num_warmups=0, profile=False, save_result=False, save_detailed=False, append_result=False, metadata=None, result_dir=None, result_filename=None, ignore_eos=True, self_timed=None, percentile_metrics=None, metric_percentiles='99', goodput=None, request_id_prefix='bench-1fc0021e-', top_p=None, top_k=None, min_p=None, temperature=None, frequency_penalty=None, presence_penalty=None, repetition_penalty=None, served_model_name=None, lora_modules=None, lora_assignment='random', ramp_up_strategy=None, ramp_up_start_rps=None, ramp_up_end_rps=None, ready_check_timeout_sec=0, chat_template_kwargs=None, extra_body=None, skip_tokenizer_init=False, insecure=False, plot_timeline=False, timeline_itl_thresholds='25,50', plot_dataset_stats=False, log_config_file=None, logging_config=LoggingConfig(log_level='INFO', formatter='text', configure_logging=True, pylogging_config_file=None))
+(MainProcess pid=774014) INFO 10-21 09:29:02 [config.py:908] Detected quantization_config.scale_fmt=ue8m0; enabling UE8M0 for DeepGEMM.
+(MainProcess pid=774014) INFO 10-21 09:29:02 [utils.py:88] Sampling input_len from [8192, 8192] and output_len from [8192, 8192]
+WARNING: vllm bench serve no longer sets temperature==0 (greedy) in requests by default. The default will be determined on the server side and can be model/API specific. For the old behavior, include --temperature=0.
+Starting initial single prompt test run...
+Skipping endpoint ready check.
+Starting main benchmark run...
+Traffic request rate: 8.0
+Burstiness factor: 1.0 (Poisson process)
+Maximum request concurrency: None
+  0%|          | 0/8 [00:00<?, ?it/s] 12%|█▎        | 1/8 [01:13<08:32, 73.24s/it] 25%|██▌       | 2/8 [01:21<03:29, 34.89s/it] 38%|███▊      | 3/8 [01:25<01:44, 20.93s/it] 50%|█████     | 4/8 [01:29<00:56, 14.01s/it] 62%|██████▎   | 5/8 [01:30<00:28,  9.46s/it] 75%|███████▌  | 6/8 [01:31<00:13,  6.53s/it] 88%|████████▊ | 7/8 [01:39<00:07,  7.12s/it]100%|██████████| 8/8 [01:55<00:00, 10.02s/it]100%|██████████| 8/8 [01:55<00:00, 14.47s/it]
+tip: install termplotlib and gnuplot to plot the metrics
+============ Serving Benchmark Result ============
+Successful requests:                     8         
+Failed requests:                         0         
+Request rate configured (RPS):           8.00      
+Benchmark duration (s):                  115.80    
+Total input tokens:                      65536     
+Total generated tokens:                  65536     
+Request throughput (req/s):              0.07      
+Output token throughput (tok/s):         565.96    
+Peak output token throughput (tok/s):    256.00    
+Peak concurrent requests:                8.00      
+Total token throughput (tok/s):          1131.92   
+---------------Time to First Token----------------
+Mean TTFT (ms):                          1838.07   
+Median TTFT (ms):                        1939.92   
+P99 TTFT (ms):                           2679.64   
+-----Time per Output Token (excl. 1st token)------
+Mean TPOT (ms):                          10.80     
+Median TPOT (ms):                        10.61     
+P99 TPOT (ms):                           13.81     
+---------------Inter-token Latency----------------
+Mean ITL (ms):                           33.63     
+Median ITL (ms):                         34.01     
+P99 ITL (ms):                            35.70     
+---------------Speculative Decoding---------------
+Acceptance rate (%):                     52.95     
+Acceptance length:                       3.12      
+Drafts:                                  21023     
+Draft tokens:                            84092     
+Accepted tokens:                         44529     
+Per-position acceptance (%):
+  Position 0:                            67.61     
+  Position 1:                            55.85     
+  Position 2:                            47.50     
+  Position 3:                            40.85     
+==================================================
+===== tier 8K/8K c32 k=4 rerun#1 09:30:59 =====
+Namespace(subparser='bench', bench_type='serve', dispatch_function=<function BenchmarkServingSubcommand.cmd at 0x7ecde2579bc0>, trust_remote_code=False, seed=0, num_prompts=32, dataset_name='random', no_stream=False, dataset_path=None, no_oversample=False, skip_chat_template=False, enable_multimodal_chat=False, disable_shuffle=False, custom_output_len=256, custom_ensure_client_side_data=False, spec_bench_output_len=256, spec_bench_category=None, sharegpt_output_len=None, timed_trace_chunk_hash_size=16, timed_trace_sec_multiplier=1, timed_trace_label_timestamp='timestamp', timed_trace_label_input_length='input_length', timed_trace_label_output_length='output_length', timed_trace_label_hash_ids='hash_ids', blazedit_min_distance=0.0, blazedit_max_distance=1.0, asr_max_audio_len_sec=inf, asr_min_audio_len_sec=0.0, random_input_len=8192, random_output_len=8192, random_range_ratio='0.0', random_prefix_len=0, random_batch_size=1, no_reranker=False, random_mm_base_items_per_request=1, random_mm_num_mm_items_range_ratio=0.0, random_mm_limit_mm_per_prompt={'image': 255, 'video': 1}, random_mm_bucket_config={(256, 256, 1): 0.5, (720, 1280, 1): 0.5, (720, 1280, 16): 0.0}, hf_subset=None, hf_split=None, hf_name=None, hf_output_len=None, bfcl_categories=None, prefix_repetition_prefix_len=256, prefix_repetition_suffix_len=256, prefix_repetition_num_prefixes=10, prefix_repetition_output_len=128, speed_bench_dataset_subset='qualitative', speed_bench_output_len=4096, speed_bench_category=None, label=None, backend='openai', base_url='http://127.0.0.1:8123', host='127.0.0.1', port=8000, endpoint='/v1/completions', header=None, max_concurrency=None, model='deepseek-v4.1-flash', input_len=None, output_len=None, tokenizer='/data/models/DeepSeek-V4.1-Flash-1017', tokenizer_mode='auto', use_beam_search=False, logprobs=None, request_rate=32.0, burstiness=1.0, probe_request_rate=0.0, disable_tqdm=False, num_warmups=0, profile=False, save_result=False, save_detailed=False, append_result=False, metadata=None, result_dir=None, result_filename=None, ignore_eos=True, self_timed=None, percentile_metrics=None, metric_percentiles='99', goodput=None, request_id_prefix='bench-d21735dc-', top_p=None, top_k=None, min_p=None, temperature=None, frequency_penalty=None, presence_penalty=None, repetition_penalty=None, served_model_name=None, lora_modules=None, lora_assignment='random', ramp_up_strategy=None, ramp_up_start_rps=None, ramp_up_end_rps=None, ready_check_timeout_sec=0, chat_template_kwargs=None, extra_body=None, skip_tokenizer_init=False, insecure=False, plot_timeline=False, timeline_itl_thresholds='25,50', plot_dataset_stats=False, log_config_file=None, logging_config=LoggingConfig(log_level='INFO', formatter='text', configure_logging=True, pylogging_config_file=None))
+(MainProcess pid=776914) INFO 10-21 09:31:04 [config.py:908] Detected quantization_config.scale_fmt=ue8m0; enabling UE8M0 for DeepGEMM.
+(MainProcess pid=776914) INFO 10-21 09:31:04 [utils.py:88] Sampling input_len from [8192, 8192] and output_len from [8192, 8192]
+WARNING: vllm bench serve no longer sets temperature==0 (greedy) in requests by default. The default will be determined on the server side and can be model/API specific. For the old behavior, include --temperature=0.
+Starting initial single prompt test run...
+Skipping endpoint ready check.
+Starting main benchmark run...
+Traffic request rate: 32.0
+Burstiness factor: 1.0 (Poisson process)
+Maximum request concurrency: None
+  0%|          | 0/32 [00:00<?, ?it/s]  3%|▎         | 1/32 [01:56<1:00:22, 116.86s/it]  6%|▋         | 2/32 [01:59<24:50, 49.70s/it]     9%|▉         | 3/32 [02:01<13:28, 27.88s/it] 12%|█▎        | 4/32 [02:02<08:07, 17.42s/it] 16%|█▌        | 5/32 [02:10<06:15, 13.91s/it] 19%|█▉        | 6/32 [02:11<04:04,  9.39s/it] 22%|██▏       | 7/32 [02:11<02:38,  6.36s/it] 25%|██▌       | 8/32 [02:13<02:01,  5.05s/it] 28%|██▊       | 9/32 [02:15<01:36,  4.19s/it] 31%|███▏      | 10/32 [02:20<01:37,  4.44s/it] 34%|███▍      | 11/32 [02:24<01:28,  4.22s/it] 38%|███▊      | 12/32 [02:33<01:52,  5.63s/it] 41%|████      | 13/32 [02:36<01:30,  4.78s/it] 44%|████▍     | 14/32 [02:36<01:03,  3.51s/it] 47%|████▋     | 15/32 [02:42<01:11,  4.20s/it] 50%|█████     | 16/32 [02:44<00:57,  3.60s/it] 53%|█████▎    | 17/32 [02:44<00:38,  2.56s/it] 56%|█████▋    | 18/32 [02:49<00:44,  3.20s/it] 59%|█████▉    | 19/32 [02:51<00:37,  2.88s/it] 62%|██████▎   | 20/32 [02:52<00:25,  2.15s/it] 66%|██████▌   | 21/32 [02:53<00:20,  1.84s/it] 69%|██████▉   | 22/32 [02:57<00:25,  2.60s/it] 72%|███████▏  | 23/32 [03:00<00:24,  2.74s/it] 75%|███████▌  | 24/32 [03:03<00:22,  2.82s/it] 78%|███████▊  | 25/32 [03:04<00:16,  2.34s/it] 81%|████████▏ | 26/32 [03:06<00:12,  2.03s/it] 84%|████████▍ | 27/32 [03:08<00:09,  1.94s/it] 88%|████████▊ | 28/32 [03:11<00:10,  2.54s/it] 91%|█████████ | 29/32 [03:21<00:13,  4.64s/it] 94%|█████████▍| 30/32 [03:23<00:07,  3.91s/it] 97%|█████████▋| 31/32 [04:11<00:16, 16.93s/it]100%|██████████| 32/32 [04:56<00:00, 25.60s/it]100%|██████████| 32/32 [04:56<00:00,  9.28s/it]
+tip: install termplotlib and gnuplot to plot the metrics
+============ Serving Benchmark Result ============
+Successful requests:                     32        
+Failed requests:                         0         
+Request rate configured (RPS):           32.00     
+Benchmark duration (s):                  296.85    
+Total input tokens:                      262144    
+Total generated tokens:                  262144    
+Request throughput (req/s):              0.11      
+Output token throughput (tok/s):         883.09    
+Peak output token throughput (tok/s):    640.00    
+Peak concurrent requests:                32.00     
+Total token throughput (tok/s):          1766.19   
+---------------Time to First Token----------------
+Mean TTFT (ms):                          3724.73   
+Median TTFT (ms):                        3548.86   
+P99 TTFT (ms):                           8811.66   
+-----Time per Output Token (excl. 1st token)------
+Mean TPOT (ms):                          19.78     
+Median TPOT (ms):                        19.78     
+P99 TPOT (ms):                           34.34     
+---------------Inter-token Latency----------------
+Mean ITL (ms):                           56.11     
+Median ITL (ms):                         58.78     
+P99 ITL (ms):                            62.90     
+---------------Speculative Decoding---------------
+Acceptance rate (%):                     45.96     
+Acceptance length:                       2.84      
+Drafts:                                  92363     
+Draft tokens:                            369452    
+Accepted tokens:                         169813    
+Per-position acceptance (%):
+  Position 0:                            61.13     
+  Position 1:                            48.10     
+  Position 2:                            40.34     
+  Position 3:                            34.28     
+==================================================
+===== tier 8K/8K c32 k=4 rerun#2 09:36:02 =====
+Namespace(subparser='bench', bench_type='serve', dispatch_function=<function BenchmarkServingSubcommand.cmd at 0x705674f6db20>, trust_remote_code=False, seed=0, num_prompts=32, dataset_name='random', no_stream=False, dataset_path=None, no_oversample=False, skip_chat_template=False, enable_multimodal_chat=False, disable_shuffle=False, custom_output_len=256, custom_ensure_client_side_data=False, spec_bench_output_len=256, spec_bench_category=None, sharegpt_output_len=None, timed_trace_chunk_hash_size=16, timed_trace_sec_multiplier=1, timed_trace_label_timestamp='timestamp', timed_trace_label_input_length='input_length', timed_trace_label_output_length='output_length', timed_trace_label_hash_ids='hash_ids', blazedit_min_distance=0.0, blazedit_max_distance=1.0, asr_max_audio_len_sec=inf, asr_min_audio_len_sec=0.0, random_input_len=8192, random_output_len=8192, random_range_ratio='0.0', random_prefix_len=0, random_batch_size=1, no_reranker=False, random_mm_base_items_per_request=1, random_mm_num_mm_items_range_ratio=0.0, random_mm_limit_mm_per_prompt={'image': 255, 'video': 1}, random_mm_bucket_config={(256, 256, 1): 0.5, (720, 1280, 1): 0.5, (720, 1280, 16): 0.0}, hf_subset=None, hf_split=None, hf_name=None, hf_output_len=None, bfcl_categories=None, prefix_repetition_prefix_len=256, prefix_repetition_suffix_len=256, prefix_repetition_num_prefixes=10, prefix_repetition_output_len=128, speed_bench_dataset_subset='qualitative', speed_bench_output_len=4096, speed_bench_category=None, label=None, backend='openai', base_url='http://127.0.0.1:8123', host='127.0.0.1', port=8000, endpoint='/v1/completions', header=None, max_concurrency=None, model='deepseek-v4.1-flash', input_len=None, output_len=None, tokenizer='/data/models/DeepSeek-V4.1-Flash-1017', tokenizer_mode='auto', use_beam_search=False, logprobs=None, request_rate=32.0, burstiness=1.0, probe_request_rate=0.0, disable_tqdm=False, num_warmups=0, profile=False, save_result=False, save_detailed=False, append_result=False, metadata=None, result_dir=None, result_filename=None, ignore_eos=True, self_timed=None, percentile_metrics=None, metric_percentiles='99', goodput=None, request_id_prefix='bench-dd055224-', top_p=None, top_k=None, min_p=None, temperature=None, frequency_penalty=None, presence_penalty=None, repetition_penalty=None, served_model_name=None, lora_modules=None, lora_assignment='random', ramp_up_strategy=None, ramp_up_start_rps=None, ramp_up_end_rps=None, ready_check_timeout_sec=0, chat_template_kwargs=None, extra_body=None, skip_tokenizer_init=False, insecure=False, plot_timeline=False, timeline_itl_thresholds='25,50', plot_dataset_stats=False, log_config_file=None, logging_config=LoggingConfig(log_level='INFO', formatter='text', configure_logging=True, pylogging_config_file=None))
+(MainProcess pid=782871) INFO 10-21 09:36:07 [config.py:908] Detected quantization_config.scale_fmt=ue8m0; enabling UE8M0 for DeepGEMM.
+(MainProcess pid=782871) INFO 10-21 09:36:08 [utils.py:88] Sampling input_len from [8192, 8192] and output_len from [8192, 8192]
+WARNING: vllm bench serve no longer sets temperature==0 (greedy) in requests by default. The default will be determined on the server side and can be model/API specific. For the old behavior, include --temperature=0.
+Starting initial single prompt test run...
+Skipping endpoint ready check.
+Starting main benchmark run...
+Traffic request rate: 32.0
+Burstiness factor: 1.0 (Poisson process)
+Maximum request concurrency: None
+  0%|          | 0/32 [00:00<?, ?it/s]  3%|▎         | 1/32 [01:48<56:08, 108.67s/it]  6%|▋         | 2/32 [01:49<22:43, 45.45s/it]   9%|▉         | 3/32 [01:53<12:43, 26.33s/it] 12%|█▎        | 4/32 [02:04<09:33, 20.47s/it] 19%|█▉        | 6/32 [02:07<04:29, 10.36s/it] 22%|██▏       | 7/32 [02:09<03:19,  7.97s/it] 25%|██▌       | 8/32 [02:13<02:46,  6.93s/it] 28%|██▊       | 9/32 [02:14<02:01,  5.29s/it] 31%|███▏      | 10/32 [02:15<01:28,  4.00s/it] 34%|███▍      | 11/32 [02:18<01:14,  3.53s/it] 38%|███▊      | 12/32 [02:24<01:26,  4.33s/it] 41%|████      | 13/32 [02:24<00:58,  3.07s/it] 44%|████▍     | 14/32 [02:24<00:40,  2.25s/it] 47%|████▋     | 15/32 [02:26<00:34,  2.05s/it] 50%|█████     | 16/32 [02:27<00:27,  1.70s/it] 53%|█████▎    | 17/32 [02:27<00:19,  1.28s/it] 56%|█████▋    | 18/32 [02:31<00:30,  2.17s/it]100%|██████████| 32/32 [02:31<00:00,  4.74s/it]
+Failed requests during benchmark run detected (capping to 10):
+Error 0: Traceback (most recent call last):
+  File "/root/vllm-fi02/lib/python3.12/site-packages/aiohttp/client_proto.py", line 145, in connection_lost
+    uncompleted = self._parser.feed_eof()
+                  ^^^^^^^^^^^^^^^^^^^^^^^
+  File "aiohttp/_http_parser.pyx", line 620, in aiohttp._http_parser.HttpParser.feed_eof
+aiohttp.http_exceptions.TransferEncodingError: 400, message:
+  Not enough data to satisfy transfer length header.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/root/vllm-fi02/lib/python3.12/site-packages/vllm/benchmarks/lib/endpoint_request_func.py", line 237, in async_request_openai_completions
+    async for chunk_bytes in response.content.iter_any():
+  File "/root/vllm-fi02/lib/python3.12/site-packages/aiohttp/streams.py", line 46, in __anext__
+    rv = await self.read_func()
+         ^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/vllm-fi02/lib/python3.12/site-packages/aiohttp/streams.py", line 471, in readany
+    await self._wait("readany")
+  File "/root/vllm-fi02/lib/python3.12/site-packages/aiohttp/streams.py", line 365, in _wait
+    await waiter
+aiohttp.client_exceptions.ClientPayloadError: Response payload is not completed: <TransferEncodingError: 400, message='Not enough data to satisfy transfer length header.'>
+
+Error 1: Traceback (most recent call last):
+  File "/root/vllm-fi02/lib/python3.12/site-packages/aiohttp/client_proto.py", line 145, in connection_lost
+    uncompleted = self._parser.feed_eof()
+                  ^^^^^^^^^^^^^^^^^^^^^^^
+  File "aiohttp/_http_parser.pyx", line 620, in aiohttp._http_parser.HttpParser.feed_eof
+aiohttp.http_exceptions.TransferEncodingError: 400, message:
+  Not enough data to satisfy transfer length header.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/root/vllm-fi02/lib/python3.12/site-packages/vllm/benchmarks/lib/endpoint_request_func.py", line 237, in async_request_openai_completions
+    async for chunk_bytes in response.content.iter_any():
+  File "/root/vllm-fi02/lib/python3.12/site-packages/aiohttp/streams.py", line 46, in __anext__
+    rv = await self.read_func()
+         ^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/vllm-fi02/lib/python3.12/site-packages/aiohttp/streams.py", line 471, in readany
+    await self._wait("readany")
+  File "/root/vllm-fi02/lib/python3.12/site-packages/aiohttp/streams.py", line 365, in _wait
+    await waiter
+aiohttp.client_exceptions.ClientPayloadError: Response payload is not completed: <TransferEncodingError: 400, message='Not enough data to satisfy transfer length header.'>
+
+Error 2: Traceback (most recent call last):
+  File "/root/vllm-fi02/lib/python3.12/site-packages/aiohttp/client_proto.py", line 145, in connection_lost
+    uncompleted = self._parser.feed_eof()
+                  ^^^^^^^^^^^^^^^^^^^^^^^
+  File "aiohttp/_http_parser.pyx", line 620, in aiohttp._http_parser.HttpParser.feed_eof
+aiohttp.http_exceptions.TransferEncodingError: 400, message:
+  Not enough data to satisfy transfer length header.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/root/vllm-fi02/lib/python3.12/site-packages/vllm/benchmarks/lib/endpoint_request_func.py", line 237, in async_request_openai_completions
+    async for chunk_bytes in response.content.iter_any():
+  File "/root/vllm-fi02/lib/python3.12/site-packages/aiohttp/streams.py", line 46, in __anext__
+    rv = await self.read_func()
+         ^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/vllm-fi02/lib/python3.12/site-packages/aiohttp/streams.py", line 471, in readany
+    await self._wait("readany")
+  File "/root/vllm-fi02/lib/python3.12/site-packages/aiohttp/streams.py", line 365, in _wait
+    await waiter
+aiohttp.client_exceptions.ClientPayloadError: Response payload is not completed: <TransferEncodingError: 400, message='Not enough data to satisfy transfer length header.'>
+
+Error 3: Traceback (most recent call last):
+  File "/root/vllm-fi02/lib/python3.12/site-packages/aiohttp/client_proto.py", line 145, in connection_lost
+    uncompleted = self._parser.feed_eof()
+                  ^^^^^^^^^^^^^^^^^^^^^^^
+  File "aiohttp/_http_parser.pyx", line 620, in aiohttp._http_parser.HttpParser.feed_eof
+aiohttp.http_exceptions.TransferEncodingError: 400, message:
+  Not enough data to satisfy transfer length header.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/root/vllm-fi02/lib/python3.12/site-packages/vllm/benchmarks/lib/endpoint_request_func.py", line 237, in async_request_openai_completions
+    async for chunk_bytes in response.content.iter_any():
+  File "/root/vllm-fi02/lib/python3.12/site-packages/aiohttp/streams.py", line 46, in __anext__
+    rv = await self.read_func()
+         ^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/vllm-fi02/lib/python3.12/site-packages/aiohttp/streams.py", line 471, in readany
+    await self._wait("readany")
+  File "/root/vllm-fi02/lib/python3.12/site-packages/aiohttp/streams.py", line 365, in _wait
+    await waiter
+aiohttp.client_exceptions.ClientPayloadError: Response payload is not completed: <TransferEncodingError: 400, message='Not enough data to satisfy transfer length header.'>
+
+Error 4: Traceback (most recent call last):
+  File "/root/vllm-fi02/lib/python3.12/site-packages/aiohttp/client_proto.py", line 145, in connection_lost
+    uncompleted = self._parser.feed_eof()
+                  ^^^^^^^^^^^^^^^^^^^^^^^
+  File "aiohttp/_http_parser.pyx", line 620, in aiohttp._http_parser.HttpParser.feed_eof
+aiohttp.http_exceptions.TransferEncodingError: 400, message:
+  Not enough data to satisfy transfer length header.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/root/vllm-fi02/lib/python3.12/site-packages/vllm/benchmarks/lib/endpoint_request_func.py", line 237, in async_request_openai_completions
+    async for chunk_bytes in response.content.iter_any():
+  File "/root/vllm-fi02/lib/python3.12/site-packages/aiohttp/streams.py", line 46, in __anext__
+    rv = await self.read_func()
+         ^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/vllm-fi02/lib/python3.12/site-packages/aiohttp/streams.py", line 471, in readany
+    await self._wait("readany")
+  File "/root/vllm-fi02/lib/python3.12/site-packages/aiohttp/streams.py", line 365, in _wait
+    await waiter
+aiohttp.client_exceptions.ClientPayloadError: Response payload is not completed: <TransferEncodingError: 400, message='Not enough data to satisfy transfer length header.'>
+
+Error 5: Traceback (most recent call last):
+  File "/root/vllm-fi02/lib/python3.12/site-packages/aiohttp/client_proto.py", line 145, in connection_lost
+    uncompleted = self._parser.feed_eof()
+                  ^^^^^^^^^^^^^^^^^^^^^^^
+  File "aiohttp/_http_parser.pyx", line 620, in aiohttp._http_parser.HttpParser.feed_eof
+aiohttp.http_exceptions.TransferEncodingError: 400, message:
+  Not enough data to satisfy transfer length header.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/root/vllm-fi02/lib/python3.12/site-packages/vllm/benchmarks/lib/endpoint_request_func.py", line 237, in async_request_openai_completions
+    async for chunk_bytes in response.content.iter_any():
+  File "/root/vllm-fi02/lib/python3.12/site-packages/aiohttp/streams.py", line 46, in __anext__
+    rv = await self.read_func()
+         ^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/vllm-fi02/lib/python3.12/site-packages/aiohttp/streams.py", line 471, in readany
+    await self._wait("readany")
+  File "/root/vllm-fi02/lib/python3.12/site-packages/aiohttp/streams.py", line 365, in _wait
+    await waiter
+aiohttp.client_exceptions.ClientPayloadError: Response payload is not completed: <TransferEncodingError: 400, message='Not enough data to satisfy transfer length header.'>
+
+Error 6: Traceback (most recent call last):
+  File "/root/vllm-fi02/lib/python3.12/site-packages/aiohttp/client_proto.py", line 145, in connection_lost
+    uncompleted = self._parser.feed_eof()
+                  ^^^^^^^^^^^^^^^^^^^^^^^
+  File "aiohttp/_http_parser.pyx", line 620, in aiohttp._http_parser.HttpParser.feed_eof
+aiohttp.http_exceptions.TransferEncodingError: 400, message:
+  Not enough data to satisfy transfer length header.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/root/vllm-fi02/lib/python3.12/site-packages/vllm/benchmarks/lib/endpoint_request_func.py", line 237, in async_request_openai_completions
+    async for chunk_bytes in response.content.iter_any():
+  File "/root/vllm-fi02/lib/python3.12/site-packages/aiohttp/streams.py", line 46, in __anext__
+    rv = await self.read_func()
+         ^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/vllm-fi02/lib/python3.12/site-packages/aiohttp/streams.py", line 471, in readany
+    await self._wait("readany")
+  File "/root/vllm-fi02/lib/python3.12/site-packages/aiohttp/streams.py", line 365, in _wait
+    await waiter
+aiohttp.client_exceptions.ClientPayloadError: Response payload is not completed: <TransferEncodingError: 400, message='Not enough data to satisfy transfer length header.'>
+
+Error 7: Traceback (most recent call last):
+  File "/root/vllm-fi02/lib/python3.12/site-packages/aiohttp/client_proto.py", line 145, in connection_lost
+    uncompleted = self._parser.feed_eof()
+                  ^^^^^^^^^^^^^^^^^^^^^^^
+  File "aiohttp/_http_parser.pyx", line 620, in aiohttp._http_parser.HttpParser.feed_eof
+aiohttp.http_exceptions.TransferEncodingError: 400, message:
+  Not enough data to satisfy transfer length header.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/root/vllm-fi02/lib/python3.12/site-packages/vllm/benchmarks/lib/endpoint_request_func.py", line 237, in async_request_openai_completions
+    async for chunk_bytes in response.content.iter_any():
+  File "/root/vllm-fi02/lib/python3.12/site-packages/aiohttp/streams.py", line 46, in __anext__
+    rv = await self.read_func()
+         ^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/vllm-fi02/lib/python3.12/site-packages/aiohttp/streams.py", line 471, in readany
+    await self._wait("readany")
+  File "/root/vllm-fi02/lib/python3.12/site-packages/aiohttp/streams.py", line 365, in _wait
+    await waiter
+aiohttp.client_exceptions.ClientPayloadError: Response payload is not completed: <TransferEncodingError: 400, message='Not enough data to satisfy transfer length header.'>
+
+Error 8: Traceback (most recent call last):
+  File "/root/vllm-fi02/lib/python3.12/site-packages/aiohttp/client_proto.py", line 145, in connection_lost
+    uncompleted = self._parser.feed_eof()
+                  ^^^^^^^^^^^^^^^^^^^^^^^
+  File "aiohttp/_http_parser.pyx", line 620, in aiohttp._http_parser.HttpParser.feed_eof
+aiohttp.http_exceptions.TransferEncodingError: 400, message:
+  Not enough data to satisfy transfer length header.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/root/vllm-fi02/lib/python3.12/site-packages/vllm/benchmarks/lib/endpoint_request_func.py", line 237, in async_request_openai_completions
+    async for chunk_bytes in response.content.iter_any():
+  File "/root/vllm-fi02/lib/python3.12/site-packages/aiohttp/streams.py", line 46, in __anext__
+    rv = await self.read_func()
+         ^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/vllm-fi02/lib/python3.12/site-packages/aiohttp/streams.py", line 471, in readany
+    await self._wait("readany")
+  File "/root/vllm-fi02/lib/python3.12/site-packages/aiohttp/streams.py", line 365, in _wait
+    await waiter
+aiohttp.client_exceptions.ClientPayloadError: Response payload is not completed: <TransferEncodingError: 400, message='Not enough data to satisfy transfer length header.'>
+
+Error 9: Traceback (most recent call last):
+  File "/root/vllm-fi02/lib/python3.12/site-packages/aiohttp/client_proto.py", line 145, in connection_lost
+    uncompleted = self._parser.feed_eof()
+                  ^^^^^^^^^^^^^^^^^^^^^^^
+  File "aiohttp/_http_parser.pyx", line 620, in aiohttp._http_parser.HttpParser.feed_eof
+aiohttp.http_exceptions.TransferEncodingError: 400, message:
+  Not enough data to satisfy transfer length header.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/root/vllm-fi02/lib/python3.12/site-packages/vllm/benchmarks/lib/endpoint_request_func.py", line 237, in async_request_openai_completions
+    async for chunk_bytes in response.content.iter_any():
+  File "/root/vllm-fi02/lib/python3.12/site-packages/aiohttp/streams.py", line 46, in __anext__
+    rv = await self.read_func()
+         ^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/vllm-fi02/lib/python3.12/site-packages/aiohttp/streams.py", line 471, in readany
+    await self._wait("readany")
+  File "/root/vllm-fi02/lib/python3.12/site-packages/aiohttp/streams.py", line 365, in _wait
+    await waiter
+aiohttp.client_exceptions.ClientPayloadError: Response payload is not completed: <TransferEncodingError: 400, message='Not enough data to satisfy transfer length header.'>
+
+tip: install termplotlib and gnuplot to plot the metrics
+============ Serving Benchmark Result ============
+Successful requests:                     17        
+Failed requests:                         15        
+Request rate configured (RPS):           32.00     
+Benchmark duration (s):                  151.78    
+Total input tokens:                      139264    
+Total generated tokens:                  139264    
+Request throughput (req/s):              0.11      
+Output token throughput (tok/s):         917.56    
+Peak output token throughput (tok/s):    323.00    
+Peak concurrent requests:                17.00     
+Total token throughput (tok/s):          1835.11   
+---------------Time to First Token----------------
+Mean TTFT (ms):                          212.57    
+Median TTFT (ms):                        211.23    
+P99 TTFT (ms):                           299.80    
+-----Time per Output Token (excl. 1st token)------
+Mean TPOT (ms):                          16.11     
+Median TPOT (ms):                        16.33     
+P99 TPOT (ms):                           17.99     
+---------------Inter-token Latency----------------
+Mean ITL (ms):                           58.96     
+Median ITL (ms):                         59.92     
+P99 ITL (ms):                            61.55     
+==================================================
+########## C32-REDO-B RESUME Wed Oct 21 09:39:42 AM UTC 2026 ##########
+########## REDO k=5 BOOT (capture=768 util=0.90) Wed Oct 21 09:39:48 AM UTC 2026 ##########
+BOOT CMD: /root/vllm-fi02/bin/vllm serve /data/models/DeepSeek-V4.1-Flash-1017 --tensor-parallel-size 8 --enable-expert-parallel --kv-cache-dtype fp8 --attention-config {backend:FLASHINFER_MLA_SPARSE_DSV41,indexer_kv_dtype:fp8} --engram-config {cpu_offload:true} --moe-backend auto --compilation-config {cudagraph_mode:FULL} --language-model-only --max-model-len 1048576 --max-num-seqs 128 --gpu-memory-utilization 0.90 --speculative-config {method:dspark,num_speculative_tokens:5} --max-cudagraph-capture-size 768 --enable-auto-tool-choice --tool-call-parser deepseek_v41 --reasoning-parser deepseek_v41 --port 8123 --api-key *** (同 v3 全参)
+k=5 READY after ~90s 09:41:18
+===== warmup 8K/8K c8 k=5 09:41:23 =====
+Namespace(subparser='bench', bench_type='serve', dispatch_function=<function BenchmarkServingSubcommand.cmd at 0x7f9ce5569b20>, trust_remote_code=False, seed=0, num_prompts=8, dataset_name='random', no_stream=False, dataset_path=None, no_oversample=False, skip_chat_template=False, enable_multimodal_chat=False, disable_shuffle=False, custom_output_len=256, custom_ensure_client_side_data=False, spec_bench_output_len=256, spec_bench_category=None, sharegpt_output_len=None, timed_trace_chunk_hash_size=16, timed_trace_sec_multiplier=1, timed_trace_label_timestamp='timestamp', timed_trace_label_input_length='input_length', timed_trace_label_output_length='output_length', timed_trace_label_hash_ids='hash_ids', blazedit_min_distance=0.0, blazedit_max_distance=1.0, asr_max_audio_len_sec=inf, asr_min_audio_len_sec=0.0, random_input_len=8192, random_output_len=8192, random_range_ratio='0.0', random_prefix_len=0, random_batch_size=1, no_reranker=False, random_mm_base_items_per_request=1, random_mm_num_mm_items_range_ratio=0.0, random_mm_limit_mm_per_prompt={'image': 255, 'video': 1}, random_mm_bucket_config={(256, 256, 1): 0.5, (720, 1280, 1): 0.5, (720, 1280, 16): 0.0}, hf_subset=None, hf_split=None, hf_name=None, hf_output_len=None, bfcl_categories=None, prefix_repetition_prefix_len=256, prefix_repetition_suffix_len=256, prefix_repetition_num_prefixes=10, prefix_repetition_output_len=128, speed_bench_dataset_subset='qualitative', speed_bench_output_len=4096, speed_bench_category=None, label=None, backend='openai', base_url='http://127.0.0.1:8123', host='127.0.0.1', port=8000, endpoint='/v1/completions', header=None, max_concurrency=None, model='deepseek-v4.1-flash', input_len=None, output_len=None, tokenizer='/data/models/DeepSeek-V4.1-Flash-1017', tokenizer_mode='auto', use_beam_search=False, logprobs=None, request_rate=8.0, burstiness=1.0, probe_request_rate=0.0, disable_tqdm=False, num_warmups=0, profile=False, save_result=False, save_detailed=False, append_result=False, metadata=None, result_dir=None, result_filename=None, ignore_eos=True, self_timed=None, percentile_metrics=None, metric_percentiles='99', goodput=None, request_id_prefix='bench-480a7000-', top_p=None, top_k=None, min_p=None, temperature=None, frequency_penalty=None, presence_penalty=None, repetition_penalty=None, served_model_name=None, lora_modules=None, lora_assignment='random', ramp_up_strategy=None, ramp_up_start_rps=None, ramp_up_end_rps=None, ready_check_timeout_sec=0, chat_template_kwargs=None, extra_body=None, skip_tokenizer_init=False, insecure=False, plot_timeline=False, timeline_itl_thresholds='25,50', plot_dataset_stats=False, log_config_file=None, logging_config=LoggingConfig(log_level='INFO', formatter='text', configure_logging=True, pylogging_config_file=None))
+(MainProcess pid=792622) INFO 10-21 09:41:28 [config.py:908] Detected quantization_config.scale_fmt=ue8m0; enabling UE8M0 for DeepGEMM.
+(MainProcess pid=792622) INFO 10-21 09:41:28 [utils.py:88] Sampling input_len from [8192, 8192] and output_len from [8192, 8192]
+WARNING: vllm bench serve no longer sets temperature==0 (greedy) in requests by default. The default will be determined on the server side and can be model/API specific. For the old behavior, include --temperature=0.
+Starting initial single prompt test run...
+Skipping endpoint ready check.
+Starting main benchmark run...
+Traffic request rate: 8.0
+Burstiness factor: 1.0 (Poisson process)
+Maximum request concurrency: None
+  0%|          | 0/8 [00:00<?, ?it/s] 12%|█▎        | 1/8 [01:13<08:37, 73.91s/it] 25%|██▌       | 2/8 [01:21<03:29, 34.96s/it] 38%|███▊      | 3/8 [01:21<01:35, 19.16s/it] 50%|█████     | 4/8 [01:26<00:54, 13.51s/it] 62%|██████▎   | 5/8 [01:34<00:33, 11.25s/it] 75%|███████▌  | 6/8 [01:38<00:17,  8.97s/it] 88%|████████▊ | 7/8 [01:51<00:10, 10.28s/it]100%|██████████| 8/8 [02:08<00:00, 12.35s/it]100%|██████████| 8/8 [02:08<00:00, 16.05s/it]
+tip: install termplotlib and gnuplot to plot the metrics
+============ Serving Benchmark Result ============
+Successful requests:                     8         
+Failed requests:                         0         
+Request rate configured (RPS):           8.00      
+Benchmark duration (s):                  128.36    
+Total input tokens:                      65536     
+Total generated tokens:                  65536     
+Request throughput (req/s):              0.06      
+Output token throughput (tok/s):         510.56    
+Peak output token throughput (tok/s):    240.00    
+Peak concurrent requests:                8.00      
+Total token throughput (tok/s):          1021.12   
+---------------Time to First Token----------------
+Mean TTFT (ms):                          1857.64   
+Median TTFT (ms):                        1960.08   
+P99 TTFT (ms):                           2693.71   
+-----Time per Output Token (excl. 1st token)------
+Mean TPOT (ms):                          11.26     
+Median TPOT (ms):                        10.66     
+P99 TPOT (ms):                           15.30     
+---------------Inter-token Latency----------------
+Mean ITL (ms):                           34.80     
+Median ITL (ms):                         36.00     
+P99 ITL (ms):                            38.41     
+---------------Speculative Decoding---------------
+Acceptance rate (%):                     41.84     
+Acceptance length:                       3.09      
+Drafts:                                  21197     
+Draft tokens:                            105985    
+Accepted tokens:                         44340     
+Per-position acceptance (%):
+  Position 0:                            66.79     
+  Position 1:                            47.65     
+  Position 2:                            37.33     
+  Position 3:                            30.44     
+  Position 4:                            26.97     
+==================================================
+===== tier 8K/8K c32 k=5 rerun#1 09:43:37 =====
+Namespace(subparser='bench', bench_type='serve', dispatch_function=<function BenchmarkServingSubcommand.cmd at 0x75f98257e0c0>, trust_remote_code=False, seed=0, num_prompts=32, dataset_name='random', no_stream=False, dataset_path=None, no_oversample=False, skip_chat_template=False, enable_multimodal_chat=False, disable_shuffle=False, custom_output_len=256, custom_ensure_client_side_data=False, spec_bench_output_len=256, spec_bench_category=None, sharegpt_output_len=None, timed_trace_chunk_hash_size=16, timed_trace_sec_multiplier=1, timed_trace_label_timestamp='timestamp', timed_trace_label_input_length='input_length', timed_trace_label_output_length='output_length', timed_trace_label_hash_ids='hash_ids', blazedit_min_distance=0.0, blazedit_max_distance=1.0, asr_max_audio_len_sec=inf, asr_min_audio_len_sec=0.0, random_input_len=8192, random_output_len=8192, random_range_ratio='0.0', random_prefix_len=0, random_batch_size=1, no_reranker=False, random_mm_base_items_per_request=1, random_mm_num_mm_items_range_ratio=0.0, random_mm_limit_mm_per_prompt={'image': 255, 'video': 1}, random_mm_bucket_config={(256, 256, 1): 0.5, (720, 1280, 1): 0.5, (720, 1280, 16): 0.0}, hf_subset=None, hf_split=None, hf_name=None, hf_output_len=None, bfcl_categories=None, prefix_repetition_prefix_len=256, prefix_repetition_suffix_len=256, prefix_repetition_num_prefixes=10, prefix_repetition_output_len=128, speed_bench_dataset_subset='qualitative', speed_bench_output_len=4096, speed_bench_category=None, label=None, backend='openai', base_url='http://127.0.0.1:8123', host='127.0.0.1', port=8000, endpoint='/v1/completions', header=None, max_concurrency=None, model='deepseek-v4.1-flash', input_len=None, output_len=None, tokenizer='/data/models/DeepSeek-V4.1-Flash-1017', tokenizer_mode='auto', use_beam_search=False, logprobs=None, request_rate=32.0, burstiness=1.0, probe_request_rate=0.0, disable_tqdm=False, num_warmups=0, profile=False, save_result=False, save_detailed=False, append_result=False, metadata=None, result_dir=None, result_filename=None, ignore_eos=True, self_timed=None, percentile_metrics=None, metric_percentiles='99', goodput=None, request_id_prefix='bench-5da43f38-', top_p=None, top_k=None, min_p=None, temperature=None, frequency_penalty=None, presence_penalty=None, repetition_penalty=None, served_model_name=None, lora_modules=None, lora_assignment='random', ramp_up_strategy=None, ramp_up_start_rps=None, ramp_up_end_rps=None, ready_check_timeout_sec=0, chat_template_kwargs=None, extra_body=None, skip_tokenizer_init=False, insecure=False, plot_timeline=False, timeline_itl_thresholds='25,50', plot_dataset_stats=False, log_config_file=None, logging_config=LoggingConfig(log_level='INFO', formatter='text', configure_logging=True, pylogging_config_file=None))
+(MainProcess pid=796160) INFO 10-21 09:43:42 [config.py:908] Detected quantization_config.scale_fmt=ue8m0; enabling UE8M0 for DeepGEMM.
+(MainProcess pid=796160) INFO 10-21 09:43:42 [utils.py:88] Sampling input_len from [8192, 8192] and output_len from [8192, 8192]
+WARNING: vllm bench serve no longer sets temperature==0 (greedy) in requests by default. The default will be determined on the server side and can be model/API specific. For the old behavior, include --temperature=0.
+Starting initial single prompt test run...
+Skipping endpoint ready check.
+Starting main benchmark run...
+Traffic request rate: 32.0
+Burstiness factor: 1.0 (Poisson process)
+Maximum request concurrency: None
+  0%|          | 0/32 [00:00<?, ?it/s]  3%|▎         | 1/32 [01:57<1:00:45, 117.59s/it]  6%|▋         | 2/32 [02:00<25:02, 50.10s/it]     9%|▉         | 3/32 [02:07<14:36, 30.23s/it] 12%|█▎        | 4/32 [02:14<09:57, 21.34s/it] 16%|█▌        | 5/32 [02:18<06:47, 15.10s/it] 19%|█▉        | 6/32 [02:22<04:50, 11.17s/it] 22%|██▏       | 7/32 [02:24<03:27,  8.30s/it] 25%|██▌       | 8/32 [02:27<02:34,  6.42s/it] 28%|██▊       | 9/32 [02:30<02:04,  5.40s/it] 31%|███▏      | 10/32 [02:30<01:27,  3.96s/it] 34%|███▍      | 11/32 [02:35<01:29,  4.27s/it] 38%|███▊      | 12/32 [02:37<01:06,  3.35s/it] 41%|████      | 13/32 [02:39<00:56,  2.98s/it] 44%|████▍     | 14/32 [02:47<01:21,  4.51s/it] 47%|████▋     | 15/32 [02:47<00:55,  3.29s/it] 50%|█████     | 16/32 [02:51<00:54,  3.38s/it] 53%|█████▎    | 17/32 [02:53<00:44,  2.97s/it] 56%|█████▋    | 18/32 [02:54<00:31,  2.28s/it] 62%|██████▎   | 20/32 [02:56<00:20,  1.68s/it] 66%|██████▌   | 21/32 [02:59<00:22,  2.01s/it] 69%|██████▉   | 22/32 [03:00<00:18,  1.85s/it] 72%|███████▏  | 23/32 [03:10<00:36,  4.02s/it] 75%|███████▌  | 24/32 [03:11<00:25,  3.15s/it] 78%|███████▊  | 25/32 [03:13<00:21,  3.02s/it] 81%|████████▏ | 26/32 [03:14<00:14,  2.40s/it] 84%|████████▍ | 27/32 [03:14<00:08,  1.75s/it] 88%|████████▊ | 28/32 [03:18<00:08,  2.25s/it] 91%|█████████ | 29/32 [03:19<00:05,  1.87s/it] 94%|█████████▍| 30/32 [03:21<00:03,  1.88s/it] 97%|█████████▋| 31/32 [03:32<00:04,  4.70s/it]100%|██████████| 32/32 [03:44<00:00,  6.76s/it]100%|██████████| 32/32 [03:44<00:00,  7.01s/it]
+tip: install termplotlib and gnuplot to plot the metrics
+============ Serving Benchmark Result ============
+Successful requests:                     32        
+Failed requests:                         0         
+Request rate configured (RPS):           32.00     
+Benchmark duration (s):                  224.23    
+Total input tokens:                      262144    
+Total generated tokens:                  262144    
+Request throughput (req/s):              0.14      
+Output token throughput (tok/s):         1169.06   
+Peak output token throughput (tok/s):    576.00    
+Peak concurrent requests:                32.00     
+Total token throughput (tok/s):          2338.12   
+---------------Time to First Token----------------
+Mean TTFT (ms):                          3781.31   
+Median TTFT (ms):                        3609.24   
+P99 TTFT (ms):                           8922.35   
+-----Time per Output Token (excl. 1st token)------
+Mean TPOT (ms):                          20.12     
+Median TPOT (ms):                        20.44     
+P99 TPOT (ms):                           26.44     
+---------------Inter-token Latency----------------
+Mean ITL (ms):                           60.97     
+Median ITL (ms):                         62.47     
+P99 ITL (ms):                            65.66     
+---------------Speculative Decoding---------------
+Acceptance rate (%):                     40.64     
+Acceptance length:                       3.03      
+Drafts:                                  86473     
+Draft tokens:                            432365    
+Accepted tokens:                         175696    
+Per-position acceptance (%):
+  Position 0:                            62.44     
+  Position 1:                            47.37     
+  Position 2:                            37.62     
+  Position 3:                            30.67     
+  Position 4:                            25.08     
+==================================================
+===== tier 8K/8K c32 k=5 rerun#2 09:47:28 =====
+Namespace(subparser='bench', bench_type='serve', dispatch_function=<function BenchmarkServingSubcommand.cmd at 0x74551a375b20>, trust_remote_code=False, seed=0, num_prompts=32, dataset_name='random', no_stream=False, dataset_path=None, no_oversample=False, skip_chat_template=False, enable_multimodal_chat=False, disable_shuffle=False, custom_output_len=256, custom_ensure_client_side_data=False, spec_bench_output_len=256, spec_bench_category=None, sharegpt_output_len=None, timed_trace_chunk_hash_size=16, timed_trace_sec_multiplier=1, timed_trace_label_timestamp='timestamp', timed_trace_label_input_length='input_length', timed_trace_label_output_length='output_length', timed_trace_label_hash_ids='hash_ids', blazedit_min_distance=0.0, blazedit_max_distance=1.0, asr_max_audio_len_sec=inf, asr_min_audio_len_sec=0.0, random_input_len=8192, random_output_len=8192, random_range_ratio='0.0', random_prefix_len=0, random_batch_size=1, no_reranker=False, random_mm_base_items_per_request=1, random_mm_num_mm_items_range_ratio=0.0, random_mm_limit_mm_per_prompt={'image': 255, 'video': 1}, random_mm_bucket_config={(256, 256, 1): 0.5, (720, 1280, 1): 0.5, (720, 1280, 16): 0.0}, hf_subset=None, hf_split=None, hf_name=None, hf_output_len=None, bfcl_categories=None, prefix_repetition_prefix_len=256, prefix_repetition_suffix_len=256, prefix_repetition_num_prefixes=10, prefix_repetition_output_len=128, speed_bench_dataset_subset='qualitative', speed_bench_output_len=4096, speed_bench_category=None, label=None, backend='openai', base_url='http://127.0.0.1:8123', host='127.0.0.1', port=8000, endpoint='/v1/completions', header=None, max_concurrency=None, model='deepseek-v4.1-flash', input_len=None, output_len=None, tokenizer='/data/models/DeepSeek-V4.1-Flash-1017', tokenizer_mode='auto', use_beam_search=False, logprobs=None, request_rate=32.0, burstiness=1.0, probe_request_rate=0.0, disable_tqdm=False, num_warmups=0, profile=False, save_result=False, save_detailed=False, append_result=False, metadata=None, result_dir=None, result_filename=None, ignore_eos=True, self_timed=None, percentile_metrics=None, metric_percentiles='99', goodput=None, request_id_prefix='bench-69bc9ada-', top_p=None, top_k=None, min_p=None, temperature=None, frequency_penalty=None, presence_penalty=None, repetition_penalty=None, served_model_name=None, lora_modules=None, lora_assignment='random', ramp_up_strategy=None, ramp_up_start_rps=None, ramp_up_end_rps=None, ready_check_timeout_sec=0, chat_template_kwargs=None, extra_body=None, skip_tokenizer_init=False, insecure=False, plot_timeline=False, timeline_itl_thresholds='25,50', plot_dataset_stats=False, log_config_file=None, logging_config=LoggingConfig(log_level='INFO', formatter='text', configure_logging=True, pylogging_config_file=None))
+(MainProcess pid=800912) INFO 10-21 09:47:33 [config.py:908] Detected quantization_config.scale_fmt=ue8m0; enabling UE8M0 for DeepGEMM.
+(MainProcess pid=800912) INFO 10-21 09:47:33 [utils.py:88] Sampling input_len from [8192, 8192] and output_len from [8192, 8192]
+WARNING: vllm bench serve no longer sets temperature==0 (greedy) in requests by default. The default will be determined on the server side and can be model/API specific. For the old behavior, include --temperature=0.
+Starting initial single prompt test run...
+Skipping endpoint ready check.
+Starting main benchmark run...
+Traffic request rate: 32.0
+Burstiness factor: 1.0 (Poisson process)
+Maximum request concurrency: None
+  0%|          | 0/32 [00:00<?, ?it/s]  3%|▎         | 1/32 [01:33<48:17, 93.48s/it]  6%|▋         | 2/32 [01:45<22:45, 45.51s/it]  9%|▉         | 3/32 [01:51<13:12, 27.34s/it] 12%|█▎        | 4/32 [01:53<08:13, 17.62s/it] 16%|█▌        | 5/32 [01:56<05:33, 12.36s/it] 19%|█▉        | 6/32 [01:58<03:43,  8.60s/it] 22%|██▏       | 7/32 [01:59<02:32,  6.08s/it] 25%|██▌       | 8/32 [02:00<01:48,  4.53s/it] 28%|██▊       | 9/32 [02:07<02:02,  5.33s/it] 31%|███▏      | 10/32 [02:14<02:06,  5.74s/it] 34%|███▍      | 11/32 [02:14<01:28,  4.24s/it] 38%|███▊      | 12/32 [02:16<01:08,  3.40s/it] 41%|████      | 13/32 [02:16<00:46,  2.45s/it] 44%|████▍     | 14/32 [02:18<00:38,  2.14s/it] 47%|████▋     | 15/32 [02:19<00:34,  2.00s/it] 50%|█████     | 16/32 [02:21<00:28,  1.79s/it] 53%|█████▎    | 17/32 [02:21<00:19,  1.29s/it] 56%|█████▋    | 18/32 [02:22<00:19,  1.38s/it] 59%|█████▉    | 19/32 [02:23<00:13,  1.06s/it] 62%|██████▎   | 20/32 [02:25<00:16,  1.36s/it] 66%|██████▌   | 21/32 [02:27<00:16,  1.52s/it] 69%|██████▉   | 22/32 [02:32<00:28,  2.82s/it] 72%|███████▏  | 23/32 [02:33<00:20,  2.26s/it] 75%|███████▌  | 24/32 [02:34<00:13,  1.70s/it] 78%|███████▊  | 25/32 [02:39<00:19,  2.78s/it] 81%|████████▏ | 26/32 [02:41<00:16,  2.69s/it] 84%|████████▍ | 27/32 [02:44<00:13,  2.67s/it] 88%|████████▊ | 28/32 [03:01<00:28,  7.01s/it] 91%|█████████ | 29/32 [03:02<00:15,  5.15s/it] 94%|█████████▍| 30/32 [03:14<00:14,  7.05s/it] 97%|█████████▋| 31/32 [03:24<00:08,  8.12s/it]100%|██████████| 32/32 [04:18<00:00, 21.96s/it]100%|██████████| 32/32 [04:18<00:00,  8.09s/it]
+tip: install termplotlib and gnuplot to plot the metrics
+============ Serving Benchmark Result ============
+Successful requests:                     32        
+Failed requests:                         0         
+Request rate configured (RPS):           32.00     
+Benchmark duration (s):                  258.93    
+Total input tokens:                      262144    
+Total generated tokens:                  262144    
+Request throughput (req/s):              0.12      
+Output token throughput (tok/s):         1012.42   
+Peak output token throughput (tok/s):    576.00    
+Peak concurrent requests:                32.00     
+Total token throughput (tok/s):          2024.83   
+---------------Time to First Token----------------
+Mean TTFT (ms):                          198.20    
+Median TTFT (ms):                        215.59    
+P99 TTFT (ms):                           269.62    
+-----Time per Output Token (excl. 1st token)------
+Mean TPOT (ms):                          17.75     
+Median TPOT (ms):                        17.15     
+P99 TPOT (ms):                           29.46     
+---------------Inter-token Latency----------------
+Mean ITL (ms):                           57.35     
+Median ITL (ms):                         62.92     
+P99 ITL (ms):                            65.41     
+---------------Speculative Decoding---------------
+Acceptance rate (%):                     44.67     
+Acceptance length:                       3.23      
+Drafts:                                  81085     
+Draft tokens:                            405425    
+Accepted tokens:                         181096    
+Per-position acceptance (%):
+  Position 0:                            62.33     
+  Position 1:                            49.70     
+  Position 2:                            42.38     
+  Position 3:                            36.59     
+  Position 4:                            32.33     
+==================================================
+[0;36m(RustFrontend pid=788308)[0m [32mINFO[0m [90m10-21 09:48:34[0m [90m[log_stats.rs:302][0m SpecDecoding metrics: Mean acceptance length: 3.13, Accepted throughput: 1070.36 tokens/s, Drafted throughput: 2512.15 tokens/s, Accepted: 10703 tokens, Drafted: 25120 tokens, Per-position acceptance rate: 0.661, 0.488, 0.389, 0.321, 0.272, Avg Draft acceptance rate: 42.6%
+[0;36m(RustFrontend pid=788308)[0m [32mINFO[0m [90m10-21 09:48:44[0m [90m[log_stats.rs:302][0m SpecDecoding metrics: Mean acceptance length: 3.66, Accepted throughput: 1320.29 tokens/s, Drafted throughput: 2479.98 tokens/s, Accepted: 13203 tokens, Drafted: 24800 tokens, Per-position acceptance rate: 0.745, 0.595, 0.504, 0.432, 0.386, Avg Draft acceptance rate: 53.2%
+[0;36m(RustFrontend pid=788308)[0m [32mINFO[0m [90m10-21 09:48:54[0m [90m[log_stats.rs:302][0m SpecDecoding metrics: Mean acceptance length: 4.13, Accepted throughput: 1560.93 tokens/s, Drafted throughput: 2495.89 tokens/s, Accepted: 15610 tokens, Drafted: 24960 tokens, Per-position acceptance rate: 0.793, 0.693, 0.616, 0.543, 0.482, Avg Draft acceptance rate: 62.5%
+[0;36m(RustFrontend pid=788308)[0m [32mINFO[0m [90m10-21 09:49:04[0m [90m[log_stats.rs:302][0m SpecDecoding metrics: Mean acceptance length: 4.31, Accepted throughput: 1643.85 tokens/s, Drafted throughput: 2480.07 tokens/s, Accepted: 16438 tokens, Drafted: 24800 tokens, Per-position acceptance rate: 0.817, 0.728, 0.656, 0.586, 0.527, Avg Draft acceptance rate: 66.3%
+[0;36m(RustFrontend pid=788308)[0m [32mINFO[0m [90m10-21 09:49:14[0m [90m[log_stats.rs:302][0m SpecDecoding metrics: Mean acceptance length: 4.48, Accepted throughput: 1693.61 tokens/s, Drafted throughput: 2432.88 tokens/s, Accepted: 16937 tokens, Drafted: 24330 tokens, Per-position acceptance rate: 0.837, 0.766, 0.691, 0.623, 0.565, Avg Draft acceptance rate: 69.6%
+[0;36m(RustFrontend pid=788308)[0m [32mINFO[0m [90m10-21 09:49:24[0m [90m[log_stats.rs:302][0m SpecDecoding metrics: Mean acceptance length: 4.46, Accepted throughput: 1642.11 tokens/s, Drafted throughput: 2370.65 tokens/s, Accepted: 16420 tokens, Drafted: 23705 tokens, Per-position acceptance rate: 0.828, 0.752, 0.686, 0.625, 0.572, Avg Draft acceptance rate: 69.3%
+[0;36m(RustFrontend pid=788308)[0m [32mINFO[0m [90m10-21 09:49:34[0m [90m[log_stats.rs:302][0m SpecDecoding metrics: Mean acceptance length: 4.34, Accepted throughput: 1501.21 tokens/s, Drafted throughput: 2250.36 tokens/s, Accepted: 15013 tokens, Drafted: 22505 tokens, Per-position acceptance rate: 0.820, 0.729, 0.653, 0.593, 0.541, Avg Draft acceptance rate: 66.7%
+[0;36m(RustFrontend pid=788308)[0m [32mINFO[0m [90m10-21 09:49:44[0m [90m[log_stats.rs:302][0m SpecDecoding metrics: Mean acceptance length: 4.15, Accepted throughput: 1339.55 tokens/s, Drafted throughput: 2124.08 tokens/s, Accepted: 13395 tokens, Drafted: 21240 tokens, Per-position acceptance rate: 0.798, 0.697, 0.621, 0.548, 0.488, Avg Draft acceptance rate: 63.1%
+[0;36m(RustFrontend pid=788308)[0m [32mINFO[0m [90m10-21 09:49:54[0m [90m[log_stats.rs:302][0m SpecDecoding metrics: Mean acceptance length: 4.20, Accepted throughput: 1251.53 tokens/s, Drafted throughput: 1957.90 tokens/s, Accepted: 12516 tokens, Drafted: 19580 tokens, Per-position acceptance rate: 0.807, 0.705, 0.628, 0.559, 0.497, Avg Draft acceptance rate: 63.9%
+[0;36m(RustFrontend pid=788308)[0m [32mINFO[0m [90m10-21 09:50:04[0m [90m[log_stats.rs:302][0m SpecDecoding metrics: Mean acceptance length: 3.52, Accepted throughput: 740.92 tokens/s, Drafted throughput: 1471.05 tokens/s, Accepted: 7409 tokens, Drafted: 14710 tokens, Per-position acceptance rate: 0.707, 0.547, 0.478, 0.419, 0.367, Avg Draft acceptance rate: 50.4%
+[0;36m(RustFrontend pid=788308)[0m [32mINFO[0m [90m10-21 09:50:14[0m [90m[log_stats.rs:302][0m SpecDecoding metrics: Mean acceptance length: 3.07, Accepted throughput: 485.81 tokens/s, Drafted throughput: 1173.03 tokens/s, Accepted: 4858 tokens, Drafted: 11730 tokens, Per-position acceptance rate: 0.632, 0.477, 0.377, 0.315, 0.270, Avg Draft acceptance rate: 41.4%
+[0;36m(RustFrontend pid=788308)[0m [32mINFO[0m [90m10-21 09:50:24[0m [90m[log_stats.rs:302][0m SpecDecoding metrics: Mean acceptance length: 2.17, Accepted throughput: 199.29 tokens/s, Drafted throughput: 854.97 tokens/s, Accepted: 1993 tokens, Drafted: 8550 tokens, Per-position acceptance rate: 0.514, 0.291, 0.177, 0.109, 0.074, Avg Draft acceptance rate: 23.3%
+[0;36m(RustFrontend pid=788308)[0m [32mINFO[0m [90m10-21 09:50:34[0m [90m[log_stats.rs:302][0m SpecDecoding metrics: Mean acceptance length: 2.28, Accepted throughput: 203.91 tokens/s, Drafted throughput: 797.54 tokens/s, Accepted: 2039 tokens, Drafted: 7975 tokens, Per-position acceptance rate: 0.510, 0.310, 0.211, 0.144, 0.103, Avg Draft acceptance rate: 25.6%
+[0;36m(RustFrontend pid=788308)[0m [32mINFO[0m [90m10-21 09:50:44[0m [90m[log_stats.rs:302][0m SpecDecoding metrics: Mean acceptance length: 2.55, Accepted throughput: 182.79 tokens/s, Drafted throughput: 589.48 tokens/s, Accepted: 1828 tokens, Drafted: 5895 tokens, Per-position acceptance rate: 0.504, 0.356, 0.286, 0.221, 0.183, Avg Draft acceptance rate: 31.0%
+[0;36m(RustFrontend pid=788308)[0m [32mINFO[0m [90m10-21 09:50:54[0m [90m[log_stats.rs:302][0m SpecDecoding metrics: Mean acceptance length: 2.75, Accepted throughput: 156.40 tokens/s, Drafted throughput: 448.00 tokens/s, Accepted: 1564 tokens, Drafted: 4480 tokens, Per-position acceptance rate: 0.490, 0.384, 0.334, 0.291, 0.247, Avg Draft acceptance rate: 34.9%
+[0;36m(RustFrontend pid=788308)[0m [32mINFO[0m [90m10-21 09:51:04[0m [90m[log_stats.rs:302][0m SpecDecoding metrics: Mean acceptance length: 2.05, Accepted throughput: 66.30 tokens/s, Drafted throughput: 315.00 tokens/s, Accepted: 663 tokens, Drafted: 3150 tokens, Per-position acceptance rate: 0.314, 0.222, 0.194, 0.173, 0.149, Avg Draft acceptance rate: 21.0%
+[0;36m(RustFrontend pid=788308)[0m [32mINFO[0m [90m10-21 09:51:14[0m [90m[log_stats.rs:302][0m SpecDecoding metrics: Mean acceptance length: 1.10, Accepted throughput: 4.70 tokens/s, Drafted throughput: 233.51 tokens/s, Accepted: 47 tokens, Drafted: 2335 tokens, Per-position acceptance rate: 0.086, 0.015, 0.000, 0.000, 0.000, Avg Draft acceptance rate: 2.0%
+[0;36m(RustFrontend pid=788308)[0m [32mINFO[0m [90m10-21 09:51:24[0m [90m[log_stats.rs:302][0m SpecDecoding metrics: Mean acceptance length: 1.10, Accepted throughput: 4.50 tokens/s, Drafted throughput: 233.00 tokens/s, Accepted: 45 tokens, Drafted: 2330 tokens, Per-position acceptance rate: 0.060, 0.034, 0.002, 0.000, 0.000, Avg Draft acceptance rate: 1.9%
+[0;36m(RustFrontend pid=788308)[0m [32mINFO[0m [90m10-21 09:51:34[0m [90m[log_stats.rs:302][0m SpecDecoding metrics: Mean acceptance length: 1.28, Accepted throughput: 12.90 tokens/s, Drafted throughput: 232.50 tokens/s, Accepted: 129 tokens, Drafted: 2325 tokens, Per-position acceptance rate: 0.247, 0.028, 0.002, 0.000, 0.000, Avg Draft acceptance rate: 5.5%
+[0;36m(RustFrontend pid=788308)[0m [32mINFO[0m [90m10-21 09:51:44[0m [90m[log_stats.rs:302][0m SpecDecoding metrics: Mean acceptance length: 2.05, Accepted throughput: 48.70 tokens/s, Drafted throughput: 232.00 tokens/s, Accepted: 487 tokens, Drafted: 2320 tokens, Per-position acceptance rate: 0.651, 0.263, 0.073, 0.034, 0.028, Avg Draft acceptance rate: 21.0%
+########## REDO k=4 BOOT (capture=640 util=0.90) Wed Oct 21 09:52:09 AM UTC 2026 ##########
+BOOT CMD: /root/vllm-fi02/bin/vllm serve /data/models/DeepSeek-V4.1-Flash-1017 --tensor-parallel-size 8 --enable-expert-parallel --kv-cache-dtype fp8 --attention-config {backend:FLASHINFER_MLA_SPARSE_DSV41,indexer_kv_dtype:fp8} --engram-config {cpu_offload:true} --moe-backend auto --compilation-config {cudagraph_mode:FULL} --language-model-only --max-model-len 1048576 --max-num-seqs 128 --gpu-memory-utilization 0.90 --speculative-config {method:dspark,num_speculative_tokens:4} --max-cudagraph-capture-size 640 --enable-auto-tool-choice --tool-call-parser deepseek_v41 --reasoning-parser deepseek_v41 --port 8123 --api-key *** (同 v3 全参)
+k=4 READY after ~90s 09:53:39
+===== warmup 8K/8K c8 k=4 09:53:44 =====
+Namespace(subparser='bench', bench_type='serve', dispatch_function=<function BenchmarkServingSubcommand.cmd at 0x7ad312f7e0c0>, trust_remote_code=False, seed=0, num_prompts=8, dataset_name='random', no_stream=False, dataset_path=None, no_oversample=False, skip_chat_template=False, enable_multimodal_chat=False, disable_shuffle=False, custom_output_len=256, custom_ensure_client_side_data=False, spec_bench_output_len=256, spec_bench_category=None, sharegpt_output_len=None, timed_trace_chunk_hash_size=16, timed_trace_sec_multiplier=1, timed_trace_label_timestamp='timestamp', timed_trace_label_input_length='input_length', timed_trace_label_output_length='output_length', timed_trace_label_hash_ids='hash_ids', blazedit_min_distance=0.0, blazedit_max_distance=1.0, asr_max_audio_len_sec=inf, asr_min_audio_len_sec=0.0, random_input_len=8192, random_output_len=8192, random_range_ratio='0.0', random_prefix_len=0, random_batch_size=1, no_reranker=False, random_mm_base_items_per_request=1, random_mm_num_mm_items_range_ratio=0.0, random_mm_limit_mm_per_prompt={'image': 255, 'video': 1}, random_mm_bucket_config={(256, 256, 1): 0.5, (720, 1280, 1): 0.5, (720, 1280, 16): 0.0}, hf_subset=None, hf_split=None, hf_name=None, hf_output_len=None, bfcl_categories=None, prefix_repetition_prefix_len=256, prefix_repetition_suffix_len=256, prefix_repetition_num_prefixes=10, prefix_repetition_output_len=128, speed_bench_dataset_subset='qualitative', speed_bench_output_len=4096, speed_bench_category=None, label=None, backend='openai', base_url='http://127.0.0.1:8123', host='127.0.0.1', port=8000, endpoint='/v1/completions', header=None, max_concurrency=None, model='deepseek-v4.1-flash', input_len=None, output_len=None, tokenizer='/data/models/DeepSeek-V4.1-Flash-1017', tokenizer_mode='auto', use_beam_search=False, logprobs=None, request_rate=8.0, burstiness=1.0, probe_request_rate=0.0, disable_tqdm=False, num_warmups=0, profile=False, save_result=False, save_detailed=False, append_result=False, metadata=None, result_dir=None, result_filename=None, ignore_eos=True, self_timed=None, percentile_metrics=None, metric_percentiles='99', goodput=None, request_id_prefix='bench-c49b586b-', top_p=None, top_k=None, min_p=None, temperature=None, frequency_penalty=None, presence_penalty=None, repetition_penalty=None, served_model_name=None, lora_modules=None, lora_assignment='random', ramp_up_strategy=None, ramp_up_start_rps=None, ramp_up_end_rps=None, ready_check_timeout_sec=0, chat_template_kwargs=None, extra_body=None, skip_tokenizer_init=False, insecure=False, plot_timeline=False, timeline_itl_thresholds='25,50', plot_dataset_stats=False, log_config_file=None, logging_config=LoggingConfig(log_level='INFO', formatter='text', configure_logging=True, pylogging_config_file=None))
+(MainProcess pid=811895) INFO 10-21 09:53:49 [config.py:908] Detected quantization_config.scale_fmt=ue8m0; enabling UE8M0 for DeepGEMM.
+(MainProcess pid=811895) INFO 10-21 09:53:49 [utils.py:88] Sampling input_len from [8192, 8192] and output_len from [8192, 8192]
+WARNING: vllm bench serve no longer sets temperature==0 (greedy) in requests by default. The default will be determined on the server side and can be model/API specific. For the old behavior, include --temperature=0.
+Starting initial single prompt test run...
+Skipping endpoint ready check.
+Starting main benchmark run...
+Traffic request rate: 8.0
+Burstiness factor: 1.0 (Poisson process)
+Maximum request concurrency: None
+  0%|          | 0/8 [00:00<?, ?it/s] 12%|█▎        | 1/8 [01:18<09:12, 78.91s/it] 25%|██▌       | 2/8 [01:23<03:30, 35.16s/it] 38%|███▊      | 3/8 [01:25<01:40, 20.14s/it] 50%|█████     | 4/8 [01:36<01:06, 16.63s/it] 62%|██████▎   | 5/8 [01:47<00:43, 14.55s/it] 75%|███████▌  | 6/8 [01:48<00:19,  9.97s/it] 88%|████████▊ | 7/8 [01:53<00:08,  8.35s/it]100%|██████████| 8/8 [02:39<00:00, 20.05s/it]100%|██████████| 8/8 [02:39<00:00, 19.88s/it]
+tip: install termplotlib and gnuplot to plot the metrics
+============ Serving Benchmark Result ============
+Successful requests:                     8         
+Failed requests:                         0         
+Request rate configured (RPS):           8.00      
+Benchmark duration (s):                  159.03    
+Total input tokens:                      65536     
+Total generated tokens:                  65536     
+Request throughput (req/s):              0.05      
+Output token throughput (tok/s):         412.09    
+Peak output token throughput (tok/s):    256.00    
+Peak concurrent requests:                8.00      
+Total token throughput (tok/s):          824.17    
+---------------Time to First Token----------------
+Mean TTFT (ms):                          1836.50   
+Median TTFT (ms):                        1938.28   
+P99 TTFT (ms):                           2677.51   
+-----Time per Output Token (excl. 1st token)------
+Mean TPOT (ms):                          12.45     
+Median TPOT (ms):                        12.18     
+P99 TPOT (ms):                           18.72     
+---------------Inter-token Latency----------------
+Mean ITL (ms):                           32.30     
+Median ITL (ms):                         33.12     
+P99 ITL (ms):                            35.55     
+---------------Speculative Decoding---------------
+Acceptance rate (%):                     39.88     
+Acceptance length:                       2.60      
+Drafts:                                  25254     
+Draft tokens:                            101016    
+Accepted tokens:                         40288     
+Per-position acceptance (%):
+  Position 0:                            59.24     
+  Position 1:                            39.13     
+  Position 2:                            32.92     
+  Position 3:                            28.25     
+==================================================
+===== tier 8K/8K c32 k=4 rerun#1 09:56:29 =====
+Namespace(subparser='bench', bench_type='serve', dispatch_function=<function BenchmarkServingSubcommand.cmd at 0x7caa0cd71b20>, trust_remote_code=False, seed=0, num_prompts=32, dataset_name='random', no_stream=False, dataset_path=None, no_oversample=False, skip_chat_template=False, enable_multimodal_chat=False, disable_shuffle=False, custom_output_len=256, custom_ensure_client_side_data=False, spec_bench_output_len=256, spec_bench_category=None, sharegpt_output_len=None, timed_trace_chunk_hash_size=16, timed_trace_sec_multiplier=1, timed_trace_label_timestamp='timestamp', timed_trace_label_input_length='input_length', timed_trace_label_output_length='output_length', timed_trace_label_hash_ids='hash_ids', blazedit_min_distance=0.0, blazedit_max_distance=1.0, asr_max_audio_len_sec=inf, asr_min_audio_len_sec=0.0, random_input_len=8192, random_output_len=8192, random_range_ratio='0.0', random_prefix_len=0, random_batch_size=1, no_reranker=False, random_mm_base_items_per_request=1, random_mm_num_mm_items_range_ratio=0.0, random_mm_limit_mm_per_prompt={'image': 255, 'video': 1}, random_mm_bucket_config={(256, 256, 1): 0.5, (720, 1280, 1): 0.5, (720, 1280, 16): 0.0}, hf_subset=None, hf_split=None, hf_name=None, hf_output_len=None, bfcl_categories=None, prefix_repetition_prefix_len=256, prefix_repetition_suffix_len=256, prefix_repetition_num_prefixes=10, prefix_repetition_output_len=128, speed_bench_dataset_subset='qualitative', speed_bench_output_len=4096, speed_bench_category=None, label=None, backend='openai', base_url='http://127.0.0.1:8123', host='127.0.0.1', port=8000, endpoint='/v1/completions', header=None, max_concurrency=None, model='deepseek-v4.1-flash', input_len=None, output_len=None, tokenizer='/data/models/DeepSeek-V4.1-Flash-1017', tokenizer_mode='auto', use_beam_search=False, logprobs=None, request_rate=32.0, burstiness=1.0, probe_request_rate=0.0, disable_tqdm=False, num_warmups=0, profile=False, save_result=False, save_detailed=False, append_result=False, metadata=None, result_dir=None, result_filename=None, ignore_eos=True, self_timed=None, percentile_metrics=None, metric_percentiles='99', goodput=None, request_id_prefix='bench-ecd7d483-', top_p=None, top_k=None, min_p=None, temperature=None, frequency_penalty=None, presence_penalty=None, repetition_penalty=None, served_model_name=None, lora_modules=None, lora_assignment='random', ramp_up_strategy=None, ramp_up_start_rps=None, ramp_up_end_rps=None, ready_check_timeout_sec=0, chat_template_kwargs=None, extra_body=None, skip_tokenizer_init=False, insecure=False, plot_timeline=False, timeline_itl_thresholds='25,50', plot_dataset_stats=False, log_config_file=None, logging_config=LoggingConfig(log_level='INFO', formatter='text', configure_logging=True, pylogging_config_file=None))
+(MainProcess pid=815594) INFO 10-21 09:56:34 [config.py:908] Detected quantization_config.scale_fmt=ue8m0; enabling UE8M0 for DeepGEMM.
+(MainProcess pid=815594) INFO 10-21 09:56:34 [utils.py:88] Sampling input_len from [8192, 8192] and output_len from [8192, 8192]
+WARNING: vllm bench serve no longer sets temperature==0 (greedy) in requests by default. The default will be determined on the server side and can be model/API specific. For the old behavior, include --temperature=0.
+Starting initial single prompt test run...
+Skipping endpoint ready check.
+Starting main benchmark run...
+Traffic request rate: 32.0
+Burstiness factor: 1.0 (Poisson process)
+Maximum request concurrency: None
+  0%|          | 0/32 [00:00<?, ?it/s]  3%|▎         | 1/32 [01:49<56:34, 109.49s/it]  6%|▋         | 2/32 [01:50<22:41, 45.40s/it]   9%|▉         | 3/32 [02:10<16:24, 33.96s/it] 12%|█▎        | 4/32 [02:12<10:04, 21.58s/it] 19%|█▉        | 6/32 [02:16<04:44, 10.96s/it] 22%|██▏       | 7/32 [02:17<03:26,  8.26s/it] 25%|██▌       | 8/32 [02:17<02:23,  5.98s/it] 31%|███▏      | 10/32 [02:28<02:07,  5.81s/it] 34%|███▍      | 11/32 [02:30<01:44,  4.97s/it] 38%|███▊      | 12/32 [02:33<01:28,  4.44s/it] 41%|████      | 13/32 [02:36<01:13,  3.84s/it] 44%|████▍     | 14/32 [02:37<00:56,  3.14s/it] 47%|████▋     | 15/32 [02:38<00:45,  2.66s/it] 50%|█████     | 16/32 [02:46<01:04,  4.06s/it] 53%|█████▎    | 17/32 [02:46<00:45,  3.02s/it] 56%|█████▋    | 18/32 [02:47<00:30,  2.21s/it] 59%|█████▉    | 19/32 [02:48<00:24,  1.85s/it] 62%|██████▎   | 20/32 [02:48<00:18,  1.52s/it] 66%|██████▌   | 21/32 [02:50<00:18,  1.71s/it] 69%|██████▉   | 22/32 [02:52<00:16,  1.61s/it] 72%|███████▏  | 23/32 [02:53<00:13,  1.53s/it] 75%|███████▌  | 24/32 [02:56<00:15,  1.96s/it] 78%|███████▊  | 25/32 [03:01<00:19,  2.76s/it] 81%|████████▏ | 26/32 [03:05<00:19,  3.21s/it] 84%|████████▍ | 27/32 [03:07<00:14,  2.94s/it] 88%|████████▊ | 28/32 [03:09<00:10,  2.67s/it] 91%|█████████ | 29/32 [03:25<00:19,  6.54s/it] 94%|█████████▍| 30/32 [03:49<00:23, 11.73s/it] 97%|█████████▋| 31/32 [04:42<00:24, 24.20s/it]100%|██████████| 32/32 [04:45<00:00, 17.71s/it]100%|██████████| 32/32 [04:45<00:00,  8.91s/it]
+tip: install termplotlib and gnuplot to plot the metrics
+============ Serving Benchmark Result ============
+Successful requests:                     32        
+Failed requests:                         0         
+Request rate configured (RPS):           32.00     
+Benchmark duration (s):                  285.17    
+Total input tokens:                      262144    
+Total generated tokens:                  262144    
+Request throughput (req/s):              0.11      
+Output token throughput (tok/s):         919.26    
+Peak output token throughput (tok/s):    608.00    
+Peak concurrent requests:                32.00     
+Total token throughput (tok/s):          1838.53   
+---------------Time to First Token----------------
+Mean TTFT (ms):                          3781.98   
+Median TTFT (ms):                        3612.92   
+P99 TTFT (ms):                           8889.38   
+-----Time per Output Token (excl. 1st token)------
+Mean TPOT (ms):                          19.95     
+Median TPOT (ms):                        19.36     
+P99 TPOT (ms):                           34.41     
+---------------Inter-token Latency----------------
+Mean ITL (ms):                           54.05     
+Median ITL (ms):                         57.47     
+P99 ITL (ms):                            60.76     
+---------------Speculative Decoding---------------
+Acceptance rate (%):                     42.76     
+Acceptance length:                       2.71      
+Drafts:                                  96724     
+Draft tokens:                            386896    
+Accepted tokens:                         165447    
+Per-position acceptance (%):
+  Position 0:                            57.59     
+  Position 1:                            44.73     
+  Position 2:                            37.70     
+  Position 3:                            31.03     
+==================================================
+[0;36m(RustFrontend pid=807237)[0m [32mINFO[0m [90m10-21 09:58:03[0m [90m[log_stats.rs:302][0m SpecDecoding metrics: Mean acceptance length: 3.09, Accepted throughput: 1118.98 tokens/s, Drafted throughput: 2137.56 tokens/s, Accepted: 11190 tokens, Drafted: 21376 tokens, Per-position acceptance rate: 0.682, 0.558, 0.466, 0.388, Avg Draft acceptance rate: 52.3%
+[0;36m(RustFrontend pid=807237)[0m [32mINFO[0m [90m10-21 09:58:13[0m [90m[log_stats.rs:302][0m SpecDecoding metrics: Mean acceptance length: 3.03, Accepted throughput: 1098.36 tokens/s, Drafted throughput: 2163.32 tokens/s, Accepted: 10983 tokens, Drafted: 21632 tokens, Per-position acceptance rate: 0.681, 0.542, 0.450, 0.357, Avg Draft acceptance rate: 50.8%
+[0;36m(RustFrontend pid=807237)[0m [32mINFO[0m [90m10-21 09:58:23[0m [90m[log_stats.rs:302][0m SpecDecoding metrics: Mean acceptance length: 3.26, Accepted throughput: 1208.86 tokens/s, Drafted throughput: 2137.54 tokens/s, Accepted: 12089 tokens, Drafted: 21376 tokens, Per-position acceptance rate: 0.747, 0.599, 0.510, 0.406, Avg Draft acceptance rate: 56.6%
+[0;36m(RustFrontend pid=807237)[0m [32mINFO[0m [90m10-21 09:58:33[0m [90m[log_stats.rs:302][0m SpecDecoding metrics: Mean acceptance length: 3.29, Accepted throughput: 1206.01 tokens/s, Drafted throughput: 2102.82 tokens/s, Accepted: 12060 tokens, Drafted: 21028 tokens, Per-position acceptance rate: 0.734, 0.613, 0.521, 0.426, Avg Draft acceptance rate: 57.4%
+[0;36m(RustFrontend pid=807237)[0m [32mINFO[0m [90m10-21 09:58:43[0m [90m[log_stats.rs:302][0m SpecDecoding metrics: Mean acceptance length: 3.48, Accepted throughput: 1307.51 tokens/s, Drafted throughput: 2112.02 tokens/s, Accepted: 13075 tokens, Drafted: 21120 tokens, Per-position acceptance rate: 0.777, 0.655, 0.574, 0.470, Avg Draft acceptance rate: 61.9%
+[0;36m(RustFrontend pid=807237)[0m [32mINFO[0m [90m10-21 09:58:53[0m [90m[log_stats.rs:302][0m SpecDecoding metrics: Mean acceptance length: 3.59, Accepted throughput: 1306.30 tokens/s, Drafted throughput: 2014.01 tokens/s, Accepted: 13063 tokens, Drafted: 20140 tokens, Per-position acceptance rate: 0.793, 0.684, 0.605, 0.512, Avg Draft acceptance rate: 64.9%
+[0;36m(RustFrontend pid=807237)[0m [32mINFO[0m [90m10-21 09:59:03[0m [90m[log_stats.rs:302][0m SpecDecoding metrics: Mean acceptance length: 3.60, Accepted throughput: 1158.23 tokens/s, Drafted throughput: 1785.09 tokens/s, Accepted: 11583 tokens, Drafted: 17852 tokens, Per-position acceptance rate: 0.779, 0.680, 0.613, 0.523, Avg Draft acceptance rate: 64.9%
+[0;36m(RustFrontend pid=807237)[0m [32mINFO[0m [90m10-21 09:59:13[0m [90m[log_stats.rs:302][0m SpecDecoding metrics: Mean acceptance length: 3.62, Accepted throughput: 1096.08 tokens/s, Drafted throughput: 1674.92 tokens/s, Accepted: 10960 tokens, Drafted: 16748 tokens, Per-position acceptance rate: 0.777, 0.676, 0.614, 0.551, Avg Draft acceptance rate: 65.4%
+[0;36m(RustFrontend pid=807237)[0m [32mINFO[0m [90m10-21 09:59:23[0m [90m[log_stats.rs:302][0m SpecDecoding metrics: Mean acceptance length: 3.31, Accepted throughput: 855.82 tokens/s, Drafted throughput: 1481.23 tokens/s, Accepted: 8558 tokens, Drafted: 14812 tokens, Per-position acceptance rate: 0.711, 0.598, 0.535, 0.467, Avg Draft acceptance rate: 57.8%
+[0;36m(RustFrontend pid=807237)[0m [32mINFO[0m [90m10-21 09:59:33[0m [90m[log_stats.rs:302][0m SpecDecoding metrics: Mean acceptance length: 2.74, Accepted throughput: 476.07 tokens/s, Drafted throughput: 1095.93 tokens/s, Accepted: 4761 tokens, Drafted: 10960 tokens, Per-position acceptance rate: 0.612, 0.456, 0.369, 0.300, Avg Draft acceptance rate: 43.4%
+[0;36m(RustFrontend pid=807237)[0m [32mINFO[0m [90m10-21 09:59:43[0m [90m[log_stats.rs:302][0m SpecDecoding metrics: Mean acceptance length: 2.48, Accepted throughput: 318.69 tokens/s, Drafted throughput: 859.57 tokens/s, Accepted: 3187 tokens, Drafted: 8596 tokens, Per-position acceptance rate: 0.567, 0.379, 0.297, 0.240, Avg Draft acceptance rate: 37.1%
+[0;36m(RustFrontend pid=807237)[0m [32mINFO[0m [90m10-21 09:59:53[0m [90m[log_stats.rs:302][0m SpecDecoding metrics: Mean acceptance length: 1.89, Accepted throughput: 136.51 tokens/s, Drafted throughput: 614.85 tokens/s, Accepted: 1365 tokens, Drafted: 6148 tokens, Per-position acceptance rate: 0.399, 0.216, 0.157, 0.116, Avg Draft acceptance rate: 22.2%
+[0;36m(RustFrontend pid=807237)[0m [32mINFO[0m [90m10-21 10:00:03[0m [90m[log_stats.rs:302][0m SpecDecoding metrics: Mean acceptance length: 1.99, Accepted throughput: 141.49 tokens/s, Drafted throughput: 573.16 tokens/s, Accepted: 1415 tokens, Drafted: 5732 tokens, Per-position acceptance rate: 0.405, 0.236, 0.191, 0.156, Avg Draft acceptance rate: 24.7%
+[0;36m(RustFrontend pid=807237)[0m [32mINFO[0m [90m10-21 10:00:13[0m [90m[log_stats.rs:302][0m SpecDecoding metrics: Mean acceptance length: 1.48, Accepted throughput: 59.20 tokens/s, Drafted throughput: 488.43 tokens/s, Accepted: 592 tokens, Drafted: 4884 tokens, Per-position acceptance rate: 0.273, 0.117, 0.061, 0.034, Avg Draft acceptance rate: 12.1%
+[0;36m(RustFrontend pid=807237)[0m [32mINFO[0m [90m10-21 10:00:23[0m [90m[log_stats.rs:302][0m SpecDecoding metrics: Mean acceptance length: 1.73, Accepted throughput: 88.69 tokens/s, Drafted throughput: 483.56 tokens/s, Accepted: 887 tokens, Drafted: 4836 tokens, Per-position acceptance rate: 0.323, 0.189, 0.129, 0.093, Avg Draft acceptance rate: 18.3%
+[0;36m(RustFrontend pid=807237)[0m [32mINFO[0m [90m10-21 10:00:33[0m [90m[log_stats.rs:302][0m SpecDecoding metrics: Mean acceptance length: 1.26, Accepted throughput: 23.60 tokens/s, Drafted throughput: 370.03 tokens/s, Accepted: 236 tokens, Drafted: 3700 tokens, Per-position acceptance rate: 0.154, 0.053, 0.032, 0.016, Avg Draft acceptance rate: 6.4%
+[0;36m(RustFrontend pid=807237)[0m [32mINFO[0m [90m10-21 10:00:43[0m [90m[log_stats.rs:302][0m SpecDecoding metrics: Mean acceptance length: 1.12, Accepted throughput: 9.90 tokens/s, Drafted throughput: 332.78 tokens/s, Accepted: 99 tokens, Drafted: 3328 tokens, Per-position acceptance rate: 0.109, 0.007, 0.002, 0.000, Avg Draft acceptance rate: 3.0%
+[0;36m(RustFrontend pid=807237)[0m [32mINFO[0m [90m10-21 10:00:53[0m [90m[log_stats.rs:302][0m SpecDecoding metrics: Mean acceptance length: 1.12, Accepted throughput: 9.60 tokens/s, Drafted throughput: 332.81 tokens/s, Accepted: 96 tokens, Drafted: 3328 tokens, Per-position acceptance rate: 0.109, 0.004, 0.002, 0.000, Avg Draft acceptance rate: 2.9%
+[0;36m(RustFrontend pid=807237)[0m [32mINFO[0m [90m10-21 10:01:03[0m [90m[log_stats.rs:302][0m SpecDecoding metrics: Mean acceptance length: 1.17, Accepted throughput: 14.20 tokens/s, Drafted throughput: 332.01 tokens/s, Accepted: 142 tokens, Drafted: 3320 tokens, Per-position acceptance rate: 0.140, 0.018, 0.010, 0.004, Avg Draft acceptance rate: 4.3%
+[0;36m(RustFrontend pid=807237)[0m [32mINFO[0m [90m10-21 10:01:13[0m [90m[log_stats.rs:302][0m SpecDecoding metrics: Mean acceptance length: 1.29, Accepted throughput: 23.60 tokens/s, Drafted throughput: 331.18 tokens/s, Accepted: 236 tokens, Drafted: 3312 tokens, Per-position acceptance rate: 0.188, 0.045, 0.033, 0.019, Avg Draft acceptance rate: 7.1%
+########## C32-REDO-B DONE Wed Oct 21 10:01:36 AM UTC 2026 ##########
