@@ -1,0 +1,62 @@
+VERIFICATION EVIDENCE — 2026-10-23
+==================================
+Host: 10.10.3.158 (8x RTX PRO 6000D 84G, SM120), env /root/vllm-fi02
+      vLLM 0.32.0 (PyPI wheel) + FlashInfer 0.7.2, torch 2.13.0+cu132
+Tree state: stock wheel + #60762 declarations + #59986 builder port
+      (verified below by full RECORD hash audit)
+
+BOOT CMD
+--------
+/root/vllm-fi02/bin/vllm serve /data/models/DeepSeek-V4.1-Flash-1017 \
+  --served-model-name deepseek-v4.1-flash --tokenizer-mode deepseek_v41 \
+  --trust-remote-code --tensor-parallel-size 8 --enable-expert-parallel \
+  --kv-cache-dtype fp8 \
+  --attention-config '{"backend":"FLASHINFER_MLA_SPARSE_DSV41","indexer_kv_dtype":"fp8"}' \
+  --engram-config '{"cpu_offload":true}' --moe-backend auto \
+  --compilation-config '{"cudagraph_mode": "FULL"}' \
+  --language-model-only --max-model-len 1048576 --max-num-seqs 128 \
+  --speculative-config '{"method":"dspark","num_speculative_tokens":3}' \
+  --max-cudagraph-capture-size 512 --gpu-memory-utilization 0.90 \
+  --enable-auto-tool-choice --tool-call-parser deepseek_v41 \
+  --reasoning-parser deepseek_v41 --port 8123 --api-key abc.12345
+(env: NCCL_P2P_LEVEL=SYS, PATH includes /usr/local/cuda/bin)
+
+GRAPH-MODE RESOLUTION (engine log, all 8 workers)
+-------------------------------------------------
+INFO [compilation.py:1412] CUDAGraphMode.FULL is not supported with
+  DeepseekSparseSWAFlashInferBackend backend (support: AttentionCGSupport.UNIFORM_BATCH);
+  setting cudagraph_mode=FULL_DECODE_ONLY
+
+CORRUPTION PROBES (#62417) — 3/3 passes each
+--------------------------------------------
+[0] completions 17*19 -> '323...'                                     OK
+[0] chat thinking   -> reasoning sane; answer "9.9 大, 9.90 > 9.11"   OK
+[0] tool call       -> get_weather({"city":"北京"}) valid JSON        OK
+(repeated x3, identical verdicts)
+
+RANDOM 1K x 1K c32 BURST
+------------------------
+Successful requests: 32   Failed: 0
+Output tok/s: 899.22   Total tok/s: 1798.45
+Mean TPOT 24.71 ms / P99 34.69; Mean ITL 49.48 ms
+Acceptance rate 33.62% / acceptance length 2.01 (random dataset)
+/health OK after bench; 0 hits of Illegal memory access / CUDA error in engine log
+
+RECORD HASH AUDIT (post-run, 2026-10-24)
+----------------------------------------
+5446 files of the vllm 0.32.0 dist compared against install-time RECORD sha256.
+CHANGED non-pyc (5) — exactly the patched set:
+  vllm/v1/attention/backends/mla/indexer.py            (#60762)
+  vllm/models/deepseek_v41/compressor.py               (#59986)
+  vllm/models/deepseek_v41/sparse_mla.py               (#59986)
+  vllm/models/deepseek_v41/nvidia/flashmla.py          (#59986)
+  vllm/models/deepseek_v41/nvidia/flashinfer_sparse.py (#60762 + #59986)
+MISSING (0). Guard files model_runner.py / dp_utils.py / cudagraph_utils.py
+are byte-identical to stock (the closed #62535 guard leaves zero residue).
+
+Upstream context
+----------------
+- vllm#59986 (builder-layer fix, open at time of writing) — SM120 leg validated here,
+  B300 leg validated by @tomasruizt: https://github.com/vllm-project/vllm/pull/59986#issuecomment-6369268785
+- vllm#62535 (our runtime guard, closed as superseded): https://github.com/vllm-project/vllm/pull/62535#issuecomment-6369270374
+- vllm#62417 (corruption issue, confirmed fixed): https://github.com/vllm-project/vllm/issues/62417#issuecomment-6369274061

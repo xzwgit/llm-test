@@ -1,0 +1,161 @@
+--- a/vllm/v1/attention/backends/mla/indexer.py
++++ b/vllm/v1/attention/backends/mla/indexer.py
+@@ -369,6 +369,8 @@
+ 
+     @staticmethod
+     def get_supported_kernel_block_sizes(kv_cache_spec=None) -> list[int | MultipleOf]:
++        if current_platform.is_device_capability_family(120):
++            return [64]
+         return [64 if current_platform.is_device_capability_family(90) else 128]
+ 
+ 
+--- a/vllm/models/deepseek_v41/compressor.py
++++ b/vllm/models/deepseek_v41/compressor.py
+@@ -24,6 +24,7 @@
+     AttentionMetadataBuilder,
+     CommonAttentionMetadata,
+     MultipleOf,
++    max_decode_query_len,
+ )
+ from vllm.v1.kv_cache_interface import CircularBufferSpec, KVCacheSpec
+ 
+@@ -85,7 +86,17 @@
+ 
+ 
+ class CompressorMetadataBuilder(AttentionMetadataBuilder):
+-    _cudagraph_support: ClassVar[AttentionCGSupport] = AttentionCGSupport.ALWAYS
++    _cudagraph_support: ClassVar[AttentionCGSupport] = AttentionCGSupport.UNIFORM_BATCH
++    @classmethod
++    def get_varlen_cudagraph_max_query_len(
++        cls,
++        vllm_config: "VllmConfig",
++        kv_cache_spec: "KVCacheSpec",
++    ) -> int | None:
++        # Decode replays use device request boundaries; prefill metadata is
++        # not graph-safe.
++        return max_decode_query_len(vllm_config)
++
+ 
+     def __init__(self, *args, **kwargs):
+         super().__init__(*args, **kwargs)
+--- a/vllm/models/deepseek_v41/sparse_mla.py
++++ b/vllm/models/deepseek_v41/sparse_mla.py
+@@ -18,6 +18,7 @@
+     AttentionMetadataBuilder,
+     CommonAttentionMetadata,
+     MultipleOf,
++    max_decode_query_len,
+ )
+ from vllm.v1.attention.backends.mla.compressor_utils import get_compressed_slot_mapping
+ from vllm.v1.attention.backends.mla.sparse_swa import (
+@@ -219,7 +220,17 @@
+ 
+ 
+ class DeepseekV4FlashMLAMetadataBuilder(DeepseekV4SparseMLAMetadataBuilder):
+-    _cudagraph_support: ClassVar[AttentionCGSupport] = AttentionCGSupport.ALWAYS
++    _cudagraph_support: ClassVar[AttentionCGSupport] = AttentionCGSupport.UNIFORM_BATCH
++    @classmethod
++    def get_varlen_cudagraph_max_query_len(
++        cls,
++        vllm_config: "VllmConfig",
++        kv_cache_spec: "KVCacheSpec",
++    ) -> int | None:
++        # Decode replays use device request boundaries; prefill metadata is
++        # not graph-safe.
++        return max_decode_query_len(vllm_config)
++
+ 
+ 
+ class DeepseekV4FlashMLABackend(DeepseekV4SparseMLABackend):
+--- a/vllm/models/deepseek_v41/nvidia/flashmla.py
++++ b/vllm/models/deepseek_v41/nvidia/flashmla.py
+@@ -23,7 +23,7 @@
+     DeepseekV41SparseSWAMetadataBuilder,
+ )
+ from vllm.utils.math_utils import round_up
+-from vllm.v1.attention.backend import AttentionCGSupport
++from vllm.v1.attention.backend import AttentionCGSupport, max_decode_query_len
+ from vllm.v1.attention.backends.mla.sparse_swa import DeepseekSparseSWABackend
+ from vllm.v1.attention.ops.flashmla import (
+     flash_mla_sparse_fwd,
+@@ -38,7 +38,17 @@
+ class DeepseekSparseSWAFlashMLAMetadataBuilder(DeepseekV41SparseSWAMetadataBuilder):
+     """SWA metadata for the FlashMLA decode path, which allows varlen decode."""
+ 
+-    _cudagraph_support: ClassVar[AttentionCGSupport] = AttentionCGSupport.ALWAYS
++    _cudagraph_support: ClassVar[AttentionCGSupport] = AttentionCGSupport.UNIFORM_BATCH
++    @classmethod
++    def get_varlen_cudagraph_max_query_len(
++        cls,
++        vllm_config: "VllmConfig",
++        kv_cache_spec: "KVCacheSpec",
++    ) -> int | None:
++        # Decode replays use device request boundaries; prefill metadata is
++        # not graph-safe.
++        return max_decode_query_len(vllm_config)
++
+ 
+ 
+ class DeepseekSparseSWAFlashMLABackend(DeepseekSparseSWABackend):
+--- a/vllm/models/deepseek_v41/nvidia/flashinfer_sparse.py
++++ b/vllm/models/deepseek_v41/nvidia/flashinfer_sparse.py
+@@ -25,12 +25,14 @@
+     DeepseekV4SparseMLAMetadataBuilder,
+     DeepseekV41SparseSWAMetadataBuilder,
+ )
++from vllm.platforms import current_platform
+ from vllm.platforms.interface import DeviceCapability
+ from vllm.utils.flashinfer import flashinfer_trtllm_batch_decode_sparse_mla_dsv4
+ from vllm.v1.attention.backend import (
+     AttentionCGSupport,
+     CommonAttentionMetadata,
+     MultipleOf,
++    max_decode_query_len,
+ )
+ from vllm.v1.attention.backends.mla.compressor_utils import (
+     get_dspark_swa_index_width,
+@@ -115,6 +117,8 @@
+ 
+     @staticmethod
+     def get_supported_kernel_block_sizes(kv_cache_spec=None) -> list[int | MultipleOf]:
++        if current_platform.is_device_capability_family(120):
++            return [64]
+         return [128]
+ 
+     @staticmethod
+@@ -180,13 +184,33 @@
+ class DeepseekV4FlashInferSparseMLAMetadataBuilder(DeepseekV4SparseMLAMetadataBuilder):
+     """Varlen-capable metadata builder for the FlashInfer sparse MLA backend."""
+ 
+-    _cudagraph_support: ClassVar[AttentionCGSupport] = AttentionCGSupport.ALWAYS
++    _cudagraph_support: ClassVar[AttentionCGSupport] = AttentionCGSupport.UNIFORM_BATCH
++    @classmethod
++    def get_varlen_cudagraph_max_query_len(
++        cls,
++        vllm_config: "VllmConfig",
++        kv_cache_spec: "KVCacheSpec",
++    ) -> int | None:
++        # Decode replays use device request boundaries; prefill metadata is
++        # not graph-safe.
++        return max_decode_query_len(vllm_config)
++
+ 
+ 
+ class DeepseekSparseSWAFlashInferMetadataBuilder(DeepseekV41SparseSWAMetadataBuilder):
+     """SWA metadata for the FlashInfer sparse decode path (varlen decode)."""
+ 
+-    _cudagraph_support: ClassVar[AttentionCGSupport] = AttentionCGSupport.ALWAYS
++    _cudagraph_support: ClassVar[AttentionCGSupport] = AttentionCGSupport.UNIFORM_BATCH
++    @classmethod
++    def get_varlen_cudagraph_max_query_len(
++        cls,
++        vllm_config: "VllmConfig",
++        kv_cache_spec: "KVCacheSpec",
++    ) -> int | None:
++        # Decode replays use device request boundaries; prefill metadata is
++        # not graph-safe.
++        return max_decode_query_len(vllm_config)
++
+ 
+     def __init__(self, *args, **kwargs):
+         super().__init__(*args, **kwargs)
