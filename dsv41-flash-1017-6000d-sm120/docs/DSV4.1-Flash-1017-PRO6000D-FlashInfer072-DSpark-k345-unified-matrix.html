@@ -46,8 +46,10 @@ td b{color:#0f2b46}
 <tr><td>输入/输出 tok 总/均</td><td>Total input/generated tokens；均值=总÷成功数</td></tr>
 <tr><td>耗时 s</td><td>Benchmark duration (s)</td></tr>
 <tr><td>输出 tok/s</td><td>Output token throughput（聚合口径）</td></tr>
-<tr><td>TTFT/TPOT/ITL</td><td>Mean/Median/P99 各指标(ms)；TPOT=Time per Output Token(excl. 1st)；单流≈1000÷TPOT</td></tr>
-<tr><td>接受率 % / 接受长</td><td>DSPARK 接受率=Accepted÷Draft tokens；接受长=Mean acceptance length</td></tr>
+<tr><td>TTFT（均值/中位/P99）</td><td>Mean/Median/P99 TTFT (ms)；Time To First Token，请求发出到首个 token 返回的延迟；99% 的请求首 token 快于 P99 值</td></tr>
+<tr><td>TPOT（均值/中位/P99）</td><td>Mean/Median/P99 TPOT (ms)，Time per Output Token（不含首 token）；单流速度 ≈ 1000 ÷ TPOT</td></tr>
+<tr><td>ITL P99</td><td>P99 Inter-token Latency (ms)，相邻输出 token 间的延迟 P99</td></tr>
+<tr><td>接受率 % / 接受长</td><td>DSPARK 接受率=Accepted÷Draft tokens；接受长=Mean acceptance length（上限 k+1）</td></tr>
 <tr><td>逐位 %</td><td>Per-position acceptance（%）：draft 第 1..N 个位置的接受率</td></tr>
 <tr><td><b>本次统一口径</b></td><td>每组输入=输出长度（1K/4K/8K/32K/64K），并发阶梯 1→128/32/32/16/8；random 数据集+ignore-eos；k=3/4/5 同口径逐档对比；另加 Agent 工具档（真实 tools API）</td></tr>
 </tbody></table></div>
