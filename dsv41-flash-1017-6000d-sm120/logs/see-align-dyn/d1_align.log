@@ -1,0 +1,357 @@
++ date
+Sat Oct 24 04:06:18 PM UTC 2026
++ export PATH=/root/sm120opt/bin:/usr/local/cuda/bin:/root/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
++ PATH=/root/sm120opt/bin:/usr/local/cuda/bin:/root/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
++ export CUDA_HOME=/usr/local/cuda
++ CUDA_HOME=/usr/local/cuda
++ boot_leg align128 DG_PLACEHOLDER=1
++ TAG=align128
++ EXTRA_ENV=DG_PLACEHOLDER=1
++ pkill -f 'vllm serve'
++ sleep 8
+++ seq 1 60
++ for i in $(seq 1 60)
+++ nvidia-smi --query-gpu=memory.used --format=csv,noheader,nounits
+++ paste -sd+
+++ bc
++ U=24
++ '[' 24 -lt 10000 ']'
++ break
+++ date +%s
++ T0=1792857986
++ BPID=2585860
++ env DG_PLACEHOLDER=1 VLLM_USE_RUST_FRONTEND=1 VLLM_ENGINE_READY_TIMEOUT_S=7200 FLASHINFER_DISABLE_VERSION_CHECK=1 HF_HUB_OFFLINE=1 HF_HUB_DISABLE_XET=1 /root/sm120opt/bin/vllm serve /root/DeepSeek-V4.1-Flash-1017 --served-model-name deepseek-v4.1-flash --trust-remote-code --host 0.0.0.0 --port 8123 --api-key *** --tokenizer-mode deepseek_v41 --tensor-parallel-size 8 --enable-expert-parallel --kv-cache-dtype fp8 --engram-config '{"cpu_offload":true}' --moe-backend auto --max-model-len 131072 --max-num-seqs 128 --gpu-memory-utilization 0.90 --speculative-config '{"method":"dspark","num_speculative_tokens":7,"draft_sample_method":"probabilistic","rejection_sample_method":"block","enable_adaptive_verification":false}' --max-cudagraph-capture-size 1024 --compilation-config '{"cudagraph_mode":"PIECEWISE"}' --enable-auto-tool-choice --tool-call-parser deepseek_v41 --reasoning-parser deepseek_v41
+++ seq 1 1440
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2585860
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2585860
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2585860
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2585860
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2585860
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2585860
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2585860
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2585860
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2585860
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2585860
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2585860
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2585860
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2585860
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2585860
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2585860
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2585860
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2585860
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2585860
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2585860
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2585860
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2585860
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2585860
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ break
++ curl -sf http://127.0.0.1:8123/health
+++ date +%s
++ echo 'LEG_align128 READY 110s'
+LEG_align128 READY 110s
++ grep -am1 'Using.*Mxfp4 MoE backend' /root/sm120opt_ops/d1_boot_align128.log
++ head -1
+(Worker_TP0_EP0 pid=2586864) INFO 10-24 16:06:50 [mxfp4.py:815] Using 'DEEPGEMM_MXFP4' Mxfp4 MoE backend.
++ sleep 3
++ curl -s http://127.0.0.1:8123/v1/completions -H 'Content-Type: application/json' -H 'Authorization: Bearer ***' -d '{"model":"deepseek-v4.1-flash","prompt":"17*19=","max_tokens":48,"temperature":0}'
++ python3 -c 'import json,sys; print("probe_math:", json.load(sys.stdin)["choices"][0]["text"][:60])'
+probe_math: 323
+
+323/19=17
+
+So the answer is 17.
+
+I hope this helps.
+
+An
++ curl -s http://127.0.0.1:8123/v1/chat/completions -H 'Content-Type: application/json' -H 'Authorization: Bearer ***' -d '{"model":"deepseek-v4.1-flash","messages":[{"role":"user","content":"9.11和9.9哪个大？直接回答"}],"max_tokens":256,"temperature":0}'
++ python3 -c 'import json,sys; m=json.load(sys.stdin)["choices"][0]["message"]; print("probe_cmp:", (m.get("content") or "")[:60])'
+probe_cmp: 9.9大。
++ for TIER in "1024 1024 4 1" "1024 1024 32 32" "8192 8192 8 8"
++ set -- 1024 1024 4 1
++ IL=1024
++ OL=1024
++ N=4
++ C=1
+++ date -u +%H:%M:%S
++ echo '===== align128 tier 1024 c1 16:08:20 ====='
+===== align128 tier 1024 c1 16:08:20 =====
++ OPENAI_API_KEY=***
++ grep -aE 'Successful requests|Output token throughput|mean TPOT'
++ /root/sm120opt/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /root/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 1024 --random-output-len 1024 --ignore-eos --num-prompts 4 --request-rate 1
++ head -3
+Successful requests:                     4         
+Output token throughput (tok/s):         252.43    
++ for TIER in "1024 1024 4 1" "1024 1024 32 32" "8192 8192 8 8"
++ set -- 1024 1024 32 32
++ IL=1024
++ OL=1024
++ N=32
++ C=32
+++ date -u +%H:%M:%S
++ echo '===== align128 tier 1024 c32 16:08:43 ====='
+===== align128 tier 1024 c32 16:08:43 =====
++ OPENAI_API_KEY=***
++ grep -aE 'Successful requests|Output token throughput|mean TPOT'
++ head -3
++ /root/sm120opt/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /root/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 1024 --random-output-len 1024 --ignore-eos --num-prompts 32 --request-rate 32
+Successful requests:                     32        
+Output token throughput (tok/s):         973.46    
++ for TIER in "1024 1024 4 1" "1024 1024 32 32" "8192 8192 8 8"
++ set -- 8192 8192 8 8
++ IL=8192
++ OL=8192
++ N=8
++ C=8
+++ date -u +%H:%M:%S
++ echo '===== align128 tier 8192 c8 16:09:23 ====='
+===== align128 tier 8192 c8 16:09:23 =====
++ OPENAI_API_KEY=***
++ grep -aE 'Successful requests|Output token throughput|mean TPOT'
++ head -3
++ /root/sm120opt/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /root/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 8192 --random-output-len 8192 --ignore-eos --num-prompts 8 --request-rate 8
+Successful requests:                     8         
+Output token throughput (tok/s):         546.09    
++ pkill -f 'vllm serve'
++ sleep 10
++ boot_leg align64 DG_ALIGN_64=1
++ TAG=align64
++ EXTRA_ENV=DG_ALIGN_64=1
++ pkill -f 'vllm serve'
++ sleep 8
+++ seq 1 60
++ for i in $(seq 1 60)
+++ nvidia-smi --query-gpu=memory.used --format=csv,noheader,nounits
+++ paste -sd+
+++ bc
++ U=24
++ '[' 24 -lt 10000 ']'
++ break
+++ date +%s
++ T0=1792858308
++ BPID=2602730
++ env DG_ALIGN_64=1 VLLM_USE_RUST_FRONTEND=1 VLLM_ENGINE_READY_TIMEOUT_S=7200 FLASHINFER_DISABLE_VERSION_CHECK=1 HF_HUB_OFFLINE=1 HF_HUB_DISABLE_XET=1 /root/sm120opt/bin/vllm serve /root/DeepSeek-V4.1-Flash-1017 --served-model-name deepseek-v4.1-flash --trust-remote-code --host 0.0.0.0 --port 8123 --api-key *** --tokenizer-mode deepseek_v41 --tensor-parallel-size 8 --enable-expert-parallel --kv-cache-dtype fp8 --engram-config '{"cpu_offload":true}' --moe-backend auto --max-model-len 131072 --max-num-seqs 128 --gpu-memory-utilization 0.90 --speculative-config '{"method":"dspark","num_speculative_tokens":7,"draft_sample_method":"probabilistic","rejection_sample_method":"block","enable_adaptive_verification":false}' --max-cudagraph-capture-size 1024 --compilation-config '{"cudagraph_mode":"PIECEWISE"}' --enable-auto-tool-choice --tool-call-parser deepseek_v41 --reasoning-parser deepseek_v41
+++ seq 1 1440
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2602730
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2602730
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2602730
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2602730
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2602730
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2602730
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2602730
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2602730
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2602730
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2602730
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2602730
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2602730
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2602730
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2602730
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2602730
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2602730
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2602730
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2602730
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2602730
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2602730
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ break
++ curl -sf http://127.0.0.1:8123/health
+++ date +%s
++ echo 'LEG_align64 READY 100s'
+LEG_align64 READY 100s
++ grep -am1 'Using.*Mxfp4 MoE backend' /root/sm120opt_ops/d1_boot_align64.log
++ head -1
+(Worker_TP0_EP0 pid=2604279) INFO 10-24 16:12:10 [mxfp4.py:815] Using 'DEEPGEMM_MXFP4' Mxfp4 MoE backend.
++ sleep 3
++ curl -s http://127.0.0.1:8123/v1/completions -H 'Content-Type: application/json' -H 'Authorization: Bearer ***' -d '{"model":"deepseek-v4.1-flash","prompt":"17*19=","max_tokens":48,"temperature":0}'
++ python3 -c 'import json,sys; print("probe_math:", json.load(sys.stdin)["choices"][0]["text"][:60])'
+probe_math: 323
+
+323/19=17
+
+So the answer is 17.
+
+I hope this helps.
+
+An
++ curl -s http://127.0.0.1:8123/v1/chat/completions -H 'Content-Type: application/json' -H 'Authorization: Bearer ***' -d '{"model":"deepseek-v4.1-flash","messages":[{"role":"user","content":"9.11和9.9哪个大？直接回答"}],"max_tokens":256,"temperature":0}'
++ python3 -c 'import json,sys; m=json.load(sys.stdin)["choices"][0]["message"]; print("probe_cmp:", (m.get("content") or "")[:60])'
+probe_cmp: 9.9大。
++ for TIER in "1024 1024 4 1" "1024 1024 32 32" "8192 8192 8 8"
++ set -- 1024 1024 4 1
++ IL=1024
++ OL=1024
++ N=4
++ C=1
+++ date -u +%H:%M:%S
++ echo '===== align64 tier 1024 c1 16:13:32 ====='
+===== align64 tier 1024 c1 16:13:32 =====
++ OPENAI_API_KEY=***
++ /root/sm120opt/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /root/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 1024 --random-output-len 1024 --ignore-eos --num-prompts 4 --request-rate 1
++ grep -aE 'Successful requests|Output token throughput|mean TPOT'
++ head -3
+Successful requests:                     4         
+Output token throughput (tok/s):         264.62    
++ for TIER in "1024 1024 4 1" "1024 1024 32 32" "8192 8192 8 8"
++ set -- 1024 1024 32 32
++ IL=1024
++ OL=1024
++ N=32
++ C=32
+++ date -u +%H:%M:%S
++ echo '===== align64 tier 1024 c32 16:13:54 ====='
+===== align64 tier 1024 c32 16:13:54 =====
++ OPENAI_API_KEY=***
++ /root/sm120opt/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /root/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 1024 --random-output-len 1024 --ignore-eos --num-prompts 32 --request-rate 32
++ grep -aE 'Successful requests|Output token throughput|mean TPOT'
++ head -3
+Successful requests:                     32        
+Output token throughput (tok/s):         903.09    
++ for TIER in "1024 1024 4 1" "1024 1024 32 32" "8192 8192 8 8"
++ set -- 8192 8192 8 8
++ IL=8192
++ OL=8192
++ N=8
++ C=8
+++ date -u +%H:%M:%S
++ echo '===== align64 tier 8192 c8 16:14:37 ====='
+===== align64 tier 8192 c8 16:14:37 =====
++ OPENAI_API_KEY=***
++ /root/sm120opt/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /root/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 8192 --random-output-len 8192 --ignore-eos --num-prompts 8 --request-rate 8
++ grep -aE 'Successful requests|Output token throughput|mean TPOT'
++ head -3
+Successful requests:                     8         
+Output token throughput (tok/s):         466.56    
++ pkill -f 'vllm serve'
++ sleep 10
+++ date
++ echo 'D1_DONE Sat Oct 24 04:17:14 PM UTC 2026'
+D1_DONE Sat Oct 24 04:17:14 PM UTC 2026

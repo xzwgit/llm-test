@@ -1,0 +1,353 @@
++ date
+Sat Oct 24 04:44:52 PM UTC 2026
++ export PATH=/usr/local/cuda/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
++ PATH=/usr/local/cuda/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
++ echo MODE=stock
+MODE=stock
++ '[' stock = stock ']'
++ cp /root/v60762/lib/python3.12/site-packages/vllm/model_executor/layers/fused_moe/deep_gemm_utils.py.stock_bak_see /root/v60762/lib/python3.12/site-packages/vllm/model_executor/layers/fused_moe/deep_gemm_utils.py
++ cp /root/v60762/lib/python3.12/site-packages/vllm/model_executor/layers/fused_moe/experts/deep_gemm_moe.py.stock_bak_see /root/v60762/lib/python3.12/site-packages/vllm/model_executor/layers/fused_moe/experts/deep_gemm_moe.py
++ cp /root/v60762/lib/python3.12/site-packages/vllm/model_executor/warmup/deep_gemm_warmup.py.stock_bak_see /root/v60762/lib/python3.12/site-packages/vllm/model_executor/warmup/deep_gemm_warmup.py
++ run_leg stock
++ TAG=stock
++ pkill -f 'vllm serve'
++ sleep 8
+++ seq 1 60
++ for i in $(seq 1 60)
+++ nvidia-smi --query-gpu=memory.used --format=csv,noheader,nounits
+++ paste -sd+
+++ bc
++ U=0
++ '[' 0 -lt 10000 ']'
++ break
+++ date +%s
++ T0=1792860300
++ BPID=2549458
++ env VLLM_USE_RUST_FRONTEND=1 VLLM_ENGINE_READY_TIMEOUT_S=7200 NCCL_P2P_LEVEL=SYS FLASHINFER_DISABLE_VERSION_CHECK=1 HF_HUB_OFFLINE=1 HF_HUB_DISABLE_XET=1 /root/v60762/bin/vllm serve /data/models/DeepSeek-V4.1-Flash-1017 --served-model-name deepseek-v4.1-flash --trust-remote-code --host 0.0.0.0 --port 8123 --api-key *** --tokenizer-mode deepseek_v41 --tensor-parallel-size 8 --enable-expert-parallel --kv-cache-dtype fp8 --engram-config '{"cpu_offload":true}' --moe-backend auto --max-model-len 131072 --max-num-seqs 128 --gpu-memory-utilization 0.90 --speculative-config '{"method":"dspark","num_speculative_tokens":7,"draft_sample_method":"probabilistic","rejection_sample_method":"block","enable_adaptive_verification":false}' --max-cudagraph-capture-size 1024 --compilation-config '{"cudagraph_mode":"PIECEWISE"}' --enable-auto-tool-choice --tool-call-parser deepseek_v41 --reasoning-parser deepseek_v41
+++ seq 1 720
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2549458
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2549458
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2549458
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2549458
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2549458
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2549458
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2549458
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2549458
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2549458
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2549458
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2549458
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2549458
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2549458
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2549458
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2549458
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2549458
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2549458
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2549458
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2549458
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2549458
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2549458
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ break
++ curl -sf http://127.0.0.1:8123/health
+++ date +%s
++ echo 'LEG_stock READY 105s'
+LEG_stock READY 105s
++ sleep 3
++ curl -s http://127.0.0.1:8123/v1/completions -H 'Content-Type: application/json' -H 'Authorization: Bearer ***' -d '{"model":"deepseek-v4.1-flash","prompt":"17*19=","max_tokens":48,"temperature":0}'
++ python3 -c 'import json,sys; print("probe_math:", json.load(sys.stdin)["choices"][0]["text"][:50])'
+probe_math: 323
+
+323/19=17
+
+So the answer is 17.
+
+I hope this 
++ for TIER in "1024 1024 4 1" "1024 1024 32 32" "8192 8192 8 8"
++ set -- 1024 1024 4 1
++ IL=1024
++ OL=1024
++ N=4
++ C=1
+++ date -u +%H:%M:%S
++ echo '===== stock tier 1024 c1 16:46:49 ====='
+===== stock tier 1024 c1 16:46:49 =====
++ OPENAI_API_KEY=***
++ /root/v60762/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data/models/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 1024 --random-output-len 1024 --ignore-eos --num-prompts 4 --request-rate 1
++ grep -aE 'Successful requests|Output token throughput'
++ head -2
+Successful requests:                     4         
+Output token throughput (tok/s):         246.16    
++ for TIER in "1024 1024 4 1" "1024 1024 32 32" "8192 8192 8 8"
++ set -- 1024 1024 32 32
++ IL=1024
++ OL=1024
++ N=32
++ C=32
+++ date -u +%H:%M:%S
++ echo '===== stock tier 1024 c32 16:47:11 ====='
+===== stock tier 1024 c32 16:47:11 =====
++ OPENAI_API_KEY=***
++ /root/v60762/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data/models/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 1024 --random-output-len 1024 --ignore-eos --num-prompts 32 --request-rate 32
++ grep -aE 'Successful requests|Output token throughput'
++ head -2
+Successful requests:                     32        
+Output token throughput (tok/s):         1000.35   
++ for TIER in "1024 1024 4 1" "1024 1024 32 32" "8192 8192 8 8"
++ set -- 8192 8192 8 8
++ IL=8192
++ OL=8192
++ N=8
++ C=8
+++ date -u +%H:%M:%S
++ echo '===== stock tier 8192 c8 16:47:50 ====='
+===== stock tier 8192 c8 16:47:50 =====
++ OPENAI_API_KEY=***
++ /root/v60762/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data/models/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 8192 --random-output-len 8192 --ignore-eos --num-prompts 8 --request-rate 8
++ grep -aE 'Successful requests|Output token throughput'
++ head -2
+Successful requests:                     8         
+Output token throughput (tok/s):         605.79    
++ pkill -f 'vllm serve'
++ sleep 10
+++ date
++ echo 'D3_ROUND_DONE Sat Oct 24 04:49:55 PM UTC 2026'
+D3_ROUND_DONE Sat Oct 24 04:49:55 PM UTC 2026
++ date
+Sat Oct 24 05:02:17 PM UTC 2026
++ export PATH=/usr/local/cuda/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
++ PATH=/usr/local/cuda/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
++ echo MODE=patched
+MODE=patched
++ '[' patched = stock ']'
++ run_leg patched
++ TAG=patched
++ pkill -f 'vllm serve'
++ sleep 8
+++ seq 1 60
++ for i in $(seq 1 60)
+++ nvidia-smi --query-gpu=memory.used --format=csv,noheader,nounits
+++ paste -sd+
+++ bc
++ U=0
++ '[' 0 -lt 10000 ']'
++ break
+++ date +%s
++ T0=1792861345
++ BPID=2567258
++ env VLLM_USE_RUST_FRONTEND=1 VLLM_ENGINE_READY_TIMEOUT_S=7200 NCCL_P2P_LEVEL=SYS FLASHINFER_DISABLE_VERSION_CHECK=1 HF_HUB_OFFLINE=1 HF_HUB_DISABLE_XET=1 /root/v60762/bin/vllm serve /data/models/DeepSeek-V4.1-Flash-1017 --served-model-name deepseek-v4.1-flash --trust-remote-code --host 0.0.0.0 --port 8123 --api-key *** --tokenizer-mode deepseek_v41 --tensor-parallel-size 8 --enable-expert-parallel --kv-cache-dtype fp8 --engram-config '{"cpu_offload":true}' --moe-backend auto --max-model-len 131072 --max-num-seqs 128 --gpu-memory-utilization 0.90 --speculative-config '{"method":"dspark","num_speculative_tokens":7,"draft_sample_method":"probabilistic","rejection_sample_method":"block","enable_adaptive_verification":false}' --max-cudagraph-capture-size 1024 --compilation-config '{"cudagraph_mode":"PIECEWISE"}' --enable-auto-tool-choice --tool-call-parser deepseek_v41 --reasoning-parser deepseek_v41
+++ seq 1 720
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2567258
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2567258
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2567258
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2567258
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2567258
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2567258
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2567258
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2567258
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2567258
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2567258
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2567258
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2567258
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2567258
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2567258
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2567258
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2567258
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2567258
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2567258
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2567258
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2567258
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2567258
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ break
++ curl -sf http://127.0.0.1:8123/health
+++ date +%s
++ echo 'LEG_patched READY 105s'
+LEG_patched READY 105s
++ sleep 3
++ curl -s http://127.0.0.1:8123/v1/completions -H 'Content-Type: application/json' -H 'Authorization: Bearer ***' -d '{"model":"deepseek-v4.1-flash","prompt":"17*19=","max_tokens":48,"temperature":0}'
++ python3 -c 'import json,sys; print("probe_math:", json.load(sys.stdin)["choices"][0]["text"][:50])'
+probe_math: 323
+
+323/19=17
+
+So the answer is 17.
+
+I hope this 
++ for TIER in "1024 1024 4 1" "1024 1024 32 32" "8192 8192 8 8"
++ set -- 1024 1024 4 1
++ IL=1024
++ OL=1024
++ N=4
++ C=1
+++ date -u +%H:%M:%S
++ echo '===== patched tier 1024 c1 17:04:14 ====='
+===== patched tier 1024 c1 17:04:14 =====
++ OPENAI_API_KEY=***
++ /root/v60762/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data/models/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 1024 --random-output-len 1024 --ignore-eos --num-prompts 4 --request-rate 1
++ grep -aE 'Successful requests|Output token throughput'
++ head -2
+Successful requests:                     4         
+Output token throughput (tok/s):         197.34    
++ for TIER in "1024 1024 4 1" "1024 1024 32 32" "8192 8192 8 8"
++ set -- 1024 1024 32 32
++ IL=1024
++ OL=1024
++ N=32
++ C=32
+++ date -u +%H:%M:%S
++ echo '===== patched tier 1024 c32 17:04:41 ====='
+===== patched tier 1024 c32 17:04:41 =====
++ OPENAI_API_KEY=***
++ /root/v60762/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data/models/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 1024 --random-output-len 1024 --ignore-eos --num-prompts 32 --request-rate 32
++ grep -aE 'Successful requests|Output token throughput'
++ head -2
+Successful requests:                     32        
+Output token throughput (tok/s):         1046.75   
++ for TIER in "1024 1024 4 1" "1024 1024 32 32" "8192 8192 8 8"
++ set -- 8192 8192 8 8
++ IL=8192
++ OL=8192
++ N=8
++ C=8
+++ date -u +%H:%M:%S
++ echo '===== patched tier 8192 c8 17:05:18 ====='
+===== patched tier 8192 c8 17:05:18 =====
++ OPENAI_API_KEY=***
++ /root/v60762/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data/models/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 8192 --random-output-len 8192 --ignore-eos --num-prompts 8 --request-rate 8
++ grep -aE 'Successful requests|Output token throughput'
++ head -2
+Successful requests:                     8         
+Output token throughput (tok/s):         567.82    
++ pkill -f 'vllm serve'
++ sleep 10
+++ date
++ echo 'D3_ROUND_DONE Sat Oct 24 05:07:30 PM UTC 2026'
+D3_ROUND_DONE Sat Oct 24 05:07:30 PM UTC 2026
