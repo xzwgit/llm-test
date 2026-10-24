@@ -1,0 +1,337 @@
++ date
+Sat Oct 24 05:27:06 PM UTC 2026
++ export PATH=/root/sm120opt/bin:/usr/local/cuda/bin:/root/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
++ PATH=/root/sm120opt/bin:/usr/local/cuda/bin:/root/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
++ export CUDA_HOME=/usr/local/cuda
++ CUDA_HOME=/usr/local/cuda
++ pkill -f 'vllm serve'
++ sleep 8
+++ seq 1 60
++ for i in $(seq 1 60)
+++ nvidia-smi --query-gpu=memory.used --format=csv,noheader,nounits
+++ paste -sd+
+++ bc
++ U=24
++ '[' 24 -lt 10000 ']'
++ break
+++ date +%s
++ T0=1792862834
++ BPID=2752997
++ env VLLM_USE_RUST_FRONTEND=1 VLLM_ENGINE_READY_TIMEOUT_S=7200 FLASHINFER_DISABLE_VERSION_CHECK=1 HF_HUB_OFFLINE=1 HF_HUB_DISABLE_XET=1 /root/sm120opt/bin/vllm serve /root/DeepSeek-V4.1-Flash-1017 --served-model-name deepseek-v4.1-flash --trust-remote-code --host 0.0.0.0 --port 8123 --api-key *** --tokenizer-mode deepseek_v41 --tensor-parallel-size 8 --enable-expert-parallel --kv-cache-dtype fp8 --engram-config '{"cpu_offload":true}' --moe-backend auto --max-model-len 131072 --max-num-seqs 128 --gpu-memory-utilization 0.90 --speculative-config '{"method":"dspark","num_speculative_tokens":7,"draft_sample_method":"probabilistic","rejection_sample_method":"block","enable_adaptive_verification":false}' --max-cudagraph-capture-size 1024 --compilation-config '{"cudagraph_mode":"PIECEWISE"}' --enable-auto-tool-choice --tool-call-parser deepseek_v41 --reasoning-parser deepseek_v41
+++ seq 1 1440
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2752997
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2752997
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2752997
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2752997
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2752997
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2752997
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2752997
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2752997
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2752997
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2752997
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2752997
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2752997
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2752997
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2752997
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2752997
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2752997
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2752997
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2752997
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2752997
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2752997
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2752997
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ break
++ curl -sf http://127.0.0.1:8123/health
+++ date +%s
++ echo 'SEEVAL_READY 105s'
+SEEVAL_READY 105s
++ curl -s http://127.0.0.1:8123/v1/completions -H 'Content-Type: application/json' -H 'Authorization: Bearer ***' -d '{"model":"deepseek-v4.1-flash","prompt":"17*19=","max_tokens":48,"temperature":0}'
++ python3 -c 'import json,sys; print("probe_math:", json.load(sys.stdin)["choices"][0]["text"][:50])'
+probe_math: 323
+
+323/19=17
+
+So the answer is 17.
+
+I hope this 
++ for R in 1 2
++ for TIER in "1024 1024 4 1" "1024 1024 8 8" "1024 1024 32 32" "1024 1024 64 64" "4096 4096 8 8" "8192 8192 8 8" "32768 32768 8 8"
++ set -- 1024 1024 4 1
++ IL=1024
++ OL=1024
++ N=4
++ C=1
+++ date -u +%H:%M:%S
++ echo '===== r1 1024 c1 17:29:00 ====='
+===== r1 1024 c1 17:29:00 =====
++ OPENAI_API_KEY=***
++ /root/sm120opt/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /root/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 1024 --random-output-len 1024 --ignore-eos --num-prompts 4 --request-rate 1
++ grep -aE 'Successful requests|Output token throughput'
++ head -2
+Successful requests:                     4         
+Output token throughput (tok/s):         253.30    
++ for TIER in "1024 1024 4 1" "1024 1024 8 8" "1024 1024 32 32" "1024 1024 64 64" "4096 4096 8 8" "8192 8192 8 8" "32768 32768 8 8"
++ set -- 1024 1024 8 8
++ IL=1024
++ OL=1024
++ N=8
++ C=8
+++ date -u +%H:%M:%S
++ echo '===== r1 1024 c8 17:29:23 ====='
+===== r1 1024 c8 17:29:23 =====
++ OPENAI_API_KEY=***
++ /root/sm120opt/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /root/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 1024 --random-output-len 1024 --ignore-eos --num-prompts 8 --request-rate 8
++ grep -aE 'Successful requests|Output token throughput'
++ head -2
+Successful requests:                     8         
+Output token throughput (tok/s):         401.12    
++ for TIER in "1024 1024 4 1" "1024 1024 8 8" "1024 1024 32 32" "1024 1024 64 64" "4096 4096 8 8" "8192 8192 8 8" "32768 32768 8 8"
++ set -- 1024 1024 32 32
++ IL=1024
++ OL=1024
++ N=32
++ C=32
+++ date -u +%H:%M:%S
++ echo '===== r1 1024 c32 17:29:49 ====='
+===== r1 1024 c32 17:29:49 =====
++ OPENAI_API_KEY=***
++ /root/sm120opt/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /root/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 1024 --random-output-len 1024 --ignore-eos --num-prompts 32 --request-rate 32
++ grep -aE 'Successful requests|Output token throughput'
++ head -2
+Successful requests:                     32        
+Output token throughput (tok/s):         1021.42   
++ for TIER in "1024 1024 4 1" "1024 1024 8 8" "1024 1024 32 32" "1024 1024 64 64" "4096 4096 8 8" "8192 8192 8 8" "32768 32768 8 8"
++ set -- 1024 1024 64 64
++ IL=1024
++ OL=1024
++ N=64
++ C=64
+++ date -u +%H:%M:%S
++ echo '===== r1 1024 c64 17:30:28 ====='
+===== r1 1024 c64 17:30:28 =====
++ OPENAI_API_KEY=***
++ /root/sm120opt/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /root/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 1024 --random-output-len 1024 --ignore-eos --num-prompts 64 --request-rate 64
++ grep -aE 'Successful requests|Output token throughput'
++ head -2
+Successful requests:                     64        
+Output token throughput (tok/s):         1517.88   
++ for TIER in "1024 1024 4 1" "1024 1024 8 8" "1024 1024 32 32" "1024 1024 64 64" "4096 4096 8 8" "8192 8192 8 8" "32768 32768 8 8"
++ set -- 4096 4096 8 8
++ IL=4096
++ OL=4096
++ N=8
++ C=8
+++ date -u +%H:%M:%S
++ echo '===== r1 4096 c8 17:31:18 ====='
+===== r1 4096 c8 17:31:18 =====
++ OPENAI_API_KEY=***
++ /root/sm120opt/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /root/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 4096 --random-output-len 4096 --ignore-eos --num-prompts 8 --request-rate 8
++ grep -aE 'Successful requests|Output token throughput'
++ head -2
+Successful requests:                     8         
+Output token throughput (tok/s):         557.87    
++ for TIER in "1024 1024 4 1" "1024 1024 8 8" "1024 1024 32 32" "1024 1024 64 64" "4096 4096 8 8" "8192 8192 8 8" "32768 32768 8 8"
++ set -- 8192 8192 8 8
++ IL=8192
++ OL=8192
++ N=8
++ C=8
+++ date -u +%H:%M:%S
++ echo '===== r1 8192 c8 17:32:23 ====='
+===== r1 8192 c8 17:32:23 =====
++ OPENAI_API_KEY=***
++ /root/sm120opt/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /root/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 8192 --random-output-len 8192 --ignore-eos --num-prompts 8 --request-rate 8
++ grep -aE 'Successful requests|Output token throughput'
++ head -2
+Successful requests:                     8         
+Output token throughput (tok/s):         605.28    
++ for TIER in "1024 1024 4 1" "1024 1024 8 8" "1024 1024 32 32" "1024 1024 64 64" "4096 4096 8 8" "8192 8192 8 8" "32768 32768 8 8"
++ set -- 32768 32768 8 8
++ IL=32768
++ OL=32768
++ N=8
++ C=8
+++ date -u +%H:%M:%S
++ echo '===== r1 32768 c8 17:34:18 ====='
+===== r1 32768 c8 17:34:18 =====
++ OPENAI_API_KEY=***
++ /root/sm120opt/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /root/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 32768 --random-output-len 32768 --ignore-eos --num-prompts 8 --request-rate 8
++ grep -aE 'Successful requests|Output token throughput'
++ head -2
+Successful requests:                     8         
+Output token throughput (tok/s):         665.64    
++ for R in 1 2
++ for TIER in "1024 1024 4 1" "1024 1024 8 8" "1024 1024 32 32" "1024 1024 64 64" "4096 4096 8 8" "8192 8192 8 8" "32768 32768 8 8"
++ set -- 1024 1024 4 1
++ IL=1024
++ OL=1024
++ N=4
++ C=1
+++ date -u +%H:%M:%S
++ echo '===== r2 1024 c1 17:40:59 ====='
+===== r2 1024 c1 17:40:59 =====
++ OPENAI_API_KEY=***
++ /root/sm120opt/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /root/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 1024 --random-output-len 1024 --ignore-eos --num-prompts 4 --request-rate 1
++ grep -aE 'Successful requests|Output token throughput'
++ head -2
+Successful requests:                     4         
+Output token throughput (tok/s):         267.26    
++ for TIER in "1024 1024 4 1" "1024 1024 8 8" "1024 1024 32 32" "1024 1024 64 64" "4096 4096 8 8" "8192 8192 8 8" "32768 32768 8 8"
++ set -- 1024 1024 8 8
++ IL=1024
++ OL=1024
++ N=8
++ C=8
+++ date -u +%H:%M:%S
++ echo '===== r2 1024 c8 17:41:21 ====='
+===== r2 1024 c8 17:41:21 =====
++ OPENAI_API_KEY=***
++ /root/sm120opt/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /root/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 1024 --random-output-len 1024 --ignore-eos --num-prompts 8 --request-rate 8
++ grep -aE 'Successful requests|Output token throughput'
++ head -2
+Successful requests:                     8         
+Output token throughput (tok/s):         555.02    
++ for TIER in "1024 1024 4 1" "1024 1024 8 8" "1024 1024 32 32" "1024 1024 64 64" "4096 4096 8 8" "8192 8192 8 8" "32768 32768 8 8"
++ set -- 1024 1024 32 32
++ IL=1024
++ OL=1024
++ N=32
++ C=32
+++ date -u +%H:%M:%S
++ echo '===== r2 1024 c32 17:41:42 ====='
+===== r2 1024 c32 17:41:42 =====
++ OPENAI_API_KEY=***
++ /root/sm120opt/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /root/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 1024 --random-output-len 1024 --ignore-eos --num-prompts 32 --request-rate 32
++ grep -aE 'Successful requests|Output token throughput'
++ head -2
+Successful requests:                     32        
+Output token throughput (tok/s):         1173.03   
++ for TIER in "1024 1024 4 1" "1024 1024 8 8" "1024 1024 32 32" "1024 1024 64 64" "4096 4096 8 8" "8192 8192 8 8" "32768 32768 8 8"
++ set -- 1024 1024 64 64
++ IL=1024
++ OL=1024
++ N=64
++ C=64
+++ date -u +%H:%M:%S
++ echo '===== r2 1024 c64 17:42:17 ====='
+===== r2 1024 c64 17:42:17 =====
++ OPENAI_API_KEY=***
++ /root/sm120opt/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /root/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 1024 --random-output-len 1024 --ignore-eos --num-prompts 64 --request-rate 64
++ grep -aE 'Successful requests|Output token throughput'
++ head -2
+Successful requests:                     64        
+Output token throughput (tok/s):         1576.17   
++ for TIER in "1024 1024 4 1" "1024 1024 8 8" "1024 1024 32 32" "1024 1024 64 64" "4096 4096 8 8" "8192 8192 8 8" "32768 32768 8 8"
++ set -- 4096 4096 8 8
++ IL=4096
++ OL=4096
++ N=8
++ C=8
+++ date -u +%H:%M:%S
++ echo '===== r2 4096 c8 17:43:05 ====='
+===== r2 4096 c8 17:43:05 =====
++ OPENAI_API_KEY=***
++ /root/sm120opt/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /root/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 4096 --random-output-len 4096 --ignore-eos --num-prompts 8 --request-rate 8
++ grep -aE 'Successful requests|Output token throughput'
++ head -2
+Successful requests:                     8         
+Output token throughput (tok/s):         671.40    
++ for TIER in "1024 1024 4 1" "1024 1024 8 8" "1024 1024 32 32" "1024 1024 64 64" "4096 4096 8 8" "8192 8192 8 8" "32768 32768 8 8"
++ set -- 8192 8192 8 8
++ IL=8192
++ OL=8192
++ N=8
++ C=8
+++ date -u +%H:%M:%S
++ echo '===== r2 8192 c8 17:44:00 ====='
+===== r2 8192 c8 17:44:00 =====
++ OPENAI_API_KEY=***
++ /root/sm120opt/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /root/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 8192 --random-output-len 8192 --ignore-eos --num-prompts 8 --request-rate 8
++ grep -aE 'Successful requests|Output token throughput'
++ head -2
+Successful requests:                     8         
+Output token throughput (tok/s):         641.11    
++ for TIER in "1024 1024 4 1" "1024 1024 8 8" "1024 1024 32 32" "1024 1024 64 64" "4096 4096 8 8" "8192 8192 8 8" "32768 32768 8 8"
++ set -- 32768 32768 8 8
++ IL=32768
++ OL=32768
++ N=8
++ C=8
+++ date -u +%H:%M:%S
++ echo '===== r2 32768 c8 17:45:49 ====='
+===== r2 32768 c8 17:45:49 =====
++ OPENAI_API_KEY=***
++ /root/sm120opt/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /root/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 32768 --random-output-len 32768 --ignore-eos --num-prompts 8 --request-rate 8
++ grep -aE 'Successful requests|Output token throughput'
++ head -2
+Successful requests:                     7         
+Output token throughput (tok/s):         622.69    
++ pkill -f 'vllm serve'
+++ date
++ echo 'SEEVAL_DONE Sat Oct 24 05:52:05 PM UTC 2026'
+SEEVAL_DONE Sat Oct 24 05:52:05 PM UTC 2026
