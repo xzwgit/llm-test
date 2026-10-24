@@ -1,0 +1,194 @@
++ date
+Sat Oct 24 01:25:12 PM UTC 2026
++ true
+++ ls /root/DeepSeek-V4.1-Flash-1017/model-00001-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00002-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00003-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00004-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00005-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00006-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00007-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00008-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00009-of-00048.safetensors
+++ wc -l
++ N=9
++ '[' 9 -ge 48 ']'
++ sleep 60
++ true
+++ wc -l
+++ ls /root/DeepSeek-V4.1-Flash-1017/model-00001-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00002-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00003-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00004-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00005-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00006-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00007-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00008-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00009-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00010-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00011-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00012-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00013-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00014-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00015-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00016-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00017-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00018-of-00048.safetensors
++ N=18
++ '[' 18 -ge 48 ']'
++ sleep 60
++ true
+++ wc -l
+++ ls /root/DeepSeek-V4.1-Flash-1017/model-00001-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00002-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00003-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00004-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00005-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00006-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00007-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00008-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00009-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00010-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00011-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00012-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00013-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00014-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00015-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00016-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00017-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00018-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00019-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00020-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00021-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00022-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00023-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00024-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00025-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00026-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00027-of-00048.safetensors
++ N=27
++ '[' 27 -ge 48 ']'
++ sleep 60
++ true
+++ wc -l
+++ ls /root/DeepSeek-V4.1-Flash-1017/model-00001-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00002-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00003-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00004-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00005-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00006-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00007-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00008-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00009-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00010-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00011-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00012-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00013-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00014-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00015-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00016-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00017-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00018-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00019-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00020-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00021-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00022-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00023-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00024-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00025-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00026-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00027-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00028-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00029-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00030-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00031-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00032-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00033-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00034-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00035-of-00048.safetensors
++ N=35
++ '[' 35 -ge 48 ']'
++ sleep 60
++ true
+++ wc -l
+++ ls /root/DeepSeek-V4.1-Flash-1017/model-00001-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00002-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00003-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00004-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00005-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00006-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00007-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00008-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00009-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00010-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00011-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00012-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00013-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00014-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00015-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00016-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00017-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00018-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00019-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00020-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00021-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00022-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00023-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00024-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00025-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00026-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00027-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00028-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00029-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00030-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00031-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00032-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00033-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00034-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00035-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00036-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00037-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00038-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00039-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00040-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00041-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00042-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00043-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00044-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00045-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00046-of-00048.safetensors
++ N=46
++ '[' 46 -ge 48 ']'
++ sleep 60
++ true
+++ wc -l
+++ ls /root/DeepSeek-V4.1-Flash-1017/model-00001-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00002-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00003-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00004-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00005-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00006-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00007-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00008-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00009-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00010-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00011-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00012-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00013-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00014-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00015-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00016-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00017-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00018-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00019-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00020-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00021-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00022-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00023-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00024-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00025-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00026-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00027-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00028-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00029-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00030-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00031-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00032-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00033-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00034-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00035-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00036-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00037-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00038-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00039-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00040-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00041-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00042-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00043-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00044-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00045-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00046-of-00048.safetensors
++ N=46
++ '[' 46 -ge 48 ']'
++ sleep 60
++ true
+++ wc -l
+++ ls /root/DeepSeek-V4.1-Flash-1017/model-00001-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00002-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00003-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00004-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00005-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00006-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00007-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00008-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00009-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00010-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00011-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00012-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00013-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00014-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00015-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00016-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00017-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00018-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00019-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00020-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00021-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00022-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00023-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00024-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00025-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00026-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00027-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00028-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00029-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00030-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00031-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00032-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00033-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00034-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00035-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00036-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00037-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00038-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00039-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00040-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00041-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00042-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00043-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00044-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00045-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00046-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00047-of-00048.safetensors
++ N=47
++ '[' 47 -ge 48 ']'
++ sleep 60
++ true
+++ wc -l
+++ ls /root/DeepSeek-V4.1-Flash-1017/model-00006-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00015-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00022-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00024-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00028-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00031-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00033-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00035-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00038-of-00048.safetensors
++ N=9
++ '[' 9 -ge 48 ']'
++ sleep 60
++ true
+++ ls /root/DeepSeek-V4.1-Flash-1017/model-00001-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00002-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00003-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00004-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00005-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00006-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00007-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00008-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00009-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00010-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00011-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00012-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00013-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00014-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00015-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00016-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00017-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00018-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00019-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00020-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00021-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00022-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00023-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00024-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00025-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00026-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00027-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00028-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00029-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00030-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00031-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00032-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00033-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00034-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00035-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00036-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00037-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00038-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00039-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00040-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00041-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00042-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00043-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00044-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00045-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00046-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00047-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00048-of-00048.safetensors
+++ wc -l
++ N=48
++ '[' 48 -ge 48 ']'
++ sleep 60
+++ wc -l
+++ ls /root/DeepSeek-V4.1-Flash-1017/model-00001-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00002-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00003-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00004-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00005-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00006-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00007-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00008-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00009-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00010-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00011-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00012-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00013-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00014-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00015-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00016-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00017-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00018-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00019-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00020-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00021-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00022-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00023-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00024-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00025-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00026-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00027-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00028-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00029-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00030-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00031-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00032-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00033-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00034-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00035-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00036-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00037-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00038-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00039-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00040-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00041-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00042-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00043-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00044-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00045-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00046-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00047-of-00048.safetensors /root/DeepSeek-V4.1-Flash-1017/model-00048-of-00048.safetensors
++ N2=48
++ '[' 48 -eq 48 ']'
++ break
+++ du -sh /root/DeepSeek-V4.1-Flash-1017
+++ cut -f1
++ echo 'WEIGHTS_DONE N=48 0'
+WEIGHTS_DONE N=48 0
++ export PATH=/root/.local/bin:/usr/local/cuda/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
++ PATH=/root/.local/bin:/usr/local/cuda/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
++ '[' -x /root/.local/bin/uv ']'
++ uv venv /root/sm120opt --python 3.12
+Using CPython 3.12.3 interpreter at: /usr/bin/python3.12
+Creating virtual environment at: sm120opt
+Activate with: source sm120opt/bin/activate
++ export VIRTUAL_ENV=/root/sm120opt
++ VIRTUAL_ENV=/root/sm120opt
++ uv pip install -U vllm --torch-backend=auto --extra-index-url https://wheels.vllm.ai/nightly
+Using Python 3.12.3 environment at: sm120opt
+Resolved 199 packages in 33.02s
+Downloading sympy (6.0MiB)
+Downloading cryptography (4.5MiB)
+Downloading tokenizers (3.2MiB)
+Downloading numpy (15.8MiB)
+Downloading opencv-python-headless (58.4MiB)
+Downloading transformers (12.2MiB)
+Downloading uvloop (4.3MiB)
+Downloading hf-xet (4.0MiB)
+Downloading nvidia-nccl-cu13 (206.0MiB)
+Downloading grpcio (6.8MiB)
+Downloading oss-harmony (3.4MiB)
+Downloading llvmlite (53.7MiB)
+Downloading openai (2.2MiB)
+Downloading nvidia-nvjitlink (40.5MiB)
+Downloading nvidia-cufft (208.1MiB)
+Downloading nvidia-cuda-nvcc (45.5MiB)
+Downloading pillow (6.8MiB)
+Downloading nvidia-cuda-nvrtc (44.8MiB)
+Downloading tokenspeed-triton (89.0MiB)
+Downloading mistral-common (6.3MiB)
+Downloading nvidia-cusparse (143.9MiB)
+Downloading nvidia-nvshmem-cu13 (57.6MiB)
+Downloading instanttensor (6.2MiB)
+Downloading nvidia-cudnn-cu13 (527.5MiB)
+Downloading nvidia-curand (57.1MiB)
+Downloading pynvvideocodec (41.2MiB)
+Downloading nvidia-cusparselt-cu13 (162.3MiB)
+Downloading fastsafetensors (2.6MiB)
+Downloading llguidance (2.9MiB)
+Downloading z3-solver (27.9MiB)
+Downloading nvidia-cuda-cupti (11.4MiB)
+Downloading nvidia-cusolver (216.9MiB)
+Downloading numba (3.6MiB)
+Downloading nvidia-cublas (386.1MiB)
+Downloading outlines-core (2.2MiB)
+Downloading nvidia-cuda-runtime (2.2MiB)
+Downloading apache-tvm-ffi (2.6MiB)
+Downloading nvidia-cutlass-dsl-libs-base (2.9MiB)
+Downloading tilelang (48.2MiB)
+Downloading pycountry (7.7MiB)
+Downloading nvidia-cuda-cccl (3.7MiB)
+Downloading nvidia-cutlass-dsl-libs-cu13 (87.7MiB)
+Downloading nvidia-nvvm (69.2MiB)
+Downloading nvidia-cutlass-dsl-libs-cu12 (87.5MiB)
+Downloading triton (235.4MiB)
+Downloading torchcodec (9.7MiB)
+Downloading torchvision (7.2MiB)
+Downloading torch (532.8MiB)
+Downloading vllm (319.8MiB)
+ Downloaded nvidia-cuda-runtime
+ Downloaded openai
+ Downloaded outlines-core
+Downloading anthropic (2.1MiB)
+Downloading networkx (2.0MiB)
+Downloading aiohttp (1.8MiB)
+ Downloaded apache-tvm-ffi
+ Downloaded fastsafetensors
+Downloading nvidia-cutlass-dsl-libs-core (1.6MiB)
+Downloading sentencepiece (1.3MiB)
+Downloading nvidia-cufile (1.3MiB)
+ Downloaded llguidance
+ Downloaded nvidia-cutlass-dsl-libs-base
+Downloading pygments (1.2MiB)
+Downloading xgrammar (1.3MiB)
+ Downloaded tokenizers
+Downloading tiktoken (1.1MiB)
+ Downloaded oss-harmony
+Downloading setuptools (1.0MiB)
+ Downloaded numba
+ Downloaded nvidia-cuda-cccl
+ Downloaded hf-xet
+ Downloaded sentencepiece
+ Downloaded uvloop
+ Downloaded aiohttp
+ Downloaded nvidia-cufile
+ Downloaded nvidia-cutlass-dsl-libs-core
+ Downloaded pygments
+ Downloaded xgrammar
+ Downloaded networkx
+ Downloaded anthropic
+ Downloaded setuptools
+ Downloaded tiktoken
+ Downloaded cryptography
+ Downloaded instanttensor
+ Downloaded sympy
+ Downloaded mistral-common
+ Downloaded torchcodec
+ Downloaded grpcio
+ Downloaded pillow
+ Downloaded pycountry
+ Downloaded nvidia-cuda-cupti
+ Downloaded transformers
+ Downloaded numpy
+ Downloaded torchvision
+ Downloaded z3-solver
+ Downloaded nvidia-nvjitlink
+ Downloaded pynvvideocodec
+ Downloaded nvidia-cuda-nvrtc
+ Downloaded nvidia-cuda-nvcc
+ Downloaded tilelang
+ Downloaded llvmlite
+ Downloaded nvidia-curand
+ Downloaded nvidia-nvshmem-cu13
+ Downloaded opencv-python-headless
+ Downloaded nvidia-nvvm
+ Downloaded nvidia-cutlass-dsl-libs-cu13
+ Downloaded nvidia-cutlass-dsl-libs-cu12
+ Downloaded tokenspeed-triton
+ Downloaded nvidia-cusparse
+ Downloaded nvidia-cusparselt-cu13
+ Downloaded nvidia-cufft
+ Downloaded nvidia-nccl-cu13
+ Downloaded nvidia-cusolver
+ Downloaded nvidia-cublas
+ Downloaded nvidia-cudnn-cu13
+ Downloaded triton
+ Downloaded torch

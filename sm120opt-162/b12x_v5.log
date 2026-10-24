@@ -1,0 +1,137 @@
++ date
+Sat Oct 24 02:36:30 PM UTC 2026
++ export PATH=/root/sm120opt/bin:/usr/local/cuda/bin:/root/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
++ PATH=/root/sm120opt/bin:/usr/local/cuda/bin:/root/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
++ export CUDA_HOME=/usr/local/cuda
++ CUDA_HOME=/usr/local/cuda
++ pkill -f 'vllm serve'
++ sleep 8
+++ seq 1 60
++ for i in $(seq 1 60)
+++ nvidia-smi --query-gpu=memory.used --format=csv,noheader,nounits
+++ paste -sd+
+++ bc
++ U=24
++ '[' 24 -lt 10000 ']'
++ break
++ BPID=2428560
++ env PATH=/root/sm120opt/bin:/usr/local/cuda/bin:/root/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin CUDA_HOME=/usr/local/cuda VLLM_USE_RUST_FRONTEND=1 VLLM_ENGINE_READY_TIMEOUT_S=7200 FLASHINFER_DISABLE_VERSION_CHECK=1 HF_HUB_OFFLINE=1 HF_HUB_DISABLE_XET=1 /root/sm120opt/bin/vllm serve /root/DeepSeek-V4.1-Flash-1017 --served-model-name deepseek-v4.1-flash --trust-remote-code --host 0.0.0.0 --port 8123 --api-key *** --tokenizer-mode deepseek_v41 --tensor-parallel-size 8 --kv-cache-dtype fp8 --engram-config '{"cpu_offload":true}' --moe-backend b12x --max-model-len 131072 --max-num-seqs 128 --gpu-memory-utilization 0.90 --speculative-config '{"method":"dspark","num_speculative_tokens":7,"draft_sample_method":"probabilistic","rejection_sample_method":"block","enable_adaptive_verification":false}' --max-cudagraph-capture-size 1024 --compilation-config '{"cudagraph_mode":"PIECEWISE"}' --enable-auto-tool-choice --tool-call-parser deepseek_v41 --reasoning-parser deepseek_v41
+++ seq 1 1440
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2428560
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2428560
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2428560
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2428560
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2428560
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2428560
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2428560
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2428560
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2428560
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2428560
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2428560
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2428560
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2428560
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2428560
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2428560
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2428560
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2428560
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2428560
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2428560
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2428560
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2428560
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2428560
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2428560
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2428560
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ break
++ curl -sf http://127.0.0.1:8123/health
++ echo V5_READY
+V5_READY
++ python3 -
+{
+ "math": "32319=32319=32319=32319=32319=32319=32319=32319=32319=32319=32319=32319=32319=32319=32319=32319=",
+ "cmp": "er asks direct no process. Answer: 9.9大. Need maybe \"9.9 大\". | 9.9大",
+ "zh": "国政治、文化、国际交往和科技创新中心，拥有三千多年建城史和八百多年建都史的历史文化名城。一句话。确保准确。最终只给一句。 | 北京是中国的首都，全国政治、文化、国际交往和科技创新中心，也是一座拥有三千多年建城史和八百多年建都史的历史文化名城。",
+ "fact": "We need answer Chinese one word. \"北京\". Need comply one word. | 北京",
+ "tool": "[{\"id\": \"call_d416c158286b4f489c4fd2ac\", \"type\": \"function\", \"function\": {\"name\": \"get_weather\", \"arguments\": \"{\\\"city\\\":\\\"北京\\\"}\"}}]",
+ "code_head": " def binary_search(arr, target): \"\"\"Perform binary search on a sorted array. Args: arr (list): A sorted list of elements. target: The element to search for. Returns: int: The index of the target if fo"
+}
++ RC=0
++ echo V5_PROBES_RC=0
+V5_PROBES_RC=0
++ pkill -f 'vllm serve'
+++ date
++ echo 'B12XV5_DONE Sat Oct 24 02:38:40 PM UTC 2026'
+B12XV5_DONE Sat Oct 24 02:38:40 PM UTC 2026

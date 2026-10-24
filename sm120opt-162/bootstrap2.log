@@ -1,0 +1,225 @@
++ date
+Sat Oct 24 01:58:33 PM UTC 2026
+++ seq 1 120
++ for i in $(seq 1 120)
++ grep -q 'IMPORT OK' /root/sm120opt_ops/venv_mirror.log
++ grep -qiE 'error: No solution|fatal' /root/sm120opt_ops/venv_mirror.log
++ sleep 15
++ for i in $(seq 1 120)
++ grep -q 'IMPORT OK' /root/sm120opt_ops/venv_mirror.log
++ grep -qiE 'error: No solution|fatal' /root/sm120opt_ops/venv_mirror.log
++ sleep 15
++ for i in $(seq 1 120)
++ grep -q 'IMPORT OK' /root/sm120opt_ops/venv_mirror.log
++ grep -qiE 'error: No solution|fatal' /root/sm120opt_ops/venv_mirror.log
++ sleep 15
++ for i in $(seq 1 120)
++ grep -q 'IMPORT OK' /root/sm120opt_ops/venv_mirror.log
++ grep -qiE 'error: No solution|fatal' /root/sm120opt_ops/venv_mirror.log
++ sleep 15
++ for i in $(seq 1 120)
++ grep -q 'IMPORT OK' /root/sm120opt_ops/venv_mirror.log
++ grep -qiE 'error: No solution|fatal' /root/sm120opt_ops/venv_mirror.log
++ sleep 15
++ for i in $(seq 1 120)
++ grep -q 'IMPORT OK' /root/sm120opt_ops/venv_mirror.log
++ grep -qiE 'error: No solution|fatal' /root/sm120opt_ops/venv_mirror.log
++ sleep 15
++ for i in $(seq 1 120)
++ grep -q 'IMPORT OK' /root/sm120opt_ops/venv_mirror.log
++ grep -qiE 'error: No solution|fatal' /root/sm120opt_ops/venv_mirror.log
++ sleep 15
++ for i in $(seq 1 120)
++ grep -q 'IMPORT OK' /root/sm120opt_ops/venv_mirror.log
++ grep -qiE 'error: No solution|fatal' /root/sm120opt_ops/venv_mirror.log
++ sleep 15
++ for i in $(seq 1 120)
++ grep -q 'IMPORT OK' /root/sm120opt_ops/venv_mirror.log
++ grep -qiE 'error: No solution|fatal' /root/sm120opt_ops/venv_mirror.log
++ sleep 15
++ for i in $(seq 1 120)
++ grep -q 'IMPORT OK' /root/sm120opt_ops/venv_mirror.log
++ grep -qiE 'error: No solution|fatal' /root/sm120opt_ops/venv_mirror.log
++ sleep 15
++ for i in $(seq 1 120)
++ grep -q 'IMPORT OK' /root/sm120opt_ops/venv_mirror.log
++ grep -qiE 'error: No solution|fatal' /root/sm120opt_ops/venv_mirror.log
++ sleep 15
++ for i in $(seq 1 120)
++ grep -q 'IMPORT OK' /root/sm120opt_ops/venv_mirror.log
++ grep -qiE 'error: No solution|fatal' /root/sm120opt_ops/venv_mirror.log
++ sleep 15
++ for i in $(seq 1 120)
++ grep -q 'IMPORT OK' /root/sm120opt_ops/venv_mirror.log
++ grep -qiE 'error: No solution|fatal' /root/sm120opt_ops/venv_mirror.log
++ sleep 15
++ for i in $(seq 1 120)
++ grep -q 'IMPORT OK' /root/sm120opt_ops/venv_mirror.log
++ grep -qiE 'error: No solution|fatal' /root/sm120opt_ops/venv_mirror.log
++ sleep 15
++ for i in $(seq 1 120)
++ grep -q 'IMPORT OK' /root/sm120opt_ops/venv_mirror.log
++ grep -qiE 'error: No solution|fatal' /root/sm120opt_ops/venv_mirror.log
++ sleep 15
++ for i in $(seq 1 120)
++ grep -q 'IMPORT OK' /root/sm120opt_ops/venv_mirror.log
++ break
++ grep -q 'IMPORT OK' /root/sm120opt_ops/venv_mirror.log
+++ /root/sm120opt/bin/python -c 'import vllm; print(vllm.__version__)'
+W1024 14:02:19.074000 2335371 torch/_opaque_base.py:6] torch._opaque_base is deprecated, use torch._custom_class_base instead
+W1024 14:02:19.074000 2335371 torch/_library/opaque_object.py:288] register_opaque_type is deprecated, use register_custom_class instead
+W1024 14:02:19.074000 2335371 torch/_library/opaque_object.py:211] typ='value' is deprecated, use typ='constant' instead
++ echo 'NIGHTLY: 0.32.1rc1.dev451+g5f63ea461'
+NIGHTLY: 0.32.1rc1.dev451+g5f63ea461
++ http_proxy=http://10.10.3.245:7897
++ tail -2
++ https_proxy=http://10.10.3.245:7897
++ git clone -b sm120-opt --depth 1 https://github.com/xzwgit/vllm.git /root/sm120opt_src
+Cloning into '/root/sm120opt_src'...
++ ls /root/sm120opt_src/SM120-OPT.md
+/root/sm120opt_src/SM120-OPT.md
++ echo SRC_OK
+SRC_OK
++ boot_leg b12x_ep --enable-expert-parallel
++ TAG=b12x_ep
++ EPFLAG=--enable-expert-parallel
++ pkill -f 'vllm serve'
++ sleep 8
+++ seq 1 60
++ for i in $(seq 1 60)
+++ nvidia-smi --query-gpu=memory.used --format=csv,noheader,nounits
+++ paste -sd+
+++ bc
++ U=0
++ '[' 0 -lt 10000 ']'
++ break
+++ date +%s
++ T0=1792850557
++ BPID=2336211
++ env VLLM_USE_RUST_FRONTEND=1 VLLM_ENGINE_READY_TIMEOUT_S=3600 FLASHINFER_DISABLE_VERSION_CHECK=1 HF_HUB_OFFLINE=1 HF_HUB_DISABLE_XET=1 /root/sm120opt/bin/vllm serve /root/DeepSeek-V4.1-Flash-1017 --served-model-name deepseek-v4.1-flash --trust-remote-code --host 0.0.0.0 --port 8123 --api-key *** --tokenizer-mode deepseek_v41 --tensor-parallel-size 8 --enable-expert-parallel --kv-cache-dtype fp8 --engram-config '{"cpu_offload":true}' --moe-backend b12x --max-model-len 131072 --max-num-seqs 128 --gpu-memory-utilization 0.90 --speculative-config '{"method":"dspark","num_speculative_tokens":7,"draft_sample_method":"probabilistic","rejection_sample_method":"block","enable_adaptive_verification":false}' --max-cudagraph-capture-size 1024 --compilation-config '{"cudagraph_mode":"PIECEWISE"}' --enable-auto-tool-choice --tool-call-parser deepseek_v41 --reasoning-parser deepseek_v41
+++ seq 1 720
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2336211
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2336211
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2336211
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2336211
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2336211
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2336211
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2336211
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2336211
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2336211
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2336211
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2336211
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2336211
++ break
++ curl -sf http://127.0.0.1:8123/health
+++ date +%s
++ echo 'LEG_b12x_ep BOOT_FAIL 55s'
+LEG_b12x_ep BOOT_FAIL 55s
++ grep -aiE 'Error|assert|not support|Unsupported' /root/sm120opt_ops/b12x_boot_b12x_ep.log
++ grep -av engine_ready
++ tail -6
+(EngineCore pid=2337729) ERROR 10-24 14:03:26 [core.py:1572]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=2337729) ERROR 10-24 14:03:26 [core.py:1572]   File "/root/sm120opt/lib/python3.12/site-packages/vllm/v1/executor/multiproc_executor.py", line 916, in wait_for_ready
+(EngineCore pid=2337729) ERROR 10-24 14:03:26 [core.py:1572]     raise e from None
+(EngineCore pid=2337729) ERROR 10-24 14:03:26 [core.py:1572] Exception: WorkerProc initialization failed due to an exception in a background process. See stack trace for root cause.
+    raise RuntimeError(
+RuntimeError: Engine core initialization failed. See root cause above. Failed core proc(s): {}
++ return 1
++ boot_leg b12x_noep ''
++ TAG=b12x_noep
++ EPFLAG=
++ pkill -f 'vllm serve'
++ sleep 8
+++ seq 1 60
++ for i in $(seq 1 60)
+++ nvidia-smi --query-gpu=memory.used --format=csv,noheader,nounits
+++ paste -sd+
+++ bc
++ U=0
++ '[' 0 -lt 10000 ']'
++ break
+++ date +%s
++ T0=1792850620
++ BPID=2341535
++ env VLLM_USE_RUST_FRONTEND=1 VLLM_ENGINE_READY_TIMEOUT_S=3600 FLASHINFER_DISABLE_VERSION_CHECK=1 HF_HUB_OFFLINE=1 HF_HUB_DISABLE_XET=1 /root/sm120opt/bin/vllm serve /root/DeepSeek-V4.1-Flash-1017 --served-model-name deepseek-v4.1-flash --trust-remote-code --host 0.0.0.0 --port 8123 --api-key *** --tokenizer-mode deepseek_v41 --tensor-parallel-size 8 --kv-cache-dtype fp8 --engram-config '{"cpu_offload":true}' --moe-backend b12x --max-model-len 131072 --max-num-seqs 128 --gpu-memory-utilization 0.90 --speculative-config '{"method":"dspark","num_speculative_tokens":7,"draft_sample_method":"probabilistic","rejection_sample_method":"block","enable_adaptive_verification":false}' --max-cudagraph-capture-size 1024 --compilation-config '{"cudagraph_mode":"PIECEWISE"}' --enable-auto-tool-choice --tool-call-parser deepseek_v41 --reasoning-parser deepseek_v41
+++ seq 1 720
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2341535
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2341535
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2341535
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2341535
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2341535
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2341535
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2341535
++ break
++ curl -sf http://127.0.0.1:8123/health
+++ date +%s
++ echo 'LEG_b12x_noep BOOT_FAIL 30s'
+LEG_b12x_noep BOOT_FAIL 30s
++ grep -aiE 'Error|assert|not support|Unsupported' /root/sm120opt_ops/b12x_boot_b12x_noep.log
++ grep -av engine_ready
++ tail -6
+(EngineCore pid=2342199) ERROR 10-24 14:04:07 [core.py:1572]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=2342199) ERROR 10-24 14:04:07 [core.py:1572]   File "/root/sm120opt/lib/python3.12/site-packages/vllm/v1/executor/multiproc_executor.py", line 916, in wait_for_ready
+(EngineCore pid=2342199) ERROR 10-24 14:04:07 [core.py:1572]     raise e from None
+(EngineCore pid=2342199) ERROR 10-24 14:04:07 [core.py:1572] Exception: WorkerProc initialization failed due to an exception in a background process. See stack trace for root cause.
+    raise RuntimeError(
+RuntimeError: Engine core initialization failed. See root cause above. Failed core proc(s): {}
++ return 1
+++ date
++ echo 'BOOTSTRAP2_DONE Sat Oct 24 02:04:10 PM UTC 2026'
+BOOTSTRAP2_DONE Sat Oct 24 02:04:10 PM UTC 2026

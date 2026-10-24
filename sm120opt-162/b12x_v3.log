@@ -1,0 +1,265 @@
++ date
+Sat Oct 24 02:20:22 PM UTC 2026
++ export PATH=/root/sm120opt/bin:/usr/local/cuda/bin:/root/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
++ PATH=/root/sm120opt/bin:/usr/local/cuda/bin:/root/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
++ export CUDA_HOME=/usr/local/cuda
++ CUDA_HOME=/usr/local/cuda
++ boot_leg b12x_ep --enable-expert-parallel
++ TAG=b12x_ep
++ EPFLAG=--enable-expert-parallel
++ pkill -f 'vllm serve'
++ sleep 8
+++ seq 1 60
++ for i in $(seq 1 60)
+++ nvidia-smi --query-gpu=memory.used --format=csv,noheader,nounits
+++ paste -sd+
+++ bc
++ U=24
++ '[' 24 -lt 10000 ']'
++ break
+++ date +%s
++ T0=1792851630
++ BPID=2376380
++ env PATH=/root/sm120opt/bin:/usr/local/cuda/bin:/root/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin CUDA_HOME=/usr/local/cuda VLLM_USE_RUST_FRONTEND=1 VLLM_ENGINE_READY_TIMEOUT_S=7200 FLASHINFER_DISABLE_VERSION_CHECK=1 HF_HUB_OFFLINE=1 HF_HUB_DISABLE_XET=1 /root/sm120opt/bin/vllm serve /root/DeepSeek-V4.1-Flash-1017 --served-model-name deepseek-v4.1-flash --trust-remote-code --host 0.0.0.0 --port 8123 --api-key *** --tokenizer-mode deepseek_v41 --tensor-parallel-size 8 --enable-expert-parallel --kv-cache-dtype fp8 --engram-config '{"cpu_offload":true}' --moe-backend b12x --max-model-len 131072 --max-num-seqs 128 --gpu-memory-utilization 0.90 --speculative-config '{"method":"dspark","num_speculative_tokens":7,"draft_sample_method":"probabilistic","rejection_sample_method":"block","enable_adaptive_verification":false}' --max-cudagraph-capture-size 1024 --compilation-config '{"cudagraph_mode":"PIECEWISE"}' --enable-auto-tool-choice --tool-call-parser deepseek_v41 --reasoning-parser deepseek_v41
+++ seq 1 1440
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2376380
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2376380
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2376380
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2376380
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2376380
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2376380
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2376380
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2376380
++ break
++ curl -sf http://127.0.0.1:8123/health
+++ date +%s
++ echo 'LEG_b12x_ep BOOT_FAIL 35s'
+LEG_b12x_ep BOOT_FAIL 35s
++ grep -aiE 'Error|assert|not support|Unsupported|disabled' /root/sm120opt_ops/b12xv3_boot_b12x_ep.log
++ grep -av engine_ready
++ tail -8
+(EngineCore pid=2377045) ERROR 10-24 14:21:00 [core.py:1572]   File "/root/sm120opt/lib/python3.12/site-packages/vllm/v1/executor/multiproc_executor.py", line 238, in _init_executor
+(EngineCore pid=2377045) ERROR 10-24 14:21:00 [core.py:1572]     self.workers = WorkerProc.wait_for_ready(unready_workers)
+(EngineCore pid=2377045) ERROR 10-24 14:21:00 [core.py:1572]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=2377045) ERROR 10-24 14:21:00 [core.py:1572]   File "/root/sm120opt/lib/python3.12/site-packages/vllm/v1/executor/multiproc_executor.py", line 916, in wait_for_ready
+(EngineCore pid=2377045) ERROR 10-24 14:21:00 [core.py:1572]     raise e from None
+(EngineCore pid=2377045) ERROR 10-24 14:21:00 [core.py:1572] Exception: WorkerProc initialization failed due to an exception in a background process. See stack trace for root cause.
+    raise RuntimeError(
+RuntimeError: Engine core initialization failed. See root cause above. Failed core proc(s): {}
++ return 1
++ boot_leg b12x_noep ''
++ TAG=b12x_noep
++ EPFLAG=
++ pkill -f 'vllm serve'
++ sleep 8
+++ seq 1 60
++ for i in $(seq 1 60)
+++ nvidia-smi --query-gpu=memory.used --format=csv,noheader,nounits
+++ paste -sd+
+++ bc
++ U=24
++ '[' 24 -lt 10000 ']'
++ break
+++ date +%s
++ T0=1792851673
++ BPID=2380185
++ env PATH=/root/sm120opt/bin:/usr/local/cuda/bin:/root/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin CUDA_HOME=/usr/local/cuda VLLM_USE_RUST_FRONTEND=1 VLLM_ENGINE_READY_TIMEOUT_S=7200 FLASHINFER_DISABLE_VERSION_CHECK=1 HF_HUB_OFFLINE=1 HF_HUB_DISABLE_XET=1 /root/sm120opt/bin/vllm serve /root/DeepSeek-V4.1-Flash-1017 --served-model-name deepseek-v4.1-flash --trust-remote-code --host 0.0.0.0 --port 8123 --api-key *** --tokenizer-mode deepseek_v41 --tensor-parallel-size 8 --kv-cache-dtype fp8 --engram-config '{"cpu_offload":true}' --moe-backend b12x --max-model-len 131072 --max-num-seqs 128 --gpu-memory-utilization 0.90 --speculative-config '{"method":"dspark","num_speculative_tokens":7,"draft_sample_method":"probabilistic","rejection_sample_method":"block","enable_adaptive_verification":false}' --max-cudagraph-capture-size 1024 --compilation-config '{"cudagraph_mode":"PIECEWISE"}' --enable-auto-tool-choice --tool-call-parser deepseek_v41 --reasoning-parser deepseek_v41
+++ seq 1 1440
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2380185
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2380185
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2380185
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2380185
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2380185
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2380185
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2380185
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2380185
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2380185
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2380185
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2380185
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2380185
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2380185
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2380185
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2380185
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2380185
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2380185
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2380185
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2380185
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2380185
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2380185
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2380185
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2380185
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2380185
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2380185
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2380185
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2380185
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2380185
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2380185
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2380185
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2380185
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2380185
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2380185
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2380185
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2380185
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2380185
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2380185
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2380185
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2380185
++ break
++ curl -sf http://127.0.0.1:8123/health
+++ date +%s
++ echo 'LEG_b12x_noep BOOT_FAIL 190s'
+LEG_b12x_noep BOOT_FAIL 190s
++ grep -aiE 'Error|assert|not support|Unsupported|disabled' /root/sm120opt_ops/b12xv3_boot_b12x_noep.log
++ grep -av engine_ready
++ tail -8
+(EngineCore pid=2381397) ERROR 10-24 14:24:04 [core.py:1572]   File "/root/sm120opt/lib/python3.12/site-packages/vllm/v1/executor/multiproc_executor.py", line 525, in get_response
+(EngineCore pid=2381397) ERROR 10-24 14:24:04 [core.py:1572]     raise RuntimeError(
+(EngineCore pid=2381397) ERROR 10-24 14:24:04 [core.py:1572] RuntimeError: Worker failed with error 'Assertion error (csrc/apis/attention.hpp:166): block_kv == 32 or block_kv == 64', please check the stack trace above for the root cause
+(EngineCore pid=2381397) ERROR 10-24 14:24:07 [multiproc_executor.py:380] Worker proc VllmWorker-6 died unexpectedly (exit code: None), shutting down executor.
+    raise RuntimeError(
+RuntimeError: Worker failed with error 'Assertion error (csrc/apis/attention.hpp:166): block_kv == 32 or block_kv == 64', please check the stack trace above for the root cause
+    raise RuntimeError(
+RuntimeError: Engine core initialization failed. See root cause above. Failed core proc(s): {}
++ return 1
+++ date
++ echo 'B12XV3_DONE Sat Oct 24 02:24:23 PM UTC 2026'
+B12XV3_DONE Sat Oct 24 02:24:23 PM UTC 2026
