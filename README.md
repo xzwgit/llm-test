@@ -64,3 +64,4 @@ LLM 部署与性能测试归档。每个子目录是一个独立测试项目，�
 ## SM120 upstream patches
 
 - [SM120 upstream patches (vLLM x3 + TileKernels)](sm120-upstream-patches/) — verified patches + evidence from our 8x RTX PRO 6000 cluster: NIXL PD loopback diagnostic, PD troubleshooting docs, bench --metrics-url, sinkhorn SMEM fix
+- sm120opt-162/ — 10-24 fork line on .162: b12x MoE first experiment (fast c1 +18.8% but exact-task corruption; #60762 port to dev451)
