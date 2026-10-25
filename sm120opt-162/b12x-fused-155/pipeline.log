@@ -1,0 +1,805 @@
++ date
+Sun Oct 25 06:16:16 AM UTC 2026
++ export PATH=/usr/local/bin:/usr/local/cuda/bin:/root/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
++ PATH=/usr/local/bin:/usr/local/cuda/bin:/root/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
++ true
+++ ls /data/models/DeepSeek-V4.1-Flash-1017/model-00001-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00002-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00003-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00004-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00005-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00006-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00007-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00008-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00009-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00010-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00011-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00012-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00013-of-00048.safetensors
+++ wc -l
++ N=13
++ '[' 13 -ge 48 ']'
++ sleep 60
++ true
+++ wc -l
+++ ls /data/models/DeepSeek-V4.1-Flash-1017/model-00001-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00002-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00003-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00004-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00005-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00006-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00007-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00008-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00009-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00010-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00011-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00012-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00013-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00014-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00015-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00016-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00017-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00018-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00019-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00020-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00021-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00022-of-00048.safetensors
++ N=22
++ '[' 22 -ge 48 ']'
++ sleep 60
++ true
+++ wc -l
+++ ls /data/models/DeepSeek-V4.1-Flash-1017/model-00001-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00002-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00003-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00004-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00005-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00006-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00007-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00008-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00009-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00010-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00011-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00012-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00013-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00014-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00015-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00016-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00017-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00018-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00019-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00020-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00021-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00022-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00023-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00024-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00025-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00026-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00027-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00028-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00029-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00030-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00031-of-00048.safetensors
++ N=31
++ '[' 31 -ge 48 ']'
++ sleep 60
++ true
+++ wc -l
+++ ls /data/models/DeepSeek-V4.1-Flash-1017/model-00001-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00002-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00003-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00004-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00005-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00006-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00007-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00008-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00009-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00010-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00011-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00012-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00013-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00014-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00015-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00016-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00017-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00018-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00019-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00020-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00021-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00022-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00023-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00024-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00025-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00026-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00027-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00028-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00029-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00030-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00031-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00032-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00033-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00034-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00035-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00036-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00037-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00038-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00039-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00040-of-00048.safetensors
++ N=40
++ '[' 40 -ge 48 ']'
++ sleep 60
++ true
+++ wc -l
+++ ls /data/models/DeepSeek-V4.1-Flash-1017/model-00001-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00002-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00003-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00004-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00005-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00006-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00007-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00008-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00009-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00010-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00011-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00012-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00013-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00014-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00015-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00016-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00017-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00018-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00019-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00020-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00021-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00022-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00023-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00024-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00025-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00026-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00027-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00028-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00029-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00030-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00031-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00032-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00033-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00034-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00035-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00036-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00037-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00038-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00039-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00040-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00041-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00042-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00043-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00044-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00045-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00046-of-00048.safetensors
++ N=46
++ '[' 46 -ge 48 ']'
++ sleep 60
++ true
+++ wc -l
+++ ls /data/models/DeepSeek-V4.1-Flash-1017/model-00001-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00002-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00003-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00004-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00005-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00006-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00007-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00008-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00009-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00010-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00011-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00012-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00013-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00014-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00015-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00016-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00017-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00018-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00019-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00020-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00021-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00022-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00023-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00024-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00025-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00026-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00027-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00028-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00029-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00030-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00031-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00032-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00033-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00034-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00035-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00036-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00037-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00038-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00039-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00040-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00041-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00042-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00043-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00044-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00045-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00046-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00047-of-00048.safetensors
++ N=47
++ '[' 47 -ge 48 ']'
++ sleep 60
++ true
+++ wc -l
+++ ls /data/models/DeepSeek-V4.1-Flash-1017/model-00001-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00002-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00003-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00004-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00005-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00006-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00007-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00008-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00009-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00010-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00011-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00012-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00013-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00014-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00015-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00016-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00017-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00018-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00019-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00020-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00021-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00022-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00023-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00024-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00025-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00026-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00027-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00028-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00029-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00030-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00031-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00032-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00033-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00034-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00035-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00036-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00037-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00038-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00039-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00040-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00041-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00042-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00043-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00044-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00045-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00046-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00047-of-00048.safetensors
++ N=47
++ '[' 47 -ge 48 ']'
++ sleep 60
++ true
+++ wc -l
+++ ls /data/models/DeepSeek-V4.1-Flash-1017/model-00001-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00002-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00003-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00004-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00005-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00006-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00007-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00008-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00009-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00010-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00011-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00012-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00013-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00014-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00015-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00016-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00017-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00018-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00019-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00020-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00021-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00022-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00023-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00024-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00025-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00026-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00027-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00028-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00029-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00030-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00031-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00032-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00033-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00034-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00035-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00036-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00037-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00038-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00039-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00040-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00041-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00042-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00043-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00044-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00045-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00046-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00047-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00048-of-00048.safetensors
++ N=48
++ '[' 48 -ge 48 ']'
++ sleep 30
+++ wc -l
+++ ls /data/models/DeepSeek-V4.1-Flash-1017/model-00001-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00002-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00003-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00004-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00005-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00006-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00007-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00008-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00009-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00010-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00011-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00012-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00013-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00014-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00015-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00016-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00017-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00018-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00019-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00020-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00021-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00022-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00023-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00024-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00025-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00026-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00027-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00028-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00029-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00030-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00031-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00032-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00033-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00034-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00035-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00036-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00037-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00038-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00039-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00040-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00041-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00042-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00043-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00044-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00045-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00046-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00047-of-00048.safetensors /data/models/DeepSeek-V4.1-Flash-1017/model-00048-of-00048.safetensors
++ N2=48
++ '[' 48 -eq 48 ']'
++ break
+++ du -sh /data/models/DeepSeek-V4.1-Flash-1017
+++ cut -f1
++ echo 'WEIGHTS_DONE N=48 476G'
+WEIGHTS_DONE N=48 476G
++ '[' -d /root/b12xenv ']'
++ uv venv /root/b12xenv --python 3.12
+Using CPython 3.12.13
+Creating virtual environment at: b12xenv
+Activate with: source b12xenv/bin/activate
++ export VIRTUAL_ENV=/root/b12xenv
++ VIRTUAL_ENV=/root/b12xenv
++ '[' -f /root/b12xenv/.installed ']'
++ uv pip install -U vllm --torch-backend=auto --extra-index-url https://wheels.vllm.ai/nightly
+Using Python 3.12.13 environment at: b12xenv
+Resolved 199 packages in 34.26s
+Downloading hf-xet (4.0MiB)
+Downloading tokenizers (3.2MiB)
+Downloading openai (2.2MiB)
+Downloading networkx (2.0MiB)
+Downloading pillow (6.8MiB)
+Downloading anthropic (2.1MiB)
+Downloading cryptography (4.5MiB)
+Downloading pydantic-core (2.1MiB)
+Downloading aiohttp (1.8MiB)
+Downloading grpcio (6.8MiB)
+Downloading nvidia-cudnn-cu13 (527.5MiB)
+Downloading nvidia-nccl-cu13 (206.0MiB)
+Downloading nvidia-cutlass-dsl-libs-base (2.9MiB)
+Downloading xgrammar (1.3MiB)
+Downloading nvidia-nvjitlink (40.5MiB)
+Downloading cuda-bindings (6.8MiB)
+Downloading nccl-extensions (21.5MiB)
+Downloading flashinfer-python (59.2MiB)
+Downloading fastsafetensors (2.6MiB)
+Downloading transformers (12.2MiB)
+Downloading instanttensor (6.2MiB)
+Downloading uvloop (4.3MiB)
+Downloading nvidia-cutlass-dsl-libs-core (1.6MiB)
+Downloading nvidia-nvvm (69.2MiB)
+Downloading nvidia-cuda-cccl (3.7MiB)
+Downloading nccl4py (3.5MiB)
+Downloading mistral-common (6.3MiB)
+Downloading cuda-core (6.3MiB)
+Downloading tokenspeed-triton (89.0MiB)
+Downloading nvidia-cuda-nvcc (45.5MiB)
+Downloading nvidia-cutlass-dsl-libs-cu12 (87.5MiB)
+Downloading oss-harmony (3.4MiB)
+Downloading nvidia-cutlass-dsl-libs-cu13 (87.7MiB)
+Downloading nvidia-cudnn-frontend (9.7MiB)
+Downloading triton (235.4MiB)
+Downloading torch (532.8MiB)
+Downloading torchcodec (9.7MiB)
+Downloading torchvision (7.2MiB)
+Downloading vllm (320.0MiB)
+ Downloaded xgrammar
+ Downloaded nvidia-cutlass-dsl-libs-core
+ Downloaded aiohttp
+ Downloaded networkx
+ Downloaded pydantic-core
+ Downloaded anthropic
+ Downloaded openai
+ Downloaded fastsafetensors
+ Downloaded nvidia-cutlass-dsl-libs-base
+ Downloaded tokenizers
+ Downloaded oss-harmony
+ Downloaded nccl4py
+ Downloaded nvidia-cuda-cccl
+ Downloaded hf-xet
+ Downloaded uvloop
+ Downloaded cryptography
+ Downloaded instanttensor
+ Downloaded mistral-common
+ Downloaded cuda-core
+ Downloaded pillow
+ Downloaded cuda-bindings
+ Downloaded grpcio
+ Downloaded nvidia-cudnn-frontend
+ Downloaded transformers
+ Downloaded nccl-extensions
+ Downloaded torchvision
+ Downloaded torchcodec
+ Downloaded nvidia-nvjitlink
+ Downloaded nvidia-cuda-nvcc
+ Downloaded flashinfer-python
+ Downloaded nvidia-nvvm
+ Downloaded nvidia-cutlass-dsl-libs-cu12
+ Downloaded nvidia-cutlass-dsl-libs-cu13
+ Downloaded tokenspeed-triton
+ Downloaded nvidia-nccl-cu13
+ Downloaded nvidia-cudnn-cu13
+ Downloaded triton
+ Downloaded vllm
+ Downloaded torch
+Prepared 199 packages in 4m 04s
+Installed 199 packages in 189ms
+ + agent-detector==2.0.0
+ + aiohappyeyeballs==2.7.1
+ + aiohttp==3.14.5
+ + aiosignal==1.4.0
+ + annotated-doc==0.0.5
+ + annotated-types==0.8.0
+ + anthropic==2.3.0
+ + anyio==4.15.1
+ + apache-tvm-ffi==0.1.11
+ + astor==0.8.1
+ + attrs==26.1.0
+ + blake3==1.0.11
+ + cachetools==7.2.4
+ + cbor2==6.1.5
+ + certifi==2026.10.23
+ + cffi==2.1.1
+ + charset-normalizer==3.5.2
+ + click==8.5.0
+ + cloudpickle==3.1.2
+ + compressed-tensors==0.17.0
+ + cryptography==50.0.2
+ + cuda-bindings==13.4.4
+ + cuda-core==1.2.2
+ + cuda-pathfinder==1.8.4
+ + cuda-python==13.4.4
+ + cuda-tile==1.7.0
+ + cuda-toolkit==13.2.1
+ + depyf==0.20.0
+ + detect-installer==0.2.1
+ + dill==0.4.1
+ + dnspython==2.9.0
+ + docstring-parser==0.18.0
+ + einops==0.8.2
+ + email-validator==2.3.0
+ + fastapi==0.136.3
+ + fastapi-cli==0.0.32
+ + fastapi-cloud-cli==0.26.0
+ + fastar==0.12.0
+ + fastsafetensors==0.5.0
+ + filelock==4.2.4
+ + flashinfer-python==0.7.2.post1
+ + frozenlist==1.8.0
+ + fsspec==2026.9.0
+ + googleapis-common-protos==1.76.0
+ + grpcio==1.84.1
+ + h11==0.16.0
+ + hf-xet==1.7.0
+ + httpcore==1.0.9
+ + httpcore2==2.16.0
+ + httptools==0.9.0
+ + httpx==0.28.1
+ + httpx2==2.16.0
+ + huggingface-hub==2.3.0
+ + humming-kernels==0.1.18
+ + idna==3.20
+ + ijson==3.6.0
+ + instanttensor==0.2.2
+ + interegular==0.3.3
+ + jinja2==3.1.6
+ + jiter==0.18.0
+ + jmespath==1.1.0
+ + jsonschema==4.26.0
+ + jsonschema-specifications==2025.9.1
+ + lark==1.2.2
+ + llguidance==1.7.6
+ + llvmlite==0.47.0
+ + lm-format-enforcer==0.11.3
+ + loguru==0.7.3
+ + markdown-it-py==4.2.0
+ + markupsafe==3.0.4
+ + mcp==2.3.0
+ + mcp-types==2.3.0
+ + mdurl==0.1.2
+ + mistral-common==1.12.0
+ + ml-dtypes==0.6.0
+ + model-hosting-container-standards==0.1.16
+ + mpmath==1.3.0
+ + msgspec==0.22.0
+ + multidict==7.2.1
+ + nccl-extensions==0.1.0
+ + nccl4py==0.6.0
+ + networkx==3.7
+ + ninja==1.13.2
+ + numba==0.65.0
+ + numpy==2.3.5
+ + nvidia-cublas==13.4.0.1
+ + nvidia-cuda-cccl==13.3.4.3.1
+ + nvidia-cuda-crt==13.4.92
+ + nvidia-cuda-cupti==13.2.75
+ + nvidia-cuda-nvcc==13.4.92
+ + nvidia-cuda-nvrtc==13.2.78
+ + nvidia-cuda-runtime==13.2.75
+ + nvidia-cudnn-cu13==9.24.0.43
+ + nvidia-cudnn-frontend==1.31.0
+ + nvidia-cufft==12.2.0.46
+ + nvidia-cufile==1.17.1.22
+ + nvidia-curand==10.4.2.55
+ + nvidia-cusolver==12.2.0.1
+ + nvidia-cusparse==12.7.10.1
+ + nvidia-cusparselt-cu13==0.8.1
+ + nvidia-cutlass-dsl==4.8.0
+ + nvidia-cutlass-dsl-libs-base==4.8.0
+ + nvidia-cutlass-dsl-libs-core==4.8.0
+ + nvidia-cutlass-dsl-libs-cu12==4.8.0
+ + nvidia-cutlass-dsl-libs-cu13==4.8.0
+ + nvidia-ml-py==13.615.71
+ + nvidia-nccl-cu13==2.30.7
+ + nvidia-nvjitlink==13.4.92
+ + nvidia-nvshmem-cu13==3.4.5
+ + nvidia-nvtx==13.2.75
+ + nvidia-nvvm==13.4.92
+ + nvtx==0.2.15
+ + openai==3.37.0
+ + opencv-python-headless==5.0.0.93
+ + opentelemetry-api==1.45.1
+ + opentelemetry-exporter-http-transport==0.66b1
+ + opentelemetry-exporter-otlp==1.45.1
+ + opentelemetry-exporter-otlp-common==0.66b1
+ + opentelemetry-exporter-otlp-proto-common==1.45.1
+ + opentelemetry-exporter-otlp-proto-grpc==1.45.1
+ + opentelemetry-exporter-otlp-proto-http==1.45.1
+ + opentelemetry-proto==1.45.1
+ + opentelemetry-sdk==1.45.1
+ + opentelemetry-semantic-conventions==0.66b1
+ + opentelemetry-semantic-conventions-ai==0.5.1
+ + orjson==3.13.0
+ + oss-harmony==0.0.11
+ + outlines-core==0.2.14
+ + packaging==26.3
+ + partial-json-parser==0.2.1.1.post7
+ + pillow==13.0.0
+ + prometheus-client==0.26.0
+ + prometheus-fastapi-instrumentator==8.1.0
+ + propcache==0.5.4
+ + protobuf==7.36.2
+ + psutil==7.2.2
+ + py-cpuinfo==9.0.0
+ + pybase64==1.5.1
+ + pycountry==26.2.16
+ + pycparser==3.12
+ + pydantic==2.14.1
+ + pydantic-core==2.50.1
+ + pydantic-extra-types==2.11.1
+ + pydantic-settings==2.16.1
+ + pygments==2.21.0
+ + pyjwt==2.15.1
+ + pynvvideocodec==2.0.4
+ + python-dotenv==1.2.4
+ + python-json-logger==4.2.0
+ + python-multipart==0.0.32
+ + pyyaml==6.0.3
+ + pyzmq==27.2.0
+ + quack-kernels==0.6.5
+ + referencing==0.37.0
+ + regex==2026.9.29
+ + requests==2.34.2
+ + rich==15.0.0
+ + rich-toolkit==0.20.6
+ + rignore==0.8.1
+ + rpds-py==2026.9.1
+ + safetensors==0.8.0
+ + sentencepiece==0.2.2
+ + sentry-sdk==2.73.0
+ + setproctitle==1.3.8
+ + setuptools==80.10.2
+ + shellingham==1.5.4
+ + six==1.17.0
+ + sniffio==1.3.1
+ + sse-starlette==3.5.1
+ + starlette==1.10.0
+ + supervisor==4.3.0
+ + sympy==1.14.0
+ + tabulate==0.10.0
+ + tiktoken==0.14.0
+ + tilelang==0.1.12
+ + tokenizers==0.23.3
+ + tokenspeed-mla==2.0.3
+ + tokenspeed-triton==3.9.10.post20261008
+ + torch==2.14.0+cu132
+ + torch-c-dlpack-ext==0.1.5
+ + torchaudio==2.11.0+cpu
+ + torchcodec==0.17.0+cu132
+ + torchvision==0.29.0+cu132
+ + tqdm==4.70.1
+ + transformers==5.20.2
+ + triton==3.8.0
+ + truststore==0.10.5
+ + typer==0.27.3
+ + typing-extensions==4.16.0
+ + typing-inspection==0.4.4
+ + urllib3==2.8.0
+ + uvicorn==0.54.0
+ + uvloop==0.23.0
+ + vllm==0.32.1rc1.dev466+ge4a5b5537
+ + watchfiles==1.3.0
+ + websockets==17.3
+ + xgrammar==0.2.8
+ + yarl==1.25.1
+ + z3-solver==4.15.4.0
++ uv pip uninstall torchaudio
++ uv pip install ninja
+Using Python 3.12.13 environment at: b12xenv
+Checked 1 package in 1ms
++ touch /root/b12xenv/.installed
+++ /root/b12xenv/bin/python -c 'import vllm; print(vllm.__version__)'
+W1025 06:28:26.730000 627167 torch/_opaque_base.py:6] torch._opaque_base is deprecated, use torch._custom_class_base instead
+W1025 06:28:26.730000 627167 torch/_library/opaque_object.py:288] register_opaque_type is deprecated, use register_custom_class instead
+W1025 06:28:26.730000 627167 torch/_library/opaque_object.py:211] typ='value' is deprecated, use typ='constant' instead
++ echo 'NIGHTLY: 0.32.1rc1.dev466+ge4a5b5537'
+NIGHTLY: 0.32.1rc1.dev466+ge4a5b5537
++ /root/b12xenv/bin/python
+PORT60762_OK
++ /root/b12xenv/bin/python /root/b12x_ops/patch_compact_bind.py --file /root/b12xenv/lib/python3.12/site-packages/flashinfer/experimental/b12x/moe/fused_moe/_impl.py
++ tail -1
+/root/b12xenv/lib/python3.12/site-packages/flashinfer/experimental/b12x/moe/fused_moe/_impl.py: patched (TPMoEScratchPlan.bind attaches the compact W4A8 launchers)
++ /root/b12xenv/bin/python /root/b12x_ops/patch_fused.py --root /root/b12xenv/lib/python3.12/site-packages/flashinfer/experimental/b12x/moe
++ tail -1
+patched /root/b12xenv/lib/python3.12/site-packages/flashinfer/experimental/b12x/moe/_shared/kernels/w4a8_compact_micro.py
++ pkill -f 'vllm serve'
++ sleep 5
+++ date +%s
++ T0=1792909715
++ BPID=627240
++ env PATH=/root/b12xenv/bin:/usr/local/cuda/bin:/usr/local/bin:/usr/local/cuda/bin:/root/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin CUDA_HOME=/usr/local/cuda VLLM_MOET_B12X_MOE_FUSED_DIR=/root/b12x_ops VLLM_MOET_B12X_MOE_FUSED=1 VLLM_USE_RUST_FRONTEND=1 VLLM_ENGINE_READY_TIMEOUT_S=7200 FLASHINFER_DISABLE_VERSION_CHECK=1 HF_HUB_OFFLINE=1 HF_HUB_DISABLE_XET=1 /root/b12xenv/bin/vllm serve /data/models/DeepSeek-V4.1-Flash-1017 --served-model-name deepseek-v4.1-flash --trust-remote-code --host 0.0.0.0 --port 8123 --api-key *** --tokenizer-mode deepseek_v41 --tensor-parallel-size 4 --kv-cache-dtype fp8 --engram-config '{"cpu_offload":true}' --moe-backend b12x --max-model-len 131072 --max-num-seqs 128 --gpu-memory-utilization 0.90 --speculative-config '{"method":"dspark","num_speculative_tokens":7,"draft_sample_method":"probabilistic","rejection_sample_method":"block","enable_adaptive_verification":false}' --max-cudagraph-capture-size 1024 --compilation-config '{"cudagraph_mode":"PIECEWISE"}' --enable-auto-tool-choice --tool-call-parser deepseek_v41 --reasoning-parser deepseek_v41
+++ seq 1 1440
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 627240
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 627240
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 627240
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 627240
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 627240
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 627240
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 627240
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 627240
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 627240
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 627240
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 627240
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 627240
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 627240
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 627240
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 627240
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 627240
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 627240
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 627240
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 627240
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 627240
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 627240
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 627240
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 627240
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 627240
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 627240
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 627240
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 627240
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 627240
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 627240
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 627240
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 627240
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 627240
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 627240
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 627240
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 627240
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 627240
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 627240
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 627240
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 627240
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 627240
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 627240
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 627240
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 627240
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 627240
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 627240
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 627240
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 627240
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 627240
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 627240
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 627240
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 627240
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 627240
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 627240
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 627240
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 627240
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 627240
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 627240
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 627240
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 627240
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 627240
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 627240
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 627240
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 627240
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 627240
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 627240
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 627240
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 627240
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 627240
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 627240
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 627240
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 627240
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 627240
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 627240
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 627240
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 627240
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 627240
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 627240
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 627240
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 627240
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 627240
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 627240
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 627240
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 627240
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 627240
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 627240
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 627240
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 627240
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 627240
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 627240
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 627240
++ sleep 5
++ for i in $(seq 1 1440)
++ curl -sf http://127.0.0.1:8123/health
++ break
++ curl -sf http://127.0.0.1:8123/health
+++ date +%s
++ echo 'TP4_READY 451s'
+TP4_READY 451s
++ grep -aiE 'Mxfp4 MoE backend' /root/b12x_ops/tp4_boot.log
++ head -2
+(Worker_TP0 pid=629287) INFO 10-25 06:29:44 [mxfp4.py:597] Using 'B12X_MXFP4_MXFP8' Mxfp4 MoE backend.
++ sleep 5
++ python3
+{
+ "math": "323\n> 323\n> \n> \n> On 8/8/07, Anupam Kapoor <anupam.kapoor@gmail.com> wrote:\n> >\n> > >\n> > > 1 2",
+ "cmp": "9.9大。",
+ "zh": "北京是中国的首都，也是全国政治、文化、国际交往和科技创新中心，拥有悠久历史和丰富文化遗产。",
+ "fact": "北京",
+ "tool": "[{\"id\": \"call_4ea8d6919f334d81aa3e26b7\", \"type\": \"function\", \"function\": {\"name\": \"get_weather\", \"arguments\": \"{\\\"city\\\":\\\"北京\\\"}\"}}]",
+ "code": "def binary_search(arr, target):    left, right = 0, len(arr) - 1    while left <= right:        mid = (left + right) // 2        if arr[mid] == target:            return mid       "
+}
++ echo QUALITY_RC=0
+QUALITY_RC=0
++ for TIER in "1024 1024 4 1" "1024 1024 32 32" "8192 8192 8 8"
++ set -- 1024 1024 4 1
++ IL=1024
++ OL=1024
++ N=4
++ C=1
++ echo '===== 1024 c1 ====='
+===== 1024 c1 =====
++ OPENAI_API_KEY=***
++ grep -aE 'Successful requests|Output token throughput'
++ head -2
++ /root/b12xenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data/models/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 1024 --random-output-len 1024 --ignore-eos --num-prompts 4 --request-rate 1
+Successful requests:                     4         
+Output token throughput (tok/s):         296.52    
++ for TIER in "1024 1024 4 1" "1024 1024 32 32" "8192 8192 8 8"
++ set -- 1024 1024 32 32
++ IL=1024
++ OL=1024
++ N=32
++ C=32
++ echo '===== 1024 c32 ====='
+===== 1024 c32 =====
++ grep -aE 'Successful requests|Output token throughput'
++ OPENAI_API_KEY=***
++ head -2
++ /root/b12xenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data/models/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 1024 --random-output-len 1024 --ignore-eos --num-prompts 32 --request-rate 32
+Successful requests:                     32        
+Output token throughput (tok/s):         965.93    
++ for TIER in "1024 1024 4 1" "1024 1024 32 32" "8192 8192 8 8"
++ set -- 8192 8192 8 8
++ IL=8192
++ OL=8192
++ N=8
++ C=8
++ echo '===== 8192 c8 ====='
+===== 8192 c8 =====
++ OPENAI_API_KEY=***
++ head -2
++ /root/b12xenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data/models/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 8192 --random-output-len 8192 --ignore-eos --num-prompts 8 --request-rate 8
++ grep -aE 'Successful requests|Output token throughput'
+Successful requests:                     8         
+Output token throughput (tok/s):         456.40    
++ pkill -f 'vllm serve'
+++ date
++ echo 'PIPELINE_DONE Sun Oct 25 06:39:43 AM UTC 2026'
+PIPELINE_DONE Sun Oct 25 06:39:43 AM UTC 2026
