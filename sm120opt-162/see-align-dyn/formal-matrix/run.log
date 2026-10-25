@@ -1,0 +1,534 @@
++ date
+Sun Oct 25 01:57:47 AM UTC 2026
++ export PATH=/root/sm120opt/bin:/usr/local/cuda/bin:/root/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
++ PATH=/root/sm120opt/bin:/usr/local/cuda/bin:/root/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
++ export CUDA_HOME=/usr/local/cuda
++ CUDA_HOME=/usr/local/cuda
++ export OPENAI_API_KEY=*** HF_HUB_OFFLINE=1 HF_HUB_DISABLE_XET=1 FLASHINFER_DISABLE_VERSION_CHECK=1
++ OPENAI_API_KEY=***
++ HF_HUB_OFFLINE=1
++ HF_HUB_DISABLE_XET=1
++ FLASHINFER_DISABLE_VERSION_CHECK=1
++ KLOG=/root/sm120opt_ops/see_matrix/see_matrix_k7.log
++ BLOG=/root/sm120opt_ops/see_matrix/see_boot_k7.log
++ kill_all
++ pkill -9 -f '[v]llm serve'
++ pkill -9 -f VLLM::
++ sleep 2
+++ ss -lptnH 'sport = :8123'
+++ grep -oP 'pid=\K[0-9]+'
+++ sort -u
+++ nvidia-smi --query-compute-apps=pid --format=csv,noheader
++ rm -f '/dev/shm/nccl-*' '/dev/shm/vllm-*'
++ sleep 3
+++ date -u
++ echo '########## SEE MATRIX k=7 BOOT (dev451+align patch) Sun Oct 25 01:57:53 AM UTC 2026 ##########'
++ echo 'BOOT CMD: vllm serve /root/DeepSeek-V4.1-Flash-1017 --tensor-parallel-size 8 --enable-expert-parallel --kv-cache-dtype fp8 --engram-config {cpu_offload:true} --moe-backend auto --max-model-len 1048576 --max-num-seqs 128 --gpu-memory-utilization 0.90 --speculative-config {dspark k7 probabilistic block} --max-cudagraph-capture-size 1024 --compilation-config {cudagraph_mode:PIECEWISE} --port 8123 --api-key *** [VL ON]'
++ BOOTED=0
++ setsid nohup env PATH=/root/sm120opt/bin:/usr/local/cuda/bin:/root/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin CUDA_HOME=/usr/local/cuda VLLM_USE_RUST_FRONTEND=1 VLLM_ENGINE_READY_TIMEOUT_S=7200 FLASHINFER_DISABLE_VERSION_CHECK=1 HF_HUB_OFFLINE=1 HF_HUB_DISABLE_XET=1 /root/sm120opt/bin/vllm serve /root/DeepSeek-V4.1-Flash-1017 --served-model-name deepseek-v4.1-flash --trust-remote-code --tokenizer-mode deepseek_v41 --tensor-parallel-size 8 --enable-expert-parallel --kv-cache-dtype fp8 --engram-config '{"cpu_offload":true}' --moe-backend auto --compilation-config '{"cudagraph_mode":"PIECEWISE"}' --max-model-len 1048576 --max-num-seqs 128 --gpu-memory-utilization 0.90 --speculative-config '{"method":"dspark","num_speculative_tokens":7,"draft_sample_method":"probabilistic","rejection_sample_method":"block","enable_adaptive_verification":false}' --max-cudagraph-capture-size 1024 --enable-auto-tool-choice --tool-call-parser deepseek_v41 --reasoning-parser deepseek_v41 --port 8123 --api-key ***
+++ seq 1 100
++ for i in $(seq 1 100)
++ sleep 10
+++ curl -s -m 60 http://127.0.0.1:8123/v1/completions -H 'Authorization: Bearer ***' -H 'Content-Type: application/json' -d '{"model":"deepseek-v4.1-flash","prompt":"17*19=","max_tokens":8,"temperature":0}'
+++ grep -o '"text":"[^"]*"'
+++ head -1
++ ANS=
++ echo ''
++ grep -q 323
++ grep -qE 'Assertion error|ValueError|Engine core initialization failed|OutOfMemory|CUDA out of memory' /root/sm120opt_ops/see_matrix/see_boot_k7.log
++ for i in $(seq 1 100)
++ sleep 10
+++ curl -s -m 60 http://127.0.0.1:8123/v1/completions -H 'Authorization: Bearer ***' -H 'Content-Type: application/json' -d '{"model":"deepseek-v4.1-flash","prompt":"17*19=","max_tokens":8,"temperature":0}'
+++ grep -o '"text":"[^"]*"'
+++ head -1
++ ANS=
++ echo ''
++ grep -q 323
++ grep -qE 'Assertion error|ValueError|Engine core initialization failed|OutOfMemory|CUDA out of memory' /root/sm120opt_ops/see_matrix/see_boot_k7.log
++ for i in $(seq 1 100)
++ sleep 10
+++ curl -s -m 60 http://127.0.0.1:8123/v1/completions -H 'Authorization: Bearer ***' -H 'Content-Type: application/json' -d '{"model":"deepseek-v4.1-flash","prompt":"17*19=","max_tokens":8,"temperature":0}'
+++ grep -o '"text":"[^"]*"'
+++ head -1
++ ANS=
++ echo ''
++ grep -q 323
++ grep -qE 'Assertion error|ValueError|Engine core initialization failed|OutOfMemory|CUDA out of memory' /root/sm120opt_ops/see_matrix/see_boot_k7.log
++ for i in $(seq 1 100)
++ sleep 10
+++ curl -s -m 60 http://127.0.0.1:8123/v1/completions -H 'Authorization: Bearer ***' -H 'Content-Type: application/json' -d '{"model":"deepseek-v4.1-flash","prompt":"17*19=","max_tokens":8,"temperature":0}'
+++ grep -o '"text":"[^"]*"'
+++ head -1
++ ANS=
++ echo ''
++ grep -q 323
++ grep -qE 'Assertion error|ValueError|Engine core initialization failed|OutOfMemory|CUDA out of memory' /root/sm120opt_ops/see_matrix/see_boot_k7.log
++ for i in $(seq 1 100)
++ sleep 10
+++ curl -s -m 60 http://127.0.0.1:8123/v1/completions -H 'Authorization: Bearer ***' -H 'Content-Type: application/json' -d '{"model":"deepseek-v4.1-flash","prompt":"17*19=","max_tokens":8,"temperature":0}'
+++ grep -o '"text":"[^"]*"'
+++ head -1
++ ANS=
++ echo ''
++ grep -q 323
++ grep -qE 'Assertion error|ValueError|Engine core initialization failed|OutOfMemory|CUDA out of memory' /root/sm120opt_ops/see_matrix/see_boot_k7.log
++ for i in $(seq 1 100)
++ sleep 10
+++ curl -s -m 60 http://127.0.0.1:8123/v1/completions -H 'Authorization: Bearer ***' -H 'Content-Type: application/json' -d '{"model":"deepseek-v4.1-flash","prompt":"17*19=","max_tokens":8,"temperature":0}'
+++ grep -o '"text":"[^"]*"'
+++ head -1
++ ANS=
++ echo ''
++ grep -q 323
++ grep -qE 'Assertion error|ValueError|Engine core initialization failed|OutOfMemory|CUDA out of memory' /root/sm120opt_ops/see_matrix/see_boot_k7.log
++ for i in $(seq 1 100)
++ sleep 10
+++ curl -s -m 60 http://127.0.0.1:8123/v1/completions -H 'Authorization: Bearer ***' -H 'Content-Type: application/json' -d '{"model":"deepseek-v4.1-flash","prompt":"17*19=","max_tokens":8,"temperature":0}'
+++ grep -o '"text":"[^"]*"'
+++ head -1
++ ANS=
++ echo ''
++ grep -q 323
++ grep -qE 'Assertion error|ValueError|Engine core initialization failed|OutOfMemory|CUDA out of memory' /root/sm120opt_ops/see_matrix/see_boot_k7.log
++ for i in $(seq 1 100)
++ sleep 10
+++ curl -s -m 60 http://127.0.0.1:8123/v1/completions -H 'Authorization: Bearer ***' -H 'Content-Type: application/json' -d '{"model":"deepseek-v4.1-flash","prompt":"17*19=","max_tokens":8,"temperature":0}'
+++ grep -o '"text":"[^"]*"'
+++ head -1
++ ANS=
++ echo ''
++ grep -q 323
++ grep -qE 'Assertion error|ValueError|Engine core initialization failed|OutOfMemory|CUDA out of memory' /root/sm120opt_ops/see_matrix/see_boot_k7.log
++ for i in $(seq 1 100)
++ sleep 10
+++ curl -s -m 60 http://127.0.0.1:8123/v1/completions -H 'Authorization: Bearer ***' -H 'Content-Type: application/json' -d '{"model":"deepseek-v4.1-flash","prompt":"17*19=","max_tokens":8,"temperature":0}'
+++ grep -o '"text":"[^"]*"'
+++ head -1
++ ANS=
++ echo ''
++ grep -q 323
++ grep -qE 'Assertion error|ValueError|Engine core initialization failed|OutOfMemory|CUDA out of memory' /root/sm120opt_ops/see_matrix/see_boot_k7.log
++ for i in $(seq 1 100)
++ sleep 10
+++ curl -s -m 60 http://127.0.0.1:8123/v1/completions -H 'Authorization: Bearer ***' -H 'Content-Type: application/json' -d '{"model":"deepseek-v4.1-flash","prompt":"17*19=","max_tokens":8,"temperature":0}'
+++ grep -o '"text":"[^"]*"'
+++ head -1
++ ANS=
++ echo ''
++ grep -q 323
++ grep -qE 'Assertion error|ValueError|Engine core initialization failed|OutOfMemory|CUDA out of memory' /root/sm120opt_ops/see_matrix/see_boot_k7.log
++ for i in $(seq 1 100)
++ sleep 10
+++ curl -s -m 60 http://127.0.0.1:8123/v1/completions -H 'Authorization: Bearer ***' -H 'Content-Type: application/json' -d '{"model":"deepseek-v4.1-flash","prompt":"17*19=","max_tokens":8,"temperature":0}'
+++ grep -o '"text":"[^"]*"'
+++ head -1
++ ANS='"text":"323\n\n323/19=17\n\n"'
++ echo '"text":"323\n\n323/19=17\n\n"'
++ grep -q 323
+++ date -u +%H:%M:%S
++ echo 'k=7 READY after ~110s 01:59:43'
++ grep -E 'KV cache size|DSpark draft' /root/sm120opt_ops/see_matrix/see_boot_k7.log
++ tail -4
++ BOOTED=1
++ break
++ '[' 1 -ne 1 ']'
++ sleep 5
++ echo '===== correctness k=7 ====='
++ curl -s -m 120 http://127.0.0.1:8123/v1/completions -H 'Content-Type: application/json' -H 'Authorization: Bearer ***' -d '{"model":"deepseek-v4.1-flash","prompt":"17*19=","max_tokens":16,"temperature":0}'
++ echo
++ bench /root/sm120opt_ops/see_matrix/see_matrix_k7.log /root/sm120opt_ops/see_matrix/see_boot_k7.log 'tier 1K/1K c1 k=7' 1024 1024 1
++ local LOG=/root/sm120opt_ops/see_matrix/see_matrix_k7.log BLOG=/root/sm120opt_ops/see_matrix/see_boot_k7.log 'label=tier 1K/1K c1 k=7' ilen=1024 olen=1024 conc=1
+++ date -u +%H:%M:%S
++ echo '===== tier 1K/1K c1 k=7 01:59:48 ====='
++ timeout 5400 env OPENAI_API_KEY=*** /root/sm120opt/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /root/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 1024 --random-output-len 1024 --ignore-eos --num-prompts 1 --request-rate 1
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/sm120opt_ops/see_matrix/see_boot_k7.log
++ return 0
++ bench /root/sm120opt_ops/see_matrix/see_matrix_k7.log /root/sm120opt_ops/see_matrix/see_boot_k7.log 'tier 1K/1K c1 k=7' 1024 1024 1
++ local LOG=/root/sm120opt_ops/see_matrix/see_matrix_k7.log BLOG=/root/sm120opt_ops/see_matrix/see_boot_k7.log 'label=tier 1K/1K c1 k=7' ilen=1024 olen=1024 conc=1
+++ date -u +%H:%M:%S
++ echo '===== tier 1K/1K c1 k=7 02:00:01 ====='
++ timeout 5400 env OPENAI_API_KEY=*** /root/sm120opt/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /root/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 1024 --random-output-len 1024 --ignore-eos --num-prompts 1 --request-rate 1
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/sm120opt_ops/see_matrix/see_boot_k7.log
++ return 0
++ for C in 2 4 8 16 32 64 128
++ bench /root/sm120opt_ops/see_matrix/see_matrix_k7.log /root/sm120opt_ops/see_matrix/see_boot_k7.log 'tier 1K/1K c2 k=7' 1024 1024 2
++ local LOG=/root/sm120opt_ops/see_matrix/see_matrix_k7.log BLOG=/root/sm120opt_ops/see_matrix/see_boot_k7.log 'label=tier 1K/1K c2 k=7' ilen=1024 olen=1024 conc=2
+++ date -u +%H:%M:%S
++ echo '===== tier 1K/1K c2 k=7 02:00:18 ====='
++ timeout 5400 env OPENAI_API_KEY=*** /root/sm120opt/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /root/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 1024 --random-output-len 1024 --ignore-eos --num-prompts 2 --request-rate 2
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/sm120opt_ops/see_matrix/see_boot_k7.log
++ return 0
++ for C in 2 4 8 16 32 64 128
++ bench /root/sm120opt_ops/see_matrix/see_matrix_k7.log /root/sm120opt_ops/see_matrix/see_boot_k7.log 'tier 1K/1K c4 k=7' 1024 1024 4
++ local LOG=/root/sm120opt_ops/see_matrix/see_matrix_k7.log BLOG=/root/sm120opt_ops/see_matrix/see_boot_k7.log 'label=tier 1K/1K c4 k=7' ilen=1024 olen=1024 conc=4
+++ date -u +%H:%M:%S
++ echo '===== tier 1K/1K c4 k=7 02:00:34 ====='
++ timeout 5400 env OPENAI_API_KEY=*** /root/sm120opt/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /root/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 1024 --random-output-len 1024 --ignore-eos --num-prompts 4 --request-rate 4
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/sm120opt_ops/see_matrix/see_boot_k7.log
++ return 0
++ for C in 2 4 8 16 32 64 128
++ bench /root/sm120opt_ops/see_matrix/see_matrix_k7.log /root/sm120opt_ops/see_matrix/see_boot_k7.log 'tier 1K/1K c8 k=7' 1024 1024 8
++ local LOG=/root/sm120opt_ops/see_matrix/see_matrix_k7.log BLOG=/root/sm120opt_ops/see_matrix/see_boot_k7.log 'label=tier 1K/1K c8 k=7' ilen=1024 olen=1024 conc=8
+++ date -u +%H:%M:%S
++ echo '===== tier 1K/1K c8 k=7 02:00:54 ====='
++ timeout 5400 env OPENAI_API_KEY=*** /root/sm120opt/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /root/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 1024 --random-output-len 1024 --ignore-eos --num-prompts 8 --request-rate 8
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/sm120opt_ops/see_matrix/see_boot_k7.log
++ return 0
++ for C in 2 4 8 16 32 64 128
++ bench /root/sm120opt_ops/see_matrix/see_matrix_k7.log /root/sm120opt_ops/see_matrix/see_boot_k7.log 'tier 1K/1K c16 k=7' 1024 1024 16
++ local LOG=/root/sm120opt_ops/see_matrix/see_matrix_k7.log BLOG=/root/sm120opt_ops/see_matrix/see_boot_k7.log 'label=tier 1K/1K c16 k=7' ilen=1024 olen=1024 conc=16
+++ date -u +%H:%M:%S
++ echo '===== tier 1K/1K c16 k=7 02:01:18 ====='
++ timeout 5400 env OPENAI_API_KEY=*** /root/sm120opt/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /root/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 1024 --random-output-len 1024 --ignore-eos --num-prompts 16 --request-rate 16
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/sm120opt_ops/see_matrix/see_boot_k7.log
++ return 0
++ for C in 2 4 8 16 32 64 128
++ bench /root/sm120opt_ops/see_matrix/see_matrix_k7.log /root/sm120opt_ops/see_matrix/see_boot_k7.log 'tier 1K/1K c32 k=7' 1024 1024 32
++ local LOG=/root/sm120opt_ops/see_matrix/see_matrix_k7.log BLOG=/root/sm120opt_ops/see_matrix/see_boot_k7.log 'label=tier 1K/1K c32 k=7' ilen=1024 olen=1024 conc=32
+++ date -u +%H:%M:%S
++ echo '===== tier 1K/1K c32 k=7 02:01:48 ====='
++ timeout 5400 env OPENAI_API_KEY=*** /root/sm120opt/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /root/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 1024 --random-output-len 1024 --ignore-eos --num-prompts 32 --request-rate 32
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/sm120opt_ops/see_matrix/see_boot_k7.log
++ return 0
++ for C in 2 4 8 16 32 64 128
++ bench /root/sm120opt_ops/see_matrix/see_matrix_k7.log /root/sm120opt_ops/see_matrix/see_boot_k7.log 'tier 1K/1K c64 k=7' 1024 1024 64
++ local LOG=/root/sm120opt_ops/see_matrix/see_matrix_k7.log BLOG=/root/sm120opt_ops/see_matrix/see_boot_k7.log 'label=tier 1K/1K c64 k=7' ilen=1024 olen=1024 conc=64
+++ date -u +%H:%M:%S
++ echo '===== tier 1K/1K c64 k=7 02:02:28 ====='
++ timeout 5400 env OPENAI_API_KEY=*** /root/sm120opt/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /root/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 1024 --random-output-len 1024 --ignore-eos --num-prompts 64 --request-rate 64
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/sm120opt_ops/see_matrix/see_boot_k7.log
++ return 0
++ for C in 2 4 8 16 32 64 128
++ bench /root/sm120opt_ops/see_matrix/see_matrix_k7.log /root/sm120opt_ops/see_matrix/see_boot_k7.log 'tier 1K/1K c128 k=7' 1024 1024 128
++ local LOG=/root/sm120opt_ops/see_matrix/see_matrix_k7.log BLOG=/root/sm120opt_ops/see_matrix/see_boot_k7.log 'label=tier 1K/1K c128 k=7' ilen=1024 olen=1024 conc=128
+++ date -u +%H:%M:%S
++ echo '===== tier 1K/1K c128 k=7 02:03:21 ====='
++ timeout 5400 env OPENAI_API_KEY=*** /root/sm120opt/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /root/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 1024 --random-output-len 1024 --ignore-eos --num-prompts 128 --request-rate 128
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/sm120opt_ops/see_matrix/see_boot_k7.log
++ return 0
++ for C in 1 2 4 8 16 32
++ bench /root/sm120opt_ops/see_matrix/see_matrix_k7.log /root/sm120opt_ops/see_matrix/see_boot_k7.log 'tier 4K/4K c1 k=7' 4096 4096 1
++ local LOG=/root/sm120opt_ops/see_matrix/see_matrix_k7.log BLOG=/root/sm120opt_ops/see_matrix/see_boot_k7.log 'label=tier 4K/4K c1 k=7' ilen=4096 olen=4096 conc=1
+++ date -u +%H:%M:%S
++ echo '===== tier 4K/4K c1 k=7 02:04:45 ====='
++ timeout 5400 env OPENAI_API_KEY=*** /root/sm120opt/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /root/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 4096 --random-output-len 4096 --ignore-eos --num-prompts 1 --request-rate 1
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/sm120opt_ops/see_matrix/see_boot_k7.log
++ return 0
++ for C in 1 2 4 8 16 32
++ bench /root/sm120opt_ops/see_matrix/see_matrix_k7.log /root/sm120opt_ops/see_matrix/see_boot_k7.log 'tier 4K/4K c2 k=7' 4096 4096 2
++ local LOG=/root/sm120opt_ops/see_matrix/see_matrix_k7.log BLOG=/root/sm120opt_ops/see_matrix/see_boot_k7.log 'label=tier 4K/4K c2 k=7' ilen=4096 olen=4096 conc=2
+++ date -u +%H:%M:%S
++ echo '===== tier 4K/4K c2 k=7 02:05:04 ====='
++ timeout 5400 env OPENAI_API_KEY=*** /root/sm120opt/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /root/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 4096 --random-output-len 4096 --ignore-eos --num-prompts 2 --request-rate 2
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/sm120opt_ops/see_matrix/see_boot_k7.log
++ return 0
++ for C in 1 2 4 8 16 32
++ bench /root/sm120opt_ops/see_matrix/see_matrix_k7.log /root/sm120opt_ops/see_matrix/see_boot_k7.log 'tier 4K/4K c4 k=7' 4096 4096 4
++ local LOG=/root/sm120opt_ops/see_matrix/see_matrix_k7.log BLOG=/root/sm120opt_ops/see_matrix/see_boot_k7.log 'label=tier 4K/4K c4 k=7' ilen=4096 olen=4096 conc=4
+++ date -u +%H:%M:%S
++ echo '===== tier 4K/4K c4 k=7 02:05:39 ====='
++ timeout 5400 env OPENAI_API_KEY=*** /root/sm120opt/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /root/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 4096 --random-output-len 4096 --ignore-eos --num-prompts 4 --request-rate 4
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/sm120opt_ops/see_matrix/see_boot_k7.log
++ return 0
++ for C in 1 2 4 8 16 32
++ bench /root/sm120opt_ops/see_matrix/see_matrix_k7.log /root/sm120opt_ops/see_matrix/see_boot_k7.log 'tier 4K/4K c8 k=7' 4096 4096 8
++ local LOG=/root/sm120opt_ops/see_matrix/see_matrix_k7.log BLOG=/root/sm120opt_ops/see_matrix/see_boot_k7.log 'label=tier 4K/4K c8 k=7' ilen=4096 olen=4096 conc=8
+++ date -u +%H:%M:%S
++ echo '===== tier 4K/4K c8 k=7 02:06:27 ====='
++ timeout 5400 env OPENAI_API_KEY=*** /root/sm120opt/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /root/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 4096 --random-output-len 4096 --ignore-eos --num-prompts 8 --request-rate 8
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/sm120opt_ops/see_matrix/see_boot_k7.log
++ return 0
++ for C in 1 2 4 8 16 32
++ bench /root/sm120opt_ops/see_matrix/see_matrix_k7.log /root/sm120opt_ops/see_matrix/see_boot_k7.log 'tier 4K/4K c16 k=7' 4096 4096 16
++ local LOG=/root/sm120opt_ops/see_matrix/see_matrix_k7.log BLOG=/root/sm120opt_ops/see_matrix/see_boot_k7.log 'label=tier 4K/4K c16 k=7' ilen=4096 olen=4096 conc=16
+++ date -u +%H:%M:%S
++ echo '===== tier 4K/4K c16 k=7 02:07:40 ====='
++ timeout 5400 env OPENAI_API_KEY=*** /root/sm120opt/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /root/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 4096 --random-output-len 4096 --ignore-eos --num-prompts 16 --request-rate 16
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/sm120opt_ops/see_matrix/see_boot_k7.log
++ return 0
++ for C in 1 2 4 8 16 32
++ bench /root/sm120opt_ops/see_matrix/see_matrix_k7.log /root/sm120opt_ops/see_matrix/see_boot_k7.log 'tier 4K/4K c32 k=7' 4096 4096 32
++ local LOG=/root/sm120opt_ops/see_matrix/see_matrix_k7.log BLOG=/root/sm120opt_ops/see_matrix/see_boot_k7.log 'label=tier 4K/4K c32 k=7' ilen=4096 olen=4096 conc=32
+++ date -u +%H:%M:%S
++ echo '===== tier 4K/4K c32 k=7 02:08:56 ====='
++ timeout 5400 env OPENAI_API_KEY=*** /root/sm120opt/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /root/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 4096 --random-output-len 4096 --ignore-eos --num-prompts 32 --request-rate 32
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/sm120opt_ops/see_matrix/see_boot_k7.log
++ return 0
++ for C in 1 2 4 8 16 32
++ bench /root/sm120opt_ops/see_matrix/see_matrix_k7.log /root/sm120opt_ops/see_matrix/see_boot_k7.log 'tier 8K/8K c1 k=7' 8192 8192 1
++ local LOG=/root/sm120opt_ops/see_matrix/see_matrix_k7.log BLOG=/root/sm120opt_ops/see_matrix/see_boot_k7.log 'label=tier 8K/8K c1 k=7' ilen=8192 olen=8192 conc=1
+++ date -u +%H:%M:%S
++ echo '===== tier 8K/8K c1 k=7 02:10:52 ====='
++ timeout 5400 env OPENAI_API_KEY=*** /root/sm120opt/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /root/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 8192 --random-output-len 8192 --ignore-eos --num-prompts 1 --request-rate 1
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/sm120opt_ops/see_matrix/see_boot_k7.log
++ return 0
++ for C in 1 2 4 8 16 32
++ bench /root/sm120opt_ops/see_matrix/see_matrix_k7.log /root/sm120opt_ops/see_matrix/see_boot_k7.log 'tier 8K/8K c2 k=7' 8192 8192 2
++ local LOG=/root/sm120opt_ops/see_matrix/see_matrix_k7.log BLOG=/root/sm120opt_ops/see_matrix/see_boot_k7.log 'label=tier 8K/8K c2 k=7' ilen=8192 olen=8192 conc=2
+++ date -u +%H:%M:%S
++ echo '===== tier 8K/8K c2 k=7 02:11:27 ====='
++ timeout 5400 env OPENAI_API_KEY=*** /root/sm120opt/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /root/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 8192 --random-output-len 8192 --ignore-eos --num-prompts 2 --request-rate 2
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/sm120opt_ops/see_matrix/see_boot_k7.log
++ return 0
++ for C in 1 2 4 8 16 32
++ bench /root/sm120opt_ops/see_matrix/see_matrix_k7.log /root/sm120opt_ops/see_matrix/see_boot_k7.log 'tier 8K/8K c4 k=7' 8192 8192 4
++ local LOG=/root/sm120opt_ops/see_matrix/see_matrix_k7.log BLOG=/root/sm120opt_ops/see_matrix/see_boot_k7.log 'label=tier 8K/8K c4 k=7' ilen=8192 olen=8192 conc=4
+++ date -u +%H:%M:%S
++ echo '===== tier 8K/8K c4 k=7 02:12:23 ====='
++ timeout 5400 env OPENAI_API_KEY=*** /root/sm120opt/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /root/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 8192 --random-output-len 8192 --ignore-eos --num-prompts 4 --request-rate 4
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/sm120opt_ops/see_matrix/see_boot_k7.log
++ return 0
++ for C in 1 2 4 8 16 32
++ bench /root/sm120opt_ops/see_matrix/see_matrix_k7.log /root/sm120opt_ops/see_matrix/see_boot_k7.log 'tier 8K/8K c8 k=7' 8192 8192 8
++ local LOG=/root/sm120opt_ops/see_matrix/see_matrix_k7.log BLOG=/root/sm120opt_ops/see_matrix/see_boot_k7.log 'label=tier 8K/8K c8 k=7' ilen=8192 olen=8192 conc=8
+++ date -u +%H:%M:%S
++ echo '===== tier 8K/8K c8 k=7 02:14:39 ====='
++ timeout 5400 env OPENAI_API_KEY=*** /root/sm120opt/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /root/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 8192 --random-output-len 8192 --ignore-eos --num-prompts 8 --request-rate 8
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/sm120opt_ops/see_matrix/see_boot_k7.log
++ return 0
++ for C in 1 2 4 8 16 32
++ bench /root/sm120opt_ops/see_matrix/see_matrix_k7.log /root/sm120opt_ops/see_matrix/see_boot_k7.log 'tier 8K/8K c16 k=7' 8192 8192 16
++ local LOG=/root/sm120opt_ops/see_matrix/see_matrix_k7.log BLOG=/root/sm120opt_ops/see_matrix/see_boot_k7.log 'label=tier 8K/8K c16 k=7' ilen=8192 olen=8192 conc=16
+++ date -u +%H:%M:%S
++ echo '===== tier 8K/8K c16 k=7 02:16:08 ====='
++ timeout 5400 env OPENAI_API_KEY=*** /root/sm120opt/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /root/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 8192 --random-output-len 8192 --ignore-eos --num-prompts 16 --request-rate 16
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/sm120opt_ops/see_matrix/see_boot_k7.log
++ return 0
++ for C in 1 2 4 8 16 32
++ bench /root/sm120opt_ops/see_matrix/see_matrix_k7.log /root/sm120opt_ops/see_matrix/see_boot_k7.log 'tier 8K/8K c32 k=7' 8192 8192 32
++ local LOG=/root/sm120opt_ops/see_matrix/see_matrix_k7.log BLOG=/root/sm120opt_ops/see_matrix/see_boot_k7.log 'label=tier 8K/8K c32 k=7' ilen=8192 olen=8192 conc=32
+++ date -u +%H:%M:%S
++ echo '===== tier 8K/8K c32 k=7 02:18:35 ====='
++ timeout 5400 env OPENAI_API_KEY=*** /root/sm120opt/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /root/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 8192 --random-output-len 8192 --ignore-eos --num-prompts 32 --request-rate 32
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/sm120opt_ops/see_matrix/see_boot_k7.log
++ return 0
++ for C in 1 2 4 8 16
++ bench /root/sm120opt_ops/see_matrix/see_matrix_k7.log /root/sm120opt_ops/see_matrix/see_boot_k7.log 'tier 32K/32K c1 k=7' 32768 32768 1
++ local LOG=/root/sm120opt_ops/see_matrix/see_matrix_k7.log BLOG=/root/sm120opt_ops/see_matrix/see_boot_k7.log 'label=tier 32K/32K c1 k=7' ilen=32768 olen=32768 conc=1
+++ date -u +%H:%M:%S
++ echo '===== tier 32K/32K c1 k=7 02:21:58 ====='
++ timeout 5400 env OPENAI_API_KEY=*** /root/sm120opt/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /root/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 32768 --random-output-len 32768 --ignore-eos --num-prompts 1 --request-rate 1
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/sm120opt_ops/see_matrix/see_boot_k7.log
++ return 0
++ for C in 1 2 4 8 16
++ bench /root/sm120opt_ops/see_matrix/see_matrix_k7.log /root/sm120opt_ops/see_matrix/see_boot_k7.log 'tier 32K/32K c2 k=7' 32768 32768 2
++ local LOG=/root/sm120opt_ops/see_matrix/see_matrix_k7.log BLOG=/root/sm120opt_ops/see_matrix/see_boot_k7.log 'label=tier 32K/32K c2 k=7' ilen=32768 olen=32768 conc=2
+++ date -u +%H:%M:%S
++ echo '===== tier 32K/32K c2 k=7 02:23:59 ====='
++ timeout 5400 env OPENAI_API_KEY=*** /root/sm120opt/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /root/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 32768 --random-output-len 32768 --ignore-eos --num-prompts 2 --request-rate 2
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/sm120opt_ops/see_matrix/see_boot_k7.log
++ return 0
++ for C in 1 2 4 8 16
++ bench /root/sm120opt_ops/see_matrix/see_matrix_k7.log /root/sm120opt_ops/see_matrix/see_boot_k7.log 'tier 32K/32K c4 k=7' 32768 32768 4
++ local LOG=/root/sm120opt_ops/see_matrix/see_matrix_k7.log BLOG=/root/sm120opt_ops/see_matrix/see_boot_k7.log 'label=tier 32K/32K c4 k=7' ilen=32768 olen=32768 conc=4
+++ date -u +%H:%M:%S
++ echo '===== tier 32K/32K c4 k=7 02:27:04 ====='
++ timeout 5400 env OPENAI_API_KEY=*** /root/sm120opt/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /root/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 32768 --random-output-len 32768 --ignore-eos --num-prompts 4 --request-rate 4
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/sm120opt_ops/see_matrix/see_boot_k7.log
++ return 0
++ for C in 1 2 4 8 16
++ bench /root/sm120opt_ops/see_matrix/see_matrix_k7.log /root/sm120opt_ops/see_matrix/see_boot_k7.log 'tier 32K/32K c8 k=7' 32768 32768 8
++ local LOG=/root/sm120opt_ops/see_matrix/see_matrix_k7.log BLOG=/root/sm120opt_ops/see_matrix/see_boot_k7.log 'label=tier 32K/32K c8 k=7' ilen=32768 olen=32768 conc=8
+++ date -u +%H:%M:%S
++ echo '===== tier 32K/32K c8 k=7 02:30:41 ====='
++ timeout 5400 env OPENAI_API_KEY=*** /root/sm120opt/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /root/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 32768 --random-output-len 32768 --ignore-eos --num-prompts 8 --request-rate 8
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/sm120opt_ops/see_matrix/see_boot_k7.log
++ return 0
++ for C in 1 2 4 8 16
++ bench /root/sm120opt_ops/see_matrix/see_matrix_k7.log /root/sm120opt_ops/see_matrix/see_boot_k7.log 'tier 32K/32K c16 k=7' 32768 32768 16
++ local LOG=/root/sm120opt_ops/see_matrix/see_matrix_k7.log BLOG=/root/sm120opt_ops/see_matrix/see_boot_k7.log 'label=tier 32K/32K c16 k=7' ilen=32768 olen=32768 conc=16
+++ date -u +%H:%M:%S
++ echo '===== tier 32K/32K c16 k=7 02:36:04 ====='
++ timeout 5400 env OPENAI_API_KEY=*** /root/sm120opt/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /root/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 32768 --random-output-len 32768 --ignore-eos --num-prompts 16 --request-rate 16
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/sm120opt_ops/see_matrix/see_boot_k7.log
++ return 0
++ for C in 1 2 4 8
++ bench /root/sm120opt_ops/see_matrix/see_matrix_k7.log /root/sm120opt_ops/see_matrix/see_boot_k7.log 'tier 64K/64K c1 k=7' 65536 65536 1
++ local LOG=/root/sm120opt_ops/see_matrix/see_matrix_k7.log BLOG=/root/sm120opt_ops/see_matrix/see_boot_k7.log 'label=tier 64K/64K c1 k=7' ilen=65536 olen=65536 conc=1
+++ date -u +%H:%M:%S
++ echo '===== tier 64K/64K c1 k=7 02:43:11 ====='
++ timeout 5400 env OPENAI_API_KEY=*** /root/sm120opt/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /root/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 65536 --random-output-len 65536 --ignore-eos --num-prompts 1 --request-rate 1
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/sm120opt_ops/see_matrix/see_boot_k7.log
++ return 0
++ for C in 1 2 4 8
++ bench /root/sm120opt_ops/see_matrix/see_matrix_k7.log /root/sm120opt_ops/see_matrix/see_boot_k7.log 'tier 64K/64K c2 k=7' 65536 65536 2
++ local LOG=/root/sm120opt_ops/see_matrix/see_matrix_k7.log BLOG=/root/sm120opt_ops/see_matrix/see_boot_k7.log 'label=tier 64K/64K c2 k=7' ilen=65536 olen=65536 conc=2
+++ date -u +%H:%M:%S
++ echo '===== tier 64K/64K c2 k=7 02:46:28 ====='
++ timeout 5400 env OPENAI_API_KEY=*** /root/sm120opt/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /root/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 65536 --random-output-len 65536 --ignore-eos --num-prompts 2 --request-rate 2
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/sm120opt_ops/see_matrix/see_boot_k7.log
++ return 0
++ for C in 1 2 4 8
++ bench /root/sm120opt_ops/see_matrix/see_matrix_k7.log /root/sm120opt_ops/see_matrix/see_boot_k7.log 'tier 64K/64K c4 k=7' 65536 65536 4
++ local LOG=/root/sm120opt_ops/see_matrix/see_matrix_k7.log BLOG=/root/sm120opt_ops/see_matrix/see_boot_k7.log 'label=tier 64K/64K c4 k=7' ilen=65536 olen=65536 conc=4
+++ date -u +%H:%M:%S
++ echo '===== tier 64K/64K c4 k=7 02:51:25 ====='
++ timeout 5400 env OPENAI_API_KEY=*** /root/sm120opt/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /root/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 65536 --random-output-len 65536 --ignore-eos --num-prompts 4 --request-rate 4
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/sm120opt_ops/see_matrix/see_boot_k7.log
++ return 0
++ for C in 1 2 4 8
++ bench /root/sm120opt_ops/see_matrix/see_matrix_k7.log /root/sm120opt_ops/see_matrix/see_boot_k7.log 'tier 64K/64K c8 k=7' 65536 65536 8
++ local LOG=/root/sm120opt_ops/see_matrix/see_matrix_k7.log BLOG=/root/sm120opt_ops/see_matrix/see_boot_k7.log 'label=tier 64K/64K c8 k=7' ilen=65536 olen=65536 conc=8
+++ date -u +%H:%M:%S
++ echo '===== tier 64K/64K c8 k=7 02:57:10 ====='
++ timeout 5400 env OPENAI_API_KEY=*** /root/sm120opt/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /root/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 65536 --random-output-len 65536 --ignore-eos --num-prompts 8 --request-rate 8
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/sm120opt_ops/see_matrix/see_boot_k7.log
++ return 0
+++ date -u
++ echo '########## VL E2E (graded) Sun Oct 25 03:05:49 AM UTC 2026 ##########'
++ /root/sm120opt/bin/python /root/test_ops/vl_e2e.py
+++ date -u +%H:%M:%S
++ echo 'vl_e2e rc=0 03:05:59'
++ cat /root/sm120opt_ops/see_matrix/see_vl_e2e.out
+++ date -u
++ echo '########## k=7 AGENT START Sun Oct 25 03:05:59 AM UTC 2026 ##########'
++ for S in 1 2 3
++ /root/sm120opt/bin/python /root/test_ops/agent_tools_sim.py http://127.0.0.1:8123 --turns 12
+++ date -u +%H:%M:%S
++ echo 'agent s1 rc=0 03:06:13'
++ for S in 1 2 3
++ /root/sm120opt/bin/python /root/test_ops/agent_tools_sim.py http://127.0.0.1:8123 --turns 12
+++ date -u +%H:%M:%S
++ echo 'agent s2 rc=0 03:06:25'
++ for S in 1 2 3
++ /root/sm120opt/bin/python /root/test_ops/agent_tools_sim.py http://127.0.0.1:8123 --turns 12
+++ date -u +%H:%M:%S
++ echo 'agent s3 rc=0 03:06:34'
++ grep -E 'SpecDecoding metrics' /root/sm120opt_ops/see_matrix/see_boot_k7.log
++ tail -150
++ kill_all
++ pkill -9 -f '[v]llm serve'
++ pkill -9 -f VLLM::
+/root/sm120opt_ops/see_matrix/see_formal_matrix.sh: line 12: 3612655 Killed                  setsid nohup env PATH=$PATH CUDA_HOME=$CUDA_HOME VLLM_USE_RUST_FRONTEND=1 VLLM_ENGINE_READY_TIMEOUT_S=7200 FLASHINFER_DISABLE_VERSION_CHECK=1 HF_HUB_OFFLINE=1 HF_HUB_DISABLE_XET=1 /root/sm120opt/bin/vllm serve /root/DeepSeek-V4.1-Flash-1017 --served-model-name deepseek-v4.1-flash --trust-remote-code --tokenizer-mode deepseek_v41 --tensor-parallel-size 8 --enable-expert-parallel --kv-cache-dtype fp8 --engram-config '{"cpu_offload":true}' --moe-backend auto --compilation-config '{"cudagraph_mode":"PIECEWISE"}' --max-model-len 1048576 --max-num-seqs 128 --gpu-memory-utilization 0.90 --speculative-config '{"method":"dspark","num_speculative_tokens":7,"draft_sample_method":"probabilistic","rejection_sample_method":"block","enable_adaptive_verification":false}' --max-cudagraph-capture-size 1024 --enable-auto-tool-choice --tool-call-parser deepseek_v41 --reasoning-parser deepseek_v41 --port 8123 --api-key *** > $BLOG 2>&1 < /dev/null
++ sleep 2
+++ ss -lptnH 'sport = :8123'
+++ grep -oP 'pid=\K[0-9]+'
+++ sort -u
++ for p in $(ss -lptnH "sport = :8123" 2> /dev/null | grep -oP 'pid=\K[0-9]+' | sort -u)
++ kill -9 3613317
+++ nvidia-smi --query-compute-apps=pid --format=csv,noheader
++ rm -f '/dev/shm/nccl-*' '/dev/shm/vllm-*'
++ sleep 3
+++ date -u
++ echo '########## SEE MATRIX k=7 DONE Sun Oct 25 03:06:49 AM UTC 2026 ##########'
++ echo DONE
