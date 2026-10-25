@@ -1,0 +1,706 @@
++ date
+Sun Oct 25 07:49:52 AM UTC 2026
++ export PATH=/root/sm120opt/bin:/usr/local/cuda/bin:/root/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
++ PATH=/root/sm120opt/bin:/usr/local/cuda/bin:/root/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
++ export CUDA_HOME=/usr/local/cuda
++ CUDA_HOME=/usr/local/cuda
++ SPEC_K7PROB='{"method":"dspark","num_speculative_tokens":7,"draft_sample_method":"probabilistic","rejection_sample_method":"block","enable_adaptive_verification":false}'
++ for MNBT in 4096 8192 16384 32768
++ TAG=mnbt4096
++ pkill -f 'vllm serve'
++ sleep 8
+++ seq 1 60
++ for i in $(seq 1 60)
+++ nvidia-smi --query-gpu=memory.used --format=csv,noheader,nounits
+++ paste -sd+
+++ bc
++ U=0
++ '[' 0 -lt 10000 ']'
++ break
+++ date +%s
++ T0=1792914600
++ BPID=4157468
++ env PATH=/root/sm120opt/bin:/usr/local/cuda/bin:/root/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin CUDA_HOME=/usr/local/cuda VLLM_USE_RUST_FRONTEND=1 VLLM_ENGINE_READY_TIMEOUT_S=7200 FLASHINFER_DISABLE_VERSION_CHECK=1 HF_HUB_OFFLINE=1 HF_HUB_DISABLE_XET=1 /root/sm120opt/bin/vllm serve /root/DeepSeek-V4.1-Flash-1017 --served-model-name deepseek-v4.1-flash --trust-remote-code --host 0.0.0.0 --port 8123 --api-key *** --tokenizer-mode deepseek_v41 --tensor-parallel-size 8 --enable-expert-parallel --kv-cache-dtype fp8 --engram-config '{"cpu_offload":true}' --moe-backend auto --max-model-len 131072 --max-num-seqs 128 --max-num-batched-tokens 4096 --gpu-memory-utilization 0.90 --speculative-config '{"method":"dspark","num_speculative_tokens":7,"draft_sample_method":"probabilistic","rejection_sample_method":"block","enable_adaptive_verification":false}' --max-cudagraph-capture-size 1024 --compilation-config '{"cudagraph_mode":"PIECEWISE"}' --enable-auto-tool-choice --tool-call-parser deepseek_v41 --reasoning-parser deepseek_v41
+++ seq 1 720
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 4157468
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 4157468
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 4157468
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 4157468
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 4157468
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 4157468
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 4157468
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 4157468
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 4157468
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 4157468
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 4157468
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 4157468
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 4157468
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 4157468
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 4157468
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 4157468
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 4157468
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 4157468
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 4157468
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 4157468
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 4157468
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 4157468
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ break
++ curl -sf http://127.0.0.1:8123/health
+++ date +%s
++ echo 'LEG_mnbt4096 READY 110s'
+LEG_mnbt4096 READY 110s
++ sleep 3
++ for TIER in "8192 256 16 16" "32768 256 8 8" "65536 256 4 4" "131072 256 2 2"
++ set -- 8192 256 16 16
++ IL=8192
++ OL=256
++ N=16
++ C=16
++ echo '===== mnbt4096 8192in 256out c16 ====='
+===== mnbt4096 8192in 256out c16 =====
++ timeout 1800 env OPENAI_API_KEY=*** /root/sm120opt/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /root/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 8192 --random-output-len 256 --ignore-eos --num-prompts 16 --request-rate 16
++ grep -aE 'Successful requests|Output token throughput|Total token throughput|Mean TTFT'
++ head -4
+Successful requests:                     16        
+Output token throughput (tok/s):         284.69    
+Total token throughput (tok/s):          9394.69   
+Mean TTFT (ms):                          3328.25   
++ for TIER in "8192 256 16 16" "32768 256 8 8" "65536 256 4 4" "131072 256 2 2"
++ set -- 32768 256 8 8
++ IL=32768
++ OL=256
++ N=8
++ C=8
++ echo '===== mnbt4096 32768in 256out c8 ====='
+===== mnbt4096 32768in 256out c8 =====
++ timeout 1800 env OPENAI_API_KEY=*** /root/sm120opt/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /root/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 32768 --random-output-len 256 --ignore-eos --num-prompts 8 --request-rate 8
++ grep -aE 'Successful requests|Output token throughput|Total token throughput|Mean TTFT'
++ head -4
+Successful requests:                     8         
+Output token throughput (tok/s):         124.96    
+Total token throughput (tok/s):          16120.39  
+Mean TTFT (ms):                          5501.63   
++ for TIER in "8192 256 16 16" "32768 256 8 8" "65536 256 4 4" "131072 256 2 2"
++ set -- 65536 256 4 4
++ IL=65536
++ OL=256
++ N=4
++ C=4
++ echo '===== mnbt4096 65536in 256out c4 ====='
+===== mnbt4096 65536in 256out c4 =====
++ timeout 1800 env OPENAI_API_KEY=*** /root/sm120opt/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /root/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 65536 --random-output-len 256 --ignore-eos --num-prompts 4 --request-rate 4
++ grep -aE 'Successful requests|Output token throughput|Total token throughput|Mean TTFT'
++ head -4
+Successful requests:                     4         
+Output token throughput (tok/s):         86.97     
+Total token throughput (tok/s):          22351.82  
+Mean TTFT (ms):                          3988.65   
++ for TIER in "8192 256 16 16" "32768 256 8 8" "65536 256 4 4" "131072 256 2 2"
++ set -- 131072 256 2 2
++ IL=131072
++ OL=256
++ N=2
++ C=2
++ echo '===== mnbt4096 131072in 256out c2 ====='
+===== mnbt4096 131072in 256out c2 =====
++ timeout 1800 env OPENAI_API_KEY=*** /root/sm120opt/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /root/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 131072 --random-output-len 256 --ignore-eos --num-prompts 2 --request-rate 2
++ grep -aE 'Successful requests|Output token throughput|Total token throughput|Mean TTFT'
++ head -4
+Successful requests:                     0         
+Output token throughput (tok/s):         0.00      
+Total token throughput (tok/s):          0.00      
+Mean TTFT (ms):                          0.00      
++ pkill -f 'vllm serve'
++ sleep 10
++ for MNBT in 4096 8192 16384 32768
++ TAG=mnbt8192
++ pkill -f 'vllm serve'
++ sleep 8
+++ seq 1 60
++ for i in $(seq 1 60)
+++ nvidia-smi --query-gpu=memory.used --format=csv,noheader,nounits
+++ paste -sd+
+++ bc
++ U=0
++ '[' 0 -lt 10000 ']'
++ break
+++ date +%s
++ T0=1792914804
++ BPID=4170929
++ env PATH=/root/sm120opt/bin:/usr/local/cuda/bin:/root/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin CUDA_HOME=/usr/local/cuda VLLM_USE_RUST_FRONTEND=1 VLLM_ENGINE_READY_TIMEOUT_S=7200 FLASHINFER_DISABLE_VERSION_CHECK=1 HF_HUB_OFFLINE=1 HF_HUB_DISABLE_XET=1 /root/sm120opt/bin/vllm serve /root/DeepSeek-V4.1-Flash-1017 --served-model-name deepseek-v4.1-flash --trust-remote-code --host 0.0.0.0 --port 8123 --api-key *** --tokenizer-mode deepseek_v41 --tensor-parallel-size 8 --enable-expert-parallel --kv-cache-dtype fp8 --engram-config '{"cpu_offload":true}' --moe-backend auto --max-model-len 131072 --max-num-seqs 128 --max-num-batched-tokens 8192 --gpu-memory-utilization 0.90 --speculative-config '{"method":"dspark","num_speculative_tokens":7,"draft_sample_method":"probabilistic","rejection_sample_method":"block","enable_adaptive_verification":false}' --max-cudagraph-capture-size 1024 --compilation-config '{"cudagraph_mode":"PIECEWISE"}' --enable-auto-tool-choice --tool-call-parser deepseek_v41 --reasoning-parser deepseek_v41
+++ seq 1 720
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 4170929
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 4170929
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 4170929
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 4170929
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 4170929
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 4170929
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 4170929
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 4170929
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 4170929
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 4170929
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 4170929
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 4170929
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 4170929
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 4170929
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 4170929
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 4170929
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 4170929
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 4170929
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 4170929
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 4170929
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ break
++ curl -sf http://127.0.0.1:8123/health
+++ date +%s
++ echo 'LEG_mnbt8192 READY 100s'
+LEG_mnbt8192 READY 100s
++ sleep 3
++ for TIER in "8192 256 16 16" "32768 256 8 8" "65536 256 4 4" "131072 256 2 2"
++ set -- 8192 256 16 16
++ IL=8192
++ OL=256
++ N=16
++ C=16
++ echo '===== mnbt8192 8192in 256out c16 ====='
+===== mnbt8192 8192in 256out c16 =====
++ timeout 1800 env OPENAI_API_KEY=*** /root/sm120opt/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /root/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 8192 --random-output-len 256 --ignore-eos --num-prompts 16 --request-rate 16
++ grep -aE 'Successful requests|Output token throughput|Total token throughput|Mean TTFT'
++ head -4
+Successful requests:                     16        
+Output token throughput (tok/s):         290.03    
+Total token throughput (tok/s):          9571.13   
+Mean TTFT (ms):                          3206.15   
++ for TIER in "8192 256 16 16" "32768 256 8 8" "65536 256 4 4" "131072 256 2 2"
++ set -- 32768 256 8 8
++ IL=32768
++ OL=256
++ N=8
++ C=8
++ echo '===== mnbt8192 32768in 256out c8 ====='
+===== mnbt8192 32768in 256out c8 =====
++ timeout 1800 env OPENAI_API_KEY=*** /root/sm120opt/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /root/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 32768 --random-output-len 256 --ignore-eos --num-prompts 8 --request-rate 8
++ grep -aE 'Successful requests|Output token throughput|Total token throughput|Mean TTFT'
++ head -4
+Successful requests:                     8         
+Output token throughput (tok/s):         131.66    
+Total token throughput (tok/s):          16984.30  
+Mean TTFT (ms):                          5189.66   
++ for TIER in "8192 256 16 16" "32768 256 8 8" "65536 256 4 4" "131072 256 2 2"
++ set -- 65536 256 4 4
++ IL=65536
++ OL=256
++ N=4
++ C=4
++ echo '===== mnbt8192 65536in 256out c4 ====='
+===== mnbt8192 65536in 256out c4 =====
++ timeout 1800 env OPENAI_API_KEY=*** /root/sm120opt/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /root/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 65536 --random-output-len 256 --ignore-eos --num-prompts 4 --request-rate 4
++ grep -aE 'Successful requests|Output token throughput|Total token throughput|Mean TTFT'
++ head -4
+Successful requests:                     4         
+Output token throughput (tok/s):         88.37     
+Total token throughput (tok/s):          22710.87  
+Mean TTFT (ms):                          3876.01   
++ for TIER in "8192 256 16 16" "32768 256 8 8" "65536 256 4 4" "131072 256 2 2"
++ set -- 131072 256 2 2
++ IL=131072
++ OL=256
++ N=2
++ C=2
++ echo '===== mnbt8192 131072in 256out c2 ====='
+===== mnbt8192 131072in 256out c2 =====
++ timeout 1800 env OPENAI_API_KEY=*** /root/sm120opt/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /root/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 131072 --random-output-len 256 --ignore-eos --num-prompts 2 --request-rate 2
++ grep -aE 'Successful requests|Output token throughput|Total token throughput|Mean TTFT'
++ head -4
+Successful requests:                     0         
+Output token throughput (tok/s):         0.00      
+Total token throughput (tok/s):          0.00      
+Mean TTFT (ms):                          0.00      
++ pkill -f 'vllm serve'
++ sleep 10
++ for MNBT in 4096 8192 16384 32768
++ TAG=mnbt16384
++ pkill -f 'vllm serve'
++ sleep 8
+++ seq 1 60
++ for i in $(seq 1 60)
+++ nvidia-smi --query-gpu=memory.used --format=csv,noheader,nounits
+++ paste -sd+
+++ bc
++ U=0
++ '[' 0 -lt 10000 ']'
++ break
+++ date +%s
++ T0=1792914998
++ BPID=4183780
++ env PATH=/root/sm120opt/bin:/usr/local/cuda/bin:/root/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin CUDA_HOME=/usr/local/cuda VLLM_USE_RUST_FRONTEND=1 VLLM_ENGINE_READY_TIMEOUT_S=7200 FLASHINFER_DISABLE_VERSION_CHECK=1 HF_HUB_OFFLINE=1 HF_HUB_DISABLE_XET=1 /root/sm120opt/bin/vllm serve /root/DeepSeek-V4.1-Flash-1017 --served-model-name deepseek-v4.1-flash --trust-remote-code --host 0.0.0.0 --port 8123 --api-key *** --tokenizer-mode deepseek_v41 --tensor-parallel-size 8 --enable-expert-parallel --kv-cache-dtype fp8 --engram-config '{"cpu_offload":true}' --moe-backend auto --max-model-len 131072 --max-num-seqs 128 --max-num-batched-tokens 16384 --gpu-memory-utilization 0.90 --speculative-config '{"method":"dspark","num_speculative_tokens":7,"draft_sample_method":"probabilistic","rejection_sample_method":"block","enable_adaptive_verification":false}' --max-cudagraph-capture-size 1024 --compilation-config '{"cudagraph_mode":"PIECEWISE"}' --enable-auto-tool-choice --tool-call-parser deepseek_v41 --reasoning-parser deepseek_v41
+++ seq 1 720
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 4183780
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 4183780
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 4183780
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 4183780
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 4183780
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 4183780
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 4183780
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 4183780
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 4183780
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 4183780
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 4183780
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 4183780
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 4183780
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 4183780
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 4183780
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 4183780
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 4183780
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 4183780
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 4183780
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 4183780
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 4183780
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 4183780
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ break
++ curl -sf http://127.0.0.1:8123/health
+++ date +%s
++ echo 'LEG_mnbt16384 READY 110s'
+LEG_mnbt16384 READY 110s
++ sleep 3
++ for TIER in "8192 256 16 16" "32768 256 8 8" "65536 256 4 4" "131072 256 2 2"
++ set -- 8192 256 16 16
++ IL=8192
++ OL=256
++ N=16
++ C=16
++ echo '===== mnbt16384 8192in 256out c16 ====='
+===== mnbt16384 8192in 256out c16 =====
++ timeout 1800 env OPENAI_API_KEY=*** /root/sm120opt/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /root/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 8192 --random-output-len 256 --ignore-eos --num-prompts 16 --request-rate 16
++ grep -aE 'Successful requests|Output token throughput|Total token throughput|Mean TTFT'
++ head -4
+Successful requests:                     16        
+Output token throughput (tok/s):         291.92    
+Total token throughput (tok/s):          9633.42   
+Mean TTFT (ms):                          3405.26   
++ for TIER in "8192 256 16 16" "32768 256 8 8" "65536 256 4 4" "131072 256 2 2"
++ set -- 32768 256 8 8
++ IL=32768
++ OL=256
++ N=8
++ C=8
++ echo '===== mnbt16384 32768in 256out c8 ====='
+===== mnbt16384 32768in 256out c8 =====
++ timeout 1800 env OPENAI_API_KEY=*** /root/sm120opt/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /root/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 32768 --random-output-len 256 --ignore-eos --num-prompts 8 --request-rate 8
++ grep -aE 'Successful requests|Output token throughput|Total token throughput|Mean TTFT'
++ head -4
+Successful requests:                     8         
+Output token throughput (tok/s):         128.06    
+Total token throughput (tok/s):          16519.68  
+Mean TTFT (ms):                          5411.25   
++ for TIER in "8192 256 16 16" "32768 256 8 8" "65536 256 4 4" "131072 256 2 2"
++ set -- 65536 256 4 4
++ IL=65536
++ OL=256
++ N=4
++ C=4
++ echo '===== mnbt16384 65536in 256out c4 ====='
+===== mnbt16384 65536in 256out c4 =====
++ timeout 1800 env OPENAI_API_KEY=*** /root/sm120opt/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /root/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 65536 --random-output-len 256 --ignore-eos --num-prompts 4 --request-rate 4
++ grep -aE 'Successful requests|Output token throughput|Total token throughput|Mean TTFT'
++ head -4
+Successful requests:                     4         
+Output token throughput (tok/s):         87.61     
+Total token throughput (tok/s):          22516.28  
+Mean TTFT (ms):                          4266.06   
++ for TIER in "8192 256 16 16" "32768 256 8 8" "65536 256 4 4" "131072 256 2 2"
++ set -- 131072 256 2 2
++ IL=131072
++ OL=256
++ N=2
++ C=2
++ echo '===== mnbt16384 131072in 256out c2 ====='
+===== mnbt16384 131072in 256out c2 =====
++ timeout 1800 env OPENAI_API_KEY=*** /root/sm120opt/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /root/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 131072 --random-output-len 256 --ignore-eos --num-prompts 2 --request-rate 2
++ grep -aE 'Successful requests|Output token throughput|Total token throughput|Mean TTFT'
++ head -4
+Successful requests:                     0         
+Output token throughput (tok/s):         0.00      
+Total token throughput (tok/s):          0.00      
+Mean TTFT (ms):                          0.00      
++ pkill -f 'vllm serve'
++ sleep 10
++ for MNBT in 4096 8192 16384 32768
++ TAG=mnbt32768
++ pkill -f 'vllm serve'
++ sleep 8
+++ seq 1 60
++ for i in $(seq 1 60)
+++ nvidia-smi --query-gpu=memory.used --format=csv,noheader,nounits
+++ paste -sd+
+++ bc
++ U=0
++ '[' 0 -lt 10000 ']'
++ break
+++ date +%s
++ T0=1792915201
++ BPID=5155
++ env PATH=/root/sm120opt/bin:/usr/local/cuda/bin:/root/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin CUDA_HOME=/usr/local/cuda VLLM_USE_RUST_FRONTEND=1 VLLM_ENGINE_READY_TIMEOUT_S=7200 FLASHINFER_DISABLE_VERSION_CHECK=1 HF_HUB_OFFLINE=1 HF_HUB_DISABLE_XET=1 /root/sm120opt/bin/vllm serve /root/DeepSeek-V4.1-Flash-1017 --served-model-name deepseek-v4.1-flash --trust-remote-code --host 0.0.0.0 --port 8123 --api-key *** --tokenizer-mode deepseek_v41 --tensor-parallel-size 8 --enable-expert-parallel --kv-cache-dtype fp8 --engram-config '{"cpu_offload":true}' --moe-backend auto --max-model-len 131072 --max-num-seqs 128 --max-num-batched-tokens 32768 --gpu-memory-utilization 0.90 --speculative-config '{"method":"dspark","num_speculative_tokens":7,"draft_sample_method":"probabilistic","rejection_sample_method":"block","enable_adaptive_verification":false}' --max-cudagraph-capture-size 1024 --compilation-config '{"cudagraph_mode":"PIECEWISE"}' --enable-auto-tool-choice --tool-call-parser deepseek_v41 --reasoning-parser deepseek_v41
+++ seq 1 720
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 5155
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 5155
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 5155
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 5155
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 5155
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 5155
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 5155
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 5155
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 5155
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 5155
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 5155
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 5155
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 5155
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 5155
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 5155
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 5155
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 5155
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 5155
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 5155
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 5155
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 5155
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 5155
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 5155
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ break
++ curl -sf http://127.0.0.1:8123/health
+++ date +%s
++ echo 'LEG_mnbt32768 READY 115s'
+LEG_mnbt32768 READY 115s
++ sleep 3
++ for TIER in "8192 256 16 16" "32768 256 8 8" "65536 256 4 4" "131072 256 2 2"
++ set -- 8192 256 16 16
++ IL=8192
++ OL=256
++ N=16
++ C=16
++ echo '===== mnbt32768 8192in 256out c16 ====='
+===== mnbt32768 8192in 256out c16 =====
++ timeout 1800 env OPENAI_API_KEY=*** /root/sm120opt/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /root/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 8192 --random-output-len 256 --ignore-eos --num-prompts 16 --request-rate 16
++ grep -aE 'Successful requests|Output token throughput|Total token throughput|Mean TTFT'
++ head -4
+Successful requests:                     16        
+Output token throughput (tok/s):         293.35    
+Total token throughput (tok/s):          9680.41   
+Mean TTFT (ms):                          3553.41   
++ for TIER in "8192 256 16 16" "32768 256 8 8" "65536 256 4 4" "131072 256 2 2"
++ set -- 32768 256 8 8
++ IL=32768
++ OL=256
++ N=8
++ C=8
++ echo '===== mnbt32768 32768in 256out c8 ====='
+===== mnbt32768 32768in 256out c8 =====
++ timeout 1800 env OPENAI_API_KEY=*** /root/sm120opt/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /root/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 32768 --random-output-len 256 --ignore-eos --num-prompts 8 --request-rate 8
++ grep -aE 'Successful requests|Output token throughput|Total token throughput|Mean TTFT'
++ head -4
+Successful requests:                     8         
+Output token throughput (tok/s):         128.13    
+Total token throughput (tok/s):          16528.43  
+Mean TTFT (ms):                          5622.78   
++ for TIER in "8192 256 16 16" "32768 256 8 8" "65536 256 4 4" "131072 256 2 2"
++ set -- 65536 256 4 4
++ IL=65536
++ OL=256
++ N=4
++ C=4
++ echo '===== mnbt32768 65536in 256out c4 ====='
+===== mnbt32768 65536in 256out c4 =====
++ timeout 1800 env OPENAI_API_KEY=*** /root/sm120opt/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /root/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 65536 --random-output-len 256 --ignore-eos --num-prompts 4 --request-rate 4
++ grep -aE 'Successful requests|Output token throughput|Total token throughput|Mean TTFT'
++ head -4
+Successful requests:                     4         
+Output token throughput (tok/s):         87.14     
+Total token throughput (tok/s):          22396.20  
+Mean TTFT (ms):                          4497.14   
++ for TIER in "8192 256 16 16" "32768 256 8 8" "65536 256 4 4" "131072 256 2 2"
++ set -- 131072 256 2 2
++ IL=131072
++ OL=256
++ N=2
++ C=2
++ echo '===== mnbt32768 131072in 256out c2 ====='
+===== mnbt32768 131072in 256out c2 =====
++ timeout 1800 env OPENAI_API_KEY=*** /root/sm120opt/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /root/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 131072 --random-output-len 256 --ignore-eos --num-prompts 2 --request-rate 2
++ grep -aE 'Successful requests|Output token throughput|Total token throughput|Mean TTFT'
++ head -4
+Successful requests:                     0         
+Output token throughput (tok/s):         0.00      
+Total token throughput (tok/s):          0.00      
+Mean TTFT (ms):                          0.00      
++ pkill -f 'vllm serve'
++ sleep 10
+++ date
++ echo 'PREFILL_SWEEP_DONE Sun Oct 25 08:03:21 AM UTC 2026'
+PREFILL_SWEEP_DONE Sun Oct 25 08:03:21 AM UTC 2026

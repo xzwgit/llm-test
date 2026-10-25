@@ -1,0 +1,1101 @@
+W1025 07:50:11.490000 639234 torch/_opaque_base.py:6] torch._opaque_base is deprecated, use torch._custom_class_base instead
+W1025 07:50:11.491000 639234 torch/_library/opaque_object.py:288] register_opaque_type is deprecated, use register_custom_class instead
+W1025 07:50:11.491000 639234 torch/_library/opaque_object.py:211] typ='value' is deprecated, use typ='constant' instead
+(MainProcess pid=639234) INFO 10-25 07:50:46 [startup.py:38] 
+(MainProcess pid=639234) INFO 10-25 07:50:46 [startup.py:38]        █     █     █▄   ▄█
+(MainProcess pid=639234) INFO 10-25 07:50:46 [startup.py:38]  ▄▄ ▄█ █     █     █ ▀▄▀ █  version 0.32.1rc1.dev466+ge4a5b5537
+(MainProcess pid=639234) INFO 10-25 07:50:46 [startup.py:38]   █▄█▀ █     █     █     █  model   /data/models/DeepSeek-V4.1-Flash-1017
+(MainProcess pid=639234) INFO 10-25 07:50:46 [startup.py:38]    ▀▀  ▀▀▀▀▀ ▀▀▀▀▀ ▀     ▀
+(MainProcess pid=639234) INFO 10-25 07:50:46 [startup.py:38] 
+(MainProcess pid=639234) INFO 10-25 07:50:46 [startup.py:96] non-default args: {'model_tag': '/data/models/DeepSeek-V4.1-Flash-1017', 'api_server_count': 1, 'enable_auto_tool_choice': True, 'tool_call_parser': 'deepseek_v41', 'host': '0.0.0.0', 'port': 8123, 'api_key': '***', 'model': '/data/models/DeepSeek-V4.1-Flash-1017', 'tokenizer_mode': 'deepseek_v41', 'trust_remote_code': True, 'max_model_len': 1048576, 'served_model_name': ['deepseek-v4.1-flash'], 'reasoning_parser': 'deepseek_v41', 'tensor_parallel_size': 8, 'enable_expert_parallel': True, 'gpu_memory_utilization': 0.9, 'kv_cache_dtype': 'fp8', 'max_num_seqs': 128, 'max_cudagraph_capture_size': 1024, 'speculative_config': {'method': 'dspark', 'num_speculative_tokens': 7, 'draft_sample_method': 'probabilistic', 'rejection_sample_method': 'block', 'enable_adaptive_verification': False}, 'compilation_config': {'mode': None, 'debug_dump_path': None, 'cache_dir': '', 'compile_cache_save_format': 'binary', 'backend': 'inductor', 'custom_ops': [], 'ir_enable_torch_wrap': None, 'splitting_ops': None, 'compile_mm_encoder': False, 'cudagraph_mm_encoder': False, 'encoder_cudagraph_token_budgets': [], 'encoder_cudagraph_max_vision_items_per_batch': 0, 'encoder_cudagraph_max_frames_per_batch': None, 'cudagraph_decoder_replay': True, 'decoder_replay_cudagraph_capture_sizes': [], 'decoder_replay_trim_threshold': 768, 'compile_sizes': None, 'compile_ranges_endpoints': None, 'inductor_compile_config': {'enable_auto_functionalized_v2': False, 'combo_kernels': True, 'benchmark_combo_kernel': True}, 'inductor_passes': {}, 'cudagraph_mode': <CUDAGraphMode.PIECEWISE: 1>, 'cudagraph_num_of_warmups': 0, 'cudagraph_capture_sizes': None, 'cudagraph_copy_inputs': False, 'cudagraph_specialize_lora': True, 'use_inductor_graph_partition': None, 'pass_config': {}, 'max_cudagraph_capture_size': None, 'dynamic_shapes_config': {'type': <DynamicShapesType.BACKED: 'backed'>, 'evaluate_guards': False, 'assume_32_bit_indexing': False}, 'local_cache_dir': None, 'fast_moe_cold_start': None, 'static_all_moe_layers': []}, 'engram_config': EngramConfig(cpu_offload=True, embedding_across_dp=False, dp_shared_memory=None, use_thp=False)}
+(MainProcess pid=639234) INFO 10-25 07:50:46 [config.py:970] Detected quantization_config.scale_fmt=ue8m0; enabling UE8M0 for DeepGEMM.
+(MainProcess pid=639234) INFO 10-25 07:50:46 [model.py:744] Resolved architecture: DeepseekV41ForCausalLM
+(MainProcess pid=639234) INFO 10-25 07:50:46 [model.py:2170] Using max model len 1048576
+(MainProcess pid=639234) INFO 10-25 07:50:47 [cache.py:481] Using fp8 data type to store kv cache. It reduces the GPU memory footprint and boosts the performance. Meanwhile, it may cause accuracy drop without a proper scaling factor
+(MainProcess pid=639234) INFO 10-25 07:50:47 [model.py:744] Resolved architecture: DeepseekV41ForCausalLM
+(MainProcess pid=639234) INFO 10-25 07:50:47 [model.py:2170] Using max model len 1048576
+(MainProcess pid=639234) INFO 10-25 07:50:48 [scheduler.py:310] Chunked prefill is enabled with max_num_batched_tokens=8192.
+(MainProcess pid=639234) INFO 10-25 07:50:48 [vllm.py:1473] Resolved Engram configuration: EngramConfig(cpu_offload=True, embedding_across_dp=False, dp_shared_memory=False, use_thp=False)
+(MainProcess pid=639234) INFO 10-25 07:50:48 [vllm.py:831] Auto-enabling VLLM_USE_BREAKABLE_CUDAGRAPH=1. Set VLLM_USE_BREAKABLE_CUDAGRAPH=0 to opt out.
+(MainProcess pid=639234) INFO 10-25 07:50:48 [kernel.py:480] Final IR op priority after setting platform defaults: IrOpPriorityConfig(rms_norm=['vllm_c', 'native'], fused_add_rms_norm=['vllm_c', 'native'], gelu_and_mul_sparse=['triton', 'native'])
+(MainProcess pid=639234) INFO 10-25 07:50:48 [compilation.py:317] Enabled custom fusions: norm_quant, act_quant
+(MainProcess pid=639234) INFO 10-25 07:50:48 [utils.py:372] Launching Rust frontend: /root/b12xenv/lib/python3.12/site-packages/vllm/vllm-rs frontend --listen-fd 39 --input-listener-fd 40 --output-listener-fd 41 --engine-start-index 0 --engine-count 1 --data-parallel-size 1 --args-json {"api_key": "***", "compilation_config": {"backend": "inductor", "cache_dir": "", "compilation_time": 0.0, "compile_cache_save_format": "binary", "compile_mm_encoder": false, "compile_ranges_endpoints": null, "compile_sizes": null, "cudagraph_capture_sizes": null, "cudagraph_copy_inputs": false, "cudagraph_decoder_replay": true, "cudagraph_mm_encoder": false, "cudagraph_mode": "<CUDAGraphMode.PIECEWISE: 1>", "cudagraph_num_of_warmups": 0, "cudagraph_specialize_lora": true, "custom_ops": [], "debug_dump_path": null, "decoder_replay_cudagraph_capture_sizes": [], "decoder_replay_trim_threshold": 768, "disabled_custom_ops": {}, "dynamic_shapes_config": {"assume_32_bit_indexing": false, "evaluate_guards": false, "type": "backed"}, "enabled_custom_ops": {}, "encoder_compilation_time": 0.0, "encoder_cudagraph_max_frames_per_batch": null, "encoder_cudagraph_max_vision_items_per_batch": 0, "encoder_cudagraph_token_budgets": [], "fast_moe_cold_start": null, "inductor_compile_config": {"benchmark_combo_kernel": true, "combo_kernels": true, "enable_auto_functionalized_v2": false}, "inductor_passes": {}, "ir_enable_torch_wrap": null, "local_cache_dir": null, "max_cudagraph_capture_size": null, "mode": null, "pass_config": {"eliminate_noops": true, "enable_qk_norm_rope_fusion": null, "fi_allreduce_fusion_max_size_mb": null, "fuse_act_padding": null, "fuse_act_quant": null, "fuse_allreduce_rms": null, "fuse_attn_quant": null, "fuse_mla_dual_rms_norm": null, "fuse_norm_quant": null, "fuse_qk_norm_rope_kvcache": null, "fuse_rope_kvcache": null, "fuse_rope_kvcache_cat_mla": null, "rope_kvcache_fusion_max_token_num": 256}, "splitting_ops": null, "static_all_moe_layers": [], "static_forward_context": {}, "traced_files": "set()", "use_inductor_graph_partition": null}, "enable_auto_tool_choice": true, "enable_expert_parallel": true, "engine_ready_timeout_secs": 7200, "engram_config": {"cpu_offload": true, "dp_shared_memory": false, "embedding_across_dp": false, "use_thp": false}, "gpu_memory_utilization": 0.9, "host": "0.0.0.0", "http_timeout_keep_alive": 5, "kv_cache_dtype": "fp8", "max_cudagraph_capture_size": 1024, "max_model_len": 1048576, "max_num_seqs": 128, "model": "/data/models/DeepSeek-V4.1-Flash-1017", "model_tag": "/data/models/DeepSeek-V4.1-Flash-1017", "port": 8123, "reasoning_parser": "deepseek_v41", "served_model_name": ["deepseek-v4.1-flash"], "speculative_config": {"draft_sample_method": "probabilistic", "enable_adaptive_verification": false, "method": "dspark", "num_speculative_tokens": 7, "rejection_sample_method": "block"}, "structured_outputs_config": {"backend": "auto", "disable_additional_properties": false, "disable_any_whitespace": false, "enable_in_reasoning": false, "reasoning_parser": "deepseek_v41", "reasoning_parser_plugin": ""}, "tensor_parallel_size": 8, "tokenizer_mode": "deepseek_v41", "tool_call_parser": "deepseek_v41", "trust_remote_code": true}
+[0;36m(RustFrontend pid=640132)[0m [33mWARNING[0m [90m10-25 07:50:48[0m [90m[unsupported.rs:67][0m argument 'structured_outputs_config' currently has no effect in Rust frontend, ignoring
+[0;36m(RustFrontend pid=640132)[0m [33mWARNING[0m [90m10-25 07:50:48[0m [90m[unsupported.rs:67][0m argument 'enable_auto_tool_choice' currently has no effect in Rust frontend, ignoring
+[0;36m(RustFrontend pid=640132)[0m [32mINFO[0m [90m10-25 07:50:48[0m [90m[cmd/src/main.rs:38][0m capping tokio worker threads, set TOKIO_WORKER_THREADS to override [3mavailable_parallelism[0m[2m=[0m224 [3mcapped_worker_threads[0m[2m=[0m32
+[0;36m(RustFrontend pid=640132)[0m [32mINFO[0m [90m10-25 07:50:48[0m [90m[hf.rs:233][0m loading tokenizer with fastokens [3mpath[0m[2m=[0m/data/models/DeepSeek-V4.1-Flash-1017/tokenizer.json
+[0;36m(RustFrontend pid=640132)[0m [32mINFO[0m [90m10-25 07:50:48[0m [90m[hf/mod.rs:72][0m loaded text backend with Hugging Face model files [3mmodel_id[0m[2m=[0m"/data/models/DeepSeek-V4.1-Flash-1017"
+[0;36m(RustFrontend pid=640132)[0m [33mWARNING[0m [90m10-25 07:50:48[0m [90m[multimodal.rs:517][0m placeholder tokens did not resolve; disabling this modality for this model [3mmodel_id[0m[2m=[0m"/data/models/DeepSeek-V4.1-Flash-1017" [3mmodality[0m[2m=[0mvideo [3merror[0m[2m=[0mmultimodal preprocessing error: modality video is not supported by model spec deepseek_v41
+[0;36m(RustFrontend pid=640132)[0m [32mINFO[0m [90m10-25 07:50:48[0m [90m[hf.rs:104][0m loaded chat backend with Hugging Face model files [3mmodel_id[0m[2m=[0m"/data/models/DeepSeek-V4.1-Flash-1017" [3mmodel_type[0m[2m=[0m"deepseek_v41" [3mrenderer[0m[2m=[0mdeepseek_v41
+[0;36m(RustFrontend pid=640132)[0m [32mINFO[0m [90m10-25 07:50:48[0m [90m[server/src/lib.rs:117][0m resolved coordinator mode [3mengine_count[0m[2m=[0m1 [3mmodel_is_moe[0m[2m=[0mtrue [3mcoordinator_mode[0m[2m=[0mNone
+W1025 07:50:48.976000 640131 torch/_opaque_base.py:6] torch._opaque_base is deprecated, use torch._custom_class_base instead
+W1025 07:50:48.977000 640131 torch/_library/opaque_object.py:288] register_opaque_type is deprecated, use register_custom_class instead
+W1025 07:50:48.977000 640131 torch/_library/opaque_object.py:211] typ='value' is deprecated, use typ='constant' instead
+(EngineCore pid=640131) INFO 10-25 07:50:53 [core.py:136] Initializing a V1 LLM engine (v0.32.1rc1.dev466+ge4a5b5537) with config: model='/data/models/DeepSeek-V4.1-Flash-1017', speculative_config=SpeculativeConfig(method='dspark', model='/data/models/DeepSeek-V4.1-Flash-1017', num_spec_tokens=7), tokenizer='/data/models/DeepSeek-V4.1-Flash-1017', skip_tokenizer_init=False, tokenizer_mode=deepseek_v41, revision=None, tokenizer_revision=None, trust_remote_code=True, dtype=torch.bfloat16, max_seq_len=1048576, download_dir=None, load_format=auto, tensor_parallel_size=8, pipeline_parallel_size=1, data_parallel_size=1, decode_context_parallel_size=1, dcp_comm_backend=ag_rs, disable_custom_all_reduce=False, quantization=deepseek_v4_fp8, quantization_config=None, enforce_eager=False, aux_output_config=AuxOutputConfig(enable_return_routed_experts=False, max_bytes=None), kv_cache_dtype=fp8, device_config=cuda, structured_outputs_config=StructuredOutputsConfig(backend='auto', disable_any_whitespace=False, disable_additional_properties=False, reasoning_parser='deepseek_v41', reasoning_parser_plugin='', enable_in_reasoning=False), observability_config=ObservabilityConfig(show_hidden_metrics_for_version=None, otlp_traces_endpoint=None, collect_detailed_traces=None, per_request_spec_decode_metrics='none', kv_cache_metrics=False, kv_cache_metrics_sample=0.01, custom_histogram_buckets=None, cudagraph_metrics=False, enable_layerwise_nvtx_tracing=False, enable_mfu_metrics=False, enable_mm_processor_stats=False, enable_logging_iteration_details=False, jit_monitor_mode='warn', jit_monitor_verbose=False), seed=0, served_model_name=deepseek-v4.1-flash, enable_prefix_caching=True, enable_chunked_prefill=True, pooler_config=None, compilation_config={'mode': <CompilationMode.NONE: 0>, 'debug_dump_path': None, 'cache_dir': '', 'compile_cache_save_format': 'binary', 'backend': 'inductor', 'custom_ops': ['+quant_fp8', 'all', '+quant_fp8'], 'ir_enable_torch_wrap': False, 'splitting_ops': [], 'compile_mm_encoder': False, 'cudagraph_mm_encoder': False, 'encoder_cudagraph_token_budgets': [], 'encoder_cudagraph_max_vision_items_per_batch': 0, 'encoder_cudagraph_max_frames_per_batch': None, 'cudagraph_decoder_replay': True, 'decoder_replay_cudagraph_capture_sizes': [], 'decoder_replay_trim_threshold': 768, 'compile_sizes': [], 'compile_ranges_endpoints': [8192], 'inductor_compile_config': {'enable_auto_functionalized_v2': False, 'combo_kernels': True, 'benchmark_combo_kernel': True}, 'inductor_passes': {}, 'cudagraph_mode': <CUDAGraphMode.PIECEWISE: 1>, 'cudagraph_num_of_warmups': 1, 'cudagraph_capture_sizes': [1, 2, 4, 8, 16, 24, 32, 40, 48, 56, 64, 72, 80, 88, 96, 104, 112, 120, 128, 136, 144, 152, 160, 168, 176, 184, 192, 200, 208, 216, 224, 232, 240, 248, 256, 272, 288, 304, 320, 336, 352, 368, 384, 400, 416, 432, 448, 464, 480, 496, 512, 528, 544, 560, 576, 592, 608, 624, 640, 656, 672, 688, 704, 720, 736, 752, 768, 784, 800, 816, 832, 848, 864, 880, 896, 912, 928, 944, 960, 976, 992, 1008, 1024], 'cudagraph_copy_inputs': False, 'cudagraph_specialize_lora': True, 'use_inductor_graph_partition': False, 'pass_config': {'fuse_norm_quant': True, 'fuse_act_quant': True, 'fuse_attn_quant': False, 'fuse_allreduce_rms': False, 'enable_qk_norm_rope_fusion': False, 'fuse_rope_kvcache_cat_mla': False, 'fuse_act_padding': False, 'fuse_qk_norm_rope_kvcache': False}, 'max_cudagraph_capture_size': 1024, 'dynamic_shapes_config': {'type': <DynamicShapesType.BACKED: 'backed'>, 'evaluate_guards': False, 'assume_32_bit_indexing': False}, 'local_cache_dir': None, 'fast_moe_cold_start': False, 'static_all_moe_layers': []}, kernel_config=KernelConfig(ir_op_priority=IrOpPriorityConfig(rms_norm=['vllm_c', 'native'], fused_add_rms_norm=['vllm_c', 'native'], gelu_and_mul_sparse=['triton', 'native']), enable_flashinfer_autotune=True, enable_rocm_segmented_attn_autotune=False, enable_cutedsl_warmup=True, enable_jit_warmup=True, monokernel=False, moe_backend='auto', sparse_indexer_topk_backend='auto', linear_backend='auto', linear_backend_per_quant=None)
+(EngineCore pid=640131) INFO 10-25 07:50:53 [multiproc_executor.py:167] DP group leader: node_rank=0, node_rank_within_dp=0, master_addr=127.0.0.1, mq_connect_ip=10.10.3.155 (local), world_size=8, local_world_size=8
+W1025 07:50:53.984000 640541 torch/_opaque_base.py:6] torch._opaque_base is deprecated, use torch._custom_class_base instead
+W1025 07:50:53.984000 640541 torch/_library/opaque_object.py:288] register_opaque_type is deprecated, use register_custom_class instead
+W1025 07:50:53.984000 640541 torch/_library/opaque_object.py:211] typ='value' is deprecated, use typ='constant' instead
+W1025 07:50:54.003000 640538 torch/_opaque_base.py:6] torch._opaque_base is deprecated, use torch._custom_class_base instead
+W1025 07:50:54.004000 640538 torch/_library/opaque_object.py:288] register_opaque_type is deprecated, use register_custom_class instead
+W1025 07:50:54.004000 640538 torch/_library/opaque_object.py:211] typ='value' is deprecated, use typ='constant' instead
+W1025 07:50:54.004000 640536 torch/_opaque_base.py:6] torch._opaque_base is deprecated, use torch._custom_class_base instead
+W1025 07:50:54.005000 640536 torch/_library/opaque_object.py:288] register_opaque_type is deprecated, use register_custom_class instead
+W1025 07:50:54.005000 640536 torch/_library/opaque_object.py:211] typ='value' is deprecated, use typ='constant' instead
+W1025 07:50:54.015000 640535 torch/_opaque_base.py:6] torch._opaque_base is deprecated, use torch._custom_class_base instead
+W1025 07:50:54.016000 640535 torch/_library/opaque_object.py:288] register_opaque_type is deprecated, use register_custom_class instead
+W1025 07:50:54.016000 640535 torch/_library/opaque_object.py:211] typ='value' is deprecated, use typ='constant' instead
+W1025 07:50:54.019000 640540 torch/_opaque_base.py:6] torch._opaque_base is deprecated, use torch._custom_class_base instead
+W1025 07:50:54.019000 640540 torch/_library/opaque_object.py:288] register_opaque_type is deprecated, use register_custom_class instead
+W1025 07:50:54.019000 640540 torch/_library/opaque_object.py:211] typ='value' is deprecated, use typ='constant' instead
+W1025 07:50:54.026000 640534 torch/_opaque_base.py:6] torch._opaque_base is deprecated, use torch._custom_class_base instead
+W1025 07:50:54.027000 640534 torch/_library/opaque_object.py:288] register_opaque_type is deprecated, use register_custom_class instead
+W1025 07:50:54.027000 640534 torch/_library/opaque_object.py:211] typ='value' is deprecated, use typ='constant' instead
+W1025 07:50:54.027000 640537 torch/_opaque_base.py:6] torch._opaque_base is deprecated, use torch._custom_class_base instead
+W1025 07:50:54.028000 640537 torch/_library/opaque_object.py:288] register_opaque_type is deprecated, use register_custom_class instead
+W1025 07:50:54.028000 640537 torch/_library/opaque_object.py:211] typ='value' is deprecated, use typ='constant' instead
+W1025 07:50:54.038000 640539 torch/_opaque_base.py:6] torch._opaque_base is deprecated, use torch._custom_class_base instead
+W1025 07:50:54.038000 640539 torch/_library/opaque_object.py:288] register_opaque_type is deprecated, use register_custom_class instead
+W1025 07:50:54.038000 640539 torch/_library/opaque_object.py:211] typ='value' is deprecated, use typ='constant' instead
+(Worker pid=640534) INFO 10-25 07:51:02 [parallel_state.py:1929] world_size=8 rank=0 local_rank=0 distributed_init_method=file:///tmp/vllm_dist_c137b300057d4c35bea72ad8532dc7ef backend=nccl
+(Worker pid=640541) INFO 10-25 07:51:02 [parallel_state.py:1929] world_size=8 rank=3 local_rank=3 distributed_init_method=file:///tmp/vllm_dist_c137b300057d4c35bea72ad8532dc7ef backend=nccl
+(Worker pid=640538) INFO 10-25 07:51:02 [parallel_state.py:1929] world_size=8 rank=4 local_rank=4 distributed_init_method=file:///tmp/vllm_dist_c137b300057d4c35bea72ad8532dc7ef backend=nccl
+(Worker pid=640535) INFO 10-25 07:51:02 [parallel_state.py:1929] world_size=8 rank=6 local_rank=6 distributed_init_method=file:///tmp/vllm_dist_c137b300057d4c35bea72ad8532dc7ef backend=nccl
+(Worker pid=640536) INFO 10-25 07:51:02 [parallel_state.py:1929] world_size=8 rank=2 local_rank=2 distributed_init_method=file:///tmp/vllm_dist_c137b300057d4c35bea72ad8532dc7ef backend=nccl
+(Worker pid=640537) INFO 10-25 07:51:02 [parallel_state.py:1929] world_size=8 rank=1 local_rank=1 distributed_init_method=file:///tmp/vllm_dist_c137b300057d4c35bea72ad8532dc7ef backend=nccl
+(Worker pid=640540) INFO 10-25 07:51:02 [parallel_state.py:1929] world_size=8 rank=7 local_rank=7 distributed_init_method=file:///tmp/vllm_dist_c137b300057d4c35bea72ad8532dc7ef backend=nccl
+(Worker pid=640539) INFO 10-25 07:51:02 [parallel_state.py:1929] world_size=8 rank=5 local_rank=5 distributed_init_method=file:///tmp/vllm_dist_c137b300057d4c35bea72ad8532dc7ef backend=nccl
+(Worker pid=640534) INFO 10-25 07:51:02 [pynccl.py:148] vLLM is using nccl==2.30.7
+(Worker pid=640534) WARNING 10-25 07:51:03 [symm_mem.py:67] SymmMemCommunicator: Device capability 12.0 not supported, communicator is not available.
+(Worker pid=640535) WARNING 10-25 07:51:03 [symm_mem.py:67] SymmMemCommunicator: Device capability 12.0 not supported, communicator is not available.
+(Worker pid=640538) WARNING 10-25 07:51:03 [symm_mem.py:67] SymmMemCommunicator: Device capability 12.0 not supported, communicator is not available.
+(Worker pid=640536) WARNING 10-25 07:51:03 [symm_mem.py:67] SymmMemCommunicator: Device capability 12.0 not supported, communicator is not available.
+(Worker pid=640541) WARNING 10-25 07:51:03 [symm_mem.py:67] SymmMemCommunicator: Device capability 12.0 not supported, communicator is not available.
+(Worker pid=640537) WARNING 10-25 07:51:03 [symm_mem.py:67] SymmMemCommunicator: Device capability 12.0 not supported, communicator is not available.
+(Worker pid=640539) WARNING 10-25 07:51:03 [symm_mem.py:67] SymmMemCommunicator: Device capability 12.0 not supported, communicator is not available.
+(Worker pid=640538) WARNING 10-25 07:51:03 [flashinfer_all_reduce.py:425] FlashInfer All Reduce is disabled because it is not supported for world_size=8.
+(Worker pid=640536) WARNING 10-25 07:51:03 [flashinfer_all_reduce.py:425] FlashInfer All Reduce is disabled because it is not supported for world_size=8.
+(Worker pid=640535) WARNING 10-25 07:51:03 [flashinfer_all_reduce.py:425] FlashInfer All Reduce is disabled because it is not supported for world_size=8.
+(Worker pid=640534) WARNING 10-25 07:51:03 [flashinfer_all_reduce.py:425] FlashInfer All Reduce is disabled because it is not supported for world_size=8.
+(Worker pid=640541) WARNING 10-25 07:51:03 [flashinfer_all_reduce.py:425] FlashInfer All Reduce is disabled because it is not supported for world_size=8.
+(Worker pid=640537) WARNING 10-25 07:51:03 [flashinfer_all_reduce.py:425] FlashInfer All Reduce is disabled because it is not supported for world_size=8.
+(Worker pid=640540) WARNING 10-25 07:51:03 [symm_mem.py:67] SymmMemCommunicator: Device capability 12.0 not supported, communicator is not available.
+(Worker pid=640539) WARNING 10-25 07:51:03 [flashinfer_all_reduce.py:425] FlashInfer All Reduce is disabled because it is not supported for world_size=8.
+(Worker pid=640540) WARNING 10-25 07:51:03 [flashinfer_all_reduce.py:425] FlashInfer All Reduce is disabled because it is not supported for world_size=8.
+(Worker pid=640540) WARNING 10-25 07:51:03 [custom_all_reduce.py:268] Custom allreduce is disabled because it's not supported on more than two PCIe-only GPUs. To silence this warning, specify disable_custom_all_reduce=True explicitly.
+(Worker pid=640535) WARNING 10-25 07:51:03 [custom_all_reduce.py:268] Custom allreduce is disabled because it's not supported on more than two PCIe-only GPUs. To silence this warning, specify disable_custom_all_reduce=True explicitly.
+(Worker pid=640539) WARNING 10-25 07:51:03 [custom_all_reduce.py:268] Custom allreduce is disabled because it's not supported on more than two PCIe-only GPUs. To silence this warning, specify disable_custom_all_reduce=True explicitly.
+(Worker pid=640538) WARNING 10-25 07:51:03 [custom_all_reduce.py:268] Custom allreduce is disabled because it's not supported on more than two PCIe-only GPUs. To silence this warning, specify disable_custom_all_reduce=True explicitly.
+(Worker pid=640537) WARNING 10-25 07:51:03 [custom_all_reduce.py:268] Custom allreduce is disabled because it's not supported on more than two PCIe-only GPUs. To silence this warning, specify disable_custom_all_reduce=True explicitly.
+(Worker pid=640541) WARNING 10-25 07:51:03 [custom_all_reduce.py:268] Custom allreduce is disabled because it's not supported on more than two PCIe-only GPUs. To silence this warning, specify disable_custom_all_reduce=True explicitly.
+(Worker pid=640536) WARNING 10-25 07:51:03 [custom_all_reduce.py:268] Custom allreduce is disabled because it's not supported on more than two PCIe-only GPUs. To silence this warning, specify disable_custom_all_reduce=True explicitly.
+(Worker pid=640534) WARNING 10-25 07:51:03 [custom_all_reduce.py:268] Custom allreduce is disabled because it's not supported on more than two PCIe-only GPUs. To silence this warning, specify disable_custom_all_reduce=True explicitly.
+(Worker pid=640534) INFO 10-25 07:51:03 [cuda_communicator.py:353] Using ['PYNCCL'] all-reduce backends (in dispatch order) for group 'tp:0' out of potential backends: ['FLASHINFER_PCIE_IPC', 'FLASHINFER', 'NCCL_SYMM_MEM', 'QUICK_REDUCE', 'AITER_CUSTOM', 'CUSTOM', 'SYMM_MEM', 'PYNCCL'].
+(Worker pid=640534) INFO 10-25 07:51:03 [cuda_communicator.py:353] Using ['PYNCCL'] all-reduce backends (in dispatch order) for group 'ep:0' out of potential backends: ['FLASHINFER_PCIE_IPC', 'FLASHINFER', 'NCCL_SYMM_MEM', 'QUICK_REDUCE', 'AITER_CUSTOM', 'CUSTOM', 'SYMM_MEM', 'PYNCCL'].
+(Worker pid=640534) INFO 10-25 07:51:03 [parallel_state.py:2373] rank 0 in world size 8 is assigned as DP rank 0, PP rank 0, PCP rank 0, TP rank 0, ETP rank 0, EP rank 0, EPLB rank N/A
+(Worker pid=640534) INFO 10-25 07:51:03 [gpu_worker.py:513] Using V2 Model Runner
+(Worker pid=640534) WARNING 10-25 07:51:03 [flashinfer.py:143] FlashInfer's precompiled kernels are missing or do not match flashinfer-python 0.7.2.post1 (flashinfer-cubin not installed, flashinfer-jit-cache not installed). FlashInfer then downloads and compiles kernels at startup, which can take several minutes, or fails to import mismatched ones. Run `vllm download-kernels` in this Python environment to install them.
+(Worker_TP0_EP0 pid=640534) INFO 10-25 07:51:04 [model_runner.py:399] Loading model from scratch...
+(Worker_TP0_EP0 pid=640534) INFO 10-25 07:51:04 [cuda.py:567] Using backend AttentionBackendEnum.FLASH_ATTN for vit attention
+(Worker_TP0_EP0 pid=640534) INFO 10-25 07:51:04 [mm_encoder_attention.py:372] Using AttentionBackendEnum.FLASH_ATTN for MMEncoderAttention.
+(Worker_TP0_EP0 pid=640534) INFO 10-25 07:51:04 [quant_config.py:84] DeepSeek V4 expert_dtype resolved to 'fp4'
+(Worker_TP0_EP0 pid=640534) INFO 10-25 07:51:04 [__init__.py:1004] Using FlashInferCutlassMxfp8LinearKernel for MXFP8 GEMM
+(Worker_TP0_EP0 pid=640534) INFO 10-25 07:51:04 [attention.py:170] Using DeepSeek's fp8_ds_mla KV cache format.
+(Worker_TP0_EP0 pid=640534) INFO 10-25 07:51:04 [expert_map_manager.py:250] [EP Rank 0/8] Expert parallelism is enabled. Expert placement strategy: linear. Local/global number of experts: 48/384. Experts local to global index map: 0->0, 1->1, 2->2, 3->3, 4->4, 5->5, 6->6, 7->7, 8->8, 9->9, 10->10, 11->11, 12->12, 13->13, 14->14, 15->15, 16->16, 17->17, 18->18, 19->19, 20->20, 21->21, 22->22, 23->23, 24->24, 25->25, 26->26, 27->27, 28->28, 29->29, 30->30, 31->31, 32->32, 33->33, 34->34, 35->35, 36->36, 37->37, 38->38, 39->39, 40->40, 41->41, 42->42, 43->43, 44->44, 45->45, 46->46, 47->47.
+(Worker_TP0_EP0 pid=640534) INFO 10-25 07:51:04 [mxfp4.py:815] Using 'DEEPGEMM_MXFP4' Mxfp4 MoE backend.
+(Worker_TP3_EP3 pid=640541) INFO 10-25 07:51:07 [engram.py:1024] Engram table offloaded to pinned host memory: 48000671 rows x 256, 11.80 GiB per rank
+(Worker_TP4_EP4 pid=640538) INFO 10-25 07:51:08 [engram.py:1024] Engram table offloaded to pinned host memory: 48000873 rows x 256, 11.80 GiB per rank
+(Worker_TP1_EP1 pid=640537) INFO 10-25 07:51:08 [engram.py:1024] Engram table offloaded to pinned host memory: 48000347 rows x 256, 11.80 GiB per rank
+(Worker_TP0_EP0 pid=640534) INFO 10-25 07:51:08 [engram.py:1024] Engram table offloaded to pinned host memory: 48000217 rows x 256, 11.80 GiB per rank
+(Worker_TP2_EP2 pid=640536) INFO 10-25 07:51:08 [engram.py:1024] Engram table offloaded to pinned host memory: 48000505 rows x 256, 11.80 GiB per rank
+(Worker_TP7_EP7 pid=640540) INFO 10-25 07:51:08 [engram.py:1024] Engram table offloaded to pinned host memory: 48001319 rows x 256, 11.80 GiB per rank
+(Worker_TP0_EP0 pid=640534) INFO 10-25 07:51:08 [attention.py:1379] Using FP8 indexer cache for Lightning Indexer.
+(Worker_TP6_EP6 pid=640535) INFO 10-25 07:51:08 [engram.py:1024] Engram table offloaded to pinned host memory: 48001195 rows x 256, 11.80 GiB per rank
+(Worker_TP5_EP5 pid=640539) INFO 10-25 07:51:08 [engram.py:1024] Engram table offloaded to pinned host memory: 48001041 rows x 256, 11.80 GiB per rank
+(Worker_TP3_EP3 pid=640541) INFO 10-25 07:51:09 [engram.py:1024] Engram table offloaded to pinned host memory: 48002059 rows x 256, 11.80 GiB per rank
+[transformers] You are using a model of type `deepseek_v41` to instantiate a model of type ``. This may be expected if you are loading a checkpoint that shares a subset of the architecture (e.g., loading a `sam2_video` checkpoint into `Sam2Model`), but is otherwise not supported and can yield errors. Please verify that the checkpoint is compatible with the model you are instantiating.
+(Worker_TP3_EP3 pid=640541) INFO 10-25 07:51:10 [engram.py:473] Built engram token map (129280 -> 99092 ids) for layers (1, 14)
+(Worker_TP4_EP4 pid=640538) INFO 10-25 07:51:11 [engram.py:1024] Engram table offloaded to pinned host memory: 48002199 rows x 256, 11.80 GiB per rank
+(Worker_TP1_EP1 pid=640537) INFO 10-25 07:51:11 [engram.py:1024] Engram table offloaded to pinned host memory: 48001591 rows x 256, 11.80 GiB per rank
+(Worker_TP2_EP2 pid=640536) INFO 10-25 07:51:11 [engram.py:1024] Engram table offloaded to pinned host memory: 48001903 rows x 256, 11.80 GiB per rank
+(Worker_TP6_EP6 pid=640535) INFO 10-25 07:51:11 [engram.py:1024] Engram table offloaded to pinned host memory: 48002473 rows x 256, 11.80 GiB per rank
+(Worker_TP7_EP7 pid=640540) INFO 10-25 07:51:11 [engram.py:1024] Engram table offloaded to pinned host memory: 48002645 rows x 256, 11.80 GiB per rank
+(Worker_TP0_EP0 pid=640534) INFO 10-25 07:51:11 [engram.py:1024] Engram table offloaded to pinned host memory: 48001463 rows x 256, 11.80 GiB per rank
+(Worker_TP5_EP5 pid=640539) INFO 10-25 07:51:11 [engram.py:1024] Engram table offloaded to pinned host memory: 48002349 rows x 256, 11.80 GiB per rank
+[transformers] You are using a model of type `deepseek_v41` to instantiate a model of type ``. This may be expected if you are loading a checkpoint that shares a subset of the architecture (e.g., loading a `sam2_video` checkpoint into `Sam2Model`), but is otherwise not supported and can yield errors. Please verify that the checkpoint is compatible with the model you are instantiating.
+[transformers] You are using a model of type `deepseek_v41` to instantiate a model of type ``. This may be expected if you are loading a checkpoint that shares a subset of the architecture (e.g., loading a `sam2_video` checkpoint into `Sam2Model`), but is otherwise not supported and can yield errors. Please verify that the checkpoint is compatible with the model you are instantiating.
+[transformers] You are using a model of type `deepseek_v41` to instantiate a model of type ``. This may be expected if you are loading a checkpoint that shares a subset of the architecture (e.g., loading a `sam2_video` checkpoint into `Sam2Model`), but is otherwise not supported and can yield errors. Please verify that the checkpoint is compatible with the model you are instantiating.
+[transformers] You are using a model of type `deepseek_v41` to instantiate a model of type ``. This may be expected if you are loading a checkpoint that shares a subset of the architecture (e.g., loading a `sam2_video` checkpoint into `Sam2Model`), but is otherwise not supported and can yield errors. Please verify that the checkpoint is compatible with the model you are instantiating.
+[transformers] You are using a model of type `deepseek_v41` to instantiate a model of type ``. This may be expected if you are loading a checkpoint that shares a subset of the architecture (e.g., loading a `sam2_video` checkpoint into `Sam2Model`), but is otherwise not supported and can yield errors. Please verify that the checkpoint is compatible with the model you are instantiating.
+(Worker_TP0_EP0 pid=640534) INFO 10-25 07:51:11 [model.py:885] Decoder SWA bounded replay: in eager prefill steps, layer 20 writes its KV for every token, and the rest of it and layers 21-39 run on each request's last 128 tokens only.
+[transformers] You are using a model of type `deepseek_v41` to instantiate a model of type ``. This may be expected if you are loading a checkpoint that shares a subset of the architecture (e.g., loading a `sam2_video` checkpoint into `Sam2Model`), but is otherwise not supported and can yield errors. Please verify that the checkpoint is compatible with the model you are instantiating.
+[transformers] You are using a model of type `deepseek_v41` to instantiate a model of type ``. This may be expected if you are loading a checkpoint that shares a subset of the architecture (e.g., loading a `sam2_video` checkpoint into `Sam2Model`), but is otherwise not supported and can yield errors. Please verify that the checkpoint is compatible with the model you are instantiating.
+(Worker_TP7_EP7 pid=640540) INFO 10-25 07:51:12 [engram.py:473] Built engram token map (129280 -> 99092 ids) for layers (1, 14)
+(Worker_TP4_EP4 pid=640538) INFO 10-25 07:51:12 [engram.py:473] Built engram token map (129280 -> 99092 ids) for layers (1, 14)
+(Worker_TP1_EP1 pid=640537) INFO 10-25 07:51:12 [engram.py:473] Built engram token map (129280 -> 99092 ids) for layers (1, 14)
+(Worker_TP2_EP2 pid=640536) INFO 10-25 07:51:12 [engram.py:473] Built engram token map (129280 -> 99092 ids) for layers (1, 14)
+(Worker_TP6_EP6 pid=640535) INFO 10-25 07:51:12 [engram.py:473] Built engram token map (129280 -> 99092 ids) for layers (1, 14)
+(Worker_TP0_EP0 pid=640534) INFO 10-25 07:51:12 [engram.py:473] Built engram token map (129280 -> 99092 ids) for layers (1, 14)
+(Worker_TP5_EP5 pid=640539) INFO 10-25 07:51:12 [engram.py:473] Built engram token map (129280 -> 99092 ids) for layers (1, 14)
+(Worker_TP0_EP0 pid=640534) WARNING 10-25 07:51:12 [compilation.py:1355] Op 'quant_fp8' not present in model, enabling with '+quant_fp8' has no effect
+(Worker_TP0_EP0 pid=640534) INFO 10-25 07:51:12 [base_loader.py:82] Initializing model took 8.092134 seconds
+(Worker_TP0_EP0 pid=640534) INFO 10-25 07:51:12 [weight_utils.py:1144] Filesystem type for checkpoints: EXT4. Checkpoint size: 475.25 GiB. Available RAM: 1082.25 GiB.
+(Worker_TP0_EP0 pid=640534) INFO 10-25 07:51:12 [weight_utils.py:1167] Auto-prefetch is disabled because the filesystem (EXT4) is not a recognized network FS (NFS/Lustre). If you want to force prefetching, start vLLM with --safetensors-load-strategy=prefetch.
+
+Loading safetensors checkpoint shards:   0% Completed | 0/48 [00:00<?, ?it/s]
+
+Loading safetensors checkpoint shards:   2% Completed | 1/48 [00:00<00:05,  8.88it/s]
+
+Loading safetensors checkpoint shards:   6% Completed | 3/48 [00:00<00:06,  6.79it/s]
+
+Loading safetensors checkpoint shards:   8% Completed | 4/48 [00:00<00:09,  4.63it/s]
+
+Loading safetensors checkpoint shards:  10% Completed | 5/48 [00:01<00:09,  4.32it/s]
+
+Loading safetensors checkpoint shards:  12% Completed | 6/48 [00:01<00:09,  4.27it/s]
+
+Loading safetensors checkpoint shards:  15% Completed | 7/48 [00:01<00:09,  4.14it/s]
+
+Loading safetensors checkpoint shards:  17% Completed | 8/48 [00:01<00:09,  4.10it/s]
+
+Loading safetensors checkpoint shards:  19% Completed | 9/48 [00:02<00:09,  4.10it/s]
+
+Loading safetensors checkpoint shards:  21% Completed | 10/48 [00:02<00:09,  4.21it/s]
+
+Loading safetensors checkpoint shards:  23% Completed | 11/48 [00:02<00:08,  4.15it/s]
+
+Loading safetensors checkpoint shards:  25% Completed | 12/48 [00:02<00:09,  3.69it/s]
+
+Loading safetensors checkpoint shards:  27% Completed | 13/48 [00:03<00:09,  3.88it/s]
+
+Loading safetensors checkpoint shards:  29% Completed | 14/48 [00:03<00:08,  3.96it/s]
+
+Loading safetensors checkpoint shards:  31% Completed | 15/48 [00:03<00:08,  3.90it/s]
+
+Loading safetensors checkpoint shards:  33% Completed | 16/48 [00:03<00:08,  3.83it/s]
+
+Loading safetensors checkpoint shards:  35% Completed | 17/48 [00:04<00:07,  3.98it/s]
+
+Loading safetensors checkpoint shards:  38% Completed | 18/48 [00:04<00:07,  3.79it/s]
+
+Loading safetensors checkpoint shards:  40% Completed | 19/48 [00:04<00:07,  3.97it/s]
+
+Loading safetensors checkpoint shards:  42% Completed | 20/48 [00:04<00:06,  4.01it/s]
+
+Loading safetensors checkpoint shards:  44% Completed | 21/48 [00:05<00:06,  4.03it/s]
+
+Loading safetensors checkpoint shards:  46% Completed | 22/48 [00:05<00:07,  3.45it/s]
+
+Loading safetensors checkpoint shards:  48% Completed | 23/48 [00:05<00:07,  3.42it/s]
+
+Loading safetensors checkpoint shards:  50% Completed | 24/48 [00:06<00:06,  3.64it/s]
+
+Loading safetensors checkpoint shards:  52% Completed | 25/48 [00:06<00:06,  3.78it/s]
+
+Loading safetensors checkpoint shards:  54% Completed | 26/48 [00:06<00:05,  3.91it/s]
+
+Loading safetensors checkpoint shards:  56% Completed | 27/48 [00:06<00:05,  3.92it/s]
+
+Loading safetensors checkpoint shards:  58% Completed | 28/48 [00:06<00:05,  3.86it/s]
+
+Loading safetensors checkpoint shards:  60% Completed | 29/48 [00:07<00:05,  3.38it/s]
+
+Loading safetensors checkpoint shards:  62% Completed | 30/48 [00:07<00:05,  3.46it/s]
+
+Loading safetensors checkpoint shards:  65% Completed | 31/48 [00:07<00:04,  3.64it/s]
+
+Loading safetensors checkpoint shards:  67% Completed | 32/48 [00:08<00:04,  3.69it/s]
+
+Loading safetensors checkpoint shards:  69% Completed | 33/48 [00:08<00:04,  3.73it/s]
+
+Loading safetensors checkpoint shards:  71% Completed | 34/48 [00:08<00:03,  3.73it/s]
+
+Loading safetensors checkpoint shards:  73% Completed | 35/48 [00:08<00:03,  3.76it/s]
+
+Loading safetensors checkpoint shards:  75% Completed | 36/48 [00:09<00:03,  3.74it/s]
+
+Loading safetensors checkpoint shards:  77% Completed | 37/48 [00:09<00:03,  3.40it/s]
+
+Loading safetensors checkpoint shards:  79% Completed | 38/48 [00:10<00:03,  2.92it/s]
+
+Loading safetensors checkpoint shards:  81% Completed | 39/48 [00:10<00:03,  2.54it/s]
+
+Loading safetensors checkpoint shards:  83% Completed | 40/48 [00:11<00:03,  2.33it/s]
+
+Loading safetensors checkpoint shards:  85% Completed | 41/48 [00:11<00:03,  2.15it/s]
+
+Loading safetensors checkpoint shards:  88% Completed | 42/48 [00:12<00:02,  2.16it/s]
+
+Loading safetensors checkpoint shards:  98% Completed | 47/48 [00:12<00:00,  5.81it/s]
+(Worker_TP3_EP3 pid=640541) INFO 10-25 07:51:25 [eagle3_utils.py:37] Using Eagle3 auxiliary layers from config: (37, 38, 39)
+(Worker_TP3_EP3 pid=640541) INFO 10-25 07:51:25 [kernel.py:480] Final IR op priority after setting platform defaults: IrOpPriorityConfig(rms_norm=['vllm_c', 'native'], fused_add_rms_norm=['vllm_c', 'native'], gelu_and_mul_sparse=['triton', 'native'])
+
+Loading safetensors checkpoint shards: 100% Completed | 48/48 [00:12<00:00,  4.39it/s]
+
+Loading safetensors checkpoint shards: 100% Completed | 48/48 [00:12<00:00,  3.76it/s]
+
+(Worker_TP0_EP0 pid=640534) INFO 10-25 07:51:25 [default_loader.py:506] Loading weights took 13.23 seconds
+(Worker_TP0_EP0 pid=640534) INFO 10-25 07:51:26 [__init__.py:1004] Using EmulationMxfp8LinearKernel for MXFP8 GEMM
+(Worker_TP0_EP0 pid=640534) INFO 10-25 07:51:26 [deep_gemm.py:200] deep_gemm not found in site-packages, trying vendored vllm.third_party.deep_gemm
+(Worker_TP0_EP0 pid=640534) INFO 10-25 07:51:26 [deep_gemm.py:227] DeepGEMM PDL enabled on vllm.third_party.deep_gemm.
+(Worker_TP0_EP0 pid=640534) INFO 10-25 07:51:26 [deep_gemm.py:139] DeepGEMM E8M0 enabled on current platform.
+(Worker_TP0_EP0 pid=640534) INFO 10-25 07:51:26 [mxfp4.py:2291] Using MoEPrepareAndFinalizeNoDPEPModular
+(Worker_TP0_EP0 pid=640534) INFO 10-25 07:51:26 [mxfp4.py:2292] Using DeepGemmFP4Experts
+(Worker_TP0_EP0 pid=640534) INFO 10-25 07:51:27 [eagle3_utils.py:37] Using Eagle3 auxiliary layers from config: (37, 38, 39)
+(Worker_TP0_EP0 pid=640534) INFO 10-25 07:51:27 [vllm.py:1473] Resolved Engram configuration: EngramConfig(cpu_offload=True, embedding_across_dp=False, dp_shared_memory=False, use_thp=False)
+(Worker_TP0_EP0 pid=640534) INFO 10-25 07:51:27 [kernel.py:480] Final IR op priority after setting platform defaults: IrOpPriorityConfig(rms_norm=['vllm_c', 'native'], fused_add_rms_norm=['vllm_c', 'native'], gelu_and_mul_sparse=['triton', 'native'])
+(Worker_TP0_EP0 pid=640534) INFO 10-25 07:51:27 [compilation.py:317] Enabled custom fusions: norm_quant, act_quant
+(Worker_TP0_EP0 pid=640534) INFO 10-25 07:51:27 [expert_map_manager.py:250] [EP Rank 0/8] Expert parallelism is enabled. Expert placement strategy: linear. Local/global number of experts: 16/128. Experts local to global index map: 0->0, 1->1, 2->2, 3->3, 4->4, 5->5, 6->6, 7->7, 8->8, 9->9, 10->10, 11->11, 12->12, 13->13, 14->14, 15->15.
+(Worker_TP0_EP0 pid=640534) INFO 10-25 07:51:27 [base_loader.py:82] Initializing model took 0.014229 seconds
+(Worker_TP0_EP0 pid=640534) INFO 10-25 07:51:27 [weight_utils.py:1144] Filesystem type for checkpoints: EXT4. Checkpoint size: 475.25 GiB. Available RAM: 1077.78 GiB.
+
+Loading safetensors checkpoint shards:   0% Completed | 0/48 [00:00<?, ?it/s]
+
+Loading safetensors checkpoint shards:  12% Completed | 6/48 [00:00<00:00, 50.55it/s]
+
+Loading safetensors checkpoint shards:  25% Completed | 12/48 [00:00<00:00, 36.07it/s]
+
+Loading safetensors checkpoint shards:  33% Completed | 16/48 [00:00<00:00, 34.58it/s]
+
+Loading safetensors checkpoint shards:  42% Completed | 20/48 [00:00<00:00, 34.52it/s]
+
+Loading safetensors checkpoint shards:  50% Completed | 24/48 [00:00<00:00, 35.28it/s]
+
+Loading safetensors checkpoint shards:  58% Completed | 28/48 [00:00<00:00, 36.36it/s]
+
+Loading safetensors checkpoint shards:  67% Completed | 32/48 [00:00<00:00, 36.11it/s]
+
+Loading safetensors checkpoint shards:  75% Completed | 36/48 [00:00<00:00, 36.25it/s]
+
+Loading safetensors checkpoint shards:  85% Completed | 41/48 [00:01<00:00, 37.89it/s]
+
+Loading safetensors checkpoint shards:  94% Completed | 45/48 [00:01<00:00, 29.88it/s]
+(Worker_TP3_EP3 pid=640541) INFO 10-25 07:51:28 [model_runner.py:431] Model loading took 37.83 GiB memory and 24.527499 seconds
+(Worker_TP3_EP3 pid=640541) INFO 10-25 07:51:28 [interface.py:776] Setting kv cache block size to 64 for FLASHINFER_MLA_SPARSE_DSV41/DEEPSEEK_SPARSE_SWA/DEEPSEEK_V41_INDEXER/CompressorBackend backend(s).
+
+Loading safetensors checkpoint shards: 100% Completed | 48/48 [00:01<00:00, 31.10it/s]
+
+(Worker_TP0_EP0 pid=640534) INFO 10-25 07:51:28 [dspark.py:487] DSpark draft model loaded: 97 params
+(Worker_TP0_EP0 pid=640534) INFO 10-25 07:51:28 [default_loader.py:506] Loading weights took 1.54 seconds
+(Worker_TP0_EP0 pid=640534) WARNING 10-25 07:51:29 [speculator.py:244] Draft model DSparkDeepseekV4ForCausalLM does not support external multimodal embeddings. Embeddings from the target model will not be passed to the drafter; using text-only draft inputs instead.
+(Worker_TP4_EP4 pid=640538) INFO 10-25 07:51:30 [eagle3_utils.py:37] Using Eagle3 auxiliary layers from config: (37, 38, 39)
+(Worker_TP4_EP4 pid=640538) INFO 10-25 07:51:30 [kernel.py:480] Final IR op priority after setting platform defaults: IrOpPriorityConfig(rms_norm=['vllm_c', 'native'], fused_add_rms_norm=['vllm_c', 'native'], gelu_and_mul_sparse=['triton', 'native'])
+(Worker_TP0_EP0 pid=640534) INFO 10-25 07:51:30 [model_runner.py:431] Model loading took 37.83 GiB memory and 26.267722 seconds
+(Worker_TP0_EP0 pid=640534) INFO 10-25 07:51:30 [breakable_cudagraph.py:294] Breakable CUDA graph enabled
+(Worker_TP0_EP0 pid=640534) INFO 10-25 07:51:30 [topk_topp_sampler.py:149] Using FlashInfer for top-p & top-k sampling.
+(Worker_TP0_EP0 pid=640534) INFO 10-25 07:51:30 [torch_utils.py:286] Reducing Torch threads from 28 to 1 for serving. Set OMP_NUM_THREADS in the external environment to override.
+(Worker_TP0_EP0 pid=640534) INFO 10-25 07:51:30 [interface.py:776] Setting kv cache block size to 64 for FLASHINFER_MLA_SPARSE_DSV41/DEEPSEEK_SPARSE_SWA/DEEPSEEK_V41_INDEXER/CompressorBackend backend(s).
+(Worker_TP4_EP4 pid=640538) INFO 10-25 07:51:33 [model_runner.py:431] Model loading took 37.83 GiB memory and 29.784766 seconds
+(Worker_TP4_EP4 pid=640538) INFO 10-25 07:51:33 [interface.py:776] Setting kv cache block size to 64 for FLASHINFER_MLA_SPARSE_DSV41/DEEPSEEK_SPARSE_SWA/DEEPSEEK_V41_INDEXER/CompressorBackend backend(s).
+(Worker_TP1_EP1 pid=640537) INFO 10-25 07:51:34 [eagle3_utils.py:37] Using Eagle3 auxiliary layers from config: (37, 38, 39)
+(Worker_TP1_EP1 pid=640537) INFO 10-25 07:51:34 [kernel.py:480] Final IR op priority after setting platform defaults: IrOpPriorityConfig(rms_norm=['vllm_c', 'native'], fused_add_rms_norm=['vllm_c', 'native'], gelu_and_mul_sparse=['triton', 'native'])
+(Worker_TP2_EP2 pid=640536) INFO 10-25 07:51:35 [eagle3_utils.py:37] Using Eagle3 auxiliary layers from config: (37, 38, 39)
+(Worker_TP2_EP2 pid=640536) INFO 10-25 07:51:35 [kernel.py:480] Final IR op priority after setting platform defaults: IrOpPriorityConfig(rms_norm=['vllm_c', 'native'], fused_add_rms_norm=['vllm_c', 'native'], gelu_and_mul_sparse=['triton', 'native'])
+(Worker_TP7_EP7 pid=640540) INFO 10-25 07:51:35 [eagle3_utils.py:37] Using Eagle3 auxiliary layers from config: (37, 38, 39)
+(Worker_TP7_EP7 pid=640540) INFO 10-25 07:51:35 [kernel.py:480] Final IR op priority after setting platform defaults: IrOpPriorityConfig(rms_norm=['vllm_c', 'native'], fused_add_rms_norm=['vllm_c', 'native'], gelu_and_mul_sparse=['triton', 'native'])
+(Worker_TP6_EP6 pid=640535) INFO 10-25 07:51:35 [eagle3_utils.py:37] Using Eagle3 auxiliary layers from config: (37, 38, 39)
+(Worker_TP6_EP6 pid=640535) INFO 10-25 07:51:35 [kernel.py:480] Final IR op priority after setting platform defaults: IrOpPriorityConfig(rms_norm=['vllm_c', 'native'], fused_add_rms_norm=['vllm_c', 'native'], gelu_and_mul_sparse=['triton', 'native'])
+(Worker_TP5_EP5 pid=640539) INFO 10-25 07:51:36 [eagle3_utils.py:37] Using Eagle3 auxiliary layers from config: (37, 38, 39)
+(Worker_TP5_EP5 pid=640539) INFO 10-25 07:51:36 [kernel.py:480] Final IR op priority after setting platform defaults: IrOpPriorityConfig(rms_norm=['vllm_c', 'native'], fused_add_rms_norm=['vllm_c', 'native'], gelu_and_mul_sparse=['triton', 'native'])
+(Worker_TP1_EP1 pid=640537) INFO 10-25 07:51:38 [model_runner.py:431] Model loading took 37.83 GiB memory and 33.830477 seconds
+(Worker_TP1_EP1 pid=640537) INFO 10-25 07:51:38 [interface.py:776] Setting kv cache block size to 64 for FLASHINFER_MLA_SPARSE_DSV41/DEEPSEEK_SPARSE_SWA/DEEPSEEK_V41_INDEXER/CompressorBackend backend(s).
+(Worker_TP2_EP2 pid=640536) INFO 10-25 07:51:38 [model_runner.py:431] Model loading took 37.83 GiB memory and 34.176746 seconds
+(Worker_TP2_EP2 pid=640536) INFO 10-25 07:51:38 [interface.py:776] Setting kv cache block size to 64 for FLASHINFER_MLA_SPARSE_DSV41/DEEPSEEK_SPARSE_SWA/DEEPSEEK_V41_INDEXER/CompressorBackend backend(s).
+(Worker_TP7_EP7 pid=640540) INFO 10-25 07:51:38 [model_runner.py:431] Model loading took 37.83 GiB memory and 34.346698 seconds
+(Worker_TP7_EP7 pid=640540) INFO 10-25 07:51:38 [interface.py:776] Setting kv cache block size to 64 for FLASHINFER_MLA_SPARSE_DSV41/DEEPSEEK_SPARSE_SWA/DEEPSEEK_V41_INDEXER/CompressorBackend backend(s).
+(Worker_TP6_EP6 pid=640535) INFO 10-25 07:51:38 [model_runner.py:431] Model loading took 37.83 GiB memory and 34.762094 seconds
+(Worker_TP6_EP6 pid=640535) INFO 10-25 07:51:38 [interface.py:776] Setting kv cache block size to 64 for FLASHINFER_MLA_SPARSE_DSV41/DEEPSEEK_SPARSE_SWA/DEEPSEEK_V41_INDEXER/CompressorBackend backend(s).
+(Worker_TP5_EP5 pid=640539) INFO 10-25 07:51:39 [model_runner.py:431] Model loading took 37.83 GiB memory and 34.713446 seconds
+(Worker_TP5_EP5 pid=640539) INFO 10-25 07:51:39 [interface.py:776] Setting kv cache block size to 64 for FLASHINFER_MLA_SPARSE_DSV41/DEEPSEEK_SPARSE_SWA/DEEPSEEK_V41_INDEXER/CompressorBackend backend(s).
+(EngineCore pid=640131) INFO 10-25 07:51:39 [torch_utils.py:286] Reducing Torch threads from 28 to 1 for serving. Set OMP_NUM_THREADS in the external environment to override.
+(EngineCore pid=640131) INFO 10-25 07:51:39 [utils.py:380] Using BLHNC KV cache layout.
+(Worker_TP0_EP0 pid=640534) INFO 10-25 07:51:39 [encoder_runner.py:131] Encoder cache will be initialized with a budget of 8192 tokens, and profiled with 8 image items of the maximum feature size.
+(Worker_TP0_EP0 pid=640534) INFO 10-25 07:51:48 [indexer.py:1037] DSA indexer decode path: use_flattening=True supports_varlen=False (next_n=8, use_fp4_cache=False)
+
+Capturing CUDA graphs (PIECEWISE):   0%|          | 0/83 [00:00<?, ?it/s]/root/b12xenv/lib/python3.12/site-packages/torch/cuda/graphs.py:630: UserWarning: The CUDA Graph is empty. This usually means that the graph was attempted to be captured on wrong device or stream. (Triggered internally at /__w/pytorch/pytorch/aten/src/ATen/cuda/CUDAGraph.cpp:249.)
+  super().capture_end_pre()
+/root/b12xenv/lib/python3.12/site-packages/torch/cuda/graphs.py:630: UserWarning: The CUDA Graph is empty. This usually means that the graph was attempted to be captured on wrong device or stream. (Triggered internally at /__w/pytorch/pytorch/aten/src/ATen/cuda/CUDAGraph.cpp:249.)
+  super().capture_end_pre()
+/root/b12xenv/lib/python3.12/site-packages/torch/cuda/graphs.py:630: UserWarning: The CUDA Graph is empty. This usually means that the graph was attempted to be captured on wrong device or stream. (Triggered internally at /__w/pytorch/pytorch/aten/src/ATen/cuda/CUDAGraph.cpp:249.)
+  super().capture_end_pre()
+/root/b12xenv/lib/python3.12/site-packages/torch/cuda/graphs.py:630: UserWarning: The CUDA Graph is empty. This usually means that the graph was attempted to be captured on wrong device or stream. (Triggered internally at /__w/pytorch/pytorch/aten/src/ATen/cuda/CUDAGraph.cpp:249.)
+  super().capture_end_pre()
+/root/b12xenv/lib/python3.12/site-packages/torch/cuda/graphs.py:630: UserWarning: The CUDA Graph is empty. This usually means that the graph was attempted to be captured on wrong device or stream. (Triggered internally at /__w/pytorch/pytorch/aten/src/ATen/cuda/CUDAGraph.cpp:249.)
+  super().capture_end_pre()
+/root/b12xenv/lib/python3.12/site-packages/torch/cuda/graphs.py:630: UserWarning: The CUDA Graph is empty. This usually means that the graph was attempted to be captured on wrong device or stream. (Triggered internally at /__w/pytorch/pytorch/aten/src/ATen/cuda/CUDAGraph.cpp:249.)
+  super().capture_end_pre()
+/root/b12xenv/lib/python3.12/site-packages/torch/cuda/graphs.py:630: UserWarning: The CUDA Graph is empty. This usually means that the graph was attempted to be captured on wrong device or stream. (Triggered internally at /__w/pytorch/pytorch/aten/src/ATen/cuda/CUDAGraph.cpp:249.)
+  super().capture_end_pre()
+/root/b12xenv/lib/python3.12/site-packages/torch/cuda/graphs.py:630: UserWarning: The CUDA Graph is empty. This usually means that the graph was attempted to be captured on wrong device or stream. (Triggered internally at /__w/pytorch/pytorch/aten/src/ATen/cuda/CUDAGraph.cpp:249.)
+  super().capture_end_pre()
+
+Capturing CUDA graphs (PIECEWISE):   1%|          | 1/83 [00:01<02:01,  1.48s/it]
+Capturing CUDA graphs (PIECEWISE):   2%|▏         | 2/83 [00:01<00:57,  1.41it/s]
+Capturing CUDA graphs (PIECEWISE):   4%|▎         | 3/83 [00:01<00:36,  2.18it/s]
+Capturing CUDA graphs (PIECEWISE):   5%|▍         | 4/83 [00:01<00:27,  2.93it/s]
+Capturing CUDA graphs (PIECEWISE):   6%|▌         | 5/83 [00:02<00:21,  3.58it/s]
+Capturing CUDA graphs (PIECEWISE):   7%|▋         | 6/83 [00:02<00:18,  4.18it/s]
+Capturing CUDA graphs (PIECEWISE):   8%|▊         | 7/83 [00:02<00:16,  4.65it/s]
+Capturing CUDA graphs (PIECEWISE):  10%|▉         | 8/83 [00:02<00:14,  5.07it/s]
+Capturing CUDA graphs (PIECEWISE):  11%|█         | 9/83 [00:02<00:13,  5.32it/s]
+Capturing CUDA graphs (PIECEWISE):  12%|█▏        | 10/83 [00:02<00:13,  5.55it/s]
+Capturing CUDA graphs (PIECEWISE):  13%|█▎        | 11/83 [00:03<00:12,  5.67it/s]
+Capturing CUDA graphs (PIECEWISE):  14%|█▍        | 12/83 [00:03<00:12,  5.81it/s]
+Capturing CUDA graphs (PIECEWISE):  16%|█▌        | 13/83 [00:03<00:12,  5.83it/s]
+Capturing CUDA graphs (PIECEWISE):  17%|█▋        | 14/83 [00:03<00:11,  5.93it/s]
+Capturing CUDA graphs (PIECEWISE):  18%|█▊        | 15/83 [00:03<00:11,  5.98it/s]
+Capturing CUDA graphs (PIECEWISE):  19%|█▉        | 16/83 [00:03<00:11,  6.02it/s]
+Capturing CUDA graphs (PIECEWISE):  20%|██        | 17/83 [00:04<00:10,  6.01it/s]
+Capturing CUDA graphs (PIECEWISE):  22%|██▏       | 18/83 [00:04<00:11,  5.72it/s]
+Capturing CUDA graphs (PIECEWISE):  23%|██▎       | 19/83 [00:04<00:11,  5.74it/s]
+Capturing CUDA graphs (PIECEWISE):  24%|██▍       | 20/83 [00:04<00:10,  5.76it/s]
+Capturing CUDA graphs (PIECEWISE):  25%|██▌       | 21/83 [00:04<00:10,  5.70it/s]
+Capturing CUDA graphs (PIECEWISE):  27%|██▋       | 22/83 [00:05<00:10,  5.76it/s]
+Capturing CUDA graphs (PIECEWISE):  28%|██▊       | 23/83 [00:05<00:10,  5.82it/s]
+Capturing CUDA graphs (PIECEWISE):  29%|██▉       | 24/83 [00:05<00:10,  5.87it/s]
+Capturing CUDA graphs (PIECEWISE):  30%|███       | 25/83 [00:05<00:09,  5.91it/s]
+Capturing CUDA graphs (PIECEWISE):  31%|███▏      | 26/83 [00:05<00:09,  5.83it/s]
+Capturing CUDA graphs (PIECEWISE):  33%|███▎      | 27/83 [00:05<00:09,  5.89it/s]
+Capturing CUDA graphs (PIECEWISE):  34%|███▎      | 28/83 [00:06<00:09,  5.94it/s]
+Capturing CUDA graphs (PIECEWISE):  35%|███▍      | 29/83 [00:06<00:09,  5.89it/s]
+Capturing CUDA graphs (PIECEWISE):  36%|███▌      | 30/83 [00:06<00:09,  5.83it/s]
+Capturing CUDA graphs (PIECEWISE):  37%|███▋      | 31/83 [00:06<00:09,  5.77it/s]
+Capturing CUDA graphs (PIECEWISE):  39%|███▊      | 32/83 [00:06<00:08,  5.84it/s]
+Capturing CUDA graphs (PIECEWISE):  40%|███▉      | 33/83 [00:06<00:08,  5.80it/s]
+Capturing CUDA graphs (PIECEWISE):  41%|████      | 34/83 [00:07<00:10,  4.54it/s]
+Capturing CUDA graphs (PIECEWISE):  42%|████▏     | 35/83 [00:07<00:09,  4.81it/s]
+Capturing CUDA graphs (PIECEWISE):  43%|████▎     | 36/83 [00:07<00:09,  5.12it/s]
+Capturing CUDA graphs (PIECEWISE):  45%|████▍     | 37/83 [00:07<00:08,  5.25it/s]
+Capturing CUDA graphs (PIECEWISE):  46%|████▌     | 38/83 [00:07<00:08,  5.44it/s]
+Capturing CUDA graphs (PIECEWISE):  47%|████▋     | 39/83 [00:08<00:07,  5.58it/s]
+Capturing CUDA graphs (PIECEWISE):  48%|████▊     | 40/83 [00:08<00:09,  4.70it/s]
+Capturing CUDA graphs (PIECEWISE):  49%|████▉     | 41/83 [00:08<00:08,  5.02it/s]
+Capturing CUDA graphs (PIECEWISE):  51%|█████     | 42/83 [00:08<00:07,  5.25it/s]
+Capturing CUDA graphs (PIECEWISE):  52%|█████▏    | 43/83 [00:08<00:07,  5.39it/s]
+Capturing CUDA graphs (PIECEWISE):  53%|█████▎    | 44/83 [00:09<00:08,  4.54it/s]
+Capturing CUDA graphs (PIECEWISE):  54%|█████▍    | 45/83 [00:09<00:07,  4.83it/s]
+Capturing CUDA graphs (PIECEWISE):  55%|█████▌    | 46/83 [00:09<00:07,  5.12it/s]
+Capturing CUDA graphs (PIECEWISE):  57%|█████▋    | 47/83 [00:09<00:06,  5.27it/s]
+Capturing CUDA graphs (PIECEWISE):  58%|█████▊    | 48/83 [00:09<00:06,  5.45it/s]
+Capturing CUDA graphs (PIECEWISE):  59%|█████▉    | 49/83 [00:10<00:06,  5.45it/s]
+Capturing CUDA graphs (PIECEWISE):  60%|██████    | 50/83 [00:10<00:06,  4.75it/s]
+Capturing CUDA graphs (PIECEWISE):  61%|██████▏   | 51/83 [00:10<00:06,  4.97it/s]
+Capturing CUDA graphs (PIECEWISE):  63%|██████▎   | 52/83 [00:10<00:05,  5.18it/s]
+Capturing CUDA graphs (PIECEWISE):  64%|██████▍   | 53/83 [00:10<00:05,  5.35it/s]
+Capturing CUDA graphs (PIECEWISE):  65%|██████▌   | 54/83 [00:11<00:05,  5.37it/s]
+Capturing CUDA graphs (PIECEWISE):  66%|██████▋   | 55/83 [00:11<00:05,  5.49it/s]
+Capturing CUDA graphs (PIECEWISE):  67%|██████▋   | 56/83 [00:11<00:04,  5.50it/s]
+Capturing CUDA graphs (PIECEWISE):  69%|██████▊   | 57/83 [00:11<00:04,  5.52it/s]
+Capturing CUDA graphs (PIECEWISE):  70%|██████▉   | 58/83 [00:11<00:04,  5.59it/s]
+Capturing CUDA graphs (PIECEWISE):  71%|███████   | 59/83 [00:11<00:04,  5.62it/s]
+Capturing CUDA graphs (PIECEWISE):  72%|███████▏  | 60/83 [00:12<00:04,  5.57it/s]
+Capturing CUDA graphs (PIECEWISE):  73%|███████▎  | 61/83 [00:12<00:03,  5.62it/s]
+Capturing CUDA graphs (PIECEWISE):  75%|███████▍  | 62/83 [00:12<00:03,  5.59it/s]
+Capturing CUDA graphs (PIECEWISE):  76%|███████▌  | 63/83 [00:12<00:03,  5.62it/s]
+Capturing CUDA graphs (PIECEWISE):  77%|███████▋  | 64/83 [00:12<00:03,  5.62it/s]
+Capturing CUDA graphs (PIECEWISE):  78%|███████▊  | 65/83 [00:12<00:03,  5.54it/s]
+Capturing CUDA graphs (PIECEWISE):  80%|███████▉  | 66/83 [00:13<00:03,  5.59it/s]
+Capturing CUDA graphs (PIECEWISE):  81%|████████  | 67/83 [00:13<00:02,  5.53it/s]
+Capturing CUDA graphs (PIECEWISE):  82%|████████▏ | 68/83 [00:13<00:02,  5.54it/s]
+Capturing CUDA graphs (PIECEWISE):  83%|████████▎ | 69/83 [00:13<00:02,  5.52it/s]
+Capturing CUDA graphs (PIECEWISE):  84%|████████▍ | 70/83 [00:13<00:02,  5.49it/s]
+Capturing CUDA graphs (PIECEWISE):  86%|████████▌ | 71/83 [00:14<00:02,  5.13it/s]
+Capturing CUDA graphs (PIECEWISE):  87%|████████▋ | 72/83 [00:14<00:02,  5.19it/s]
+Capturing CUDA graphs (PIECEWISE):  88%|████████▊ | 73/83 [00:14<00:01,  5.28it/s]
+Capturing CUDA graphs (PIECEWISE):  89%|████████▉ | 74/83 [00:14<00:01,  5.37it/s]
+Capturing CUDA graphs (PIECEWISE):  90%|█████████ | 75/83 [00:14<00:01,  5.36it/s]
+Capturing CUDA graphs (PIECEWISE):  92%|█████████▏| 76/83 [00:15<00:01,  5.03it/s]/root/b12xenv/lib/python3.12/site-packages/torch/cuda/graphs.py:630: UserWarning: The CUDA Graph is empty. This usually means that the graph was attempted to be captured on wrong device or stream. (Triggered internally at /__w/pytorch/pytorch/aten/src/ATen/cuda/CUDAGraph.cpp:249.)
+  super().capture_end_pre()
+/root/b12xenv/lib/python3.12/site-packages/torch/cuda/graphs.py:630: UserWarning: The CUDA Graph is empty. This usually means that the graph was attempted to be captured on wrong device or stream. (Triggered internally at /__w/pytorch/pytorch/aten/src/ATen/cuda/CUDAGraph.cpp:249.)
+  super().capture_end_pre()
+/root/b12xenv/lib/python3.12/site-packages/torch/cuda/graphs.py:630: UserWarning: The CUDA Graph is empty. This usually means that the graph was attempted to be captured on wrong device or stream. (Triggered internally at /__w/pytorch/pytorch/aten/src/ATen/cuda/CUDAGraph.cpp:249.)
+  super().capture_end_pre()
+/root/b12xenv/lib/python3.12/site-packages/torch/cuda/graphs.py:630: UserWarning: The CUDA Graph is empty. This usually means that the graph was attempted to be captured on wrong device or stream. (Triggered internally at /__w/pytorch/pytorch/aten/src/ATen/cuda/CUDAGraph.cpp:249.)
+  super().capture_end_pre()
+/root/b12xenv/lib/python3.12/site-packages/torch/cuda/graphs.py:630: UserWarning: The CUDA Graph is empty. This usually means that the graph was attempted to be captured on wrong device or stream. (Triggered internally at /__w/pytorch/pytorch/aten/src/ATen/cuda/CUDAGraph.cpp:249.)
+  super().capture_end_pre()
+/root/b12xenv/lib/python3.12/site-packages/torch/cuda/graphs.py:630: UserWarning: The CUDA Graph is empty. This usually means that the graph was attempted to be captured on wrong device or stream. (Triggered internally at /__w/pytorch/pytorch/aten/src/ATen/cuda/CUDAGraph.cpp:249.)
+  super().capture_end_pre()
+/root/b12xenv/lib/python3.12/site-packages/torch/cuda/graphs.py:630: UserWarning: The CUDA Graph is empty. This usually means that the graph was attempted to be captured on wrong device or stream. (Triggered internally at /__w/pytorch/pytorch/aten/src/ATen/cuda/CUDAGraph.cpp:249.)
+  super().capture_end_pre()
+/root/b12xenv/lib/python3.12/site-packages/torch/cuda/graphs.py:630: UserWarning: The CUDA Graph is empty. This usually means that the graph was attempted to be captured on wrong device or stream. (Triggered internally at /__w/pytorch/pytorch/aten/src/ATen/cuda/CUDAGraph.cpp:249.)
+  super().capture_end_pre()
+
+Capturing CUDA graphs (PIECEWISE):  93%|█████████▎| 77/83 [00:15<00:01,  4.37it/s]
+Capturing CUDA graphs (PIECEWISE):  94%|█████████▍| 78/83 [00:15<00:01,  4.62it/s]
+Capturing CUDA graphs (PIECEWISE):  95%|█████████▌| 79/83 [00:15<00:00,  4.54it/s]/root/b12xenv/lib/python3.12/site-packages/torch/cuda/graphs.py:630: UserWarning: The CUDA Graph is empty. This usually means that the graph was attempted to be captured on wrong device or stream. (Triggered internally at /__w/pytorch/pytorch/aten/src/ATen/cuda/CUDAGraph.cpp:249.)
+  super().capture_end_pre()
+/root/b12xenv/lib/python3.12/site-packages/torch/cuda/graphs.py:630: UserWarning: The CUDA Graph is empty. This usually means that the graph was attempted to be captured on wrong device or stream. (Triggered internally at /__w/pytorch/pytorch/aten/src/ATen/cuda/CUDAGraph.cpp:249.)
+  super().capture_end_pre()
+/root/b12xenv/lib/python3.12/site-packages/torch/cuda/graphs.py:630: UserWarning: The CUDA Graph is empty. This usually means that the graph was attempted to be captured on wrong device or stream. (Triggered internally at /__w/pytorch/pytorch/aten/src/ATen/cuda/CUDAGraph.cpp:249.)
+  super().capture_end_pre()
+/root/b12xenv/lib/python3.12/site-packages/torch/cuda/graphs.py:630: UserWarning: The CUDA Graph is empty. This usually means that the graph was attempted to be captured on wrong device or stream. (Triggered internally at /__w/pytorch/pytorch/aten/src/ATen/cuda/CUDAGraph.cpp:249.)
+  super().capture_end_pre()
+/root/b12xenv/lib/python3.12/site-packages/torch/cuda/graphs.py:630: UserWarning: The CUDA Graph is empty. This usually means that the graph was attempted to be captured on wrong device or stream. (Triggered internally at /__w/pytorch/pytorch/aten/src/ATen/cuda/CUDAGraph.cpp:249.)
+  super().capture_end_pre()
+/root/b12xenv/lib/python3.12/site-packages/torch/cuda/graphs.py:630: UserWarning: The CUDA Graph is empty. This usually means that the graph was attempted to be captured on wrong device or stream. (Triggered internally at /__w/pytorch/pytorch/aten/src/ATen/cuda/CUDAGraph.cpp:249.)
+  super().capture_end_pre()
+/root/b12xenv/lib/python3.12/site-packages/torch/cuda/graphs.py:630: UserWarning: The CUDA Graph is empty. This usually means that the graph was attempted to be captured on wrong device or stream. (Triggered internally at /__w/pytorch/pytorch/aten/src/ATen/cuda/CUDAGraph.cpp:249.)
+  super().capture_end_pre()
+/root/b12xenv/lib/python3.12/site-packages/torch/cuda/graphs.py:630: UserWarning: The CUDA Graph is empty. This usually means that the graph was attempted to be captured on wrong device or stream. (Triggered internally at /__w/pytorch/pytorch/aten/src/ATen/cuda/CUDAGraph.cpp:249.)
+  super().capture_end_pre()
+
+Capturing CUDA graphs (PIECEWISE):  96%|█████████▋| 80/83 [00:16<00:00,  4.48it/s]
+Capturing CUDA graphs (PIECEWISE):  98%|█████████▊| 81/83 [00:16<00:00,  4.46it/s]
+Capturing CUDA graphs (PIECEWISE):  99%|█████████▉| 82/83 [00:16<00:00,  4.49it/s]
+Capturing CUDA graphs (PIECEWISE): 100%|██████████| 83/83 [00:16<00:00,  3.80it/s]
+Capturing CUDA graphs (PIECEWISE): 100%|██████████| 83/83 [00:16<00:00,  4.93it/s]
+
+Capturing decoder replay CUDA graphs (PIECEWISE):   0%|          | 0/8 [00:00<?, ?it/s]
+Capturing decoder replay CUDA graphs (PIECEWISE):  12%|█▎        | 1/8 [00:00<00:00,  9.76it/s]
+Capturing decoder replay CUDA graphs (PIECEWISE):  38%|███▊      | 3/8 [00:00<00:00, 11.01it/s]
+Capturing decoder replay CUDA graphs (PIECEWISE):  62%|██████▎   | 5/8 [00:00<00:00, 11.19it/s]
+Capturing decoder replay CUDA graphs (PIECEWISE):  88%|████████▊ | 7/8 [00:00<00:00, 11.10it/s](Worker_TP3_EP3 pid=640541) INFO 10-25 07:52:06 [speculator.py:170] Capturing model for DSpark speculator...
+(Worker_TP4_EP4 pid=640538) INFO 10-25 07:52:06 [speculator.py:170] Capturing model for DSpark speculator...
+
+Capturing decoder replay CUDA graphs (PIECEWISE): 100%|██████████| 8/8 [00:00<00:00, 10.91it/s]
+(Worker_TP1_EP1 pid=640537) INFO 10-25 07:52:06 [speculator.py:170] Capturing model for DSpark speculator...
+(Worker_TP0_EP0 pid=640534) INFO 10-25 07:52:06 [speculator.py:170] Capturing model for DSpark speculator...
+(Worker_TP5_EP5 pid=640539) INFO 10-25 07:52:06 [speculator.py:170] Capturing model for DSpark speculator...
+(Worker_TP2_EP2 pid=640536) INFO 10-25 07:52:06 [speculator.py:170] Capturing model for DSpark speculator...
+(Worker_TP6_EP6 pid=640535) INFO 10-25 07:52:06 [speculator.py:170] Capturing model for DSpark speculator...
+(Worker_TP7_EP7 pid=640540) INFO 10-25 07:52:06 [speculator.py:170] Capturing model for DSpark speculator...
+(Worker_TP7_EP7 pid=640540) INFO 10-25 07:52:07 [model_runner.py:1156] Graph capturing finished in 19 secs, took 13.67 GiB
+(Worker_TP2_EP2 pid=640536) INFO 10-25 07:52:07 [model_runner.py:1156] Graph capturing finished in 19 secs, took 13.67 GiB
+(Worker_TP5_EP5 pid=640539) INFO 10-25 07:52:07 [model_runner.py:1156] Graph capturing finished in 19 secs, took 13.67 GiB
+(Worker_TP3_EP3 pid=640541) INFO 10-25 07:52:07 [model_runner.py:1156] Graph capturing finished in 19 secs, took 13.67 GiB
+(Worker_TP1_EP1 pid=640537) INFO 10-25 07:52:07 [model_runner.py:1156] Graph capturing finished in 19 secs, took 13.67 GiB
+(Worker_TP6_EP6 pid=640535) INFO 10-25 07:52:07 [model_runner.py:1156] Graph capturing finished in 19 secs, took 13.67 GiB
+(Worker_TP0_EP0 pid=640534) INFO 10-25 07:52:07 [model_runner.py:1156] Graph capturing finished in 19 secs, took 13.67 GiB
+(Worker_TP4_EP4 pid=640538) INFO 10-25 07:52:07 [model_runner.py:1156] Graph capturing finished in 19 secs, took 13.67 GiB
+(Worker_TP7_EP7 pid=640540) INFO 10-25 07:52:08 [gpu_worker.py:781] CUDA graph memory profiling is enabled (default since v0.21.0). The current --gpu-memory-utilization=0.9000 is equivalent to --gpu-memory-utilization=0.7561 without CUDA graph memory profiling. To maintain the same effective KV cache size as before, increase --gpu-memory-utilization to 1.0000. To disable, set VLLM_MEMORY_PROFILER_ESTIMATE_CUDAGRAPHS=0.
+(Worker_TP2_EP2 pid=640536) INFO 10-25 07:52:08 [gpu_worker.py:781] CUDA graph memory profiling is enabled (default since v0.21.0). The current --gpu-memory-utilization=0.9000 is equivalent to --gpu-memory-utilization=0.7561 without CUDA graph memory profiling. To maintain the same effective KV cache size as before, increase --gpu-memory-utilization to 1.0000. To disable, set VLLM_MEMORY_PROFILER_ESTIMATE_CUDAGRAPHS=0.
+(Worker_TP5_EP5 pid=640539) INFO 10-25 07:52:08 [gpu_worker.py:781] CUDA graph memory profiling is enabled (default since v0.21.0). The current --gpu-memory-utilization=0.9000 is equivalent to --gpu-memory-utilization=0.7561 without CUDA graph memory profiling. To maintain the same effective KV cache size as before, increase --gpu-memory-utilization to 1.0000. To disable, set VLLM_MEMORY_PROFILER_ESTIMATE_CUDAGRAPHS=0.
+(Worker_TP3_EP3 pid=640541) INFO 10-25 07:52:08 [gpu_worker.py:781] CUDA graph memory profiling is enabled (default since v0.21.0). The current --gpu-memory-utilization=0.9000 is equivalent to --gpu-memory-utilization=0.7561 without CUDA graph memory profiling. To maintain the same effective KV cache size as before, increase --gpu-memory-utilization to 1.0000. To disable, set VLLM_MEMORY_PROFILER_ESTIMATE_CUDAGRAPHS=0.
+(Worker_TP0_EP0 pid=640534) INFO 10-25 07:52:08 [gpu_worker.py:766] Available KV cache memory: 28.91 GiB
+(Worker_TP0_EP0 pid=640534) INFO 10-25 07:52:08 [gpu_worker.py:781] CUDA graph memory profiling is enabled (default since v0.21.0). The current --gpu-memory-utilization=0.9000 is equivalent to --gpu-memory-utilization=0.7561 without CUDA graph memory profiling. To maintain the same effective KV cache size as before, increase --gpu-memory-utilization to 1.0000. To disable, set VLLM_MEMORY_PROFILER_ESTIMATE_CUDAGRAPHS=0.
+(Worker_TP6_EP6 pid=640535) INFO 10-25 07:52:08 [gpu_worker.py:781] CUDA graph memory profiling is enabled (default since v0.21.0). The current --gpu-memory-utilization=0.9000 is equivalent to --gpu-memory-utilization=0.7561 without CUDA graph memory profiling. To maintain the same effective KV cache size as before, increase --gpu-memory-utilization to 1.0000. To disable, set VLLM_MEMORY_PROFILER_ESTIMATE_CUDAGRAPHS=0.
+(Worker_TP1_EP1 pid=640537) INFO 10-25 07:52:08 [gpu_worker.py:781] CUDA graph memory profiling is enabled (default since v0.21.0). The current --gpu-memory-utilization=0.9000 is equivalent to --gpu-memory-utilization=0.7561 without CUDA graph memory profiling. To maintain the same effective KV cache size as before, increase --gpu-memory-utilization to 1.0000. To disable, set VLLM_MEMORY_PROFILER_ESTIMATE_CUDAGRAPHS=0.
+(Worker_TP4_EP4 pid=640538) INFO 10-25 07:52:08 [gpu_worker.py:781] CUDA graph memory profiling is enabled (default since v0.21.0). The current --gpu-memory-utilization=0.9000 is equivalent to --gpu-memory-utilization=0.7561 without CUDA graph memory profiling. To maintain the same effective KV cache size as before, increase --gpu-memory-utilization to 1.0000. To disable, set VLLM_MEMORY_PROFILER_ESTIMATE_CUDAGRAPHS=0.
+(EngineCore pid=640131) INFO 10-25 07:52:08 [kv_cache_utils.py:1101] GPU KV cache size: 13,561,797 tokens, Maximum concurrency for 1,048,576 tokens per request: 12.93x
+(EngineCore pid=640131) INFO 10-25 07:52:08 [kv_cache_utils.py:865] kv cache group sizes (32, 32, 32, 32, 32, 32, 32, 32, 64, 16, 16, 16)
+(EngineCore pid=640131) INFO 10-25 07:52:08 [kv_cache_utils.py:866] kv lcm block sizes 64
+(Worker_TP5_EP5 pid=640539) INFO 10-25 07:52:08 [kernel_warmup.py:179] JIT kernel warmup starting.
+(Worker_TP6_EP6 pid=640535) INFO 10-25 07:52:08 [kernel_warmup.py:179] JIT kernel warmup starting.
+(Worker_TP1_EP1 pid=640537) INFO 10-25 07:52:08 [kernel_warmup.py:179] JIT kernel warmup starting.
+(Worker_TP2_EP2 pid=640536) INFO 10-25 07:52:08 [kernel_warmup.py:179] JIT kernel warmup starting.
+(Worker_TP4_EP4 pid=640538) INFO 10-25 07:52:08 [kernel_warmup.py:179] JIT kernel warmup starting.
+(Worker_TP0_EP0 pid=640534) INFO 10-25 07:52:08 [kernel_warmup.py:179] JIT kernel warmup starting.
+(Worker_TP3_EP3 pid=640541) INFO 10-25 07:52:08 [kernel_warmup.py:179] JIT kernel warmup starting.
+(Worker_TP7_EP7 pid=640540) INFO 10-25 07:52:08 [kernel_warmup.py:179] JIT kernel warmup starting.
+
+JIT kernel warmup (171 compile keys):   0%|          | 0/13 [00:00<?, ?kernel/s]
+Elaborating:   0%|          | 0/6 [00:00<?, ?it/s]
+Elaborating:   0%|          | 0/6 [00:00<?, ?it/s]
+Elaborating:   0%|          | 0/6 [00:00<?, ?it/s]
+Elaborating:   0%|          | 0/6 [00:00<?, ?it/s]
+Elaborating:   0%|          | 0/6 [00:00<?, ?it/s]
+Elaborating:   0%|          | 0/6 [00:00<?, ?it/s]
+Elaborating:   0%|          | 0/6 [00:00<?, ?it/s]
+
+Elaborating:   0%|          | 0/6 [00:00<?, ?it/s][A
+Elaborating:  50%|█████     | 3/6 [00:00<00:00, 25.18it/s]
+Elaborating:  50%|█████     | 3/6 [00:00<00:00, 25.63it/s]
+Elaborating:  50%|█████     | 3/6 [00:00<00:00, 25.49it/s]
+Elaborating:  50%|█████     | 3/6 [00:00<00:00, 25.40it/s]
+Elaborating:  50%|█████     | 3/6 [00:00<00:00, 25.09it/s]
+Elaborating:  50%|█████     | 3/6 [00:00<00:00, 24.64it/s]
+
+Elaborating:  50%|█████     | 3/6 [00:00<00:00, 25.35it/s][A
+Elaborating:  50%|█████     | 3/6 [00:00<00:00, 24.73it/s]
+Elaborating: 100%|██████████| 6/6 [00:00<00:00, 25.72it/s]
+Elaborating: 100%|██████████| 6/6 [00:00<00:00, 25.63it/s]
+
+Parallel Compiling:   0%|          | 0/6 [00:00<?, ?it/s]
+Elaborating: 100%|██████████| 6/6 [00:00<00:00, 26.05it/s]
+Elaborating: 100%|██████████| 6/6 [00:00<00:00, 25.98it/s]
+
+Parallel Compiling:   0%|          | 0/6 [00:00<?, ?it/s]
+Parallel Compiling: 100%|██████████| 6/6 [00:00<00:00, 466.28it/s]
+(Worker_TP1_EP1 pid=640537) INFO 10-25 07:52:09 [kernel_warmup.py:192] JIT kernel warmup finished in 0.45s.
+
+Elaborating: 100%|██████████| 6/6 [00:00<00:00, 25.65it/s]
+Elaborating: 100%|██████████| 6/6 [00:00<00:00, 25.62it/s]
+
+Parallel Compiling:   0%|          | 0/6 [00:00<?, ?it/s]
+Elaborating: 100%|██████████| 6/6 [00:00<00:00, 25.90it/s]
+Elaborating: 100%|██████████| 6/6 [00:00<00:00, 25.81it/s]
+
+Elaborating: 100%|██████████| 6/6 [00:00<00:00, 25.75it/s]
+Elaborating: 100%|██████████| 6/6 [00:00<00:00, 25.64it/s]
+
+Parallel Compiling:   0%|          | 0/6 [00:00<?, ?it/s]
+Parallel Compiling:   0%|          | 0/6 [00:00<?, ?it/s]
+Elaborating: 100%|██████████| 6/6 [00:00<00:00, 25.39it/s]
+Elaborating: 100%|██████████| 6/6 [00:00<00:00, 25.27it/s]
+
+Parallel Compiling:   0%|          | 0/6 [00:00<?, ?it/s]
+Parallel Compiling: 100%|██████████| 6/6 [00:00<00:00, 406.75it/s]
+(Worker_TP5_EP5 pid=640539) INFO 10-25 07:52:09 [kernel_warmup.py:192] JIT kernel warmup finished in 0.46s.
+
+
+Elaborating: 100%|██████████| 6/6 [00:00<00:00, 25.84it/s][A
+Elaborating: 100%|██████████| 6/6 [00:00<00:00, 25.76it/s]
+
+
+Parallel Compiling:   0%|          | 0/6 [00:00<?, ?it/s][A
+Elaborating: 100%|██████████| 6/6 [00:00<00:00, 25.35it/s]
+Elaborating: 100%|██████████| 6/6 [00:00<00:00, 25.24it/s]
+
+Parallel Compiling:   0%|          | 0/6 [00:00<?, ?it/s]
+Parallel Compiling: 100%|██████████| 6/6 [00:00<00:00, 450.15it/s]
+(Worker_TP3_EP3 pid=640541) INFO 10-25 07:52:09 [kernel_warmup.py:192] JIT kernel warmup finished in 0.46s.
+
+Parallel Compiling: 100%|██████████| 6/6 [00:00<00:00, 431.17it/s]
+(Worker_TP4_EP4 pid=640538) INFO 10-25 07:52:09 [kernel_warmup.py:192] JIT kernel warmup finished in 0.47s.
+
+Parallel Compiling: 100%|██████████| 6/6 [00:00<00:00, 419.07it/s]
+
+Parallel Compiling: 100%|██████████| 6/6 [00:00<00:00, 532.06it/s](Worker_TP6_EP6 pid=640535) INFO 10-25 07:52:09 [kernel_warmup.py:192] JIT kernel warmup finished in 0.47s.
+
+(Worker_TP7_EP7 pid=640540) INFO 10-25 07:52:09 [kernel_warmup.py:192] JIT kernel warmup finished in 0.47s.
+
+Parallel Compiling: 100%|██████████| 6/6 [00:00<00:00, 501.86it/s]
+
+JIT kernel warmup (171 compile keys): 100%|██████████| 13/13 [00:00<00:00, 33.21kernel/s, MHCPreNormKernel (15 keys)]
+JIT kernel warmup (171 compile keys): 100%|██████████| 13/13 [00:00<00:00, 33.21kernel/s, MHCPreNormKernel (15 keys)]
+(Worker_TP0_EP0 pid=640534) INFO 10-25 07:52:09 [kernel_warmup.py:192] JIT kernel warmup finished in 0.47s.
+
+Parallel Compiling: 100%|██████████| 6/6 [00:00<00:00, 544.56it/s]
+(Worker_TP2_EP2 pid=640536) INFO 10-25 07:52:09 [kernel_warmup.py:192] JIT kernel warmup finished in 0.47s.
+(Worker_TP0_EP0 pid=640534) INFO 10-25 07:52:09 [kernel_warmup.py:100] Warming up ll_bf16 router GEMM kernels for shapes: ((5120, 384),).
+(Worker_TP3_EP3 pid=640541) INFO 10-25 07:52:10 [flashinfer_sparse_mla_warmup.py:328] Warming up DeepSeek V4 sparse MLA attention for mixed tokens=16.
+(Worker_TP3_EP3 pid=640541) INFO 10-25 07:52:10 [cache.py:481] Using fp8_ds_mla data type to store kv cache. It reduces the GPU memory footprint and boosts the performance. Meanwhile, it may cause accuracy drop without a proper scaling factor
+(Worker_TP3_EP3 pid=640541) INFO 10-25 07:52:10 [kernel.py:480] Final IR op priority after setting platform defaults: IrOpPriorityConfig(rms_norm=['vllm_c', 'native'], fused_add_rms_norm=['vllm_c', 'native'], gelu_and_mul_sparse=['triton', 'native'])
+(Worker_TP5_EP5 pid=640539) INFO 10-25 07:52:10 [flashinfer_sparse_mla_warmup.py:328] Warming up DeepSeek V4 sparse MLA attention for mixed tokens=16.
+(Worker_TP5_EP5 pid=640539) INFO 10-25 07:52:10 [cache.py:481] Using fp8_ds_mla data type to store kv cache. It reduces the GPU memory footprint and boosts the performance. Meanwhile, it may cause accuracy drop without a proper scaling factor
+(Worker_TP5_EP5 pid=640539) INFO 10-25 07:52:10 [kernel.py:480] Final IR op priority after setting platform defaults: IrOpPriorityConfig(rms_norm=['vllm_c', 'native'], fused_add_rms_norm=['vllm_c', 'native'], gelu_and_mul_sparse=['triton', 'native'])
+(Worker_TP4_EP4 pid=640538) INFO 10-25 07:52:10 [flashinfer_sparse_mla_warmup.py:328] Warming up DeepSeek V4 sparse MLA attention for mixed tokens=16.
+(Worker_TP4_EP4 pid=640538) INFO 10-25 07:52:10 [cache.py:481] Using fp8_ds_mla data type to store kv cache. It reduces the GPU memory footprint and boosts the performance. Meanwhile, it may cause accuracy drop without a proper scaling factor
+(Worker_TP4_EP4 pid=640538) INFO 10-25 07:52:10 [kernel.py:480] Final IR op priority after setting platform defaults: IrOpPriorityConfig(rms_norm=['vllm_c', 'native'], fused_add_rms_norm=['vllm_c', 'native'], gelu_and_mul_sparse=['triton', 'native'])
+(Worker_TP1_EP1 pid=640537) INFO 10-25 07:52:10 [flashinfer_sparse_mla_warmup.py:328] Warming up DeepSeek V4 sparse MLA attention for mixed tokens=16.
+(Worker_TP1_EP1 pid=640537) INFO 10-25 07:52:10 [cache.py:481] Using fp8_ds_mla data type to store kv cache. It reduces the GPU memory footprint and boosts the performance. Meanwhile, it may cause accuracy drop without a proper scaling factor
+(Worker_TP1_EP1 pid=640537) INFO 10-25 07:52:10 [kernel.py:480] Final IR op priority after setting platform defaults: IrOpPriorityConfig(rms_norm=['vllm_c', 'native'], fused_add_rms_norm=['vllm_c', 'native'], gelu_and_mul_sparse=['triton', 'native'])
+(Worker_TP0_EP0 pid=640534) INFO 10-25 07:52:10 [flashinfer_sparse_mla_warmup.py:328] Warming up DeepSeek V4 sparse MLA attention for mixed tokens=16.
+(Worker_TP0_EP0 pid=640534) INFO 10-25 07:52:10 [flashinfer_autotune_cache.py:88] Using legacy FlashInfer autotune cache synchronization for multi-rank deployments until FlashInfer coordinates cache hits.
+(Worker_TP0_EP0 pid=640534) INFO 10-25 07:52:10 [cache.py:481] Using fp8_ds_mla data type to store kv cache. It reduces the GPU memory footprint and boosts the performance. Meanwhile, it may cause accuracy drop without a proper scaling factor
+(Worker_TP0_EP0 pid=640534) INFO 10-25 07:52:10 [kernel.py:480] Final IR op priority after setting platform defaults: IrOpPriorityConfig(rms_norm=['vllm_c', 'native'], fused_add_rms_norm=['vllm_c', 'native'], gelu_and_mul_sparse=['triton', 'native'])
+(Worker_TP2_EP2 pid=640536) INFO 10-25 07:52:10 [flashinfer_sparse_mla_warmup.py:328] Warming up DeepSeek V4 sparse MLA attention for mixed tokens=16.
+(Worker_TP0_EP0 pid=640534) INFO 10-25 07:52:10 [flashinfer_sparse_mla_warmup.py:167] Autotuning FlashInfer SM120 sparse MLA DSv4.1 decode with cache: /root/.cache/vllm/flashinfer_autotune_cache/0.7.2.post1/120f/55f53d0786fa222c2e7da0fdb0252850e2f0df3ce85ba98f70c66e8e07d119be/autotune_configs.json
+(Worker_TP2_EP2 pid=640536) INFO 10-25 07:52:10 [cache.py:481] Using fp8_ds_mla data type to store kv cache. It reduces the GPU memory footprint and boosts the performance. Meanwhile, it may cause accuracy drop without a proper scaling factor
+(Worker_TP2_EP2 pid=640536) INFO 10-25 07:52:10 [kernel.py:480] Final IR op priority after setting platform defaults: IrOpPriorityConfig(rms_norm=['vllm_c', 'native'], fused_add_rms_norm=['vllm_c', 'native'], gelu_and_mul_sparse=['triton', 'native'])
+(Worker_TP6_EP6 pid=640535) INFO 10-25 07:52:10 [flashinfer_sparse_mla_warmup.py:328] Warming up DeepSeek V4 sparse MLA attention for mixed tokens=16.
+(Worker_TP6_EP6 pid=640535) INFO 10-25 07:52:10 [cache.py:481] Using fp8_ds_mla data type to store kv cache. It reduces the GPU memory footprint and boosts the performance. Meanwhile, it may cause accuracy drop without a proper scaling factor
+(Worker_TP6_EP6 pid=640535) INFO 10-25 07:52:10 [kernel.py:480] Final IR op priority after setting platform defaults: IrOpPriorityConfig(rms_norm=['vllm_c', 'native'], fused_add_rms_norm=['vllm_c', 'native'], gelu_and_mul_sparse=['triton', 'native'])
+(Worker_TP7_EP7 pid=640540) INFO 10-25 07:52:10 [flashinfer_sparse_mla_warmup.py:328] Warming up DeepSeek V4 sparse MLA attention for mixed tokens=16.
+(Worker_TP7_EP7 pid=640540) INFO 10-25 07:52:10 [cache.py:481] Using fp8_ds_mla data type to store kv cache. It reduces the GPU memory footprint and boosts the performance. Meanwhile, it may cause accuracy drop without a proper scaling factor
+(Worker_TP7_EP7 pid=640540) INFO 10-25 07:52:10 [kernel.py:480] Final IR op priority after setting platform defaults: IrOpPriorityConfig(rms_norm=['vllm_c', 'native'], fused_add_rms_norm=['vllm_c', 'native'], gelu_and_mul_sparse=['triton', 'native'])
+2026-10-25 07:52:10,526 - INFO - autotuner.py:1048 - flashinfer.jit: [Autotuner]: Autotuning process starts ...
+
+[AutoTuner]: Tuning mxfp8_gemm:   0%|          | 0/5 [00:00<?, ?profile/s]
+[AutoTuner]: Tuning mxfp8_gemm: 100%|██████████| 5/5 [00:00<00:00, 115.84profile/s]
+
+[AutoTuner]: Tuning mxfp8_gemm:   0%|          | 0/5 [00:00<?, ?profile/s]
+[AutoTuner]: Tuning mxfp8_gemm: 100%|██████████| 5/5 [00:00<00:00, 693.00profile/s]
+
+[AutoTuner]: Tuning mxfp8_gemm:   0%|          | 0/5 [00:00<?, ?profile/s]
+[AutoTuner]: Tuning mxfp8_gemm: 100%|██████████| 5/5 [00:00<00:00, 699.17profile/s]
+
+[AutoTuner]: Tuning mxfp8_gemm:   0%|          | 0/5 [00:00<?, ?profile/s]
+[AutoTuner]: Tuning mxfp8_gemm: 100%|██████████| 5/5 [00:00<00:00, 417.04profile/s]
+
+[AutoTuner]: Tuning mxfp8_gemm:   0%|          | 0/5 [00:00<?, ?profile/s]
+[AutoTuner]: Tuning mxfp8_gemm: 100%|██████████| 5/5 [00:00<00:00, 833.13profile/s]
+
+[AutoTuner]: Tuning mxfp8_gemm:   0%|          | 0/5 [00:00<?, ?profile/s]
+[AutoTuner]: Tuning mxfp8_gemm: 100%|██████████| 5/5 [00:00<00:00, 264.27profile/s]
+
+[AutoTuner]: Tuning mxfp8_gemm:   0%|          | 0/5 [00:00<?, ?profile/s]
+[AutoTuner]: Tuning mxfp8_gemm: 100%|██████████| 5/5 [00:00<00:00, 104.53profile/s]
+2026-10-25 07:52:11,819 - INFO - autotuner.py:1071 - flashinfer.jit: [Autotuner]: Autotuning process ends
+2026-10-25 07:52:11,860 - INFO - autotuner.py:3672 - flashinfer.jit: [Autotuner]: Saved 35 configs to /root/.cache/vllm/flashinfer_autotune_cache/0.7.2.post1/120f/55f53d0786fa222c2e7da0fdb0252850e2f0df3ce85ba98f70c66e8e07d119be/autotune_configs.json (35 new, 0 from previous config)
+2026-10-25 07:52:11,863 - INFO - autotuner.py:3814 - flashinfer.jit: [Autotuner]: Loaded 35 configs from /root/.cache/vllm/flashinfer_autotune_cache/0.7.2.post1/120f/55f53d0786fa222c2e7da0fdb0252850e2f0df3ce85ba98f70c66e8e07d119be/autotune_configs.json
+(Worker_TP0_EP0 pid=640534) INFO 10-25 07:52:11 [flashinfer_sparse_mla_warmup.py:224] FlashInfer SM120 sparse MLA DSv4.1 decode autotune cache loaded on rank 0 from /root/.cache/vllm/flashinfer_autotune_cache/0.7.2.post1/120f/55f53d0786fa222c2e7da0fdb0252850e2f0df3ce85ba98f70c66e8e07d119be/autotune_configs.json.
+(Worker_TP0_EP0 pid=640534) INFO 10-25 07:52:11 [cache.py:481] Using fp8_ds_mla data type to store kv cache. It reduces the GPU memory footprint and boosts the performance. Meanwhile, it may cause accuracy drop without a proper scaling factor
+(Worker_TP0_EP0 pid=640534) INFO 10-25 07:52:11 [kernel.py:480] Final IR op priority after setting platform defaults: IrOpPriorityConfig(rms_norm=['vllm_c', 'native'], fused_add_rms_norm=['vllm_c', 'native'], gelu_and_mul_sparse=['triton', 'native'])
+(Worker_TP0_EP0 pid=640534) INFO 10-25 07:52:11 [kernel_warmup.py:479] Using FlashInfer autotune cache file: /root/.cache/vllm/flashinfer_autotune_cache/0.7.2.post1/120f/90ef3b511272db7d6bc72581024ea1edb1b1fa8b2057a02f3ca0fa994e7a4d60/autotune_configs_dp0_rank0.json. Pass --disable-flashinfer-autotune to skip autotuning.
+2026-10-25 07:52:11,904 - INFO - autotuner.py:3814 - flashinfer.jit: [Autotuner]: Loaded 35 configs from /root/.cache/vllm/flashinfer_autotune_cache/0.7.2.post1/120f/55f53d0786fa222c2e7da0fdb0252850e2f0df3ce85ba98f70c66e8e07d119be/autotune_configs.json
+(Worker_TP5_EP5 pid=640539) INFO 10-25 07:52:11 [flashinfer_sparse_mla_warmup.py:224] FlashInfer SM120 sparse MLA DSv4.1 decode autotune cache loaded on rank 5 from /root/.cache/vllm/flashinfer_autotune_cache/0.7.2.post1/120f/55f53d0786fa222c2e7da0fdb0252850e2f0df3ce85ba98f70c66e8e07d119be/autotune_configs.json.
+2026-10-25 07:52:11,905 - INFO - autotuner.py:3814 - flashinfer.jit: [Autotuner]: Loaded 35 configs from /root/.cache/vllm/flashinfer_autotune_cache/0.7.2.post1/120f/55f53d0786fa222c2e7da0fdb0252850e2f0df3ce85ba98f70c66e8e07d119be/autotune_configs.json
+(Worker_TP3_EP3 pid=640541) INFO 10-25 07:52:11 [flashinfer_sparse_mla_warmup.py:224] FlashInfer SM120 sparse MLA DSv4.1 decode autotune cache loaded on rank 3 from /root/.cache/vllm/flashinfer_autotune_cache/0.7.2.post1/120f/55f53d0786fa222c2e7da0fdb0252850e2f0df3ce85ba98f70c66e8e07d119be/autotune_configs.json.
+2026-10-25 07:52:11,906 - INFO - autotuner.py:3814 - flashinfer.jit: [Autotuner]: Loaded 35 configs from /root/.cache/vllm/flashinfer_autotune_cache/0.7.2.post1/120f/55f53d0786fa222c2e7da0fdb0252850e2f0df3ce85ba98f70c66e8e07d119be/autotune_configs.json
+(Worker_TP4_EP4 pid=640538) INFO 10-25 07:52:11 [flashinfer_sparse_mla_warmup.py:224] FlashInfer SM120 sparse MLA DSv4.1 decode autotune cache loaded on rank 4 from /root/.cache/vllm/flashinfer_autotune_cache/0.7.2.post1/120f/55f53d0786fa222c2e7da0fdb0252850e2f0df3ce85ba98f70c66e8e07d119be/autotune_configs.json.
+2026-10-25 07:52:11,907 - INFO - autotuner.py:3814 - flashinfer.jit: [Autotuner]: Loaded 35 configs from /root/.cache/vllm/flashinfer_autotune_cache/0.7.2.post1/120f/55f53d0786fa222c2e7da0fdb0252850e2f0df3ce85ba98f70c66e8e07d119be/autotune_configs.json
+(Worker_TP6_EP6 pid=640535) INFO 10-25 07:52:11 [flashinfer_sparse_mla_warmup.py:224] FlashInfer SM120 sparse MLA DSv4.1 decode autotune cache loaded on rank 6 from /root/.cache/vllm/flashinfer_autotune_cache/0.7.2.post1/120f/55f53d0786fa222c2e7da0fdb0252850e2f0df3ce85ba98f70c66e8e07d119be/autotune_configs.json.
+2026-10-25 07:52:11,908 - INFO - autotuner.py:3814 - flashinfer.jit: [Autotuner]: Loaded 35 configs from /root/.cache/vllm/flashinfer_autotune_cache/0.7.2.post1/120f/55f53d0786fa222c2e7da0fdb0252850e2f0df3ce85ba98f70c66e8e07d119be/autotune_configs.json
+(Worker_TP7_EP7 pid=640540) INFO 10-25 07:52:11 [flashinfer_sparse_mla_warmup.py:224] FlashInfer SM120 sparse MLA DSv4.1 decode autotune cache loaded on rank 7 from /root/.cache/vllm/flashinfer_autotune_cache/0.7.2.post1/120f/55f53d0786fa222c2e7da0fdb0252850e2f0df3ce85ba98f70c66e8e07d119be/autotune_configs.json.
+2026-10-25 07:52:11,908 - INFO - autotuner.py:3814 - flashinfer.jit: [Autotuner]: Loaded 35 configs from /root/.cache/vllm/flashinfer_autotune_cache/0.7.2.post1/120f/55f53d0786fa222c2e7da0fdb0252850e2f0df3ce85ba98f70c66e8e07d119be/autotune_configs.json
+(Worker_TP1_EP1 pid=640537) INFO 10-25 07:52:11 [flashinfer_sparse_mla_warmup.py:224] FlashInfer SM120 sparse MLA DSv4.1 decode autotune cache loaded on rank 1 from /root/.cache/vllm/flashinfer_autotune_cache/0.7.2.post1/120f/55f53d0786fa222c2e7da0fdb0252850e2f0df3ce85ba98f70c66e8e07d119be/autotune_configs.json.
+2026-10-25 07:52:11,908 - INFO - autotuner.py:3814 - flashinfer.jit: [Autotuner]: Loaded 35 configs from /root/.cache/vllm/flashinfer_autotune_cache/0.7.2.post1/120f/55f53d0786fa222c2e7da0fdb0252850e2f0df3ce85ba98f70c66e8e07d119be/autotune_configs.json
+(Worker_TP2_EP2 pid=640536) INFO 10-25 07:52:11 [flashinfer_sparse_mla_warmup.py:224] FlashInfer SM120 sparse MLA DSv4.1 decode autotune cache loaded on rank 2 from /root/.cache/vllm/flashinfer_autotune_cache/0.7.2.post1/120f/55f53d0786fa222c2e7da0fdb0252850e2f0df3ce85ba98f70c66e8e07d119be/autotune_configs.json.
+(Worker_TP5_EP5 pid=640539) INFO 10-25 07:52:11 [cache.py:481] Using fp8_ds_mla data type to store kv cache. It reduces the GPU memory footprint and boosts the performance. Meanwhile, it may cause accuracy drop without a proper scaling factor
+(Worker_TP5_EP5 pid=640539) INFO 10-25 07:52:11 [kernel.py:480] Final IR op priority after setting platform defaults: IrOpPriorityConfig(rms_norm=['vllm_c', 'native'], fused_add_rms_norm=['vllm_c', 'native'], gelu_and_mul_sparse=['triton', 'native'])
+(Worker_TP3_EP3 pid=640541) INFO 10-25 07:52:11 [cache.py:481] Using fp8_ds_mla data type to store kv cache. It reduces the GPU memory footprint and boosts the performance. Meanwhile, it may cause accuracy drop without a proper scaling factor
+(Worker_TP3_EP3 pid=640541) INFO 10-25 07:52:11 [kernel.py:480] Final IR op priority after setting platform defaults: IrOpPriorityConfig(rms_norm=['vllm_c', 'native'], fused_add_rms_norm=['vllm_c', 'native'], gelu_and_mul_sparse=['triton', 'native'])
+(Worker_TP4_EP4 pid=640538) INFO 10-25 07:52:11 [cache.py:481] Using fp8_ds_mla data type to store kv cache. It reduces the GPU memory footprint and boosts the performance. Meanwhile, it may cause accuracy drop without a proper scaling factor
+(Worker_TP4_EP4 pid=640538) INFO 10-25 07:52:11 [kernel.py:480] Final IR op priority after setting platform defaults: IrOpPriorityConfig(rms_norm=['vllm_c', 'native'], fused_add_rms_norm=['vllm_c', 'native'], gelu_and_mul_sparse=['triton', 'native'])
+(Worker_TP6_EP6 pid=640535) INFO 10-25 07:52:11 [cache.py:481] Using fp8_ds_mla data type to store kv cache. It reduces the GPU memory footprint and boosts the performance. Meanwhile, it may cause accuracy drop without a proper scaling factor
+(Worker_TP6_EP6 pid=640535) INFO 10-25 07:52:11 [kernel.py:480] Final IR op priority after setting platform defaults: IrOpPriorityConfig(rms_norm=['vllm_c', 'native'], fused_add_rms_norm=['vllm_c', 'native'], gelu_and_mul_sparse=['triton', 'native'])
+(Worker_TP1_EP1 pid=640537) INFO 10-25 07:52:11 [cache.py:481] Using fp8_ds_mla data type to store kv cache. It reduces the GPU memory footprint and boosts the performance. Meanwhile, it may cause accuracy drop without a proper scaling factor
+(Worker_TP1_EP1 pid=640537) INFO 10-25 07:52:11 [kernel.py:480] Final IR op priority after setting platform defaults: IrOpPriorityConfig(rms_norm=['vllm_c', 'native'], fused_add_rms_norm=['vllm_c', 'native'], gelu_and_mul_sparse=['triton', 'native'])
+(Worker_TP2_EP2 pid=640536) INFO 10-25 07:52:11 [cache.py:481] Using fp8_ds_mla data type to store kv cache. It reduces the GPU memory footprint and boosts the performance. Meanwhile, it may cause accuracy drop without a proper scaling factor
+(Worker_TP2_EP2 pid=640536) INFO 10-25 07:52:11 [kernel.py:480] Final IR op priority after setting platform defaults: IrOpPriorityConfig(rms_norm=['vllm_c', 'native'], fused_add_rms_norm=['vllm_c', 'native'], gelu_and_mul_sparse=['triton', 'native'])
+(Worker_TP7_EP7 pid=640540) INFO 10-25 07:52:11 [cache.py:481] Using fp8_ds_mla data type to store kv cache. It reduces the GPU memory footprint and boosts the performance. Meanwhile, it may cause accuracy drop without a proper scaling factor
+(Worker_TP7_EP7 pid=640540) INFO 10-25 07:52:11 [kernel.py:480] Final IR op priority after setting platform defaults: IrOpPriorityConfig(rms_norm=['vllm_c', 'native'], fused_add_rms_norm=['vllm_c', 'native'], gelu_and_mul_sparse=['triton', 'native'])
+2026-10-25 07:52:11,933 - INFO - autotuner.py:1048 - flashinfer.jit: [Autotuner]: Autotuning process starts ...
+2026-10-25 07:52:11,933 - INFO - autotuner.py:1048 - flashinfer.jit: [Autotuner]: Autotuning process starts ...
+2026-10-25 07:52:11,933 - INFO - autotuner.py:1048 - flashinfer.jit: [Autotuner]: Autotuning process starts ...
+2026-10-25 07:52:11,933 - INFO - autotuner.py:1048 - flashinfer.jit: [Autotuner]: Autotuning process starts ...
+2026-10-25 07:52:11,933 - INFO - autotuner.py:1048 - flashinfer.jit: [Autotuner]: Autotuning process starts ...
+2026-10-25 07:52:11,933 - INFO - autotuner.py:1048 - flashinfer.jit: [Autotuner]: Autotuning process starts ...
+2026-10-25 07:52:11,933 - INFO - autotuner.py:1048 - flashinfer.jit: [Autotuner]: Autotuning process starts ...
+2026-10-25 07:52:11,933 - INFO - autotuner.py:1048 - flashinfer.jit: [Autotuner]: Autotuning process starts ...
+(Worker_TP1_EP1 pid=640537) INFO 10-25 07:52:11 [kernel_warmup.py:371] Running FlashInfer autotune with 8192 tokens and token buckets (1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 768, 1024, 1280, 1536, 1792, 2048, 2560, 3072, 3584, 4096, 8192).
+(Worker_TP0_EP0 pid=640534) INFO 10-25 07:52:11 [kernel_warmup.py:371] Running FlashInfer autotune with 8192 tokens and token buckets (1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 768, 1024, 1280, 1536, 1792, 2048, 2560, 3072, 3584, 4096, 8192).
+(Worker_TP2_EP2 pid=640536) INFO 10-25 07:52:11 [kernel_warmup.py:371] Running FlashInfer autotune with 8192 tokens and token buckets (1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 768, 1024, 1280, 1536, 1792, 2048, 2560, 3072, 3584, 4096, 8192).
+(Worker_TP6_EP6 pid=640535) INFO 10-25 07:52:11 [kernel_warmup.py:371] Running FlashInfer autotune with 8192 tokens and token buckets (1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 768, 1024, 1280, 1536, 1792, 2048, 2560, 3072, 3584, 4096, 8192).
+(Worker_TP5_EP5 pid=640539) INFO 10-25 07:52:11 [kernel_warmup.py:371] Running FlashInfer autotune with 8192 tokens and token buckets (1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 768, 1024, 1280, 1536, 1792, 2048, 2560, 3072, 3584, 4096, 8192).
+(Worker_TP4_EP4 pid=640538) INFO 10-25 07:52:11 [kernel_warmup.py:371] Running FlashInfer autotune with 8192 tokens and token buckets (1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 768, 1024, 1280, 1536, 1792, 2048, 2560, 3072, 3584, 4096, 8192).
+(Worker_TP7_EP7 pid=640540) INFO 10-25 07:52:11 [kernel_warmup.py:371] Running FlashInfer autotune with 8192 tokens and token buckets (1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 768, 1024, 1280, 1536, 1792, 2048, 2560, 3072, 3584, 4096, 8192).
+(Worker_TP3_EP3 pid=640541) INFO 10-25 07:52:11 [kernel_warmup.py:371] Running FlashInfer autotune with 8192 tokens and token buckets (1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 768, 1024, 1280, 1536, 1792, 2048, 2560, 3072, 3584, 4096, 8192).
+2026-10-25 07:52:11,946 - INFO - autotuner.py:2019 - flashinfer.jit: [Autotuner]: Config cache hit for mxfp8_gemm (runner=CutlassMxfp8GemmRunner, source=config file)
+2026-10-25 07:52:11,946 - INFO - autotuner.py:2019 - flashinfer.jit: [Autotuner]: Config cache hit for mxfp8_gemm (runner=CutlassMxfp8GemmRunner, source=config file)
+2026-10-25 07:52:11,946 - INFO - autotuner.py:2019 - flashinfer.jit: [Autotuner]: Config cache hit for mxfp8_gemm (runner=CutlassMxfp8GemmRunner, source=config file)
+2026-10-25 07:52:11,946 - INFO - autotuner.py:2019 - flashinfer.jit: [Autotuner]: Config cache hit for mxfp8_gemm (runner=CutlassMxfp8GemmRunner, source=config file)
+2026-10-25 07:52:11,946 - INFO - autotuner.py:2019 - flashinfer.jit: [Autotuner]: Config cache hit for mxfp8_gemm (runner=CutlassMxfp8GemmRunner, source=config file)
+2026-10-25 07:52:11,946 - INFO - autotuner.py:2019 - flashinfer.jit: [Autotuner]: Config cache hit for mxfp8_gemm (runner=CutlassMxfp8GemmRunner, source=config file)
+2026-10-25 07:52:11,946 - INFO - autotuner.py:2019 - flashinfer.jit: [Autotuner]: Config cache hit for mxfp8_gemm (runner=CutlassMxfp8GemmRunner, source=config file)
+
+[AutoTuner]: Tuning mxfp8_gemm:  24%|██▍       | 5/21 [00:00<?, ?profile/s]
+[AutoTuner]: Tuning mxfp8_gemm:  24%|██▍       | 5/21 [00:00<?, ?profile/s]
+[AutoTuner]: Tuning mxfp8_gemm:  24%|██▍       | 5/21 [00:00<?, ?profile/s]
+[AutoTuner]: Tuning mxfp8_gemm:  24%|██▍       | 5/21 [00:00<?, ?profile/s]
+[AutoTuner]: Tuning mxfp8_gemm:  24%|██▍       | 5/21 [00:00<?, ?profile/s]
+[AutoTuner]: Tuning mxfp8_gemm:  24%|██▍       | 5/21 [00:00<?, ?profile/s]
+[AutoTuner]: Tuning mxfp8_gemm:  24%|██▍       | 5/21 [00:00<?, ?profile/s]
+[AutoTuner]: Tuning mxfp8_gemm:  24%|██▍       | 5/21 [00:00<?, ?profile/s]
+[AutoTuner]: Tuning mxfp8_gemm:  29%|██▊       | 6/21 [00:00<00:04,  3.01profile/s]
+[AutoTuner]: Tuning mxfp8_gemm:  29%|██▊       | 6/21 [00:00<00:04,  3.01profile/s]
+[AutoTuner]: Tuning mxfp8_gemm:  29%|██▊       | 6/21 [00:00<00:04,  3.01profile/s]
+[AutoTuner]: Tuning mxfp8_gemm:  29%|██▊       | 6/21 [00:00<00:04,  3.01profile/s]
+[AutoTuner]: Tuning mxfp8_gemm:  29%|██▊       | 6/21 [00:00<00:04,  3.01profile/s]
+[AutoTuner]: Tuning mxfp8_gemm:  29%|██▊       | 6/21 [00:00<00:04,  3.01profile/s]
+[AutoTuner]: Tuning mxfp8_gemm:  29%|██▊       | 6/21 [00:00<00:04,  3.01profile/s]
+[AutoTuner]: Tuning mxfp8_gemm:  29%|██▊       | 6/21 [00:00<00:04,  3.01profile/s]
+[AutoTuner]: Tuning mxfp8_gemm:  86%|████████▌ | 18/21 [00:00<00:00, 37.99profile/s]
+[AutoTuner]: Tuning mxfp8_gemm:  86%|████████▌ | 18/21 [00:00<00:00, 37.99profile/s]
+[AutoTuner]: Tuning mxfp8_gemm:  86%|████████▌ | 18/21 [00:00<00:00, 37.99profile/s]
+[AutoTuner]: Tuning mxfp8_gemm:  86%|████████▌ | 18/21 [00:00<00:00, 37.99profile/s]
+[AutoTuner]: Tuning mxfp8_gemm:  86%|████████▌ | 18/21 [00:00<00:00, 37.99profile/s]
+[AutoTuner]: Tuning mxfp8_gemm:  86%|████████▌ | 18/21 [00:00<00:00, 37.99profile/s]
+[AutoTuner]: Tuning mxfp8_gemm:  86%|████████▌ | 18/21 [00:00<00:00, 37.99profile/s]
+[AutoTuner]: Tuning mxfp8_gemm:  86%|████████▌ | 18/21 [00:00<00:00, 37.99profile/s]
+[AutoTuner]: Tuning mxfp8_gemm: 100%|██████████| 21/21 [00:00<00:00, 32.22profile/s]
+
+[AutoTuner]: Tuning mxfp8_gemm: 100%|██████████| 21/21 [00:00<00:00, 32.22profile/s]
+
+[AutoTuner]: Tuning mxfp8_gemm: 100%|██████████| 21/21 [00:00<00:00, 32.22profile/s]
+
+[AutoTuner]: Tuning mxfp8_gemm: 100%|██████████| 21/21 [00:00<00:00, 32.22profile/s]
+
+[AutoTuner]: Tuning mxfp8_gemm: 100%|██████████| 21/21 [00:00<00:00, 32.22profile/s]
+
+[AutoTuner]: Tuning mxfp8_gemm: 100%|██████████| 21/21 [00:00<00:00, 32.22profile/s]
+
+[AutoTuner]: Tuning mxfp8_gemm: 100%|██████████| 21/21 [00:00<00:00, 32.22profile/s]
+
+[AutoTuner]: Tuning mxfp8_gemm: 100%|██████████| 21/21 [00:00<00:00, 32.22profile/s]
+
+[AutoTuner]: Tuning mxfp8_gemm:  24%|██▍       | 5/21 [00:00<?, ?profile/s]
+[AutoTuner]: Tuning mxfp8_gemm:  24%|██▍       | 5/21 [00:00<?, ?profile/s]
+[AutoTuner]: Tuning mxfp8_gemm:  24%|██▍       | 5/21 [00:00<?, ?profile/s]
+[AutoTuner]: Tuning mxfp8_gemm:  24%|██▍       | 5/21 [00:00<?, ?profile/s]
+[AutoTuner]: Tuning mxfp8_gemm:  24%|██▍       | 5/21 [00:00<?, ?profile/s]
+[AutoTuner]: Tuning mxfp8_gemm:  24%|██▍       | 5/21 [00:00<?, ?profile/s]
+[AutoTuner]: Tuning mxfp8_gemm:  24%|██▍       | 5/21 [00:00<?, ?profile/s]
+[AutoTuner]: Tuning mxfp8_gemm:  24%|██▍       | 5/21 [00:00<?, ?profile/s]
+[AutoTuner]: Tuning mxfp8_gemm: 100%|██████████| 21/21 [00:00<00:00, 155.45profile/s]
+[AutoTuner]: Tuning mxfp8_gemm: 100%|██████████| 21/21 [00:00<00:00, 155.46profile/s]
+[AutoTuner]: Tuning mxfp8_gemm: 100%|██████████| 21/21 [00:00<00:00, 155.36profile/s]
+
+[AutoTuner]: Tuning mxfp8_gemm: 100%|██████████| 21/21 [00:00<00:00, 155.47profile/s]
+[AutoTuner]: Tuning mxfp8_gemm: 100%|██████████| 21/21 [00:00<00:00, 155.36profile/s]
+
+[AutoTuner]: Tuning mxfp8_gemm: 100%|██████████| 21/21 [00:00<00:00, 155.46profile/s]
+[AutoTuner]: Tuning mxfp8_gemm: 100%|██████████| 21/21 [00:00<00:00, 155.45profile/s]
+[AutoTuner]: Tuning mxfp8_gemm: 100%|██████████| 21/21 [00:00<00:00, 155.36profile/s]
+
+[AutoTuner]: Tuning mxfp8_gemm: 100%|██████████| 21/21 [00:00<00:00, 155.36profile/s]
+[AutoTuner]: Tuning mxfp8_gemm: 100%|██████████| 21/21 [00:00<00:00, 155.44profile/s]
+
+[AutoTuner]: Tuning mxfp8_gemm: 100%|██████████| 21/21 [00:00<00:00, 155.35profile/s]
+[AutoTuner]: Tuning mxfp8_gemm: 100%|██████████| 21/21 [00:00<00:00, 155.46profile/s]
+
+[AutoTuner]: Tuning mxfp8_gemm: 100%|██████████| 21/21 [00:00<00:00, 155.47profile/s]
+[AutoTuner]: Tuning mxfp8_gemm: 100%|██████████| 21/21 [00:00<00:00, 155.34profile/s]
+
+[AutoTuner]: Tuning mxfp8_gemm: 100%|██████████| 21/21 [00:00<00:00, 155.35profile/s]
+
+[AutoTuner]: Tuning mxfp8_gemm: 100%|██████████| 21/21 [00:00<00:00, 155.36profile/s]
+
+[AutoTuner]: Tuning mxfp8_gemm:  24%|██▍       | 5/21 [00:00<?, ?profile/s]
+[AutoTuner]: Tuning mxfp8_gemm:  24%|██▍       | 5/21 [00:00<?, ?profile/s]
+[AutoTuner]: Tuning mxfp8_gemm:  24%|██▍       | 5/21 [00:00<?, ?profile/s]
+[AutoTuner]: Tuning mxfp8_gemm:  24%|██▍       | 5/21 [00:00<?, ?profile/s]
+[AutoTuner]: Tuning mxfp8_gemm:  24%|██▍       | 5/21 [00:00<?, ?profile/s]
+[AutoTuner]: Tuning mxfp8_gemm:  24%|██▍       | 5/21 [00:00<?, ?profile/s]
+[AutoTuner]: Tuning mxfp8_gemm:  24%|██▍       | 5/21 [00:00<?, ?profile/s]
+[AutoTuner]: Tuning mxfp8_gemm:  24%|██▍       | 5/21 [00:00<?, ?profile/s]
+[AutoTuner]: Tuning mxfp8_gemm: 100%|██████████| 21/21 [00:00<00:00, 165.44profile/s]
+
+[AutoTuner]: Tuning mxfp8_gemm: 100%|██████████| 21/21 [00:00<00:00, 165.46profile/s]
+
+[AutoTuner]: Tuning mxfp8_gemm: 100%|██████████| 21/21 [00:00<00:00, 165.47profile/s]
+
+[AutoTuner]: Tuning mxfp8_gemm: 100%|██████████| 21/21 [00:00<00:00, 165.46profile/s]
+
+[AutoTuner]: Tuning mxfp8_gemm: 100%|██████████| 21/21 [00:00<00:00, 165.45profile/s]
+
+[AutoTuner]: Tuning mxfp8_gemm: 100%|██████████| 21/21 [00:00<00:00, 165.46profile/s]
+
+[AutoTuner]: Tuning mxfp8_gemm: 100%|██████████| 21/21 [00:00<00:00, 165.46profile/s]
+
+[AutoTuner]: Tuning mxfp8_gemm: 100%|██████████| 21/21 [00:00<00:00, 165.48profile/s]
+
+[AutoTuner]: Tuning mxfp8_gemm:  24%|██▍       | 5/21 [00:00<?, ?profile/s]
+[AutoTuner]: Tuning mxfp8_gemm:  24%|██▍       | 5/21 [00:00<?, ?profile/s]
+[AutoTuner]: Tuning mxfp8_gemm:  24%|██▍       | 5/21 [00:00<?, ?profile/s]
+[AutoTuner]: Tuning mxfp8_gemm:  24%|██▍       | 5/21 [00:00<?, ?profile/s]
+[AutoTuner]: Tuning mxfp8_gemm:  24%|██▍       | 5/21 [00:00<?, ?profile/s]
+[AutoTuner]: Tuning mxfp8_gemm:  24%|██▍       | 5/21 [00:00<?, ?profile/s]
+[AutoTuner]: Tuning mxfp8_gemm:  24%|██▍       | 5/21 [00:00<?, ?profile/s]
+[AutoTuner]: Tuning mxfp8_gemm:  24%|██▍       | 5/21 [00:00<?, ?profile/s]
+[AutoTuner]: Tuning mxfp8_gemm: 100%|██████████| 21/21 [00:00<00:00, 169.40profile/s]
+
+[AutoTuner]: Tuning mxfp8_gemm: 100%|██████████| 21/21 [00:00<00:00, 169.41profile/s]
+
+[AutoTuner]: Tuning mxfp8_gemm: 100%|██████████| 21/21 [00:00<00:00, 169.42profile/s]
+
+[AutoTuner]: Tuning mxfp8_gemm: 100%|██████████| 21/21 [00:00<00:00, 169.42profile/s]
+
+[AutoTuner]: Tuning mxfp8_gemm: 100%|██████████| 21/21 [00:00<00:00, 169.40profile/s]
+
+[AutoTuner]: Tuning mxfp8_gemm: 100%|██████████| 21/21 [00:00<00:00, 169.39profile/s]
+
+[AutoTuner]: Tuning mxfp8_gemm: 100%|██████████| 21/21 [00:00<00:00, 169.41profile/s]
+
+[AutoTuner]: Tuning mxfp8_gemm: 100%|██████████| 21/21 [00:00<00:00, 169.43profile/s]
+
+[AutoTuner]: Tuning mxfp8_gemm:  24%|██▍       | 5/21 [00:00<?, ?profile/s]
+[AutoTuner]: Tuning mxfp8_gemm:  24%|██▍       | 5/21 [00:00<?, ?profile/s]
+[AutoTuner]: Tuning mxfp8_gemm:  24%|██▍       | 5/21 [00:00<?, ?profile/s]
+[AutoTuner]: Tuning mxfp8_gemm:  24%|██▍       | 5/21 [00:00<?, ?profile/s]
+[AutoTuner]: Tuning mxfp8_gemm:  24%|██▍       | 5/21 [00:00<?, ?profile/s]
+[AutoTuner]: Tuning mxfp8_gemm:  24%|██▍       | 5/21 [00:00<?, ?profile/s]
+[AutoTuner]: Tuning mxfp8_gemm:  24%|██▍       | 5/21 [00:00<?, ?profile/s]
+[AutoTuner]: Tuning mxfp8_gemm:  24%|██▍       | 5/21 [00:00<?, ?profile/s]
+[AutoTuner]: Tuning mxfp8_gemm: 100%|██████████| 21/21 [00:00<00:00, 240.63profile/s]
+
+[AutoTuner]: Tuning mxfp8_gemm: 100%|██████████| 21/21 [00:00<00:00, 240.68profile/s]
+
+[AutoTuner]: Tuning mxfp8_gemm: 100%|██████████| 21/21 [00:00<00:00, 240.69profile/s]
+
+[AutoTuner]: Tuning mxfp8_gemm: 100%|██████████| 21/21 [00:00<00:00, 240.67profile/s]
+
+[AutoTuner]: Tuning mxfp8_gemm: 100%|██████████| 21/21 [00:00<00:00, 240.64profile/s]
+
+[AutoTuner]: Tuning mxfp8_gemm: 100%|██████████| 21/21 [00:00<00:00, 240.64profile/s]
+
+[AutoTuner]: Tuning mxfp8_gemm: 100%|██████████| 21/21 [00:00<00:00, 240.66profile/s]
+
+[AutoTuner]: Tuning mxfp8_gemm: 100%|██████████| 21/21 [00:00<00:00, 240.66profile/s]
+
+[AutoTuner]: Tuning mxfp8_gemm:  24%|██▍       | 5/21 [00:00<?, ?profile/s]
+[AutoTuner]: Tuning mxfp8_gemm:  24%|██▍       | 5/21 [00:00<?, ?profile/s]
+[AutoTuner]: Tuning mxfp8_gemm:  24%|██▍       | 5/21 [00:00<?, ?profile/s]
+[AutoTuner]: Tuning mxfp8_gemm:  24%|██▍       | 5/21 [00:00<?, ?profile/s]
+[AutoTuner]: Tuning mxfp8_gemm:  24%|██▍       | 5/21 [00:00<?, ?profile/s]
+[AutoTuner]: Tuning mxfp8_gemm:  24%|██▍       | 5/21 [00:00<?, ?profile/s]
+[AutoTuner]: Tuning mxfp8_gemm:  24%|██▍       | 5/21 [00:00<?, ?profile/s]
+[AutoTuner]: Tuning mxfp8_gemm:  24%|██▍       | 5/21 [00:00<?, ?profile/s]
+[AutoTuner]: Tuning mxfp8_gemm:  76%|███████▌  | 16/21 [00:00<00:00, 101.60profile/s]
+[AutoTuner]: Tuning mxfp8_gemm:  76%|███████▌  | 16/21 [00:00<00:00, 101.46profile/s]
+[AutoTuner]: Tuning mxfp8_gemm:  76%|███████▌  | 16/21 [00:00<00:00, 101.46profile/s]
+[AutoTuner]: Tuning mxfp8_gemm:  76%|███████▌  | 16/21 [00:00<00:00, 101.46profile/s]
+[AutoTuner]: Tuning mxfp8_gemm:  76%|███████▌  | 16/21 [00:00<00:00, 101.46profile/s]
+[AutoTuner]: Tuning mxfp8_gemm:  76%|███████▌  | 16/21 [00:00<00:00, 101.46profile/s]
+[AutoTuner]: Tuning mxfp8_gemm:  76%|███████▌  | 16/21 [00:00<00:00, 101.46profile/s]
+[AutoTuner]: Tuning mxfp8_gemm:  76%|███████▌  | 16/21 [00:00<00:00, 101.46profile/s]
+[AutoTuner]: Tuning mxfp8_gemm: 100%|██████████| 21/21 [00:00<00:00, 61.37profile/s] 
+
+[AutoTuner]: Tuning mxfp8_gemm: 100%|██████████| 21/21 [00:00<00:00, 61.34profile/s] 
+
+[AutoTuner]: Tuning mxfp8_gemm: 100%|██████████| 21/21 [00:00<00:00, 61.34profile/s] 
+
+[AutoTuner]: Tuning mxfp8_gemm: 100%|██████████| 21/21 [00:00<00:00, 61.34profile/s] 
+
+[AutoTuner]: Tuning mxfp8_gemm: 100%|██████████| 21/21 [00:00<00:00, 61.34profile/s] 
+
+[AutoTuner]: Tuning mxfp8_gemm: 100%|██████████| 21/21 [00:00<00:00, 61.33profile/s] 
+[AutoTuner]: Tuning mxfp8_gemm: 100%|██████████| 21/21 [00:00<00:00, 61.34profile/s] 
+
+
+[AutoTuner]: Tuning mxfp8_gemm: 100%|██████████| 21/21 [00:00<00:00, 61.34profile/s] 
+
+[AutoTuner]: Tuning mxfp8_gemm:  24%|██▍       | 5/21 [00:00<?, ?profile/s]
+[AutoTuner]: Tuning mxfp8_gemm:  24%|██▍       | 5/21 [00:00<?, ?profile/s]
+[AutoTuner]: Tuning mxfp8_gemm:  24%|██▍       | 5/21 [00:00<?, ?profile/s]
+[AutoTuner]: Tuning mxfp8_gemm:  24%|██▍       | 5/21 [00:00<?, ?profile/s]
+[AutoTuner]: Tuning mxfp8_gemm:  24%|██▍       | 5/21 [00:00<?, ?profile/s]
+[AutoTuner]: Tuning mxfp8_gemm:  24%|██▍       | 5/21 [00:00<?, ?profile/s]
+[AutoTuner]: Tuning mxfp8_gemm:  24%|██▍       | 5/21 [00:00<?, ?profile/s]
+[AutoTuner]: Tuning mxfp8_gemm:  24%|██▍       | 5/21 [00:00<?, ?profile/s]
+[AutoTuner]: Tuning mxfp8_gemm:  57%|█████▋    | 12/21 [00:00<00:00, 64.69profile/s]
+[AutoTuner]: Tuning mxfp8_gemm:  57%|█████▋    | 12/21 [00:00<00:00, 64.67profile/s]
+[AutoTuner]: Tuning mxfp8_gemm:  57%|█████▋    | 12/21 [00:00<00:00, 64.71profile/s]
+[AutoTuner]: Tuning mxfp8_gemm:  57%|█████▋    | 12/21 [00:00<00:00, 64.71profile/s]
+[AutoTuner]: Tuning mxfp8_gemm:  57%|█████▋    | 12/21 [00:00<00:00, 64.69profile/s]
+[AutoTuner]: Tuning mxfp8_gemm:  57%|█████▋    | 12/21 [00:00<00:00, 64.66profile/s]
+[AutoTuner]: Tuning mxfp8_gemm:  57%|█████▋    | 12/21 [00:00<00:00, 64.70profile/s]
+[AutoTuner]: Tuning mxfp8_gemm:  57%|█████▋    | 12/21 [00:00<00:00, 64.71profile/s]
+[AutoTuner]: Tuning mxfp8_gemm:  90%|█████████ | 19/21 [00:00<00:00, 24.47profile/s]
+[AutoTuner]: Tuning mxfp8_gemm:  90%|█████████ | 19/21 [00:00<00:00, 24.47profile/s]
+[AutoTuner]: Tuning mxfp8_gemm:  90%|█████████ | 19/21 [00:00<00:00, 24.47profile/s]
+[AutoTuner]: Tuning mxfp8_gemm:  90%|█████████ | 19/21 [00:00<00:00, 24.47profile/s]
+[AutoTuner]: Tuning mxfp8_gemm:  90%|█████████ | 19/21 [00:00<00:00, 24.47profile/s]
+[AutoTuner]: Tuning mxfp8_gemm:  90%|█████████ | 19/21 [00:00<00:00, 24.47profile/s]
+[AutoTuner]: Tuning mxfp8_gemm:  90%|█████████ | 19/21 [00:00<00:00, 24.47profile/s]
+[AutoTuner]: Tuning mxfp8_gemm:  90%|█████████ | 19/21 [00:00<00:00, 24.47profile/s]
+[AutoTuner]: Tuning mxfp8_gemm: 100%|██████████| 21/21 [00:00<00:00, 19.34profile/s]
+
+[AutoTuner]: Tuning mxfp8_gemm: 100%|██████████| 21/21 [00:00<00:00, 19.34profile/s]
+
+[AutoTuner]: Tuning mxfp8_gemm: 100%|██████████| 21/21 [00:00<00:00, 19.34profile/s]
+
+[AutoTuner]: Tuning mxfp8_gemm: 100%|██████████| 21/21 [00:00<00:00, 19.34profile/s]
+
+[AutoTuner]: Tuning mxfp8_gemm: 100%|██████████| 21/21 [00:00<00:00, 19.34profile/s]
+
+[AutoTuner]: Tuning mxfp8_gemm: 100%|██████████| 21/21 [00:00<00:00, 19.34profile/s]
+[AutoTuner]: Tuning mxfp8_gemm: 100%|██████████| 21/21 [00:00<00:00, 19.34profile/s]
+
+
+[AutoTuner]: Tuning mxfp8_gemm: 100%|██████████| 21/21 [00:00<00:00, 19.34profile/s]
+2026-10-25 07:52:16,739 - INFO - autotuner.py:1071 - flashinfer.jit: [Autotuner]: Autotuning process ends
+2026-10-25 07:52:16,740 - INFO - autotuner.py:1071 - flashinfer.jit: [Autotuner]: Autotuning process ends
+2026-10-25 07:52:16,740 - INFO - autotuner.py:1071 - flashinfer.jit: [Autotuner]: Autotuning process ends
+2026-10-25 07:52:16,740 - INFO - autotuner.py:1071 - flashinfer.jit: [Autotuner]: Autotuning process ends
+2026-10-25 07:52:16,743 - INFO - autotuner.py:1071 - flashinfer.jit: [Autotuner]: Autotuning process ends
+2026-10-25 07:52:16,743 - INFO - autotuner.py:1071 - flashinfer.jit: [Autotuner]: Autotuning process ends
+2026-10-25 07:52:16,743 - INFO - autotuner.py:1071 - flashinfer.jit: [Autotuner]: Autotuning process ends
+2026-10-25 07:52:16,743 - INFO - autotuner.py:1071 - flashinfer.jit: [Autotuner]: Autotuning process ends
+2026-10-25 07:52:16,744 - INFO - autotuner.py:3672 - flashinfer.jit: [Autotuner]: Saved 147 configs to /root/.cache/vllm/flashinfer_autotune_cache/0.7.2.post1/120f/90ef3b511272db7d6bc72581024ea1edb1b1fa8b2057a02f3ca0fa994e7a4d60/autotune_configs_dp0_rank2.json (112 new, 35 from previous config)
+2026-10-25 07:52:16,745 - INFO - autotuner.py:3672 - flashinfer.jit: [Autotuner]: Saved 147 configs to /root/.cache/vllm/flashinfer_autotune_cache/0.7.2.post1/120f/90ef3b511272db7d6bc72581024ea1edb1b1fa8b2057a02f3ca0fa994e7a4d60/autotune_configs_dp0_rank7.json (112 new, 35 from previous config)
+2026-10-25 07:52:16,745 - INFO - autotuner.py:3672 - flashinfer.jit: [Autotuner]: Saved 147 configs to /root/.cache/vllm/flashinfer_autotune_cache/0.7.2.post1/120f/90ef3b511272db7d6bc72581024ea1edb1b1fa8b2057a02f3ca0fa994e7a4d60/autotune_configs_dp0_rank4.json (112 new, 35 from previous config)
+2026-10-25 07:52:16,745 - INFO - autotuner.py:3672 - flashinfer.jit: [Autotuner]: Saved 147 configs to /root/.cache/vllm/flashinfer_autotune_cache/0.7.2.post1/120f/90ef3b511272db7d6bc72581024ea1edb1b1fa8b2057a02f3ca0fa994e7a4d60/autotune_configs_dp0_rank5.json (112 new, 35 from previous config)
+2026-10-25 07:52:16,745 - INFO - autotuner.py:3672 - flashinfer.jit: [Autotuner]: Saved 147 configs to /root/.cache/vllm/flashinfer_autotune_cache/0.7.2.post1/120f/90ef3b511272db7d6bc72581024ea1edb1b1fa8b2057a02f3ca0fa994e7a4d60/autotune_configs_dp0_rank1.json (112 new, 35 from previous config)
+2026-10-25 07:52:16,745 - INFO - autotuner.py:3672 - flashinfer.jit: [Autotuner]: Saved 147 configs to /root/.cache/vllm/flashinfer_autotune_cache/0.7.2.post1/120f/90ef3b511272db7d6bc72581024ea1edb1b1fa8b2057a02f3ca0fa994e7a4d60/autotune_configs_dp0_rank6.json (112 new, 35 from previous config)
+2026-10-25 07:52:16,745 - INFO - autotuner.py:3672 - flashinfer.jit: [Autotuner]: Saved 147 configs to /root/.cache/vllm/flashinfer_autotune_cache/0.7.2.post1/120f/90ef3b511272db7d6bc72581024ea1edb1b1fa8b2057a02f3ca0fa994e7a4d60/autotune_configs_dp0_rank3.json (112 new, 35 from previous config)
+2026-10-25 07:52:16,745 - INFO - autotuner.py:3672 - flashinfer.jit: [Autotuner]: Saved 147 configs to /root/.cache/vllm/flashinfer_autotune_cache/0.7.2.post1/120f/90ef3b511272db7d6bc72581024ea1edb1b1fa8b2057a02f3ca0fa994e7a4d60/autotune_configs_dp0_rank0.json (112 new, 35 from previous config)
+
+Capturing CUDA graphs (PIECEWISE):   0%|          | 0/83 [00:00<?, ?it/s]/root/b12xenv/lib/python3.12/site-packages/torch/cuda/graphs.py:630: UserWarning: The CUDA Graph is empty. This usually means that the graph was attempted to be captured on wrong device or stream. (Triggered internally at /__w/pytorch/pytorch/aten/src/ATen/cuda/CUDAGraph.cpp:249.)
+  super().capture_end_pre()
+/root/b12xenv/lib/python3.12/site-packages/torch/cuda/graphs.py:630: UserWarning: The CUDA Graph is empty. This usually means that the graph was attempted to be captured on wrong device or stream. (Triggered internally at /__w/pytorch/pytorch/aten/src/ATen/cuda/CUDAGraph.cpp:249.)
+  super().capture_end_pre()
+/root/b12xenv/lib/python3.12/site-packages/torch/cuda/graphs.py:630: UserWarning: The CUDA Graph is empty. This usually means that the graph was attempted to be captured on wrong device or stream. (Triggered internally at /__w/pytorch/pytorch/aten/src/ATen/cuda/CUDAGraph.cpp:249.)
+  super().capture_end_pre()
+/root/b12xenv/lib/python3.12/site-packages/torch/cuda/graphs.py:630: UserWarning: The CUDA Graph is empty. This usually means that the graph was attempted to be captured on wrong device or stream. (Triggered internally at /__w/pytorch/pytorch/aten/src/ATen/cuda/CUDAGraph.cpp:249.)
+  super().capture_end_pre()
+/root/b12xenv/lib/python3.12/site-packages/torch/cuda/graphs.py:630: UserWarning: The CUDA Graph is empty. This usually means that the graph was attempted to be captured on wrong device or stream. (Triggered internally at /__w/pytorch/pytorch/aten/src/ATen/cuda/CUDAGraph.cpp:249.)
+  super().capture_end_pre()
+/root/b12xenv/lib/python3.12/site-packages/torch/cuda/graphs.py:630: UserWarning: The CUDA Graph is empty. This usually means that the graph was attempted to be captured on wrong device or stream. (Triggered internally at /__w/pytorch/pytorch/aten/src/ATen/cuda/CUDAGraph.cpp:249.)
+  super().capture_end_pre()
+/root/b12xenv/lib/python3.12/site-packages/torch/cuda/graphs.py:630: UserWarning: The CUDA Graph is empty. This usually means that the graph was attempted to be captured on wrong device or stream. (Triggered internally at /__w/pytorch/pytorch/aten/src/ATen/cuda/CUDAGraph.cpp:249.)
+  super().capture_end_pre()
+/root/b12xenv/lib/python3.12/site-packages/torch/cuda/graphs.py:630: UserWarning: The CUDA Graph is empty. This usually means that the graph was attempted to be captured on wrong device or stream. (Triggered internally at /__w/pytorch/pytorch/aten/src/ATen/cuda/CUDAGraph.cpp:249.)
+  super().capture_end_pre()
+
+Capturing CUDA graphs (PIECEWISE):   1%|          | 1/83 [00:00<00:14,  5.83it/s]
+Capturing CUDA graphs (PIECEWISE):   2%|▏         | 2/83 [00:00<00:13,  6.16it/s]
+Capturing CUDA graphs (PIECEWISE):   4%|▎         | 3/83 [00:00<00:12,  6.21it/s]
+Capturing CUDA graphs (PIECEWISE):   5%|▍         | 4/83 [00:00<00:12,  6.24it/s]
+Capturing CUDA graphs (PIECEWISE):   6%|▌         | 5/83 [00:00<00:12,  6.20it/s]
+Capturing CUDA graphs (PIECEWISE):   7%|▋         | 6/83 [00:00<00:12,  6.22it/s]
+Capturing CUDA graphs (PIECEWISE):   8%|▊         | 7/83 [00:01<00:12,  6.21it/s]
+Capturing CUDA graphs (PIECEWISE):  10%|▉         | 8/83 [00:01<00:12,  6.19it/s]
+Capturing CUDA graphs (PIECEWISE):  11%|█         | 9/83 [00:01<00:12,  6.16it/s]
+Capturing CUDA graphs (PIECEWISE):  12%|█▏        | 10/83 [00:01<00:11,  6.17it/s]
+Capturing CUDA graphs (PIECEWISE):  13%|█▎        | 11/83 [00:01<00:11,  6.16it/s]
+Capturing CUDA graphs (PIECEWISE):  14%|█▍        | 12/83 [00:01<00:11,  6.16it/s]
+Capturing CUDA graphs (PIECEWISE):  16%|█▌        | 13/83 [00:02<00:11,  6.16it/s]
+Capturing CUDA graphs (PIECEWISE):  17%|█▋        | 14/83 [00:02<00:11,  6.14it/s]
+Capturing CUDA graphs (PIECEWISE):  18%|█▊        | 15/83 [00:02<00:11,  6.14it/s]
+Capturing CUDA graphs (PIECEWISE):  19%|█▉        | 16/83 [00:02<00:10,  6.12it/s]
+Capturing CUDA graphs (PIECEWISE):  20%|██        | 17/83 [00:02<00:10,  6.14it/s]
+Capturing CUDA graphs (PIECEWISE):  22%|██▏       | 18/83 [00:02<00:10,  6.06it/s]
+Capturing CUDA graphs (PIECEWISE):  23%|██▎       | 19/83 [00:03<00:10,  6.01it/s]
+Capturing CUDA graphs (PIECEWISE):  24%|██▍       | 20/83 [00:03<00:10,  6.00it/s]
+Capturing CUDA graphs (PIECEWISE):  25%|██▌       | 21/83 [00:03<00:10,  5.97it/s]
+Capturing CUDA graphs (PIECEWISE):  27%|██▋       | 22/83 [00:03<00:10,  5.97it/s]
+Capturing CUDA graphs (PIECEWISE):  28%|██▊       | 23/83 [00:03<00:10,  5.93it/s]
+Capturing CUDA graphs (PIECEWISE):  29%|██▉       | 24/83 [00:03<00:10,  5.90it/s]
+Capturing CUDA graphs (PIECEWISE):  30%|███       | 25/83 [00:04<00:09,  5.85it/s]
+Capturing CUDA graphs (PIECEWISE):  31%|███▏      | 26/83 [00:04<00:09,  5.84it/s]
+Capturing CUDA graphs (PIECEWISE):  33%|███▎      | 27/83 [00:04<00:09,  5.82it/s]
+Capturing CUDA graphs (PIECEWISE):  34%|███▎      | 28/83 [00:04<00:09,  5.81it/s]
+Capturing CUDA graphs (PIECEWISE):  35%|███▍      | 29/83 [00:04<00:09,  5.81it/s]
+Capturing CUDA graphs (PIECEWISE):  36%|███▌      | 30/83 [00:04<00:09,  5.78it/s]
+Capturing CUDA graphs (PIECEWISE):  37%|███▋      | 31/83 [00:05<00:09,  5.77it/s]
+Capturing CUDA graphs (PIECEWISE):  39%|███▊      | 32/83 [00:05<00:08,  5.77it/s]
+Capturing CUDA graphs (PIECEWISE):  40%|███▉      | 33/83 [00:05<00:08,  5.77it/s]
+Capturing CUDA graphs (PIECEWISE):  41%|████      | 34/83 [00:05<00:08,  5.77it/s]
+Capturing CUDA graphs (PIECEWISE):  42%|████▏     | 35/83 [00:05<00:08,  5.76it/s]
+Capturing CUDA graphs (PIECEWISE):  43%|████▎     | 36/83 [00:06<00:08,  5.76it/s]
+Capturing CUDA graphs (PIECEWISE):  45%|████▍     | 37/83 [00:06<00:08,  5.74it/s]
+Capturing CUDA graphs (PIECEWISE):  46%|████▌     | 38/83 [00:06<00:07,  5.75it/s]
+Capturing CUDA graphs (PIECEWISE):  47%|████▋     | 39/83 [00:06<00:07,  5.71it/s]
+Capturing CUDA graphs (PIECEWISE):  48%|████▊     | 40/83 [00:06<00:07,  5.68it/s]
+Capturing CUDA graphs (PIECEWISE):  49%|████▉     | 41/83 [00:06<00:07,  5.72it/s]
+Capturing CUDA graphs (PIECEWISE):  51%|█████     | 42/83 [00:07<00:07,  5.65it/s]
+Capturing CUDA graphs (PIECEWISE):  52%|█████▏    | 43/83 [00:07<00:07,  5.69it/s]
+Capturing CUDA graphs (PIECEWISE):  53%|█████▎    | 44/83 [00:07<00:06,  5.62it/s]
+Capturing CUDA graphs (PIECEWISE):  54%|█████▍    | 45/83 [00:07<00:06,  5.67it/s]
+Capturing CUDA graphs (PIECEWISE):  55%|█████▌    | 46/83 [00:07<00:06,  5.65it/s]
+Capturing CUDA graphs (PIECEWISE):  57%|█████▋    | 47/83 [00:07<00:06,  5.63it/s]
+Capturing CUDA graphs (PIECEWISE):  58%|█████▊    | 48/83 [00:08<00:06,  5.61it/s]
+Capturing CUDA graphs (PIECEWISE):  59%|█████▉    | 49/83 [00:08<00:06,  5.62it/s]
+Capturing CUDA graphs (PIECEWISE):  60%|██████    | 50/83 [00:08<00:05,  5.55it/s]
+Capturing CUDA graphs (PIECEWISE):  61%|██████▏   | 51/83 [00:08<00:05,  5.51it/s]
+Capturing CUDA graphs (PIECEWISE):  63%|██████▎   | 52/83 [00:08<00:05,  5.45it/s]
+Capturing CUDA graphs (PIECEWISE):  64%|██████▍   | 53/83 [00:09<00:05,  5.44it/s]
+Capturing CUDA graphs (PIECEWISE):  65%|██████▌   | 54/83 [00:09<00:05,  5.40it/s]
+Capturing CUDA graphs (PIECEWISE):  66%|██████▋   | 55/83 [00:09<00:05,  5.39it/s]
+Capturing CUDA graphs (PIECEWISE):  67%|██████▋   | 56/83 [00:09<00:05,  5.39it/s]
+Capturing CUDA graphs (PIECEWISE):  69%|██████▊   | 57/83 [00:09<00:04,  5.36it/s]
+Capturing CUDA graphs (PIECEWISE):  70%|██████▉   | 58/83 [00:10<00:04,  5.37it/s]
+Capturing CUDA graphs (PIECEWISE):  71%|███████   | 59/83 [00:10<00:04,  5.33it/s]
+Capturing CUDA graphs (PIECEWISE):  72%|███████▏  | 60/83 [00:10<00:04,  5.33it/s]
+Capturing CUDA graphs (PIECEWISE):  73%|███████▎  | 61/83 [00:10<00:04,  5.32it/s]
+Capturing CUDA graphs (PIECEWISE):  75%|███████▍  | 62/83 [00:10<00:03,  5.29it/s]
+Capturing CUDA graphs (PIECEWISE):  76%|███████▌  | 63/83 [00:10<00:03,  5.27it/s]
+Capturing CUDA graphs (PIECEWISE):  77%|███████▋  | 64/83 [00:11<00:03,  5.24it/s]
+Capturing CUDA graphs (PIECEWISE):  78%|███████▊  | 65/83 [00:11<00:03,  5.22it/s]
+Capturing CUDA graphs (PIECEWISE):  80%|███████▉  | 66/83 [00:11<00:03,  5.21it/s]
+Capturing CUDA graphs (PIECEWISE):  81%|████████  | 67/83 [00:11<00:03,  5.19it/s]
+Capturing CUDA graphs (PIECEWISE):  82%|████████▏ | 68/83 [00:11<00:02,  5.19it/s]
+Capturing CUDA graphs (PIECEWISE):  83%|████████▎ | 69/83 [00:12<00:02,  5.16it/s]
+Capturing CUDA graphs (PIECEWISE):  84%|████████▍ | 70/83 [00:12<00:02,  5.14it/s]
+Capturing CUDA graphs (PIECEWISE):  86%|████████▌ | 71/83 [00:12<00:02,  5.09it/s]
+Capturing CUDA graphs (PIECEWISE):  87%|████████▋ | 72/83 [00:12<00:02,  5.05it/s]
+Capturing CUDA graphs (PIECEWISE):  88%|████████▊ | 73/83 [00:12<00:01,  5.05it/s]
+Capturing CUDA graphs (PIECEWISE):  89%|████████▉ | 74/83 [00:13<00:01,  5.01it/s]
+Capturing CUDA graphs (PIECEWISE):  90%|█████████ | 75/83 [00:13<00:01,  5.01it/s]
+Capturing CUDA graphs (PIECEWISE):  92%|█████████▏| 76/83 [00:13<00:01,  4.99it/s]
+Capturing CUDA graphs (PIECEWISE):  93%|█████████▎| 77/83 [00:13<00:01,  4.96it/s]
+Capturing CUDA graphs (PIECEWISE):  94%|█████████▍| 78/83 [00:13<00:01,  4.91it/s]
+Capturing CUDA graphs (PIECEWISE):  95%|█████████▌| 79/83 [00:14<00:00,  4.89it/s]
+Capturing CUDA graphs (PIECEWISE):  96%|█████████▋| 80/83 [00:14<00:00,  4.91it/s]
+Capturing CUDA graphs (PIECEWISE):  98%|█████████▊| 81/83 [00:14<00:00,  4.87it/s]
+Capturing CUDA graphs (PIECEWISE):  99%|█████████▉| 82/83 [00:14<00:00,  4.86it/s]
+Capturing CUDA graphs (PIECEWISE): 100%|██████████| 83/83 [00:14<00:00,  4.80it/s]
+Capturing CUDA graphs (PIECEWISE): 100%|██████████| 83/83 [00:14<00:00,  5.54it/s]
+
+Capturing decoder replay CUDA graphs (PIECEWISE):   0%|          | 0/8 [00:00<?, ?it/s]
+Capturing decoder replay CUDA graphs (PIECEWISE):  12%|█▎        | 1/8 [00:00<00:00,  9.28it/s]
+Capturing decoder replay CUDA graphs (PIECEWISE):  38%|███▊      | 3/8 [00:00<00:00,  9.83it/s]
+Capturing decoder replay CUDA graphs (PIECEWISE):  62%|██████▎   | 5/8 [00:00<00:00, 10.00it/s]
+Capturing decoder replay CUDA graphs (PIECEWISE):  88%|████████▊ | 7/8 [00:00<00:00, 10.00it/s](Worker_TP3_EP3 pid=640541) INFO 10-25 07:52:34 [speculator.py:170] Capturing model for DSpark speculator...
+
+Capturing decoder replay CUDA graphs (PIECEWISE): 100%|██████████| 8/8 [00:00<00:00,  9.76it/s]
+Capturing decoder replay CUDA graphs (PIECEWISE): 100%|██████████| 8/8 [00:00<00:00,  9.82it/s]
+(Worker_TP0_EP0 pid=640534) INFO 10-25 07:52:34 [speculator.py:170] Capturing model for DSpark speculator...
+(Worker_TP7_EP7 pid=640540) INFO 10-25 07:52:34 [speculator.py:170] Capturing model for DSpark speculator...
+(Worker_TP1_EP1 pid=640537) INFO 10-25 07:52:34 [speculator.py:170] Capturing model for DSpark speculator...
+(Worker_TP6_EP6 pid=640535) INFO 10-25 07:52:34 [speculator.py:170] Capturing model for DSpark speculator...
+(Worker_TP2_EP2 pid=640536) INFO 10-25 07:52:34 [speculator.py:170] Capturing model for DSpark speculator...
+(Worker_TP5_EP5 pid=640539) INFO 10-25 07:52:34 [speculator.py:170] Capturing model for DSpark speculator...
+(Worker_TP4_EP4 pid=640538) INFO 10-25 07:52:34 [speculator.py:170] Capturing model for DSpark speculator...
+(Worker_TP0_EP0 pid=640534) INFO 10-25 07:52:35 [model_runner.py:1156] Graph capturing finished in 17 secs, took 11.57 GiB
+(Worker_TP0_EP0 pid=640534) INFO 10-25 07:52:35 [gpu_worker.py:997] CUDA graph pool memory: 11.57 GiB (actual), 13.67 GiB (estimated), difference: 2.09 GiB (18.1%).
+(Worker_TP0_EP0 pid=640534) INFO 10-25 07:52:35 [gpu_worker.py:1060] Free memory on device (93.88/94.97 GiB) on startup. Desired GPU memory utilization is (0.9, 85.48 GiB). Actual usage is 40.95 GiB for consumed memory (weights + non-torch), 15.62 GiB for peak activation, and 11.57 GiB for CUDAGraph memory. Replace gpu_memory_utilization config with `--kv-cache-memory=18451808461` (17.18 GiB) to fit into requested memory, or `--kv-cache-memory=27478914048` (25.59 GiB) to fully utilize gpu memory. Current kv cache memory in use is 28.91 GiB.
+(Worker_TP0_EP0 pid=640534) INFO 10-25 07:52:35 [jit_monitor.py:84] Kernel JIT monitor activated; monitored JIT compilations during inference will use mode=warn.
+(Worker_TP3_EP3 pid=640541) INFO 10-25 07:52:35 [model_runner.py:1156] Graph capturing finished in 17 secs, took 11.57 GiB
+(Worker_TP3_EP3 pid=640541) INFO 10-25 07:52:35 [gpu_worker.py:997] CUDA graph pool memory: 11.57 GiB (actual), 13.67 GiB (estimated), difference: 2.09 GiB (18.1%).
+(Worker_TP3_EP3 pid=640541) INFO 10-25 07:52:35 [gpu_worker.py:1060] Free memory on device (93.88/94.97 GiB) on startup. Desired GPU memory utilization is (0.9, 85.48 GiB). Actual usage is 40.95 GiB for consumed memory (weights + non-torch), 15.62 GiB for peak activation, and 11.57 GiB for CUDAGraph memory. Replace gpu_memory_utilization config with `--kv-cache-memory=18451808461` (17.18 GiB) to fit into requested memory, or `--kv-cache-memory=27478914048` (25.59 GiB) to fully utilize gpu memory. Current kv cache memory in use is 28.91 GiB.
+(Worker_TP3_EP3 pid=640541) INFO 10-25 07:52:35 [jit_monitor.py:84] Kernel JIT monitor activated; monitored JIT compilations during inference will use mode=warn.
+(Worker_TP1_EP1 pid=640537) INFO 10-25 07:52:35 [model_runner.py:1156] Graph capturing finished in 17 secs, took 11.57 GiB
+(Worker_TP1_EP1 pid=640537) INFO 10-25 07:52:35 [gpu_worker.py:997] CUDA graph pool memory: 11.57 GiB (actual), 13.67 GiB (estimated), difference: 2.09 GiB (18.1%).
+(Worker_TP1_EP1 pid=640537) INFO 10-25 07:52:35 [gpu_worker.py:1060] Free memory on device (93.88/94.97 GiB) on startup. Desired GPU memory utilization is (0.9, 85.48 GiB). Actual usage is 40.95 GiB for consumed memory (weights + non-torch), 15.62 GiB for peak activation, and 11.57 GiB for CUDAGraph memory. Replace gpu_memory_utilization config with `--kv-cache-memory=18451808461` (17.18 GiB) to fit into requested memory, or `--kv-cache-memory=27478914048` (25.59 GiB) to fully utilize gpu memory. Current kv cache memory in use is 28.91 GiB.
+(Worker_TP1_EP1 pid=640537) INFO 10-25 07:52:35 [jit_monitor.py:84] Kernel JIT monitor activated; monitored JIT compilations during inference will use mode=warn.
+(Worker_TP4_EP4 pid=640538) INFO 10-25 07:52:35 [model_runner.py:1156] Graph capturing finished in 17 secs, took 11.57 GiB
+(Worker_TP4_EP4 pid=640538) INFO 10-25 07:52:35 [gpu_worker.py:997] CUDA graph pool memory: 11.57 GiB (actual), 13.67 GiB (estimated), difference: 2.09 GiB (18.1%).
+(Worker_TP4_EP4 pid=640538) INFO 10-25 07:52:35 [gpu_worker.py:1060] Free memory on device (93.88/94.97 GiB) on startup. Desired GPU memory utilization is (0.9, 85.48 GiB). Actual usage is 40.95 GiB for consumed memory (weights + non-torch), 15.62 GiB for peak activation, and 11.57 GiB for CUDAGraph memory. Replace gpu_memory_utilization config with `--kv-cache-memory=18451808461` (17.18 GiB) to fit into requested memory, or `--kv-cache-memory=27478914048` (25.59 GiB) to fully utilize gpu memory. Current kv cache memory in use is 28.91 GiB.
+(Worker_TP4_EP4 pid=640538) INFO 10-25 07:52:35 [jit_monitor.py:84] Kernel JIT monitor activated; monitored JIT compilations during inference will use mode=warn.
+(Worker_TP7_EP7 pid=640540) INFO 10-25 07:52:35 [model_runner.py:1156] Graph capturing finished in 17 secs, took 11.57 GiB
+(Worker_TP7_EP7 pid=640540) INFO 10-25 07:52:35 [gpu_worker.py:997] CUDA graph pool memory: 11.57 GiB (actual), 13.67 GiB (estimated), difference: 2.09 GiB (18.1%).
+(Worker_TP7_EP7 pid=640540) INFO 10-25 07:52:35 [gpu_worker.py:1060] Free memory on device (93.88/94.97 GiB) on startup. Desired GPU memory utilization is (0.9, 85.48 GiB). Actual usage is 40.95 GiB for consumed memory (weights + non-torch), 15.62 GiB for peak activation, and 11.57 GiB for CUDAGraph memory. Replace gpu_memory_utilization config with `--kv-cache-memory=18451808461` (17.18 GiB) to fit into requested memory, or `--kv-cache-memory=27478914048` (25.59 GiB) to fully utilize gpu memory. Current kv cache memory in use is 28.91 GiB.
+(Worker_TP2_EP2 pid=640536) INFO 10-25 07:52:35 [model_runner.py:1156] Graph capturing finished in 17 secs, took 11.57 GiB
+(Worker_TP2_EP2 pid=640536) INFO 10-25 07:52:35 [gpu_worker.py:997] CUDA graph pool memory: 11.57 GiB (actual), 13.67 GiB (estimated), difference: 2.09 GiB (18.1%).
+(Worker_TP2_EP2 pid=640536) INFO 10-25 07:52:35 [gpu_worker.py:1060] Free memory on device (93.88/94.97 GiB) on startup. Desired GPU memory utilization is (0.9, 85.48 GiB). Actual usage is 40.95 GiB for consumed memory (weights + non-torch), 15.62 GiB for peak activation, and 11.57 GiB for CUDAGraph memory. Replace gpu_memory_utilization config with `--kv-cache-memory=18451808461` (17.18 GiB) to fit into requested memory, or `--kv-cache-memory=27478914048` (25.59 GiB) to fully utilize gpu memory. Current kv cache memory in use is 28.91 GiB.
+(Worker_TP7_EP7 pid=640540) INFO 10-25 07:52:35 [jit_monitor.py:84] Kernel JIT monitor activated; monitored JIT compilations during inference will use mode=warn.
+(Worker_TP2_EP2 pid=640536) INFO 10-25 07:52:35 [jit_monitor.py:84] Kernel JIT monitor activated; monitored JIT compilations during inference will use mode=warn.
+(Worker_TP6_EP6 pid=640535) INFO 10-25 07:52:35 [model_runner.py:1156] Graph capturing finished in 17 secs, took 11.57 GiB
+(Worker_TP6_EP6 pid=640535) INFO 10-25 07:52:35 [gpu_worker.py:997] CUDA graph pool memory: 11.57 GiB (actual), 13.67 GiB (estimated), difference: 2.09 GiB (18.1%).
+(Worker_TP6_EP6 pid=640535) INFO 10-25 07:52:35 [gpu_worker.py:1060] Free memory on device (93.88/94.97 GiB) on startup. Desired GPU memory utilization is (0.9, 85.48 GiB). Actual usage is 40.95 GiB for consumed memory (weights + non-torch), 15.62 GiB for peak activation, and 11.57 GiB for CUDAGraph memory. Replace gpu_memory_utilization config with `--kv-cache-memory=18451808461` (17.18 GiB) to fit into requested memory, or `--kv-cache-memory=27478914048` (25.59 GiB) to fully utilize gpu memory. Current kv cache memory in use is 28.91 GiB.
+(Worker_TP6_EP6 pid=640535) INFO 10-25 07:52:35 [jit_monitor.py:84] Kernel JIT monitor activated; monitored JIT compilations during inference will use mode=warn.
+(Worker_TP5_EP5 pid=640539) INFO 10-25 07:52:35 [model_runner.py:1156] Graph capturing finished in 17 secs, took 11.57 GiB
+(Worker_TP5_EP5 pid=640539) INFO 10-25 07:52:35 [gpu_worker.py:997] CUDA graph pool memory: 11.57 GiB (actual), 13.67 GiB (estimated), difference: 2.09 GiB (18.1%).
+(Worker_TP5_EP5 pid=640539) INFO 10-25 07:52:35 [gpu_worker.py:1060] Free memory on device (93.88/94.97 GiB) on startup. Desired GPU memory utilization is (0.9, 85.48 GiB). Actual usage is 40.95 GiB for consumed memory (weights + non-torch), 15.62 GiB for peak activation, and 11.57 GiB for CUDAGraph memory. Replace gpu_memory_utilization config with `--kv-cache-memory=18451808461` (17.18 GiB) to fit into requested memory, or `--kv-cache-memory=27478914048` (25.59 GiB) to fully utilize gpu memory. Current kv cache memory in use is 28.91 GiB.
+(Worker_TP5_EP5 pid=640539) INFO 10-25 07:52:35 [jit_monitor.py:84] Kernel JIT monitor activated; monitored JIT compilations during inference will use mode=warn.
+(EngineCore pid=640131) INFO 10-25 07:52:36 [core.py:402] init engine (profile, create kv cache, warmup model) took 57.41 s
+(EngineCore pid=640131) INFO 10-25 07:52:37 [vllm.py:1473] Resolved Engram configuration: EngramConfig(cpu_offload=True, embedding_across_dp=False, dp_shared_memory=False, use_thp=False)
+[0;36m(RustFrontend pid=640132)[0m [32mINFO[0m [90m10-25 07:52:37[0m [90m[transport.rs:379][0m bootstrapped engines connected [3mengine_count[0m[2m=[0m1
+(MainProcess pid=639234) INFO 10-25 07:52:37 [utils.py:551] Waiting for API servers to complete ...
+(EngineCore pid=640131) INFO 10-25 07:52:37 [kernel.py:480] Final IR op priority after setting platform defaults: IrOpPriorityConfig(rms_norm=['vllm_c', 'native'], fused_add_rms_norm=['vllm_c', 'native'], gelu_and_mul_sparse=['triton', 'native'])
+[0;36m(RustFrontend pid=640132)[0m [32mINFO[0m [90m10-25 07:52:37[0m [90m[routes.rs:176][0m Scale-out endpoints are disabled. Restart vllm serve with --enable-scale-out to enable them.
+(EngineCore pid=640131) INFO 10-25 07:52:37 [compilation.py:317] Enabled custom fusions: norm_quant, act_quant
+[0;36m(RustFrontend pid=640132)[0m [32mINFO[0m [90m10-25 07:52:37[0m [90m[server/src/lib.rs:222][0m starting vLLM server [3mmodel[0m[2m=[0m"deepseek-v4.1-flash"
+[0;36m(RustFrontend pid=640132)[0m [32mINFO[0m [90m10-25 07:52:37[0m [90m[server/src/lib.rs:334][0m OpenAI server is ready to accept requests [3mbind_address[0m[2m=[0m"0.0.0.0:8123" [3mscheme[0m[2m=[0m"http" [3mmodel[0m[2m=[0m"deepseek-v4.1-flash"
+[0;36m(RustFrontend pid=640132)[0m [32mINFO[0m [90m10-25 07:52:43[0m [90m[runtime.rs:48][0m capping request runtime worker threads, set VLLM_RS_REQUEST_WORKER_THREADS to override [3mavailable_parallelism[0m[2m=[0m224 [3mcapped_worker_threads[0m[2m=[0m32
+[0;36m(RustFrontend pid=640132)[0m [32mINFO[0m [90m10-25 07:52:47[0m [90m[log_stats.rs:273][0m Avg prompt tput: 0.4 toks/s, Avg generation tput: 3.2 toks/s, Reqs Running: 0, Waiting: 0, GPU KV cache used: 0.0%, Prefix cache hit rate: 0.0%
+[0;36m(RustFrontend pid=640132)[0m [32mINFO[0m [90m10-25 07:52:47[0m [90m[log_stats.rs:302][0m SpecDecoding metrics: Mean acceptance length: 2.13, Accepted throughput: 1.70 tokens/s, Drafted throughput: 10.50 tokens/s, Accepted: 17 tokens, Drafted: 105 tokens, Per-position acceptance rate: 0.400, 0.267, 0.267, 0.133, 0.067, 0.000, 0.000, Avg Draft acceptance rate: 16.2%
+[0;36m(RustFrontend pid=640132)[0m [32mINFO[0m [90m10-25 07:52:57[0m [90m[log_stats.rs:273][0m Avg prompt tput: 0.0 toks/s, Avg generation tput: 0.0 toks/s, Reqs Running: 0, Waiting: 0, GPU KV cache used: 0.0%, Prefix cache hit rate: 0.0%
+(Worker_TP0_EP0 pid=640534) WARNING 10-25 07:53:07 [jit_monitor.py:140] Triton kernel JIT compilation during inference: _prepare_dflash_inputs_kernel. This causes a latency spike; consider extending warmup to cover this shape/config.
+[0;36m(RustFrontend pid=640132)[0m [32mINFO[0m [90m10-25 07:53:57[0m [90m[log_stats.rs:273][0m Avg prompt tput: 78642.3 toks/s, Avg generation tput: 60.4 toks/s, Reqs Running: 1, Waiting: 0, GPU KV cache used: 4.7%, Prefix cache hit rate: 0.0%
+[0;36m(RustFrontend pid=640132)[0m [32mINFO[0m [90m10-25 07:53:57[0m [90m[log_stats.rs:302][0m SpecDecoding metrics: Mean acceptance length: 1.86, Accepted throughput: 27.90 tokens/s, Drafted throughput: 226.80 tokens/s, Accepted: 279 tokens, Drafted: 2268 tokens, Per-position acceptance rate: 0.812, 0.043, 0.006, 0.000, 0.000, 0.000, 0.000, Avg Draft acceptance rate: 12.3%
+(MainProcess pid=639234) INFO 10-25 07:54:02 [serve.py:396] Waiting up to 0 seconds for processes to exit
+[0;36m(RustFrontend pid=640132)[0m [32mINFO[0m [90m10-25 07:54:02[0m [90m[cmd/src/main.rs:76][0m received shutdown signal (SIGTERM), shutting down...
+[0;36m(RustFrontend pid=640132)[0m [33mWARNING[0m [90m10-25 07:54:02[0m [90m[server/src/lib.rs:344][0m HTTP graceful shutdown deadline elapsed; aborting server
+[0;36m(RustFrontend pid=640132)[0m [32mINFO[0m [90m10-25 07:54:02[0m [90m[client.rs:1043][0m shutting down engine-core client
+[0;36m(RustFrontend pid=640132)[0m [32mINFO[0m [90m10-25 07:54:02[0m [90m[client.rs:1058][0m engine-core client shut down
+(MainProcess pid=639234) INFO 10-25 07:54:02 [utils.py:628] [shutdown] Process manager: send sigterm to process EngineCore
+(MainProcess pid=639234) WARNING 10-25 07:54:02 [utils.py:648] [shutdown] Process manager: force killing remaining processes count=1
+(MainProcess pid=639234) WARNING 10-25 07:54:02 [utils.py:653] [shutdown] Process manager: force killing remaining process EngineCore pid 640131
+(EngineCore pid=640131) INFO 10-25 07:54:02 [core.py:1515] [shutdown] EngineCore: trigger received signal=SIGTERM
+(EngineCore pid=640131) INFO 10-25 07:54:02 [core.py:1702] [shutdown] EngineCore: start mode=abort timeout=0s
+(EngineCore pid=640131) INFO 10-25 07:54:02 [core.py:1733] [shutdown] EngineCore: request processing complete; starting resource teardown
+(EngineCore pid=640131) INFO 10-25 07:54:02 [core.py:1563] [shutdown] EngineCore: exiting busy loop
+(EngineCore pid=640131) INFO 10-25 07:54:02 [multiproc_executor.py:580] [shutdown] Executor: waiting for worker exit count=8
+(Worker_TP0_EP0 pid=640534) INFO 10-25 07:54:02 [multiproc_executor.py:944] Parent process exited, terminating worker queues
+(MainProcess pid=639234) WARNING 10-25 07:54:02 [system_utils.py:248] [shutdown] force killing sub process VLLM::Worker_TP0_EP0 pid 640534
+(MainProcess pid=639234) WARNING 10-25 07:54:02 [system_utils.py:248] [shutdown] force killing sub process VLLM::Worker_TP6_EP6 pid 640535
+(MainProcess pid=639234) WARNING 10-25 07:54:02 [system_utils.py:248] [shutdown] force killing sub process VLLM::Worker_TP2_EP2 pid 640536
+(MainProcess pid=639234) WARNING 10-25 07:54:02 [system_utils.py:248] [shutdown] force killing sub process VLLM::Worker_TP1_EP1 pid 640537
+(MainProcess pid=639234) WARNING 10-25 07:54:02 [system_utils.py:248] [shutdown] force killing sub process VLLM::Worker_TP4_EP4 pid 640538
+(MainProcess pid=639234) WARNING 10-25 07:54:02 [system_utils.py:248] [shutdown] force killing sub process VLLM::Worker_TP5_EP5 pid 640539
+(MainProcess pid=639234) WARNING 10-25 07:54:02 [system_utils.py:248] [shutdown] force killing sub process VLLM::Worker_TP7_EP7 pid 640540
+(MainProcess pid=639234) WARNING 10-25 07:54:02 [system_utils.py:248] [shutdown] force killing sub process VLLM::Worker_TP3_EP3 pid 640541
+/root/.local/share/uv/python/cpython-3.12.13-linux-x86_64-gnu/lib/python3.12/multiprocessing/resource_tracker.py:279: UserWarning: resource_tracker: There appear to be 8 leaked semaphore objects to clean up at shutdown
+  warnings.warn('resource_tracker: There appear to be %d '
+/root/.local/share/uv/python/cpython-3.12.13-linux-x86_64-gnu/lib/python3.12/multiprocessing/resource_tracker.py:279: UserWarning: resource_tracker: There appear to be 10 leaked shared_memory objects to clean up at shutdown
+  warnings.warn('resource_tracker: There appear to be %d '
