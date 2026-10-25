@@ -1,0 +1,518 @@
++ date
+Sun Oct 25 01:57:31 AM UTC 2026
++ export PATH=/usr/local/cuda/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
++ PATH=/usr/local/cuda/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
++ pkill -f 'vllm serve'
++ sleep 8
+++ seq 1 60
++ for i in $(seq 1 60)
+++ nvidia-smi --query-gpu=memory.used --format=csv,noheader,nounits
+++ paste -sd+
+++ bc
++ U=0
++ '[' 0 -lt 10000 ']'
++ break
+++ date +%s
++ T0=1792893460
++ BPID=2905389
++ env VLLM_USE_RUST_FRONTEND=1 VLLM_ENGINE_READY_TIMEOUT_S=7200 NCCL_P2P_LEVEL=SYS FLASHINFER_DISABLE_VERSION_CHECK=1 HF_HUB_OFFLINE=1 HF_HUB_DISABLE_XET=1 /root/v60762/bin/vllm serve /data/models/DeepSeek-V4.1-Flash-1017 --served-model-name deepseek-v4.1-flash --trust-remote-code --host 0.0.0.0 --port 8123 --api-key *** --tokenizer-mode deepseek_v41 --tensor-parallel-size 8 --enable-expert-parallel --kv-cache-dtype fp8 --engram-config '{"cpu_offload":true,"use_thp":true}' --moe-backend auto --max-model-len 131072 --max-num-seqs 128 --gpu-memory-utilization 0.90 --speculative-config '{"method":"dspark","num_speculative_tokens":7,"draft_sample_method":"probabilistic","rejection_sample_method":"block","enable_adaptive_verification":false}' --max-cudagraph-capture-size 1024 --compilation-config '{"cudagraph_mode":"PIECEWISE"}' --enable-auto-tool-choice --tool-call-parser deepseek_v41 --reasoning-parser deepseek_v41
+++ seq 1 720
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2905389
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2905389
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2905389
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2905389
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2905389
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2905389
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2905389
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2905389
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2905389
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2905389
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2905389
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2905389
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2905389
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2905389
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2905389
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2905389
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2905389
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2905389
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2905389
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2905389
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2905389
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2905389
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2905389
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2905389
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2905389
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2905389
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2905389
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2905389
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2905389
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2905389
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2905389
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2905389
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2905389
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2905389
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2905389
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2905389
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2905389
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2905389
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2905389
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2905389
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2905389
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2905389
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2905389
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2905389
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2905389
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2905389
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2905389
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2905389
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2905389
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2905389
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2905389
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2905389
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2905389
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2905389
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2905389
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2905389
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2905389
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2905389
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2905389
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2905389
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2905389
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2905389
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2905389
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2905389
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2905389
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2905389
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2905389
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2905389
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2905389
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2905389
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2905389
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2905389
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2905389
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2905389
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2905389
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2905389
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2905389
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2905389
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2905389
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2905389
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2905389
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2905389
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2905389
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2905389
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2905389
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2905389
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2905389
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2905389
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2905389
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2905389
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2905389
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2905389
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2905389
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2905389
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2905389
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2905389
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2905389
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2905389
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2905389
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2905389
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2905389
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 2905389
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ break
++ curl -sf http://127.0.0.1:8123/health
+++ date +%s
++ echo 'THP_READY 510s'
+THP_READY 510s
++ grep -a 'engram.*offload\|thp\|THP' /root/test_ops/thp/boot_thp.log
++ head -4
+(MainProcess pid=2905389) INFO 10-25 01:57:45 [startup.py:96] non-default args: {'model_tag': '/data/models/DeepSeek-V4.1-Flash-1017', 'api_server_count': 1, 'enable_auto_tool_choice': True, 'tool_call_parser': 'deepseek_v41', 'host': '0.0.0.0', 'port': 8123, 'api_key': '***', 'model': '/data/models/DeepSeek-V4.1-Flash-1017', 'tokenizer_mode': 'deepseek_v41', 'trust_remote_code': True, 'max_model_len': 131072, 'served_model_name': ['deepseek-v4.1-flash'], 'reasoning_parser': 'deepseek_v41', 'tensor_parallel_size': 8, 'enable_expert_parallel': True, 'gpu_memory_utilization': 0.9, 'kv_cache_dtype': 'fp8', 'max_num_seqs': 128, 'max_cudagraph_capture_size': 1024, 'speculative_config': {'method': 'dspark', 'num_speculative_tokens': 7, 'draft_sample_method': 'probabilistic', 'rejection_sample_method': 'block', 'enable_adaptive_verification': False}, 'compilation_config': {'mode': None, 'debug_dump_path': None, 'cache_dir': '', 'compile_cache_save_format': 'binary', 'backend': 'inductor', 'custom_ops': [], 'ir_enable_torch_wrap': None, 'splitting_ops': None, 'compile_mm_encoder': False, 'cudagraph_mm_encoder': False, 'encoder_cudagraph_token_budgets': [], 'encoder_cudagraph_max_vision_items_per_batch': 0, 'encoder_cudagraph_max_frames_per_batch': None, 'cudagraph_decoder_replay': True, 'decoder_replay_cudagraph_capture_sizes': [], 'decoder_replay_trim_threshold': 768, 'compile_sizes': None, 'compile_ranges_endpoints': None, 'inductor_compile_config': {'enable_auto_functionalized_v2': False, 'combo_kernels': True, 'benchmark_combo_kernel': True}, 'inductor_passes': {}, 'cudagraph_mode': <CUDAGraphMode.PIECEWISE: 1>, 'cudagraph_num_of_warmups': 0, 'cudagraph_capture_sizes': None, 'cudagraph_copy_inputs': False, 'cudagraph_specialize_lora': True, 'use_inductor_graph_partition': None, 'pass_config': {}, 'max_cudagraph_capture_size': None, 'dynamic_shapes_config': {'type': <DynamicShapesType.BACKED: 'backed'>, 'evaluate_guards': False, 'assume_32_bit_indexing': False}, 'local_cache_dir': None, 'fast_moe_cold_start': None, 'static_all_moe_layers': []}, 'engram_config': EngramConfig(cpu_offload=True, embedding_across_dp=False, dp_shared_memory=None, use_thp=True)}
+(MainProcess pid=2905389) INFO 10-25 01:57:46 [vllm.py:1473] Resolved Engram configuration: EngramConfig(cpu_offload=True, embedding_across_dp=False, dp_shared_memory=False, use_thp=True)
+(MainProcess pid=2905389) INFO 10-25 01:57:46 [utils.py:372] Launching Rust frontend: /root/v60762/lib/python3.12/site-packages/vllm/vllm-rs frontend --listen-fd 36 --input-listener-fd 37 --output-listener-fd 38 --engine-start-index 0 --engine-count 1 --data-parallel-size 1 --args-json {"api_key": "***", "compilation_config": {"backend": "inductor", "cache_dir": "", "compilation_time": 0.0, "compile_cache_save_format": "binary", "compile_mm_encoder": false, "compile_ranges_endpoints": null, "compile_sizes": null, "cudagraph_capture_sizes": null, "cudagraph_copy_inputs": false, "cudagraph_decoder_replay": true, "cudagraph_mm_encoder": false, "cudagraph_mode": "<CUDAGraphMode.PIECEWISE: 1>", "cudagraph_num_of_warmups": 0, "cudagraph_specialize_lora": true, "custom_ops": [], "debug_dump_path": null, "decoder_replay_cudagraph_capture_sizes": [], "decoder_replay_trim_threshold": 768, "disabled_custom_ops": {}, "dynamic_shapes_config": {"assume_32_bit_indexing": false, "evaluate_guards": false, "type": "backed"}, "enabled_custom_ops": {}, "encoder_compilation_time": 0.0, "encoder_cudagraph_max_frames_per_batch": null, "encoder_cudagraph_max_vision_items_per_batch": 0, "encoder_cudagraph_token_budgets": [], "fast_moe_cold_start": null, "inductor_compile_config": {"benchmark_combo_kernel": true, "combo_kernels": true, "enable_auto_functionalized_v2": false}, "inductor_passes": {}, "ir_enable_torch_wrap": null, "local_cache_dir": null, "max_cudagraph_capture_size": null, "mode": null, "pass_config": {"eliminate_noops": true, "enable_qk_norm_rope_fusion": null, "fi_allreduce_fusion_max_size_mb": null, "fuse_act_padding": null, "fuse_act_quant": null, "fuse_allreduce_rms": null, "fuse_attn_quant": null, "fuse_mla_dual_rms_norm": null, "fuse_norm_quant": null, "fuse_qk_norm_rope_kvcache": null, "fuse_rope_kvcache": null, "fuse_rope_kvcache_cat_mla": null, "rope_kvcache_fusion_max_token_num": 256}, "splitting_ops": null, "static_all_moe_layers": [], "static_forward_context": {}, "traced_files": "set()", "use_inductor_graph_partition": null}, "enable_auto_tool_choice": true, "enable_expert_parallel": true, "engine_ready_timeout_secs": 7200, "engram_config": {"cpu_offload": true, "dp_shared_memory": false, "embedding_across_dp": false, "use_thp": true}, "gpu_memory_utilization": 0.9, "host": "0.0.0.0", "http_timeout_keep_alive": 5, "kv_cache_dtype": "fp8", "max_cudagraph_capture_size": 1024, "max_model_len": 131072, "max_num_seqs": 128, "model": "/data/models/DeepSeek-V4.1-Flash-1017", "model_tag": "/data/models/DeepSeek-V4.1-Flash-1017", "port": 8123, "reasoning_parser": "deepseek_v41", "served_model_name": ["deepseek-v4.1-flash"], "speculative_config": {"draft_sample_method": "probabilistic", "enable_adaptive_verification": false, "method": "dspark", "num_speculative_tokens": 7, "rejection_sample_method": "block"}, "structured_outputs_config": {"backend": "auto", "disable_additional_properties": false, "disable_any_whitespace": false, "enable_in_reasoning": false, "reasoning_parser": "deepseek_v41", "reasoning_parser_plugin": ""}, "tensor_parallel_size": 8, "tokenizer_mode": "deepseek_v41", "tool_call_parser": "deepseek_v41", "trust_remote_code": true}
+(Worker_TP7_EP7 pid=2906440) INFO 10-25 01:58:28 [engram.py:1024] Engram table offloaded to pinned host memory: 48001319 rows x 256, 11.80 GiB per rank
++ grep -i AnonHugePages /proc/meminfo
+AnonHugePages:  198225920 kB
+++ ps -eo rss,comm --sort=-rss
+++ head -4
+++ tail -3
+++ tr '\n' ' '
++ echo 'worker RSS top3: 30692652 VLLM::Worker_TP 30543592 VLLM::Worker_TP 30541204 VLLM::Worker_TP '
+worker RSS top3: 30692652 VLLM::Worker_TP 30543592 VLLM::Worker_TP 30541204 VLLM::Worker_TP 
++ sleep 3
++ curl -s http://127.0.0.1:8123/v1/completions -H 'Content-Type: application/json' -H 'Authorization: Bearer ***' -d '{"model":"deepseek-v4.1-flash","prompt":"17*19=","max_tokens":48,"temperature":0}'
++ python3 -c 'import json,sys; print("probe_math:", json.load(sys.stdin)["choices"][0]["text"][:50])'
+probe_math: 323
+
+323/19=17
+
+So the answer is 17.
+
+I hope this 
++ for TIER in "1024 1024 4 1" "1024 1024 32 32" "8192 8192 8 8" "65536 65536 4 4"
++ set -- 1024 1024 4 1
++ IL=1024
++ OL=1024
++ N=4
++ C=1
+++ date -u +%H:%M:%S
++ echo '===== thp 1024 c1 02:06:14 ====='
+===== thp 1024 c1 02:06:14 =====
++ timeout 3600 env OPENAI_API_KEY=*** /root/v60762/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data/models/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 1024 --random-output-len 1024 --ignore-eos --num-prompts 4 --request-rate 1
++ head -3
++ grep -aE 'Successful requests|Output token throughput|mean TPOT'
+Successful requests:                     4         
+Output token throughput (tok/s):         246.25    
++ for TIER in "1024 1024 4 1" "1024 1024 32 32" "8192 8192 8 8" "65536 65536 4 4"
++ set -- 1024 1024 32 32
++ IL=1024
++ OL=1024
++ N=32
++ C=32
+++ date -u +%H:%M:%S
++ echo '===== thp 1024 c32 02:06:36 ====='
+===== thp 1024 c32 02:06:36 =====
++ timeout 3600 env OPENAI_API_KEY=*** /root/v60762/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data/models/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 1024 --random-output-len 1024 --ignore-eos --num-prompts 32 --request-rate 32
++ grep -aE 'Successful requests|Output token throughput|mean TPOT'
++ head -3
+Successful requests:                     32        
+Output token throughput (tok/s):         953.74    
++ for TIER in "1024 1024 4 1" "1024 1024 32 32" "8192 8192 8 8" "65536 65536 4 4"
++ set -- 8192 8192 8 8
++ IL=8192
++ OL=8192
++ N=8
++ C=8
+++ date -u +%H:%M:%S
++ echo '===== thp 8192 c8 02:07:17 ====='
+===== thp 8192 c8 02:07:17 =====
++ timeout 3600 env OPENAI_API_KEY=*** /root/v60762/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data/models/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 8192 --random-output-len 8192 --ignore-eos --num-prompts 8 --request-rate 8
++ grep -aE 'Successful requests|Output token throughput|mean TPOT'
++ head -3
+Successful requests:                     8         
+Output token throughput (tok/s):         632.77    
++ for TIER in "1024 1024 4 1" "1024 1024 32 32" "8192 8192 8 8" "65536 65536 4 4"
++ set -- 65536 65536 4 4
++ IL=65536
++ OL=65536
++ N=4
++ C=4
+++ date -u +%H:%M:%S
++ echo '===== thp 65536 c4 02:09:06 ====='
+===== thp 65536 c4 02:09:06 =====
++ timeout 3600 env OPENAI_API_KEY=*** /root/v60762/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data/models/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 65536 --random-output-len 65536 --ignore-eos --num-prompts 4 --request-rate 4
++ grep -aE 'Successful requests|Output token throughput|mean TPOT'
++ head -3
+Successful requests:                     4         
+Output token throughput (tok/s):         360.54    
++ pkill -f 'vllm serve'
+++ date
++ echo 'THP_LEG_DONE Sun Oct 25 02:21:20 AM UTC 2026'
+THP_LEG_DONE Sun Oct 25 02:21:20 AM UTC 2026

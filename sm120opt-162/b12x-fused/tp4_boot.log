@@ -1,0 +1,1263 @@
+W1025 02:21:45.122000 2930172 torch/_opaque_base.py:6] torch._opaque_base is deprecated, use torch._custom_class_base instead
+W1025 02:21:45.122000 2930172 torch/_library/opaque_object.py:288] register_opaque_type is deprecated, use register_custom_class instead
+W1025 02:21:45.123000 2930172 torch/_library/opaque_object.py:211] typ='value' is deprecated, use typ='constant' instead
+(MainProcess pid=2930172) INFO 10-25 02:21:49 [startup.py:38] 
+(MainProcess pid=2930172) INFO 10-25 02:21:49 [startup.py:38]        █     █     █▄   ▄█
+(MainProcess pid=2930172) INFO 10-25 02:21:49 [startup.py:38]  ▄▄ ▄█ █     █     █ ▀▄▀ █  version 0.32.1rc1.dev440+ge9acf4861
+(MainProcess pid=2930172) INFO 10-25 02:21:49 [startup.py:38]   █▄█▀ █     █     █     █  model   /data/models/DeepSeek-V4.1-Flash-1017
+(MainProcess pid=2930172) INFO 10-25 02:21:49 [startup.py:38]    ▀▀  ▀▀▀▀▀ ▀▀▀▀▀ ▀     ▀
+(MainProcess pid=2930172) INFO 10-25 02:21:49 [startup.py:38] 
+(MainProcess pid=2930172) INFO 10-25 02:21:49 [startup.py:96] non-default args: {'model_tag': '/data/models/DeepSeek-V4.1-Flash-1017', 'api_server_count': 1, 'enable_auto_tool_choice': True, 'tool_call_parser': 'deepseek_v41', 'host': '0.0.0.0', 'port': 8123, 'api_key': '***', 'model': '/data/models/DeepSeek-V4.1-Flash-1017', 'tokenizer_mode': 'deepseek_v41', 'trust_remote_code': True, 'max_model_len': 131072, 'served_model_name': ['deepseek-v4.1-flash'], 'reasoning_parser': 'deepseek_v41', 'tensor_parallel_size': 4, 'gpu_memory_utilization': 0.9, 'kv_cache_dtype': 'fp8', 'max_num_seqs': 128, 'max_cudagraph_capture_size': 1024, 'moe_backend': 'b12x', 'speculative_config': {'method': 'dspark', 'num_speculative_tokens': 7, 'draft_sample_method': 'probabilistic', 'rejection_sample_method': 'block', 'enable_adaptive_verification': False}, 'compilation_config': {'mode': None, 'debug_dump_path': None, 'cache_dir': '', 'compile_cache_save_format': 'binary', 'backend': 'inductor', 'custom_ops': [], 'ir_enable_torch_wrap': None, 'splitting_ops': None, 'compile_mm_encoder': False, 'cudagraph_mm_encoder': False, 'encoder_cudagraph_token_budgets': [], 'encoder_cudagraph_max_vision_items_per_batch': 0, 'encoder_cudagraph_max_frames_per_batch': None, 'cudagraph_decoder_replay': True, 'decoder_replay_cudagraph_capture_sizes': [], 'decoder_replay_trim_threshold': 768, 'compile_sizes': None, 'compile_ranges_endpoints': None, 'inductor_compile_config': {'enable_auto_functionalized_v2': False, 'combo_kernels': True, 'benchmark_combo_kernel': True}, 'inductor_passes': {}, 'cudagraph_mode': <CUDAGraphMode.PIECEWISE: 1>, 'cudagraph_num_of_warmups': 0, 'cudagraph_capture_sizes': None, 'cudagraph_copy_inputs': False, 'cudagraph_specialize_lora': True, 'use_inductor_graph_partition': None, 'pass_config': {}, 'max_cudagraph_capture_size': None, 'dynamic_shapes_config': {'type': <DynamicShapesType.BACKED: 'backed'>, 'evaluate_guards': False, 'assume_32_bit_indexing': False}, 'local_cache_dir': None, 'fast_moe_cold_start': None, 'static_all_moe_layers': []}, 'engram_config': EngramConfig(cpu_offload=True, embedding_across_dp=False, dp_shared_memory=None, use_thp=False)}
+(MainProcess pid=2930172) WARNING 10-25 02:21:49 [interface.py:1466] Unknown vLLM environment variable detected: VLLM_MOET_B12X_MOE_FUSED_DIR
+(MainProcess pid=2930172) WARNING 10-25 02:21:49 [interface.py:1466] Unknown vLLM environment variable detected: VLLM_MOET_B12X_MOE_FUSED
+(MainProcess pid=2930172) INFO 10-25 02:21:49 [config.py:970] Detected quantization_config.scale_fmt=ue8m0; enabling UE8M0 for DeepGEMM.
+(MainProcess pid=2930172) INFO 10-25 02:21:49 [model.py:744] Resolved architecture: DeepseekV41ForCausalLM
+(MainProcess pid=2930172) INFO 10-25 02:21:49 [model.py:2170] Using max model len 131072
+(MainProcess pid=2930172) INFO 10-25 02:21:50 [cache.py:481] Using fp8 data type to store kv cache. It reduces the GPU memory footprint and boosts the performance. Meanwhile, it may cause accuracy drop without a proper scaling factor
+(MainProcess pid=2930172) INFO 10-25 02:21:50 [model.py:744] Resolved architecture: DeepseekV41ForCausalLM
+(MainProcess pid=2930172) INFO 10-25 02:21:50 [model.py:2170] Using max model len 1048576
+(MainProcess pid=2930172) INFO 10-25 02:21:50 [speculative.py:1755] Overriding draft model max model len from 1048576 to 131072
+(MainProcess pid=2930172) INFO 10-25 02:21:50 [scheduler.py:310] Chunked prefill is enabled with max_num_batched_tokens=8192.
+(MainProcess pid=2930172) INFO 10-25 02:21:50 [vllm.py:1473] Resolved Engram configuration: EngramConfig(cpu_offload=True, embedding_across_dp=False, dp_shared_memory=False, use_thp=False)
+(MainProcess pid=2930172) INFO 10-25 02:21:50 [vllm.py:831] Auto-enabling VLLM_USE_BREAKABLE_CUDAGRAPH=1. Set VLLM_USE_BREAKABLE_CUDAGRAPH=0 to opt out.
+(MainProcess pid=2930172) INFO 10-25 02:21:50 [kernel.py:480] Final IR op priority after setting platform defaults: IrOpPriorityConfig(rms_norm=['vllm_c', 'native'], fused_add_rms_norm=['vllm_c', 'native'], gelu_and_mul_sparse=['triton', 'native'])
+(MainProcess pid=2930172) INFO 10-25 02:21:50 [compilation.py:317] Enabled custom fusions: norm_quant, act_quant
+(MainProcess pid=2930172) INFO 10-25 02:21:50 [utils.py:372] Launching Rust frontend: /root/v60762/lib/python3.12/site-packages/vllm/vllm-rs frontend --listen-fd 36 --input-listener-fd 37 --output-listener-fd 38 --engine-start-index 0 --engine-count 1 --data-parallel-size 1 --args-json {"api_key": "***", "compilation_config": {"backend": "inductor", "cache_dir": "", "compilation_time": 0.0, "compile_cache_save_format": "binary", "compile_mm_encoder": false, "compile_ranges_endpoints": null, "compile_sizes": null, "cudagraph_capture_sizes": null, "cudagraph_copy_inputs": false, "cudagraph_decoder_replay": true, "cudagraph_mm_encoder": false, "cudagraph_mode": "<CUDAGraphMode.PIECEWISE: 1>", "cudagraph_num_of_warmups": 0, "cudagraph_specialize_lora": true, "custom_ops": [], "debug_dump_path": null, "decoder_replay_cudagraph_capture_sizes": [], "decoder_replay_trim_threshold": 768, "disabled_custom_ops": {}, "dynamic_shapes_config": {"assume_32_bit_indexing": false, "evaluate_guards": false, "type": "backed"}, "enabled_custom_ops": {}, "encoder_compilation_time": 0.0, "encoder_cudagraph_max_frames_per_batch": null, "encoder_cudagraph_max_vision_items_per_batch": 0, "encoder_cudagraph_token_budgets": [], "fast_moe_cold_start": null, "inductor_compile_config": {"benchmark_combo_kernel": true, "combo_kernels": true, "enable_auto_functionalized_v2": false}, "inductor_passes": {}, "ir_enable_torch_wrap": null, "local_cache_dir": null, "max_cudagraph_capture_size": null, "mode": null, "pass_config": {"eliminate_noops": true, "enable_qk_norm_rope_fusion": null, "fi_allreduce_fusion_max_size_mb": null, "fuse_act_padding": null, "fuse_act_quant": null, "fuse_allreduce_rms": null, "fuse_attn_quant": null, "fuse_mla_dual_rms_norm": null, "fuse_norm_quant": null, "fuse_qk_norm_rope_kvcache": null, "fuse_rope_kvcache": null, "fuse_rope_kvcache_cat_mla": null, "rope_kvcache_fusion_max_token_num": 256}, "splitting_ops": null, "static_all_moe_layers": [], "static_forward_context": {}, "traced_files": "set()", "use_inductor_graph_partition": null}, "enable_auto_tool_choice": true, "engine_ready_timeout_secs": 7200, "engram_config": {"cpu_offload": true, "dp_shared_memory": false, "embedding_across_dp": false, "use_thp": false}, "gpu_memory_utilization": 0.9, "host": "0.0.0.0", "http_timeout_keep_alive": 5, "kv_cache_dtype": "fp8", "max_cudagraph_capture_size": 1024, "max_model_len": 131072, "max_num_seqs": 128, "model": "/data/models/DeepSeek-V4.1-Flash-1017", "model_tag": "/data/models/DeepSeek-V4.1-Flash-1017", "moe_backend": "b12x", "port": 8123, "reasoning_parser": "deepseek_v41", "served_model_name": ["deepseek-v4.1-flash"], "speculative_config": {"draft_sample_method": "probabilistic", "enable_adaptive_verification": false, "method": "dspark", "num_speculative_tokens": 7, "rejection_sample_method": "block"}, "structured_outputs_config": {"backend": "auto", "disable_additional_properties": false, "disable_any_whitespace": false, "enable_in_reasoning": false, "reasoning_parser": "deepseek_v41", "reasoning_parser_plugin": ""}, "tensor_parallel_size": 4, "tokenizer_mode": "deepseek_v41", "tool_call_parser": "deepseek_v41", "trust_remote_code": true}
+[0;36m(RustFrontend pid=2930837)[0m [33mWARNING[0m [90m10-25 02:21:50[0m [90m[unsupported.rs:67][0m argument 'structured_outputs_config' currently has no effect in Rust frontend, ignoring
+[0;36m(RustFrontend pid=2930837)[0m [33mWARNING[0m [90m10-25 02:21:50[0m [90m[unsupported.rs:67][0m argument 'enable_auto_tool_choice' currently has no effect in Rust frontend, ignoring
+[0;36m(RustFrontend pid=2930837)[0m [32mINFO[0m [90m10-25 02:21:50[0m [90m[cmd/src/main.rs:38][0m capping tokio worker threads, set TOKIO_WORKER_THREADS to override [3mavailable_parallelism[0m[2m=[0m256 [3mcapped_worker_threads[0m[2m=[0m32
+[0;36m(RustFrontend pid=2930837)[0m [32mINFO[0m [90m10-25 02:21:50[0m [90m[hf.rs:233][0m loading tokenizer with fastokens [3mpath[0m[2m=[0m/data/models/DeepSeek-V4.1-Flash-1017/tokenizer.json
+[0;36m(RustFrontend pid=2930837)[0m [32mINFO[0m [90m10-25 02:21:51[0m [90m[hf/mod.rs:72][0m loaded text backend with Hugging Face model files [3mmodel_id[0m[2m=[0m"/data/models/DeepSeek-V4.1-Flash-1017"
+[0;36m(RustFrontend pid=2930837)[0m [33mWARNING[0m [90m10-25 02:21:51[0m [90m[multimodal.rs:517][0m placeholder tokens did not resolve; disabling this modality for this model [3mmodel_id[0m[2m=[0m"/data/models/DeepSeek-V4.1-Flash-1017" [3mmodality[0m[2m=[0mvideo [3merror[0m[2m=[0mmultimodal preprocessing error: modality video is not supported by model spec deepseek_v41
+[0;36m(RustFrontend pid=2930837)[0m [32mINFO[0m [90m10-25 02:21:51[0m [90m[hf.rs:104][0m loaded chat backend with Hugging Face model files [3mmodel_id[0m[2m=[0m"/data/models/DeepSeek-V4.1-Flash-1017" [3mmodel_type[0m[2m=[0m"deepseek_v41" [3mrenderer[0m[2m=[0mdeepseek_v41
+[0;36m(RustFrontend pid=2930837)[0m [32mINFO[0m [90m10-25 02:21:51[0m [90m[server/src/lib.rs:117][0m resolved coordinator mode [3mengine_count[0m[2m=[0m1 [3mmodel_is_moe[0m[2m=[0mtrue [3mcoordinator_mode[0m[2m=[0mNone
+W1025 02:21:51.598000 2930836 torch/_opaque_base.py:6] torch._opaque_base is deprecated, use torch._custom_class_base instead
+W1025 02:21:51.599000 2930836 torch/_library/opaque_object.py:288] register_opaque_type is deprecated, use register_custom_class instead
+W1025 02:21:51.599000 2930836 torch/_library/opaque_object.py:211] typ='value' is deprecated, use typ='constant' instead
+(EngineCore pid=2930836) INFO 10-25 02:21:55 [core.py:136] Initializing a V1 LLM engine (v0.32.1rc1.dev440+ge9acf4861) with config: model='/data/models/DeepSeek-V4.1-Flash-1017', speculative_config=SpeculativeConfig(method='dspark', model='/data/models/DeepSeek-V4.1-Flash-1017', num_spec_tokens=7), tokenizer='/data/models/DeepSeek-V4.1-Flash-1017', skip_tokenizer_init=False, tokenizer_mode=deepseek_v41, revision=None, tokenizer_revision=None, trust_remote_code=True, dtype=torch.bfloat16, max_seq_len=131072, download_dir=None, load_format=auto, tensor_parallel_size=4, pipeline_parallel_size=1, data_parallel_size=1, decode_context_parallel_size=1, dcp_comm_backend=ag_rs, disable_custom_all_reduce=False, quantization=deepseek_v4_fp8, quantization_config=None, enforce_eager=False, aux_output_config=AuxOutputConfig(enable_return_routed_experts=False, max_bytes=None), kv_cache_dtype=fp8, device_config=cuda, structured_outputs_config=StructuredOutputsConfig(backend='auto', disable_any_whitespace=False, disable_additional_properties=False, reasoning_parser='deepseek_v41', reasoning_parser_plugin='', enable_in_reasoning=False), observability_config=ObservabilityConfig(show_hidden_metrics_for_version=None, otlp_traces_endpoint=None, collect_detailed_traces=None, per_request_spec_decode_metrics='none', kv_cache_metrics=False, kv_cache_metrics_sample=0.01, custom_histogram_buckets=None, cudagraph_metrics=False, enable_layerwise_nvtx_tracing=False, enable_mfu_metrics=False, enable_mm_processor_stats=False, enable_logging_iteration_details=False, jit_monitor_mode='warn', jit_monitor_verbose=False), seed=0, served_model_name=deepseek-v4.1-flash, enable_prefix_caching=True, enable_chunked_prefill=True, pooler_config=None, compilation_config={'mode': <CompilationMode.NONE: 0>, 'debug_dump_path': None, 'cache_dir': '', 'compile_cache_save_format': 'binary', 'backend': 'inductor', 'custom_ops': ['+quant_fp8', 'all', '+quant_fp8'], 'ir_enable_torch_wrap': False, 'splitting_ops': [], 'compile_mm_encoder': False, 'cudagraph_mm_encoder': False, 'encoder_cudagraph_token_budgets': [], 'encoder_cudagraph_max_vision_items_per_batch': 0, 'encoder_cudagraph_max_frames_per_batch': None, 'cudagraph_decoder_replay': True, 'decoder_replay_cudagraph_capture_sizes': [], 'decoder_replay_trim_threshold': 768, 'compile_sizes': [], 'compile_ranges_endpoints': [8192], 'inductor_compile_config': {'enable_auto_functionalized_v2': False, 'combo_kernels': True, 'benchmark_combo_kernel': True}, 'inductor_passes': {}, 'cudagraph_mode': <CUDAGraphMode.PIECEWISE: 1>, 'cudagraph_num_of_warmups': 1, 'cudagraph_capture_sizes': [1, 2, 4, 8, 16, 24, 32, 40, 48, 56, 64, 72, 80, 88, 96, 104, 112, 120, 128, 136, 144, 152, 160, 168, 176, 184, 192, 200, 208, 216, 224, 232, 240, 248, 256, 272, 288, 304, 320, 336, 352, 368, 384, 400, 416, 432, 448, 464, 480, 496, 512, 528, 544, 560, 576, 592, 608, 624, 640, 656, 672, 688, 704, 720, 736, 752, 768, 784, 800, 816, 832, 848, 864, 880, 896, 912, 928, 944, 960, 976, 992, 1008, 1024], 'cudagraph_copy_inputs': False, 'cudagraph_specialize_lora': True, 'use_inductor_graph_partition': False, 'pass_config': {'fuse_norm_quant': True, 'fuse_act_quant': True, 'fuse_attn_quant': False, 'fuse_allreduce_rms': False, 'enable_qk_norm_rope_fusion': False, 'fuse_rope_kvcache_cat_mla': False, 'fuse_act_padding': False, 'fuse_qk_norm_rope_kvcache': False}, 'max_cudagraph_capture_size': 1024, 'dynamic_shapes_config': {'type': <DynamicShapesType.BACKED: 'backed'>, 'evaluate_guards': False, 'assume_32_bit_indexing': False}, 'local_cache_dir': None, 'fast_moe_cold_start': False, 'static_all_moe_layers': []}, kernel_config=KernelConfig(ir_op_priority=IrOpPriorityConfig(rms_norm=['vllm_c', 'native'], fused_add_rms_norm=['vllm_c', 'native'], gelu_and_mul_sparse=['triton', 'native']), enable_flashinfer_autotune=True, enable_rocm_segmented_attn_autotune=False, enable_cutedsl_warmup=True, enable_jit_warmup=True, monokernel=False, moe_backend='b12x', sparse_indexer_topk_backend='auto', linear_backend='auto', linear_backend_per_quant=None)
+(EngineCore pid=2930836) INFO 10-25 02:21:55 [multiproc_executor.py:167] DP group leader: node_rank=0, node_rank_within_dp=0, master_addr=127.0.0.1, mq_connect_ip=10.10.3.158 (local), world_size=4, local_world_size=4
+W1025 02:21:56.640000 2931198 torch/_opaque_base.py:6] torch._opaque_base is deprecated, use torch._custom_class_base instead
+W1025 02:21:56.640000 2931198 torch/_library/opaque_object.py:288] register_opaque_type is deprecated, use register_custom_class instead
+W1025 02:21:56.640000 2931198 torch/_library/opaque_object.py:211] typ='value' is deprecated, use typ='constant' instead
+W1025 02:21:56.646000 2931201 torch/_opaque_base.py:6] torch._opaque_base is deprecated, use torch._custom_class_base instead
+W1025 02:21:56.646000 2931201 torch/_library/opaque_object.py:288] register_opaque_type is deprecated, use register_custom_class instead
+W1025 02:21:56.647000 2931201 torch/_library/opaque_object.py:211] typ='value' is deprecated, use typ='constant' instead
+W1025 02:21:56.657000 2931199 torch/_opaque_base.py:6] torch._opaque_base is deprecated, use torch._custom_class_base instead
+W1025 02:21:56.658000 2931199 torch/_library/opaque_object.py:288] register_opaque_type is deprecated, use register_custom_class instead
+W1025 02:21:56.658000 2931199 torch/_library/opaque_object.py:211] typ='value' is deprecated, use typ='constant' instead
+W1025 02:21:56.674000 2931200 torch/_opaque_base.py:6] torch._opaque_base is deprecated, use torch._custom_class_base instead
+W1025 02:21:56.674000 2931200 torch/_library/opaque_object.py:288] register_opaque_type is deprecated, use register_custom_class instead
+W1025 02:21:56.674000 2931200 torch/_library/opaque_object.py:211] typ='value' is deprecated, use typ='constant' instead
+(Worker pid=2931198) INFO 10-25 02:22:03 [parallel_state.py:1929] world_size=4 rank=0 local_rank=0 distributed_init_method=file:///tmp/vllm_dist_ce0b449bff6b4e428811a165f9c1bd4e backend=nccl
+(Worker pid=2931201) INFO 10-25 02:22:03 [parallel_state.py:1929] world_size=4 rank=3 local_rank=3 distributed_init_method=file:///tmp/vllm_dist_ce0b449bff6b4e428811a165f9c1bd4e backend=nccl
+(Worker pid=2931199) INFO 10-25 02:22:03 [parallel_state.py:1929] world_size=4 rank=2 local_rank=2 distributed_init_method=file:///tmp/vllm_dist_ce0b449bff6b4e428811a165f9c1bd4e backend=nccl
+(Worker pid=2931200) INFO 10-25 02:22:03 [parallel_state.py:1929] world_size=4 rank=1 local_rank=1 distributed_init_method=file:///tmp/vllm_dist_ce0b449bff6b4e428811a165f9c1bd4e backend=nccl
+(Worker pid=2931198) INFO 10-25 02:22:03 [pynccl.py:148] vLLM is using nccl==2.30.7
+(Worker pid=2931198) WARNING 10-25 02:22:04 [symm_mem.py:67] SymmMemCommunicator: Device capability 12.0 not supported, communicator is not available.
+(Worker pid=2931201) WARNING 10-25 02:22:04 [symm_mem.py:67] SymmMemCommunicator: Device capability 12.0 not supported, communicator is not available.
+(Worker pid=2931199) WARNING 10-25 02:22:04 [symm_mem.py:67] SymmMemCommunicator: Device capability 12.0 not supported, communicator is not available.
+(Worker pid=2931200) WARNING 10-25 02:22:04 [symm_mem.py:67] SymmMemCommunicator: Device capability 12.0 not supported, communicator is not available.
+(Worker pid=2931201) WARNING 10-25 02:22:04 [flashinfer_all_reduce.py:425] FlashInfer All Reduce is disabled because it is not supported for world_size=4.
+(Worker pid=2931198) WARNING 10-25 02:22:04 [flashinfer_all_reduce.py:425] FlashInfer All Reduce is disabled because it is not supported for world_size=4.
+(Worker pid=2931200) WARNING 10-25 02:22:04 [flashinfer_all_reduce.py:425] FlashInfer All Reduce is disabled because it is not supported for world_size=4.
+(Worker pid=2931199) WARNING 10-25 02:22:04 [flashinfer_all_reduce.py:425] FlashInfer All Reduce is disabled because it is not supported for world_size=4.
+(Worker pid=2931201) WARNING 10-25 02:22:04 [custom_all_reduce.py:268] Custom allreduce is disabled because it's not supported on more than two PCIe-only GPUs. To silence this warning, specify disable_custom_all_reduce=True explicitly.
+(Worker pid=2931200) WARNING 10-25 02:22:04 [custom_all_reduce.py:268] Custom allreduce is disabled because it's not supported on more than two PCIe-only GPUs. To silence this warning, specify disable_custom_all_reduce=True explicitly.
+(Worker pid=2931199) WARNING 10-25 02:22:04 [custom_all_reduce.py:268] Custom allreduce is disabled because it's not supported on more than two PCIe-only GPUs. To silence this warning, specify disable_custom_all_reduce=True explicitly.
+(Worker pid=2931198) WARNING 10-25 02:22:04 [custom_all_reduce.py:268] Custom allreduce is disabled because it's not supported on more than two PCIe-only GPUs. To silence this warning, specify disable_custom_all_reduce=True explicitly.
+(Worker pid=2931198) INFO 10-25 02:22:04 [cuda_communicator.py:353] Using ['PYNCCL'] all-reduce backends (in dispatch order) for group 'tp:0' out of potential backends: ['FLASHINFER_PCIE_IPC', 'FLASHINFER', 'NCCL_SYMM_MEM', 'QUICK_REDUCE', 'AITER_CUSTOM', 'CUSTOM', 'SYMM_MEM', 'PYNCCL'].
+(Worker pid=2931198) INFO 10-25 02:22:04 [cuda_communicator.py:353] Using ['PYNCCL'] all-reduce backends (in dispatch order) for group 'ep:0' out of potential backends: ['FLASHINFER_PCIE_IPC', 'FLASHINFER', 'NCCL_SYMM_MEM', 'QUICK_REDUCE', 'AITER_CUSTOM', 'CUSTOM', 'SYMM_MEM', 'PYNCCL'].
+(Worker pid=2931198) INFO 10-25 02:22:04 [parallel_state.py:2373] rank 0 in world size 4 is assigned as DP rank 0, PP rank 0, PCP rank 0, TP rank 0, ETP rank 0, EP rank 0, EPLB rank N/A
+(Worker pid=2931198) INFO 10-25 02:22:04 [gpu_worker.py:513] Using V2 Model Runner
+(Worker pid=2931198) WARNING 10-25 02:22:04 [flashinfer.py:143] FlashInfer's precompiled kernels are missing or do not match flashinfer-python 0.7.2 (flashinfer-cubin not installed, flashinfer-jit-cache not installed). FlashInfer then downloads and compiles kernels at startup, which can take several minutes, or fails to import mismatched ones. Run `vllm download-kernels` in this Python environment to install them.
+(Worker_TP0 pid=2931198) INFO 10-25 02:22:05 [model_runner.py:399] Loading model from scratch...
+(Worker_TP0 pid=2931198) INFO 10-25 02:22:05 [cuda.py:567] Using backend AttentionBackendEnum.FLASH_ATTN for vit attention
+(Worker_TP0 pid=2931198) INFO 10-25 02:22:05 [mm_encoder_attention.py:372] Using AttentionBackendEnum.FLASH_ATTN for MMEncoderAttention.
+(Worker_TP0 pid=2931198) INFO 10-25 02:22:05 [quant_config.py:84] DeepSeek V4 expert_dtype resolved to 'fp4'
+(Worker_TP0 pid=2931198) INFO 10-25 02:22:05 [__init__.py:997] Using FlashInferCutlassMxfp8LinearKernel for MXFP8 GEMM
+(Worker_TP0 pid=2931198) INFO 10-25 02:22:06 [attention.py:170] Using DeepSeek's fp8_ds_mla KV cache format.
+(Worker_TP0 pid=2931198) INFO 10-25 02:22:06 [mxfp4.py:597] Using 'B12X_MXFP4_MXFP8' Mxfp4 MoE backend.
+(Worker_TP3 pid=2931201) INFO 10-25 02:22:11 [engram.py:1024] Engram table offloaded to pinned host memory: 96002514 rows x 256, 23.60 GiB per rank
+(Worker_TP0 pid=2931198) INFO 10-25 02:22:11 [engram.py:1024] Engram table offloaded to pinned host memory: 96000564 rows x 256, 23.60 GiB per rank
+(Worker_TP0 pid=2931198) INFO 10-25 02:22:11 [attention.py:1379] Using FP8 indexer cache for Lightning Indexer.
+(Worker_TP1 pid=2931200) INFO 10-25 02:22:11 [engram.py:1024] Engram table offloaded to pinned host memory: 96001176 rows x 256, 23.60 GiB per rank
+(Worker_TP2 pid=2931199) INFO 10-25 02:22:11 [engram.py:1024] Engram table offloaded to pinned host memory: 96001914 rows x 256, 23.60 GiB per rank
+(Worker_TP1 pid=2931200) INFO 10-25 02:22:17 [engram.py:1024] Engram table offloaded to pinned host memory: 96003962 rows x 256, 23.60 GiB per rank
+(Worker_TP0 pid=2931198) INFO 10-25 02:22:17 [engram.py:1024] Engram table offloaded to pinned host memory: 96003054 rows x 256, 23.60 GiB per rank
+(Worker_TP2 pid=2931199) INFO 10-25 02:22:17 [engram.py:1024] Engram table offloaded to pinned host memory: 96004548 rows x 256, 23.60 GiB per rank
+(Worker_TP3 pid=2931201) INFO 10-25 02:22:17 [engram.py:1024] Engram table offloaded to pinned host memory: 96005118 rows x 256, 23.60 GiB per rank
+[transformers] You are using a model of type `deepseek_v41` to instantiate a model of type ``. This may be expected if you are loading a checkpoint that shares a subset of the architecture (e.g., loading a `sam2_video` checkpoint into `Sam2Model`), but is otherwise not supported and can yield errors. Please verify that the checkpoint is compatible with the model you are instantiating.
+(Worker_TP0 pid=2931198) INFO 10-25 02:22:17 [model.py:885] Decoder SWA bounded replay: in eager prefill steps, layer 20 writes its KV for every token, and the rest of it and layers 21-39 run on each request's last 128 tokens only.
+[transformers] You are using a model of type `deepseek_v41` to instantiate a model of type ``. This may be expected if you are loading a checkpoint that shares a subset of the architecture (e.g., loading a `sam2_video` checkpoint into `Sam2Model`), but is otherwise not supported and can yield errors. Please verify that the checkpoint is compatible with the model you are instantiating.
+[transformers] You are using a model of type `deepseek_v41` to instantiate a model of type ``. This may be expected if you are loading a checkpoint that shares a subset of the architecture (e.g., loading a `sam2_video` checkpoint into `Sam2Model`), but is otherwise not supported and can yield errors. Please verify that the checkpoint is compatible with the model you are instantiating.
+[transformers] You are using a model of type `deepseek_v41` to instantiate a model of type ``. This may be expected if you are loading a checkpoint that shares a subset of the architecture (e.g., loading a `sam2_video` checkpoint into `Sam2Model`), but is otherwise not supported and can yield errors. Please verify that the checkpoint is compatible with the model you are instantiating.
+(Worker_TP0 pid=2931198) INFO 10-25 02:22:18 [engram.py:473] Built engram token map (129280 -> 99092 ids) for layers (1, 14)
+(Worker_TP2 pid=2931199) INFO 10-25 02:22:18 [engram.py:473] Built engram token map (129280 -> 99092 ids) for layers (1, 14)
+(Worker_TP0 pid=2931198) WARNING 10-25 02:22:18 [compilation.py:1355] Op 'quant_fp8' not present in model, enabling with '+quant_fp8' has no effect
+(Worker_TP3 pid=2931201) INFO 10-25 02:22:18 [engram.py:473] Built engram token map (129280 -> 99092 ids) for layers (1, 14)
+(Worker_TP1 pid=2931200) INFO 10-25 02:22:18 [engram.py:473] Built engram token map (129280 -> 99092 ids) for layers (1, 14)
+(Worker_TP0 pid=2931198) INFO 10-25 02:22:18 [base_loader.py:82] Initializing model took 12.776374 seconds
+(Worker_TP0 pid=2931198) INFO 10-25 02:22:18 [weight_utils.py:1144] Filesystem type for checkpoints: EXT4. Checkpoint size: 475.25 GiB. Available RAM: 804.98 GiB.
+(Worker_TP0 pid=2931198) INFO 10-25 02:22:18 [weight_utils.py:1167] Auto-prefetch is disabled because the filesystem (EXT4) is not a recognized network FS (NFS/Lustre). If you want to force prefetching, start vLLM with --safetensors-load-strategy=prefetch.
+
+Loading safetensors checkpoint shards:   0% Completed | 0/48 [00:00<?, ?it/s]
+
+Loading safetensors checkpoint shards:   2% Completed | 1/48 [00:01<00:54,  1.17s/it]
+
+Loading safetensors checkpoint shards:   4% Completed | 2/48 [00:01<00:28,  1.59it/s]
+
+Loading safetensors checkpoint shards:   6% Completed | 3/48 [00:05<01:43,  2.30s/it]
+
+Loading safetensors checkpoint shards:   8% Completed | 4/48 [00:09<02:12,  3.01s/it]
+
+Loading safetensors checkpoint shards:  10% Completed | 5/48 [00:13<02:25,  3.38s/it]
+
+Loading safetensors checkpoint shards:  12% Completed | 6/48 [00:17<02:29,  3.57s/it]
+
+Loading safetensors checkpoint shards:  15% Completed | 7/48 [00:21<02:31,  3.69s/it]
+
+Loading safetensors checkpoint shards:  17% Completed | 8/48 [00:25<02:30,  3.76s/it]
+
+Loading safetensors checkpoint shards:  19% Completed | 9/48 [00:29<02:27,  3.77s/it]
+
+Loading safetensors checkpoint shards:  21% Completed | 10/48 [00:33<02:24,  3.81s/it]
+
+Loading safetensors checkpoint shards:  23% Completed | 11/48 [00:37<02:23,  3.87s/it]
+
+Loading safetensors checkpoint shards:  25% Completed | 12/48 [00:41<02:19,  3.86s/it]
+
+Loading safetensors checkpoint shards:  27% Completed | 13/48 [00:45<02:16,  3.89s/it]
+
+Loading safetensors checkpoint shards:  29% Completed | 14/48 [00:49<02:13,  3.91s/it]
+
+Loading safetensors checkpoint shards:  31% Completed | 15/48 [00:53<02:09,  3.92s/it]
+
+Loading safetensors checkpoint shards:  33% Completed | 16/48 [00:57<02:06,  3.95s/it]
+
+Loading safetensors checkpoint shards:  35% Completed | 17/48 [01:00<02:01,  3.93s/it]
+
+Loading safetensors checkpoint shards:  38% Completed | 18/48 [01:04<01:57,  3.91s/it]
+
+Loading safetensors checkpoint shards:  40% Completed | 19/48 [01:08<01:53,  3.93s/it]
+
+Loading safetensors checkpoint shards:  42% Completed | 20/48 [01:12<01:50,  3.95s/it]
+
+Loading safetensors checkpoint shards:  44% Completed | 21/48 [01:16<01:45,  3.92s/it]
+
+Loading safetensors checkpoint shards:  46% Completed | 22/48 [01:20<01:41,  3.89s/it]
+
+Loading safetensors checkpoint shards:  48% Completed | 23/48 [01:24<01:36,  3.87s/it]
+
+Loading safetensors checkpoint shards:  50% Completed | 24/48 [01:28<01:33,  3.88s/it]
+
+Loading safetensors checkpoint shards:  52% Completed | 25/48 [01:32<01:29,  3.88s/it]
+
+Loading safetensors checkpoint shards:  54% Completed | 26/48 [01:35<01:25,  3.90s/it]
+
+Loading safetensors checkpoint shards:  56% Completed | 27/48 [01:39<01:22,  3.91s/it]
+
+Loading safetensors checkpoint shards:  58% Completed | 28/48 [01:43<01:18,  3.90s/it]
+
+Loading safetensors checkpoint shards:  60% Completed | 29/48 [01:47<01:14,  3.94s/it]
+
+Loading safetensors checkpoint shards:  62% Completed | 30/48 [01:51<01:11,  3.96s/it]
+
+Loading safetensors checkpoint shards:  65% Completed | 31/48 [01:55<01:06,  3.94s/it]
+
+Loading safetensors checkpoint shards:  67% Completed | 32/48 [01:59<01:03,  3.94s/it]
+
+Loading safetensors checkpoint shards:  69% Completed | 33/48 [02:03<00:58,  3.92s/it]
+
+Loading safetensors checkpoint shards:  71% Completed | 34/48 [02:07<00:55,  3.93s/it]
+
+Loading safetensors checkpoint shards:  73% Completed | 35/48 [02:11<00:50,  3.91s/it]
+
+Loading safetensors checkpoint shards:  75% Completed | 36/48 [02:15<00:46,  3.90s/it]
+
+Loading safetensors checkpoint shards:  77% Completed | 37/48 [02:19<00:43,  3.92s/it]
+
+Loading safetensors checkpoint shards:  79% Completed | 38/48 [02:23<00:39,  3.91s/it]
+
+Loading safetensors checkpoint shards:  81% Completed | 39/48 [02:26<00:34,  3.88s/it]
+
+Loading safetensors checkpoint shards:  83% Completed | 40/48 [02:30<00:31,  3.91s/it]
+
+Loading safetensors checkpoint shards:  85% Completed | 41/48 [02:34<00:27,  3.89s/it]
+
+Loading safetensors checkpoint shards:  88% Completed | 42/48 [02:38<00:23,  3.92s/it]
+
+Loading safetensors checkpoint shards:  90% Completed | 43/48 [02:39<00:14,  2.83s/it]
+
+Loading safetensors checkpoint shards:  98% Completed | 47/48 [03:02<00:04,  4.82s/it]
+
+Loading safetensors checkpoint shards: 100% Completed | 48/48 [03:03<00:00,  4.12s/it]
+
+Loading safetensors checkpoint shards: 100% Completed | 48/48 [03:03<00:00,  3.83s/it]
+
+(Worker_TP0 pid=2931198) INFO 10-25 02:25:23 [default_loader.py:506] Loading weights took 184.43 seconds
+(Worker_TP0 pid=2931198) INFO 10-25 02:25:23 [__init__.py:997] Using EmulationMxfp8LinearKernel for MXFP8 GEMM
+(Worker_TP0 pid=2931198) INFO 10-25 02:25:23 [mxfp4.py:2291] Using MoEPrepareAndFinalizeNoDPEPModular
+(Worker_TP0 pid=2931198) INFO 10-25 02:25:23 [mxfp4.py:2292] Using B12xExperts
+(Worker_TP2 pid=2931199) INFO 10-25 02:25:26 [eagle3_utils.py:37] Using Eagle3 auxiliary layers from config: (37, 38, 39)
+(Worker_TP2 pid=2931199) INFO 10-25 02:25:26 [kernel.py:480] Final IR op priority after setting platform defaults: IrOpPriorityConfig(rms_norm=['vllm_c', 'native'], fused_add_rms_norm=['vllm_c', 'native'], gelu_and_mul_sparse=['triton', 'native'])
+(Worker_TP3 pid=2931201) INFO 10-25 02:25:26 [eagle3_utils.py:37] Using Eagle3 auxiliary layers from config: (37, 38, 39)
+(Worker_TP3 pid=2931201) INFO 10-25 02:25:26 [kernel.py:480] Final IR op priority after setting platform defaults: IrOpPriorityConfig(rms_norm=['vllm_c', 'native'], fused_add_rms_norm=['vllm_c', 'native'], gelu_and_mul_sparse=['triton', 'native'])
+(Worker_TP0 pid=2931198) INFO 10-25 02:25:26 [eagle3_utils.py:37] Using Eagle3 auxiliary layers from config: (37, 38, 39)
+(Worker_TP0 pid=2931198) INFO 10-25 02:25:26 [vllm.py:1473] Resolved Engram configuration: EngramConfig(cpu_offload=True, embedding_across_dp=False, dp_shared_memory=False, use_thp=False)
+(Worker_TP0 pid=2931198) INFO 10-25 02:25:26 [kernel.py:480] Final IR op priority after setting platform defaults: IrOpPriorityConfig(rms_norm=['vllm_c', 'native'], fused_add_rms_norm=['vllm_c', 'native'], gelu_and_mul_sparse=['triton', 'native'])
+(Worker_TP0 pid=2931198) INFO 10-25 02:25:26 [compilation.py:317] Enabled custom fusions: norm_quant, act_quant
+(Worker_TP0 pid=2931198) INFO 10-25 02:25:26 [base_loader.py:82] Initializing model took 0.015009 seconds
+(Worker_TP1 pid=2931200) INFO 10-25 02:25:26 [eagle3_utils.py:37] Using Eagle3 auxiliary layers from config: (37, 38, 39)
+(Worker_TP1 pid=2931200) INFO 10-25 02:25:26 [kernel.py:480] Final IR op priority after setting platform defaults: IrOpPriorityConfig(rms_norm=['vllm_c', 'native'], fused_add_rms_norm=['vllm_c', 'native'], gelu_and_mul_sparse=['triton', 'native'])
+(Worker_TP0 pid=2931198) INFO 10-25 02:25:26 [weight_utils.py:1144] Filesystem type for checkpoints: EXT4. Checkpoint size: 475.25 GiB. Available RAM: 798.74 GiB.
+
+Loading safetensors checkpoint shards:   0% Completed | 0/48 [00:00<?, ?it/s]
+
+Loading safetensors checkpoint shards:  12% Completed | 6/48 [00:00<00:00, 49.85it/s]
+
+Loading safetensors checkpoint shards:  23% Completed | 11/48 [00:00<00:00, 39.83it/s]
+
+Loading safetensors checkpoint shards:  33% Completed | 16/48 [00:00<00:00, 35.27it/s]
+
+Loading safetensors checkpoint shards:  42% Completed | 20/48 [00:00<00:00, 33.96it/s]
+
+Loading safetensors checkpoint shards:  50% Completed | 24/48 [00:00<00:00, 33.26it/s]
+
+Loading safetensors checkpoint shards:  58% Completed | 28/48 [00:00<00:00, 33.03it/s]
+
+Loading safetensors checkpoint shards:  67% Completed | 32/48 [00:00<00:00, 32.99it/s]
+
+Loading safetensors checkpoint shards:  75% Completed | 36/48 [00:01<00:00, 33.25it/s]
+
+Loading safetensors checkpoint shards:  83% Completed | 40/48 [00:01<00:00, 33.29it/s]
+
+Loading safetensors checkpoint shards:  92% Completed | 44/48 [00:01<00:00, 27.34it/s]
+
+Loading safetensors checkpoint shards:  98% Completed | 47/48 [00:01<00:00, 15.66it/s]
+
+Loading safetensors checkpoint shards: 100% Completed | 48/48 [00:01<00:00, 26.46it/s]
+
+(Worker_TP0 pid=2931198) INFO 10-25 02:25:28 [dspark.py:487] DSpark draft model loaded: 97 params
+(Worker_TP0 pid=2931198) INFO 10-25 02:25:28 [default_loader.py:506] Loading weights took 1.82 seconds
+(Worker_TP0 pid=2931198) WARNING 10-25 02:25:29 [speculator.py:244] Draft model DSparkDeepseekV4ForCausalLM does not support external multimodal embeddings. Embeddings from the target model will not be passed to the drafter; using text-only draft inputs instead.
+(Worker_TP1 pid=2931200) INFO 10-25 02:25:29 [model_runner.py:431] Model loading took 73.73 GiB memory and 204.853438 seconds
+(Worker_TP1 pid=2931200) INFO 10-25 02:25:29 [interface.py:776] Setting kv cache block size to 64 for FLASHINFER_MLA_SPARSE_DSV41/DEEPSEEK_SPARSE_SWA/DEEPSEEK_V41_INDEXER/CompressorBackend backend(s).
+(Worker_TP2 pid=2931199) INFO 10-25 02:25:29 [model_runner.py:431] Model loading took 73.73 GiB memory and 204.904169 seconds
+(Worker_TP2 pid=2931199) INFO 10-25 02:25:30 [interface.py:776] Setting kv cache block size to 64 for FLASHINFER_MLA_SPARSE_DSV41/DEEPSEEK_SPARSE_SWA/DEEPSEEK_V41_INDEXER/CompressorBackend backend(s).
+(Worker_TP0 pid=2931198) INFO 10-25 02:25:30 [model_runner.py:431] Model loading took 73.73 GiB memory and 204.801729 seconds
+(Worker_TP0 pid=2931198) INFO 10-25 02:25:30 [breakable_cudagraph.py:294] Breakable CUDA graph enabled
+(Worker_TP0 pid=2931198) INFO 10-25 02:25:30 [topk_topp_sampler.py:149] Using FlashInfer for top-p & top-k sampling.
+(Worker_TP3 pid=2931201) INFO 10-25 02:25:30 [model_runner.py:431] Model loading took 73.73 GiB memory and 205.054379 seconds
+(Worker_TP0 pid=2931198) INFO 10-25 02:25:30 [torch_utils.py:286] Reducing Torch threads from 64 to 1 for serving. Set OMP_NUM_THREADS in the external environment to override.
+(Worker_TP0 pid=2931198) INFO 10-25 02:25:30 [interface.py:776] Setting kv cache block size to 64 for FLASHINFER_MLA_SPARSE_DSV41/DEEPSEEK_SPARSE_SWA/DEEPSEEK_V41_INDEXER/CompressorBackend backend(s).
+(Worker_TP3 pid=2931201) INFO 10-25 02:25:30 [interface.py:776] Setting kv cache block size to 64 for FLASHINFER_MLA_SPARSE_DSV41/DEEPSEEK_SPARSE_SWA/DEEPSEEK_V41_INDEXER/CompressorBackend backend(s).
+(EngineCore pid=2930836) INFO 10-25 02:25:30 [torch_utils.py:286] Reducing Torch threads from 64 to 1 for serving. Set OMP_NUM_THREADS in the external environment to override.
+(EngineCore pid=2930836) INFO 10-25 02:25:30 [utils.py:380] Using BLHNC KV cache layout.
+(Worker_TP0 pid=2931198) INFO 10-25 02:25:31 [encoder_runner.py:131] Encoder cache will be initialized with a budget of 8192 tokens, and profiled with 8 image items of the maximum feature size.
+(Worker_TP0 pid=2931198) INFO 10-25 02:25:31 [deep_gemm.py:200] deep_gemm not found in site-packages, trying vendored vllm.third_party.deep_gemm
+(Worker_TP0 pid=2931198) INFO 10-25 02:25:31 [deep_gemm.py:227] DeepGEMM PDL enabled on vllm.third_party.deep_gemm.
+(Worker_TP0 pid=2931198) INFO 10-25 02:25:38 [indexer.py:1037] DSA indexer decode path: use_flattening=True supports_varlen=False (next_n=8, use_fp4_cache=False)
+
+Capturing CUDA graphs (PIECEWISE):   0%|          | 0/83 [00:00<?, ?it/s]/root/v60762/lib/python3.12/site-packages/torch/cuda/graphs.py:630: UserWarning: The CUDA Graph is empty. This usually means that the graph was attempted to be captured on wrong device or stream. (Triggered internally at /__w/pytorch/pytorch/aten/src/ATen/cuda/CUDAGraph.cpp:249.)
+  super().capture_end_pre()
+/root/v60762/lib/python3.12/site-packages/torch/cuda/graphs.py:630: UserWarning: The CUDA Graph is empty. This usually means that the graph was attempted to be captured on wrong device or stream. (Triggered internally at /__w/pytorch/pytorch/aten/src/ATen/cuda/CUDAGraph.cpp:249.)
+  super().capture_end_pre()
+/root/v60762/lib/python3.12/site-packages/torch/cuda/graphs.py:630: UserWarning: The CUDA Graph is empty. This usually means that the graph was attempted to be captured on wrong device or stream. (Triggered internally at /__w/pytorch/pytorch/aten/src/ATen/cuda/CUDAGraph.cpp:249.)
+  super().capture_end_pre()
+/root/v60762/lib/python3.12/site-packages/torch/cuda/graphs.py:630: UserWarning: The CUDA Graph is empty. This usually means that the graph was attempted to be captured on wrong device or stream. (Triggered internally at /__w/pytorch/pytorch/aten/src/ATen/cuda/CUDAGraph.cpp:249.)
+  super().capture_end_pre()
+
+Capturing CUDA graphs (PIECEWISE):   1%|          | 1/83 [00:01<01:45,  1.29s/it]
+Capturing CUDA graphs (PIECEWISE):   2%|▏         | 2/83 [00:01<00:54,  1.50it/s]
+Capturing CUDA graphs (PIECEWISE):   4%|▎         | 3/83 [00:01<00:37,  2.13it/s]
+Capturing CUDA graphs (PIECEWISE):   5%|▍         | 4/83 [00:01<00:29,  2.65it/s]
+Capturing CUDA graphs (PIECEWISE):   6%|▌         | 5/83 [00:02<00:25,  3.09it/s]
+Capturing CUDA graphs (PIECEWISE):   7%|▋         | 6/83 [00:02<00:22,  3.43it/s]
+Capturing CUDA graphs (PIECEWISE):   8%|▊         | 7/83 [00:02<00:20,  3.69it/s]
+Capturing CUDA graphs (PIECEWISE):  10%|▉         | 8/83 [00:02<00:19,  3.90it/s]
+Capturing CUDA graphs (PIECEWISE):  11%|█         | 9/83 [00:03<00:18,  4.03it/s]
+Capturing CUDA graphs (PIECEWISE):  12%|█▏        | 10/83 [00:03<00:17,  4.13it/s]
+Capturing CUDA graphs (PIECEWISE):  13%|█▎        | 11/83 [00:03<00:17,  4.20it/s]
+Capturing CUDA graphs (PIECEWISE):  14%|█▍        | 12/83 [00:03<00:16,  4.26it/s]
+Capturing CUDA graphs (PIECEWISE):  16%|█▌        | 13/83 [00:04<00:16,  4.28it/s]
+Capturing CUDA graphs (PIECEWISE):  17%|█▋        | 14/83 [00:04<00:15,  4.33it/s]
+Capturing CUDA graphs (PIECEWISE):  18%|█▊        | 15/83 [00:04<00:15,  4.32it/s]
+Capturing CUDA graphs (PIECEWISE):  19%|█▉        | 16/83 [00:04<00:15,  4.35it/s]
+Capturing CUDA graphs (PIECEWISE):  20%|██        | 17/83 [00:04<00:15,  4.33it/s]
+Capturing CUDA graphs (PIECEWISE):  22%|██▏       | 18/83 [00:05<00:16,  4.05it/s]
+Capturing CUDA graphs (PIECEWISE):  23%|██▎       | 19/83 [00:05<00:15,  4.11it/s]
+Capturing CUDA graphs (PIECEWISE):  24%|██▍       | 20/83 [00:05<00:15,  4.10it/s]
+Capturing CUDA graphs (PIECEWISE):  25%|██▌       | 21/83 [00:05<00:14,  4.16it/s]
+Capturing CUDA graphs (PIECEWISE):  27%|██▋       | 22/83 [00:06<00:14,  4.20it/s]
+Capturing CUDA graphs (PIECEWISE):  28%|██▊       | 23/83 [00:06<00:14,  4.16it/s]
+Capturing CUDA graphs (PIECEWISE):  29%|██▉       | 24/83 [00:06<00:14,  4.20it/s]
+Capturing CUDA graphs (PIECEWISE):  30%|███       | 25/83 [00:06<00:13,  4.22it/s]
+Capturing CUDA graphs (PIECEWISE):  31%|███▏      | 26/83 [00:07<00:13,  4.24it/s]
+Capturing CUDA graphs (PIECEWISE):  33%|███▎      | 27/83 [00:07<00:13,  4.25it/s]
+Capturing CUDA graphs (PIECEWISE):  34%|███▎      | 28/83 [00:07<00:13,  4.22it/s]
+Capturing CUDA graphs (PIECEWISE):  35%|███▍      | 29/83 [00:07<00:12,  4.22it/s]
+Capturing CUDA graphs (PIECEWISE):  36%|███▌      | 30/83 [00:08<00:12,  4.23it/s]
+Capturing CUDA graphs (PIECEWISE):  37%|███▋      | 31/83 [00:08<00:12,  4.25it/s]
+Capturing CUDA graphs (PIECEWISE):  39%|███▊      | 32/83 [00:08<00:11,  4.28it/s]
+Capturing CUDA graphs (PIECEWISE):  40%|███▉      | 33/83 [00:08<00:11,  4.27it/s]
+Capturing CUDA graphs (PIECEWISE):  41%|████      | 34/83 [00:09<00:13,  3.53it/s]
+Capturing CUDA graphs (PIECEWISE):  42%|████▏     | 35/83 [00:09<00:13,  3.68it/s]
+Capturing CUDA graphs (PIECEWISE):  43%|████▎     | 36/83 [00:09<00:12,  3.84it/s]
+Capturing CUDA graphs (PIECEWISE):  45%|████▍     | 37/83 [00:09<00:11,  3.95it/s]
+Capturing CUDA graphs (PIECEWISE):  46%|████▌     | 38/83 [00:10<00:11,  4.04it/s]
+Capturing CUDA graphs (PIECEWISE):  47%|████▋     | 39/83 [00:10<00:10,  4.10it/s]
+Capturing CUDA graphs (PIECEWISE):  48%|████▊     | 40/83 [00:10<00:11,  3.61it/s]
+Capturing CUDA graphs (PIECEWISE):  49%|████▉     | 41/83 [00:10<00:11,  3.78it/s]
+Capturing CUDA graphs (PIECEWISE):  51%|█████     | 42/83 [00:11<00:10,  3.91it/s]
+Capturing CUDA graphs (PIECEWISE):  52%|█████▏    | 43/83 [00:11<00:09,  4.01it/s]
+Capturing CUDA graphs (PIECEWISE):  53%|█████▎    | 44/83 [00:11<00:11,  3.54it/s]
+Capturing CUDA graphs (PIECEWISE):  54%|█████▍    | 45/83 [00:12<00:10,  3.71it/s]
+Capturing CUDA graphs (PIECEWISE):  55%|█████▌    | 46/83 [00:12<00:09,  3.85it/s]
+Capturing CUDA graphs (PIECEWISE):  57%|█████▋    | 47/83 [00:12<00:09,  3.95it/s]
+Capturing CUDA graphs (PIECEWISE):  58%|█████▊    | 48/83 [00:12<00:08,  4.05it/s]
+Capturing CUDA graphs (PIECEWISE):  59%|█████▉    | 49/83 [00:12<00:08,  4.09it/s]
+Capturing CUDA graphs (PIECEWISE):  60%|██████    | 50/83 [00:13<00:07,  4.13it/s]
+Capturing CUDA graphs (PIECEWISE):  61%|██████▏   | 51/83 [00:13<00:07,  4.14it/s]
+Capturing CUDA graphs (PIECEWISE):  63%|██████▎   | 52/83 [00:13<00:07,  4.16it/s]
+Capturing CUDA graphs (PIECEWISE):  64%|██████▍   | 53/83 [00:13<00:07,  4.17it/s]
+Capturing CUDA graphs (PIECEWISE):  65%|██████▌   | 54/83 [00:14<00:06,  4.18it/s]
+Capturing CUDA graphs (PIECEWISE):  66%|██████▋   | 55/83 [00:14<00:06,  4.18it/s]
+Capturing CUDA graphs (PIECEWISE):  67%|██████▋   | 56/83 [00:14<00:06,  4.18it/s]
+Capturing CUDA graphs (PIECEWISE):  69%|██████▊   | 57/83 [00:14<00:06,  4.18it/s]
+Capturing CUDA graphs (PIECEWISE):  70%|██████▉   | 58/83 [00:15<00:05,  4.18it/s]
+Capturing CUDA graphs (PIECEWISE):  71%|███████   | 59/83 [00:15<00:05,  4.17it/s]
+Capturing CUDA graphs (PIECEWISE):  72%|███████▏  | 60/83 [00:15<00:05,  4.15it/s]
+Capturing CUDA graphs (PIECEWISE):  73%|███████▎  | 61/83 [00:15<00:05,  4.14it/s]
+Capturing CUDA graphs (PIECEWISE):  75%|███████▍  | 62/83 [00:16<00:05,  4.16it/s]
+Capturing CUDA graphs (PIECEWISE):  76%|███████▌  | 63/83 [00:16<00:04,  4.18it/s]
+Capturing CUDA graphs (PIECEWISE):  77%|███████▋  | 64/83 [00:16<00:04,  4.18it/s]
+Capturing CUDA graphs (PIECEWISE):  78%|███████▊  | 65/83 [00:16<00:04,  4.17it/s]
+Capturing CUDA graphs (PIECEWISE):  80%|███████▉  | 66/83 [00:17<00:04,  4.18it/s]
+Capturing CUDA graphs (PIECEWISE):  81%|████████  | 67/83 [00:17<00:03,  4.18it/s]
+Capturing CUDA graphs (PIECEWISE):  82%|████████▏ | 68/83 [00:17<00:03,  4.18it/s]
+Capturing CUDA graphs (PIECEWISE):  83%|████████▎ | 69/83 [00:17<00:03,  4.17it/s]
+Capturing CUDA graphs (PIECEWISE):  84%|████████▍ | 70/83 [00:17<00:03,  4.18it/s]
+Capturing CUDA graphs (PIECEWISE):  86%|████████▌ | 71/83 [00:18<00:02,  4.18it/s]
+Capturing CUDA graphs (PIECEWISE):  87%|████████▋ | 72/83 [00:18<00:02,  4.18it/s]
+Capturing CUDA graphs (PIECEWISE):  88%|████████▊ | 73/83 [00:18<00:02,  4.17it/s]
+Capturing CUDA graphs (PIECEWISE):  89%|████████▉ | 74/83 [00:18<00:02,  4.19it/s]
+Capturing CUDA graphs (PIECEWISE):  90%|█████████ | 75/83 [00:19<00:01,  4.19it/s]
+Capturing CUDA graphs (PIECEWISE):  92%|█████████▏| 76/83 [00:19<00:01,  4.21it/s]/root/v60762/lib/python3.12/site-packages/torch/cuda/graphs.py:630: UserWarning: The CUDA Graph is empty. This usually means that the graph was attempted to be captured on wrong device or stream. (Triggered internally at /__w/pytorch/pytorch/aten/src/ATen/cuda/CUDAGraph.cpp:249.)
+  super().capture_end_pre()
+/root/v60762/lib/python3.12/site-packages/torch/cuda/graphs.py:630: UserWarning: The CUDA Graph is empty. This usually means that the graph was attempted to be captured on wrong device or stream. (Triggered internally at /__w/pytorch/pytorch/aten/src/ATen/cuda/CUDAGraph.cpp:249.)
+  super().capture_end_pre()
+/root/v60762/lib/python3.12/site-packages/torch/cuda/graphs.py:630: UserWarning: The CUDA Graph is empty. This usually means that the graph was attempted to be captured on wrong device or stream. (Triggered internally at /__w/pytorch/pytorch/aten/src/ATen/cuda/CUDAGraph.cpp:249.)
+  super().capture_end_pre()
+/root/v60762/lib/python3.12/site-packages/torch/cuda/graphs.py:630: UserWarning: The CUDA Graph is empty. This usually means that the graph was attempted to be captured on wrong device or stream. (Triggered internally at /__w/pytorch/pytorch/aten/src/ATen/cuda/CUDAGraph.cpp:249.)
+  super().capture_end_pre()
+
+Capturing CUDA graphs (PIECEWISE):  93%|█████████▎| 77/83 [00:19<00:01,  3.62it/s]
+Capturing CUDA graphs (PIECEWISE):  94%|█████████▍| 78/83 [00:20<00:01,  3.78it/s]
+Capturing CUDA graphs (PIECEWISE):  95%|█████████▌| 79/83 [00:20<00:01,  3.91it/s]
+Capturing CUDA graphs (PIECEWISE):  95%|█████████▌| 79/83 [00:20<00:01,  3.89it/s]
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189] WorkerProc hit an exception.
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189] Traceback (most recent call last):
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/vllm/v1/executor/multiproc_executor.py", line 1177, in _execute_worker_rpc
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     output = func(*args, **kwargs)
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]              ^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/torch/utils/_contextlib.py", line 124, in decorate_context
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     return func(*args, **kwargs)
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]            ^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/vllm/v1/worker/gpu_worker.py", line 711, in determine_available_memory
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     cudagraph_memory_estimate = self.model_runner.profile_cudagraph_memory()
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/torch/utils/_contextlib.py", line 124, in decorate_context
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     return func(*args, **kwargs)
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]            ^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/vllm/v1/worker/gpu/model_runner.py", line 1061, in profile_cudagraph_memory
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     return _profile_cudagraph_memory(self)
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/torch/utils/_contextlib.py", line 124, in decorate_context
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     return func(*args, **kwargs)
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]            ^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/vllm/v1/worker/gpu/cudagraph_utils.py", line 997, in profile_cudagraph_memory
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     measured = int(runner.capture_model(profile_only=True))
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/torch/utils/_contextlib.py", line 124, in decorate_context
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     return func(*args, **kwargs)
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]            ^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/vllm/v1/worker/gpu/model_runner.py", line 1104, in capture_model
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     self.cudagraph_manager.capture(
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/vllm/v1/worker/gpu/cudagraph_utils.py", line 788, in capture
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     super().capture(create_forward_fn, progress_bar_desc)
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/torch/utils/_contextlib.py", line 124, in decorate_context
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     return func(*args, **kwargs)
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]            ^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/vllm/v1/worker/gpu/cudagraph_utils.py", line 467, in capture
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     forward_fn(CUDAGraphMode.NONE)
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/vllm/v1/worker/gpu/cudagraph_utils.py", line 777, in forward_fn
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     model_output = model(**model_inputs)
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]                    ^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1783, in _wrapped_call_impl
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     return self._call_impl(*args, **kwargs)
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1794, in _call_impl
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     return forward_call(*args, **kwargs)
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/vllm/models/deepseek_v41/nvidia/vl_model.py", line 296, in forward
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     return self.language_model(
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]            ^^^^^^^^^^^^^^^^^^^^
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1783, in _wrapped_call_impl
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     return self._call_impl(*args, **kwargs)
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1794, in _call_impl
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     return forward_call(*args, **kwargs)
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/vllm/models/deepseek_v41/nvidia/model.py", line 1734, in forward
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     hidden_states = self.model(
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]                     ^^^^^^^^^^^
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1783, in _wrapped_call_impl
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     return self._call_impl(*args, **kwargs)
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1794, in _call_impl
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     return forward_call(*args, **kwargs)
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/vllm/models/deepseek_v41/nvidia/model.py", line 1081, in forward
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     hidden_states, residual, post_mix, res_mix, pre_mix = self._run_layers(
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]                                                           ^^^^^^^^^^^^^^^^^
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/vllm/models/deepseek_v41/nvidia/model.py", line 1186, in _run_layers
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     self.layers[idx](
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1783, in _wrapped_call_impl
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     return self._call_impl(*args, **kwargs)
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1794, in _call_impl
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     return forward_call(*args, **kwargs)
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/vllm/models/deepseek_v41/nvidia/model.py", line 659, in forward
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     x = self.ffn(x, input_ids, mega_gate_metadata)
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1783, in _wrapped_call_impl
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     return self._call_impl(*args, **kwargs)
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1794, in _call_impl
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     return forward_call(*args, **kwargs)
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/vllm/models/deepseek_v4/nvidia/model.py", line 463, in forward
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     return self._forward_fused_moe(hidden_states, input_ids)
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/vllm/models/deepseek_v4/nvidia/model.py", line 528, in _forward_fused_moe
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     final_hidden_states = self.experts(
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]                           ^^^^^^^^^^^^^
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1783, in _wrapped_call_impl
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     return self._call_impl(*args, **kwargs)
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1794, in _call_impl
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     return forward_call(*args, **kwargs)
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/vllm/model_executor/layers/fused_moe/runner/moe_runner.py", line 738, in forward
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     result = self._forward_entry(
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]              ^^^^^^^^^^^^^^^^^^^^
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/torch/_ops.py", line 1350, in __call__
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     return self._op(*args, **kwargs)
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]            ^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/vllm/model_executor/layers/fused_moe/runner/moe_runner.py", line 165, in _moe_forward_shared
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     layer._forward_impl(
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/vllm/model_executor/layers/fused_moe/runner/moe_runner.py", line 925, in _forward_impl
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     shared_output, hidden_states = self._apply_quant_method(
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]                                    ^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/vllm/model_executor/layers/fused_moe/runner/moe_runner.py", line 637, in _apply_quant_method
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     fused_out = self.routed_experts.forward_modular(
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/vllm/model_executor/layers/fused_moe/routed_experts.py", line 1397, in forward_modular
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     return self.quant_method.apply(
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]            ^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/vllm/model_executor/layers/quantization/mxfp4.py", line 1100, in apply
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     return self.moe_kernel.apply(
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]            ^^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/vllm/model_executor/layers/fused_moe/modular_kernel.py", line 1812, in apply
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     return self.impl.apply(
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]            ^^^^^^^^^^^^^^^^
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/vllm/model_executor/layers/fused_moe/modular_kernel.py", line 1541, in apply
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     fused_out = self._fused_experts(
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]                 ^^^^^^^^^^^^^^^^^^^^
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/vllm/model_executor/layers/fused_moe/modular_kernel.py", line 1369, in _fused_experts
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     unfinalized = self.fused_experts.apply(
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/vllm/model_executor/layers/fused_moe/b12x.py", line 801, in apply
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     _run_b12x_moe_plan(
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/vllm/model_executor/layers/fused_moe/b12x.py", line 125, in _run_b12x_moe_plan
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     fused_moe.run(binding=binding)
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/flashinfer/experimental/b12x/moe/fused_moe/api.py", line 191, in run
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     return _run(binding=binding)
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]            ^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/flashinfer/experimental/b12x/moe/fused_moe/_impl.py", line 13814, in b12x_moe_fp4
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     raise RuntimeError(
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189] RuntimeError: compact W4A8 execution requires its prepared native launchers
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189] Traceback (most recent call last):
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/vllm/v1/executor/multiproc_executor.py", line 1177, in _execute_worker_rpc
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     output = func(*args, **kwargs)
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]              ^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/torch/utils/_contextlib.py", line 124, in decorate_context
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     return func(*args, **kwargs)
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]            ^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/vllm/v1/worker/gpu_worker.py", line 711, in determine_available_memory
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     cudagraph_memory_estimate = self.model_runner.profile_cudagraph_memory()
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/torch/utils/_contextlib.py", line 124, in decorate_context
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     return func(*args, **kwargs)
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]            ^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/vllm/v1/worker/gpu/model_runner.py", line 1061, in profile_cudagraph_memory
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     return _profile_cudagraph_memory(self)
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/torch/utils/_contextlib.py", line 124, in decorate_context
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     return func(*args, **kwargs)
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]            ^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/vllm/v1/worker/gpu/cudagraph_utils.py", line 997, in profile_cudagraph_memory
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     measured = int(runner.capture_model(profile_only=True))
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/torch/utils/_contextlib.py", line 124, in decorate_context
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     return func(*args, **kwargs)
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]            ^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/vllm/v1/worker/gpu/model_runner.py", line 1104, in capture_model
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     self.cudagraph_manager.capture(
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/vllm/v1/worker/gpu/cudagraph_utils.py", line 788, in capture
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     super().capture(create_forward_fn, progress_bar_desc)
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/torch/utils/_contextlib.py", line 124, in decorate_context
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     return func(*args, **kwargs)
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]            ^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/vllm/v1/worker/gpu/cudagraph_utils.py", line 467, in capture
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     forward_fn(CUDAGraphMode.NONE)
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/vllm/v1/worker/gpu/cudagraph_utils.py", line 777, in forward_fn
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     model_output = model(**model_inputs)
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]                    ^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1783, in _wrapped_call_impl
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     return self._call_impl(*args, **kwargs)
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1794, in _call_impl
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     return forward_call(*args, **kwargs)
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/vllm/models/deepseek_v41/nvidia/vl_model.py", line 296, in forward
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     return self.language_model(
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]            ^^^^^^^^^^^^^^^^^^^^
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1783, in _wrapped_call_impl
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     return self._call_impl(*args, **kwargs)
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1794, in _call_impl
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     return forward_call(*args, **kwargs)
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/vllm/models/deepseek_v41/nvidia/model.py", line 1734, in forward
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     hidden_states = self.model(
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]                     ^^^^^^^^^^^
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1783, in _wrapped_call_impl
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     return self._call_impl(*args, **kwargs)
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1794, in _call_impl
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     return forward_call(*args, **kwargs)
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/vllm/models/deepseek_v41/nvidia/model.py", line 1081, in forward
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     hidden_states, residual, post_mix, res_mix, pre_mix = self._run_layers(
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]                                                           ^^^^^^^^^^^^^^^^^
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/vllm/models/deepseek_v41/nvidia/model.py", line 1186, in _run_layers
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     self.layers[idx](
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1783, in _wrapped_call_impl
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     return self._call_impl(*args, **kwargs)
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1794, in _call_impl
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     return forward_call(*args, **kwargs)
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/vllm/models/deepseek_v41/nvidia/model.py", line 659, in forward
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     x = self.ffn(x, input_ids, mega_gate_metadata)
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1783, in _wrapped_call_impl
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     return self._call_impl(*args, **kwargs)
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1794, in _call_impl
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     return forward_call(*args, **kwargs)
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/vllm/models/deepseek_v4/nvidia/model.py", line 463, in forward
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     return self._forward_fused_moe(hidden_states, input_ids)
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/vllm/models/deepseek_v4/nvidia/model.py", line 528, in _forward_fused_moe
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     final_hidden_states = self.experts(
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]                           ^^^^^^^^^^^^^
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1783, in _wrapped_call_impl
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     return self._call_impl(*args, **kwargs)
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1794, in _call_impl
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     return forward_call(*args, **kwargs)
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/vllm/model_executor/layers/fused_moe/runner/moe_runner.py", line 738, in forward
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     result = self._forward_entry(
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]              ^^^^^^^^^^^^^^^^^^^^
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/torch/_ops.py", line 1350, in __call__
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     return self._op(*args, **kwargs)
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]            ^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/vllm/model_executor/layers/fused_moe/runner/moe_runner.py", line 165, in _moe_forward_shared
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     layer._forward_impl(
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/vllm/model_executor/layers/fused_moe/runner/moe_runner.py", line 925, in _forward_impl
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     shared_output, hidden_states = self._apply_quant_method(
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]                                    ^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/vllm/model_executor/layers/fused_moe/runner/moe_runner.py", line 637, in _apply_quant_method
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     fused_out = self.routed_experts.forward_modular(
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/vllm/model_executor/layers/fused_moe/routed_experts.py", line 1397, in forward_modular
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     return self.quant_method.apply(
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]            ^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/vllm/model_executor/layers/quantization/mxfp4.py", line 1100, in apply
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     return self.moe_kernel.apply(
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]            ^^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/vllm/model_executor/layers/fused_moe/modular_kernel.py", line 1812, in apply
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     return self.impl.apply(
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]            ^^^^^^^^^^^^^^^^
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/vllm/model_executor/layers/fused_moe/modular_kernel.py", line 1541, in apply
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     fused_out = self._fused_experts(
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]                 ^^^^^^^^^^^^^^^^^^^^
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/vllm/model_executor/layers/fused_moe/modular_kernel.py", line 1369, in _fused_experts
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     unfinalized = self.fused_experts.apply(
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/vllm/model_executor/layers/fused_moe/b12x.py", line 801, in apply
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     _run_b12x_moe_plan(
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/vllm/model_executor/layers/fused_moe/b12x.py", line 125, in _run_b12x_moe_plan
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     fused_moe.run(binding=binding)
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/flashinfer/experimental/b12x/moe/fused_moe/api.py", line 191, in run
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     return _run(binding=binding)
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]            ^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/flashinfer/experimental/b12x/moe/fused_moe/_impl.py", line 13814, in b12x_moe_fp4
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     raise RuntimeError(
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189] RuntimeError: compact W4A8 execution requires its prepared native launchers
+(Worker_TP3 pid=2931201) ERROR 10-25 02:26:01 [multiproc_executor.py:1189] 
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189] WorkerProc hit an exception.
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189] Traceback (most recent call last):
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/vllm/v1/executor/multiproc_executor.py", line 1177, in _execute_worker_rpc
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     output = func(*args, **kwargs)
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]              ^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/torch/utils/_contextlib.py", line 124, in decorate_context
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     return func(*args, **kwargs)
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]            ^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/vllm/v1/worker/gpu_worker.py", line 711, in determine_available_memory
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     cudagraph_memory_estimate = self.model_runner.profile_cudagraph_memory()
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/torch/utils/_contextlib.py", line 124, in decorate_context
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     return func(*args, **kwargs)
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]            ^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/vllm/v1/worker/gpu/model_runner.py", line 1061, in profile_cudagraph_memory
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     return _profile_cudagraph_memory(self)
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/torch/utils/_contextlib.py", line 124, in decorate_context
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     return func(*args, **kwargs)
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]            ^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/vllm/v1/worker/gpu/cudagraph_utils.py", line 997, in profile_cudagraph_memory
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     measured = int(runner.capture_model(profile_only=True))
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/torch/utils/_contextlib.py", line 124, in decorate_context
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     return func(*args, **kwargs)
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]            ^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/vllm/v1/worker/gpu/model_runner.py", line 1104, in capture_model
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     self.cudagraph_manager.capture(
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/vllm/v1/worker/gpu/cudagraph_utils.py", line 788, in capture
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     super().capture(create_forward_fn, progress_bar_desc)
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/torch/utils/_contextlib.py", line 124, in decorate_context
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     return func(*args, **kwargs)
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]            ^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/vllm/v1/worker/gpu/cudagraph_utils.py", line 467, in capture
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     forward_fn(CUDAGraphMode.NONE)
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/vllm/v1/worker/gpu/cudagraph_utils.py", line 777, in forward_fn
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     model_output = model(**model_inputs)
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]                    ^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1783, in _wrapped_call_impl
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     return self._call_impl(*args, **kwargs)
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1794, in _call_impl
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     return forward_call(*args, **kwargs)
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/vllm/models/deepseek_v41/nvidia/vl_model.py", line 296, in forward
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     return self.language_model(
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]            ^^^^^^^^^^^^^^^^^^^^
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1783, in _wrapped_call_impl
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     return self._call_impl(*args, **kwargs)
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1794, in _call_impl
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     return forward_call(*args, **kwargs)
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/vllm/models/deepseek_v41/nvidia/model.py", line 1734, in forward
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     hidden_states = self.model(
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]                     ^^^^^^^^^^^
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1783, in _wrapped_call_impl
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     return self._call_impl(*args, **kwargs)
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1794, in _call_impl
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     return forward_call(*args, **kwargs)
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/vllm/models/deepseek_v41/nvidia/model.py", line 1081, in forward
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     hidden_states, residual, post_mix, res_mix, pre_mix = self._run_layers(
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]                                                           ^^^^^^^^^^^^^^^^^
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/vllm/models/deepseek_v41/nvidia/model.py", line 1186, in _run_layers
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     self.layers[idx](
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1783, in _wrapped_call_impl
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     return self._call_impl(*args, **kwargs)
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1794, in _call_impl
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     return forward_call(*args, **kwargs)
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/vllm/models/deepseek_v41/nvidia/model.py", line 659, in forward
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     x = self.ffn(x, input_ids, mega_gate_metadata)
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1783, in _wrapped_call_impl
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     return self._call_impl(*args, **kwargs)
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1794, in _call_impl
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     return forward_call(*args, **kwargs)
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/vllm/models/deepseek_v4/nvidia/model.py", line 463, in forward
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     return self._forward_fused_moe(hidden_states, input_ids)
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/vllm/models/deepseek_v4/nvidia/model.py", line 528, in _forward_fused_moe
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     final_hidden_states = self.experts(
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]                           ^^^^^^^^^^^^^
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1783, in _wrapped_call_impl
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     return self._call_impl(*args, **kwargs)
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1794, in _call_impl
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     return forward_call(*args, **kwargs)
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/vllm/model_executor/layers/fused_moe/runner/moe_runner.py", line 738, in forward
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     result = self._forward_entry(
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]              ^^^^^^^^^^^^^^^^^^^^
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/torch/_ops.py", line 1350, in __call__
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     return self._op(*args, **kwargs)
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]            ^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/vllm/model_executor/layers/fused_moe/runner/moe_runner.py", line 165, in _moe_forward_shared
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     layer._forward_impl(
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/vllm/model_executor/layers/fused_moe/runner/moe_runner.py", line 925, in _forward_impl
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     shared_output, hidden_states = self._apply_quant_method(
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]                                    ^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/vllm/model_executor/layers/fused_moe/runner/moe_runner.py", line 637, in _apply_quant_method
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     fused_out = self.routed_experts.forward_modular(
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/vllm/model_executor/layers/fused_moe/routed_experts.py", line 1397, in forward_modular
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     return self.quant_method.apply(
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]            ^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/vllm/model_executor/layers/quantization/mxfp4.py", line 1100, in apply
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     return self.moe_kernel.apply(
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]            ^^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/vllm/model_executor/layers/fused_moe/modular_kernel.py", line 1812, in apply
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     return self.impl.apply(
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]            ^^^^^^^^^^^^^^^^
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/vllm/model_executor/layers/fused_moe/modular_kernel.py", line 1541, in apply
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     fused_out = self._fused_experts(
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]                 ^^^^^^^^^^^^^^^^^^^^
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/vllm/model_executor/layers/fused_moe/modular_kernel.py", line 1369, in _fused_experts
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     unfinalized = self.fused_experts.apply(
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/vllm/model_executor/layers/fused_moe/b12x.py", line 801, in apply
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     _run_b12x_moe_plan(
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/vllm/model_executor/layers/fused_moe/b12x.py", line 125, in _run_b12x_moe_plan
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     fused_moe.run(binding=binding)
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/flashinfer/experimental/b12x/moe/fused_moe/api.py", line 191, in run
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     return _run(binding=binding)
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]            ^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/flashinfer/experimental/b12x/moe/fused_moe/_impl.py", line 13814, in b12x_moe_fp4
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     raise RuntimeError(
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189] RuntimeError: compact W4A8 execution requires its prepared native launchers
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189] Traceback (most recent call last):
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/vllm/v1/executor/multiproc_executor.py", line 1177, in _execute_worker_rpc
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     output = func(*args, **kwargs)
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]              ^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/torch/utils/_contextlib.py", line 124, in decorate_context
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     return func(*args, **kwargs)
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]            ^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/vllm/v1/worker/gpu_worker.py", line 711, in determine_available_memory
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     cudagraph_memory_estimate = self.model_runner.profile_cudagraph_memory()
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/torch/utils/_contextlib.py", line 124, in decorate_context
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     return func(*args, **kwargs)
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]            ^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/vllm/v1/worker/gpu/model_runner.py", line 1061, in profile_cudagraph_memory
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     return _profile_cudagraph_memory(self)
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/torch/utils/_contextlib.py", line 124, in decorate_context
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     return func(*args, **kwargs)
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]            ^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/vllm/v1/worker/gpu/cudagraph_utils.py", line 997, in profile_cudagraph_memory
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     measured = int(runner.capture_model(profile_only=True))
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/torch/utils/_contextlib.py", line 124, in decorate_context
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     return func(*args, **kwargs)
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]            ^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/vllm/v1/worker/gpu/model_runner.py", line 1104, in capture_model
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     self.cudagraph_manager.capture(
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/vllm/v1/worker/gpu/cudagraph_utils.py", line 788, in capture
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     super().capture(create_forward_fn, progress_bar_desc)
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/torch/utils/_contextlib.py", line 124, in decorate_context
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     return func(*args, **kwargs)
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]            ^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/vllm/v1/worker/gpu/cudagraph_utils.py", line 467, in capture
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     forward_fn(CUDAGraphMode.NONE)
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/vllm/v1/worker/gpu/cudagraph_utils.py", line 777, in forward_fn
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     model_output = model(**model_inputs)
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]                    ^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1783, in _wrapped_call_impl
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     return self._call_impl(*args, **kwargs)
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1794, in _call_impl
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     return forward_call(*args, **kwargs)
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/vllm/models/deepseek_v41/nvidia/vl_model.py", line 296, in forward
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     return self.language_model(
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]            ^^^^^^^^^^^^^^^^^^^^
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1783, in _wrapped_call_impl
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     return self._call_impl(*args, **kwargs)
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1794, in _call_impl
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     return forward_call(*args, **kwargs)
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/vllm/models/deepseek_v41/nvidia/model.py", line 1734, in forward
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     hidden_states = self.model(
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]                     ^^^^^^^^^^^
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1783, in _wrapped_call_impl
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     return self._call_impl(*args, **kwargs)
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1794, in _call_impl
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     return forward_call(*args, **kwargs)
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/vllm/models/deepseek_v41/nvidia/model.py", line 1081, in forward
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     hidden_states, residual, post_mix, res_mix, pre_mix = self._run_layers(
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]                                                           ^^^^^^^^^^^^^^^^^
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/vllm/models/deepseek_v41/nvidia/model.py", line 1186, in _run_layers
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     self.layers[idx](
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1783, in _wrapped_call_impl
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     return self._call_impl(*args, **kwargs)
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1794, in _call_impl
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     return forward_call(*args, **kwargs)
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/vllm/models/deepseek_v41/nvidia/model.py", line 659, in forward
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     x = self.ffn(x, input_ids, mega_gate_metadata)
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1783, in _wrapped_call_impl
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     return self._call_impl(*args, **kwargs)
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1794, in _call_impl
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     return forward_call(*args, **kwargs)
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/vllm/models/deepseek_v4/nvidia/model.py", line 463, in forward
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     return self._forward_fused_moe(hidden_states, input_ids)
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/vllm/models/deepseek_v4/nvidia/model.py", line 528, in _forward_fused_moe
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     final_hidden_states = self.experts(
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]                           ^^^^^^^^^^^^^
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1783, in _wrapped_call_impl
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     return self._call_impl(*args, **kwargs)
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1794, in _call_impl
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     return forward_call(*args, **kwargs)
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/vllm/model_executor/layers/fused_moe/runner/moe_runner.py", line 738, in forward
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     result = self._forward_entry(
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]              ^^^^^^^^^^^^^^^^^^^^
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/torch/_ops.py", line 1350, in __call__
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     return self._op(*args, **kwargs)
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]            ^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/vllm/model_executor/layers/fused_moe/runner/moe_runner.py", line 165, in _moe_forward_shared
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     layer._forward_impl(
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/vllm/model_executor/layers/fused_moe/runner/moe_runner.py", line 925, in _forward_impl
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     shared_output, hidden_states = self._apply_quant_method(
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]                                    ^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/vllm/model_executor/layers/fused_moe/runner/moe_runner.py", line 637, in _apply_quant_method
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     fused_out = self.routed_experts.forward_modular(
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/vllm/model_executor/layers/fused_moe/routed_experts.py", line 1397, in forward_modular
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     return self.quant_method.apply(
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]            ^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/vllm/model_executor/layers/quantization/mxfp4.py", line 1100, in apply
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     return self.moe_kernel.apply(
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]            ^^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/vllm/model_executor/layers/fused_moe/modular_kernel.py", line 1812, in apply
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     return self.impl.apply(
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]            ^^^^^^^^^^^^^^^^
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/vllm/model_executor/layers/fused_moe/modular_kernel.py", line 1541, in apply
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     fused_out = self._fused_experts(
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]                 ^^^^^^^^^^^^^^^^^^^^
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/vllm/model_executor/layers/fused_moe/modular_kernel.py", line 1369, in _fused_experts
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     unfinalized = self.fused_experts.apply(
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/vllm/model_executor/layers/fused_moe/b12x.py", line 801, in apply
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     _run_b12x_moe_plan(
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/vllm/model_executor/layers/fused_moe/b12x.py", line 125, in _run_b12x_moe_plan
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     fused_moe.run(binding=binding)
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/flashinfer/experimental/b12x/moe/fused_moe/api.py", line 191, in run
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     return _run(binding=binding)
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]            ^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/flashinfer/experimental/b12x/moe/fused_moe/_impl.py", line 13814, in b12x_moe_fp4
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     raise RuntimeError(
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189] RuntimeError: compact W4A8 execution requires its prepared native launchers
+(Worker_TP1 pid=2931200) ERROR 10-25 02:26:01 [multiproc_executor.py:1189] 
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189] WorkerProc hit an exception.
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189] Traceback (most recent call last):
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/vllm/v1/executor/multiproc_executor.py", line 1177, in _execute_worker_rpc
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     output = func(*args, **kwargs)
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]              ^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/torch/utils/_contextlib.py", line 124, in decorate_context
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     return func(*args, **kwargs)
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]            ^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/vllm/v1/worker/gpu_worker.py", line 711, in determine_available_memory
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     cudagraph_memory_estimate = self.model_runner.profile_cudagraph_memory()
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/torch/utils/_contextlib.py", line 124, in decorate_context
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     return func(*args, **kwargs)
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]            ^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/vllm/v1/worker/gpu/model_runner.py", line 1061, in profile_cudagraph_memory
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     return _profile_cudagraph_memory(self)
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/torch/utils/_contextlib.py", line 124, in decorate_context
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     return func(*args, **kwargs)
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]            ^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/vllm/v1/worker/gpu/cudagraph_utils.py", line 997, in profile_cudagraph_memory
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     measured = int(runner.capture_model(profile_only=True))
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/torch/utils/_contextlib.py", line 124, in decorate_context
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     return func(*args, **kwargs)
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]            ^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/vllm/v1/worker/gpu/model_runner.py", line 1104, in capture_model
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     self.cudagraph_manager.capture(
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/vllm/v1/worker/gpu/cudagraph_utils.py", line 788, in capture
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     super().capture(create_forward_fn, progress_bar_desc)
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/torch/utils/_contextlib.py", line 124, in decorate_context
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     return func(*args, **kwargs)
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]            ^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/vllm/v1/worker/gpu/cudagraph_utils.py", line 467, in capture
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     forward_fn(CUDAGraphMode.NONE)
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/vllm/v1/worker/gpu/cudagraph_utils.py", line 777, in forward_fn
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     model_output = model(**model_inputs)
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]                    ^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1783, in _wrapped_call_impl
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     return self._call_impl(*args, **kwargs)
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1794, in _call_impl
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     return forward_call(*args, **kwargs)
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/vllm/models/deepseek_v41/nvidia/vl_model.py", line 296, in forward
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     return self.language_model(
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]            ^^^^^^^^^^^^^^^^^^^^
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1783, in _wrapped_call_impl
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     return self._call_impl(*args, **kwargs)
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1794, in _call_impl
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     return forward_call(*args, **kwargs)
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/vllm/models/deepseek_v41/nvidia/model.py", line 1734, in forward
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     hidden_states = self.model(
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]                     ^^^^^^^^^^^
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1783, in _wrapped_call_impl
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     return self._call_impl(*args, **kwargs)
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1794, in _call_impl
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     return forward_call(*args, **kwargs)
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/vllm/models/deepseek_v41/nvidia/model.py", line 1081, in forward
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     hidden_states, residual, post_mix, res_mix, pre_mix = self._run_layers(
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]                                                           ^^^^^^^^^^^^^^^^^
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/vllm/models/deepseek_v41/nvidia/model.py", line 1186, in _run_layers
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     self.layers[idx](
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1783, in _wrapped_call_impl
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     return self._call_impl(*args, **kwargs)
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1794, in _call_impl
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     return forward_call(*args, **kwargs)
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/vllm/models/deepseek_v41/nvidia/model.py", line 659, in forward
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     x = self.ffn(x, input_ids, mega_gate_metadata)
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1783, in _wrapped_call_impl
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     return self._call_impl(*args, **kwargs)
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1794, in _call_impl
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     return forward_call(*args, **kwargs)
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/vllm/models/deepseek_v4/nvidia/model.py", line 463, in forward
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     return self._forward_fused_moe(hidden_states, input_ids)
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/vllm/models/deepseek_v4/nvidia/model.py", line 528, in _forward_fused_moe
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     final_hidden_states = self.experts(
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]                           ^^^^^^^^^^^^^
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1783, in _wrapped_call_impl
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     return self._call_impl(*args, **kwargs)
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1794, in _call_impl
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     return forward_call(*args, **kwargs)
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/vllm/model_executor/layers/fused_moe/runner/moe_runner.py", line 738, in forward
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     result = self._forward_entry(
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]              ^^^^^^^^^^^^^^^^^^^^
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/torch/_ops.py", line 1350, in __call__
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     return self._op(*args, **kwargs)
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]            ^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/vllm/model_executor/layers/fused_moe/runner/moe_runner.py", line 165, in _moe_forward_shared
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     layer._forward_impl(
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/vllm/model_executor/layers/fused_moe/runner/moe_runner.py", line 925, in _forward_impl
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     shared_output, hidden_states = self._apply_quant_method(
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]                                    ^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/vllm/model_executor/layers/fused_moe/runner/moe_runner.py", line 637, in _apply_quant_method
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     fused_out = self.routed_experts.forward_modular(
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/vllm/model_executor/layers/fused_moe/routed_experts.py", line 1397, in forward_modular
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     return self.quant_method.apply(
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]            ^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/vllm/model_executor/layers/quantization/mxfp4.py", line 1100, in apply
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     return self.moe_kernel.apply(
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]            ^^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/vllm/model_executor/layers/fused_moe/modular_kernel.py", line 1812, in apply
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     return self.impl.apply(
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]            ^^^^^^^^^^^^^^^^
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/vllm/model_executor/layers/fused_moe/modular_kernel.py", line 1541, in apply
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     fused_out = self._fused_experts(
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]                 ^^^^^^^^^^^^^^^^^^^^
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/vllm/model_executor/layers/fused_moe/modular_kernel.py", line 1369, in _fused_experts
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     unfinalized = self.fused_experts.apply(
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/vllm/model_executor/layers/fused_moe/b12x.py", line 801, in apply
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     _run_b12x_moe_plan(
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/vllm/model_executor/layers/fused_moe/b12x.py", line 125, in _run_b12x_moe_plan
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     fused_moe.run(binding=binding)
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/flashinfer/experimental/b12x/moe/fused_moe/api.py", line 191, in run
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     return _run(binding=binding)
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]            ^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/flashinfer/experimental/b12x/moe/fused_moe/_impl.py", line 13814, in b12x_moe_fp4
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     raise RuntimeError(
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189] RuntimeError: compact W4A8 execution requires its prepared native launchers
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189] Traceback (most recent call last):
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/vllm/v1/executor/multiproc_executor.py", line 1177, in _execute_worker_rpc
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     output = func(*args, **kwargs)
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]              ^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/torch/utils/_contextlib.py", line 124, in decorate_context
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     return func(*args, **kwargs)
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]            ^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/vllm/v1/worker/gpu_worker.py", line 711, in determine_available_memory
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     cudagraph_memory_estimate = self.model_runner.profile_cudagraph_memory()
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/torch/utils/_contextlib.py", line 124, in decorate_context
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     return func(*args, **kwargs)
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]            ^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/vllm/v1/worker/gpu/model_runner.py", line 1061, in profile_cudagraph_memory
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     return _profile_cudagraph_memory(self)
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/torch/utils/_contextlib.py", line 124, in decorate_context
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     return func(*args, **kwargs)
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]            ^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/vllm/v1/worker/gpu/cudagraph_utils.py", line 997, in profile_cudagraph_memory
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     measured = int(runner.capture_model(profile_only=True))
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/torch/utils/_contextlib.py", line 124, in decorate_context
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     return func(*args, **kwargs)
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]            ^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/vllm/v1/worker/gpu/model_runner.py", line 1104, in capture_model
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     self.cudagraph_manager.capture(
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/vllm/v1/worker/gpu/cudagraph_utils.py", line 788, in capture
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     super().capture(create_forward_fn, progress_bar_desc)
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/torch/utils/_contextlib.py", line 124, in decorate_context
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     return func(*args, **kwargs)
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]            ^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/vllm/v1/worker/gpu/cudagraph_utils.py", line 467, in capture
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     forward_fn(CUDAGraphMode.NONE)
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/vllm/v1/worker/gpu/cudagraph_utils.py", line 777, in forward_fn
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     model_output = model(**model_inputs)
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]                    ^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1783, in _wrapped_call_impl
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     return self._call_impl(*args, **kwargs)
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1794, in _call_impl
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     return forward_call(*args, **kwargs)
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/vllm/models/deepseek_v41/nvidia/vl_model.py", line 296, in forward
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     return self.language_model(
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]            ^^^^^^^^^^^^^^^^^^^^
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1783, in _wrapped_call_impl
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     return self._call_impl(*args, **kwargs)
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1794, in _call_impl
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     return forward_call(*args, **kwargs)
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/vllm/models/deepseek_v41/nvidia/model.py", line 1734, in forward
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     hidden_states = self.model(
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]                     ^^^^^^^^^^^
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1783, in _wrapped_call_impl
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     return self._call_impl(*args, **kwargs)
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1794, in _call_impl
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     return forward_call(*args, **kwargs)
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/vllm/models/deepseek_v41/nvidia/model.py", line 1081, in forward
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     hidden_states, residual, post_mix, res_mix, pre_mix = self._run_layers(
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]                                                           ^^^^^^^^^^^^^^^^^
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/vllm/models/deepseek_v41/nvidia/model.py", line 1186, in _run_layers
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     self.layers[idx](
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1783, in _wrapped_call_impl
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     return self._call_impl(*args, **kwargs)
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1794, in _call_impl
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     return forward_call(*args, **kwargs)
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/vllm/models/deepseek_v41/nvidia/model.py", line 659, in forward
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     x = self.ffn(x, input_ids, mega_gate_metadata)
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1783, in _wrapped_call_impl
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     return self._call_impl(*args, **kwargs)
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1794, in _call_impl
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     return forward_call(*args, **kwargs)
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/vllm/models/deepseek_v4/nvidia/model.py", line 463, in forward
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     return self._forward_fused_moe(hidden_states, input_ids)
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/vllm/models/deepseek_v4/nvidia/model.py", line 528, in _forward_fused_moe
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     final_hidden_states = self.experts(
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]                           ^^^^^^^^^^^^^
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1783, in _wrapped_call_impl
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     return self._call_impl(*args, **kwargs)
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1794, in _call_impl
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     return forward_call(*args, **kwargs)
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/vllm/model_executor/layers/fused_moe/runner/moe_runner.py", line 738, in forward
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     result = self._forward_entry(
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]              ^^^^^^^^^^^^^^^^^^^^
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/torch/_ops.py", line 1350, in __call__
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     return self._op(*args, **kwargs)
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]            ^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/vllm/model_executor/layers/fused_moe/runner/moe_runner.py", line 165, in _moe_forward_shared
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     layer._forward_impl(
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/vllm/model_executor/layers/fused_moe/runner/moe_runner.py", line 925, in _forward_impl
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     shared_output, hidden_states = self._apply_quant_method(
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]                                    ^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/vllm/model_executor/layers/fused_moe/runner/moe_runner.py", line 637, in _apply_quant_method
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     fused_out = self.routed_experts.forward_modular(
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/vllm/model_executor/layers/fused_moe/routed_experts.py", line 1397, in forward_modular
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     return self.quant_method.apply(
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]            ^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/vllm/model_executor/layers/quantization/mxfp4.py", line 1100, in apply
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     return self.moe_kernel.apply(
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]            ^^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/vllm/model_executor/layers/fused_moe/modular_kernel.py", line 1812, in apply
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     return self.impl.apply(
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]            ^^^^^^^^^^^^^^^^
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/vllm/model_executor/layers/fused_moe/modular_kernel.py", line 1541, in apply
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     fused_out = self._fused_experts(
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]                 ^^^^^^^^^^^^^^^^^^^^
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/vllm/model_executor/layers/fused_moe/modular_kernel.py", line 1369, in _fused_experts
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     unfinalized = self.fused_experts.apply(
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/vllm/model_executor/layers/fused_moe/b12x.py", line 801, in apply
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     _run_b12x_moe_plan(
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/vllm/model_executor/layers/fused_moe/b12x.py", line 125, in _run_b12x_moe_plan
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     fused_moe.run(binding=binding)
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/flashinfer/experimental/b12x/moe/fused_moe/api.py", line 191, in run
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     return _run(binding=binding)
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]            ^^^^^^^^^^^^^^^^^^^^^
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]   File "/root/v60762/lib/python3.12/site-packages/flashinfer/experimental/b12x/moe/fused_moe/_impl.py", line 13814, in b12x_moe_fp4
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189]     raise RuntimeError(
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189] RuntimeError: compact W4A8 execution requires its prepared native launchers
+(Worker_TP0 pid=2931198) ERROR 10-25 02:26:01 [multiproc_executor.py:1189] 
+(EngineCore pid=2930836) ERROR 10-25 02:26:01 [core.py:1572] EngineCore failed to start.
+(EngineCore pid=2930836) ERROR 10-25 02:26:01 [core.py:1572] Traceback (most recent call last):
+(EngineCore pid=2930836) ERROR 10-25 02:26:01 [core.py:1572]   File "/root/v60762/lib/python3.12/site-packages/vllm/v1/engine/core.py", line 1543, in run_engine_core
+(EngineCore pid=2930836) ERROR 10-25 02:26:01 [core.py:1572]     engine_core = EngineCoreProc(*args, engine_index=dp_rank, **kwargs)
+(EngineCore pid=2930836) ERROR 10-25 02:26:01 [core.py:1572]                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=2930836) ERROR 10-25 02:26:01 [core.py:1572]   File "/root/v60762/lib/python3.12/site-packages/vllm/tracing/otel.py", line 175, in sync_wrapper
+(EngineCore pid=2930836) ERROR 10-25 02:26:01 [core.py:1572]     return func(*args, **kwargs)
+(EngineCore pid=2930836) ERROR 10-25 02:26:01 [core.py:1572]            ^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=2930836) ERROR 10-25 02:26:01 [core.py:1572]   File "/root/v60762/lib/python3.12/site-packages/vllm/v1/engine/core.py", line 1220, in __init__
+(EngineCore pid=2930836) ERROR 10-25 02:26:01 [core.py:1572]     super().__init__(
+(EngineCore pid=2930836) ERROR 10-25 02:26:01 [core.py:1572]   File "/root/v60762/lib/python3.12/site-packages/vllm/v1/engine/core.py", line 160, in __init__
+(EngineCore pid=2930836) ERROR 10-25 02:26:01 [core.py:1572]     kv_cache_config = self._initialize_kv_caches(vllm_config)
+(EngineCore pid=2930836) ERROR 10-25 02:26:01 [core.py:1572]                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=2930836) ERROR 10-25 02:26:01 [core.py:1572]   File "/root/v60762/lib/python3.12/site-packages/vllm/tracing/otel.py", line 175, in sync_wrapper
+(EngineCore pid=2930836) ERROR 10-25 02:26:01 [core.py:1572]     return func(*args, **kwargs)
+(EngineCore pid=2930836) ERROR 10-25 02:26:01 [core.py:1572]            ^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=2930836) ERROR 10-25 02:26:01 [core.py:1572]   File "/root/v60762/lib/python3.12/site-packages/vllm/v1/engine/core.py", line 300, in _initialize_kv_caches
+(EngineCore pid=2930836) ERROR 10-25 02:26:01 [core.py:1572]     available_gpu_memory = self.model_executor.determine_available_memory()
+(EngineCore pid=2930836) ERROR 10-25 02:26:01 [core.py:1572]                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=2930836) ERROR 10-25 02:26:01 [core.py:1572]   File "/root/v60762/lib/python3.12/site-packages/vllm/v1/executor/abstract.py", line 157, in determine_available_memory
+(EngineCore pid=2930836) ERROR 10-25 02:26:01 [core.py:1572]     return self.collective_rpc("determine_available_memory")
+(EngineCore pid=2930836) ERROR 10-25 02:26:01 [core.py:1572]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=2930836) ERROR 10-25 02:26:01 [core.py:1572]   File "/root/v60762/lib/python3.12/site-packages/vllm/v1/executor/multiproc_executor.py", line 556, in collective_rpc
+(EngineCore pid=2930836) ERROR 10-25 02:26:01 [core.py:1572]     return future if non_block else future.result()
+(EngineCore pid=2930836) ERROR 10-25 02:26:01 [core.py:1572]                                     ^^^^^^^^^^^^^^^
+(EngineCore pid=2930836) ERROR 10-25 02:26:01 [core.py:1572]   File "/root/v60762/lib/python3.12/site-packages/vllm/v1/executor/multiproc_executor.py", line 113, in result
+(EngineCore pid=2930836) ERROR 10-25 02:26:01 [core.py:1572]     return super().result()
+(EngineCore pid=2930836) ERROR 10-25 02:26:01 [core.py:1572]            ^^^^^^^^^^^^^^^^
+(EngineCore pid=2930836) ERROR 10-25 02:26:01 [core.py:1572]   File "/usr/lib/python3.12/concurrent/futures/_base.py", line 449, in result
+(EngineCore pid=2930836) ERROR 10-25 02:26:01 [core.py:1572]     return self.__get_result()
+(EngineCore pid=2930836) ERROR 10-25 02:26:01 [core.py:1572]            ^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=2930836) ERROR 10-25 02:26:01 [core.py:1572]   File "/usr/lib/python3.12/concurrent/futures/_base.py", line 401, in __get_result
+(EngineCore pid=2930836) ERROR 10-25 02:26:01 [core.py:1572]     raise self._exception
+(EngineCore pid=2930836) ERROR 10-25 02:26:01 [core.py:1572]   File "/root/v60762/lib/python3.12/site-packages/vllm/v1/executor/multiproc_executor.py", line 117, in _wait_for_response
+(EngineCore pid=2930836) ERROR 10-25 02:26:01 [core.py:1572]     response = self.aggregate(self.get_response())
+(EngineCore pid=2930836) ERROR 10-25 02:26:01 [core.py:1572]                               ^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=2930836) ERROR 10-25 02:26:01 [core.py:1572]   File "/root/v60762/lib/python3.12/site-packages/vllm/v1/executor/multiproc_executor.py", line 525, in get_response
+(EngineCore pid=2930836) ERROR 10-25 02:26:01 [core.py:1572]     raise RuntimeError(
+(EngineCore pid=2930836) ERROR 10-25 02:26:01 [core.py:1572] RuntimeError: Worker failed with error 'compact W4A8 execution requires its prepared native launchers', please check the stack trace above for the root cause
+(EngineCore pid=2930836) ERROR 10-25 02:26:05 [multiproc_executor.py:380] Worker proc VllmWorker-1 died unexpectedly (exit code: None), shutting down executor.
+(EngineCore pid=2930836) INFO 10-25 02:26:05 [multiproc_executor.py:580] [shutdown] Executor: waiting for worker exit count=4
+(EngineCore pid=2930836) WARNING 10-25 02:26:10 [multiproc_executor.py:592] [shutdown] Executor: workers still running after grace period; sending SIGTERM count=4
+(EngineCore pid=2930836) WARNING 10-25 02:26:14 [multiproc_executor.py:602] [shutdown] Executor: workers still running after SIGTERM; sending SIGKILL count=2
+Process EngineCore:
+Traceback (most recent call last):
+  File "/usr/lib/python3.12/multiprocessing/process.py", line 314, in _bootstrap
+    self.run()
+  File "/usr/lib/python3.12/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/root/v60762/lib/python3.12/site-packages/vllm/v1/engine/core.py", line 1576, in run_engine_core
+    raise e
+  File "/root/v60762/lib/python3.12/site-packages/vllm/v1/engine/core.py", line 1543, in run_engine_core
+    engine_core = EngineCoreProc(*args, engine_index=dp_rank, **kwargs)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/v60762/lib/python3.12/site-packages/vllm/tracing/otel.py", line 175, in sync_wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/root/v60762/lib/python3.12/site-packages/vllm/v1/engine/core.py", line 1220, in __init__
+    super().__init__(
+  File "/root/v60762/lib/python3.12/site-packages/vllm/v1/engine/core.py", line 160, in __init__
+    kv_cache_config = self._initialize_kv_caches(vllm_config)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/v60762/lib/python3.12/site-packages/vllm/tracing/otel.py", line 175, in sync_wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/root/v60762/lib/python3.12/site-packages/vllm/v1/engine/core.py", line 300, in _initialize_kv_caches
+    available_gpu_memory = self.model_executor.determine_available_memory()
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/v60762/lib/python3.12/site-packages/vllm/v1/executor/abstract.py", line 157, in determine_available_memory
+    return self.collective_rpc("determine_available_memory")
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/v60762/lib/python3.12/site-packages/vllm/v1/executor/multiproc_executor.py", line 556, in collective_rpc
+    return future if non_block else future.result()
+                                    ^^^^^^^^^^^^^^^
+  File "/root/v60762/lib/python3.12/site-packages/vllm/v1/executor/multiproc_executor.py", line 113, in result
+    return super().result()
+           ^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/concurrent/futures/_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/root/v60762/lib/python3.12/site-packages/vllm/v1/executor/multiproc_executor.py", line 117, in _wait_for_response
+    response = self.aggregate(self.get_response())
+                              ^^^^^^^^^^^^^^^^^^^
+  File "/root/v60762/lib/python3.12/site-packages/vllm/v1/executor/multiproc_executor.py", line 525, in get_response
+    raise RuntimeError(
+RuntimeError: Worker failed with error 'compact W4A8 execution requires its prepared native launchers', please check the stack trace above for the root cause
+Traceback (most recent call last):
+  File "/root/v60762/bin/vllm", line 10, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/root/v60762/lib/python3.12/site-packages/vllm/entrypoints/cli/main.py", line 117, in main
+    args.dispatch_function(args)
+  File "/root/v60762/lib/python3.12/site-packages/vllm/entrypoints/cli/serve.py", line 152, in cmd
+    run_multi_api_server(args)
+  File "/root/v60762/lib/python3.12/site-packages/vllm/entrypoints/cli/serve.py", line 336, in run_multi_api_server
+    with launch_core_engines(
+  File "/usr/lib/python3.12/contextlib.py", line 144, in __exit__
+    next(self.gen)
+  File "/root/v60762/lib/python3.12/site-packages/vllm/v1/engine/utils.py", line 1393, in launch_core_engines
+    wait_for_engine_startup(
+  File "/root/v60762/lib/python3.12/site-packages/vllm/v1/engine/utils.py", line 1473, in wait_for_engine_startup
+    raise RuntimeError(
+RuntimeError: Engine core initialization failed. See root cause above. Failed core proc(s): {}
+[0;36m(RustFrontend pid=2930837)[0m [32mINFO[0m [90m10-25 02:26:18[0m [90m[cmd/src/main.rs:76][0m received shutdown signal (SIGTERM), shutting down...
+/usr/lib/python3.12/multiprocessing/resource_tracker.py:254: UserWarning: resource_tracker: There appear to be 4 leaked shared_memory objects to clean up at shutdown
+  warnings.warn('resource_tracker: There appear to be %d '
