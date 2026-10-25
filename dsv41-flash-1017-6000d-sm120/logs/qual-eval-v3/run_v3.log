@@ -1,0 +1,279 @@
++ date
+Sun Oct 25 07:06:12 AM UTC 2026
++ export PATH=/usr/local/cuda/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
++ PATH=/usr/local/cuda/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
++ export HF_ENDPOINT=https://hf-mirror.com
++ HF_ENDPOINT=https://hf-mirror.com
++ unset HF_HUB_OFFLINE
++ /root/v60762/bin/python -c '
+from datasets import load_dataset
+ds = load_dataset('\''openai/gsm8k'\'', '\''main'\'', split='\''test'\'', trust_remote_code=True)
+print(f'\''GSM8K: {len(ds)} samples cached'\'')
+'
++ tail -2
+
+Generating test split:   0%|          | 0/1319 [00:00<?, ? examples/s]
+Generating test split: 100%|██████████| 1319/1319 [00:00<00:00, 602186.46 examples/s]
+GSM8K: 1319 samples cached
++ /root/v60762/bin/python -c '
+from datasets import load_dataset
+ds = load_dataset('\''openai_humaneval'\'', split='\''test'\'', trust_remote_code=True)
+print(f'\''HumanEval: {len(ds)} samples cached'\'')
+'
++ tail -2
+    raise HfUriError(uri=raw, msg=f"Repository id must be 'namespace/name', got '{repo_id}'.")
+huggingface_hub.errors.HfUriError: Invalid HF URI 'hf://datasets/openai_humaneval@7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544/.huggingface.yaml'. Repository id must be 'namespace/name', got 'openai_humaneval'.
++ SPEC_PROB='{"method":"dspark","num_speculative_tokens":7,"draft_sample_method":"probabilistic","rejection_sample_method":"block","enable_adaptive_verification":false}'
++ boot_leg baseline ''
++ TAG=baseline
++ SPEC=
++ pkill -f 'vllm serve'
++ sleep 8
+++ seq 1 60
++ for i in $(seq 1 60)
+++ nvidia-smi --query-gpu=memory.used --format=csv,noheader,nounits
+++ paste -sd+
+++ bc
++ U=0
++ '[' 0 -lt 10000 ']'
++ break
+++ date +%s
++ T0=1792911995
++ local SPEC_ARG=
++ '[' -n '' ']'
++ BPID=3176043
++ env VLLM_USE_RUST_FRONTEND=1 VLLM_ENGINE_READY_TIMEOUT_S=7200 NCCL_P2P_LEVEL=SYS FLASHINFER_DISABLE_VERSION_CHECK=1 HF_HUB_OFFLINE=1 HF_HUB_DISABLE_XET=1 /root/v60762/bin/vllm serve /data/models/DeepSeek-V4.1-Flash-1017 --served-model-name deepseek-v4.1-flash --trust-remote-code --host 0.0.0.0 --port 8123 --api-key *** --tokenizer-mode deepseek_v41 --tensor-parallel-size 8 --enable-expert-parallel --kv-cache-dtype fp8 --engram-config '{"cpu_offload":true}' --moe-backend auto --max-model-len 8192 --max-num-seqs 32 --gpu-memory-utilization 0.90 --compilation-config '{"cudagraph_mode":"PIECEWISE"}' --enable-auto-tool-choice --tool-call-parser deepseek_v41 --reasoning-parser deepseek_v41
+++ seq 1 720
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 3176043
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 3176043
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 3176043
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 3176043
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 3176043
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 3176043
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 3176043
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 3176043
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 3176043
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 3176043
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 3176043
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 3176043
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 3176043
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 3176043
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ break
++ curl -sf http://127.0.0.1:8123/health
+++ date +%s
++ echo 'LEG_baseline READY 71s'
+LEG_baseline READY 71s
++ '[' 0 -eq 0 ']'
++ GSM8K_TAG=baseline
++ run_gsm8k baseline
++ TAG=baseline
+++ date -u +%H:%M:%S
++ echo '===== GSM8K baseline START 07:07:46 ====='
+===== GSM8K baseline START 07:07:46 =====
++ cd /root/test_ops/qual_eval
++ /root/v60762/bin/python
+Loaded 1319 GSM8K test samples from /root/.cache/huggingface/hub/datasets--openai--gsm8k/snapshots/740312add88f781978c0658806c59bc2815b9866/main/test-00000-of-00001.parquet
+  50/200: 42 correct (84.0%)
+  100/200: 87 correct (87.0%)
+  150/200: 133 correct (88.7%)
+  200/200: 179 correct (89.5%)
+
+GSM8K RESULT [baseline]: 179/200 = 89.5%
+++ date -u +%H:%M:%S
++ echo '===== GSM8K baseline END 07:10:14 ====='
+===== GSM8K baseline END 07:10:14 =====
++ '[' 0 -eq 0 ']'
++ GSM8K_TAG=baseline
++ run_logprob baseline
++ TAG=baseline
+++ date -u +%H:%M:%S
++ echo '===== LOGLIK baseline 07:10:14 ====='
+===== LOGLIK baseline 07:10:14 =====
++ GSM8K_TAG=baseline
++ /root/v60762/bin/python
+Saved 11 logprobs [baseline]
++ pkill -f 'vllm serve'
++ sleep 10
++ boot_leg k7prob '{"method":"dspark","num_speculative_tokens":7,"draft_sample_method":"probabilistic","rejection_sample_method":"block","enable_adaptive_verification":false}'
++ TAG=k7prob
++ SPEC='{"method":"dspark","num_speculative_tokens":7,"draft_sample_method":"probabilistic","rejection_sample_method":"block","enable_adaptive_verification":false}'
++ pkill -f 'vllm serve'
++ sleep 8
+++ seq 1 60
++ for i in $(seq 1 60)
+++ nvidia-smi --query-gpu=memory.used --format=csv,noheader,nounits
+++ paste -sd+
+++ bc
++ U=0
++ '[' 0 -lt 10000 ']'
++ break
+++ date +%s
++ T0=1792912233
++ local SPEC_ARG=
++ '[' -n '{"method":"dspark","num_speculative_tokens":7,"draft_sample_method":"probabilistic","rejection_sample_method":"block","enable_adaptive_verification":false}' ']'
++ SPEC_ARG='--speculative-config {"method":"dspark","num_speculative_tokens":7,"draft_sample_method":"probabilistic","rejection_sample_method":"block","enable_adaptive_verification":false}'
++ BPID=3184498
++ env VLLM_USE_RUST_FRONTEND=1 VLLM_ENGINE_READY_TIMEOUT_S=7200 NCCL_P2P_LEVEL=SYS FLASHINFER_DISABLE_VERSION_CHECK=1 HF_HUB_OFFLINE=1 HF_HUB_DISABLE_XET=1 /root/v60762/bin/vllm serve /data/models/DeepSeek-V4.1-Flash-1017 --served-model-name deepseek-v4.1-flash --trust-remote-code --host 0.0.0.0 --port 8123 --api-key *** --tokenizer-mode deepseek_v41 --tensor-parallel-size 8 --enable-expert-parallel --kv-cache-dtype fp8 --engram-config '{"cpu_offload":true}' --moe-backend auto --max-model-len 8192 --max-num-seqs 32 --gpu-memory-utilization 0.90 --speculative-config '{"method":"dspark","num_speculative_tokens":7,"draft_sample_method":"probabilistic","rejection_sample_method":"block","enable_adaptive_verification":false}' --compilation-config '{"cudagraph_mode":"PIECEWISE"}' --enable-auto-tool-choice --tool-call-parser deepseek_v41 --reasoning-parser deepseek_v41
+++ seq 1 720
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 3184498
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 3184498
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 3184498
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 3184498
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 3184498
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 3184498
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 3184498
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 3184498
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 3184498
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 3184498
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 3184498
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 3184498
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 3184498
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 3184498
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 3184498
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 3184498
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 3184498
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ kill -0 3184498
++ sleep 5
++ for i in $(seq 1 720)
++ curl -sf http://127.0.0.1:8123/health
++ break
++ curl -sf http://127.0.0.1:8123/health
+++ date +%s
++ echo 'LEG_k7prob READY 90s'
+LEG_k7prob READY 90s
++ '[' 0 -eq 0 ']'
++ GSM8K_TAG=k7prob
++ run_gsm8k k7prob
++ TAG=k7prob
+++ date -u +%H:%M:%S
++ echo '===== GSM8K k7prob START 07:12:03 ====='
+===== GSM8K k7prob START 07:12:03 =====
++ cd /root/test_ops/qual_eval
++ /root/v60762/bin/python
+Loaded 1319 GSM8K test samples from /root/.cache/huggingface/hub/datasets--openai--gsm8k/snapshots/740312add88f781978c0658806c59bc2815b9866/main/test-00000-of-00001.parquet
+  50/200: 43 correct (86.0%)
+  100/200: 89 correct (89.0%)
+  150/200: 137 correct (91.3%)
+  200/200: 179 correct (89.5%)
+
+GSM8K RESULT [k7prob]: 179/200 = 89.5%
+++ date -u +%H:%M:%S
++ echo '===== GSM8K k7prob END 07:13:00 ====='
+===== GSM8K k7prob END 07:13:00 =====
++ '[' 0 -eq 0 ']'
++ GSM8K_TAG=k7prob
++ run_logprob k7prob
++ TAG=k7prob
+++ date -u +%H:%M:%S
++ echo '===== LOGLIK k7prob 07:13:00 ====='
+===== LOGLIK k7prob 07:13:00 =====
++ GSM8K_TAG=k7prob
++ /root/v60762/bin/python
+Saved 11 logprobs [k7prob]
++ pkill -f 'vllm serve'
++ echo '===== COMPARISON ====='
+===== COMPARISON =====
++ /root/v60762/bin/python
+GSM8K: baseline=89.5% k7prob=89.5% diff=+0.0%
+LOGPROB: 11 prompts, 0 mismatches, max_diff=0.000000
+VERDICT: CLEAN
+++ date
++ echo 'QUAL_EVAL_V3_DONE Sun Oct 25 07:13:00 AM UTC 2026'
+QUAL_EVAL_V3_DONE Sun Oct 25 07:13:00 AM UTC 2026

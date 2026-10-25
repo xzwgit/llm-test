@@ -1,0 +1,57 @@
+[
+ {
+  "prompt": "The capital of France is",
+  "token": " Paris",
+  "logprob": -1.0414544
+ },
+ {
+  "prompt": "2 + 2 =",
+  "token": " ",
+  "logprob": -0.025483709
+ },
+ {
+  "prompt": "def fibonacci(n):",
+  "token": "",
+  "logprob": -1.0484297
+ },
+ {
+  "prompt": "The theory of relativity states that",
+  "token": " the",
+  "logprob": -0.9053945
+ },
+ {
+  "prompt": "The chemical formula for water is",
+  "token": " H",
+  "logprob": -0.03279556
+ },
+ {
+  "prompt": "if x = 5 and y = 3, then x * y =",
+  "token": " ?",
+  "logprob": -0.59682226
+ },
+ {
+  "prompt": "The first president of the United States",
+  "token": " George",
+  "logprob": -0.068235636
+ },
+ {
+  "prompt": "The square root of 144 is",
+  "token": " ",
+  "logprob": -0.1076995
+ },
+ {
+  "prompt": "Machine learning is a subset of",
+  "token": " AI",
+  "logprob": -0.5792119
+ },
+ {
+  "prompt": "HTTP stands for",
+  "token": " \"",
+  "logprob": -2.3020816
+ },
+ {
+  "prompt": "The largest planet in our solar system i",
+  "token": " Jupiter",
+  "logprob": -0.5135144
+ }
+]
