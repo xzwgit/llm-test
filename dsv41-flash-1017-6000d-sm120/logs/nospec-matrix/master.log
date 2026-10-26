@@ -1,0 +1,520 @@
++ export PATH=/usr/local/cuda/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
++ PATH=/usr/local/cuda/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
++ export OPENAI_API_KEY=abc.12345 HF_HUB_OFFLINE=1 HF_HUB_DISABLE_XET=1 FLASHINFER_DISABLE_VERSION_CHECK=1
++ OPENAI_API_KEY=abc.12345
++ HF_HUB_OFFLINE=1
++ HF_HUB_DISABLE_XET=1
++ FLASHINFER_DISABLE_VERSION_CHECK=1
++ V=/root/v3env
++ MODEL=/data/models/DeepSeek-V4.1-Flash-1017
+++ date -u
++ echo '########## MASTER START Mon Oct 26 11:03:29 AM UTC 2026 ##########'
+########## MASTER START Mon Oct 26 11:03:29 AM UTC 2026 ##########
++ run_all
++ local LLOG=/root/nospec_ops/tiers.log
++ local BLOG=/root/nospec_ops/boot.log
++ boot_engine
++ local BLOG=/root/nospec_ops/boot.log
++ kill_all
++ pkill -9 -f '[v]llm serve'
++ pkill -9 -f VLLM::
++ sleep 2
+++ ss -lptnH 'sport = :8123'
+++ grep -oP 'pid=\K[0-9]+'
+++ sort -u
+++ nvidia-smi --query-compute-apps=pid --format=csv,noheader
++ rm -f '/dev/shm/nccl-*' '/dev/shm/vllm-*'
++ sleep 3
+++ date -u
++ echo '########## NOSPEC BOOT Mon Oct 26 11:03:34 AM UTC 2026 ##########'
+########## NOSPEC BOOT Mon Oct 26 11:03:34 AM UTC 2026 ##########
++ setsid nohup env PATH=/root/v3env/bin:/usr/local/cuda/bin:/usr/local/bin:/usr/local/cuda/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin CUDA_HOME=/usr/local/cuda VLLM_USE_RUST_FRONTEND=1 VLLM_ENGINE_READY_TIMEOUT_S=7200 NCCL_P2P_LEVEL=SYS FLASHINFER_DISABLE_VERSION_CHECK=1 HF_HUB_OFFLINE=1 HF_HUB_DISABLE_XET=1 /root/v3env/bin/vllm serve /data/models/DeepSeek-V4.1-Flash-1017 --served-model-name deepseek-v4.1-flash --tokenizer-mode deepseek_v41 --trust-remote-code --tensor-parallel-size 8 --enable-expert-parallel --kv-cache-dtype fp8 --engram-config '{"cpu_offload":true}' --moe-backend auto --compilation-config '{"cudagraph_mode":"PIECEWISE"}' --max-model-len 1048576 --max-num-seqs 128 --gpu-memory-utilization 0.90 --enable-auto-tool-choice --tool-call-parser deepseek_v41 --reasoning-parser deepseek_v41 --port 8123 --api-key abc.12345
+++ seq 1 110
++ for i in $(seq 1 110)
++ sleep 10
+++ curl -s -m 60 http://127.0.0.1:8123/v1/completions -H 'Authorization: Bearer abc.12345' -H 'Content-Type: application/json' -d '{"model":"deepseek-v4.1-flash","prompt":"17*19=","max_tokens":8,"temperature":0}'
+++ grep -o '"text":"[^"]*"'
+++ head -1
++ ANS=
++ echo ''
++ grep -q 323
++ grep -qE 'Assertion error|ValueError|Engine core initialization failed|OutOfMemory' /root/nospec_ops/boot.log
++ for i in $(seq 1 110)
++ sleep 10
+++ curl -s -m 60 http://127.0.0.1:8123/v1/completions -H 'Authorization: Bearer abc.12345' -H 'Content-Type: application/json' -d '{"model":"deepseek-v4.1-flash","prompt":"17*19=","max_tokens":8,"temperature":0}'
+++ grep -o '"text":"[^"]*"'
+++ head -1
++ ANS=
++ echo ''
++ grep -q 323
++ grep -qE 'Assertion error|ValueError|Engine core initialization failed|OutOfMemory' /root/nospec_ops/boot.log
++ for i in $(seq 1 110)
++ sleep 10
+++ curl -s -m 60 http://127.0.0.1:8123/v1/completions -H 'Authorization: Bearer abc.12345' -H 'Content-Type: application/json' -d '{"model":"deepseek-v4.1-flash","prompt":"17*19=","max_tokens":8,"temperature":0}'
+++ grep -o '"text":"[^"]*"'
+++ head -1
++ ANS=
++ echo ''
++ grep -q 323
++ grep -qE 'Assertion error|ValueError|Engine core initialization failed|OutOfMemory' /root/nospec_ops/boot.log
++ for i in $(seq 1 110)
++ sleep 10
+++ curl -s -m 60 http://127.0.0.1:8123/v1/completions -H 'Authorization: Bearer abc.12345' -H 'Content-Type: application/json' -d '{"model":"deepseek-v4.1-flash","prompt":"17*19=","max_tokens":8,"temperature":0}'
+++ grep -o '"text":"[^"]*"'
+++ head -1
++ ANS=
++ echo ''
++ grep -q 323
++ grep -qE 'Assertion error|ValueError|Engine core initialization failed|OutOfMemory' /root/nospec_ops/boot.log
++ for i in $(seq 1 110)
++ sleep 10
+++ curl -s -m 60 http://127.0.0.1:8123/v1/completions -H 'Authorization: Bearer abc.12345' -H 'Content-Type: application/json' -d '{"model":"deepseek-v4.1-flash","prompt":"17*19=","max_tokens":8,"temperature":0}'
+++ grep -o '"text":"[^"]*"'
+++ head -1
++ ANS=
++ echo ''
++ grep -q 323
++ grep -qE 'Assertion error|ValueError|Engine core initialization failed|OutOfMemory' /root/nospec_ops/boot.log
++ for i in $(seq 1 110)
++ sleep 10
+++ curl -s -m 60 http://127.0.0.1:8123/v1/completions -H 'Authorization: Bearer abc.12345' -H 'Content-Type: application/json' -d '{"model":"deepseek-v4.1-flash","prompt":"17*19=","max_tokens":8,"temperature":0}'
+++ grep -o '"text":"[^"]*"'
+++ head -1
++ ANS=
++ echo ''
++ grep -q 323
++ grep -qE 'Assertion error|ValueError|Engine core initialization failed|OutOfMemory' /root/nospec_ops/boot.log
++ for i in $(seq 1 110)
++ sleep 10
+++ curl -s -m 60 http://127.0.0.1:8123/v1/completions -H 'Authorization: Bearer abc.12345' -H 'Content-Type: application/json' -d '{"model":"deepseek-v4.1-flash","prompt":"17*19=","max_tokens":8,"temperature":0}'
+++ grep -o '"text":"[^"]*"'
+++ head -1
++ ANS=
++ echo ''
++ grep -q 323
++ grep -qE 'Assertion error|ValueError|Engine core initialization failed|OutOfMemory' /root/nospec_ops/boot.log
++ for i in $(seq 1 110)
++ sleep 10
+++ curl -s -m 60 http://127.0.0.1:8123/v1/completions -H 'Authorization: Bearer abc.12345' -H 'Content-Type: application/json' -d '{"model":"deepseek-v4.1-flash","prompt":"17*19=","max_tokens":8,"temperature":0}'
+++ grep -o '"text":"[^"]*"'
+++ head -1
++ ANS=
++ echo ''
++ grep -q 323
++ grep -qE 'Assertion error|ValueError|Engine core initialization failed|OutOfMemory' /root/nospec_ops/boot.log
++ for i in $(seq 1 110)
++ sleep 10
+++ curl -s -m 60 http://127.0.0.1:8123/v1/completions -H 'Authorization: Bearer abc.12345' -H 'Content-Type: application/json' -d '{"model":"deepseek-v4.1-flash","prompt":"17*19=","max_tokens":8,"temperature":0}'
+++ grep -o '"text":"[^"]*"'
+++ head -1
++ ANS='"text":"323\n\n323/19=17\n\n"'
++ echo '"text":"323\n\n323/19=17\n\n"'
++ grep -q 323
++ echo 'NOSPEC READY after ~90s'
+NOSPEC READY after ~90s
++ grep -E 'KV cache size' /root/nospec_ops/boot.log
++ tail -2
+(Worker_TP0_EP0 pid=903876) INFO 10-26 11:04:45 [gpu_worker.py:781] CUDA graph memory profiling is enabled (default since v0.21.0). The current --gpu-memory-utilization=0.9000 is equivalent to --gpu-memory-utilization=0.8175 without CUDA graph memory profiling. To maintain the same effective KV cache size as before, increase --gpu-memory-utilization to 0.9825. To disable, set VLLM_MEMORY_PROFILER_ESTIMATE_CUDAGRAPHS=0.
+(EngineCore pid=903589) INFO 10-26 11:04:45 [kv_cache_utils.py:1101] GPU KV cache size: 12,908,324 tokens, Maximum concurrency for 1,048,576 tokens per request: 12.31x
++ return 0
++ sleep 5
++ echo '===== correctness ====='
++ curl -s -m 120 http://127.0.0.1:8123/v1/completions -H 'Content-Type: application/json' -H 'Authorization: Bearer abc.12345' -d '{"model":"deepseek-v4.1-flash","prompt":"17*19=","max_tokens":16,"temperature":0}'
++ echo
++ echo 'BOOT CMD: /root/v3env/bin/vllm serve /data/models/DeepSeek-V4.1-Flash-1017 --served-model-name deepseek-v4.1-flash --tokenizer-mode deepseek_v41 --trust-remote-code --tensor-parallel-size 8 --enable-expert-parallel --kv-cache-dtype fp8 --engram-config {cpu_offload:true} --moe-backend auto --compilation-config {cudagraph_mode:PIECEWISE} --max-model-len 1048576 --max-num-seqs 128 --gpu-memory-utilization 0.90 --enable-auto-tool-choice --tool-call-parser deepseek_v41 --reasoning-parser deepseek_v41 --port 8123 --api-key *** ENV: VLLM_USE_RUST_FRONTEND=1 NCCL_P2P_LEVEL=SYS 无投机(无 --speculative-config)'
++ bench /root/nospec_ops/tiers.log /root/nospec_ops/boot.log '1K/1K c1 run1' 1024 1024 1
++ local LOG=/root/nospec_ops/tiers.log BLOG=/root/nospec_ops/boot.log 'label=1K/1K c1 run1' ilen=1024 olen=1024 conc=1
+++ date -u +%H:%M:%S
++ echo '===== 1K/1K c1 run1 11:05:10 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/v3env/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data/models/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 1024 --random-output-len 1024 --ignore-eos --num-prompts 1 --request-rate 1
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/nospec_ops/boot.log
++ return 0
++ bench /root/nospec_ops/tiers.log /root/nospec_ops/boot.log '1K/1K c1 run2' 1024 1024 1
++ local LOG=/root/nospec_ops/tiers.log BLOG=/root/nospec_ops/boot.log 'label=1K/1K c1 run2' ilen=1024 olen=1024 conc=1
+++ date -u +%H:%M:%S
++ echo '===== 1K/1K c1 run2 11:05:30 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/v3env/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data/models/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 1024 --random-output-len 1024 --ignore-eos --num-prompts 1 --request-rate 1
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/nospec_ops/boot.log
++ return 0
++ for C in 2 4 8 16 32 64 128
++ bench /root/nospec_ops/tiers.log /root/nospec_ops/boot.log '1K/1K c2' 1024 1024 2
++ local LOG=/root/nospec_ops/tiers.log BLOG=/root/nospec_ops/boot.log 'label=1K/1K c2' ilen=1024 olen=1024 conc=2
+++ date -u +%H:%M:%S
++ echo '===== 1K/1K c2 11:05:51 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/v3env/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data/models/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 1024 --random-output-len 1024 --ignore-eos --num-prompts 2 --request-rate 2
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/nospec_ops/boot.log
++ return 0
++ for C in 2 4 8 16 32 64 128
++ bench /root/nospec_ops/tiers.log /root/nospec_ops/boot.log '1K/1K c4' 1024 1024 4
++ local LOG=/root/nospec_ops/tiers.log BLOG=/root/nospec_ops/boot.log 'label=1K/1K c4' ilen=1024 olen=1024 conc=4
+++ date -u +%H:%M:%S
++ echo '===== 1K/1K c4 11:06:14 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/v3env/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data/models/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 1024 --random-output-len 1024 --ignore-eos --num-prompts 4 --request-rate 4
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/nospec_ops/boot.log
++ return 0
++ for C in 2 4 8 16 32 64 128
++ bench /root/nospec_ops/tiers.log /root/nospec_ops/boot.log '1K/1K c8' 1024 1024 8
++ local LOG=/root/nospec_ops/tiers.log BLOG=/root/nospec_ops/boot.log 'label=1K/1K c8' ilen=1024 olen=1024 conc=8
+++ date -u +%H:%M:%S
++ echo '===== 1K/1K c8 11:06:37 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/v3env/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data/models/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 1024 --random-output-len 1024 --ignore-eos --num-prompts 8 --request-rate 8
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/nospec_ops/boot.log
++ return 0
++ for C in 2 4 8 16 32 64 128
++ bench /root/nospec_ops/tiers.log /root/nospec_ops/boot.log '1K/1K c16' 1024 1024 16
++ local LOG=/root/nospec_ops/tiers.log BLOG=/root/nospec_ops/boot.log 'label=1K/1K c16' ilen=1024 olen=1024 conc=16
+++ date -u +%H:%M:%S
++ echo '===== 1K/1K c16 11:07:04 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/v3env/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data/models/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 1024 --random-output-len 1024 --ignore-eos --num-prompts 16 --request-rate 16
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/nospec_ops/boot.log
++ return 0
++ for C in 2 4 8 16 32 64 128
++ bench /root/nospec_ops/tiers.log /root/nospec_ops/boot.log '1K/1K c32' 1024 1024 32
++ local LOG=/root/nospec_ops/tiers.log BLOG=/root/nospec_ops/boot.log 'label=1K/1K c32' ilen=1024 olen=1024 conc=32
+++ date -u +%H:%M:%S
++ echo '===== 1K/1K c32 11:07:34 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/v3env/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data/models/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 1024 --random-output-len 1024 --ignore-eos --num-prompts 32 --request-rate 32
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/nospec_ops/boot.log
++ return 0
++ for C in 2 4 8 16 32 64 128
++ bench /root/nospec_ops/tiers.log /root/nospec_ops/boot.log '1K/1K c64' 1024 1024 64
++ local LOG=/root/nospec_ops/tiers.log BLOG=/root/nospec_ops/boot.log 'label=1K/1K c64' ilen=1024 olen=1024 conc=64
+++ date -u +%H:%M:%S
++ echo '===== 1K/1K c64 11:08:11 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/v3env/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data/models/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 1024 --random-output-len 1024 --ignore-eos --num-prompts 64 --request-rate 64
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/nospec_ops/boot.log
++ return 0
++ for C in 2 4 8 16 32 64 128
++ bench /root/nospec_ops/tiers.log /root/nospec_ops/boot.log '1K/1K c128' 1024 1024 128
++ local LOG=/root/nospec_ops/tiers.log BLOG=/root/nospec_ops/boot.log 'label=1K/1K c128' ilen=1024 olen=1024 conc=128
+++ date -u +%H:%M:%S
++ echo '===== 1K/1K c128 11:08:58 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/v3env/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data/models/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 1024 --random-output-len 1024 --ignore-eos --num-prompts 128 --request-rate 128
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/nospec_ops/boot.log
++ return 0
++ for C in 1 2 4 8 16 32
++ bench /root/nospec_ops/tiers.log /root/nospec_ops/boot.log '4K/4K c1' 4096 4096 1
++ local LOG=/root/nospec_ops/tiers.log BLOG=/root/nospec_ops/boot.log 'label=4K/4K c1' ilen=4096 olen=4096 conc=1
+++ date -u +%H:%M:%S
++ echo '===== 4K/4K c1 11:09:56 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/v3env/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data/models/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 4096 --random-output-len 4096 --ignore-eos --num-prompts 1 --request-rate 1
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/nospec_ops/boot.log
++ return 0
++ for C in 1 2 4 8 16 32
++ bench /root/nospec_ops/tiers.log /root/nospec_ops/boot.log '4K/4K c2' 4096 4096 2
++ local LOG=/root/nospec_ops/tiers.log BLOG=/root/nospec_ops/boot.log 'label=4K/4K c2' ilen=4096 olen=4096 conc=2
+++ date -u +%H:%M:%S
++ echo '===== 4K/4K c2 11:10:54 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/v3env/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data/models/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 4096 --random-output-len 4096 --ignore-eos --num-prompts 2 --request-rate 2
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/nospec_ops/boot.log
++ return 0
++ for C in 1 2 4 8 16 32
++ bench /root/nospec_ops/tiers.log /root/nospec_ops/boot.log '4K/4K c4' 4096 4096 4
++ local LOG=/root/nospec_ops/tiers.log BLOG=/root/nospec_ops/boot.log 'label=4K/4K c4' ilen=4096 olen=4096 conc=4
+++ date -u +%H:%M:%S
++ echo '===== 4K/4K c4 11:12:03 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/v3env/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data/models/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 4096 --random-output-len 4096 --ignore-eos --num-prompts 4 --request-rate 4
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/nospec_ops/boot.log
++ return 0
++ for C in 1 2 4 8 16 32
++ bench /root/nospec_ops/tiers.log /root/nospec_ops/boot.log '4K/4K c8' 4096 4096 8
++ local LOG=/root/nospec_ops/tiers.log BLOG=/root/nospec_ops/boot.log 'label=4K/4K c8' ilen=4096 olen=4096 conc=8
+++ date -u +%H:%M:%S
++ echo '===== 4K/4K c8 11:13:14 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/v3env/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data/models/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 4096 --random-output-len 4096 --ignore-eos --num-prompts 8 --request-rate 8
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/nospec_ops/boot.log
++ return 0
++ for C in 1 2 4 8 16 32
++ bench /root/nospec_ops/tiers.log /root/nospec_ops/boot.log '4K/4K c16' 4096 4096 16
++ local LOG=/root/nospec_ops/tiers.log BLOG=/root/nospec_ops/boot.log 'label=4K/4K c16' ilen=4096 olen=4096 conc=16
+++ date -u +%H:%M:%S
++ echo '===== 4K/4K c16 11:14:36 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/v3env/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data/models/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 4096 --random-output-len 4096 --ignore-eos --num-prompts 16 --request-rate 16
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/nospec_ops/boot.log
++ return 0
++ for C in 1 2 4 8 16 32
++ bench /root/nospec_ops/tiers.log /root/nospec_ops/boot.log '4K/4K c32' 4096 4096 32
++ local LOG=/root/nospec_ops/tiers.log BLOG=/root/nospec_ops/boot.log 'label=4K/4K c32' ilen=4096 olen=4096 conc=32
+++ date -u +%H:%M:%S
++ echo '===== 4K/4K c32 11:16:11 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/v3env/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data/models/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 4096 --random-output-len 4096 --ignore-eos --num-prompts 32 --request-rate 32
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/nospec_ops/boot.log
++ return 0
++ for C in 1 2 4 8 16 32
++ bench /root/nospec_ops/tiers.log /root/nospec_ops/boot.log '8K/8K c1' 8192 8192 1
++ local LOG=/root/nospec_ops/tiers.log BLOG=/root/nospec_ops/boot.log 'label=8K/8K c1' ilen=8192 olen=8192 conc=1
+++ date -u +%H:%M:%S
++ echo '===== 8K/8K c1 11:18:17 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/v3env/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data/models/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 8192 --random-output-len 8192 --ignore-eos --num-prompts 1 --request-rate 1
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/nospec_ops/boot.log
++ return 0
++ for C in 1 2 4 8 16 32
++ bench /root/nospec_ops/tiers.log /root/nospec_ops/boot.log '8K/8K c2' 8192 8192 2
++ local LOG=/root/nospec_ops/tiers.log BLOG=/root/nospec_ops/boot.log 'label=8K/8K c2' ilen=8192 olen=8192 conc=2
+++ date -u +%H:%M:%S
++ echo '===== 8K/8K c2 11:20:07 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/v3env/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data/models/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 8192 --random-output-len 8192 --ignore-eos --num-prompts 2 --request-rate 2
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/nospec_ops/boot.log
++ return 0
++ for C in 1 2 4 8 16 32
++ bench /root/nospec_ops/tiers.log /root/nospec_ops/boot.log '8K/8K c4' 8192 8192 4
++ local LOG=/root/nospec_ops/tiers.log BLOG=/root/nospec_ops/boot.log 'label=8K/8K c4' ilen=8192 olen=8192 conc=4
+++ date -u +%H:%M:%S
++ echo '===== 8K/8K c4 11:22:17 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/v3env/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data/models/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 8192 --random-output-len 8192 --ignore-eos --num-prompts 4 --request-rate 4
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/nospec_ops/boot.log
++ return 0
++ for C in 1 2 4 8 16 32
++ bench /root/nospec_ops/tiers.log /root/nospec_ops/boot.log '8K/8K c8' 8192 8192 8
++ local LOG=/root/nospec_ops/tiers.log BLOG=/root/nospec_ops/boot.log 'label=8K/8K c8' ilen=8192 olen=8192 conc=8
+++ date -u +%H:%M:%S
++ echo '===== 8K/8K c8 11:24:31 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/v3env/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data/models/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 8192 --random-output-len 8192 --ignore-eos --num-prompts 8 --request-rate 8
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/nospec_ops/boot.log
++ return 0
++ for C in 1 2 4 8 16 32
++ bench /root/nospec_ops/tiers.log /root/nospec_ops/boot.log '8K/8K c16' 8192 8192 16
++ local LOG=/root/nospec_ops/tiers.log BLOG=/root/nospec_ops/boot.log 'label=8K/8K c16' ilen=8192 olen=8192 conc=16
+++ date -u +%H:%M:%S
++ echo '===== 8K/8K c16 11:27:10 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/v3env/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data/models/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 8192 --random-output-len 8192 --ignore-eos --num-prompts 16 --request-rate 16
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/nospec_ops/boot.log
++ return 0
++ for C in 1 2 4 8 16 32
++ bench /root/nospec_ops/tiers.log /root/nospec_ops/boot.log '8K/8K c32' 8192 8192 32
++ local LOG=/root/nospec_ops/tiers.log BLOG=/root/nospec_ops/boot.log 'label=8K/8K c32' ilen=8192 olen=8192 conc=32
+++ date -u +%H:%M:%S
++ echo '===== 8K/8K c32 11:30:20 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/v3env/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data/models/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 8192 --random-output-len 8192 --ignore-eos --num-prompts 32 --request-rate 32
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/nospec_ops/boot.log
++ return 0
++ for C in 1 2 4 8 16
++ bench /root/nospec_ops/tiers.log /root/nospec_ops/boot.log '32K/32K c1' 32768 32768 1
++ local LOG=/root/nospec_ops/tiers.log BLOG=/root/nospec_ops/boot.log 'label=32K/32K c1' ilen=32768 olen=32768 conc=1
+++ date -u +%H:%M:%S
++ echo '===== 32K/32K c1 11:34:22 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/v3env/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data/models/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 32768 --random-output-len 32768 --ignore-eos --num-prompts 1 --request-rate 1
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/nospec_ops/boot.log
++ return 0
++ for C in 1 2 4 8 16
++ bench /root/nospec_ops/tiers.log /root/nospec_ops/boot.log '32K/32K c2' 32768 32768 2
++ local LOG=/root/nospec_ops/tiers.log BLOG=/root/nospec_ops/boot.log 'label=32K/32K c2' ilen=32768 olen=32768 conc=2
+++ date -u +%H:%M:%S
++ echo '===== 32K/32K c2 11:41:27 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/v3env/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data/models/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 32768 --random-output-len 32768 --ignore-eos --num-prompts 2 --request-rate 2
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/nospec_ops/boot.log
++ return 0
++ for C in 1 2 4 8 16
++ bench /root/nospec_ops/tiers.log /root/nospec_ops/boot.log '32K/32K c4' 32768 32768 4
++ local LOG=/root/nospec_ops/tiers.log BLOG=/root/nospec_ops/boot.log 'label=32K/32K c4' ilen=32768 olen=32768 conc=4
+++ date -u +%H:%M:%S
++ echo '===== 32K/32K c4 11:49:52 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/v3env/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data/models/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 32768 --random-output-len 32768 --ignore-eos --num-prompts 4 --request-rate 4
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/nospec_ops/boot.log
++ return 0
++ for C in 1 2 4 8 16
++ bench /root/nospec_ops/tiers.log /root/nospec_ops/boot.log '32K/32K c8' 32768 32768 8
++ local LOG=/root/nospec_ops/tiers.log BLOG=/root/nospec_ops/boot.log 'label=32K/32K c8' ilen=32768 olen=32768 conc=8
+++ date -u +%H:%M:%S
++ echo '===== 32K/32K c8 11:58:30 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/v3env/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data/models/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 32768 --random-output-len 32768 --ignore-eos --num-prompts 8 --request-rate 8
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/nospec_ops/boot.log
++ return 0
++ for C in 1 2 4 8 16
++ bench /root/nospec_ops/tiers.log /root/nospec_ops/boot.log '32K/32K c16' 32768 32768 16
++ local LOG=/root/nospec_ops/tiers.log BLOG=/root/nospec_ops/boot.log 'label=32K/32K c16' ilen=32768 olen=32768 conc=16
+++ date -u +%H:%M:%S
++ echo '===== 32K/32K c16 12:08:59 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/v3env/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data/models/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 32768 --random-output-len 32768 --ignore-eos --num-prompts 16 --request-rate 16
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/nospec_ops/boot.log
++ return 0
++ for C in 1 2 4 8
++ bench /root/nospec_ops/tiers.log /root/nospec_ops/boot.log '64K/64K c1' 65536 65536 1
++ local LOG=/root/nospec_ops/tiers.log BLOG=/root/nospec_ops/boot.log 'label=64K/64K c1' ilen=65536 olen=65536 conc=1
+++ date -u +%H:%M:%S
++ echo '===== 64K/64K c1 12:21:20 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/v3env/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data/models/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 65536 --random-output-len 65536 --ignore-eos --num-prompts 1 --request-rate 1
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/nospec_ops/boot.log
++ return 0
++ for C in 1 2 4 8
++ bench /root/nospec_ops/tiers.log /root/nospec_ops/boot.log '64K/64K c2' 65536 65536 2
++ local LOG=/root/nospec_ops/tiers.log BLOG=/root/nospec_ops/boot.log 'label=64K/64K c2' ilen=65536 olen=65536 conc=2
+++ date -u +%H:%M:%S
++ echo '===== 64K/64K c2 12:35:29 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/v3env/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data/models/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 65536 --random-output-len 65536 --ignore-eos --num-prompts 2 --request-rate 2
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/nospec_ops/boot.log
++ return 0
++ for C in 1 2 4 8
++ bench /root/nospec_ops/tiers.log /root/nospec_ops/boot.log '64K/64K c4' 65536 65536 4
++ local LOG=/root/nospec_ops/tiers.log BLOG=/root/nospec_ops/boot.log 'label=64K/64K c4' ilen=65536 olen=65536 conc=4
+++ date -u +%H:%M:%S
++ echo '===== 64K/64K c4 12:52:17 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/v3env/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data/models/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 65536 --random-output-len 65536 --ignore-eos --num-prompts 4 --request-rate 4
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/nospec_ops/boot.log
++ return 0
++ for C in 1 2 4 8
++ bench /root/nospec_ops/tiers.log /root/nospec_ops/boot.log '64K/64K c8' 65536 65536 8
++ local LOG=/root/nospec_ops/tiers.log BLOG=/root/nospec_ops/boot.log 'label=64K/64K c8' ilen=65536 olen=65536 conc=8
+++ date -u +%H:%M:%S
++ echo '===== 64K/64K c8 13:09:33 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/v3env/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data/models/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 65536 --random-output-len 65536 --ignore-eos --num-prompts 8 --request-rate 8
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/nospec_ops/boot.log
++ return 0
+++ date -u
++ echo '########## AGENT Mon Oct 26 01:30:41 PM UTC 2026 ##########'
++ for S in 1 2 3
++ /root/v3env/bin/python /root/test_ops/agent_tools_sim.py http://127.0.0.1:8123 --turns 12
++ echo 'agent s1 rc=0'
++ for S in 1 2 3
++ /root/v3env/bin/python /root/test_ops/agent_tools_sim.py http://127.0.0.1:8123 --turns 12
++ echo 'agent s2 rc=1'
++ for S in 1 2 3
++ /root/v3env/bin/python /root/test_ops/agent_tools_sim.py http://127.0.0.1:8123 --turns 12
++ echo 'agent s3 rc=0'
+++ date -u
++ echo '########## VL E2E Mon Oct 26 01:32:22 PM UTC 2026 ##########'
++ /root/v3env/bin/python /root/test_ops/vl_e2e.py
++ echo 'vl_e2e rc=0'
++ tail -5 /root/nospec_ops/vl_e2e.out
++ kill_all
++ pkill -9 -f '[v]llm serve'
++ pkill -9 -f VLLM::
++ sleep 2
+/root/nospec_ops/matrix_nospec.sh: line 14: 903000 Killed                  setsid nohup env PATH=$V/bin:/usr/local/cuda/bin:/usr/local/bin:$PATH CUDA_HOME=/usr/local/cuda VLLM_USE_RUST_FRONTEND=1 VLLM_ENGINE_READY_TIMEOUT_S=7200 NCCL_P2P_LEVEL=SYS FLASHINFER_DISABLE_VERSION_CHECK=1 HF_HUB_OFFLINE=1 HF_HUB_DISABLE_XET=1 $V/bin/vllm serve $MODEL --served-model-name deepseek-v4.1-flash --tokenizer-mode deepseek_v41 --trust-remote-code --tensor-parallel-size 8 --enable-expert-parallel --kv-cache-dtype fp8 --engram-config '{"cpu_offload":true}' --moe-backend auto --compilation-config '{"cudagraph_mode":"PIECEWISE"}' --max-model-len 1048576 --max-num-seqs 128 --gpu-memory-utilization 0.90 --enable-auto-tool-choice --tool-call-parser deepseek_v41 --reasoning-parser deepseek_v41 --port 8123 --api-key abc.12345 > $BLOG 2>&1 < /dev/null
+++ ss -lptnH 'sport = :8123'
+++ grep -oP 'pid=\K[0-9]+'
+++ sort -u
++ for p in $(ss -lptnH "sport = :8123" 2> /dev/null | grep -oP 'pid=\K[0-9]+' | sort -u)
++ kill -9 903590
+++ nvidia-smi --query-compute-apps=pid --format=csv,noheader
++ for p in $(nvidia-smi --query-compute-apps=pid --format=csv,noheader 2> /dev/null)
++ kill -9 903883
++ rm -f '/dev/shm/nccl-*' '/dev/shm/vllm-*'
++ sleep 3
+++ date -u
++ echo '########## NOSPEC DONE Mon Oct 26 01:32:57 PM UTC 2026 ##########'
++ echo DONE
++ echo DONE
+++ date -u
++ echo '########## MASTER ALL DONE Mon Oct 26 01:32:57 PM UTC 2026 ##########'
+########## MASTER ALL DONE Mon Oct 26 01:32:57 PM UTC 2026 ##########

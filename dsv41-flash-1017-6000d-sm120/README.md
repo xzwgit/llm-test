@@ -56,3 +56,18 @@ Same recipe minus `--language-model-only` (vision tower loaded; image modality a
 - E2E graded test (`vl_e2e.py`): image 512/1024/2048 squared x c1/c4, red-circle + text-in-image graded -> **15/15 pass**. TTFT 0.12s (512) -> 0.19s (2048); c4 concurrency does not raise TTFT materially.
 - Official `vllm bench mm-processor` (TP8; note TP=1 default cannot fit the 476G model - OOM evidence in `mmproc.log`): HF processor mean 8.9ms / encoder forward mean 28.5ms (P99 43.8ms) across 30 random-mm prompts at three resolutions. Requires pandas in the venv for the results table (`vllm[bench]`).
 - Raw: `logs/multimodal/`
+
+## 2026-10-26 · no-spec full unified matrix (`logs/nospec-matrix/`)
+
+Baseline leg without speculative decoding (no DSpark draft), same boot config as k345-v3 minus `--speculative-config`.
+
+| Path | Content |
+|---|---|
+| `docs/DSV4.1-Flash-1017-PRO6000D-FlashInfer072-nospec-unified-matrix.html` | Full 29-tier report (no-spec, acceptance cols = —) |
+| `logs/nospec-matrix/tiers.log` | Raw bench output, 29 tiers + c1 double-run, BOOT CMD in header |
+| `logs/nospec-matrix/boot.log` | Server boot log |
+| `logs/nospec-matrix/agent_s{1,2,3}.out` | Agent 12-turn tools sessions (s2: 1 raw-XML leak, errors=0) |
+| `logs/nospec-matrix/vl_e2e.out` | Multimodal E2E, all cases passed |
+| `logs/nospec-matrix/matrix_nospec.sh` | Driver script |
+
+Key: vLLM 0.32.1rc1.dev463 + FlashInfer 0.7.2.post1, boot ~90s, 2h29m total, zero failures / zero anomalies across 30 benches. Single-stream ~73-80 tok/s flat across 1K-64K; aggregate 1K/1K c128 = 2562 tok/s.
