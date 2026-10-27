@@ -1,0 +1,14 @@
+--- breakable_cudagraph.py.stock_bak_fixb	2026-10-25 03:52:30.743216515 +0000
++++ breakable_cudagraph.py	2026-10-28 10:10:52.371619892 +0000
+@@ -103,6 +103,11 @@
+             return fn(*args, **kwargs)
+         if not capture._capturing:
+             return fn(*args, **kwargs)
++        # FIXB-SM120: capture attention-family ops into the segment instead of
++        # eager-break (opt-in; NOT for PD-disagg KV transfer; KDA must keep breaking)
++        import os as _os
++        if _os.environ.get("VLLM_BREAKABLE_CAPTURE_ATTN") == "1" and "mla" in getattr(fn, "__name__", ""):
++            return fn(*args, **kwargs)
+         if is_forward_context_available():
+             mode = get_forward_context().cudagraph_runtime_mode
+             if mode == CUDAGraphMode.FULL:
