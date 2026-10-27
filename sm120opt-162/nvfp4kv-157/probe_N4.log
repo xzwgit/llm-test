@@ -1,0 +1,14 @@
+=== LAYER A (determinism) ===
+  A [PASS] '17*19=': distinct=1 correct=True sample='323323*19=6137\n6137*19=116603\n116603*19=2215457\n2215457*19=4'
+  A [FAIL] '17*19 等于多少？只给数字。': distinct=1 correct=False sample=''
+  A [PASS] 'A square has side length 7. Its area is': distinct=1 correct=True sample=' 7^2 = 49. What is the area of a square with side length 7?'
+  A [FAIL] '12*12=': distinct=1 correct=False sample=' 1.5*10^12. 12! = 4.79*10^8. 1.5*10^12 / '
+=== LAYER B (long-form degeneration) ===
+  B [PASS] len=288 max8gram=0.00 oddchar=0.000 head='要求：1. 必须包含“显存带宽”和“大模型推理”两个关键词；2. 必须包含一个比喻；3. 必须包含一'
+  B [PASS] len=171 max8gram=0.05 oddchar=0.000 head=' Include: (1) what PCIe bandwidth is, (2) why it m'
+  B [PASS] len=949 max8gram=0.01 oddchar=0.004 head='?\n------------------------------------\nMoE（Mixture'
+=== LAYER C (concurrency) ===
+  C [FAIL] c=8: 6/8 correct
+  C [FAIL] c=16: 12/16 correct
+  C [FAIL] c=32: 20/32 correct
+VERDICT: CORRUPT/FLAKY (fails=5)
