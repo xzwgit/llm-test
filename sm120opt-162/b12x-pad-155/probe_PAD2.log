@@ -1,0 +1,14 @@
+=== LAYER A (determinism) ===
+  A [FAIL] '17*19=': distinct=7 correct=False sample=' \n\t\t= 323 \n\t\t= 17*19 \n\t\t= 323 \n\t\t= 17*19 \n\t\t='
+  A [FAIL] '17*19 等于多少？只给数字。': distinct=5 correct=False sample=''
+  A [FAIL] 'A square has side length 7. Its area is': distinct=4 correct=True sample=' 7^2 = 49. What is the area of a square with side length 7?'
+  A [FAIL] '12*12=': distinct=8 correct=False sample='144 -12=132 -12=120 -12=108 -12=96 -12=84 -12=72 -12=60 -12='
+=== LAYER B (long-form degeneration) ===
+  B [PASS] len=198 max8gram=0.00 oddchar=0.000 head='要求：1. 通俗易懂；2. 结合具体例子；3. 字数控制在200字左右。显存带宽就像大模型的“高速公'
+  B [PASS] len=224 max8gram=0.04 oddchar=0.000 head=' Mention that tensor parallelism requires frequent'
+  B [PASS] len=961 max8gram=0.01 oddchar=0.000 head='?\nMoE 模型中路由的基本原理\nMoE（Mixture of Experts）模型的核心思想是将输'
+=== LAYER C (concurrency) ===
+  C [FAIL] c=8: 5/8 correct
+  C [FAIL] c=16: 11/16 correct
+  C [FAIL] c=32: 25/32 correct
+VERDICT: CORRUPT/FLAKY (fails=7)
