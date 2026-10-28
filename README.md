@@ -67,3 +67,5 @@ LLM 部署与性能测试归档。每个子目录是一个独立测试项目，�
 - sm120opt-162/ — 10-24 fork line on .162: b12x MoE first experiment (fast c1 +18.8% but exact-task corruption; #60762 port to dev451)
 
 - dsv41-flash-1017-6000d-sm120/logs/nospec-matrix/ — 2026-10-26 no-spec full unified matrix baseline on .157 (29 tiers + c1 double-run, zero failures; docs/ has the report)
+
+- glm53-flash-pro6000-sm120/logs/matrix-155/ — 2026-10-28 GLM-5.3-Flash two-leg matrix (MTP k5 + no-spec, 29 tiers, zero failures; FIXB #64266 + latest nightly)

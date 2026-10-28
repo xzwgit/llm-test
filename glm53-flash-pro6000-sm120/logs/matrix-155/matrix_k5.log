@@ -1,0 +1,1569 @@
+########## GLM_MATRIX MTP k5 BOOT Wed Oct 28 01:55:19 PM UTC 2026 ##########
+BOOT CMD: /root/fixbenv/bin/vllm serve /data/models/GLM-5.3-Flash --served-model-name glm-5.3-flash --tensor-parallel-size 8 --gpu-memory-utilization 0.90 --port 8123 --api-key *** --trust-remote-code --speculative-config {"method":"mtp","num_speculative_tokens":5}
+ENV: VLLM_BREAKABLE_CAPTURE_ATTN=1 VLLM_USE_RUST_FRONTEND=1 NCCL_P2P_LEVEL=SYS HF_HUB_OFFLINE=1
+MTP k5 READY after ~160s
+(Worker_TP5 pid=1846189) INFO 10-28 13:56:59 [gpu_worker.py:790] CUDA graph memory profiling is enabled (default since v0.21.0). The current --gpu-memory-utilization=0.9000 is equivalent to --gpu-memory-utilization=0.8560 without CUDA graph memory profiling. To maintain the same effective KV cache size as before, increase --gpu-memory-utilization to 0.9440. To disable, set VLLM_MEMORY_PROFILER_ESTIMATE_CUDAGRAPHS=0.
+(EngineCore pid=1844908) INFO 10-28 13:56:59 [kv_cache_utils.py:1147] GPU KV cache size: 4,865,640 tokens, Maximum concurrency for 1,048,576 tokens per request: 4.64x
+===== correctness MTP k5 =====
+{"id":"chatcmpl-e4f55af4","object":"chat.completion","created":1793195889,"model":"glm-5.3-flash","choices":[{"index":0,"message":{"role":"assistant","content":"17 × 19 = 323</think>323","refusal":null,"annotations":null,"audio":null,"function_call":null,"reasoning":null},"logprobs":null,"finish_reason":"stop","stop_reason":154827,"token_ids":null,"routed_experts":null,"weight_versions":null}],"service_tier":null,"usage":{"prompt_tokens":35,"total_tokens":47,"completion_tokens":12,"prompt_tokens_details":null,"completion_tokens_details":{"reasoning_tokens":0}},"metrics":null,"system_fingerprint":null,"prompt_logprobs":null,"prompt_token_ids":null,"prompt_text":null,"kv_transfer_params":null,"ec_transfer_params":null}
+===== tier 1K/1K c1 k5 13:58:09 =====
+W1028 13:58:11.161000 1850601 torch/_opaque_base.py:6] torch._opaque_base is deprecated, use torch._custom_class_base instead
+W1028 13:58:11.161000 1850601 torch/_library/opaque_object.py:288] register_opaque_type is deprecated, use register_custom_class instead
+W1028 13:58:11.162000 1850601 torch/_library/opaque_object.py:211] typ='value' is deprecated, use typ='constant' instead
+Namespace(subparser='bench', bench_type='serve', dispatch_function=<function BenchmarkServingSubcommand.cmd at 0x7f66186d0cc0>, trust_remote_code=False, seed=0, num_prompts=1, dataset_name='random', no_stream=False, dataset_path=None, no_oversample=False, skip_chat_template=False, enable_multimodal_chat=False, disable_shuffle=False, custom_output_len=256, custom_ensure_client_side_data=False, spec_bench_output_len=256, spec_bench_category=None, sharegpt_output_len=None, timed_trace_chunk_hash_size=16, timed_trace_sec_multiplier=1, timed_trace_label_timestamp='timestamp', timed_trace_label_input_length='input_length', timed_trace_label_output_length='output_length', timed_trace_label_hash_ids='hash_ids', blazedit_min_distance=0.0, blazedit_max_distance=1.0, asr_max_audio_len_sec=inf, asr_min_audio_len_sec=0.0, random_input_len=1024, random_output_len=1024, random_range_ratio='0.0', random_prefix_len=0, random_batch_size=1, no_reranker=False, random_mm_base_items_per_request=1, random_mm_num_mm_items_range_ratio=0.0, random_mm_limit_mm_per_prompt={'image': 255, 'video': 1}, random_mm_bucket_config={(256, 256, 1): 0.5, (720, 1280, 1): 0.5, (720, 1280, 16): 0.0}, hf_subset=None, hf_split=None, hf_name=None, hf_output_len=None, bfcl_categories=None, prefix_repetition_prefix_len=256, prefix_repetition_suffix_len=256, prefix_repetition_num_prefixes=10, prefix_repetition_output_len=128, speed_bench_dataset_subset='qualitative', speed_bench_output_len=4096, speed_bench_category=None, label=None, backend='openai', base_url='http://127.0.0.1:8123', host='127.0.0.1', port=8000, endpoint='/v1/completions', header=None, max_concurrency=None, model='glm-5.3-flash', input_len=None, output_len=None, tokenizer='/data/models/GLM-5.3-Flash', tokenizer_mode='auto', use_beam_search=False, logprobs=None, request_rate=1.0, burstiness=1.0, probe_request_rate=0.0, disable_tqdm=False, num_warmups=0, profile=False, save_result=False, save_detailed=False, append_result=False, metadata=None, result_dir=None, result_filename=None, ignore_eos=True, self_timed=None, percentile_metrics=None, metric_percentiles='99', goodput=None, request_id_prefix='bench-7662db22-', top_p=None, top_k=None, min_p=None, temperature=None, frequency_penalty=None, presence_penalty=None, repetition_penalty=None, served_model_name=None, lora_modules=None, lora_assignment='random', ramp_up_strategy=None, ramp_up_start_rps=None, ramp_up_end_rps=None, ready_check_timeout_sec=0, chat_template_kwargs=None, extra_body=None, skip_tokenizer_init=False, insecure=False, plot_timeline=False, timeline_itl_thresholds='25,50', plot_dataset_stats=False, log_config_file=None, logging_config=LoggingConfig(log_level='INFO', formatter='text', configure_logging=True, pylogging_config_file=None))
+(MainProcess pid=1850601) INFO 10-28 13:58:14 [utils.py:88] Sampling input_len from [1024, 1024] and output_len from [1024, 1024]
+WARNING: vllm bench serve no longer sets temperature==0 (greedy) in requests by default. The default will be determined on the server side and can be model/API specific. For the old behavior, include --temperature=0.
+Starting initial single prompt test run...
+Skipping endpoint ready check.
+Starting main benchmark run...
+Traffic request rate: 1.0
+Burstiness factor: 1.0 (Poisson process)
+Maximum request concurrency: None
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:06<00:00,  6.59s/it]100%|██████████| 1/1 [00:06<00:00,  6.59s/it]
+tip: install termplotlib and gnuplot to plot the metrics
+============ Serving Benchmark Result ============
+Successful requests:                     1         
+Failed requests:                         0         
+Request rate configured (RPS):           1.00      
+Benchmark duration (s):                  6.59      
+Total input tokens:                      1024      
+Total generated tokens:                  1024      
+Request throughput (req/s):              0.15      
+Output token throughput (tok/s):         155.35    
+Peak output token throughput (tok/s):    56.00     
+Peak concurrent requests:                1.00      
+Total token throughput (tok/s):          310.71    
+---------------Time to First Token----------------
+Mean TTFT (ms):                          142.63    
+Median TTFT (ms):                        142.63    
+P99 TTFT (ms):                           142.63    
+-----Time per Output Token (excl. 1st token)------
+Mean TPOT (ms):                          5.32      
+Median TPOT (ms):                        5.32      
+P99 TPOT (ms):                           5.32      
+---------------Inter-token Latency----------------
+Mean ITL (ms):                           18.10     
+Median ITL (ms):                         18.15     
+P99 ITL (ms):                            19.04     
+---------------Speculative Decoding---------------
+Acceptance rate (%):                     48.40     
+Acceptance length:                       3.42      
+Drafts:                                  300       
+Draft tokens:                            1500      
+Accepted tokens:                         726       
+Per-position acceptance (%):
+  Position 0:                            52.67     
+  Position 1:                            48.00     
+  Position 2:                            47.67     
+  Position 3:                            47.33     
+  Position 4:                            46.33     
+==================================================
+===== tier 1K/1K c1 k5 13:58:21 =====
+W1028 13:58:23.692000 1851227 torch/_opaque_base.py:6] torch._opaque_base is deprecated, use torch._custom_class_base instead
+W1028 13:58:23.692000 1851227 torch/_library/opaque_object.py:288] register_opaque_type is deprecated, use register_custom_class instead
+W1028 13:58:23.693000 1851227 torch/_library/opaque_object.py:211] typ='value' is deprecated, use typ='constant' instead
+Namespace(subparser='bench', bench_type='serve', dispatch_function=<function BenchmarkServingSubcommand.cmd at 0x7fa4206b0c20>, trust_remote_code=False, seed=0, num_prompts=1, dataset_name='random', no_stream=False, dataset_path=None, no_oversample=False, skip_chat_template=False, enable_multimodal_chat=False, disable_shuffle=False, custom_output_len=256, custom_ensure_client_side_data=False, spec_bench_output_len=256, spec_bench_category=None, sharegpt_output_len=None, timed_trace_chunk_hash_size=16, timed_trace_sec_multiplier=1, timed_trace_label_timestamp='timestamp', timed_trace_label_input_length='input_length', timed_trace_label_output_length='output_length', timed_trace_label_hash_ids='hash_ids', blazedit_min_distance=0.0, blazedit_max_distance=1.0, asr_max_audio_len_sec=inf, asr_min_audio_len_sec=0.0, random_input_len=1024, random_output_len=1024, random_range_ratio='0.0', random_prefix_len=0, random_batch_size=1, no_reranker=False, random_mm_base_items_per_request=1, random_mm_num_mm_items_range_ratio=0.0, random_mm_limit_mm_per_prompt={'image': 255, 'video': 1}, random_mm_bucket_config={(256, 256, 1): 0.5, (720, 1280, 1): 0.5, (720, 1280, 16): 0.0}, hf_subset=None, hf_split=None, hf_name=None, hf_output_len=None, bfcl_categories=None, prefix_repetition_prefix_len=256, prefix_repetition_suffix_len=256, prefix_repetition_num_prefixes=10, prefix_repetition_output_len=128, speed_bench_dataset_subset='qualitative', speed_bench_output_len=4096, speed_bench_category=None, label=None, backend='openai', base_url='http://127.0.0.1:8123', host='127.0.0.1', port=8000, endpoint='/v1/completions', header=None, max_concurrency=None, model='glm-5.3-flash', input_len=None, output_len=None, tokenizer='/data/models/GLM-5.3-Flash', tokenizer_mode='auto', use_beam_search=False, logprobs=None, request_rate=1.0, burstiness=1.0, probe_request_rate=0.0, disable_tqdm=False, num_warmups=0, profile=False, save_result=False, save_detailed=False, append_result=False, metadata=None, result_dir=None, result_filename=None, ignore_eos=True, self_timed=None, percentile_metrics=None, metric_percentiles='99', goodput=None, request_id_prefix='bench-10af60a2-', top_p=None, top_k=None, min_p=None, temperature=None, frequency_penalty=None, presence_penalty=None, repetition_penalty=None, served_model_name=None, lora_modules=None, lora_assignment='random', ramp_up_strategy=None, ramp_up_start_rps=None, ramp_up_end_rps=None, ready_check_timeout_sec=0, chat_template_kwargs=None, extra_body=None, skip_tokenizer_init=False, insecure=False, plot_timeline=False, timeline_itl_thresholds='25,50', plot_dataset_stats=False, log_config_file=None, logging_config=LoggingConfig(log_level='INFO', formatter='text', configure_logging=True, pylogging_config_file=None))
+(MainProcess pid=1851227) INFO 10-28 13:58:27 [utils.py:88] Sampling input_len from [1024, 1024] and output_len from [1024, 1024]
+WARNING: vllm bench serve no longer sets temperature==0 (greedy) in requests by default. The default will be determined on the server side and can be model/API specific. For the old behavior, include --temperature=0.
+Starting initial single prompt test run...
+Skipping endpoint ready check.
+Starting main benchmark run...
+Traffic request rate: 1.0
+Burstiness factor: 1.0 (Poisson process)
+Maximum request concurrency: None
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:06<00:00,  6.25s/it]100%|██████████| 1/1 [00:06<00:00,  6.25s/it]
+tip: install termplotlib and gnuplot to plot the metrics
+============ Serving Benchmark Result ============
+Successful requests:                     1         
+Failed requests:                         0         
+Request rate configured (RPS):           1.00      
+Benchmark duration (s):                  6.25      
+Total input tokens:                      1024      
+Total generated tokens:                  1024      
+Request throughput (req/s):              0.16      
+Output token throughput (tok/s):         163.79    
+Peak output token throughput (tok/s):    57.00     
+Peak concurrent requests:                1.00      
+Total token throughput (tok/s):          327.59    
+---------------Time to First Token----------------
+Mean TTFT (ms):                          140.12    
+Median TTFT (ms):                        140.12    
+P99 TTFT (ms):                           140.12    
+-----Time per Output Token (excl. 1st token)------
+Mean TPOT (ms):                          5.00      
+Median TPOT (ms):                        5.00      
+P99 TPOT (ms):                           5.00      
+---------------Inter-token Latency----------------
+Mean ITL (ms):                           18.06     
+Median ITL (ms):                         18.13     
+P99 ITL (ms):                            19.03     
+---------------Speculative Decoding---------------
+Acceptance rate (%):                     52.77     
+Acceptance length:                       3.64      
+Drafts:                                  282       
+Draft tokens:                            1410      
+Accepted tokens:                         744       
+Per-position acceptance (%):
+  Position 0:                            53.90     
+  Position 1:                            52.48     
+  Position 2:                            52.48     
+  Position 3:                            52.48     
+  Position 4:                            52.48     
+==================================================
+===== tier 1K/1K c2 k5 13:58:34 =====
+W1028 13:58:35.938000 1851795 torch/_opaque_base.py:6] torch._opaque_base is deprecated, use torch._custom_class_base instead
+W1028 13:58:35.939000 1851795 torch/_library/opaque_object.py:288] register_opaque_type is deprecated, use register_custom_class instead
+W1028 13:58:35.939000 1851795 torch/_library/opaque_object.py:211] typ='value' is deprecated, use typ='constant' instead
+Namespace(subparser='bench', bench_type='serve', dispatch_function=<function BenchmarkServingSubcommand.cmd at 0x7fe3bd5c4cc0>, trust_remote_code=False, seed=0, num_prompts=2, dataset_name='random', no_stream=False, dataset_path=None, no_oversample=False, skip_chat_template=False, enable_multimodal_chat=False, disable_shuffle=False, custom_output_len=256, custom_ensure_client_side_data=False, spec_bench_output_len=256, spec_bench_category=None, sharegpt_output_len=None, timed_trace_chunk_hash_size=16, timed_trace_sec_multiplier=1, timed_trace_label_timestamp='timestamp', timed_trace_label_input_length='input_length', timed_trace_label_output_length='output_length', timed_trace_label_hash_ids='hash_ids', blazedit_min_distance=0.0, blazedit_max_distance=1.0, asr_max_audio_len_sec=inf, asr_min_audio_len_sec=0.0, random_input_len=1024, random_output_len=1024, random_range_ratio='0.0', random_prefix_len=0, random_batch_size=1, no_reranker=False, random_mm_base_items_per_request=1, random_mm_num_mm_items_range_ratio=0.0, random_mm_limit_mm_per_prompt={'image': 255, 'video': 1}, random_mm_bucket_config={(256, 256, 1): 0.5, (720, 1280, 1): 0.5, (720, 1280, 16): 0.0}, hf_subset=None, hf_split=None, hf_name=None, hf_output_len=None, bfcl_categories=None, prefix_repetition_prefix_len=256, prefix_repetition_suffix_len=256, prefix_repetition_num_prefixes=10, prefix_repetition_output_len=128, speed_bench_dataset_subset='qualitative', speed_bench_output_len=4096, speed_bench_category=None, label=None, backend='openai', base_url='http://127.0.0.1:8123', host='127.0.0.1', port=8000, endpoint='/v1/completions', header=None, max_concurrency=None, model='glm-5.3-flash', input_len=None, output_len=None, tokenizer='/data/models/GLM-5.3-Flash', tokenizer_mode='auto', use_beam_search=False, logprobs=None, request_rate=2.0, burstiness=1.0, probe_request_rate=0.0, disable_tqdm=False, num_warmups=0, profile=False, save_result=False, save_detailed=False, append_result=False, metadata=None, result_dir=None, result_filename=None, ignore_eos=True, self_timed=None, percentile_metrics=None, metric_percentiles='99', goodput=None, request_id_prefix='bench-0e2a2824-', top_p=None, top_k=None, min_p=None, temperature=None, frequency_penalty=None, presence_penalty=None, repetition_penalty=None, served_model_name=None, lora_modules=None, lora_assignment='random', ramp_up_strategy=None, ramp_up_start_rps=None, ramp_up_end_rps=None, ready_check_timeout_sec=0, chat_template_kwargs=None, extra_body=None, skip_tokenizer_init=False, insecure=False, plot_timeline=False, timeline_itl_thresholds='25,50', plot_dataset_stats=False, log_config_file=None, logging_config=LoggingConfig(log_level='INFO', formatter='text', configure_logging=True, pylogging_config_file=None))
+(MainProcess pid=1851795) INFO 10-28 13:58:39 [utils.py:88] Sampling input_len from [1024, 1024] and output_len from [1024, 1024]
+WARNING: vllm bench serve no longer sets temperature==0 (greedy) in requests by default. The default will be determined on the server side and can be model/API specific. For the old behavior, include --temperature=0.
+Starting initial single prompt test run...
+Skipping endpoint ready check.
+Starting main benchmark run...
+Traffic request rate: 2.0
+Burstiness factor: 1.0 (Poisson process)
+Maximum request concurrency: None
+  0%|          | 0/2 [00:00<?, ?it/s] 50%|█████     | 1/2 [00:07<00:07,  7.34s/it]100%|██████████| 2/2 [00:08<00:00,  3.81s/it]100%|██████████| 2/2 [00:08<00:00,  4.34s/it]
+tip: install termplotlib and gnuplot to plot the metrics
+============ Serving Benchmark Result ============
+Successful requests:                     2         
+Failed requests:                         0         
+Request rate configured (RPS):           2.00      
+Benchmark duration (s):                  8.69      
+Total input tokens:                      2048      
+Total generated tokens:                  2048      
+Request throughput (req/s):              0.23      
+Output token throughput (tok/s):         235.77    
+Peak output token throughput (tok/s):    89.00     
+Peak concurrent requests:                2.00      
+Total token throughput (tok/s):          471.54    
+---------------Time to First Token----------------
+Mean TTFT (ms):                          154.13    
+Median TTFT (ms):                        154.13    
+P99 TTFT (ms):                           168.26    
+-----Time per Output Token (excl. 1st token)------
+Mean TPOT (ms):                          7.00      
+Median TPOT (ms):                        7.00      
+P99 TPOT (ms):                           7.96      
+---------------Inter-token Latency----------------
+Mean ITL (ms):                           22.25     
+Median ITL (ms):                         23.11     
+P99 ITL (ms):                            24.22     
+---------------Speculative Decoding---------------
+Acceptance rate (%):                     43.89     
+Acceptance length:                       3.19      
+Drafts:                                  642       
+Draft tokens:                            3210      
+Accepted tokens:                         1409      
+Per-position acceptance (%):
+  Position 0:                            57.48     
+  Position 1:                            50.93     
+  Position 2:                            39.41     
+  Position 3:                            37.23     
+  Position 4:                            34.42     
+==================================================
+===== tier 1K/1K c4 k5 13:58:48 =====
+W1028 13:58:50.722000 1852387 torch/_opaque_base.py:6] torch._opaque_base is deprecated, use torch._custom_class_base instead
+W1028 13:58:50.722000 1852387 torch/_library/opaque_object.py:288] register_opaque_type is deprecated, use register_custom_class instead
+W1028 13:58:50.723000 1852387 torch/_library/opaque_object.py:211] typ='value' is deprecated, use typ='constant' instead
+Namespace(subparser='bench', bench_type='serve', dispatch_function=<function BenchmarkServingSubcommand.cmd at 0x7f91b96e8cc0>, trust_remote_code=False, seed=0, num_prompts=4, dataset_name='random', no_stream=False, dataset_path=None, no_oversample=False, skip_chat_template=False, enable_multimodal_chat=False, disable_shuffle=False, custom_output_len=256, custom_ensure_client_side_data=False, spec_bench_output_len=256, spec_bench_category=None, sharegpt_output_len=None, timed_trace_chunk_hash_size=16, timed_trace_sec_multiplier=1, timed_trace_label_timestamp='timestamp', timed_trace_label_input_length='input_length', timed_trace_label_output_length='output_length', timed_trace_label_hash_ids='hash_ids', blazedit_min_distance=0.0, blazedit_max_distance=1.0, asr_max_audio_len_sec=inf, asr_min_audio_len_sec=0.0, random_input_len=1024, random_output_len=1024, random_range_ratio='0.0', random_prefix_len=0, random_batch_size=1, no_reranker=False, random_mm_base_items_per_request=1, random_mm_num_mm_items_range_ratio=0.0, random_mm_limit_mm_per_prompt={'image': 255, 'video': 1}, random_mm_bucket_config={(256, 256, 1): 0.5, (720, 1280, 1): 0.5, (720, 1280, 16): 0.0}, hf_subset=None, hf_split=None, hf_name=None, hf_output_len=None, bfcl_categories=None, prefix_repetition_prefix_len=256, prefix_repetition_suffix_len=256, prefix_repetition_num_prefixes=10, prefix_repetition_output_len=128, speed_bench_dataset_subset='qualitative', speed_bench_output_len=4096, speed_bench_category=None, label=None, backend='openai', base_url='http://127.0.0.1:8123', host='127.0.0.1', port=8000, endpoint='/v1/completions', header=None, max_concurrency=None, model='glm-5.3-flash', input_len=None, output_len=None, tokenizer='/data/models/GLM-5.3-Flash', tokenizer_mode='auto', use_beam_search=False, logprobs=None, request_rate=4.0, burstiness=1.0, probe_request_rate=0.0, disable_tqdm=False, num_warmups=0, profile=False, save_result=False, save_detailed=False, append_result=False, metadata=None, result_dir=None, result_filename=None, ignore_eos=True, self_timed=None, percentile_metrics=None, metric_percentiles='99', goodput=None, request_id_prefix='bench-ebd18c7c-', top_p=None, top_k=None, min_p=None, temperature=None, frequency_penalty=None, presence_penalty=None, repetition_penalty=None, served_model_name=None, lora_modules=None, lora_assignment='random', ramp_up_strategy=None, ramp_up_start_rps=None, ramp_up_end_rps=None, ready_check_timeout_sec=0, chat_template_kwargs=None, extra_body=None, skip_tokenizer_init=False, insecure=False, plot_timeline=False, timeline_itl_thresholds='25,50', plot_dataset_stats=False, log_config_file=None, logging_config=LoggingConfig(log_level='INFO', formatter='text', configure_logging=True, pylogging_config_file=None))
+(MainProcess pid=1852387) INFO 10-28 13:58:54 [utils.py:88] Sampling input_len from [1024, 1024] and output_len from [1024, 1024]
+WARNING: vllm bench serve no longer sets temperature==0 (greedy) in requests by default. The default will be determined on the server side and can be model/API specific. For the old behavior, include --temperature=0.
+Starting initial single prompt test run...
+Skipping endpoint ready check.
+Starting main benchmark run...
+Traffic request rate: 4.0
+Burstiness factor: 1.0 (Poisson process)
+Maximum request concurrency: None
+  0%|          | 0/4 [00:00<?, ?it/s] 25%|██▌       | 1/4 [00:08<00:24,  8.28s/it] 50%|█████     | 2/4 [00:09<00:08,  4.18s/it] 75%|███████▌  | 3/4 [00:10<00:02,  2.78s/it]100%|██████████| 4/4 [00:23<00:00,  6.68s/it]100%|██████████| 4/4 [00:23<00:00,  5.84s/it]
+tip: install termplotlib and gnuplot to plot the metrics
+============ Serving Benchmark Result ============
+Successful requests:                     4         
+Failed requests:                         0         
+Request rate configured (RPS):           4.00      
+Benchmark duration (s):                  23.36     
+Total input tokens:                      4096      
+Total generated tokens:                  4096      
+Request throughput (req/s):              0.17      
+Output token throughput (tok/s):         175.35    
+Peak output token throughput (tok/s):    136.00    
+Peak concurrent requests:                4.00      
+Total token throughput (tok/s):          350.71    
+---------------Time to First Token----------------
+Mean TTFT (ms):                          169.18    
+Median TTFT (ms):                        171.60    
+P99 TTFT (ms):                           193.46    
+-----Time per Output Token (excl. 1st token)------
+Mean TPOT (ms):                          11.91     
+Median TPOT (ms):                        9.28      
+P99 TPOT (ms):                           21.32     
+---------------Inter-token Latency----------------
+Mean ITL (ms):                           25.88     
+Median ITL (ms):                         27.94     
+P99 ITL (ms):                            32.48     
+---------------Speculative Decoding---------------
+Acceptance rate (%):                     23.67     
+Acceptance length:                       2.18      
+Drafts:                                  1885      
+Draft tokens:                            9425      
+Accepted tokens:                         2231      
+Per-position acceptance (%):
+  Position 0:                            32.20     
+  Position 1:                            27.64     
+  Position 2:                            24.62     
+  Position 3:                            17.67     
+  Position 4:                            16.23     
+==================================================
+===== tier 1K/1K c8 k5 13:59:18 =====
+W1028 13:59:20.133000 1853188 torch/_opaque_base.py:6] torch._opaque_base is deprecated, use torch._custom_class_base instead
+W1028 13:59:20.133000 1853188 torch/_library/opaque_object.py:288] register_opaque_type is deprecated, use register_custom_class instead
+W1028 13:59:20.134000 1853188 torch/_library/opaque_object.py:211] typ='value' is deprecated, use typ='constant' instead
+Namespace(subparser='bench', bench_type='serve', dispatch_function=<function BenchmarkServingSubcommand.cmd at 0x7fd234b6ccc0>, trust_remote_code=False, seed=0, num_prompts=8, dataset_name='random', no_stream=False, dataset_path=None, no_oversample=False, skip_chat_template=False, enable_multimodal_chat=False, disable_shuffle=False, custom_output_len=256, custom_ensure_client_side_data=False, spec_bench_output_len=256, spec_bench_category=None, sharegpt_output_len=None, timed_trace_chunk_hash_size=16, timed_trace_sec_multiplier=1, timed_trace_label_timestamp='timestamp', timed_trace_label_input_length='input_length', timed_trace_label_output_length='output_length', timed_trace_label_hash_ids='hash_ids', blazedit_min_distance=0.0, blazedit_max_distance=1.0, asr_max_audio_len_sec=inf, asr_min_audio_len_sec=0.0, random_input_len=1024, random_output_len=1024, random_range_ratio='0.0', random_prefix_len=0, random_batch_size=1, no_reranker=False, random_mm_base_items_per_request=1, random_mm_num_mm_items_range_ratio=0.0, random_mm_limit_mm_per_prompt={'image': 255, 'video': 1}, random_mm_bucket_config={(256, 256, 1): 0.5, (720, 1280, 1): 0.5, (720, 1280, 16): 0.0}, hf_subset=None, hf_split=None, hf_name=None, hf_output_len=None, bfcl_categories=None, prefix_repetition_prefix_len=256, prefix_repetition_suffix_len=256, prefix_repetition_num_prefixes=10, prefix_repetition_output_len=128, speed_bench_dataset_subset='qualitative', speed_bench_output_len=4096, speed_bench_category=None, label=None, backend='openai', base_url='http://127.0.0.1:8123', host='127.0.0.1', port=8000, endpoint='/v1/completions', header=None, max_concurrency=None, model='glm-5.3-flash', input_len=None, output_len=None, tokenizer='/data/models/GLM-5.3-Flash', tokenizer_mode='auto', use_beam_search=False, logprobs=None, request_rate=8.0, burstiness=1.0, probe_request_rate=0.0, disable_tqdm=False, num_warmups=0, profile=False, save_result=False, save_detailed=False, append_result=False, metadata=None, result_dir=None, result_filename=None, ignore_eos=True, self_timed=None, percentile_metrics=None, metric_percentiles='99', goodput=None, request_id_prefix='bench-6d108758-', top_p=None, top_k=None, min_p=None, temperature=None, frequency_penalty=None, presence_penalty=None, repetition_penalty=None, served_model_name=None, lora_modules=None, lora_assignment='random', ramp_up_strategy=None, ramp_up_start_rps=None, ramp_up_end_rps=None, ready_check_timeout_sec=0, chat_template_kwargs=None, extra_body=None, skip_tokenizer_init=False, insecure=False, plot_timeline=False, timeline_itl_thresholds='25,50', plot_dataset_stats=False, log_config_file=None, logging_config=LoggingConfig(log_level='INFO', formatter='text', configure_logging=True, pylogging_config_file=None))
+(MainProcess pid=1853188) INFO 10-28 13:59:23 [utils.py:88] Sampling input_len from [1024, 1024] and output_len from [1024, 1024]
+WARNING: vllm bench serve no longer sets temperature==0 (greedy) in requests by default. The default will be determined on the server side and can be model/API specific. For the old behavior, include --temperature=0.
+Starting initial single prompt test run...
+Skipping endpoint ready check.
+Starting main benchmark run...
+Traffic request rate: 8.0
+Burstiness factor: 1.0 (Poisson process)
+Maximum request concurrency: None
+  0%|          | 0/8 [00:00<?, ?it/s] 12%|█▎        | 1/8 [00:09<01:03,  9.03s/it] 25%|██▌       | 2/8 [00:09<00:24,  4.13s/it] 38%|███▊      | 3/8 [00:10<00:12,  2.51s/it] 50%|█████     | 4/8 [00:10<00:06,  1.69s/it] 62%|██████▎   | 5/8 [00:13<00:06,  2.16s/it] 75%|███████▌  | 6/8 [00:14<00:03,  1.54s/it] 88%|████████▊ | 7/8 [00:19<00:02,  2.70s/it]100%|██████████| 8/8 [00:21<00:00,  2.51s/it]100%|██████████| 8/8 [00:21<00:00,  2.66s/it]
+tip: install termplotlib and gnuplot to plot the metrics
+============ Serving Benchmark Result ============
+Successful requests:                     8         
+Failed requests:                         0         
+Request rate configured (RPS):           8.00      
+Benchmark duration (s):                  21.26     
+Total input tokens:                      8192      
+Total generated tokens:                  8192      
+Request throughput (req/s):              0.38      
+Output token throughput (tok/s):         385.30    
+Peak output token throughput (tok/s):    208.00    
+Peak concurrent requests:                8.00      
+Total token throughput (tok/s):          770.59    
+---------------Time to First Token----------------
+Mean TTFT (ms):                          320.82    
+Median TTFT (ms):                        344.51    
+P99 TTFT (ms):                           497.94    
+-----Time per Output Token (excl. 1st token)------
+Mean TPOT (ms):                          12.38     
+Median TPOT (ms):                        11.27     
+P99 TPOT (ms):                           19.82     
+---------------Inter-token Latency----------------
+Mean ITL (ms):                           35.34     
+Median ITL (ms):                         38.46     
+P99 ITL (ms):                            44.06     
+---------------Speculative Decoding---------------
+Acceptance rate (%):                     37.33     
+Acceptance length:                       2.87      
+Drafts:                                  2859      
+Draft tokens:                            14295     
+Accepted tokens:                         5337      
+Per-position acceptance (%):
+  Position 0:                            58.17     
+  Position 1:                            41.27     
+  Position 2:                            33.37     
+  Position 3:                            28.61     
+  Position 4:                            25.25     
+==================================================
+===== tier 1K/1K c16 k5 13:59:45 =====
+W1028 13:59:47.407000 1853920 torch/_opaque_base.py:6] torch._opaque_base is deprecated, use torch._custom_class_base instead
+W1028 13:59:47.407000 1853920 torch/_library/opaque_object.py:288] register_opaque_type is deprecated, use register_custom_class instead
+W1028 13:59:47.407000 1853920 torch/_library/opaque_object.py:211] typ='value' is deprecated, use typ='constant' instead
+Namespace(subparser='bench', bench_type='serve', dispatch_function=<function BenchmarkServingSubcommand.cmd at 0x7fd738d60c20>, trust_remote_code=False, seed=0, num_prompts=16, dataset_name='random', no_stream=False, dataset_path=None, no_oversample=False, skip_chat_template=False, enable_multimodal_chat=False, disable_shuffle=False, custom_output_len=256, custom_ensure_client_side_data=False, spec_bench_output_len=256, spec_bench_category=None, sharegpt_output_len=None, timed_trace_chunk_hash_size=16, timed_trace_sec_multiplier=1, timed_trace_label_timestamp='timestamp', timed_trace_label_input_length='input_length', timed_trace_label_output_length='output_length', timed_trace_label_hash_ids='hash_ids', blazedit_min_distance=0.0, blazedit_max_distance=1.0, asr_max_audio_len_sec=inf, asr_min_audio_len_sec=0.0, random_input_len=1024, random_output_len=1024, random_range_ratio='0.0', random_prefix_len=0, random_batch_size=1, no_reranker=False, random_mm_base_items_per_request=1, random_mm_num_mm_items_range_ratio=0.0, random_mm_limit_mm_per_prompt={'image': 255, 'video': 1}, random_mm_bucket_config={(256, 256, 1): 0.5, (720, 1280, 1): 0.5, (720, 1280, 16): 0.0}, hf_subset=None, hf_split=None, hf_name=None, hf_output_len=None, bfcl_categories=None, prefix_repetition_prefix_len=256, prefix_repetition_suffix_len=256, prefix_repetition_num_prefixes=10, prefix_repetition_output_len=128, speed_bench_dataset_subset='qualitative', speed_bench_output_len=4096, speed_bench_category=None, label=None, backend='openai', base_url='http://127.0.0.1:8123', host='127.0.0.1', port=8000, endpoint='/v1/completions', header=None, max_concurrency=None, model='glm-5.3-flash', input_len=None, output_len=None, tokenizer='/data/models/GLM-5.3-Flash', tokenizer_mode='auto', use_beam_search=False, logprobs=None, request_rate=16.0, burstiness=1.0, probe_request_rate=0.0, disable_tqdm=False, num_warmups=0, profile=False, save_result=False, save_detailed=False, append_result=False, metadata=None, result_dir=None, result_filename=None, ignore_eos=True, self_timed=None, percentile_metrics=None, metric_percentiles='99', goodput=None, request_id_prefix='bench-e7be15e6-', top_p=None, top_k=None, min_p=None, temperature=None, frequency_penalty=None, presence_penalty=None, repetition_penalty=None, served_model_name=None, lora_modules=None, lora_assignment='random', ramp_up_strategy=None, ramp_up_start_rps=None, ramp_up_end_rps=None, ready_check_timeout_sec=0, chat_template_kwargs=None, extra_body=None, skip_tokenizer_init=False, insecure=False, plot_timeline=False, timeline_itl_thresholds='25,50', plot_dataset_stats=False, log_config_file=None, logging_config=LoggingConfig(log_level='INFO', formatter='text', configure_logging=True, pylogging_config_file=None))
+(MainProcess pid=1853920) INFO 10-28 13:59:51 [utils.py:88] Sampling input_len from [1024, 1024] and output_len from [1024, 1024]
+WARNING: vllm bench serve no longer sets temperature==0 (greedy) in requests by default. The default will be determined on the server side and can be model/API specific. For the old behavior, include --temperature=0.
+Starting initial single prompt test run...
+Skipping endpoint ready check.
+Starting main benchmark run...
+Traffic request rate: 16.0
+Burstiness factor: 1.0 (Poisson process)
+Maximum request concurrency: None
+  0%|          | 0/16 [00:00<?, ?it/s]  6%|▋         | 1/16 [00:12<03:07, 12.49s/it] 12%|█▎        | 2/16 [00:14<01:26,  6.19s/it] 19%|█▉        | 3/16 [00:14<00:46,  3.61s/it] 25%|██▌       | 4/16 [00:15<00:27,  2.28s/it] 31%|███▏      | 5/16 [00:16<00:22,  2.04s/it] 38%|███▊      | 6/16 [00:17<00:17,  1.79s/it] 44%|████▍     | 7/16 [00:18<00:13,  1.49s/it] 50%|█████     | 8/16 [00:19<00:09,  1.13s/it] 56%|█████▋    | 9/16 [00:20<00:07,  1.11s/it] 62%|██████▎   | 10/16 [00:20<00:05,  1.07it/s] 75%|███████▌  | 12/16 [00:21<00:02,  1.38it/s] 81%|████████▏ | 13/16 [00:22<00:02,  1.42it/s] 88%|████████▊ | 14/16 [00:22<00:01,  1.54it/s] 94%|█████████▍| 15/16 [00:24<00:00,  1.20it/s]100%|██████████| 16/16 [00:25<00:00,  1.06it/s]100%|██████████| 16/16 [00:25<00:00,  1.59s/it]
+tip: install termplotlib and gnuplot to plot the metrics
+============ Serving Benchmark Result ============
+Successful requests:                     16        
+Failed requests:                         0         
+Request rate configured (RPS):           16.00     
+Benchmark duration (s):                  25.47     
+Total input tokens:                      16384     
+Total generated tokens:                  16384     
+Request throughput (req/s):              0.63      
+Output token throughput (tok/s):         643.15    
+Peak output token throughput (tok/s):    320.00    
+Peak concurrent requests:                16.00     
+Total token throughput (tok/s):          1286.30   
+---------------Time to First Token----------------
+Mean TTFT (ms):                          860.21    
+Median TTFT (ms):                        761.79    
+P99 TTFT (ms):                           1733.65   
+-----Time per Output Token (excl. 1st token)------
+Mean TPOT (ms):                          17.46     
+Median TPOT (ms):                        17.51     
+P99 TPOT (ms):                           23.81     
+---------------Inter-token Latency----------------
+Mean ITL (ms):                           51.42     
+Median ITL (ms):                         51.11     
+P99 ITL (ms):                            53.89     
+---------------Speculative Decoding---------------
+Acceptance rate (%):                     39.19     
+Acceptance length:                       2.96      
+Drafts:                                  5542      
+Draft tokens:                            27710     
+Accepted tokens:                         10859     
+Per-position acceptance (%):
+  Position 0:                            63.88     
+  Position 1:                            45.07     
+  Position 2:                            35.46     
+  Position 3:                            27.10     
+  Position 4:                            24.43     
+==================================================
+===== tier 1K/1K c32 k5 14:00:17 =====
+W1028 14:00:18.936000 1854845 torch/_opaque_base.py:6] torch._opaque_base is deprecated, use torch._custom_class_base instead
+W1028 14:00:18.937000 1854845 torch/_library/opaque_object.py:288] register_opaque_type is deprecated, use register_custom_class instead
+W1028 14:00:18.937000 1854845 torch/_library/opaque_object.py:211] typ='value' is deprecated, use typ='constant' instead
+Namespace(subparser='bench', bench_type='serve', dispatch_function=<function BenchmarkServingSubcommand.cmd at 0x7fc9a34dccc0>, trust_remote_code=False, seed=0, num_prompts=32, dataset_name='random', no_stream=False, dataset_path=None, no_oversample=False, skip_chat_template=False, enable_multimodal_chat=False, disable_shuffle=False, custom_output_len=256, custom_ensure_client_side_data=False, spec_bench_output_len=256, spec_bench_category=None, sharegpt_output_len=None, timed_trace_chunk_hash_size=16, timed_trace_sec_multiplier=1, timed_trace_label_timestamp='timestamp', timed_trace_label_input_length='input_length', timed_trace_label_output_length='output_length', timed_trace_label_hash_ids='hash_ids', blazedit_min_distance=0.0, blazedit_max_distance=1.0, asr_max_audio_len_sec=inf, asr_min_audio_len_sec=0.0, random_input_len=1024, random_output_len=1024, random_range_ratio='0.0', random_prefix_len=0, random_batch_size=1, no_reranker=False, random_mm_base_items_per_request=1, random_mm_num_mm_items_range_ratio=0.0, random_mm_limit_mm_per_prompt={'image': 255, 'video': 1}, random_mm_bucket_config={(256, 256, 1): 0.5, (720, 1280, 1): 0.5, (720, 1280, 16): 0.0}, hf_subset=None, hf_split=None, hf_name=None, hf_output_len=None, bfcl_categories=None, prefix_repetition_prefix_len=256, prefix_repetition_suffix_len=256, prefix_repetition_num_prefixes=10, prefix_repetition_output_len=128, speed_bench_dataset_subset='qualitative', speed_bench_output_len=4096, speed_bench_category=None, label=None, backend='openai', base_url='http://127.0.0.1:8123', host='127.0.0.1', port=8000, endpoint='/v1/completions', header=None, max_concurrency=None, model='glm-5.3-flash', input_len=None, output_len=None, tokenizer='/data/models/GLM-5.3-Flash', tokenizer_mode='auto', use_beam_search=False, logprobs=None, request_rate=32.0, burstiness=1.0, probe_request_rate=0.0, disable_tqdm=False, num_warmups=0, profile=False, save_result=False, save_detailed=False, append_result=False, metadata=None, result_dir=None, result_filename=None, ignore_eos=True, self_timed=None, percentile_metrics=None, metric_percentiles='99', goodput=None, request_id_prefix='bench-40e44291-', top_p=None, top_k=None, min_p=None, temperature=None, frequency_penalty=None, presence_penalty=None, repetition_penalty=None, served_model_name=None, lora_modules=None, lora_assignment='random', ramp_up_strategy=None, ramp_up_start_rps=None, ramp_up_end_rps=None, ready_check_timeout_sec=0, chat_template_kwargs=None, extra_body=None, skip_tokenizer_init=False, insecure=False, plot_timeline=False, timeline_itl_thresholds='25,50', plot_dataset_stats=False, log_config_file=None, logging_config=LoggingConfig(log_level='INFO', formatter='text', configure_logging=True, pylogging_config_file=None))
+(MainProcess pid=1854845) INFO 10-28 14:00:22 [utils.py:88] Sampling input_len from [1024, 1024] and output_len from [1024, 1024]
+WARNING: vllm bench serve no longer sets temperature==0 (greedy) in requests by default. The default will be determined on the server side and can be model/API specific. For the old behavior, include --temperature=0.
+Starting initial single prompt test run...
+Skipping endpoint ready check.
+Starting main benchmark run...
+Traffic request rate: 32.0
+Burstiness factor: 1.0 (Poisson process)
+Maximum request concurrency: None
+  0%|          | 0/32 [00:00<?, ?it/s]  3%|▎         | 1/32 [00:15<07:55, 15.33s/it]  6%|▋         | 2/32 [00:17<03:42,  7.43s/it] 12%|█▎        | 4/32 [00:17<01:19,  2.85s/it] 19%|█▉        | 6/32 [00:17<00:39,  1.54s/it] 25%|██▌       | 8/32 [00:17<00:22,  1.06it/s] 31%|███▏      | 10/32 [00:19<00:20,  1.07it/s] 34%|███▍      | 11/32 [00:19<00:16,  1.28it/s] 38%|███▊      | 12/32 [00:19<00:12,  1.56it/s] 41%|████      | 13/32 [00:20<00:12,  1.47it/s] 44%|████▍     | 14/32 [00:21<00:11,  1.55it/s] 50%|█████     | 16/32 [00:21<00:07,  2.01it/s] 53%|█████▎    | 17/32 [00:22<00:08,  1.79it/s] 59%|█████▉    | 19/32 [00:23<00:06,  2.07it/s] 62%|██████▎   | 20/32 [00:23<00:05,  2.39it/s] 66%|██████▌   | 21/32 [00:23<00:04,  2.52it/s] 69%|██████▉   | 22/32 [00:24<00:03,  3.03it/s] 72%|███████▏  | 23/32 [00:24<00:02,  3.21it/s] 75%|███████▌  | 24/32 [00:25<00:03,  2.12it/s] 78%|███████▊  | 25/32 [00:25<00:03,  1.94it/s] 81%|████████▏ | 26/32 [00:26<00:02,  2.15it/s] 84%|████████▍ | 27/32 [00:26<00:02,  1.83it/s] 88%|████████▊ | 28/32 [00:30<00:05,  1.40s/it] 91%|█████████ | 29/32 [00:31<00:04,  1.36s/it] 94%|█████████▍| 30/32 [00:39<00:06,  3.44s/it] 97%|█████████▋| 31/32 [00:42<00:03,  3.15s/it]100%|██████████| 32/32 [00:43<00:00,  2.42s/it]100%|██████████| 32/32 [00:43<00:00,  1.35s/it]
+tip: install termplotlib and gnuplot to plot the metrics
+============ Serving Benchmark Result ============
+Successful requests:                     32        
+Failed requests:                         0         
+Request rate configured (RPS):           32.00     
+Benchmark duration (s):                  43.14     
+Total input tokens:                      32768     
+Total generated tokens:                  32768     
+Request throughput (req/s):              0.74      
+Output token throughput (tok/s):         759.50    
+Peak output token throughput (tok/s):    480.00    
+Peak concurrent requests:                32.00     
+Total token throughput (tok/s):          1519.01   
+---------------Time to First Token----------------
+Mean TTFT (ms):                          1627.54   
+Median TTFT (ms):                        1760.45   
+P99 TTFT (ms):                           2644.86   
+-----Time per Output Token (excl. 1st token)------
+Mean TPOT (ms):                          21.04     
+Median TPOT (ms):                        19.48     
+P99 TPOT (ms):                           40.07     
+---------------Inter-token Latency----------------
+Mean ITL (ms):                           60.70     
+Median ITL (ms):                         65.73     
+P99 ITL (ms):                            69.63     
+---------------Speculative Decoding---------------
+Acceptance rate (%):                     37.97     
+Acceptance length:                       2.90      
+Drafts:                                  11316     
+Draft tokens:                            56580     
+Accepted tokens:                         21485     
+Per-position acceptance (%):
+  Position 0:                            52.07     
+  Position 1:                            44.12     
+  Position 2:                            37.33     
+  Position 3:                            30.05     
+  Position 4:                            26.29     
+==================================================
+===== tier 1K/1K c64 k5 14:01:06 =====
+W1028 14:01:08.282000 1855866 torch/_opaque_base.py:6] torch._opaque_base is deprecated, use torch._custom_class_base instead
+W1028 14:01:08.283000 1855866 torch/_library/opaque_object.py:288] register_opaque_type is deprecated, use register_custom_class instead
+W1028 14:01:08.283000 1855866 torch/_library/opaque_object.py:211] typ='value' is deprecated, use typ='constant' instead
+Namespace(subparser='bench', bench_type='serve', dispatch_function=<function BenchmarkServingSubcommand.cmd at 0x7eff453d8c20>, trust_remote_code=False, seed=0, num_prompts=64, dataset_name='random', no_stream=False, dataset_path=None, no_oversample=False, skip_chat_template=False, enable_multimodal_chat=False, disable_shuffle=False, custom_output_len=256, custom_ensure_client_side_data=False, spec_bench_output_len=256, spec_bench_category=None, sharegpt_output_len=None, timed_trace_chunk_hash_size=16, timed_trace_sec_multiplier=1, timed_trace_label_timestamp='timestamp', timed_trace_label_input_length='input_length', timed_trace_label_output_length='output_length', timed_trace_label_hash_ids='hash_ids', blazedit_min_distance=0.0, blazedit_max_distance=1.0, asr_max_audio_len_sec=inf, asr_min_audio_len_sec=0.0, random_input_len=1024, random_output_len=1024, random_range_ratio='0.0', random_prefix_len=0, random_batch_size=1, no_reranker=False, random_mm_base_items_per_request=1, random_mm_num_mm_items_range_ratio=0.0, random_mm_limit_mm_per_prompt={'image': 255, 'video': 1}, random_mm_bucket_config={(256, 256, 1): 0.5, (720, 1280, 1): 0.5, (720, 1280, 16): 0.0}, hf_subset=None, hf_split=None, hf_name=None, hf_output_len=None, bfcl_categories=None, prefix_repetition_prefix_len=256, prefix_repetition_suffix_len=256, prefix_repetition_num_prefixes=10, prefix_repetition_output_len=128, speed_bench_dataset_subset='qualitative', speed_bench_output_len=4096, speed_bench_category=None, label=None, backend='openai', base_url='http://127.0.0.1:8123', host='127.0.0.1', port=8000, endpoint='/v1/completions', header=None, max_concurrency=None, model='glm-5.3-flash', input_len=None, output_len=None, tokenizer='/data/models/GLM-5.3-Flash', tokenizer_mode='auto', use_beam_search=False, logprobs=None, request_rate=64.0, burstiness=1.0, probe_request_rate=0.0, disable_tqdm=False, num_warmups=0, profile=False, save_result=False, save_detailed=False, append_result=False, metadata=None, result_dir=None, result_filename=None, ignore_eos=True, self_timed=None, percentile_metrics=None, metric_percentiles='99', goodput=None, request_id_prefix='bench-584ba8dd-', top_p=None, top_k=None, min_p=None, temperature=None, frequency_penalty=None, presence_penalty=None, repetition_penalty=None, served_model_name=None, lora_modules=None, lora_assignment='random', ramp_up_strategy=None, ramp_up_start_rps=None, ramp_up_end_rps=None, ready_check_timeout_sec=0, chat_template_kwargs=None, extra_body=None, skip_tokenizer_init=False, insecure=False, plot_timeline=False, timeline_itl_thresholds='25,50', plot_dataset_stats=False, log_config_file=None, logging_config=LoggingConfig(log_level='INFO', formatter='text', configure_logging=True, pylogging_config_file=None))
+(MainProcess pid=1855866) INFO 10-28 14:01:12 [utils.py:88] Sampling input_len from [1024, 1024] and output_len from [1024, 1024]
+WARNING: vllm bench serve no longer sets temperature==0 (greedy) in requests by default. The default will be determined on the server side and can be model/API specific. For the old behavior, include --temperature=0.
+Starting initial single prompt test run...
+Skipping endpoint ready check.
+Starting main benchmark run...
+Traffic request rate: 64.0
+Burstiness factor: 1.0 (Poisson process)
+Maximum request concurrency: None
+  0%|          | 0/64 [00:00<?, ?it/s]  2%|▏         | 1/64 [00:23<24:56, 23.75s/it]  3%|▎         | 2/64 [00:24<10:45, 10.41s/it]  5%|▍         | 3/64 [00:25<05:57,  5.86s/it]  6%|▋         | 4/64 [00:25<03:45,  3.76s/it]  8%|▊         | 5/64 [00:25<02:25,  2.47s/it]  9%|▉         | 6/64 [00:26<01:37,  1.69s/it] 11%|█         | 7/64 [00:26<01:11,  1.25s/it] 12%|█▎        | 8/64 [00:26<00:52,  1.07it/s] 16%|█▌        | 10/64 [00:26<00:28,  1.88it/s] 17%|█▋        | 11/64 [00:27<00:33,  1.59it/s] 19%|█▉        | 12/64 [00:28<00:27,  1.89it/s] 22%|██▏       | 14/64 [00:28<00:17,  2.82it/s] 23%|██▎       | 15/64 [00:28<00:19,  2.46it/s] 25%|██▌       | 16/64 [00:29<00:17,  2.73it/s] 28%|██▊       | 18/64 [00:29<00:14,  3.19it/s] 31%|███▏      | 20/64 [00:30<00:12,  3.53it/s] 33%|███▎      | 21/64 [00:30<00:14,  2.95it/s] 34%|███▍      | 22/64 [00:31<00:15,  2.72it/s] 38%|███▊      | 24/64 [00:31<00:13,  3.07it/s] 39%|███▉      | 25/64 [00:32<00:16,  2.41it/s] 41%|████      | 26/64 [00:32<00:13,  2.72it/s] 42%|████▏     | 27/64 [00:32<00:12,  2.88it/s] 45%|████▌     | 29/64 [00:33<00:09,  3.83it/s] 48%|████▊     | 31/64 [00:33<00:06,  5.29it/s] 52%|█████▏    | 33/64 [00:33<00:05,  5.88it/s] 53%|█████▎    | 34/64 [00:34<00:08,  3.73it/s] 55%|█████▍    | 35/64 [00:34<00:07,  3.97it/s] 58%|█████▊    | 37/64 [00:35<00:09,  2.94it/s] 59%|█████▉    | 38/64 [00:35<00:09,  2.75it/s] 62%|██████▎   | 40/64 [00:36<00:07,  3.01it/s] 64%|██████▍   | 41/64 [00:36<00:07,  2.95it/s] 69%|██████▉   | 44/64 [00:36<00:03,  5.12it/s] 70%|███████   | 45/64 [00:37<00:03,  5.53it/s] 72%|███████▏  | 46/64 [00:37<00:03,  4.68it/s] 73%|███████▎  | 47/64 [00:38<00:07,  2.37it/s] 75%|███████▌  | 48/64 [00:38<00:07,  2.26it/s] 77%|███████▋  | 49/64 [00:40<00:10,  1.48it/s] 78%|███████▊  | 50/64 [00:41<00:10,  1.39it/s] 80%|███████▉  | 51/64 [00:41<00:07,  1.78it/s] 81%|████████▏ | 52/64 [00:42<00:07,  1.61it/s] 83%|████████▎ | 53/64 [00:43<00:08,  1.22it/s] 84%|████████▍ | 54/64 [00:45<00:10,  1.06s/it] 86%|████████▌ | 55/64 [00:45<00:07,  1.19it/s] 88%|████████▊ | 56/64 [00:45<00:05,  1.56it/s] 89%|████████▉ | 57/64 [00:45<00:04,  1.69it/s] 91%|█████████ | 58/64 [00:46<00:03,  1.99it/s] 92%|█████████▏| 59/64 [00:49<00:06,  1.38s/it] 94%|█████████▍| 60/64 [00:53<00:07,  1.99s/it] 95%|█████████▌| 61/64 [00:53<00:04,  1.58s/it] 97%|█████████▋| 62/64 [00:55<00:03,  1.70s/it] 98%|█████████▊| 63/64 [00:59<00:02,  2.32s/it]100%|██████████| 64/64 [00:59<00:00,  1.07it/s]
+tip: install termplotlib and gnuplot to plot the metrics
+============ Serving Benchmark Result ============
+Successful requests:                     64        
+Failed requests:                         0         
+Request rate configured (RPS):           64.00     
+Benchmark duration (s):                  59.58     
+Total input tokens:                      65536     
+Total generated tokens:                  65536     
+Request throughput (req/s):              1.07      
+Output token throughput (tok/s):         1100.00   
+Peak output token throughput (tok/s):    755.00    
+Peak concurrent requests:                64.00     
+Total token throughput (tok/s):          2199.99   
+---------------Time to First Token----------------
+Mean TTFT (ms):                          3361.32   
+Median TTFT (ms):                        3350.31   
+P99 TTFT (ms):                           6163.13   
+-----Time per Output Token (excl. 1st token)------
+Mean TPOT (ms):                          31.04     
+Median TPOT (ms):                        29.52     
+P99 TPOT (ms):                           53.84     
+---------------Inter-token Latency----------------
+Mean ITL (ms):                           86.15     
+Median ITL (ms):                         89.62     
+P99 ITL (ms):                            766.55    
+---------------Speculative Decoding---------------
+Acceptance rate (%):                     35.77     
+Acceptance length:                       2.79      
+Drafts:                                  23522     
+Draft tokens:                            117610    
+Accepted tokens:                         42065     
+Per-position acceptance (%):
+  Position 0:                            53.56     
+  Position 1:                            43.76     
+  Position 2:                            34.07     
+  Position 3:                            26.97     
+  Position 4:                            20.47     
+==================================================
+===== tier 1K/1K c128 k5 14:02:12 =====
+W1028 14:02:14.157000 1857048 torch/_opaque_base.py:6] torch._opaque_base is deprecated, use torch._custom_class_base instead
+W1028 14:02:14.158000 1857048 torch/_library/opaque_object.py:288] register_opaque_type is deprecated, use register_custom_class instead
+W1028 14:02:14.158000 1857048 torch/_library/opaque_object.py:211] typ='value' is deprecated, use typ='constant' instead
+Namespace(subparser='bench', bench_type='serve', dispatch_function=<function BenchmarkServingSubcommand.cmd at 0x7f488be8ccc0>, trust_remote_code=False, seed=0, num_prompts=128, dataset_name='random', no_stream=False, dataset_path=None, no_oversample=False, skip_chat_template=False, enable_multimodal_chat=False, disable_shuffle=False, custom_output_len=256, custom_ensure_client_side_data=False, spec_bench_output_len=256, spec_bench_category=None, sharegpt_output_len=None, timed_trace_chunk_hash_size=16, timed_trace_sec_multiplier=1, timed_trace_label_timestamp='timestamp', timed_trace_label_input_length='input_length', timed_trace_label_output_length='output_length', timed_trace_label_hash_ids='hash_ids', blazedit_min_distance=0.0, blazedit_max_distance=1.0, asr_max_audio_len_sec=inf, asr_min_audio_len_sec=0.0, random_input_len=1024, random_output_len=1024, random_range_ratio='0.0', random_prefix_len=0, random_batch_size=1, no_reranker=False, random_mm_base_items_per_request=1, random_mm_num_mm_items_range_ratio=0.0, random_mm_limit_mm_per_prompt={'image': 255, 'video': 1}, random_mm_bucket_config={(256, 256, 1): 0.5, (720, 1280, 1): 0.5, (720, 1280, 16): 0.0}, hf_subset=None, hf_split=None, hf_name=None, hf_output_len=None, bfcl_categories=None, prefix_repetition_prefix_len=256, prefix_repetition_suffix_len=256, prefix_repetition_num_prefixes=10, prefix_repetition_output_len=128, speed_bench_dataset_subset='qualitative', speed_bench_output_len=4096, speed_bench_category=None, label=None, backend='openai', base_url='http://127.0.0.1:8123', host='127.0.0.1', port=8000, endpoint='/v1/completions', header=None, max_concurrency=None, model='glm-5.3-flash', input_len=None, output_len=None, tokenizer='/data/models/GLM-5.3-Flash', tokenizer_mode='auto', use_beam_search=False, logprobs=None, request_rate=128.0, burstiness=1.0, probe_request_rate=0.0, disable_tqdm=False, num_warmups=0, profile=False, save_result=False, save_detailed=False, append_result=False, metadata=None, result_dir=None, result_filename=None, ignore_eos=True, self_timed=None, percentile_metrics=None, metric_percentiles='99', goodput=None, request_id_prefix='bench-b6d7702c-', top_p=None, top_k=None, min_p=None, temperature=None, frequency_penalty=None, presence_penalty=None, repetition_penalty=None, served_model_name=None, lora_modules=None, lora_assignment='random', ramp_up_strategy=None, ramp_up_start_rps=None, ramp_up_end_rps=None, ready_check_timeout_sec=0, chat_template_kwargs=None, extra_body=None, skip_tokenizer_init=False, insecure=False, plot_timeline=False, timeline_itl_thresholds='25,50', plot_dataset_stats=False, log_config_file=None, logging_config=LoggingConfig(log_level='INFO', formatter='text', configure_logging=True, pylogging_config_file=None))
+(MainProcess pid=1857048) INFO 10-28 14:02:17 [utils.py:88] Sampling input_len from [1024, 1024] and output_len from [1024, 1024]
+WARNING: vllm bench serve no longer sets temperature==0 (greedy) in requests by default. The default will be determined on the server side and can be model/API specific. For the old behavior, include --temperature=0.
+Starting initial single prompt test run...
+Skipping endpoint ready check.
+Starting main benchmark run...
+Traffic request rate: 128.0
+Burstiness factor: 1.0 (Poisson process)
+Maximum request concurrency: None
+  0%|          | 0/128 [00:00<?, ?it/s]  1%|          | 1/128 [00:36<1:18:13, 36.95s/it]  2%|▏         | 2/128 [00:38<34:03, 16.22s/it]    2%|▏         | 3/128 [00:39<19:06,  9.17s/it]  3%|▎         | 4/128 [00:39<11:34,  5.60s/it]  4%|▍         | 5/128 [00:39<07:26,  3.63s/it]  5%|▍         | 6/128 [00:39<04:57,  2.44s/it]  5%|▌         | 7/128 [00:39<03:23,  1.68s/it]  6%|▋         | 8/128 [00:40<02:22,  1.19s/it]  7%|▋         | 9/128 [00:40<01:41,  1.17it/s]  8%|▊         | 10/128 [00:40<01:23,  1.41it/s]  9%|▊         | 11/128 [00:40<01:06,  1.75it/s]  9%|▉         | 12/128 [00:42<01:32,  1.26it/s] 11%|█         | 14/128 [00:42<00:51,  2.20it/s] 12%|█▏        | 15/128 [00:42<00:45,  2.48it/s] 14%|█▍        | 18/128 [00:42<00:23,  4.64it/s] 16%|█▌        | 20/128 [00:42<00:19,  5.42it/s] 17%|█▋        | 22/128 [00:43<00:21,  4.96it/s] 18%|█▊        | 23/128 [00:44<00:37,  2.77it/s] 19%|█▉        | 24/128 [00:44<00:32,  3.23it/s] 20%|██        | 26/128 [00:44<00:21,  4.65it/s] 22%|██▏       | 28/128 [00:45<00:20,  4.99it/s] 23%|██▎       | 29/128 [00:45<00:22,  4.37it/s] 23%|██▎       | 30/128 [00:45<00:24,  3.94it/s] 24%|██▍       | 31/128 [00:45<00:23,  4.05it/s] 25%|██▌       | 32/128 [00:46<00:25,  3.70it/s] 26%|██▌       | 33/128 [00:46<00:24,  3.88it/s] 27%|██▋       | 35/128 [00:46<00:15,  5.88it/s] 28%|██▊       | 36/128 [00:46<00:14,  6.42it/s] 30%|██▉       | 38/128 [00:47<00:20,  4.45it/s] 30%|███       | 39/128 [00:48<00:34,  2.56it/s] 31%|███▏      | 40/128 [00:48<00:35,  2.50it/s] 32%|███▏      | 41/128 [00:48<00:28,  3.08it/s] 33%|███▎      | 42/128 [00:48<00:22,  3.75it/s] 34%|███▎      | 43/128 [00:49<00:18,  4.51it/s] 34%|███▍      | 44/128 [00:49<00:15,  5.30it/s] 36%|███▌      | 46/128 [00:49<00:12,  6.63it/s] 37%|███▋      | 47/128 [00:49<00:17,  4.67it/s] 38%|███▊      | 49/128 [00:49<00:11,  6.77it/s] 40%|███▉      | 51/128 [00:50<00:14,  5.38it/s] 41%|████▏     | 53/128 [00:50<00:14,  5.25it/s] 42%|████▏     | 54/128 [00:51<00:14,  5.20it/s] 44%|████▍     | 56/128 [00:51<00:11,  6.31it/s] 45%|████▌     | 58/128 [00:52<00:17,  3.95it/s] 46%|████▌     | 59/128 [00:52<00:16,  4.14it/s] 48%|████▊     | 61/128 [00:53<00:23,  2.91it/s] 50%|█████     | 64/128 [00:53<00:15,  4.01it/s] 51%|█████     | 65/128 [00:53<00:15,  4.19it/s] 52%|█████▏    | 66/128 [00:54<00:19,  3.16it/s] 53%|█████▎    | 68/128 [00:54<00:16,  3.53it/s] 55%|█████▍    | 70/128 [00:55<00:12,  4.60it/s] 55%|█████▌    | 71/128 [00:55<00:12,  4.41it/s] 56%|█████▋    | 72/128 [00:56<00:25,  2.23it/s] 57%|█████▋    | 73/128 [00:56<00:21,  2.60it/s] 58%|█████▊    | 74/128 [00:57<00:20,  2.67it/s] 59%|█████▊    | 75/128 [00:57<00:18,  2.91it/s] 59%|█████▉    | 76/128 [00:57<00:16,  3.13it/s] 60%|██████    | 77/128 [00:58<00:21,  2.36it/s] 61%|██████    | 78/128 [00:59<00:27,  1.85it/s] 62%|██████▏   | 79/128 [01:00<00:35,  1.38it/s] 62%|██████▎   | 80/128 [01:00<00:26,  1.78it/s] 63%|██████▎   | 81/128 [01:01<00:33,  1.42it/s] 65%|██████▍   | 83/128 [01:02<00:22,  2.04it/s] 66%|██████▌   | 84/128 [01:02<00:19,  2.24it/s] 66%|██████▋   | 85/128 [01:02<00:16,  2.69it/s] 67%|██████▋   | 86/128 [01:02<00:13,  3.19it/s] 68%|██████▊   | 87/128 [01:02<00:11,  3.44it/s] 69%|██████▉   | 88/128 [01:03<00:10,  3.99it/s] 70%|██████▉   | 89/128 [01:03<00:10,  3.78it/s] 70%|███████   | 90/128 [01:03<00:09,  3.97it/s] 71%|███████   | 91/128 [01:04<00:12,  2.86it/s] 72%|███████▏  | 92/128 [01:04<00:10,  3.45it/s] 73%|███████▎  | 93/128 [01:04<00:10,  3.47it/s] 74%|███████▍  | 95/128 [01:04<00:06,  5.31it/s] 75%|███████▌  | 96/128 [01:04<00:06,  5.15it/s] 77%|███████▋  | 98/128 [01:05<00:04,  6.38it/s] 77%|███████▋  | 99/128 [01:05<00:07,  4.13it/s] 78%|███████▊  | 100/128 [01:05<00:06,  4.32it/s] 79%|███████▉  | 101/128 [01:06<00:09,  2.95it/s] 80%|███████▉  | 102/128 [01:06<00:08,  2.99it/s] 80%|████████  | 103/128 [01:07<00:07,  3.40it/s] 81%|████████▏ | 104/128 [01:08<00:14,  1.65it/s] 82%|████████▏ | 105/128 [01:08<00:11,  2.06it/s] 83%|████████▎ | 106/128 [01:09<00:12,  1.71it/s] 84%|████████▎ | 107/128 [01:09<00:09,  2.15it/s] 86%|████████▌ | 110/128 [01:10<00:06,  2.69it/s] 87%|████████▋ | 111/128 [01:10<00:05,  3.05it/s] 88%|████████▊ | 112/128 [01:13<00:12,  1.26it/s] 88%|████████▊ | 113/128 [01:14<00:14,  1.02it/s] 89%|████████▉ | 114/128 [01:14<00:10,  1.34it/s] 91%|█████████▏| 117/128 [01:15<00:06,  1.81it/s] 92%|█████████▏| 118/128 [01:16<00:06,  1.61it/s] 93%|█████████▎| 119/128 [01:17<00:05,  1.54it/s] 94%|█████████▍| 120/128 [01:20<00:08,  1.11s/it] 95%|█████████▍| 121/128 [01:21<00:08,  1.21s/it] 95%|█████████▌| 122/128 [01:22<00:07,  1.25s/it] 96%|█████████▌| 123/128 [01:24<00:06,  1.24s/it] 97%|█████████▋| 124/128 [01:26<00:06,  1.59s/it] 98%|█████████▊| 125/128 [01:28<00:05,  1.81s/it] 98%|█████████▊| 126/128 [01:29<00:02,  1.44s/it]100%|██████████| 128/128 [01:29<00:00,  1.43it/s]
+tip: install termplotlib and gnuplot to plot the metrics
+============ Serving Benchmark Result ============
+Successful requests:                     128       
+Failed requests:                         0         
+Request rate configured (RPS):           128.00    
+Benchmark duration (s):                  89.46     
+Total input tokens:                      131072    
+Total generated tokens:                  131072    
+Request throughput (req/s):              1.43      
+Output token throughput (tok/s):         1465.07   
+Peak output token throughput (tok/s):    1024.00   
+Peak concurrent requests:                128.00    
+Total token throughput (tok/s):          2930.15   
+---------------Time to First Token----------------
+Mean TTFT (ms):                          7040.81   
+Median TTFT (ms):                        6961.96   
+P99 TTFT (ms):                           13533.65  
+-----Time per Output Token (excl. 1st token)------
+Mean TPOT (ms):                          48.13     
+Median TPOT (ms):                        46.14     
+P99 TPOT (ms):                           77.30     
+---------------Inter-token Latency----------------
+Mean ITL (ms):                           131.53    
+Median ITL (ms):                         130.21    
+P99 ITL (ms):                            832.92    
+---------------Speculative Decoding---------------
+Acceptance rate (%):                     34.91     
+Acceptance length:                       2.75      
+Drafts:                                  47785     
+Draft tokens:                            238925    
+Accepted tokens:                         83413     
+Per-position acceptance (%):
+  Position 0:                            50.79     
+  Position 1:                            40.29     
+  Position 2:                            33.31     
+  Position 3:                            27.01     
+  Position 4:                            23.16     
+==================================================
+===== tier 4K/4K c1 k5 14:03:48 =====
+W1028 14:03:50.036000 1858745 torch/_opaque_base.py:6] torch._opaque_base is deprecated, use torch._custom_class_base instead
+W1028 14:03:50.036000 1858745 torch/_library/opaque_object.py:288] register_opaque_type is deprecated, use register_custom_class instead
+W1028 14:03:50.036000 1858745 torch/_library/opaque_object.py:211] typ='value' is deprecated, use typ='constant' instead
+Namespace(subparser='bench', bench_type='serve', dispatch_function=<function BenchmarkServingSubcommand.cmd at 0x7f4a499c0cc0>, trust_remote_code=False, seed=0, num_prompts=1, dataset_name='random', no_stream=False, dataset_path=None, no_oversample=False, skip_chat_template=False, enable_multimodal_chat=False, disable_shuffle=False, custom_output_len=256, custom_ensure_client_side_data=False, spec_bench_output_len=256, spec_bench_category=None, sharegpt_output_len=None, timed_trace_chunk_hash_size=16, timed_trace_sec_multiplier=1, timed_trace_label_timestamp='timestamp', timed_trace_label_input_length='input_length', timed_trace_label_output_length='output_length', timed_trace_label_hash_ids='hash_ids', blazedit_min_distance=0.0, blazedit_max_distance=1.0, asr_max_audio_len_sec=inf, asr_min_audio_len_sec=0.0, random_input_len=4096, random_output_len=4096, random_range_ratio='0.0', random_prefix_len=0, random_batch_size=1, no_reranker=False, random_mm_base_items_per_request=1, random_mm_num_mm_items_range_ratio=0.0, random_mm_limit_mm_per_prompt={'image': 255, 'video': 1}, random_mm_bucket_config={(256, 256, 1): 0.5, (720, 1280, 1): 0.5, (720, 1280, 16): 0.0}, hf_subset=None, hf_split=None, hf_name=None, hf_output_len=None, bfcl_categories=None, prefix_repetition_prefix_len=256, prefix_repetition_suffix_len=256, prefix_repetition_num_prefixes=10, prefix_repetition_output_len=128, speed_bench_dataset_subset='qualitative', speed_bench_output_len=4096, speed_bench_category=None, label=None, backend='openai', base_url='http://127.0.0.1:8123', host='127.0.0.1', port=8000, endpoint='/v1/completions', header=None, max_concurrency=None, model='glm-5.3-flash', input_len=None, output_len=None, tokenizer='/data/models/GLM-5.3-Flash', tokenizer_mode='auto', use_beam_search=False, logprobs=None, request_rate=1.0, burstiness=1.0, probe_request_rate=0.0, disable_tqdm=False, num_warmups=0, profile=False, save_result=False, save_detailed=False, append_result=False, metadata=None, result_dir=None, result_filename=None, ignore_eos=True, self_timed=None, percentile_metrics=None, metric_percentiles='99', goodput=None, request_id_prefix='bench-e6bc311d-', top_p=None, top_k=None, min_p=None, temperature=None, frequency_penalty=None, presence_penalty=None, repetition_penalty=None, served_model_name=None, lora_modules=None, lora_assignment='random', ramp_up_strategy=None, ramp_up_start_rps=None, ramp_up_end_rps=None, ready_check_timeout_sec=0, chat_template_kwargs=None, extra_body=None, skip_tokenizer_init=False, insecure=False, plot_timeline=False, timeline_itl_thresholds='25,50', plot_dataset_stats=False, log_config_file=None, logging_config=LoggingConfig(log_level='INFO', formatter='text', configure_logging=True, pylogging_config_file=None))
+(MainProcess pid=1858745) INFO 10-28 14:03:53 [utils.py:88] Sampling input_len from [4096, 4096] and output_len from [4096, 4096]
+WARNING: vllm bench serve no longer sets temperature==0 (greedy) in requests by default. The default will be determined on the server side and can be model/API specific. For the old behavior, include --temperature=0.
+Starting initial single prompt test run...
+Skipping endpoint ready check.
+Starting main benchmark run...
+Traffic request rate: 1.0
+Burstiness factor: 1.0 (Poisson process)
+Maximum request concurrency: None
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:16<00:00, 16.04s/it]100%|██████████| 1/1 [00:16<00:00, 16.04s/it]
+tip: install termplotlib and gnuplot to plot the metrics
+============ Serving Benchmark Result ============
+Successful requests:                     1         
+Failed requests:                         0         
+Request rate configured (RPS):           1.00      
+Benchmark duration (s):                  16.04     
+Total input tokens:                      4096      
+Total generated tokens:                  4096      
+Request throughput (req/s):              0.06      
+Output token throughput (tok/s):         255.40    
+Peak output token throughput (tok/s):    63.00     
+Peak concurrent requests:                1.00      
+Total token throughput (tok/s):          510.81    
+---------------Time to First Token----------------
+Mean TTFT (ms):                          340.93    
+Median TTFT (ms):                        340.93    
+P99 TTFT (ms):                           340.93    
+-----Time per Output Token (excl. 1st token)------
+Mean TPOT (ms):                          3.59      
+Median TPOT (ms):                        3.59      
+P99 TPOT (ms):                           3.59      
+---------------Inter-token Latency----------------
+Mean ITL (ms):                           16.83     
+Median ITL (ms):                         16.41     
+P99 ITL (ms):                            18.60     
+---------------Speculative Decoding---------------
+Acceptance rate (%):                     73.94     
+Acceptance length:                       4.70      
+Drafts:                                  872       
+Draft tokens:                            4360      
+Accepted tokens:                         3224      
+Per-position acceptance (%):
+  Position 0:                            80.39     
+  Position 1:                            80.16     
+  Position 2:                            80.16     
+  Position 3:                            68.92     
+  Position 4:                            60.09     
+==================================================
+===== tier 4K/4K c2 k5 14:04:10 =====
+W1028 14:04:12.255000 1859418 torch/_opaque_base.py:6] torch._opaque_base is deprecated, use torch._custom_class_base instead
+W1028 14:04:12.255000 1859418 torch/_library/opaque_object.py:288] register_opaque_type is deprecated, use register_custom_class instead
+W1028 14:04:12.255000 1859418 torch/_library/opaque_object.py:211] typ='value' is deprecated, use typ='constant' instead
+Namespace(subparser='bench', bench_type='serve', dispatch_function=<function BenchmarkServingSubcommand.cmd at 0x7f3bef694c20>, trust_remote_code=False, seed=0, num_prompts=2, dataset_name='random', no_stream=False, dataset_path=None, no_oversample=False, skip_chat_template=False, enable_multimodal_chat=False, disable_shuffle=False, custom_output_len=256, custom_ensure_client_side_data=False, spec_bench_output_len=256, spec_bench_category=None, sharegpt_output_len=None, timed_trace_chunk_hash_size=16, timed_trace_sec_multiplier=1, timed_trace_label_timestamp='timestamp', timed_trace_label_input_length='input_length', timed_trace_label_output_length='output_length', timed_trace_label_hash_ids='hash_ids', blazedit_min_distance=0.0, blazedit_max_distance=1.0, asr_max_audio_len_sec=inf, asr_min_audio_len_sec=0.0, random_input_len=4096, random_output_len=4096, random_range_ratio='0.0', random_prefix_len=0, random_batch_size=1, no_reranker=False, random_mm_base_items_per_request=1, random_mm_num_mm_items_range_ratio=0.0, random_mm_limit_mm_per_prompt={'image': 255, 'video': 1}, random_mm_bucket_config={(256, 256, 1): 0.5, (720, 1280, 1): 0.5, (720, 1280, 16): 0.0}, hf_subset=None, hf_split=None, hf_name=None, hf_output_len=None, bfcl_categories=None, prefix_repetition_prefix_len=256, prefix_repetition_suffix_len=256, prefix_repetition_num_prefixes=10, prefix_repetition_output_len=128, speed_bench_dataset_subset='qualitative', speed_bench_output_len=4096, speed_bench_category=None, label=None, backend='openai', base_url='http://127.0.0.1:8123', host='127.0.0.1', port=8000, endpoint='/v1/completions', header=None, max_concurrency=None, model='glm-5.3-flash', input_len=None, output_len=None, tokenizer='/data/models/GLM-5.3-Flash', tokenizer_mode='auto', use_beam_search=False, logprobs=None, request_rate=2.0, burstiness=1.0, probe_request_rate=0.0, disable_tqdm=False, num_warmups=0, profile=False, save_result=False, save_detailed=False, append_result=False, metadata=None, result_dir=None, result_filename=None, ignore_eos=True, self_timed=None, percentile_metrics=None, metric_percentiles='99', goodput=None, request_id_prefix='bench-d50a8a66-', top_p=None, top_k=None, min_p=None, temperature=None, frequency_penalty=None, presence_penalty=None, repetition_penalty=None, served_model_name=None, lora_modules=None, lora_assignment='random', ramp_up_strategy=None, ramp_up_start_rps=None, ramp_up_end_rps=None, ready_check_timeout_sec=0, chat_template_kwargs=None, extra_body=None, skip_tokenizer_init=False, insecure=False, plot_timeline=False, timeline_itl_thresholds='25,50', plot_dataset_stats=False, log_config_file=None, logging_config=LoggingConfig(log_level='INFO', formatter='text', configure_logging=True, pylogging_config_file=None))
+(MainProcess pid=1859418) INFO 10-28 14:04:15 [utils.py:88] Sampling input_len from [4096, 4096] and output_len from [4096, 4096]
+WARNING: vllm bench serve no longer sets temperature==0 (greedy) in requests by default. The default will be determined on the server side and can be model/API specific. For the old behavior, include --temperature=0.
+Starting initial single prompt test run...
+Skipping endpoint ready check.
+Starting main benchmark run...
+Traffic request rate: 2.0
+Burstiness factor: 1.0 (Poisson process)
+Maximum request concurrency: None
+  0%|          | 0/2 [00:00<?, ?it/s] 50%|█████     | 1/2 [00:22<00:22, 22.82s/it]100%|██████████| 2/2 [00:29<00:00, 13.04s/it]100%|██████████| 2/2 [00:29<00:00, 14.50s/it]
+tip: install termplotlib and gnuplot to plot the metrics
+============ Serving Benchmark Result ============
+Successful requests:                     2         
+Failed requests:                         0         
+Request rate configured (RPS):           2.00      
+Benchmark duration (s):                  29.01     
+Total input tokens:                      8192      
+Total generated tokens:                  8192      
+Request throughput (req/s):              0.07      
+Output token throughput (tok/s):         282.42    
+Peak output token throughput (tok/s):    94.00     
+Peak concurrent requests:                2.00      
+Total token throughput (tok/s):          564.84    
+---------------Time to First Token----------------
+Mean TTFT (ms):                          226.76    
+Median TTFT (ms):                        226.76    
+P99 TTFT (ms):                           393.00    
+-----Time per Output Token (excl. 1st token)------
+Mean TPOT (ms):                          6.10      
+Median TPOT (ms):                        6.10      
+P99 TPOT (ms):                           6.96      
+---------------Inter-token Latency----------------
+Mean ITL (ms):                           21.88     
+Median ITL (ms):                         22.52     
+P99 ITL (ms):                            23.58     
+---------------Speculative Decoding---------------
+Acceptance rate (%):                     51.82     
+Acceptance length:                       3.59      
+Drafts:                                  2283      
+Draft tokens:                            11415     
+Accepted tokens:                         5915      
+Per-position acceptance (%):
+  Position 0:                            92.55     
+  Position 1:                            88.61     
+  Position 2:                            35.13     
+  Position 3:                            23.30     
+  Position 4:                            19.49     
+==================================================
+===== tier 4K/4K c4 k5 14:04:45 =====
+W1028 14:04:47.301000 1860247 torch/_opaque_base.py:6] torch._opaque_base is deprecated, use torch._custom_class_base instead
+W1028 14:04:47.302000 1860247 torch/_library/opaque_object.py:288] register_opaque_type is deprecated, use register_custom_class instead
+W1028 14:04:47.302000 1860247 torch/_library/opaque_object.py:211] typ='value' is deprecated, use typ='constant' instead
+Namespace(subparser='bench', bench_type='serve', dispatch_function=<function BenchmarkServingSubcommand.cmd at 0x7f51f0508cc0>, trust_remote_code=False, seed=0, num_prompts=4, dataset_name='random', no_stream=False, dataset_path=None, no_oversample=False, skip_chat_template=False, enable_multimodal_chat=False, disable_shuffle=False, custom_output_len=256, custom_ensure_client_side_data=False, spec_bench_output_len=256, spec_bench_category=None, sharegpt_output_len=None, timed_trace_chunk_hash_size=16, timed_trace_sec_multiplier=1, timed_trace_label_timestamp='timestamp', timed_trace_label_input_length='input_length', timed_trace_label_output_length='output_length', timed_trace_label_hash_ids='hash_ids', blazedit_min_distance=0.0, blazedit_max_distance=1.0, asr_max_audio_len_sec=inf, asr_min_audio_len_sec=0.0, random_input_len=4096, random_output_len=4096, random_range_ratio='0.0', random_prefix_len=0, random_batch_size=1, no_reranker=False, random_mm_base_items_per_request=1, random_mm_num_mm_items_range_ratio=0.0, random_mm_limit_mm_per_prompt={'image': 255, 'video': 1}, random_mm_bucket_config={(256, 256, 1): 0.5, (720, 1280, 1): 0.5, (720, 1280, 16): 0.0}, hf_subset=None, hf_split=None, hf_name=None, hf_output_len=None, bfcl_categories=None, prefix_repetition_prefix_len=256, prefix_repetition_suffix_len=256, prefix_repetition_num_prefixes=10, prefix_repetition_output_len=128, speed_bench_dataset_subset='qualitative', speed_bench_output_len=4096, speed_bench_category=None, label=None, backend='openai', base_url='http://127.0.0.1:8123', host='127.0.0.1', port=8000, endpoint='/v1/completions', header=None, max_concurrency=None, model='glm-5.3-flash', input_len=None, output_len=None, tokenizer='/data/models/GLM-5.3-Flash', tokenizer_mode='auto', use_beam_search=False, logprobs=None, request_rate=4.0, burstiness=1.0, probe_request_rate=0.0, disable_tqdm=False, num_warmups=0, profile=False, save_result=False, save_detailed=False, append_result=False, metadata=None, result_dir=None, result_filename=None, ignore_eos=True, self_timed=None, percentile_metrics=None, metric_percentiles='99', goodput=None, request_id_prefix='bench-b4bf7ecc-', top_p=None, top_k=None, min_p=None, temperature=None, frequency_penalty=None, presence_penalty=None, repetition_penalty=None, served_model_name=None, lora_modules=None, lora_assignment='random', ramp_up_strategy=None, ramp_up_start_rps=None, ramp_up_end_rps=None, ready_check_timeout_sec=0, chat_template_kwargs=None, extra_body=None, skip_tokenizer_init=False, insecure=False, plot_timeline=False, timeline_itl_thresholds='25,50', plot_dataset_stats=False, log_config_file=None, logging_config=LoggingConfig(log_level='INFO', formatter='text', configure_logging=True, pylogging_config_file=None))
+(MainProcess pid=1860247) INFO 10-28 14:04:51 [utils.py:88] Sampling input_len from [4096, 4096] and output_len from [4096, 4096]
+WARNING: vllm bench serve no longer sets temperature==0 (greedy) in requests by default. The default will be determined on the server side and can be model/API specific. For the old behavior, include --temperature=0.
+Starting initial single prompt test run...
+Skipping endpoint ready check.
+Starting main benchmark run...
+Traffic request rate: 4.0
+Burstiness factor: 1.0 (Poisson process)
+Maximum request concurrency: None
+  0%|          | 0/4 [00:00<?, ?it/s] 25%|██▌       | 1/4 [00:23<01:11, 23.81s/it] 50%|█████     | 2/4 [00:28<00:25, 12.63s/it] 75%|███████▌  | 3/4 [00:33<00:08,  8.94s/it]100%|██████████| 4/4 [00:52<00:00, 13.17s/it]100%|██████████| 4/4 [00:52<00:00, 13.21s/it]
+tip: install termplotlib and gnuplot to plot the metrics
+============ Serving Benchmark Result ============
+Successful requests:                     4         
+Failed requests:                         0         
+Request rate configured (RPS):           4.00      
+Benchmark duration (s):                  52.83     
+Total input tokens:                      16384     
+Total generated tokens:                  16384     
+Request throughput (req/s):              0.08      
+Output token throughput (tok/s):         310.15    
+Peak output token throughput (tok/s):    156.00    
+Peak concurrent requests:                4.00      
+Total token throughput (tok/s):          620.30    
+---------------Time to First Token----------------
+Mean TTFT (ms):                          268.54    
+Median TTFT (ms):                        235.30    
+P99 TTFT (ms):                           541.36    
+-----Time per Output Token (excl. 1st token)------
+Mean TPOT (ms):                          8.23      
+Median TPOT (ms):                        7.32      
+P99 TPOT (ms):                           12.68     
+---------------Inter-token Latency----------------
+Mean ITL (ms):                           25.00     
+Median ITL (ms):                         26.06     
+P99 ITL (ms):                            29.88     
+---------------Speculative Decoding---------------
+Acceptance rate (%):                     40.85     
+Acceptance length:                       3.04      
+Drafts:                                  5387      
+Draft tokens:                            26935     
+Accepted tokens:                         11002     
+Per-position acceptance (%):
+  Position 0:                            69.43     
+  Position 1:                            49.56     
+  Position 2:                            34.82     
+  Position 3:                            25.34     
+  Position 4:                            25.08     
+==================================================
+===== tier 4K/4K c8 k5 14:05:44 =====
+W1028 14:05:46.352000 1861483 torch/_opaque_base.py:6] torch._opaque_base is deprecated, use torch._custom_class_base instead
+W1028 14:05:46.353000 1861483 torch/_library/opaque_object.py:288] register_opaque_type is deprecated, use register_custom_class instead
+W1028 14:05:46.353000 1861483 torch/_library/opaque_object.py:211] typ='value' is deprecated, use typ='constant' instead
+Namespace(subparser='bench', bench_type='serve', dispatch_function=<function BenchmarkServingSubcommand.cmd at 0x7fa9c92cccc0>, trust_remote_code=False, seed=0, num_prompts=8, dataset_name='random', no_stream=False, dataset_path=None, no_oversample=False, skip_chat_template=False, enable_multimodal_chat=False, disable_shuffle=False, custom_output_len=256, custom_ensure_client_side_data=False, spec_bench_output_len=256, spec_bench_category=None, sharegpt_output_len=None, timed_trace_chunk_hash_size=16, timed_trace_sec_multiplier=1, timed_trace_label_timestamp='timestamp', timed_trace_label_input_length='input_length', timed_trace_label_output_length='output_length', timed_trace_label_hash_ids='hash_ids', blazedit_min_distance=0.0, blazedit_max_distance=1.0, asr_max_audio_len_sec=inf, asr_min_audio_len_sec=0.0, random_input_len=4096, random_output_len=4096, random_range_ratio='0.0', random_prefix_len=0, random_batch_size=1, no_reranker=False, random_mm_base_items_per_request=1, random_mm_num_mm_items_range_ratio=0.0, random_mm_limit_mm_per_prompt={'image': 255, 'video': 1}, random_mm_bucket_config={(256, 256, 1): 0.5, (720, 1280, 1): 0.5, (720, 1280, 16): 0.0}, hf_subset=None, hf_split=None, hf_name=None, hf_output_len=None, bfcl_categories=None, prefix_repetition_prefix_len=256, prefix_repetition_suffix_len=256, prefix_repetition_num_prefixes=10, prefix_repetition_output_len=128, speed_bench_dataset_subset='qualitative', speed_bench_output_len=4096, speed_bench_category=None, label=None, backend='openai', base_url='http://127.0.0.1:8123', host='127.0.0.1', port=8000, endpoint='/v1/completions', header=None, max_concurrency=None, model='glm-5.3-flash', input_len=None, output_len=None, tokenizer='/data/models/GLM-5.3-Flash', tokenizer_mode='auto', use_beam_search=False, logprobs=None, request_rate=8.0, burstiness=1.0, probe_request_rate=0.0, disable_tqdm=False, num_warmups=0, profile=False, save_result=False, save_detailed=False, append_result=False, metadata=None, result_dir=None, result_filename=None, ignore_eos=True, self_timed=None, percentile_metrics=None, metric_percentiles='99', goodput=None, request_id_prefix='bench-3816e253-', top_p=None, top_k=None, min_p=None, temperature=None, frequency_penalty=None, presence_penalty=None, repetition_penalty=None, served_model_name=None, lora_modules=None, lora_assignment='random', ramp_up_strategy=None, ramp_up_start_rps=None, ramp_up_end_rps=None, ready_check_timeout_sec=0, chat_template_kwargs=None, extra_body=None, skip_tokenizer_init=False, insecure=False, plot_timeline=False, timeline_itl_thresholds='25,50', plot_dataset_stats=False, log_config_file=None, logging_config=LoggingConfig(log_level='INFO', formatter='text', configure_logging=True, pylogging_config_file=None))
+(MainProcess pid=1861483) INFO 10-28 14:05:50 [utils.py:88] Sampling input_len from [4096, 4096] and output_len from [4096, 4096]
+WARNING: vllm bench serve no longer sets temperature==0 (greedy) in requests by default. The default will be determined on the server side and can be model/API specific. For the old behavior, include --temperature=0.
+Starting initial single prompt test run...
+Skipping endpoint ready check.
+Starting main benchmark run...
+Traffic request rate: 8.0
+Burstiness factor: 1.0 (Poisson process)
+Maximum request concurrency: None
+  0%|          | 0/8 [00:00<?, ?it/s] 12%|█▎        | 1/8 [00:27<03:13, 27.61s/it] 25%|██▌       | 2/8 [00:34<01:32, 15.42s/it] 38%|███▊      | 3/8 [00:34<00:42,  8.48s/it] 62%|██████▎   | 5/8 [00:35<00:11,  3.99s/it] 75%|███████▌  | 6/8 [00:38<00:06,  3.47s/it] 88%|████████▊ | 7/8 [00:42<00:03,  3.72s/it]100%|██████████| 8/8 [00:44<00:00,  3.33s/it]100%|██████████| 8/8 [00:44<00:00,  5.59s/it]
+tip: install termplotlib and gnuplot to plot the metrics
+============ Serving Benchmark Result ============
+Successful requests:                     8         
+Failed requests:                         0         
+Request rate configured (RPS):           8.00      
+Benchmark duration (s):                  44.73     
+Total input tokens:                      32768     
+Total generated tokens:                  32768     
+Request throughput (req/s):              0.18      
+Output token throughput (tok/s):         732.51    
+Peak output token throughput (tok/s):    232.00    
+Peak concurrent requests:                8.00      
+Total token throughput (tok/s):          1465.01   
+---------------Time to First Token----------------
+Mean TTFT (ms):                          520.13    
+Median TTFT (ms):                        275.05    
+P99 TTFT (ms):                           1297.71   
+-----Time per Output Token (excl. 1st token)------
+Mean TPOT (ms):                          8.68      
+Median TPOT (ms):                        8.48      
+P99 TPOT (ms):                           10.41     
+---------------Inter-token Latency----------------
+Mean ITL (ms):                           34.75     
+Median ITL (ms):                         35.05     
+P99 ITL (ms):                            38.49     
+---------------Speculative Decoding---------------
+Acceptance rate (%):                     60.23     
+Acceptance length:                       4.01      
+Drafts:                                  8171      
+Draft tokens:                            40855     
+Accepted tokens:                         24607     
+Per-position acceptance (%):
+  Position 0:                            68.23     
+  Position 1:                            66.05     
+  Position 2:                            63.03     
+  Position 3:                            53.03     
+  Position 4:                            50.81     
+==================================================
+===== tier 4K/4K c16 k5 14:06:35 =====
+W1028 14:06:37.386000 1862490 torch/_opaque_base.py:6] torch._opaque_base is deprecated, use torch._custom_class_base instead
+W1028 14:06:37.387000 1862490 torch/_library/opaque_object.py:288] register_opaque_type is deprecated, use register_custom_class instead
+W1028 14:06:37.387000 1862490 torch/_library/opaque_object.py:211] typ='value' is deprecated, use typ='constant' instead
+Namespace(subparser='bench', bench_type='serve', dispatch_function=<function BenchmarkServingSubcommand.cmd at 0x7fa26bb90cc0>, trust_remote_code=False, seed=0, num_prompts=16, dataset_name='random', no_stream=False, dataset_path=None, no_oversample=False, skip_chat_template=False, enable_multimodal_chat=False, disable_shuffle=False, custom_output_len=256, custom_ensure_client_side_data=False, spec_bench_output_len=256, spec_bench_category=None, sharegpt_output_len=None, timed_trace_chunk_hash_size=16, timed_trace_sec_multiplier=1, timed_trace_label_timestamp='timestamp', timed_trace_label_input_length='input_length', timed_trace_label_output_length='output_length', timed_trace_label_hash_ids='hash_ids', blazedit_min_distance=0.0, blazedit_max_distance=1.0, asr_max_audio_len_sec=inf, asr_min_audio_len_sec=0.0, random_input_len=4096, random_output_len=4096, random_range_ratio='0.0', random_prefix_len=0, random_batch_size=1, no_reranker=False, random_mm_base_items_per_request=1, random_mm_num_mm_items_range_ratio=0.0, random_mm_limit_mm_per_prompt={'image': 255, 'video': 1}, random_mm_bucket_config={(256, 256, 1): 0.5, (720, 1280, 1): 0.5, (720, 1280, 16): 0.0}, hf_subset=None, hf_split=None, hf_name=None, hf_output_len=None, bfcl_categories=None, prefix_repetition_prefix_len=256, prefix_repetition_suffix_len=256, prefix_repetition_num_prefixes=10, prefix_repetition_output_len=128, speed_bench_dataset_subset='qualitative', speed_bench_output_len=4096, speed_bench_category=None, label=None, backend='openai', base_url='http://127.0.0.1:8123', host='127.0.0.1', port=8000, endpoint='/v1/completions', header=None, max_concurrency=None, model='glm-5.3-flash', input_len=None, output_len=None, tokenizer='/data/models/GLM-5.3-Flash', tokenizer_mode='auto', use_beam_search=False, logprobs=None, request_rate=16.0, burstiness=1.0, probe_request_rate=0.0, disable_tqdm=False, num_warmups=0, profile=False, save_result=False, save_detailed=False, append_result=False, metadata=None, result_dir=None, result_filename=None, ignore_eos=True, self_timed=None, percentile_metrics=None, metric_percentiles='99', goodput=None, request_id_prefix='bench-a21e10b3-', top_p=None, top_k=None, min_p=None, temperature=None, frequency_penalty=None, presence_penalty=None, repetition_penalty=None, served_model_name=None, lora_modules=None, lora_assignment='random', ramp_up_strategy=None, ramp_up_start_rps=None, ramp_up_end_rps=None, ready_check_timeout_sec=0, chat_template_kwargs=None, extra_body=None, skip_tokenizer_init=False, insecure=False, plot_timeline=False, timeline_itl_thresholds='25,50', plot_dataset_stats=False, log_config_file=None, logging_config=LoggingConfig(log_level='INFO', formatter='text', configure_logging=True, pylogging_config_file=None))
+(MainProcess pid=1862490) INFO 10-28 14:06:41 [utils.py:88] Sampling input_len from [4096, 4096] and output_len from [4096, 4096]
+WARNING: vllm bench serve no longer sets temperature==0 (greedy) in requests by default. The default will be determined on the server side and can be model/API specific. For the old behavior, include --temperature=0.
+Starting initial single prompt test run...
+Skipping endpoint ready check.
+Starting main benchmark run...
+Traffic request rate: 16.0
+Burstiness factor: 1.0 (Poisson process)
+Maximum request concurrency: None
+  0%|          | 0/16 [00:00<?, ?it/s]  6%|▋         | 1/16 [00:37<09:15, 37.00s/it] 12%|█▎        | 2/16 [00:40<04:04, 17.50s/it] 19%|█▉        | 3/16 [00:43<02:19, 10.72s/it] 25%|██▌       | 4/16 [00:44<01:22,  6.88s/it] 31%|███▏      | 5/16 [00:45<00:51,  4.71s/it] 38%|███▊      | 6/16 [00:45<00:32,  3.25s/it] 44%|████▍     | 7/16 [00:47<00:24,  2.77s/it] 50%|█████     | 8/16 [00:48<00:18,  2.31s/it] 56%|█████▋    | 9/16 [00:49<00:13,  1.87s/it] 62%|██████▎   | 10/16 [00:54<00:15,  2.66s/it] 69%|██████▉   | 11/16 [00:54<00:09,  1.98s/it] 75%|███████▌  | 12/16 [00:58<00:09,  2.42s/it] 81%|████████▏ | 13/16 [01:03<00:10,  3.37s/it] 88%|████████▊ | 14/16 [01:05<00:05,  2.98s/it] 94%|█████████▍| 15/16 [01:07<00:02,  2.52s/it]100%|██████████| 16/16 [01:08<00:00,  2.28s/it]100%|██████████| 16/16 [01:08<00:00,  4.31s/it]
+tip: install termplotlib and gnuplot to plot the metrics
+============ Serving Benchmark Result ============
+Successful requests:                     16        
+Failed requests:                         0         
+Request rate configured (RPS):           16.00     
+Benchmark duration (s):                  68.90     
+Total input tokens:                      65536     
+Total generated tokens:                  65536     
+Request throughput (req/s):              0.23      
+Output token throughput (tok/s):         951.14    
+Peak output token throughput (tok/s):    352.00    
+Peak concurrent requests:                16.00     
+Total token throughput (tok/s):          1902.29   
+---------------Time to First Token----------------
+Mean TTFT (ms):                          924.14    
+Median TTFT (ms):                        459.37    
+P99 TTFT (ms):                           2494.71   
+-----Time per Output Token (excl. 1st token)------
+Mean TPOT (ms):                          12.40     
+Median TPOT (ms):                        11.55     
+P99 TPOT (ms):                           16.24     
+---------------Inter-token Latency----------------
+Mean ITL (ms):                           46.89     
+Median ITL (ms):                         47.73     
+P99 ITL (ms):                            51.41     
+---------------Speculative Decoding---------------
+Acceptance rate (%):                     55.75     
+Acceptance length:                       3.79      
+Drafts:                                  17306     
+Draft tokens:                            86530     
+Accepted tokens:                         48243     
+Per-position acceptance (%):
+  Position 0:                            74.78     
+  Position 1:                            60.93     
+  Position 2:                            53.88     
+  Position 3:                            47.40     
+  Position 4:                            41.78     
+==================================================
+===== tier 4K/4K c32 k5 14:07:50 =====
+W1028 14:07:52.689000 1863753 torch/_opaque_base.py:6] torch._opaque_base is deprecated, use torch._custom_class_base instead
+W1028 14:07:52.689000 1863753 torch/_library/opaque_object.py:288] register_opaque_type is deprecated, use register_custom_class instead
+W1028 14:07:52.689000 1863753 torch/_library/opaque_object.py:211] typ='value' is deprecated, use typ='constant' instead
+Namespace(subparser='bench', bench_type='serve', dispatch_function=<function BenchmarkServingSubcommand.cmd at 0x7effe0d04c20>, trust_remote_code=False, seed=0, num_prompts=32, dataset_name='random', no_stream=False, dataset_path=None, no_oversample=False, skip_chat_template=False, enable_multimodal_chat=False, disable_shuffle=False, custom_output_len=256, custom_ensure_client_side_data=False, spec_bench_output_len=256, spec_bench_category=None, sharegpt_output_len=None, timed_trace_chunk_hash_size=16, timed_trace_sec_multiplier=1, timed_trace_label_timestamp='timestamp', timed_trace_label_input_length='input_length', timed_trace_label_output_length='output_length', timed_trace_label_hash_ids='hash_ids', blazedit_min_distance=0.0, blazedit_max_distance=1.0, asr_max_audio_len_sec=inf, asr_min_audio_len_sec=0.0, random_input_len=4096, random_output_len=4096, random_range_ratio='0.0', random_prefix_len=0, random_batch_size=1, no_reranker=False, random_mm_base_items_per_request=1, random_mm_num_mm_items_range_ratio=0.0, random_mm_limit_mm_per_prompt={'image': 255, 'video': 1}, random_mm_bucket_config={(256, 256, 1): 0.5, (720, 1280, 1): 0.5, (720, 1280, 16): 0.0}, hf_subset=None, hf_split=None, hf_name=None, hf_output_len=None, bfcl_categories=None, prefix_repetition_prefix_len=256, prefix_repetition_suffix_len=256, prefix_repetition_num_prefixes=10, prefix_repetition_output_len=128, speed_bench_dataset_subset='qualitative', speed_bench_output_len=4096, speed_bench_category=None, label=None, backend='openai', base_url='http://127.0.0.1:8123', host='127.0.0.1', port=8000, endpoint='/v1/completions', header=None, max_concurrency=None, model='glm-5.3-flash', input_len=None, output_len=None, tokenizer='/data/models/GLM-5.3-Flash', tokenizer_mode='auto', use_beam_search=False, logprobs=None, request_rate=32.0, burstiness=1.0, probe_request_rate=0.0, disable_tqdm=False, num_warmups=0, profile=False, save_result=False, save_detailed=False, append_result=False, metadata=None, result_dir=None, result_filename=None, ignore_eos=True, self_timed=None, percentile_metrics=None, metric_percentiles='99', goodput=None, request_id_prefix='bench-6caf366d-', top_p=None, top_k=None, min_p=None, temperature=None, frequency_penalty=None, presence_penalty=None, repetition_penalty=None, served_model_name=None, lora_modules=None, lora_assignment='random', ramp_up_strategy=None, ramp_up_start_rps=None, ramp_up_end_rps=None, ready_check_timeout_sec=0, chat_template_kwargs=None, extra_body=None, skip_tokenizer_init=False, insecure=False, plot_timeline=False, timeline_itl_thresholds='25,50', plot_dataset_stats=False, log_config_file=None, logging_config=LoggingConfig(log_level='INFO', formatter='text', configure_logging=True, pylogging_config_file=None))
+(MainProcess pid=1863753) INFO 10-28 14:07:56 [utils.py:88] Sampling input_len from [4096, 4096] and output_len from [4096, 4096]
+WARNING: vllm bench serve no longer sets temperature==0 (greedy) in requests by default. The default will be determined on the server side and can be model/API specific. For the old behavior, include --temperature=0.
+Starting initial single prompt test run...
+Skipping endpoint ready check.
+Starting main benchmark run...
+Traffic request rate: 32.0
+Burstiness factor: 1.0 (Poisson process)
+Maximum request concurrency: None
+  0%|          | 0/32 [00:00<?, ?it/s]  3%|▎         | 1/32 [00:51<26:27, 51.22s/it]  6%|▋         | 2/32 [00:51<10:46, 21.53s/it] 12%|█▎        | 4/32 [00:52<03:48,  8.15s/it] 16%|█▌        | 5/32 [00:53<02:39,  5.90s/it] 19%|█▉        | 6/32 [00:53<01:51,  4.30s/it] 22%|██▏       | 7/32 [00:54<01:19,  3.19s/it] 25%|██▌       | 8/32 [00:55<00:59,  2.46s/it] 28%|██▊       | 9/32 [00:56<00:50,  2.21s/it] 31%|███▏      | 10/32 [01:01<01:03,  2.90s/it] 34%|███▍      | 11/32 [01:02<00:48,  2.30s/it] 38%|███▊      | 12/32 [01:03<00:36,  1.85s/it] 41%|████      | 13/32 [01:03<00:28,  1.51s/it] 44%|████▍     | 14/32 [01:04<00:20,  1.14s/it] 47%|████▋     | 15/32 [01:07<00:29,  1.71s/it] 50%|█████     | 16/32 [01:09<00:29,  1.82s/it] 53%|█████▎    | 17/32 [01:11<00:30,  2.06s/it] 56%|█████▋    | 18/32 [01:17<00:45,  3.22s/it] 59%|█████▉    | 19/32 [01:18<00:33,  2.58s/it] 62%|██████▎   | 20/32 [01:21<00:29,  2.49s/it] 66%|██████▌   | 21/32 [01:21<00:20,  1.90s/it] 69%|██████▉   | 22/32 [01:25<00:23,  2.36s/it] 72%|███████▏  | 23/32 [01:27<00:19,  2.21s/it] 75%|███████▌  | 24/32 [01:27<00:14,  1.75s/it] 78%|███████▊  | 25/32 [01:30<00:14,  2.03s/it] 81%|████████▏ | 26/32 [01:31<00:11,  1.87s/it] 84%|████████▍ | 27/32 [01:34<00:11,  2.21s/it] 88%|████████▊ | 28/32 [01:36<00:08,  2.17s/it] 91%|█████████ | 29/32 [01:46<00:12,  4.29s/it] 94%|█████████▍| 30/32 [01:49<00:07,  3.86s/it] 97%|█████████▋| 31/32 [01:49<00:02,  2.75s/it]100%|██████████| 32/32 [01:50<00:00,  2.45s/it]100%|██████████| 32/32 [01:50<00:00,  3.47s/it]
+tip: install termplotlib and gnuplot to plot the metrics
+============ Serving Benchmark Result ============
+Successful requests:                     32        
+Failed requests:                         0         
+Request rate configured (RPS):           32.00     
+Benchmark duration (s):                  110.95    
+Total input tokens:                      131072    
+Total generated tokens:                  131072    
+Request throughput (req/s):              0.29      
+Output token throughput (tok/s):         1181.41   
+Peak output token throughput (tok/s):    512.00    
+Peak concurrent requests:                32.00     
+Total token throughput (tok/s):          2362.81   
+---------------Time to First Token----------------
+Mean TTFT (ms):                          1653.82   
+Median TTFT (ms):                        524.67    
+P99 TTFT (ms):                           5115.00   
+-----Time per Output Token (excl. 1st token)------
+Mean TPOT (ms):                          17.74     
+Median TPOT (ms):                        16.47     
+P99 TPOT (ms):                           26.65     
+---------------Inter-token Latency----------------
+Mean ITL (ms):                           61.45     
+Median ITL (ms):                         63.90     
+P99 ITL (ms):                            66.92     
+---------------Speculative Decoding---------------
+Acceptance rate (%):                     49.38     
+Acceptance length:                       3.47      
+Drafts:                                  37795     
+Draft tokens:                            188975    
+Accepted tokens:                         93323     
+Per-position acceptance (%):
+  Position 0:                            76.18     
+  Position 1:                            55.26     
+  Position 2:                            46.85     
+  Position 3:                            35.38     
+  Position 4:                            33.25     
+==================================================
+===== tier 8K/8K c1 k5 14:09:48 =====
+W1028 14:09:50.045000 1865501 torch/_opaque_base.py:6] torch._opaque_base is deprecated, use torch._custom_class_base instead
+W1028 14:09:50.046000 1865501 torch/_library/opaque_object.py:288] register_opaque_type is deprecated, use register_custom_class instead
+W1028 14:09:50.046000 1865501 torch/_library/opaque_object.py:211] typ='value' is deprecated, use typ='constant' instead
+Namespace(subparser='bench', bench_type='serve', dispatch_function=<function BenchmarkServingSubcommand.cmd at 0x7f05e8814cc0>, trust_remote_code=False, seed=0, num_prompts=1, dataset_name='random', no_stream=False, dataset_path=None, no_oversample=False, skip_chat_template=False, enable_multimodal_chat=False, disable_shuffle=False, custom_output_len=256, custom_ensure_client_side_data=False, spec_bench_output_len=256, spec_bench_category=None, sharegpt_output_len=None, timed_trace_chunk_hash_size=16, timed_trace_sec_multiplier=1, timed_trace_label_timestamp='timestamp', timed_trace_label_input_length='input_length', timed_trace_label_output_length='output_length', timed_trace_label_hash_ids='hash_ids', blazedit_min_distance=0.0, blazedit_max_distance=1.0, asr_max_audio_len_sec=inf, asr_min_audio_len_sec=0.0, random_input_len=8192, random_output_len=8192, random_range_ratio='0.0', random_prefix_len=0, random_batch_size=1, no_reranker=False, random_mm_base_items_per_request=1, random_mm_num_mm_items_range_ratio=0.0, random_mm_limit_mm_per_prompt={'image': 255, 'video': 1}, random_mm_bucket_config={(256, 256, 1): 0.5, (720, 1280, 1): 0.5, (720, 1280, 16): 0.0}, hf_subset=None, hf_split=None, hf_name=None, hf_output_len=None, bfcl_categories=None, prefix_repetition_prefix_len=256, prefix_repetition_suffix_len=256, prefix_repetition_num_prefixes=10, prefix_repetition_output_len=128, speed_bench_dataset_subset='qualitative', speed_bench_output_len=4096, speed_bench_category=None, label=None, backend='openai', base_url='http://127.0.0.1:8123', host='127.0.0.1', port=8000, endpoint='/v1/completions', header=None, max_concurrency=None, model='glm-5.3-flash', input_len=None, output_len=None, tokenizer='/data/models/GLM-5.3-Flash', tokenizer_mode='auto', use_beam_search=False, logprobs=None, request_rate=1.0, burstiness=1.0, probe_request_rate=0.0, disable_tqdm=False, num_warmups=0, profile=False, save_result=False, save_detailed=False, append_result=False, metadata=None, result_dir=None, result_filename=None, ignore_eos=True, self_timed=None, percentile_metrics=None, metric_percentiles='99', goodput=None, request_id_prefix='bench-afee7c3a-', top_p=None, top_k=None, min_p=None, temperature=None, frequency_penalty=None, presence_penalty=None, repetition_penalty=None, served_model_name=None, lora_modules=None, lora_assignment='random', ramp_up_strategy=None, ramp_up_start_rps=None, ramp_up_end_rps=None, ready_check_timeout_sec=0, chat_template_kwargs=None, extra_body=None, skip_tokenizer_init=False, insecure=False, plot_timeline=False, timeline_itl_thresholds='25,50', plot_dataset_stats=False, log_config_file=None, logging_config=LoggingConfig(log_level='INFO', formatter='text', configure_logging=True, pylogging_config_file=None))
+(MainProcess pid=1865501) INFO 10-28 14:09:53 [utils.py:88] Sampling input_len from [8192, 8192] and output_len from [8192, 8192]
+WARNING: vllm bench serve no longer sets temperature==0 (greedy) in requests by default. The default will be determined on the server side and can be model/API specific. For the old behavior, include --temperature=0.
+Starting initial single prompt test run...
+Skipping endpoint ready check.
+Starting main benchmark run...
+Traffic request rate: 1.0
+Burstiness factor: 1.0 (Poisson process)
+Maximum request concurrency: None
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:24<00:00, 24.77s/it]100%|██████████| 1/1 [00:24<00:00, 24.77s/it]
+tip: install termplotlib and gnuplot to plot the metrics
+============ Serving Benchmark Result ============
+Successful requests:                     1         
+Failed requests:                         0         
+Request rate configured (RPS):           1.00      
+Benchmark duration (s):                  24.77     
+Total input tokens:                      8192      
+Total generated tokens:                  8192      
+Request throughput (req/s):              0.04      
+Output token throughput (tok/s):         330.69    
+Peak output token throughput (tok/s):    62.00     
+Peak concurrent requests:                1.00      
+Total token throughput (tok/s):          661.37    
+---------------Time to First Token----------------
+Mean TTFT (ms):                          317.29    
+Median TTFT (ms):                        317.29    
+P99 TTFT (ms):                           317.29    
+-----Time per Output Token (excl. 1st token)------
+Mean TPOT (ms):                          2.86      
+Median TPOT (ms):                        2.86      
+P99 TPOT (ms):                           2.86      
+---------------Inter-token Latency----------------
+Mean ITL (ms):                           16.40     
+Median ITL (ms):                         16.21     
+P99 ITL (ms):                            18.37     
+---------------Speculative Decoding---------------
+Acceptance rate (%):                     94.64     
+Acceptance length:                       5.73      
+Drafts:                                  1429      
+Draft tokens:                            7145      
+Accepted tokens:                         6762      
+Per-position acceptance (%):
+  Position 0:                            95.94     
+  Position 1:                            95.10     
+  Position 2:                            94.33     
+  Position 3:                            93.98     
+  Position 4:                            93.84     
+==================================================
+===== tier 8K/8K c2 k5 14:10:19 =====
+W1028 14:10:20.935000 1866280 torch/_opaque_base.py:6] torch._opaque_base is deprecated, use torch._custom_class_base instead
+W1028 14:10:20.936000 1866280 torch/_library/opaque_object.py:288] register_opaque_type is deprecated, use register_custom_class instead
+W1028 14:10:20.936000 1866280 torch/_library/opaque_object.py:211] typ='value' is deprecated, use typ='constant' instead
+Namespace(subparser='bench', bench_type='serve', dispatch_function=<function BenchmarkServingSubcommand.cmd at 0x7f6b9d768c20>, trust_remote_code=False, seed=0, num_prompts=2, dataset_name='random', no_stream=False, dataset_path=None, no_oversample=False, skip_chat_template=False, enable_multimodal_chat=False, disable_shuffle=False, custom_output_len=256, custom_ensure_client_side_data=False, spec_bench_output_len=256, spec_bench_category=None, sharegpt_output_len=None, timed_trace_chunk_hash_size=16, timed_trace_sec_multiplier=1, timed_trace_label_timestamp='timestamp', timed_trace_label_input_length='input_length', timed_trace_label_output_length='output_length', timed_trace_label_hash_ids='hash_ids', blazedit_min_distance=0.0, blazedit_max_distance=1.0, asr_max_audio_len_sec=inf, asr_min_audio_len_sec=0.0, random_input_len=8192, random_output_len=8192, random_range_ratio='0.0', random_prefix_len=0, random_batch_size=1, no_reranker=False, random_mm_base_items_per_request=1, random_mm_num_mm_items_range_ratio=0.0, random_mm_limit_mm_per_prompt={'image': 255, 'video': 1}, random_mm_bucket_config={(256, 256, 1): 0.5, (720, 1280, 1): 0.5, (720, 1280, 16): 0.0}, hf_subset=None, hf_split=None, hf_name=None, hf_output_len=None, bfcl_categories=None, prefix_repetition_prefix_len=256, prefix_repetition_suffix_len=256, prefix_repetition_num_prefixes=10, prefix_repetition_output_len=128, speed_bench_dataset_subset='qualitative', speed_bench_output_len=4096, speed_bench_category=None, label=None, backend='openai', base_url='http://127.0.0.1:8123', host='127.0.0.1', port=8000, endpoint='/v1/completions', header=None, max_concurrency=None, model='glm-5.3-flash', input_len=None, output_len=None, tokenizer='/data/models/GLM-5.3-Flash', tokenizer_mode='auto', use_beam_search=False, logprobs=None, request_rate=2.0, burstiness=1.0, probe_request_rate=0.0, disable_tqdm=False, num_warmups=0, profile=False, save_result=False, save_detailed=False, append_result=False, metadata=None, result_dir=None, result_filename=None, ignore_eos=True, self_timed=None, percentile_metrics=None, metric_percentiles='99', goodput=None, request_id_prefix='bench-719e3d93-', top_p=None, top_k=None, min_p=None, temperature=None, frequency_penalty=None, presence_penalty=None, repetition_penalty=None, served_model_name=None, lora_modules=None, lora_assignment='random', ramp_up_strategy=None, ramp_up_start_rps=None, ramp_up_end_rps=None, ready_check_timeout_sec=0, chat_template_kwargs=None, extra_body=None, skip_tokenizer_init=False, insecure=False, plot_timeline=False, timeline_itl_thresholds='25,50', plot_dataset_stats=False, log_config_file=None, logging_config=LoggingConfig(log_level='INFO', formatter='text', configure_logging=True, pylogging_config_file=None))
+(MainProcess pid=1866280) INFO 10-28 14:10:24 [utils.py:88] Sampling input_len from [8192, 8192] and output_len from [8192, 8192]
+WARNING: vllm bench serve no longer sets temperature==0 (greedy) in requests by default. The default will be determined on the server side and can be model/API specific. For the old behavior, include --temperature=0.
+Starting initial single prompt test run...
+Skipping endpoint ready check.
+Starting main benchmark run...
+Traffic request rate: 2.0
+Burstiness factor: 1.0 (Poisson process)
+Maximum request concurrency: None
+  0%|          | 0/2 [00:00<?, ?it/s] 50%|█████     | 1/2 [00:30<00:30, 30.72s/it]100%|██████████| 2/2 [00:30<00:00, 12.73s/it]100%|██████████| 2/2 [00:30<00:00, 15.42s/it]
+tip: install termplotlib and gnuplot to plot the metrics
+============ Serving Benchmark Result ============
+Successful requests:                     2         
+Failed requests:                         0         
+Request rate configured (RPS):           2.00      
+Benchmark duration (s):                  30.85     
+Total input tokens:                      16384     
+Total generated tokens:                  16384     
+Request throughput (req/s):              0.06      
+Output token throughput (tok/s):         531.09    
+Peak output token throughput (tok/s):    106.00    
+Peak concurrent requests:                2.00      
+Total token throughput (tok/s):          1062.19   
+---------------Time to First Token----------------
+Mean TTFT (ms):                          211.98    
+Median TTFT (ms):                        211.98    
+P99 TTFT (ms):                           344.25    
+-----Time per Output Token (excl. 1st token)------
+Mean TPOT (ms):                          3.65      
+Median TPOT (ms):                        3.65      
+P99 TPOT (ms):                           3.69      
+---------------Inter-token Latency----------------
+Mean ITL (ms):                           19.84     
+Median ITL (ms):                         19.29     
+P99 ITL (ms):                            23.20     
+---------------Speculative Decoding---------------
+Acceptance rate (%):                     88.88     
+Acceptance length:                       5.44      
+Drafts:                                  3010      
+Draft tokens:                            15050     
+Accepted tokens:                         13376     
+Per-position acceptance (%):
+  Position 0:                            91.36     
+  Position 1:                            89.20     
+  Position 2:                            88.41     
+  Position 3:                            87.81     
+  Position 4:                            87.61     
+==================================================
+===== tier 8K/8K c4 k5 14:10:56 =====
+W1028 14:10:57.983000 1867119 torch/_opaque_base.py:6] torch._opaque_base is deprecated, use torch._custom_class_base instead
+W1028 14:10:57.983000 1867119 torch/_library/opaque_object.py:288] register_opaque_type is deprecated, use register_custom_class instead
+W1028 14:10:57.983000 1867119 torch/_library/opaque_object.py:211] typ='value' is deprecated, use typ='constant' instead
+Namespace(subparser='bench', bench_type='serve', dispatch_function=<function BenchmarkServingSubcommand.cmd at 0x7f9be01accc0>, trust_remote_code=False, seed=0, num_prompts=4, dataset_name='random', no_stream=False, dataset_path=None, no_oversample=False, skip_chat_template=False, enable_multimodal_chat=False, disable_shuffle=False, custom_output_len=256, custom_ensure_client_side_data=False, spec_bench_output_len=256, spec_bench_category=None, sharegpt_output_len=None, timed_trace_chunk_hash_size=16, timed_trace_sec_multiplier=1, timed_trace_label_timestamp='timestamp', timed_trace_label_input_length='input_length', timed_trace_label_output_length='output_length', timed_trace_label_hash_ids='hash_ids', blazedit_min_distance=0.0, blazedit_max_distance=1.0, asr_max_audio_len_sec=inf, asr_min_audio_len_sec=0.0, random_input_len=8192, random_output_len=8192, random_range_ratio='0.0', random_prefix_len=0, random_batch_size=1, no_reranker=False, random_mm_base_items_per_request=1, random_mm_num_mm_items_range_ratio=0.0, random_mm_limit_mm_per_prompt={'image': 255, 'video': 1}, random_mm_bucket_config={(256, 256, 1): 0.5, (720, 1280, 1): 0.5, (720, 1280, 16): 0.0}, hf_subset=None, hf_split=None, hf_name=None, hf_output_len=None, bfcl_categories=None, prefix_repetition_prefix_len=256, prefix_repetition_suffix_len=256, prefix_repetition_num_prefixes=10, prefix_repetition_output_len=128, speed_bench_dataset_subset='qualitative', speed_bench_output_len=4096, speed_bench_category=None, label=None, backend='openai', base_url='http://127.0.0.1:8123', host='127.0.0.1', port=8000, endpoint='/v1/completions', header=None, max_concurrency=None, model='glm-5.3-flash', input_len=None, output_len=None, tokenizer='/data/models/GLM-5.3-Flash', tokenizer_mode='auto', use_beam_search=False, logprobs=None, request_rate=4.0, burstiness=1.0, probe_request_rate=0.0, disable_tqdm=False, num_warmups=0, profile=False, save_result=False, save_detailed=False, append_result=False, metadata=None, result_dir=None, result_filename=None, ignore_eos=True, self_timed=None, percentile_metrics=None, metric_percentiles='99', goodput=None, request_id_prefix='bench-3222e282-', top_p=None, top_k=None, min_p=None, temperature=None, frequency_penalty=None, presence_penalty=None, repetition_penalty=None, served_model_name=None, lora_modules=None, lora_assignment='random', ramp_up_strategy=None, ramp_up_start_rps=None, ramp_up_end_rps=None, ready_check_timeout_sec=0, chat_template_kwargs=None, extra_body=None, skip_tokenizer_init=False, insecure=False, plot_timeline=False, timeline_itl_thresholds='25,50', plot_dataset_stats=False, log_config_file=None, logging_config=LoggingConfig(log_level='INFO', formatter='text', configure_logging=True, pylogging_config_file=None))
+(MainProcess pid=1867119) INFO 10-28 14:11:01 [utils.py:88] Sampling input_len from [8192, 8192] and output_len from [8192, 8192]
+WARNING: vllm bench serve no longer sets temperature==0 (greedy) in requests by default. The default will be determined on the server side and can be model/API specific. For the old behavior, include --temperature=0.
+Starting initial single prompt test run...
+Skipping endpoint ready check.
+Starting main benchmark run...
+Traffic request rate: 4.0
+Burstiness factor: 1.0 (Poisson process)
+Maximum request concurrency: None
+  0%|          | 0/4 [00:00<?, ?it/s] 25%|██▌       | 1/4 [00:45<02:15, 45.16s/it] 50%|█████     | 2/4 [00:49<00:42, 21.28s/it] 75%|███████▌  | 3/4 [01:10<00:20, 20.88s/it]100%|██████████| 4/4 [01:18<00:00, 15.85s/it]100%|██████████| 4/4 [01:18<00:00, 19.57s/it]
+tip: install termplotlib and gnuplot to plot the metrics
+============ Serving Benchmark Result ============
+Successful requests:                     4         
+Failed requests:                         0         
+Request rate configured (RPS):           4.00      
+Benchmark duration (s):                  78.27     
+Total input tokens:                      32768     
+Total generated tokens:                  32768     
+Request throughput (req/s):              0.05      
+Output token throughput (tok/s):         418.64    
+Peak output token throughput (tok/s):    144.00    
+Peak concurrent requests:                4.00      
+Total token throughput (tok/s):          837.27    
+---------------Time to First Token----------------
+Mean TTFT (ms):                          258.65    
+Median TTFT (ms):                        228.50    
+P99 TTFT (ms):                           496.60    
+-----Time per Output Token (excl. 1st token)------
+Mean TPOT (ms):                          7.32      
+Median TPOT (ms):                        7.16      
+P99 TPOT (ms):                           9.49      
+---------------Inter-token Latency----------------
+Mean ITL (ms):                           27.09     
+Median ITL (ms):                         28.05     
+P99 ITL (ms):                            30.86     
+---------------Speculative Decoding---------------
+Acceptance rate (%):                     54.11     
+Acceptance length:                       3.71      
+Drafts:                                  8845      
+Draft tokens:                            44225     
+Accepted tokens:                         23930     
+Per-position acceptance (%):
+  Position 0:                            86.05     
+  Position 1:                            63.43     
+  Position 2:                            47.16     
+  Position 3:                            38.88     
+  Position 4:                            35.04     
+==================================================
+===== tier 8K/8K c8 k5 14:12:20 =====
+W1028 14:12:22.513000 1868581 torch/_opaque_base.py:6] torch._opaque_base is deprecated, use torch._custom_class_base instead
+W1028 14:12:22.514000 1868581 torch/_library/opaque_object.py:288] register_opaque_type is deprecated, use register_custom_class instead
+W1028 14:12:22.514000 1868581 torch/_library/opaque_object.py:211] typ='value' is deprecated, use typ='constant' instead
+Namespace(subparser='bench', bench_type='serve', dispatch_function=<function BenchmarkServingSubcommand.cmd at 0x7f56011ccc20>, trust_remote_code=False, seed=0, num_prompts=8, dataset_name='random', no_stream=False, dataset_path=None, no_oversample=False, skip_chat_template=False, enable_multimodal_chat=False, disable_shuffle=False, custom_output_len=256, custom_ensure_client_side_data=False, spec_bench_output_len=256, spec_bench_category=None, sharegpt_output_len=None, timed_trace_chunk_hash_size=16, timed_trace_sec_multiplier=1, timed_trace_label_timestamp='timestamp', timed_trace_label_input_length='input_length', timed_trace_label_output_length='output_length', timed_trace_label_hash_ids='hash_ids', blazedit_min_distance=0.0, blazedit_max_distance=1.0, asr_max_audio_len_sec=inf, asr_min_audio_len_sec=0.0, random_input_len=8192, random_output_len=8192, random_range_ratio='0.0', random_prefix_len=0, random_batch_size=1, no_reranker=False, random_mm_base_items_per_request=1, random_mm_num_mm_items_range_ratio=0.0, random_mm_limit_mm_per_prompt={'image': 255, 'video': 1}, random_mm_bucket_config={(256, 256, 1): 0.5, (720, 1280, 1): 0.5, (720, 1280, 16): 0.0}, hf_subset=None, hf_split=None, hf_name=None, hf_output_len=None, bfcl_categories=None, prefix_repetition_prefix_len=256, prefix_repetition_suffix_len=256, prefix_repetition_num_prefixes=10, prefix_repetition_output_len=128, speed_bench_dataset_subset='qualitative', speed_bench_output_len=4096, speed_bench_category=None, label=None, backend='openai', base_url='http://127.0.0.1:8123', host='127.0.0.1', port=8000, endpoint='/v1/completions', header=None, max_concurrency=None, model='glm-5.3-flash', input_len=None, output_len=None, tokenizer='/data/models/GLM-5.3-Flash', tokenizer_mode='auto', use_beam_search=False, logprobs=None, request_rate=8.0, burstiness=1.0, probe_request_rate=0.0, disable_tqdm=False, num_warmups=0, profile=False, save_result=False, save_detailed=False, append_result=False, metadata=None, result_dir=None, result_filename=None, ignore_eos=True, self_timed=None, percentile_metrics=None, metric_percentiles='99', goodput=None, request_id_prefix='bench-23c2cb0c-', top_p=None, top_k=None, min_p=None, temperature=None, frequency_penalty=None, presence_penalty=None, repetition_penalty=None, served_model_name=None, lora_modules=None, lora_assignment='random', ramp_up_strategy=None, ramp_up_start_rps=None, ramp_up_end_rps=None, ready_check_timeout_sec=0, chat_template_kwargs=None, extra_body=None, skip_tokenizer_init=False, insecure=False, plot_timeline=False, timeline_itl_thresholds='25,50', plot_dataset_stats=False, log_config_file=None, logging_config=LoggingConfig(log_level='INFO', formatter='text', configure_logging=True, pylogging_config_file=None))
+(MainProcess pid=1868581) INFO 10-28 14:12:26 [utils.py:88] Sampling input_len from [8192, 8192] and output_len from [8192, 8192]
+WARNING: vllm bench serve no longer sets temperature==0 (greedy) in requests by default. The default will be determined on the server side and can be model/API specific. For the old behavior, include --temperature=0.
+Starting initial single prompt test run...
+Skipping endpoint ready check.
+Starting main benchmark run...
+Traffic request rate: 8.0
+Burstiness factor: 1.0 (Poisson process)
+Maximum request concurrency: None
+  0%|          | 0/8 [00:00<?, ?it/s] 12%|█▎        | 1/8 [00:58<06:47, 58.29s/it] 25%|██▌       | 2/8 [01:02<02:40, 26.67s/it] 38%|███▊      | 3/8 [01:09<01:28, 17.73s/it] 50%|█████     | 4/8 [01:11<00:45, 11.45s/it] 62%|██████▎   | 5/8 [01:21<00:32, 10.88s/it] 75%|███████▌  | 6/8 [01:23<00:15,  7.69s/it] 88%|████████▊ | 7/8 [01:37<00:10, 10.03s/it]100%|██████████| 8/8 [01:37<00:00, 12.25s/it]
+tip: install termplotlib and gnuplot to plot the metrics
+============ Serving Benchmark Result ============
+Successful requests:                     8         
+Failed requests:                         0         
+Request rate configured (RPS):           8.00      
+Benchmark duration (s):                  97.99     
+Total input tokens:                      65536     
+Total generated tokens:                  65536     
+Request throughput (req/s):              0.08      
+Output token throughput (tok/s):         668.80    
+Peak output token throughput (tok/s):    216.00    
+Peak concurrent requests:                8.00      
+Total token throughput (tok/s):          1337.59   
+---------------Time to First Token----------------
+Mean TTFT (ms):                          444.44    
+Median TTFT (ms):                        274.71    
+P99 TTFT (ms):                           960.51    
+-----Time per Output Token (excl. 1st token)------
+Mean TPOT (ms):                          9.40      
+Median TPOT (ms):                        9.28      
+P99 TPOT (ms):                           11.88     
+---------------Inter-token Latency----------------
+Mean ITL (ms):                           36.75     
+Median ITL (ms):                         37.78     
+P99 ITL (ms):                            40.58     
+---------------Speculative Decoding---------------
+Acceptance rate (%):                     58.28     
+Acceptance length:                       3.91      
+Drafts:                                  16748     
+Draft tokens:                            83740     
+Accepted tokens:                         48801     
+Per-position acceptance (%):
+  Position 0:                            80.38     
+  Position 1:                            70.31     
+  Position 2:                            61.12     
+  Position 3:                            41.84     
+  Position 4:                            37.74     
+==================================================
+===== tier 8K/8K c16 k5 14:14:05 =====
+W1028 14:14:06.820000 1870188 torch/_opaque_base.py:6] torch._opaque_base is deprecated, use torch._custom_class_base instead
+W1028 14:14:06.820000 1870188 torch/_library/opaque_object.py:288] register_opaque_type is deprecated, use register_custom_class instead
+W1028 14:14:06.820000 1870188 torch/_library/opaque_object.py:211] typ='value' is deprecated, use typ='constant' instead
+Namespace(subparser='bench', bench_type='serve', dispatch_function=<function BenchmarkServingSubcommand.cmd at 0x7f52bd848cc0>, trust_remote_code=False, seed=0, num_prompts=16, dataset_name='random', no_stream=False, dataset_path=None, no_oversample=False, skip_chat_template=False, enable_multimodal_chat=False, disable_shuffle=False, custom_output_len=256, custom_ensure_client_side_data=False, spec_bench_output_len=256, spec_bench_category=None, sharegpt_output_len=None, timed_trace_chunk_hash_size=16, timed_trace_sec_multiplier=1, timed_trace_label_timestamp='timestamp', timed_trace_label_input_length='input_length', timed_trace_label_output_length='output_length', timed_trace_label_hash_ids='hash_ids', blazedit_min_distance=0.0, blazedit_max_distance=1.0, asr_max_audio_len_sec=inf, asr_min_audio_len_sec=0.0, random_input_len=8192, random_output_len=8192, random_range_ratio='0.0', random_prefix_len=0, random_batch_size=1, no_reranker=False, random_mm_base_items_per_request=1, random_mm_num_mm_items_range_ratio=0.0, random_mm_limit_mm_per_prompt={'image': 255, 'video': 1}, random_mm_bucket_config={(256, 256, 1): 0.5, (720, 1280, 1): 0.5, (720, 1280, 16): 0.0}, hf_subset=None, hf_split=None, hf_name=None, hf_output_len=None, bfcl_categories=None, prefix_repetition_prefix_len=256, prefix_repetition_suffix_len=256, prefix_repetition_num_prefixes=10, prefix_repetition_output_len=128, speed_bench_dataset_subset='qualitative', speed_bench_output_len=4096, speed_bench_category=None, label=None, backend='openai', base_url='http://127.0.0.1:8123', host='127.0.0.1', port=8000, endpoint='/v1/completions', header=None, max_concurrency=None, model='glm-5.3-flash', input_len=None, output_len=None, tokenizer='/data/models/GLM-5.3-Flash', tokenizer_mode='auto', use_beam_search=False, logprobs=None, request_rate=16.0, burstiness=1.0, probe_request_rate=0.0, disable_tqdm=False, num_warmups=0, profile=False, save_result=False, save_detailed=False, append_result=False, metadata=None, result_dir=None, result_filename=None, ignore_eos=True, self_timed=None, percentile_metrics=None, metric_percentiles='99', goodput=None, request_id_prefix='bench-35f17a6e-', top_p=None, top_k=None, min_p=None, temperature=None, frequency_penalty=None, presence_penalty=None, repetition_penalty=None, served_model_name=None, lora_modules=None, lora_assignment='random', ramp_up_strategy=None, ramp_up_start_rps=None, ramp_up_end_rps=None, ready_check_timeout_sec=0, chat_template_kwargs=None, extra_body=None, skip_tokenizer_init=False, insecure=False, plot_timeline=False, timeline_itl_thresholds='25,50', plot_dataset_stats=False, log_config_file=None, logging_config=LoggingConfig(log_level='INFO', formatter='text', configure_logging=True, pylogging_config_file=None))
+(MainProcess pid=1870188) INFO 10-28 14:14:10 [utils.py:88] Sampling input_len from [8192, 8192] and output_len from [8192, 8192]
+WARNING: vllm bench serve no longer sets temperature==0 (greedy) in requests by default. The default will be determined on the server side and can be model/API specific. For the old behavior, include --temperature=0.
+Starting initial single prompt test run...
+Skipping endpoint ready check.
+Starting main benchmark run...
+Traffic request rate: 16.0
+Burstiness factor: 1.0 (Poisson process)
+Maximum request concurrency: None
+  0%|          | 0/16 [00:00<?, ?it/s]  6%|▋         | 1/16 [01:10<17:43, 70.91s/it] 12%|█▎        | 2/16 [01:12<07:04, 30.34s/it] 19%|█▉        | 3/16 [01:15<03:48, 17.58s/it] 25%|██▌       | 4/16 [01:18<02:23, 11.92s/it] 31%|███▏      | 5/16 [01:19<01:29,  8.15s/it] 38%|███▊      | 6/16 [01:21<00:58,  5.89s/it] 44%|████▍     | 7/16 [01:22<00:38,  4.30s/it] 50%|█████     | 8/16 [01:23<00:26,  3.35s/it] 56%|█████▋    | 9/16 [01:25<00:19,  2.79s/it] 62%|██████▎   | 10/16 [01:26<00:13,  2.22s/it] 69%|██████▉   | 11/16 [01:31<00:16,  3.21s/it] 75%|███████▌  | 12/16 [01:35<00:12,  3.22s/it] 81%|████████▏ | 13/16 [01:36<00:08,  2.83s/it] 88%|████████▊ | 14/16 [01:45<00:08,  4.49s/it] 94%|█████████▍| 15/16 [01:48<00:04,  4.05s/it]100%|██████████| 16/16 [01:49<00:00,  3.13s/it]100%|██████████| 16/16 [01:49<00:00,  6.83s/it]
+tip: install termplotlib and gnuplot to plot the metrics
+============ Serving Benchmark Result ============
+Successful requests:                     16        
+Failed requests:                         0         
+Request rate configured (RPS):           16.00     
+Benchmark duration (s):                  109.30    
+Total input tokens:                      131072    
+Total generated tokens:                  131072    
+Request throughput (req/s):              0.15      
+Output token throughput (tok/s):         1199.25   
+Peak output token throughput (tok/s):    368.00    
+Peak concurrent requests:                16.00     
+Total token throughput (tok/s):          2398.50   
+---------------Time to First Token----------------
+Mean TTFT (ms):                          789.19    
+Median TTFT (ms):                        323.28    
+P99 TTFT (ms):                           2189.32   
+-----Time per Output Token (excl. 1st token)------
+Mean TPOT (ms):                          10.55     
+Median TPOT (ms):                        10.28     
+P99 TPOT (ms):                           13.13     
+---------------Inter-token Latency----------------
+Mean ITL (ms):                           45.22     
+Median ITL (ms):                         46.61     
+P99 ITL (ms):                            50.84     
+---------------Speculative Decoding---------------
+Acceptance rate (%):                     65.83     
+Acceptance length:                       4.29      
+Drafts:                                  30547     
+Draft tokens:                            152735    
+Accepted tokens:                         100546    
+Per-position acceptance (%):
+  Position 0:                            78.88     
+  Position 1:                            70.05     
+  Position 2:                            65.64     
+  Position 3:                            58.88     
+  Position 4:                            55.70     
+==================================================
+===== tier 8K/8K c32 k5 14:16:00 =====
+W1028 14:16:02.597000 1871913 torch/_opaque_base.py:6] torch._opaque_base is deprecated, use torch._custom_class_base instead
+W1028 14:16:02.598000 1871913 torch/_library/opaque_object.py:288] register_opaque_type is deprecated, use register_custom_class instead
+W1028 14:16:02.598000 1871913 torch/_library/opaque_object.py:211] typ='value' is deprecated, use typ='constant' instead
+Namespace(subparser='bench', bench_type='serve', dispatch_function=<function BenchmarkServingSubcommand.cmd at 0x7f53af684c20>, trust_remote_code=False, seed=0, num_prompts=32, dataset_name='random', no_stream=False, dataset_path=None, no_oversample=False, skip_chat_template=False, enable_multimodal_chat=False, disable_shuffle=False, custom_output_len=256, custom_ensure_client_side_data=False, spec_bench_output_len=256, spec_bench_category=None, sharegpt_output_len=None, timed_trace_chunk_hash_size=16, timed_trace_sec_multiplier=1, timed_trace_label_timestamp='timestamp', timed_trace_label_input_length='input_length', timed_trace_label_output_length='output_length', timed_trace_label_hash_ids='hash_ids', blazedit_min_distance=0.0, blazedit_max_distance=1.0, asr_max_audio_len_sec=inf, asr_min_audio_len_sec=0.0, random_input_len=8192, random_output_len=8192, random_range_ratio='0.0', random_prefix_len=0, random_batch_size=1, no_reranker=False, random_mm_base_items_per_request=1, random_mm_num_mm_items_range_ratio=0.0, random_mm_limit_mm_per_prompt={'image': 255, 'video': 1}, random_mm_bucket_config={(256, 256, 1): 0.5, (720, 1280, 1): 0.5, (720, 1280, 16): 0.0}, hf_subset=None, hf_split=None, hf_name=None, hf_output_len=None, bfcl_categories=None, prefix_repetition_prefix_len=256, prefix_repetition_suffix_len=256, prefix_repetition_num_prefixes=10, prefix_repetition_output_len=128, speed_bench_dataset_subset='qualitative', speed_bench_output_len=4096, speed_bench_category=None, label=None, backend='openai', base_url='http://127.0.0.1:8123', host='127.0.0.1', port=8000, endpoint='/v1/completions', header=None, max_concurrency=None, model='glm-5.3-flash', input_len=None, output_len=None, tokenizer='/data/models/GLM-5.3-Flash', tokenizer_mode='auto', use_beam_search=False, logprobs=None, request_rate=32.0, burstiness=1.0, probe_request_rate=0.0, disable_tqdm=False, num_warmups=0, profile=False, save_result=False, save_detailed=False, append_result=False, metadata=None, result_dir=None, result_filename=None, ignore_eos=True, self_timed=None, percentile_metrics=None, metric_percentiles='99', goodput=None, request_id_prefix='bench-7638e721-', top_p=None, top_k=None, min_p=None, temperature=None, frequency_penalty=None, presence_penalty=None, repetition_penalty=None, served_model_name=None, lora_modules=None, lora_assignment='random', ramp_up_strategy=None, ramp_up_start_rps=None, ramp_up_end_rps=None, ready_check_timeout_sec=0, chat_template_kwargs=None, extra_body=None, skip_tokenizer_init=False, insecure=False, plot_timeline=False, timeline_itl_thresholds='25,50', plot_dataset_stats=False, log_config_file=None, logging_config=LoggingConfig(log_level='INFO', formatter='text', configure_logging=True, pylogging_config_file=None))
+(MainProcess pid=1871913) INFO 10-28 14:16:06 [utils.py:88] Sampling input_len from [8192, 8192] and output_len from [8192, 8192]
+WARNING: vllm bench serve no longer sets temperature==0 (greedy) in requests by default. The default will be determined on the server side and can be model/API specific. For the old behavior, include --temperature=0.
+Starting initial single prompt test run...
+Skipping endpoint ready check.
+Starting main benchmark run...
+Traffic request rate: 32.0
+Burstiness factor: 1.0 (Poisson process)
+Maximum request concurrency: None
+  0%|          | 0/32 [00:00<?, ?it/s]  3%|▎         | 1/32 [01:34<48:38, 94.15s/it]  6%|▋         | 2/32 [01:34<19:34, 39.13s/it] 12%|█▎        | 4/32 [01:35<06:56, 14.89s/it] 16%|█▌        | 5/32 [01:35<04:39, 10.36s/it] 19%|█▉        | 6/32 [01:36<03:14,  7.46s/it] 22%|██▏       | 7/32 [01:37<02:14,  5.39s/it] 25%|██▌       | 8/32 [01:39<01:47,  4.47s/it] 28%|██▊       | 9/32 [01:41<01:22,  3.59s/it] 31%|███▏      | 10/32 [01:41<00:57,  2.61s/it] 34%|███▍      | 11/32 [01:45<01:00,  2.88s/it] 38%|███▊      | 12/32 [01:45<00:44,  2.23s/it] 41%|████      | 13/32 [01:46<00:31,  1.66s/it] 44%|████▍     | 14/32 [01:53<01:00,  3.35s/it] 47%|████▋     | 15/32 [01:57<00:57,  3.37s/it] 50%|█████     | 16/32 [01:57<00:42,  2.65s/it] 53%|█████▎    | 17/32 [02:00<00:38,  2.58s/it] 56%|█████▋    | 18/32 [02:02<00:33,  2.43s/it] 59%|█████▉    | 19/32 [02:09<00:48,  3.76s/it] 62%|██████▎   | 20/32 [02:12<00:42,  3.53s/it] 66%|██████▌   | 21/32 [02:25<01:09,  6.28s/it] 69%|██████▉   | 22/32 [02:27<00:52,  5.23s/it] 72%|███████▏  | 23/32 [02:28<00:36,  4.02s/it] 75%|███████▌  | 24/32 [02:38<00:45,  5.67s/it] 78%|███████▊  | 25/32 [02:47<00:46,  6.62s/it] 81%|████████▏ | 26/32 [02:59<00:50,  8.33s/it] 84%|████████▍ | 27/32 [02:59<00:29,  5.89s/it] 88%|████████▊ | 28/32 [03:09<00:28,  7.11s/it] 91%|█████████ | 29/32 [03:11<00:16,  5.55s/it] 94%|█████████▍| 30/32 [03:12<00:08,  4.13s/it] 97%|█████████▋| 31/32 [03:14<00:03,  3.40s/it]100%|██████████| 32/32 [03:20<00:00,  4.23s/it]100%|██████████| 32/32 [03:20<00:00,  6.26s/it]
+tip: install termplotlib and gnuplot to plot the metrics
+============ Serving Benchmark Result ============
+Successful requests:                     32        
+Failed requests:                         0         
+Request rate configured (RPS):           32.00     
+Benchmark duration (s):                  200.43    
+Total input tokens:                      262144    
+Total generated tokens:                  262144    
+Request throughput (req/s):              0.16      
+Output token throughput (tok/s):         1307.91   
+Peak output token throughput (tok/s):    525.00    
+Peak concurrent requests:                32.00     
+Total token throughput (tok/s):          2615.81   
+---------------Time to First Token----------------
+Mean TTFT (ms):                          1674.99   
+Median TTFT (ms):                        763.84    
+P99 TTFT (ms):                           4948.64   
+-----Time per Output Token (excl. 1st token)------
+Mean TPOT (ms):                          15.91     
+Median TPOT (ms):                        14.38     
+P99 TPOT (ms):                           24.10     
+---------------Inter-token Latency----------------
+Mean ITL (ms):                           59.47     
+Median ITL (ms):                         63.38     
+P99 ITL (ms):                            66.30     
+---------------Speculative Decoding---------------
+Acceptance rate (%):                     54.83     
+Acceptance length:                       3.74      
+Drafts:                                  70077     
+Draft tokens:                            350385    
+Accepted tokens:                         192111    
+Per-position acceptance (%):
+  Position 0:                            74.82     
+  Position 1:                            60.33     
+  Position 2:                            55.13     
+  Position 3:                            44.20     
+  Position 4:                            39.66     
+==================================================
+===== tier 32K/32K c1 k5 14:19:28 =====
+W1028 14:19:29.982000 1874735 torch/_opaque_base.py:6] torch._opaque_base is deprecated, use torch._custom_class_base instead
+W1028 14:19:29.982000 1874735 torch/_library/opaque_object.py:288] register_opaque_type is deprecated, use register_custom_class instead
+W1028 14:19:29.983000 1874735 torch/_library/opaque_object.py:211] typ='value' is deprecated, use typ='constant' instead
+Namespace(subparser='bench', bench_type='serve', dispatch_function=<function BenchmarkServingSubcommand.cmd at 0x7f4b378d4c20>, trust_remote_code=False, seed=0, num_prompts=1, dataset_name='random', no_stream=False, dataset_path=None, no_oversample=False, skip_chat_template=False, enable_multimodal_chat=False, disable_shuffle=False, custom_output_len=256, custom_ensure_client_side_data=False, spec_bench_output_len=256, spec_bench_category=None, sharegpt_output_len=None, timed_trace_chunk_hash_size=16, timed_trace_sec_multiplier=1, timed_trace_label_timestamp='timestamp', timed_trace_label_input_length='input_length', timed_trace_label_output_length='output_length', timed_trace_label_hash_ids='hash_ids', blazedit_min_distance=0.0, blazedit_max_distance=1.0, asr_max_audio_len_sec=inf, asr_min_audio_len_sec=0.0, random_input_len=32768, random_output_len=32768, random_range_ratio='0.0', random_prefix_len=0, random_batch_size=1, no_reranker=False, random_mm_base_items_per_request=1, random_mm_num_mm_items_range_ratio=0.0, random_mm_limit_mm_per_prompt={'image': 255, 'video': 1}, random_mm_bucket_config={(256, 256, 1): 0.5, (720, 1280, 1): 0.5, (720, 1280, 16): 0.0}, hf_subset=None, hf_split=None, hf_name=None, hf_output_len=None, bfcl_categories=None, prefix_repetition_prefix_len=256, prefix_repetition_suffix_len=256, prefix_repetition_num_prefixes=10, prefix_repetition_output_len=128, speed_bench_dataset_subset='qualitative', speed_bench_output_len=4096, speed_bench_category=None, label=None, backend='openai', base_url='http://127.0.0.1:8123', host='127.0.0.1', port=8000, endpoint='/v1/completions', header=None, max_concurrency=None, model='glm-5.3-flash', input_len=None, output_len=None, tokenizer='/data/models/GLM-5.3-Flash', tokenizer_mode='auto', use_beam_search=False, logprobs=None, request_rate=1.0, burstiness=1.0, probe_request_rate=0.0, disable_tqdm=False, num_warmups=0, profile=False, save_result=False, save_detailed=False, append_result=False, metadata=None, result_dir=None, result_filename=None, ignore_eos=True, self_timed=None, percentile_metrics=None, metric_percentiles='99', goodput=None, request_id_prefix='bench-aea41198-', top_p=None, top_k=None, min_p=None, temperature=None, frequency_penalty=None, presence_penalty=None, repetition_penalty=None, served_model_name=None, lora_modules=None, lora_assignment='random', ramp_up_strategy=None, ramp_up_start_rps=None, ramp_up_end_rps=None, ready_check_timeout_sec=0, chat_template_kwargs=None, extra_body=None, skip_tokenizer_init=False, insecure=False, plot_timeline=False, timeline_itl_thresholds='25,50', plot_dataset_stats=False, log_config_file=None, logging_config=LoggingConfig(log_level='INFO', formatter='text', configure_logging=True, pylogging_config_file=None))
+(MainProcess pid=1874735) INFO 10-28 14:19:33 [utils.py:88] Sampling input_len from [32768, 32768] and output_len from [32768, 32768]
+WARNING: vllm bench serve no longer sets temperature==0 (greedy) in requests by default. The default will be determined on the server side and can be model/API specific. For the old behavior, include --temperature=0.
+Starting initial single prompt test run...
+Skipping endpoint ready check.
+Starting main benchmark run...
+Traffic request rate: 1.0
+Burstiness factor: 1.0 (Poisson process)
+Maximum request concurrency: None
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [01:38<00:00, 98.07s/it]100%|██████████| 1/1 [01:38<00:00, 98.07s/it]
+tip: install termplotlib and gnuplot to plot the metrics
+============ Serving Benchmark Result ============
+Successful requests:                     1         
+Failed requests:                         0         
+Request rate configured (RPS):           1.00      
+Benchmark duration (s):                  98.07     
+Total input tokens:                      32768     
+Total generated tokens:                  32768     
+Request throughput (req/s):              0.01      
+Output token throughput (tok/s):         334.12    
+Peak output token throughput (tok/s):    63.00     
+Peak concurrent requests:                1.00      
+Total token throughput (tok/s):          668.24    
+---------------Time to First Token----------------
+Mean TTFT (ms):                          1818.17   
+Median TTFT (ms):                        1818.17   
+P99 TTFT (ms):                           1818.17   
+-----Time per Output Token (excl. 1st token)------
+Mean TPOT (ms):                          2.91      
+Median TPOT (ms):                        2.91      
+P99 TPOT (ms):                           2.91      
+---------------Inter-token Latency----------------
+Mean ITL (ms):                           16.33     
+Median ITL (ms):                         16.09     
+P99 ITL (ms):                            18.61     
+---------------Speculative Decoding---------------
+Acceptance rate (%):                     92.36     
+Acceptance length:                       5.62      
+Drafts:                                  5833      
+Draft tokens:                            29165     
+Accepted tokens:                         26937     
+Per-position acceptance (%):
+  Position 0:                            96.76     
+  Position 1:                            96.31     
+  Position 2:                            93.62     
+  Position 3:                            88.79     
+  Position 4:                            86.32     
+==================================================
+===== tier 32K/32K c2 k5 14:21:12 =====
+W1028 14:21:14.357000 1876433 torch/_opaque_base.py:6] torch._opaque_base is deprecated, use torch._custom_class_base instead
+W1028 14:21:14.358000 1876433 torch/_library/opaque_object.py:288] register_opaque_type is deprecated, use register_custom_class instead
+W1028 14:21:14.358000 1876433 torch/_library/opaque_object.py:211] typ='value' is deprecated, use typ='constant' instead
+Namespace(subparser='bench', bench_type='serve', dispatch_function=<function BenchmarkServingSubcommand.cmd at 0x7fbaf4624c20>, trust_remote_code=False, seed=0, num_prompts=2, dataset_name='random', no_stream=False, dataset_path=None, no_oversample=False, skip_chat_template=False, enable_multimodal_chat=False, disable_shuffle=False, custom_output_len=256, custom_ensure_client_side_data=False, spec_bench_output_len=256, spec_bench_category=None, sharegpt_output_len=None, timed_trace_chunk_hash_size=16, timed_trace_sec_multiplier=1, timed_trace_label_timestamp='timestamp', timed_trace_label_input_length='input_length', timed_trace_label_output_length='output_length', timed_trace_label_hash_ids='hash_ids', blazedit_min_distance=0.0, blazedit_max_distance=1.0, asr_max_audio_len_sec=inf, asr_min_audio_len_sec=0.0, random_input_len=32768, random_output_len=32768, random_range_ratio='0.0', random_prefix_len=0, random_batch_size=1, no_reranker=False, random_mm_base_items_per_request=1, random_mm_num_mm_items_range_ratio=0.0, random_mm_limit_mm_per_prompt={'image': 255, 'video': 1}, random_mm_bucket_config={(256, 256, 1): 0.5, (720, 1280, 1): 0.5, (720, 1280, 16): 0.0}, hf_subset=None, hf_split=None, hf_name=None, hf_output_len=None, bfcl_categories=None, prefix_repetition_prefix_len=256, prefix_repetition_suffix_len=256, prefix_repetition_num_prefixes=10, prefix_repetition_output_len=128, speed_bench_dataset_subset='qualitative', speed_bench_output_len=4096, speed_bench_category=None, label=None, backend='openai', base_url='http://127.0.0.1:8123', host='127.0.0.1', port=8000, endpoint='/v1/completions', header=None, max_concurrency=None, model='glm-5.3-flash', input_len=None, output_len=None, tokenizer='/data/models/GLM-5.3-Flash', tokenizer_mode='auto', use_beam_search=False, logprobs=None, request_rate=2.0, burstiness=1.0, probe_request_rate=0.0, disable_tqdm=False, num_warmups=0, profile=False, save_result=False, save_detailed=False, append_result=False, metadata=None, result_dir=None, result_filename=None, ignore_eos=True, self_timed=None, percentile_metrics=None, metric_percentiles='99', goodput=None, request_id_prefix='bench-2027794e-', top_p=None, top_k=None, min_p=None, temperature=None, frequency_penalty=None, presence_penalty=None, repetition_penalty=None, served_model_name=None, lora_modules=None, lora_assignment='random', ramp_up_strategy=None, ramp_up_start_rps=None, ramp_up_end_rps=None, ready_check_timeout_sec=0, chat_template_kwargs=None, extra_body=None, skip_tokenizer_init=False, insecure=False, plot_timeline=False, timeline_itl_thresholds='25,50', plot_dataset_stats=False, log_config_file=None, logging_config=LoggingConfig(log_level='INFO', formatter='text', configure_logging=True, pylogging_config_file=None))
+(MainProcess pid=1876433) INFO 10-28 14:21:18 [utils.py:88] Sampling input_len from [32768, 32768] and output_len from [32768, 32768]
+WARNING: vllm bench serve no longer sets temperature==0 (greedy) in requests by default. The default will be determined on the server side and can be model/API specific. For the old behavior, include --temperature=0.
+Starting initial single prompt test run...
+Skipping endpoint ready check.
+Starting main benchmark run...
+Traffic request rate: 2.0
+Burstiness factor: 1.0 (Poisson process)
+Maximum request concurrency: None
+  0%|          | 0/2 [00:00<?, ?it/s] 50%|█████     | 1/2 [02:06<02:06, 126.12s/it]100%|██████████| 2/2 [03:16<00:00, 93.60s/it] 100%|██████████| 2/2 [03:16<00:00, 98.48s/it]
+tip: install termplotlib and gnuplot to plot the metrics
+============ Serving Benchmark Result ============
+Successful requests:                     2         
+Failed requests:                         0         
+Request rate configured (RPS):           2.00      
+Benchmark duration (s):                  196.95    
+Total input tokens:                      65536     
+Total generated tokens:                  65536     
+Request throughput (req/s):              0.01      
+Output token throughput (tok/s):         332.75    
+Peak output token throughput (tok/s):    106.00    
+Peak concurrent requests:                2.00      
+Total token throughput (tok/s):          665.51    
+---------------Time to First Token----------------
+Mean TTFT (ms):                          990.32    
+Median TTFT (ms):                        990.32    
+P99 TTFT (ms):                           1859.89   
+-----Time per Output Token (excl. 1st token)------
+Mean TPOT (ms):                          4.88      
+Median TPOT (ms):                        4.88      
+P99 TPOT (ms):                           5.90      
+---------------Inter-token Latency----------------
+Mean ITL (ms):                           20.88     
+Median ITL (ms):                         21.56     
+P99 ITL (ms):                            23.55     
+---------------Speculative Decoding---------------
+Acceptance rate (%):                     65.62     
+Acceptance length:                       4.28      
+Drafts:                                  15309     
+Draft tokens:                            76545     
+Accepted tokens:                         50230     
+Per-position acceptance (%):
+  Position 0:                            90.16     
+  Position 1:                            73.63     
+  Position 2:                            58.01     
+  Position 3:                            53.87     
+  Position 4:                            52.43     
+==================================================
+===== tier 32K/32K c4 k5 14:24:35 =====
+W1028 14:24:37.571000 1879141 torch/_opaque_base.py:6] torch._opaque_base is deprecated, use torch._custom_class_base instead
+W1028 14:24:37.572000 1879141 torch/_library/opaque_object.py:288] register_opaque_type is deprecated, use register_custom_class instead
+W1028 14:24:37.572000 1879141 torch/_library/opaque_object.py:211] typ='value' is deprecated, use typ='constant' instead
+Namespace(subparser='bench', bench_type='serve', dispatch_function=<function BenchmarkServingSubcommand.cmd at 0x7f3cb8764c20>, trust_remote_code=False, seed=0, num_prompts=4, dataset_name='random', no_stream=False, dataset_path=None, no_oversample=False, skip_chat_template=False, enable_multimodal_chat=False, disable_shuffle=False, custom_output_len=256, custom_ensure_client_side_data=False, spec_bench_output_len=256, spec_bench_category=None, sharegpt_output_len=None, timed_trace_chunk_hash_size=16, timed_trace_sec_multiplier=1, timed_trace_label_timestamp='timestamp', timed_trace_label_input_length='input_length', timed_trace_label_output_length='output_length', timed_trace_label_hash_ids='hash_ids', blazedit_min_distance=0.0, blazedit_max_distance=1.0, asr_max_audio_len_sec=inf, asr_min_audio_len_sec=0.0, random_input_len=32768, random_output_len=32768, random_range_ratio='0.0', random_prefix_len=0, random_batch_size=1, no_reranker=False, random_mm_base_items_per_request=1, random_mm_num_mm_items_range_ratio=0.0, random_mm_limit_mm_per_prompt={'image': 255, 'video': 1}, random_mm_bucket_config={(256, 256, 1): 0.5, (720, 1280, 1): 0.5, (720, 1280, 16): 0.0}, hf_subset=None, hf_split=None, hf_name=None, hf_output_len=None, bfcl_categories=None, prefix_repetition_prefix_len=256, prefix_repetition_suffix_len=256, prefix_repetition_num_prefixes=10, prefix_repetition_output_len=128, speed_bench_dataset_subset='qualitative', speed_bench_output_len=4096, speed_bench_category=None, label=None, backend='openai', base_url='http://127.0.0.1:8123', host='127.0.0.1', port=8000, endpoint='/v1/completions', header=None, max_concurrency=None, model='glm-5.3-flash', input_len=None, output_len=None, tokenizer='/data/models/GLM-5.3-Flash', tokenizer_mode='auto', use_beam_search=False, logprobs=None, request_rate=4.0, burstiness=1.0, probe_request_rate=0.0, disable_tqdm=False, num_warmups=0, profile=False, save_result=False, save_detailed=False, append_result=False, metadata=None, result_dir=None, result_filename=None, ignore_eos=True, self_timed=None, percentile_metrics=None, metric_percentiles='99', goodput=None, request_id_prefix='bench-b85c2785-', top_p=None, top_k=None, min_p=None, temperature=None, frequency_penalty=None, presence_penalty=None, repetition_penalty=None, served_model_name=None, lora_modules=None, lora_assignment='random', ramp_up_strategy=None, ramp_up_start_rps=None, ramp_up_end_rps=None, ready_check_timeout_sec=0, chat_template_kwargs=None, extra_body=None, skip_tokenizer_init=False, insecure=False, plot_timeline=False, timeline_itl_thresholds='25,50', plot_dataset_stats=False, log_config_file=None, logging_config=LoggingConfig(log_level='INFO', formatter='text', configure_logging=True, pylogging_config_file=None))
+(MainProcess pid=1879141) INFO 10-28 14:24:41 [utils.py:88] Sampling input_len from [32768, 32768] and output_len from [32768, 32768]
+WARNING: vllm bench serve no longer sets temperature==0 (greedy) in requests by default. The default will be determined on the server side and can be model/API specific. For the old behavior, include --temperature=0.
+Starting initial single prompt test run...
+Skipping endpoint ready check.
+Starting main benchmark run...
+Traffic request rate: 4.0
+Burstiness factor: 1.0 (Poisson process)
+Maximum request concurrency: None
+  0%|          | 0/4 [00:00<?, ?it/s] 25%|██▌       | 1/4 [03:07<09:23, 187.73s/it] 50%|█████     | 2/4 [03:45<03:19, 99.68s/it]  75%|███████▌  | 3/4 [05:55<01:53, 113.53s/it]100%|██████████| 4/4 [06:46<00:00, 88.55s/it] 100%|██████████| 4/4 [06:46<00:00, 101.51s/it]
+tip: install termplotlib and gnuplot to plot the metrics
+============ Serving Benchmark Result ============
+Successful requests:                     4         
+Failed requests:                         0         
+Request rate configured (RPS):           4.00      
+Benchmark duration (s):                  406.03    
+Total input tokens:                      131072    
+Total generated tokens:                  131072    
+Request throughput (req/s):              0.01      
+Output token throughput (tok/s):         322.81    
+Peak output token throughput (tok/s):    144.00    
+Peak concurrent requests:                4.00      
+Total token throughput (tok/s):          645.62    
+---------------Time to First Token----------------
+Mean TTFT (ms):                          1483.44   
+Median TTFT (ms):                        1175.05   
+P99 TTFT (ms):                           3441.92   
+-----Time per Output Token (excl. 1st token)------
+Mean TPOT (ms):                          8.90      
+Median TPOT (ms):                        8.80      
+P99 TPOT (ms):                           12.33     
+---------------Inter-token Latency----------------
+Mean ITL (ms):                           27.56     
+Median ITL (ms):                         28.49     
+P99 ITL (ms):                            31.51     
+---------------Speculative Decoding---------------
+Acceptance rate (%):                     41.93     
+Acceptance length:                       3.10      
+Drafts:                                  42333     
+Draft tokens:                            211665    
+Accepted tokens:                         88748     
+Per-position acceptance (%):
+  Position 0:                            77.87     
+  Position 1:                            37.38     
+  Position 2:                            34.29     
+  Position 3:                            32.30     
+  Position 4:                            27.82     
+==================================================
+===== tier 32K/32K c8 k5 14:31:28 =====
+W1028 14:31:30.105000 1884201 torch/_opaque_base.py:6] torch._opaque_base is deprecated, use torch._custom_class_base instead
+W1028 14:31:30.106000 1884201 torch/_library/opaque_object.py:288] register_opaque_type is deprecated, use register_custom_class instead
+W1028 14:31:30.106000 1884201 torch/_library/opaque_object.py:211] typ='value' is deprecated, use typ='constant' instead
+Namespace(subparser='bench', bench_type='serve', dispatch_function=<function BenchmarkServingSubcommand.cmd at 0x7fcc34234cc0>, trust_remote_code=False, seed=0, num_prompts=8, dataset_name='random', no_stream=False, dataset_path=None, no_oversample=False, skip_chat_template=False, enable_multimodal_chat=False, disable_shuffle=False, custom_output_len=256, custom_ensure_client_side_data=False, spec_bench_output_len=256, spec_bench_category=None, sharegpt_output_len=None, timed_trace_chunk_hash_size=16, timed_trace_sec_multiplier=1, timed_trace_label_timestamp='timestamp', timed_trace_label_input_length='input_length', timed_trace_label_output_length='output_length', timed_trace_label_hash_ids='hash_ids', blazedit_min_distance=0.0, blazedit_max_distance=1.0, asr_max_audio_len_sec=inf, asr_min_audio_len_sec=0.0, random_input_len=32768, random_output_len=32768, random_range_ratio='0.0', random_prefix_len=0, random_batch_size=1, no_reranker=False, random_mm_base_items_per_request=1, random_mm_num_mm_items_range_ratio=0.0, random_mm_limit_mm_per_prompt={'image': 255, 'video': 1}, random_mm_bucket_config={(256, 256, 1): 0.5, (720, 1280, 1): 0.5, (720, 1280, 16): 0.0}, hf_subset=None, hf_split=None, hf_name=None, hf_output_len=None, bfcl_categories=None, prefix_repetition_prefix_len=256, prefix_repetition_suffix_len=256, prefix_repetition_num_prefixes=10, prefix_repetition_output_len=128, speed_bench_dataset_subset='qualitative', speed_bench_output_len=4096, speed_bench_category=None, label=None, backend='openai', base_url='http://127.0.0.1:8123', host='127.0.0.1', port=8000, endpoint='/v1/completions', header=None, max_concurrency=None, model='glm-5.3-flash', input_len=None, output_len=None, tokenizer='/data/models/GLM-5.3-Flash', tokenizer_mode='auto', use_beam_search=False, logprobs=None, request_rate=8.0, burstiness=1.0, probe_request_rate=0.0, disable_tqdm=False, num_warmups=0, profile=False, save_result=False, save_detailed=False, append_result=False, metadata=None, result_dir=None, result_filename=None, ignore_eos=True, self_timed=None, percentile_metrics=None, metric_percentiles='99', goodput=None, request_id_prefix='bench-5c8a8e61-', top_p=None, top_k=None, min_p=None, temperature=None, frequency_penalty=None, presence_penalty=None, repetition_penalty=None, served_model_name=None, lora_modules=None, lora_assignment='random', ramp_up_strategy=None, ramp_up_start_rps=None, ramp_up_end_rps=None, ready_check_timeout_sec=0, chat_template_kwargs=None, extra_body=None, skip_tokenizer_init=False, insecure=False, plot_timeline=False, timeline_itl_thresholds='25,50', plot_dataset_stats=False, log_config_file=None, logging_config=LoggingConfig(log_level='INFO', formatter='text', configure_logging=True, pylogging_config_file=None))
+(MainProcess pid=1884201) INFO 10-28 14:31:34 [utils.py:88] Sampling input_len from [32768, 32768] and output_len from [32768, 32768]
+WARNING: vllm bench serve no longer sets temperature==0 (greedy) in requests by default. The default will be determined on the server side and can be model/API specific. For the old behavior, include --temperature=0.
+Starting initial single prompt test run...
+Skipping endpoint ready check.
+Starting main benchmark run...
+Traffic request rate: 8.0
+Burstiness factor: 1.0 (Poisson process)
+Maximum request concurrency: None
+  0%|          | 0/8 [00:00<?, ?it/s] 12%|█▎        | 1/8 [03:34<25:01, 214.46s/it] 25%|██▌       | 2/8 [03:55<10:04, 100.79s/it] 38%|███▊      | 3/8 [04:13<05:14, 63.00s/it]  50%|█████     | 4/8 [04:53<03:35, 53.92s/it] 62%|██████▎   | 5/8 [04:56<01:46, 35.36s/it] 75%|███████▌  | 6/8 [04:56<00:47, 23.61s/it] 88%|████████▊ | 7/8 [05:01<00:17, 17.39s/it]100%|██████████| 8/8 [07:56<00:00, 67.70s/it]100%|██████████| 8/8 [07:56<00:00, 59.62s/it]
+tip: install termplotlib and gnuplot to plot the metrics
+============ Serving Benchmark Result ============
+Successful requests:                     8         
+Failed requests:                         0         
+Request rate configured (RPS):           8.00      
+Benchmark duration (s):                  476.96    
+Total input tokens:                      262144    
+Total generated tokens:                  262144    
+Request throughput (req/s):              0.02      
+Output token throughput (tok/s):         549.61    
+Peak output token throughput (tok/s):    224.00    
+Peak concurrent requests:                8.00      
+Total token throughput (tok/s):          1099.22   
+---------------Time to First Token----------------
+Mean TTFT (ms):                          2376.21   
+Median TTFT (ms):                        1236.17   
+P99 TTFT (ms):                           6866.48   
+-----Time per Output Token (excl. 1st token)------
+Mean TPOT (ms):                          8.95      
+Median TPOT (ms):                        8.82      
+P99 TPOT (ms):                           14.16     
+---------------Inter-token Latency----------------
+Mean ITL (ms):                           34.30     
+Median ITL (ms):                         36.02     
+P99 ITL (ms):                            41.18     
+---------------Speculative Decoding---------------
+Acceptance rate (%):                     56.67     
+Acceptance length:                       3.83      
+Drafts:                                  68382     
+Draft tokens:                            341910    
+Accepted tokens:                         193769    
+Per-position acceptance (%):
+  Position 0:                            87.72     
+  Position 1:                            61.35     
+  Position 2:                            52.48     
+  Position 3:                            44.80     
+  Position 4:                            37.01     
+==================================================
+===== tier 32K/32K c16 k5 14:39:32 =====
+W1028 14:39:34.211000 1890506 torch/_opaque_base.py:6] torch._opaque_base is deprecated, use torch._custom_class_base instead
+W1028 14:39:34.212000 1890506 torch/_library/opaque_object.py:288] register_opaque_type is deprecated, use register_custom_class instead
+W1028 14:39:34.212000 1890506 torch/_library/opaque_object.py:211] typ='value' is deprecated, use typ='constant' instead
+Namespace(subparser='bench', bench_type='serve', dispatch_function=<function BenchmarkServingSubcommand.cmd at 0x7fd5bcc14cc0>, trust_remote_code=False, seed=0, num_prompts=16, dataset_name='random', no_stream=False, dataset_path=None, no_oversample=False, skip_chat_template=False, enable_multimodal_chat=False, disable_shuffle=False, custom_output_len=256, custom_ensure_client_side_data=False, spec_bench_output_len=256, spec_bench_category=None, sharegpt_output_len=None, timed_trace_chunk_hash_size=16, timed_trace_sec_multiplier=1, timed_trace_label_timestamp='timestamp', timed_trace_label_input_length='input_length', timed_trace_label_output_length='output_length', timed_trace_label_hash_ids='hash_ids', blazedit_min_distance=0.0, blazedit_max_distance=1.0, asr_max_audio_len_sec=inf, asr_min_audio_len_sec=0.0, random_input_len=32768, random_output_len=32768, random_range_ratio='0.0', random_prefix_len=0, random_batch_size=1, no_reranker=False, random_mm_base_items_per_request=1, random_mm_num_mm_items_range_ratio=0.0, random_mm_limit_mm_per_prompt={'image': 255, 'video': 1}, random_mm_bucket_config={(256, 256, 1): 0.5, (720, 1280, 1): 0.5, (720, 1280, 16): 0.0}, hf_subset=None, hf_split=None, hf_name=None, hf_output_len=None, bfcl_categories=None, prefix_repetition_prefix_len=256, prefix_repetition_suffix_len=256, prefix_repetition_num_prefixes=10, prefix_repetition_output_len=128, speed_bench_dataset_subset='qualitative', speed_bench_output_len=4096, speed_bench_category=None, label=None, backend='openai', base_url='http://127.0.0.1:8123', host='127.0.0.1', port=8000, endpoint='/v1/completions', header=None, max_concurrency=None, model='glm-5.3-flash', input_len=None, output_len=None, tokenizer='/data/models/GLM-5.3-Flash', tokenizer_mode='auto', use_beam_search=False, logprobs=None, request_rate=16.0, burstiness=1.0, probe_request_rate=0.0, disable_tqdm=False, num_warmups=0, profile=False, save_result=False, save_detailed=False, append_result=False, metadata=None, result_dir=None, result_filename=None, ignore_eos=True, self_timed=None, percentile_metrics=None, metric_percentiles='99', goodput=None, request_id_prefix='bench-df0abd8b-', top_p=None, top_k=None, min_p=None, temperature=None, frequency_penalty=None, presence_penalty=None, repetition_penalty=None, served_model_name=None, lora_modules=None, lora_assignment='random', ramp_up_strategy=None, ramp_up_start_rps=None, ramp_up_end_rps=None, ready_check_timeout_sec=0, chat_template_kwargs=None, extra_body=None, skip_tokenizer_init=False, insecure=False, plot_timeline=False, timeline_itl_thresholds='25,50', plot_dataset_stats=False, log_config_file=None, logging_config=LoggingConfig(log_level='INFO', formatter='text', configure_logging=True, pylogging_config_file=None))
+(MainProcess pid=1890506) INFO 10-28 14:39:38 [utils.py:88] Sampling input_len from [32768, 32768] and output_len from [32768, 32768]
+WARNING: vllm bench serve no longer sets temperature==0 (greedy) in requests by default. The default will be determined on the server side and can be model/API specific. For the old behavior, include --temperature=0.
+Starting initial single prompt test run...
+Skipping endpoint ready check.
+Starting main benchmark run...
+Traffic request rate: 16.0
+Burstiness factor: 1.0 (Poisson process)
+Maximum request concurrency: None
+  0%|          | 0/16 [00:00<?, ?it/s]  6%|▋         | 1/16 [04:25<1:06:15, 265.05s/it] 12%|█▎        | 2/16 [04:27<25:44, 110.35s/it]   19%|█▉        | 3/16 [04:29<13:12, 60.95s/it]  25%|██▌       | 4/16 [04:29<07:24, 37.01s/it] 31%|███▏      | 5/16 [04:33<04:35, 25.06s/it] 38%|███▊      | 6/16 [04:38<03:04, 18.41s/it] 44%|████▍     | 7/16 [04:40<01:57, 13.01s/it] 50%|█████     | 8/16 [04:41<01:13,  9.15s/it] 56%|█████▋    | 9/16 [04:45<00:51,  7.39s/it] 62%|██████▎   | 10/16 [04:52<00:43,  7.25s/it] 69%|██████▉   | 11/16 [04:53<00:26,  5.31s/it] 75%|███████▌  | 12/16 [05:05<00:30,  7.55s/it] 81%|████████▏ | 13/16 [05:06<00:16,  5.60s/it] 88%|████████▊ | 14/16 [05:10<00:09,  4.93s/it] 94%|█████████▍| 15/16 [05:13<00:04,  4.43s/it]100%|██████████| 16/16 [06:17<00:00, 22.45s/it]100%|██████████| 16/16 [06:17<00:00, 23.61s/it]
+tip: install termplotlib and gnuplot to plot the metrics
+============ Serving Benchmark Result ============
+Successful requests:                     16        
+Failed requests:                         0         
+Request rate configured (RPS):           16.00     
+Benchmark duration (s):                  377.83    
+Total input tokens:                      524288    
+Total generated tokens:                  524288    
+Request throughput (req/s):              0.04      
+Output token throughput (tok/s):         1387.61   
+Peak output token throughput (tok/s):    368.00    
+Peak concurrent requests:                16.00     
+Total token throughput (tok/s):          2775.23   
+---------------Time to First Token----------------
+Mean TTFT (ms):                          4318.68   
+Median TTFT (ms):                        1358.12   
+P99 TTFT (ms):                           14278.09  
+-----Time per Output Token (excl. 1st token)------
+Mean TPOT (ms):                          8.76      
+Median TPOT (ms):                        8.54      
+P99 TPOT (ms):                           11.22     
+---------------Inter-token Latency----------------
+Mean ITL (ms):                           45.21     
+Median ITL (ms):                         44.88     
+P99 ITL (ms):                            51.78     
+---------------Speculative Decoding---------------
+Acceptance rate (%):                     83.24     
+Acceptance length:                       5.16      
+Drafts:                                  101572    
+Draft tokens:                            507860    
+Accepted tokens:                         422734    
+Per-position acceptance (%):
+  Position 0:                            94.15     
+  Position 1:                            89.83     
+  Position 2:                            87.08     
+  Position 3:                            80.69     
+  Position 4:                            64.45     
+==================================================
+===== tier 64K/64K c1 k5 14:45:58 =====
+W1028 14:45:59.992000 1895469 torch/_opaque_base.py:6] torch._opaque_base is deprecated, use torch._custom_class_base instead
+W1028 14:45:59.993000 1895469 torch/_library/opaque_object.py:288] register_opaque_type is deprecated, use register_custom_class instead
+W1028 14:45:59.993000 1895469 torch/_library/opaque_object.py:211] typ='value' is deprecated, use typ='constant' instead
+Namespace(subparser='bench', bench_type='serve', dispatch_function=<function BenchmarkServingSubcommand.cmd at 0x7f7b70a1cc20>, trust_remote_code=False, seed=0, num_prompts=1, dataset_name='random', no_stream=False, dataset_path=None, no_oversample=False, skip_chat_template=False, enable_multimodal_chat=False, disable_shuffle=False, custom_output_len=256, custom_ensure_client_side_data=False, spec_bench_output_len=256, spec_bench_category=None, sharegpt_output_len=None, timed_trace_chunk_hash_size=16, timed_trace_sec_multiplier=1, timed_trace_label_timestamp='timestamp', timed_trace_label_input_length='input_length', timed_trace_label_output_length='output_length', timed_trace_label_hash_ids='hash_ids', blazedit_min_distance=0.0, blazedit_max_distance=1.0, asr_max_audio_len_sec=inf, asr_min_audio_len_sec=0.0, random_input_len=65536, random_output_len=65536, random_range_ratio='0.0', random_prefix_len=0, random_batch_size=1, no_reranker=False, random_mm_base_items_per_request=1, random_mm_num_mm_items_range_ratio=0.0, random_mm_limit_mm_per_prompt={'image': 255, 'video': 1}, random_mm_bucket_config={(256, 256, 1): 0.5, (720, 1280, 1): 0.5, (720, 1280, 16): 0.0}, hf_subset=None, hf_split=None, hf_name=None, hf_output_len=None, bfcl_categories=None, prefix_repetition_prefix_len=256, prefix_repetition_suffix_len=256, prefix_repetition_num_prefixes=10, prefix_repetition_output_len=128, speed_bench_dataset_subset='qualitative', speed_bench_output_len=4096, speed_bench_category=None, label=None, backend='openai', base_url='http://127.0.0.1:8123', host='127.0.0.1', port=8000, endpoint='/v1/completions', header=None, max_concurrency=None, model='glm-5.3-flash', input_len=None, output_len=None, tokenizer='/data/models/GLM-5.3-Flash', tokenizer_mode='auto', use_beam_search=False, logprobs=None, request_rate=1.0, burstiness=1.0, probe_request_rate=0.0, disable_tqdm=False, num_warmups=0, profile=False, save_result=False, save_detailed=False, append_result=False, metadata=None, result_dir=None, result_filename=None, ignore_eos=True, self_timed=None, percentile_metrics=None, metric_percentiles='99', goodput=None, request_id_prefix='bench-3c4dd8bc-', top_p=None, top_k=None, min_p=None, temperature=None, frequency_penalty=None, presence_penalty=None, repetition_penalty=None, served_model_name=None, lora_modules=None, lora_assignment='random', ramp_up_strategy=None, ramp_up_start_rps=None, ramp_up_end_rps=None, ready_check_timeout_sec=0, chat_template_kwargs=None, extra_body=None, skip_tokenizer_init=False, insecure=False, plot_timeline=False, timeline_itl_thresholds='25,50', plot_dataset_stats=False, log_config_file=None, logging_config=LoggingConfig(log_level='INFO', formatter='text', configure_logging=True, pylogging_config_file=None))
+(MainProcess pid=1895469) INFO 10-28 14:46:03 [utils.py:88] Sampling input_len from [65536, 65536] and output_len from [65536, 65536]
+WARNING: vllm bench serve no longer sets temperature==0 (greedy) in requests by default. The default will be determined on the server side and can be model/API specific. For the old behavior, include --temperature=0.
+Starting initial single prompt test run...
+Skipping endpoint ready check.
+Starting main benchmark run...
+Traffic request rate: 1.0
+Burstiness factor: 1.0 (Poisson process)
+Maximum request concurrency: None
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [03:05<00:00, 185.12s/it]100%|██████████| 1/1 [03:05<00:00, 185.12s/it]
+tip: install termplotlib and gnuplot to plot the metrics
+============ Serving Benchmark Result ============
+Successful requests:                     1         
+Failed requests:                         0         
+Request rate configured (RPS):           1.00      
+Benchmark duration (s):                  185.12    
+Total input tokens:                      65536     
+Total generated tokens:                  65536     
+Request throughput (req/s):              0.01      
+Output token throughput (tok/s):         354.02    
+Peak output token throughput (tok/s):    62.00     
+Peak concurrent requests:                1.00      
+Total token throughput (tok/s):          708.03    
+---------------Time to First Token----------------
+Mean TTFT (ms):                          2463.47   
+Median TTFT (ms):                        2463.47   
+P99 TTFT (ms):                           2463.47   
+-----Time per Output Token (excl. 1st token)------
+Mean TPOT (ms):                          2.77      
+Median TPOT (ms):                        2.77      
+P99 TPOT (ms):                           2.77      
+---------------Inter-token Latency----------------
+Mean ITL (ms):                           16.41     
+Median ITL (ms):                         16.32     
+P99 ITL (ms):                            18.19     
+---------------Speculative Decoding---------------
+Acceptance rate (%):                     98.42     
+Acceptance length:                       5.92      
+Drafts:                                  11069     
+Draft tokens:                            55345     
+Accepted tokens:                         54471     
+Per-position acceptance (%):
+  Position 0:                            99.39     
+  Position 1:                            98.36     
+  Position 2:                            98.26     
+  Position 3:                            98.08     
+  Position 4:                            98.03     
+==================================================
+===== tier 64K/64K c2 k5 14:49:09 =====
+W1028 14:49:11.461000 1898051 torch/_opaque_base.py:6] torch._opaque_base is deprecated, use torch._custom_class_base instead
+W1028 14:49:11.461000 1898051 torch/_library/opaque_object.py:288] register_opaque_type is deprecated, use register_custom_class instead
+W1028 14:49:11.461000 1898051 torch/_library/opaque_object.py:211] typ='value' is deprecated, use typ='constant' instead
+Namespace(subparser='bench', bench_type='serve', dispatch_function=<function BenchmarkServingSubcommand.cmd at 0x7f9343c94cc0>, trust_remote_code=False, seed=0, num_prompts=2, dataset_name='random', no_stream=False, dataset_path=None, no_oversample=False, skip_chat_template=False, enable_multimodal_chat=False, disable_shuffle=False, custom_output_len=256, custom_ensure_client_side_data=False, spec_bench_output_len=256, spec_bench_category=None, sharegpt_output_len=None, timed_trace_chunk_hash_size=16, timed_trace_sec_multiplier=1, timed_trace_label_timestamp='timestamp', timed_trace_label_input_length='input_length', timed_trace_label_output_length='output_length', timed_trace_label_hash_ids='hash_ids', blazedit_min_distance=0.0, blazedit_max_distance=1.0, asr_max_audio_len_sec=inf, asr_min_audio_len_sec=0.0, random_input_len=65536, random_output_len=65536, random_range_ratio='0.0', random_prefix_len=0, random_batch_size=1, no_reranker=False, random_mm_base_items_per_request=1, random_mm_num_mm_items_range_ratio=0.0, random_mm_limit_mm_per_prompt={'image': 255, 'video': 1}, random_mm_bucket_config={(256, 256, 1): 0.5, (720, 1280, 1): 0.5, (720, 1280, 16): 0.0}, hf_subset=None, hf_split=None, hf_name=None, hf_output_len=None, bfcl_categories=None, prefix_repetition_prefix_len=256, prefix_repetition_suffix_len=256, prefix_repetition_num_prefixes=10, prefix_repetition_output_len=128, speed_bench_dataset_subset='qualitative', speed_bench_output_len=4096, speed_bench_category=None, label=None, backend='openai', base_url='http://127.0.0.1:8123', host='127.0.0.1', port=8000, endpoint='/v1/completions', header=None, max_concurrency=None, model='glm-5.3-flash', input_len=None, output_len=None, tokenizer='/data/models/GLM-5.3-Flash', tokenizer_mode='auto', use_beam_search=False, logprobs=None, request_rate=2.0, burstiness=1.0, probe_request_rate=0.0, disable_tqdm=False, num_warmups=0, profile=False, save_result=False, save_detailed=False, append_result=False, metadata=None, result_dir=None, result_filename=None, ignore_eos=True, self_timed=None, percentile_metrics=None, metric_percentiles='99', goodput=None, request_id_prefix='bench-1a215b69-', top_p=None, top_k=None, min_p=None, temperature=None, frequency_penalty=None, presence_penalty=None, repetition_penalty=None, served_model_name=None, lora_modules=None, lora_assignment='random', ramp_up_strategy=None, ramp_up_start_rps=None, ramp_up_end_rps=None, ready_check_timeout_sec=0, chat_template_kwargs=None, extra_body=None, skip_tokenizer_init=False, insecure=False, plot_timeline=False, timeline_itl_thresholds='25,50', plot_dataset_stats=False, log_config_file=None, logging_config=LoggingConfig(log_level='INFO', formatter='text', configure_logging=True, pylogging_config_file=None))
+(MainProcess pid=1898051) INFO 10-28 14:49:15 [utils.py:88] Sampling input_len from [65536, 65536] and output_len from [65536, 65536]
+WARNING: vllm bench serve no longer sets temperature==0 (greedy) in requests by default. The default will be determined on the server side and can be model/API specific. For the old behavior, include --temperature=0.
+Starting initial single prompt test run...
+Skipping endpoint ready check.
+Starting main benchmark run...
+Traffic request rate: 2.0
+Burstiness factor: 1.0 (Poisson process)
+Maximum request concurrency: None
+  0%|          | 0/2 [00:00<?, ?it/s] 50%|█████     | 1/2 [03:56<03:56, 236.37s/it]100%|██████████| 2/2 [05:17<00:00, 144.92s/it]100%|██████████| 2/2 [05:17<00:00, 158.64s/it]
+tip: install termplotlib and gnuplot to plot the metrics
+============ Serving Benchmark Result ============
+Successful requests:                     2         
+Failed requests:                         0         
+Request rate configured (RPS):           2.00      
+Benchmark duration (s):                  317.27    
+Total input tokens:                      131072    
+Total generated tokens:                  131072    
+Request throughput (req/s):              0.01      
+Output token throughput (tok/s):         413.12    
+Peak output token throughput (tok/s):    98.00     
+Peak concurrent requests:                2.00      
+Total token throughput (tok/s):          826.24    
+---------------Time to First Token----------------
+Mean TTFT (ms):                          1295.80   
+Median TTFT (ms):                        1295.80   
+P99 TTFT (ms):                           2494.32   
+-----Time per Output Token (excl. 1st token)------
+Mean TPOT (ms):                          4.19      
+Median TPOT (ms):                        4.19      
+P99 TPOT (ms):                           4.78      
+---------------Inter-token Latency----------------
+Mean ITL (ms):                           20.88     
+Median ITL (ms):                         21.06     
+P99 ITL (ms):                            22.69     
+---------------Speculative Decoding---------------
+Acceptance rate (%):                     79.61     
+Acceptance length:                       4.98      
+Drafts:                                  26318     
+Draft tokens:                            131590    
+Accepted tokens:                         104760    
+Per-position acceptance (%):
+  Position 0:                            98.91     
+  Position 1:                            93.67     
+  Position 2:                            81.03     
+  Position 3:                            67.49     
+  Position 4:                            56.95     
+==================================================
+===== tier 64K/64K c4 k5 14:54:33 =====
+W1028 14:54:35.446000 1902115 torch/_opaque_base.py:6] torch._opaque_base is deprecated, use torch._custom_class_base instead
+W1028 14:54:35.446000 1902115 torch/_library/opaque_object.py:288] register_opaque_type is deprecated, use register_custom_class instead
+W1028 14:54:35.446000 1902115 torch/_library/opaque_object.py:211] typ='value' is deprecated, use typ='constant' instead
+Namespace(subparser='bench', bench_type='serve', dispatch_function=<function BenchmarkServingSubcommand.cmd at 0x7fbcb5b70cc0>, trust_remote_code=False, seed=0, num_prompts=4, dataset_name='random', no_stream=False, dataset_path=None, no_oversample=False, skip_chat_template=False, enable_multimodal_chat=False, disable_shuffle=False, custom_output_len=256, custom_ensure_client_side_data=False, spec_bench_output_len=256, spec_bench_category=None, sharegpt_output_len=None, timed_trace_chunk_hash_size=16, timed_trace_sec_multiplier=1, timed_trace_label_timestamp='timestamp', timed_trace_label_input_length='input_length', timed_trace_label_output_length='output_length', timed_trace_label_hash_ids='hash_ids', blazedit_min_distance=0.0, blazedit_max_distance=1.0, asr_max_audio_len_sec=inf, asr_min_audio_len_sec=0.0, random_input_len=65536, random_output_len=65536, random_range_ratio='0.0', random_prefix_len=0, random_batch_size=1, no_reranker=False, random_mm_base_items_per_request=1, random_mm_num_mm_items_range_ratio=0.0, random_mm_limit_mm_per_prompt={'image': 255, 'video': 1}, random_mm_bucket_config={(256, 256, 1): 0.5, (720, 1280, 1): 0.5, (720, 1280, 16): 0.0}, hf_subset=None, hf_split=None, hf_name=None, hf_output_len=None, bfcl_categories=None, prefix_repetition_prefix_len=256, prefix_repetition_suffix_len=256, prefix_repetition_num_prefixes=10, prefix_repetition_output_len=128, speed_bench_dataset_subset='qualitative', speed_bench_output_len=4096, speed_bench_category=None, label=None, backend='openai', base_url='http://127.0.0.1:8123', host='127.0.0.1', port=8000, endpoint='/v1/completions', header=None, max_concurrency=None, model='glm-5.3-flash', input_len=None, output_len=None, tokenizer='/data/models/GLM-5.3-Flash', tokenizer_mode='auto', use_beam_search=False, logprobs=None, request_rate=4.0, burstiness=1.0, probe_request_rate=0.0, disable_tqdm=False, num_warmups=0, profile=False, save_result=False, save_detailed=False, append_result=False, metadata=None, result_dir=None, result_filename=None, ignore_eos=True, self_timed=None, percentile_metrics=None, metric_percentiles='99', goodput=None, request_id_prefix='bench-4f848ec6-', top_p=None, top_k=None, min_p=None, temperature=None, frequency_penalty=None, presence_penalty=None, repetition_penalty=None, served_model_name=None, lora_modules=None, lora_assignment='random', ramp_up_strategy=None, ramp_up_start_rps=None, ramp_up_end_rps=None, ready_check_timeout_sec=0, chat_template_kwargs=None, extra_body=None, skip_tokenizer_init=False, insecure=False, plot_timeline=False, timeline_itl_thresholds='25,50', plot_dataset_stats=False, log_config_file=None, logging_config=LoggingConfig(log_level='INFO', formatter='text', configure_logging=True, pylogging_config_file=None))
+(MainProcess pid=1902115) INFO 10-28 14:54:39 [utils.py:88] Sampling input_len from [65536, 65536] and output_len from [65536, 65536]
+WARNING: vllm bench serve no longer sets temperature==0 (greedy) in requests by default. The default will be determined on the server side and can be model/API specific. For the old behavior, include --temperature=0.
+Starting initial single prompt test run...
+Skipping endpoint ready check.
+Starting main benchmark run...
+Traffic request rate: 4.0
+Burstiness factor: 1.0 (Poisson process)
+Maximum request concurrency: None
+  0%|          | 0/4 [00:00<?, ?it/s] 25%|██▌       | 1/4 [05:04<15:12, 304.23s/it] 50%|█████     | 2/4 [05:07<04:14, 127.19s/it] 75%|███████▌  | 3/4 [05:15<01:12, 72.58s/it] 100%|██████████| 4/4 [05:24<00:00, 47.64s/it]100%|██████████| 4/4 [05:24<00:00, 81.13s/it]
+tip: install termplotlib and gnuplot to plot the metrics
+============ Serving Benchmark Result ============
+Successful requests:                     4         
+Failed requests:                         0         
+Request rate configured (RPS):           4.00      
+Benchmark duration (s):                  324.50    
+Total input tokens:                      262144    
+Total generated tokens:                  262144    
+Request throughput (req/s):              0.01      
+Output token throughput (tok/s):         807.84    
+Peak output token throughput (tok/s):    156.00    
+Peak concurrent requests:                4.00      
+Total token throughput (tok/s):          1615.68   
+---------------Time to First Token----------------
+Mean TTFT (ms):                          1962.49   
+Median TTFT (ms):                        1496.27   
+P99 TTFT (ms):                           4726.58   
+-----Time per Output Token (excl. 1st token)------
+Mean TPOT (ms):                          4.73      
+Median TPOT (ms):                        4.72      
+P99 TPOT (ms):                           4.89      
+---------------Inter-token Latency----------------
+Mean ITL (ms):                           26.96     
+Median ITL (ms):                         26.86     
+P99 ITL (ms):                            29.53     
+---------------Speculative Decoding---------------
+Acceptance rate (%):                     93.93     
+Acceptance length:                       5.70      
+Drafts:                                  46020     
+Draft tokens:                            230100    
+Accepted tokens:                         216129    
+Per-position acceptance (%):
+  Position 0:                            97.66     
+  Position 1:                            97.08     
+  Position 2:                            93.76     
+  Position 3:                            91.45     
+  Position 4:                            89.68     
+==================================================
+===== tier 64K/64K c8 k5 15:00:05 =====
+W1028 15:00:07.194000 1906354 torch/_opaque_base.py:6] torch._opaque_base is deprecated, use torch._custom_class_base instead
+W1028 15:00:07.194000 1906354 torch/_library/opaque_object.py:288] register_opaque_type is deprecated, use register_custom_class instead
+W1028 15:00:07.195000 1906354 torch/_library/opaque_object.py:211] typ='value' is deprecated, use typ='constant' instead
+Namespace(subparser='bench', bench_type='serve', dispatch_function=<function BenchmarkServingSubcommand.cmd at 0x7fc0938d4c20>, trust_remote_code=False, seed=0, num_prompts=8, dataset_name='random', no_stream=False, dataset_path=None, no_oversample=False, skip_chat_template=False, enable_multimodal_chat=False, disable_shuffle=False, custom_output_len=256, custom_ensure_client_side_data=False, spec_bench_output_len=256, spec_bench_category=None, sharegpt_output_len=None, timed_trace_chunk_hash_size=16, timed_trace_sec_multiplier=1, timed_trace_label_timestamp='timestamp', timed_trace_label_input_length='input_length', timed_trace_label_output_length='output_length', timed_trace_label_hash_ids='hash_ids', blazedit_min_distance=0.0, blazedit_max_distance=1.0, asr_max_audio_len_sec=inf, asr_min_audio_len_sec=0.0, random_input_len=65536, random_output_len=65536, random_range_ratio='0.0', random_prefix_len=0, random_batch_size=1, no_reranker=False, random_mm_base_items_per_request=1, random_mm_num_mm_items_range_ratio=0.0, random_mm_limit_mm_per_prompt={'image': 255, 'video': 1}, random_mm_bucket_config={(256, 256, 1): 0.5, (720, 1280, 1): 0.5, (720, 1280, 16): 0.0}, hf_subset=None, hf_split=None, hf_name=None, hf_output_len=None, bfcl_categories=None, prefix_repetition_prefix_len=256, prefix_repetition_suffix_len=256, prefix_repetition_num_prefixes=10, prefix_repetition_output_len=128, speed_bench_dataset_subset='qualitative', speed_bench_output_len=4096, speed_bench_category=None, label=None, backend='openai', base_url='http://127.0.0.1:8123', host='127.0.0.1', port=8000, endpoint='/v1/completions', header=None, max_concurrency=None, model='glm-5.3-flash', input_len=None, output_len=None, tokenizer='/data/models/GLM-5.3-Flash', tokenizer_mode='auto', use_beam_search=False, logprobs=None, request_rate=8.0, burstiness=1.0, probe_request_rate=0.0, disable_tqdm=False, num_warmups=0, profile=False, save_result=False, save_detailed=False, append_result=False, metadata=None, result_dir=None, result_filename=None, ignore_eos=True, self_timed=None, percentile_metrics=None, metric_percentiles='99', goodput=None, request_id_prefix='bench-42a9c47d-', top_p=None, top_k=None, min_p=None, temperature=None, frequency_penalty=None, presence_penalty=None, repetition_penalty=None, served_model_name=None, lora_modules=None, lora_assignment='random', ramp_up_strategy=None, ramp_up_start_rps=None, ramp_up_end_rps=None, ready_check_timeout_sec=0, chat_template_kwargs=None, extra_body=None, skip_tokenizer_init=False, insecure=False, plot_timeline=False, timeline_itl_thresholds='25,50', plot_dataset_stats=False, log_config_file=None, logging_config=LoggingConfig(log_level='INFO', formatter='text', configure_logging=True, pylogging_config_file=None))
+(MainProcess pid=1906354) INFO 10-28 15:00:11 [utils.py:88] Sampling input_len from [65536, 65536] and output_len from [65536, 65536]
+WARNING: vllm bench serve no longer sets temperature==0 (greedy) in requests by default. The default will be determined on the server side and can be model/API specific. For the old behavior, include --temperature=0.
+Starting initial single prompt test run...
+Skipping endpoint ready check.
+Starting main benchmark run...
+Traffic request rate: 8.0
+Burstiness factor: 1.0 (Poisson process)
+Maximum request concurrency: None
+  0%|          | 0/8 [00:00<?, ?it/s] 12%|█▎        | 1/8 [06:55<48:25, 415.13s/it] 25%|██▌       | 2/8 [06:59<17:22, 173.70s/it] 38%|███▊      | 3/8 [07:07<08:09, 98.00s/it]  50%|█████     | 4/8 [07:09<03:59, 59.91s/it] 62%|██████▎   | 5/8 [07:10<01:55, 38.62s/it] 75%|███████▌  | 6/8 [08:02<01:26, 43.31s/it] 88%|████████▊ | 7/8 [09:10<00:51, 51.50s/it]100%|██████████| 8/8 [10:09<00:00, 53.67s/it]100%|██████████| 8/8 [10:09<00:00, 76.15s/it]
+tip: install termplotlib and gnuplot to plot the metrics
+============ Serving Benchmark Result ============
+Successful requests:                     8         
+Failed requests:                         0         
+Request rate configured (RPS):           8.00      
+Benchmark duration (s):                  609.23    
+Total input tokens:                      524288    
+Total generated tokens:                  524288    
+Request throughput (req/s):              0.01      
+Output token throughput (tok/s):         860.57    
+Peak output token throughput (tok/s):    232.00    
+Peak concurrent requests:                8.00      
+Total token throughput (tok/s):          1721.14   
+---------------Time to First Token----------------
+Mean TTFT (ms):                          3150.55   
+Median TTFT (ms):                        1509.26   
+P99 TTFT (ms):                           9377.28   
+-----Time per Output Token (excl. 1st token)------
+Mean TPOT (ms):                          7.12      
+Median TPOT (ms):                        6.48      
+P99 TPOT (ms):                           9.15      
+---------------Inter-token Latency----------------
+Mean ITL (ms):                           35.19     
+Median ITL (ms):                         36.33     
+P99 ITL (ms):                            39.55     
+---------------Speculative Decoding---------------
+Acceptance rate (%):                     78.80     
+Acceptance length:                       4.94      
+Drafts:                                  106129    
+Draft tokens:                            530645    
+Accepted tokens:                         418172    
+Per-position acceptance (%):
+  Position 0:                            93.61     
+  Position 1:                            85.52     
+  Position 2:                            79.34     
+  Position 3:                            72.81     
+  Position 4:                            62.74     
+==================================================
+########## GLM_MATRIX MTP k5 DONE Wed Oct 28 03:10:31 PM UTC 2026 ##########
