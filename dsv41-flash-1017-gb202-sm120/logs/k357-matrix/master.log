@@ -1,0 +1,2014 @@
++ export PATH=/usr/local/cuda/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
++ PATH=/usr/local/cuda/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
++ export OPENAI_API_KEY=abc.12345 HF_HUB_OFFLINE=1 HF_HUB_DISABLE_XET=1 FLASHINFER_DISABLE_VERSION_CHECK=1
++ OPENAI_API_KEY=abc.12345
++ HF_HUB_OFFLINE=1
++ HF_HUB_DISABLE_XET=1
++ FLASHINFER_DISABLE_VERSION_CHECK=1
++ V=/root/vllmenv
++ MODEL=/data/models/DeepSeek-V4.1-Flash-1017
+++ date -u
++ echo '########## MASTER START Wed Oct 28 11:56:06 AM UTC 2026 ##########'
+########## MASTER START Wed Oct 28 11:56:06 AM UTC 2026 ##########
++ for K in ${KLIST:-3 5 7}
++ run_k 3
++ local K=3
++ local KLOG=/root/test_ops/k357_192/matrix_k3.log
++ local BLOG=/root/test_ops/k357_192/boot_k3.log
++ boot_k 3
++ local K=3
++ local CAP=512
++ '[' 512 -lt 512 ']'
++ local BLOG=/root/test_ops/k357_192/boot_k3.log
++ local KLOG=/root/test_ops/k357_192/matrix_k3.log
++ kill_all
++ pkill -9 -f '[v]llm serve'
++ pkill -9 -f VLLM::
++ sleep 2
+++ ss -lptnH 'sport = :8123'
+++ grep -oP 'pid=\K[0-9]+'
+++ sort -u
++ for p in $(ss -lptnH "sport = :8123" 2> /dev/null | grep -oP 'pid=\K[0-9]+' | sort -u)
++ kill -9 84455
+++ nvidia-smi --query-compute-apps=pid --format=csv,noheader
++ for p in $(nvidia-smi --query-compute-apps=pid --format=csv,noheader 2> /dev/null)
++ kill -9 84995
++ for p in $(nvidia-smi --query-compute-apps=pid --format=csv,noheader 2> /dev/null)
++ kill -9 85000
++ for p in $(nvidia-smi --query-compute-apps=pid --format=csv,noheader 2> /dev/null)
++ kill -9 84996
++ for p in $(nvidia-smi --query-compute-apps=pid --format=csv,noheader 2> /dev/null)
++ kill -9 84992
++ for p in $(nvidia-smi --query-compute-apps=pid --format=csv,noheader 2> /dev/null)
++ kill -9 84998
++ for p in $(nvidia-smi --query-compute-apps=pid --format=csv,noheader 2> /dev/null)
++ kill -9 84994
++ for p in $(nvidia-smi --query-compute-apps=pid --format=csv,noheader 2> /dev/null)
++ kill -9 84997
++ for p in $(nvidia-smi --query-compute-apps=pid --format=csv,noheader 2> /dev/null)
++ kill -9 84999
++ rm -f '/dev/shm/nccl-*' '/dev/shm/vllm-*'
++ sleep 3
+++ date -u
++ echo '########## K357_192 k=3 BOOT (align patch, nightly) Wed Oct 28 11:56:11 AM UTC 2026 ##########'
++ echo 'BOOT CMD: /root/vllmenv/bin/vllm serve /data/models/DeepSeek-V4.1-Flash-1017 --served-model-name deepseek-v4.1-flash --tokenizer-mode deepseek_v41 --trust-remote-code --tensor-parallel-size 8 --enable-expert-parallel --kv-cache-dtype fp8 --engram-config {cpu_offload:true} --moe-backend auto --compilation-config {cudagraph_mode:PIECEWISE} --max-model-len 1048576 --max-num-seqs 128 --gpu-memory-utilization 0.90 --speculative-config {method:dspark,num_speculative_tokens:3} --max-cudagraph-capture-size 512 --enable-auto-tool-choice --tool-call-parser deepseek_v41 --reasoning-parser deepseek_v41 --port 8123 --api-key *** [VL ON]'
++ setsid nohup env PATH=/root/v3env/bin:/usr/local/cuda/bin:/usr/local/bin:/usr/local/cuda/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin CUDA_HOME=/usr/local/cuda VLLM_USE_RUST_FRONTEND=1 VLLM_ENGINE_READY_TIMEOUT_S=7200 NCCL_P2P_LEVEL=SYS FLASHINFER_DISABLE_VERSION_CHECK=1 HF_HUB_OFFLINE=1 HF_HUB_DISABLE_XET=1 /root/vllmenv/bin/vllm serve /data/models/DeepSeek-V4.1-Flash-1017 --served-model-name deepseek-v4.1-flash --tokenizer-mode deepseek_v41 --trust-remote-code --tensor-parallel-size 8 --enable-expert-parallel --kv-cache-dtype fp8 --engram-config '{"cpu_offload":true}' --moe-backend auto --compilation-config '{"cudagraph_mode":"PIECEWISE"}' --max-model-len 1048576 --max-num-seqs 128 --gpu-memory-utilization 0.90 --speculative-config '{"method":"dspark","num_speculative_tokens":3}' --max-cudagraph-capture-size 512 --enable-auto-tool-choice --tool-call-parser deepseek_v41 --reasoning-parser deepseek_v41 --port 8123 --api-key abc.12345
+++ seq 1 100
++ for i in $(seq 1 100)
++ sleep 10
+++ curl -s -m 60 http://127.0.0.1:8123/v1/completions -H 'Authorization: Bearer abc.12345' -H 'Content-Type: application/json' -d '{"model":"deepseek-v4.1-flash","prompt":"17*19=","max_tokens":8,"temperature":0}'
+++ grep -o '"text":"[^"]*"'
+++ head -1
++ ANS=
++ echo ''
++ grep -q 323
++ grep -qE 'Assertion error|ValueError|Engine core initialization failed|OutOfMemory' /root/test_ops/k357_192/boot_k3.log
++ for i in $(seq 1 100)
++ sleep 10
+++ curl -s -m 60 http://127.0.0.1:8123/v1/completions -H 'Authorization: Bearer abc.12345' -H 'Content-Type: application/json' -d '{"model":"deepseek-v4.1-flash","prompt":"17*19=","max_tokens":8,"temperature":0}'
+++ grep -o '"text":"[^"]*"'
+++ head -1
++ ANS=
++ echo ''
++ grep -q 323
++ grep -qE 'Assertion error|ValueError|Engine core initialization failed|OutOfMemory' /root/test_ops/k357_192/boot_k3.log
++ for i in $(seq 1 100)
++ sleep 10
+++ curl -s -m 60 http://127.0.0.1:8123/v1/completions -H 'Authorization: Bearer abc.12345' -H 'Content-Type: application/json' -d '{"model":"deepseek-v4.1-flash","prompt":"17*19=","max_tokens":8,"temperature":0}'
+++ grep -o '"text":"[^"]*"'
+++ head -1
++ ANS=
++ echo ''
++ grep -q 323
++ grep -qE 'Assertion error|ValueError|Engine core initialization failed|OutOfMemory' /root/test_ops/k357_192/boot_k3.log
++ for i in $(seq 1 100)
++ sleep 10
+++ curl -s -m 60 http://127.0.0.1:8123/v1/completions -H 'Authorization: Bearer abc.12345' -H 'Content-Type: application/json' -d '{"model":"deepseek-v4.1-flash","prompt":"17*19=","max_tokens":8,"temperature":0}'
+++ grep -o '"text":"[^"]*"'
+++ head -1
++ ANS=
++ echo ''
++ grep -q 323
++ grep -qE 'Assertion error|ValueError|Engine core initialization failed|OutOfMemory' /root/test_ops/k357_192/boot_k3.log
++ for i in $(seq 1 100)
++ sleep 10
+++ curl -s -m 60 http://127.0.0.1:8123/v1/completions -H 'Authorization: Bearer abc.12345' -H 'Content-Type: application/json' -d '{"model":"deepseek-v4.1-flash","prompt":"17*19=","max_tokens":8,"temperature":0}'
+++ grep -o '"text":"[^"]*"'
+++ head -1
++ ANS=
++ echo ''
++ grep -q 323
++ grep -qE 'Assertion error|ValueError|Engine core initialization failed|OutOfMemory' /root/test_ops/k357_192/boot_k3.log
++ for i in $(seq 1 100)
++ sleep 10
+++ curl -s -m 60 http://127.0.0.1:8123/v1/completions -H 'Authorization: Bearer abc.12345' -H 'Content-Type: application/json' -d '{"model":"deepseek-v4.1-flash","prompt":"17*19=","max_tokens":8,"temperature":0}'
+++ grep -o '"text":"[^"]*"'
+++ head -1
++ ANS=
++ echo ''
++ grep -q 323
++ grep -qE 'Assertion error|ValueError|Engine core initialization failed|OutOfMemory' /root/test_ops/k357_192/boot_k3.log
++ for i in $(seq 1 100)
++ sleep 10
+++ curl -s -m 60 http://127.0.0.1:8123/v1/completions -H 'Authorization: Bearer abc.12345' -H 'Content-Type: application/json' -d '{"model":"deepseek-v4.1-flash","prompt":"17*19=","max_tokens":8,"temperature":0}'
+++ grep -o '"text":"[^"]*"'
+++ head -1
++ ANS=
++ echo ''
++ grep -q 323
++ grep -qE 'Assertion error|ValueError|Engine core initialization failed|OutOfMemory' /root/test_ops/k357_192/boot_k3.log
++ for i in $(seq 1 100)
++ sleep 10
+++ curl -s -m 60 http://127.0.0.1:8123/v1/completions -H 'Authorization: Bearer abc.12345' -H 'Content-Type: application/json' -d '{"model":"deepseek-v4.1-flash","prompt":"17*19=","max_tokens":8,"temperature":0}'
+++ grep -o '"text":"[^"]*"'
+++ head -1
++ ANS=
++ echo ''
++ grep -q 323
++ grep -qE 'Assertion error|ValueError|Engine core initialization failed|OutOfMemory' /root/test_ops/k357_192/boot_k3.log
++ for i in $(seq 1 100)
++ sleep 10
+++ curl -s -m 60 http://127.0.0.1:8123/v1/completions -H 'Authorization: Bearer abc.12345' -H 'Content-Type: application/json' -d '{"model":"deepseek-v4.1-flash","prompt":"17*19=","max_tokens":8,"temperature":0}'
+++ grep -o '"text":"[^"]*"'
+++ head -1
++ ANS=
++ echo ''
++ grep -q 323
++ grep -qE 'Assertion error|ValueError|Engine core initialization failed|OutOfMemory' /root/test_ops/k357_192/boot_k3.log
++ for i in $(seq 1 100)
++ sleep 10
+++ curl -s -m 60 http://127.0.0.1:8123/v1/completions -H 'Authorization: Bearer abc.12345' -H 'Content-Type: application/json' -d '{"model":"deepseek-v4.1-flash","prompt":"17*19=","max_tokens":8,"temperature":0}'
+++ grep -o '"text":"[^"]*"'
+++ head -1
++ ANS=
++ echo ''
++ grep -q 323
++ grep -qE 'Assertion error|ValueError|Engine core initialization failed|OutOfMemory' /root/test_ops/k357_192/boot_k3.log
++ for i in $(seq 1 100)
++ sleep 10
+++ curl -s -m 60 http://127.0.0.1:8123/v1/completions -H 'Authorization: Bearer abc.12345' -H 'Content-Type: application/json' -d '{"model":"deepseek-v4.1-flash","prompt":"17*19=","max_tokens":8,"temperature":0}'
+++ grep -o '"text":"[^"]*"'
+++ head -1
++ ANS=
++ echo ''
++ grep -q 323
++ grep -qE 'Assertion error|ValueError|Engine core initialization failed|OutOfMemory' /root/test_ops/k357_192/boot_k3.log
++ for i in $(seq 1 100)
++ sleep 10
+++ curl -s -m 60 http://127.0.0.1:8123/v1/completions -H 'Authorization: Bearer abc.12345' -H 'Content-Type: application/json' -d '{"model":"deepseek-v4.1-flash","prompt":"17*19=","max_tokens":8,"temperature":0}'
+++ grep -o '"text":"[^"]*"'
+++ head -1
++ ANS=
++ echo ''
++ grep -q 323
++ grep -qE 'Assertion error|ValueError|Engine core initialization failed|OutOfMemory' /root/test_ops/k357_192/boot_k3.log
++ for i in $(seq 1 100)
++ sleep 10
+++ curl -s -m 60 http://127.0.0.1:8123/v1/completions -H 'Authorization: Bearer abc.12345' -H 'Content-Type: application/json' -d '{"model":"deepseek-v4.1-flash","prompt":"17*19=","max_tokens":8,"temperature":0}'
+++ grep -o '"text":"[^"]*"'
+++ head -1
++ ANS=
++ echo ''
++ grep -q 323
++ grep -qE 'Assertion error|ValueError|Engine core initialization failed|OutOfMemory' /root/test_ops/k357_192/boot_k3.log
++ for i in $(seq 1 100)
++ sleep 10
+++ curl -s -m 60 http://127.0.0.1:8123/v1/completions -H 'Authorization: Bearer abc.12345' -H 'Content-Type: application/json' -d '{"model":"deepseek-v4.1-flash","prompt":"17*19=","max_tokens":8,"temperature":0}'
+++ head -1
+++ grep -o '"text":"[^"]*"'
++ ANS=
++ echo ''
++ grep -q 323
++ grep -qE 'Assertion error|ValueError|Engine core initialization failed|OutOfMemory' /root/test_ops/k357_192/boot_k3.log
++ for i in $(seq 1 100)
++ sleep 10
+++ curl -s -m 60 http://127.0.0.1:8123/v1/completions -H 'Authorization: Bearer abc.12345' -H 'Content-Type: application/json' -d '{"model":"deepseek-v4.1-flash","prompt":"17*19=","max_tokens":8,"temperature":0}'
+++ grep -o '"text":"[^"]*"'
+++ head -1
++ ANS=
++ echo ''
++ grep -q 323
++ grep -qE 'Assertion error|ValueError|Engine core initialization failed|OutOfMemory' /root/test_ops/k357_192/boot_k3.log
++ for i in $(seq 1 100)
++ sleep 10
+++ curl -s -m 60 http://127.0.0.1:8123/v1/completions -H 'Authorization: Bearer abc.12345' -H 'Content-Type: application/json' -d '{"model":"deepseek-v4.1-flash","prompt":"17*19=","max_tokens":8,"temperature":0}'
+++ grep -o '"text":"[^"]*"'
+++ head -1
++ ANS=
++ echo ''
++ grep -q 323
++ grep -qE 'Assertion error|ValueError|Engine core initialization failed|OutOfMemory' /root/test_ops/k357_192/boot_k3.log
++ for i in $(seq 1 100)
++ sleep 10
+++ curl -s -m 60 http://127.0.0.1:8123/v1/completions -H 'Authorization: Bearer abc.12345' -H 'Content-Type: application/json' -d '{"model":"deepseek-v4.1-flash","prompt":"17*19=","max_tokens":8,"temperature":0}'
+++ grep -o '"text":"[^"]*"'
+++ head -1
++ ANS=
++ echo ''
++ grep -q 323
++ grep -qE 'Assertion error|ValueError|Engine core initialization failed|OutOfMemory' /root/test_ops/k357_192/boot_k3.log
++ for i in $(seq 1 100)
++ sleep 10
+++ curl -s -m 60 http://127.0.0.1:8123/v1/completions -H 'Authorization: Bearer abc.12345' -H 'Content-Type: application/json' -d '{"model":"deepseek-v4.1-flash","prompt":"17*19=","max_tokens":8,"temperature":0}'
+++ grep -o '"text":"[^"]*"'
+++ head -1
++ ANS=
++ echo ''
++ grep -q 323
++ grep -qE 'Assertion error|ValueError|Engine core initialization failed|OutOfMemory' /root/test_ops/k357_192/boot_k3.log
++ for i in $(seq 1 100)
++ sleep 10
+++ curl -s -m 60 http://127.0.0.1:8123/v1/completions -H 'Authorization: Bearer abc.12345' -H 'Content-Type: application/json' -d '{"model":"deepseek-v4.1-flash","prompt":"17*19=","max_tokens":8,"temperature":0}'
+++ grep -o '"text":"[^"]*"'
+++ head -1
++ ANS=
++ echo ''
++ grep -q 323
++ grep -qE 'Assertion error|ValueError|Engine core initialization failed|OutOfMemory' /root/test_ops/k357_192/boot_k3.log
++ for i in $(seq 1 100)
++ sleep 10
+++ curl -s -m 60 http://127.0.0.1:8123/v1/completions -H 'Authorization: Bearer abc.12345' -H 'Content-Type: application/json' -d '{"model":"deepseek-v4.1-flash","prompt":"17*19=","max_tokens":8,"temperature":0}'
+++ grep -o '"text":"[^"]*"'
+++ head -1
++ ANS=
++ grep -q 323
++ echo ''
++ grep -qE 'Assertion error|ValueError|Engine core initialization failed|OutOfMemory' /root/test_ops/k357_192/boot_k3.log
++ for i in $(seq 1 100)
++ sleep 10
+++ curl -s -m 60 http://127.0.0.1:8123/v1/completions -H 'Authorization: Bearer abc.12345' -H 'Content-Type: application/json' -d '{"model":"deepseek-v4.1-flash","prompt":"17*19=","max_tokens":8,"temperature":0}'
+++ grep -o '"text":"[^"]*"'
+++ head -1
++ ANS=
++ echo ''
++ grep -q 323
++ grep -qE 'Assertion error|ValueError|Engine core initialization failed|OutOfMemory' /root/test_ops/k357_192/boot_k3.log
++ for i in $(seq 1 100)
++ sleep 10
+++ curl -s -m 60 http://127.0.0.1:8123/v1/completions -H 'Authorization: Bearer abc.12345' -H 'Content-Type: application/json' -d '{"model":"deepseek-v4.1-flash","prompt":"17*19=","max_tokens":8,"temperature":0}'
+++ grep -o '"text":"[^"]*"'
+++ head -1
++ ANS=
++ echo ''
++ grep -q 323
++ grep -qE 'Assertion error|ValueError|Engine core initialization failed|OutOfMemory' /root/test_ops/k357_192/boot_k3.log
++ for i in $(seq 1 100)
++ sleep 10
+++ curl -s -m 60 http://127.0.0.1:8123/v1/completions -H 'Authorization: Bearer abc.12345' -H 'Content-Type: application/json' -d '{"model":"deepseek-v4.1-flash","prompt":"17*19=","max_tokens":8,"temperature":0}'
+++ grep -o '"text":"[^"]*"'
+++ head -1
++ ANS=
++ echo ''
++ grep -q 323
++ grep -qE 'Assertion error|ValueError|Engine core initialization failed|OutOfMemory' /root/test_ops/k357_192/boot_k3.log
++ for i in $(seq 1 100)
++ sleep 10
+++ curl -s -m 60 http://127.0.0.1:8123/v1/completions -H 'Authorization: Bearer abc.12345' -H 'Content-Type: application/json' -d '{"model":"deepseek-v4.1-flash","prompt":"17*19=","max_tokens":8,"temperature":0}'
+++ grep -o '"text":"[^"]*"'
+++ head -1
++ ANS=
++ echo ''
++ grep -q 323
++ grep -qE 'Assertion error|ValueError|Engine core initialization failed|OutOfMemory' /root/test_ops/k357_192/boot_k3.log
++ for i in $(seq 1 100)
++ sleep 10
+++ curl -s -m 60 http://127.0.0.1:8123/v1/completions -H 'Authorization: Bearer abc.12345' -H 'Content-Type: application/json' -d '{"model":"deepseek-v4.1-flash","prompt":"17*19=","max_tokens":8,"temperature":0}'
+++ grep -o '"text":"[^"]*"'
+++ head -1
++ ANS=
++ echo ''
++ grep -q 323
++ grep -qE 'Assertion error|ValueError|Engine core initialization failed|OutOfMemory' /root/test_ops/k357_192/boot_k3.log
++ for i in $(seq 1 100)
++ sleep 10
+++ curl -s -m 60 http://127.0.0.1:8123/v1/completions -H 'Authorization: Bearer abc.12345' -H 'Content-Type: application/json' -d '{"model":"deepseek-v4.1-flash","prompt":"17*19=","max_tokens":8,"temperature":0}'
+++ grep -o '"text":"[^"]*"'
+++ head -1
++ ANS=
++ echo ''
++ grep -q 323
++ grep -qE 'Assertion error|ValueError|Engine core initialization failed|OutOfMemory' /root/test_ops/k357_192/boot_k3.log
++ for i in $(seq 1 100)
++ sleep 10
+++ curl -s -m 60 http://127.0.0.1:8123/v1/completions -H 'Authorization: Bearer abc.12345' -H 'Content-Type: application/json' -d '{"model":"deepseek-v4.1-flash","prompt":"17*19=","max_tokens":8,"temperature":0}'
+++ grep -o '"text":"[^"]*"'
+++ head -1
++ ANS=
++ echo ''
++ grep -q 323
++ grep -qE 'Assertion error|ValueError|Engine core initialization failed|OutOfMemory' /root/test_ops/k357_192/boot_k3.log
++ for i in $(seq 1 100)
++ sleep 10
+++ curl -s -m 60 http://127.0.0.1:8123/v1/completions -H 'Authorization: Bearer abc.12345' -H 'Content-Type: application/json' -d '{"model":"deepseek-v4.1-flash","prompt":"17*19=","max_tokens":8,"temperature":0}'
+++ grep -o '"text":"[^"]*"'
+++ head -1
++ ANS=
++ echo ''
++ grep -q 323
++ grep -qE 'Assertion error|ValueError|Engine core initialization failed|OutOfMemory' /root/test_ops/k357_192/boot_k3.log
++ for i in $(seq 1 100)
++ sleep 10
+++ curl -s -m 60 http://127.0.0.1:8123/v1/completions -H 'Authorization: Bearer abc.12345' -H 'Content-Type: application/json' -d '{"model":"deepseek-v4.1-flash","prompt":"17*19=","max_tokens":8,"temperature":0}'
+++ grep -o '"text":"[^"]*"'
+++ head -1
++ ANS=
++ echo ''
++ grep -q 323
++ grep -qE 'Assertion error|ValueError|Engine core initialization failed|OutOfMemory' /root/test_ops/k357_192/boot_k3.log
++ for i in $(seq 1 100)
++ sleep 10
+++ curl -s -m 60 http://127.0.0.1:8123/v1/completions -H 'Authorization: Bearer abc.12345' -H 'Content-Type: application/json' -d '{"model":"deepseek-v4.1-flash","prompt":"17*19=","max_tokens":8,"temperature":0}'
+++ grep -o '"text":"[^"]*"'
+++ head -1
++ ANS=
++ echo ''
++ grep -q 323
++ grep -qE 'Assertion error|ValueError|Engine core initialization failed|OutOfMemory' /root/test_ops/k357_192/boot_k3.log
++ for i in $(seq 1 100)
++ sleep 10
+++ curl -s -m 60 http://127.0.0.1:8123/v1/completions -H 'Authorization: Bearer abc.12345' -H 'Content-Type: application/json' -d '{"model":"deepseek-v4.1-flash","prompt":"17*19=","max_tokens":8,"temperature":0}'
+++ grep -o '"text":"[^"]*"'
+++ head -1
++ ANS=
++ echo ''
++ grep -q 323
++ grep -qE 'Assertion error|ValueError|Engine core initialization failed|OutOfMemory' /root/test_ops/k357_192/boot_k3.log
++ for i in $(seq 1 100)
++ sleep 10
+++ curl -s -m 60 http://127.0.0.1:8123/v1/completions -H 'Authorization: Bearer abc.12345' -H 'Content-Type: application/json' -d '{"model":"deepseek-v4.1-flash","prompt":"17*19=","max_tokens":8,"temperature":0}'
+++ grep -o '"text":"[^"]*"'
+++ head -1
++ ANS=
++ echo ''
++ grep -q 323
++ grep -qE 'Assertion error|ValueError|Engine core initialization failed|OutOfMemory' /root/test_ops/k357_192/boot_k3.log
++ for i in $(seq 1 100)
++ sleep 10
+++ curl -s -m 60 http://127.0.0.1:8123/v1/completions -H 'Authorization: Bearer abc.12345' -H 'Content-Type: application/json' -d '{"model":"deepseek-v4.1-flash","prompt":"17*19=","max_tokens":8,"temperature":0}'
+++ grep -o '"text":"[^"]*"'
+++ head -1
++ ANS='"text":"323\n\n18*18=324\n\n"'
++ echo '"text":"323\n\n18*18=324\n\n"'
++ grep -q 323
++ echo 'k=3 READY after ~330s'
++ grep -E 'KV cache size' /root/test_ops/k357_192/boot_k3.log
++ tail -2
++ return 0
++ sleep 5
++ echo '===== correctness k=3 ====='
++ curl -s -m 120 http://127.0.0.1:8123/v1/completions -H 'Content-Type: application/json' -H 'Authorization: Bearer abc.12345' -d '{"model":"deepseek-v4.1-flash","prompt":"17*19=","max_tokens":16,"temperature":0}'
++ echo
++ bench /root/test_ops/k357_192/matrix_k3.log /root/test_ops/k357_192/boot_k3.log 'tier 1K/1K c1 k=3' 1024 1024 1
++ local LOG=/root/test_ops/k357_192/matrix_k3.log BLOG=/root/test_ops/k357_192/boot_k3.log 'label=tier 1K/1K c1 k=3' ilen=1024 olen=1024 conc=1
+++ date -u +%H:%M:%S
++ echo '===== tier 1K/1K c1 k=3 12:01:47 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data/models/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 1024 --random-output-len 1024 --ignore-eos --num-prompts 1 --request-rate 1
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/test_ops/k357_192/boot_k3.log
++ return 0
++ bench /root/test_ops/k357_192/matrix_k3.log /root/test_ops/k357_192/boot_k3.log 'tier 1K/1K c1 k=3' 1024 1024 1
++ local LOG=/root/test_ops/k357_192/matrix_k3.log BLOG=/root/test_ops/k357_192/boot_k3.log 'label=tier 1K/1K c1 k=3' ilen=1024 olen=1024 conc=1
+++ date -u +%H:%M:%S
++ echo '===== tier 1K/1K c1 k=3 12:02:11 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data/models/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 1024 --random-output-len 1024 --ignore-eos --num-prompts 1 --request-rate 1
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/test_ops/k357_192/boot_k3.log
++ return 0
++ for C in 2 4 8 16 32 64 128
++ bench /root/test_ops/k357_192/matrix_k3.log /root/test_ops/k357_192/boot_k3.log 'tier 1K/1K c2 k=3' 1024 1024 2
++ local LOG=/root/test_ops/k357_192/matrix_k3.log BLOG=/root/test_ops/k357_192/boot_k3.log 'label=tier 1K/1K c2 k=3' ilen=1024 olen=1024 conc=2
+++ date -u +%H:%M:%S
++ echo '===== tier 1K/1K c2 k=3 12:02:39 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data/models/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 1024 --random-output-len 1024 --ignore-eos --num-prompts 2 --request-rate 2
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/test_ops/k357_192/boot_k3.log
++ return 0
++ for C in 2 4 8 16 32 64 128
++ bench /root/test_ops/k357_192/matrix_k3.log /root/test_ops/k357_192/boot_k3.log 'tier 1K/1K c4 k=3' 1024 1024 4
++ local LOG=/root/test_ops/k357_192/matrix_k3.log BLOG=/root/test_ops/k357_192/boot_k3.log 'label=tier 1K/1K c4 k=3' ilen=1024 olen=1024 conc=4
+++ date -u +%H:%M:%S
++ echo '===== tier 1K/1K c4 k=3 12:03:09 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data/models/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 1024 --random-output-len 1024 --ignore-eos --num-prompts 4 --request-rate 4
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/test_ops/k357_192/boot_k3.log
++ return 0
++ for C in 2 4 8 16 32 64 128
++ bench /root/test_ops/k357_192/matrix_k3.log /root/test_ops/k357_192/boot_k3.log 'tier 1K/1K c8 k=3' 1024 1024 8
++ local LOG=/root/test_ops/k357_192/matrix_k3.log BLOG=/root/test_ops/k357_192/boot_k3.log 'label=tier 1K/1K c8 k=3' ilen=1024 olen=1024 conc=8
+++ date -u +%H:%M:%S
++ echo '===== tier 1K/1K c8 k=3 12:03:36 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data/models/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 1024 --random-output-len 1024 --ignore-eos --num-prompts 8 --request-rate 8
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/test_ops/k357_192/boot_k3.log
++ return 0
++ for C in 2 4 8 16 32 64 128
++ bench /root/test_ops/k357_192/matrix_k3.log /root/test_ops/k357_192/boot_k3.log 'tier 1K/1K c16 k=3' 1024 1024 16
++ local LOG=/root/test_ops/k357_192/matrix_k3.log BLOG=/root/test_ops/k357_192/boot_k3.log 'label=tier 1K/1K c16 k=3' ilen=1024 olen=1024 conc=16
+++ date -u +%H:%M:%S
++ echo '===== tier 1K/1K c16 k=3 12:04:06 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data/models/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 1024 --random-output-len 1024 --ignore-eos --num-prompts 16 --request-rate 16
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/test_ops/k357_192/boot_k3.log
++ return 0
++ for C in 2 4 8 16 32 64 128
++ bench /root/test_ops/k357_192/matrix_k3.log /root/test_ops/k357_192/boot_k3.log 'tier 1K/1K c32 k=3' 1024 1024 32
++ local LOG=/root/test_ops/k357_192/matrix_k3.log BLOG=/root/test_ops/k357_192/boot_k3.log 'label=tier 1K/1K c32 k=3' ilen=1024 olen=1024 conc=32
+++ date -u +%H:%M:%S
++ echo '===== tier 1K/1K c32 k=3 12:04:46 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data/models/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 1024 --random-output-len 1024 --ignore-eos --num-prompts 32 --request-rate 32
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/test_ops/k357_192/boot_k3.log
++ return 0
++ for C in 2 4 8 16 32 64 128
++ bench /root/test_ops/k357_192/matrix_k3.log /root/test_ops/k357_192/boot_k3.log 'tier 1K/1K c64 k=3' 1024 1024 64
++ local LOG=/root/test_ops/k357_192/matrix_k3.log BLOG=/root/test_ops/k357_192/boot_k3.log 'label=tier 1K/1K c64 k=3' ilen=1024 olen=1024 conc=64
+++ date -u +%H:%M:%S
++ echo '===== tier 1K/1K c64 k=3 12:05:27 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data/models/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 1024 --random-output-len 1024 --ignore-eos --num-prompts 64 --request-rate 64
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/test_ops/k357_192/boot_k3.log
++ return 0
++ for C in 2 4 8 16 32 64 128
++ bench /root/test_ops/k357_192/matrix_k3.log /root/test_ops/k357_192/boot_k3.log 'tier 1K/1K c128 k=3' 1024 1024 128
++ local LOG=/root/test_ops/k357_192/matrix_k3.log BLOG=/root/test_ops/k357_192/boot_k3.log 'label=tier 1K/1K c128 k=3' ilen=1024 olen=1024 conc=128
+++ date -u +%H:%M:%S
++ echo '===== tier 1K/1K c128 k=3 12:06:22 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data/models/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 1024 --random-output-len 1024 --ignore-eos --num-prompts 128 --request-rate 128
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/test_ops/k357_192/boot_k3.log
++ return 0
++ for C in 1 2 4 8 16 32
++ bench /root/test_ops/k357_192/matrix_k3.log /root/test_ops/k357_192/boot_k3.log 'tier 4K/4K c1 k=3' 4096 4096 1
++ local LOG=/root/test_ops/k357_192/matrix_k3.log BLOG=/root/test_ops/k357_192/boot_k3.log 'label=tier 4K/4K c1 k=3' ilen=4096 olen=4096 conc=1
+++ date -u +%H:%M:%S
++ echo '===== tier 4K/4K c1 k=3 12:07:39 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data/models/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 4096 --random-output-len 4096 --ignore-eos --num-prompts 1 --request-rate 1
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/test_ops/k357_192/boot_k3.log
++ return 0
++ for C in 1 2 4 8 16 32
++ bench /root/test_ops/k357_192/matrix_k3.log /root/test_ops/k357_192/boot_k3.log 'tier 4K/4K c2 k=3' 4096 4096 2
++ local LOG=/root/test_ops/k357_192/matrix_k3.log BLOG=/root/test_ops/k357_192/boot_k3.log 'label=tier 4K/4K c2 k=3' ilen=4096 olen=4096 conc=2
+++ date -u +%H:%M:%S
++ echo '===== tier 4K/4K c2 k=3 12:08:41 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data/models/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 4096 --random-output-len 4096 --ignore-eos --num-prompts 2 --request-rate 2
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/test_ops/k357_192/boot_k3.log
++ return 0
++ for C in 1 2 4 8 16 32
++ bench /root/test_ops/k357_192/matrix_k3.log /root/test_ops/k357_192/boot_k3.log 'tier 4K/4K c4 k=3' 4096 4096 4
++ local LOG=/root/test_ops/k357_192/matrix_k3.log BLOG=/root/test_ops/k357_192/boot_k3.log 'label=tier 4K/4K c4 k=3' ilen=4096 olen=4096 conc=4
+++ date -u +%H:%M:%S
++ echo '===== tier 4K/4K c4 k=3 12:09:41 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data/models/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 4096 --random-output-len 4096 --ignore-eos --num-prompts 4 --request-rate 4
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/test_ops/k357_192/boot_k3.log
++ return 0
++ for C in 1 2 4 8 16 32
++ bench /root/test_ops/k357_192/matrix_k3.log /root/test_ops/k357_192/boot_k3.log 'tier 4K/4K c8 k=3' 4096 4096 8
++ local LOG=/root/test_ops/k357_192/matrix_k3.log BLOG=/root/test_ops/k357_192/boot_k3.log 'label=tier 4K/4K c8 k=3' ilen=4096 olen=4096 conc=8
+++ date -u +%H:%M:%S
++ echo '===== tier 4K/4K c8 k=3 12:10:56 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data/models/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 4096 --random-output-len 4096 --ignore-eos --num-prompts 8 --request-rate 8
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/test_ops/k357_192/boot_k3.log
++ return 0
++ for C in 1 2 4 8 16 32
++ bench /root/test_ops/k357_192/matrix_k3.log /root/test_ops/k357_192/boot_k3.log 'tier 4K/4K c16 k=3' 4096 4096 16
++ local LOG=/root/test_ops/k357_192/matrix_k3.log BLOG=/root/test_ops/k357_192/boot_k3.log 'label=tier 4K/4K c16 k=3' ilen=4096 olen=4096 conc=16
+++ date -u +%H:%M:%S
++ echo '===== tier 4K/4K c16 k=3 12:12:40 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data/models/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 4096 --random-output-len 4096 --ignore-eos --num-prompts 16 --request-rate 16
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/test_ops/k357_192/boot_k3.log
++ return 0
++ for C in 1 2 4 8 16 32
++ bench /root/test_ops/k357_192/matrix_k3.log /root/test_ops/k357_192/boot_k3.log 'tier 4K/4K c32 k=3' 4096 4096 32
++ local LOG=/root/test_ops/k357_192/matrix_k3.log BLOG=/root/test_ops/k357_192/boot_k3.log 'label=tier 4K/4K c32 k=3' ilen=4096 olen=4096 conc=32
+++ date -u +%H:%M:%S
++ echo '===== tier 4K/4K c32 k=3 12:14:07 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data/models/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 4096 --random-output-len 4096 --ignore-eos --num-prompts 32 --request-rate 32
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/test_ops/k357_192/boot_k3.log
++ return 0
++ for C in 1 2 4 8 16 32
++ bench /root/test_ops/k357_192/matrix_k3.log /root/test_ops/k357_192/boot_k3.log 'tier 8K/8K c1 k=3' 8192 8192 1
++ local LOG=/root/test_ops/k357_192/matrix_k3.log BLOG=/root/test_ops/k357_192/boot_k3.log 'label=tier 8K/8K c1 k=3' ilen=8192 olen=8192 conc=1
+++ date -u +%H:%M:%S
++ echo '===== tier 8K/8K c1 k=3 12:16:01 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data/models/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 8192 --random-output-len 8192 --ignore-eos --num-prompts 1 --request-rate 1
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/test_ops/k357_192/boot_k3.log
++ return 0
++ for C in 1 2 4 8 16 32
++ bench /root/test_ops/k357_192/matrix_k3.log /root/test_ops/k357_192/boot_k3.log 'tier 8K/8K c2 k=3' 8192 8192 2
++ local LOG=/root/test_ops/k357_192/matrix_k3.log BLOG=/root/test_ops/k357_192/boot_k3.log 'label=tier 8K/8K c2 k=3' ilen=8192 olen=8192 conc=2
+++ date -u +%H:%M:%S
++ echo '===== tier 8K/8K c2 k=3 12:18:08 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data/models/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 8192 --random-output-len 8192 --ignore-eos --num-prompts 2 --request-rate 2
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/test_ops/k357_192/boot_k3.log
++ return 0
++ for C in 1 2 4 8 16 32
++ bench /root/test_ops/k357_192/matrix_k3.log /root/test_ops/k357_192/boot_k3.log 'tier 8K/8K c4 k=3' 8192 8192 4
++ local LOG=/root/test_ops/k357_192/matrix_k3.log BLOG=/root/test_ops/k357_192/boot_k3.log 'label=tier 8K/8K c4 k=3' ilen=8192 olen=8192 conc=4
+++ date -u +%H:%M:%S
++ echo '===== tier 8K/8K c4 k=3 12:20:03 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data/models/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 8192 --random-output-len 8192 --ignore-eos --num-prompts 4 --request-rate 4
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/test_ops/k357_192/boot_k3.log
++ return 0
++ for C in 1 2 4 8 16 32
++ bench /root/test_ops/k357_192/matrix_k3.log /root/test_ops/k357_192/boot_k3.log 'tier 8K/8K c8 k=3' 8192 8192 8
++ local LOG=/root/test_ops/k357_192/matrix_k3.log BLOG=/root/test_ops/k357_192/boot_k3.log 'label=tier 8K/8K c8 k=3' ilen=8192 olen=8192 conc=8
+++ date -u +%H:%M:%S
++ echo '===== tier 8K/8K c8 k=3 12:22:08 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data/models/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 8192 --random-output-len 8192 --ignore-eos --num-prompts 8 --request-rate 8
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/test_ops/k357_192/boot_k3.log
++ return 0
++ for C in 1 2 4 8 16 32
++ bench /root/test_ops/k357_192/matrix_k3.log /root/test_ops/k357_192/boot_k3.log 'tier 8K/8K c16 k=3' 8192 8192 16
++ local LOG=/root/test_ops/k357_192/matrix_k3.log BLOG=/root/test_ops/k357_192/boot_k3.log 'label=tier 8K/8K c16 k=3' ilen=8192 olen=8192 conc=16
+++ date -u +%H:%M:%S
++ echo '===== tier 8K/8K c16 k=3 12:25:07 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data/models/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 8192 --random-output-len 8192 --ignore-eos --num-prompts 16 --request-rate 16
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/test_ops/k357_192/boot_k3.log
++ return 0
++ for C in 1 2 4 8 16 32
++ bench /root/test_ops/k357_192/matrix_k3.log /root/test_ops/k357_192/boot_k3.log 'tier 8K/8K c32 k=3' 8192 8192 32
++ local LOG=/root/test_ops/k357_192/matrix_k3.log BLOG=/root/test_ops/k357_192/boot_k3.log 'label=tier 8K/8K c32 k=3' ilen=8192 olen=8192 conc=32
+++ date -u +%H:%M:%S
++ echo '===== tier 8K/8K c32 k=3 12:27:55 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data/models/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 8192 --random-output-len 8192 --ignore-eos --num-prompts 32 --request-rate 32
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/test_ops/k357_192/boot_k3.log
++ return 0
++ for C in 1 2 4 8 16
++ bench /root/test_ops/k357_192/matrix_k3.log /root/test_ops/k357_192/boot_k3.log 'tier 32K/32K c1 k=3' 32768 32768 1
++ local LOG=/root/test_ops/k357_192/matrix_k3.log BLOG=/root/test_ops/k357_192/boot_k3.log 'label=tier 32K/32K c1 k=3' ilen=32768 olen=32768 conc=1
+++ date -u +%H:%M:%S
++ echo '===== tier 32K/32K c1 k=3 12:31:45 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data/models/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 32768 --random-output-len 32768 --ignore-eos --num-prompts 1 --request-rate 1
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/test_ops/k357_192/boot_k3.log
++ return 0
++ for C in 1 2 4 8 16
++ bench /root/test_ops/k357_192/matrix_k3.log /root/test_ops/k357_192/boot_k3.log 'tier 32K/32K c2 k=3' 32768 32768 2
++ local LOG=/root/test_ops/k357_192/matrix_k3.log BLOG=/root/test_ops/k357_192/boot_k3.log 'label=tier 32K/32K c2 k=3' ilen=32768 olen=32768 conc=2
+++ date -u +%H:%M:%S
++ echo '===== tier 32K/32K c2 k=3 12:36:22 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data/models/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 32768 --random-output-len 32768 --ignore-eos --num-prompts 2 --request-rate 2
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/test_ops/k357_192/boot_k3.log
++ return 0
++ for C in 1 2 4 8 16
++ bench /root/test_ops/k357_192/matrix_k3.log /root/test_ops/k357_192/boot_k3.log 'tier 32K/32K c4 k=3' 32768 32768 4
++ local LOG=/root/test_ops/k357_192/matrix_k3.log BLOG=/root/test_ops/k357_192/boot_k3.log 'label=tier 32K/32K c4 k=3' ilen=32768 olen=32768 conc=4
+++ date -u +%H:%M:%S
++ echo '===== tier 32K/32K c4 k=3 12:43:30 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data/models/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 32768 --random-output-len 32768 --ignore-eos --num-prompts 4 --request-rate 4
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/test_ops/k357_192/boot_k3.log
++ return 0
++ for C in 1 2 4 8 16
++ bench /root/test_ops/k357_192/matrix_k3.log /root/test_ops/k357_192/boot_k3.log 'tier 32K/32K c8 k=3' 32768 32768 8
++ local LOG=/root/test_ops/k357_192/matrix_k3.log BLOG=/root/test_ops/k357_192/boot_k3.log 'label=tier 32K/32K c8 k=3' ilen=32768 olen=32768 conc=8
+++ date -u +%H:%M:%S
++ echo '===== tier 32K/32K c8 k=3 12:49:39 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data/models/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 32768 --random-output-len 32768 --ignore-eos --num-prompts 8 --request-rate 8
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/test_ops/k357_192/boot_k3.log
++ return 0
++ for C in 1 2 4 8 16
++ bench /root/test_ops/k357_192/matrix_k3.log /root/test_ops/k357_192/boot_k3.log 'tier 32K/32K c16 k=3' 32768 32768 16
++ local LOG=/root/test_ops/k357_192/matrix_k3.log BLOG=/root/test_ops/k357_192/boot_k3.log 'label=tier 32K/32K c16 k=3' ilen=32768 olen=32768 conc=16
+++ date -u +%H:%M:%S
++ echo '===== tier 32K/32K c16 k=3 12:55:55 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data/models/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 32768 --random-output-len 32768 --ignore-eos --num-prompts 16 --request-rate 16
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/test_ops/k357_192/boot_k3.log
++ return 0
++ for C in 1 2 4 8
++ bench /root/test_ops/k357_192/matrix_k3.log /root/test_ops/k357_192/boot_k3.log 'tier 64K/64K c1 k=3' 65536 65536 1
++ local LOG=/root/test_ops/k357_192/matrix_k3.log BLOG=/root/test_ops/k357_192/boot_k3.log 'label=tier 64K/64K c1 k=3' ilen=65536 olen=65536 conc=1
+++ date -u +%H:%M:%S
++ echo '===== tier 64K/64K c1 k=3 13:03:48 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data/models/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 65536 --random-output-len 65536 --ignore-eos --num-prompts 1 --request-rate 1
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/test_ops/k357_192/boot_k3.log
++ return 0
++ for C in 1 2 4 8
++ bench /root/test_ops/k357_192/matrix_k3.log /root/test_ops/k357_192/boot_k3.log 'tier 64K/64K c2 k=3' 65536 65536 2
++ local LOG=/root/test_ops/k357_192/matrix_k3.log BLOG=/root/test_ops/k357_192/boot_k3.log 'label=tier 64K/64K c2 k=3' ilen=65536 olen=65536 conc=2
+++ date -u +%H:%M:%S
++ echo '===== tier 64K/64K c2 k=3 13:13:01 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data/models/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 65536 --random-output-len 65536 --ignore-eos --num-prompts 2 --request-rate 2
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/test_ops/k357_192/boot_k3.log
++ return 0
++ for C in 1 2 4 8
++ bench /root/test_ops/k357_192/matrix_k3.log /root/test_ops/k357_192/boot_k3.log 'tier 64K/64K c4 k=3' 65536 65536 4
++ local LOG=/root/test_ops/k357_192/matrix_k3.log BLOG=/root/test_ops/k357_192/boot_k3.log 'label=tier 64K/64K c4 k=3' ilen=65536 olen=65536 conc=4
+++ date -u +%H:%M:%S
++ echo '===== tier 64K/64K c4 k=3 13:24:02 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data/models/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 65536 --random-output-len 65536 --ignore-eos --num-prompts 4 --request-rate 4
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/test_ops/k357_192/boot_k3.log
++ return 0
++ for C in 1 2 4 8
++ bench /root/test_ops/k357_192/matrix_k3.log /root/test_ops/k357_192/boot_k3.log 'tier 64K/64K c8 k=3' 65536 65536 8
++ local LOG=/root/test_ops/k357_192/matrix_k3.log BLOG=/root/test_ops/k357_192/boot_k3.log 'label=tier 64K/64K c8 k=3' ilen=65536 olen=65536 conc=8
+++ date -u +%H:%M:%S
++ echo '===== tier 64K/64K c8 k=3 13:36:29 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data/models/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 65536 --random-output-len 65536 --ignore-eos --num-prompts 8 --request-rate 8
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/test_ops/k357_192/boot_k3.log
++ return 0
++ '[' 3 = 3 ']'
+++ date -u
++ echo '########## VL E2E Wed Oct 28 01:46:32 PM UTC 2026 ##########'
++ /root/vllmenv/bin/python /root/test_ops/vl_e2e.py
++ echo 'vl_e2e rc=0'
++ cat /root/test_ops/k357_192/vl_e2e.out
+++ date -u
++ echo '########## k=3 AGENT Wed Oct 28 01:46:47 PM UTC 2026 ##########'
++ for S in 1 2 3
++ /root/vllmenv/bin/python /root/test_ops/agent_tools_sim.py http://127.0.0.1:8123 --turns 12
++ echo 'agent s1 rc=0'
++ for S in 1 2 3
++ /root/vllmenv/bin/python /root/test_ops/agent_tools_sim.py http://127.0.0.1:8123 --turns 12
++ echo 'agent s2 rc=0'
++ for S in 1 2 3
++ /root/vllmenv/bin/python /root/test_ops/agent_tools_sim.py http://127.0.0.1:8123 --turns 12
++ echo 'agent s3 rc=0'
++ grep -E 'SpecDecoding metrics' /root/test_ops/k357_192/boot_k3.log
++ tail -150
++ kill_all
++ pkill -9 -f '[v]llm serve'
++ pkill -9 -f VLLM::
+matrix_192.sh: line 12: 245599 Killed                  setsid nohup env PATH=/root/v3env/bin:/usr/local/cuda/bin:/usr/local/bin:$PATH CUDA_HOME=/usr/local/cuda VLLM_USE_RUST_FRONTEND=1 VLLM_ENGINE_READY_TIMEOUT_S=7200 NCCL_P2P_LEVEL=SYS FLASHINFER_DISABLE_VERSION_CHECK=1 HF_HUB_OFFLINE=1 HF_HUB_DISABLE_XET=1 $V/bin/vllm serve $MODEL --served-model-name deepseek-v4.1-flash --tokenizer-mode deepseek_v41 --trust-remote-code --tensor-parallel-size 8 --enable-expert-parallel --kv-cache-dtype fp8 --engram-config '{"cpu_offload":true}' --moe-backend auto --compilation-config '{"cudagraph_mode":"PIECEWISE"}' --max-model-len 1048576 --max-num-seqs 128 --gpu-memory-utilization 0.90 --speculative-config "{\"method\":\"dspark\",\"num_speculative_tokens\":$K}" --max-cudagraph-capture-size $CAP --enable-auto-tool-choice --tool-call-parser deepseek_v41 --reasoning-parser deepseek_v41 --port 8123 --api-key abc.12345 > $BLOG 2>&1 < /dev/null
++ sleep 2
+++ ss -lptnH 'sport = :8123'
+++ grep -oP 'pid=\K[0-9]+'
+++ sort -u
++ for p in $(ss -lptnH "sport = :8123" 2> /dev/null | grep -oP 'pid=\K[0-9]+' | sort -u)
++ kill -9 246608
+++ nvidia-smi --query-compute-apps=pid --format=csv,noheader
++ for p in $(nvidia-smi --query-compute-apps=pid --format=csv,noheader 2> /dev/null)
++ kill -9 247121
++ for p in $(nvidia-smi --query-compute-apps=pid --format=csv,noheader 2> /dev/null)
++ kill -9 247124
++ for p in $(nvidia-smi --query-compute-apps=pid --format=csv,noheader 2> /dev/null)
++ kill -9 247122
++ for p in $(nvidia-smi --query-compute-apps=pid --format=csv,noheader 2> /dev/null)
++ kill -9 247123
++ for p in $(nvidia-smi --query-compute-apps=pid --format=csv,noheader 2> /dev/null)
++ kill -9 247126
++ for p in $(nvidia-smi --query-compute-apps=pid --format=csv,noheader 2> /dev/null)
++ kill -9 247125
++ for p in $(nvidia-smi --query-compute-apps=pid --format=csv,noheader 2> /dev/null)
++ kill -9 247128
++ for p in $(nvidia-smi --query-compute-apps=pid --format=csv,noheader 2> /dev/null)
++ kill -9 247127
++ rm -f '/dev/shm/nccl-*' '/dev/shm/vllm-*'
++ sleep 3
+++ date -u
++ echo '########## K357_192 k=3 DONE Wed Oct 28 01:48:12 PM UTC 2026 ##########'
++ echo DONE
++ for K in ${KLIST:-3 5 7}
++ run_k 5
++ local K=5
++ local KLOG=/root/test_ops/k357_192/matrix_k5.log
++ local BLOG=/root/test_ops/k357_192/boot_k5.log
++ boot_k 5
++ local K=5
++ local CAP=768
++ '[' 768 -lt 512 ']'
++ local BLOG=/root/test_ops/k357_192/boot_k5.log
++ local KLOG=/root/test_ops/k357_192/matrix_k5.log
++ kill_all
++ pkill -9 -f '[v]llm serve'
++ pkill -9 -f VLLM::
++ sleep 2
+++ ss -lptnH 'sport = :8123'
+++ grep -oP 'pid=\K[0-9]+'
+++ sort -u
+++ nvidia-smi --query-compute-apps=pid --format=csv,noheader
++ for p in $(nvidia-smi --query-compute-apps=pid --format=csv,noheader 2> /dev/null)
++ kill -9 247123
++ rm -f '/dev/shm/nccl-*' '/dev/shm/vllm-*'
++ sleep 3
+++ date -u
++ echo '########## K357_192 k=5 BOOT (align patch, nightly) Wed Oct 28 01:48:46 PM UTC 2026 ##########'
++ echo 'BOOT CMD: /root/vllmenv/bin/vllm serve /data/models/DeepSeek-V4.1-Flash-1017 --served-model-name deepseek-v4.1-flash --tokenizer-mode deepseek_v41 --trust-remote-code --tensor-parallel-size 8 --enable-expert-parallel --kv-cache-dtype fp8 --engram-config {cpu_offload:true} --moe-backend auto --compilation-config {cudagraph_mode:PIECEWISE} --max-model-len 1048576 --max-num-seqs 128 --gpu-memory-utilization 0.90 --speculative-config {method:dspark,num_speculative_tokens:5} --max-cudagraph-capture-size 768 --enable-auto-tool-choice --tool-call-parser deepseek_v41 --reasoning-parser deepseek_v41 --port 8123 --api-key *** [VL ON]'
++ setsid nohup env PATH=/root/v3env/bin:/usr/local/cuda/bin:/usr/local/bin:/usr/local/cuda/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin CUDA_HOME=/usr/local/cuda VLLM_USE_RUST_FRONTEND=1 VLLM_ENGINE_READY_TIMEOUT_S=7200 NCCL_P2P_LEVEL=SYS FLASHINFER_DISABLE_VERSION_CHECK=1 HF_HUB_OFFLINE=1 HF_HUB_DISABLE_XET=1 /root/vllmenv/bin/vllm serve /data/models/DeepSeek-V4.1-Flash-1017 --served-model-name deepseek-v4.1-flash --tokenizer-mode deepseek_v41 --trust-remote-code --tensor-parallel-size 8 --enable-expert-parallel --kv-cache-dtype fp8 --engram-config '{"cpu_offload":true}' --moe-backend auto --compilation-config '{"cudagraph_mode":"PIECEWISE"}' --max-model-len 1048576 --max-num-seqs 128 --gpu-memory-utilization 0.90 --speculative-config '{"method":"dspark","num_speculative_tokens":5}' --max-cudagraph-capture-size 768 --enable-auto-tool-choice --tool-call-parser deepseek_v41 --reasoning-parser deepseek_v41 --port 8123 --api-key abc.12345
+++ seq 1 100
++ for i in $(seq 1 100)
++ sleep 10
+++ curl -s -m 60 http://127.0.0.1:8123/v1/completions -H 'Authorization: Bearer abc.12345' -H 'Content-Type: application/json' -d '{"model":"deepseek-v4.1-flash","prompt":"17*19=","max_tokens":8,"temperature":0}'
+++ grep -o '"text":"[^"]*"'
+++ head -1
++ ANS=
++ echo ''
++ grep -q 323
++ grep -qE 'Assertion error|ValueError|Engine core initialization failed|OutOfMemory' /root/test_ops/k357_192/boot_k5.log
++ for i in $(seq 1 100)
++ sleep 10
+++ curl -s -m 60 http://127.0.0.1:8123/v1/completions -H 'Authorization: Bearer abc.12345' -H 'Content-Type: application/json' -d '{"model":"deepseek-v4.1-flash","prompt":"17*19=","max_tokens":8,"temperature":0}'
+++ grep -o '"text":"[^"]*"'
+++ head -1
++ ANS=
++ echo ''
++ grep -q 323
++ grep -qE 'Assertion error|ValueError|Engine core initialization failed|OutOfMemory' /root/test_ops/k357_192/boot_k5.log
++ for i in $(seq 1 100)
++ sleep 10
+++ grep -o '"text":"[^"]*"'
+++ curl -s -m 60 http://127.0.0.1:8123/v1/completions -H 'Authorization: Bearer abc.12345' -H 'Content-Type: application/json' -d '{"model":"deepseek-v4.1-flash","prompt":"17*19=","max_tokens":8,"temperature":0}'
+++ head -1
++ ANS=
++ echo ''
++ grep -q 323
++ grep -qE 'Assertion error|ValueError|Engine core initialization failed|OutOfMemory' /root/test_ops/k357_192/boot_k5.log
++ for i in $(seq 1 100)
++ sleep 10
+++ curl -s -m 60 http://127.0.0.1:8123/v1/completions -H 'Authorization: Bearer abc.12345' -H 'Content-Type: application/json' -d '{"model":"deepseek-v4.1-flash","prompt":"17*19=","max_tokens":8,"temperature":0}'
+++ grep -o '"text":"[^"]*"'
+++ head -1
++ ANS=
++ echo ''
++ grep -q 323
++ grep -qE 'Assertion error|ValueError|Engine core initialization failed|OutOfMemory' /root/test_ops/k357_192/boot_k5.log
++ for i in $(seq 1 100)
++ sleep 10
+++ curl -s -m 60 http://127.0.0.1:8123/v1/completions -H 'Authorization: Bearer abc.12345' -H 'Content-Type: application/json' -d '{"model":"deepseek-v4.1-flash","prompt":"17*19=","max_tokens":8,"temperature":0}'
+++ grep -o '"text":"[^"]*"'
+++ head -1
++ ANS=
++ echo ''
++ grep -q 323
++ grep -qE 'Assertion error|ValueError|Engine core initialization failed|OutOfMemory' /root/test_ops/k357_192/boot_k5.log
++ for i in $(seq 1 100)
++ sleep 10
+++ curl -s -m 60 http://127.0.0.1:8123/v1/completions -H 'Authorization: Bearer abc.12345' -H 'Content-Type: application/json' -d '{"model":"deepseek-v4.1-flash","prompt":"17*19=","max_tokens":8,"temperature":0}'
+++ grep -o '"text":"[^"]*"'
+++ head -1
++ ANS=
++ echo ''
++ grep -q 323
++ grep -qE 'Assertion error|ValueError|Engine core initialization failed|OutOfMemory' /root/test_ops/k357_192/boot_k5.log
++ for i in $(seq 1 100)
++ sleep 10
+++ curl -s -m 60 http://127.0.0.1:8123/v1/completions -H 'Authorization: Bearer abc.12345' -H 'Content-Type: application/json' -d '{"model":"deepseek-v4.1-flash","prompt":"17*19=","max_tokens":8,"temperature":0}'
+++ grep -o '"text":"[^"]*"'
+++ head -1
++ ANS=
++ echo ''
++ grep -q 323
++ grep -qE 'Assertion error|ValueError|Engine core initialization failed|OutOfMemory' /root/test_ops/k357_192/boot_k5.log
++ for i in $(seq 1 100)
++ sleep 10
+++ curl -s -m 60 http://127.0.0.1:8123/v1/completions -H 'Authorization: Bearer abc.12345' -H 'Content-Type: application/json' -d '{"model":"deepseek-v4.1-flash","prompt":"17*19=","max_tokens":8,"temperature":0}'
+++ grep -o '"text":"[^"]*"'
+++ head -1
++ ANS=
++ echo ''
++ grep -q 323
++ grep -qE 'Assertion error|ValueError|Engine core initialization failed|OutOfMemory' /root/test_ops/k357_192/boot_k5.log
++ for i in $(seq 1 100)
++ sleep 10
+++ curl -s -m 60 http://127.0.0.1:8123/v1/completions -H 'Authorization: Bearer abc.12345' -H 'Content-Type: application/json' -d '{"model":"deepseek-v4.1-flash","prompt":"17*19=","max_tokens":8,"temperature":0}'
+++ grep -o '"text":"[^"]*"'
+++ head -1
++ ANS=
++ echo ''
++ grep -q 323
++ grep -qE 'Assertion error|ValueError|Engine core initialization failed|OutOfMemory' /root/test_ops/k357_192/boot_k5.log
++ for i in $(seq 1 100)
++ sleep 10
+++ curl -s -m 60 http://127.0.0.1:8123/v1/completions -H 'Authorization: Bearer abc.12345' -H 'Content-Type: application/json' -d '{"model":"deepseek-v4.1-flash","prompt":"17*19=","max_tokens":8,"temperature":0}'
+++ grep -o '"text":"[^"]*"'
+++ head -1
++ ANS=
++ echo ''
++ grep -q 323
++ grep -qE 'Assertion error|ValueError|Engine core initialization failed|OutOfMemory' /root/test_ops/k357_192/boot_k5.log
++ for i in $(seq 1 100)
++ sleep 10
+++ curl -s -m 60 http://127.0.0.1:8123/v1/completions -H 'Authorization: Bearer abc.12345' -H 'Content-Type: application/json' -d '{"model":"deepseek-v4.1-flash","prompt":"17*19=","max_tokens":8,"temperature":0}'
+++ grep -o '"text":"[^"]*"'
+++ head -1
++ ANS=
++ echo ''
++ grep -q 323
++ grep -qE 'Assertion error|ValueError|Engine core initialization failed|OutOfMemory' /root/test_ops/k357_192/boot_k5.log
++ for i in $(seq 1 100)
++ sleep 10
+++ curl -s -m 60 http://127.0.0.1:8123/v1/completions -H 'Authorization: Bearer abc.12345' -H 'Content-Type: application/json' -d '{"model":"deepseek-v4.1-flash","prompt":"17*19=","max_tokens":8,"temperature":0}'
+++ grep -o '"text":"[^"]*"'
+++ head -1
++ ANS=
++ echo ''
++ grep -q 323
++ grep -qE 'Assertion error|ValueError|Engine core initialization failed|OutOfMemory' /root/test_ops/k357_192/boot_k5.log
++ for i in $(seq 1 100)
++ sleep 10
+++ curl -s -m 60 http://127.0.0.1:8123/v1/completions -H 'Authorization: Bearer abc.12345' -H 'Content-Type: application/json' -d '{"model":"deepseek-v4.1-flash","prompt":"17*19=","max_tokens":8,"temperature":0}'
+++ grep -o '"text":"[^"]*"'
+++ head -1
++ ANS=
++ echo ''
++ grep -q 323
++ grep -qE 'Assertion error|ValueError|Engine core initialization failed|OutOfMemory' /root/test_ops/k357_192/boot_k5.log
++ for i in $(seq 1 100)
++ sleep 10
+++ curl -s -m 60 http://127.0.0.1:8123/v1/completions -H 'Authorization: Bearer abc.12345' -H 'Content-Type: application/json' -d '{"model":"deepseek-v4.1-flash","prompt":"17*19=","max_tokens":8,"temperature":0}'
+++ grep -o '"text":"[^"]*"'
+++ head -1
++ ANS=
++ echo ''
++ grep -q 323
++ grep -qE 'Assertion error|ValueError|Engine core initialization failed|OutOfMemory' /root/test_ops/k357_192/boot_k5.log
++ for i in $(seq 1 100)
++ sleep 10
+++ curl -s -m 60 http://127.0.0.1:8123/v1/completions -H 'Authorization: Bearer abc.12345' -H 'Content-Type: application/json' -d '{"model":"deepseek-v4.1-flash","prompt":"17*19=","max_tokens":8,"temperature":0}'
+++ grep -o '"text":"[^"]*"'
+++ head -1
++ ANS=
++ echo ''
++ grep -q 323
++ grep -qE 'Assertion error|ValueError|Engine core initialization failed|OutOfMemory' /root/test_ops/k357_192/boot_k5.log
++ for i in $(seq 1 100)
++ sleep 10
+++ curl -s -m 60 http://127.0.0.1:8123/v1/completions -H 'Authorization: Bearer abc.12345' -H 'Content-Type: application/json' -d '{"model":"deepseek-v4.1-flash","prompt":"17*19=","max_tokens":8,"temperature":0}'
+++ grep -o '"text":"[^"]*"'
+++ head -1
++ ANS=
++ echo ''
++ grep -q 323
++ grep -qE 'Assertion error|ValueError|Engine core initialization failed|OutOfMemory' /root/test_ops/k357_192/boot_k5.log
++ for i in $(seq 1 100)
++ sleep 10
+++ curl -s -m 60 http://127.0.0.1:8123/v1/completions -H 'Authorization: Bearer abc.12345' -H 'Content-Type: application/json' -d '{"model":"deepseek-v4.1-flash","prompt":"17*19=","max_tokens":8,"temperature":0}'
+++ grep -o '"text":"[^"]*"'
+++ head -1
++ ANS=
++ echo ''
++ grep -q 323
++ grep -qE 'Assertion error|ValueError|Engine core initialization failed|OutOfMemory' /root/test_ops/k357_192/boot_k5.log
++ for i in $(seq 1 100)
++ sleep 10
+++ curl -s -m 60 http://127.0.0.1:8123/v1/completions -H 'Authorization: Bearer abc.12345' -H 'Content-Type: application/json' -d '{"model":"deepseek-v4.1-flash","prompt":"17*19=","max_tokens":8,"temperature":0}'
+++ grep -o '"text":"[^"]*"'
+++ head -1
++ ANS='"text":"323\n\n323/19=17\n\n"'
++ echo '"text":"323\n\n323/19=17\n\n"'
++ grep -q 323
++ echo 'k=5 READY after ~180s'
++ grep -E 'KV cache size' /root/test_ops/k357_192/boot_k5.log
++ tail -2
++ return 0
++ sleep 5
++ echo '===== correctness k=5 ====='
++ curl -s -m 120 http://127.0.0.1:8123/v1/completions -H 'Content-Type: application/json' -H 'Authorization: Bearer abc.12345' -d '{"model":"deepseek-v4.1-flash","prompt":"17*19=","max_tokens":16,"temperature":0}'
++ echo
++ bench /root/test_ops/k357_192/matrix_k5.log /root/test_ops/k357_192/boot_k5.log 'tier 1K/1K c1 k=5' 1024 1024 1
++ local LOG=/root/test_ops/k357_192/matrix_k5.log BLOG=/root/test_ops/k357_192/boot_k5.log 'label=tier 1K/1K c1 k=5' ilen=1024 olen=1024 conc=1
+++ date -u +%H:%M:%S
++ echo '===== tier 1K/1K c1 k=5 13:51:52 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data/models/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 1024 --random-output-len 1024 --ignore-eos --num-prompts 1 --request-rate 1
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/test_ops/k357_192/boot_k5.log
++ return 0
++ bench /root/test_ops/k357_192/matrix_k5.log /root/test_ops/k357_192/boot_k5.log 'tier 1K/1K c1 k=5' 1024 1024 1
++ local LOG=/root/test_ops/k357_192/matrix_k5.log BLOG=/root/test_ops/k357_192/boot_k5.log 'label=tier 1K/1K c1 k=5' ilen=1024 olen=1024 conc=1
+++ date -u +%H:%M:%S
++ echo '===== tier 1K/1K c1 k=5 13:52:16 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data/models/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 1024 --random-output-len 1024 --ignore-eos --num-prompts 1 --request-rate 1
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/test_ops/k357_192/boot_k5.log
++ return 0
++ for C in 2 4 8 16 32 64 128
++ bench /root/test_ops/k357_192/matrix_k5.log /root/test_ops/k357_192/boot_k5.log 'tier 1K/1K c2 k=5' 1024 1024 2
++ local LOG=/root/test_ops/k357_192/matrix_k5.log BLOG=/root/test_ops/k357_192/boot_k5.log 'label=tier 1K/1K c2 k=5' ilen=1024 olen=1024 conc=2
+++ date -u +%H:%M:%S
++ echo '===== tier 1K/1K c2 k=5 13:52:39 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data/models/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 1024 --random-output-len 1024 --ignore-eos --num-prompts 2 --request-rate 2
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/test_ops/k357_192/boot_k5.log
++ return 0
++ for C in 2 4 8 16 32 64 128
++ bench /root/test_ops/k357_192/matrix_k5.log /root/test_ops/k357_192/boot_k5.log 'tier 1K/1K c4 k=5' 1024 1024 4
++ local LOG=/root/test_ops/k357_192/matrix_k5.log BLOG=/root/test_ops/k357_192/boot_k5.log 'label=tier 1K/1K c4 k=5' ilen=1024 olen=1024 conc=4
+++ date -u +%H:%M:%S
++ echo '===== tier 1K/1K c4 k=5 13:53:08 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data/models/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 1024 --random-output-len 1024 --ignore-eos --num-prompts 4 --request-rate 4
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/test_ops/k357_192/boot_k5.log
++ return 0
++ for C in 2 4 8 16 32 64 128
++ bench /root/test_ops/k357_192/matrix_k5.log /root/test_ops/k357_192/boot_k5.log 'tier 1K/1K c8 k=5' 1024 1024 8
++ local LOG=/root/test_ops/k357_192/matrix_k5.log BLOG=/root/test_ops/k357_192/boot_k5.log 'label=tier 1K/1K c8 k=5' ilen=1024 olen=1024 conc=8
+++ date -u +%H:%M:%S
++ echo '===== tier 1K/1K c8 k=5 13:53:30 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data/models/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 1024 --random-output-len 1024 --ignore-eos --num-prompts 8 --request-rate 8
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/test_ops/k357_192/boot_k5.log
++ return 0
++ for C in 2 4 8 16 32 64 128
++ bench /root/test_ops/k357_192/matrix_k5.log /root/test_ops/k357_192/boot_k5.log 'tier 1K/1K c16 k=5' 1024 1024 16
++ local LOG=/root/test_ops/k357_192/matrix_k5.log BLOG=/root/test_ops/k357_192/boot_k5.log 'label=tier 1K/1K c16 k=5' ilen=1024 olen=1024 conc=16
+++ date -u +%H:%M:%S
++ echo '===== tier 1K/1K c16 k=5 13:54:06 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data/models/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 1024 --random-output-len 1024 --ignore-eos --num-prompts 16 --request-rate 16
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/test_ops/k357_192/boot_k5.log
++ return 0
++ for C in 2 4 8 16 32 64 128
++ bench /root/test_ops/k357_192/matrix_k5.log /root/test_ops/k357_192/boot_k5.log 'tier 1K/1K c32 k=5' 1024 1024 32
++ local LOG=/root/test_ops/k357_192/matrix_k5.log BLOG=/root/test_ops/k357_192/boot_k5.log 'label=tier 1K/1K c32 k=5' ilen=1024 olen=1024 conc=32
+++ date -u +%H:%M:%S
++ echo '===== tier 1K/1K c32 k=5 13:54:46 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data/models/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 1024 --random-output-len 1024 --ignore-eos --num-prompts 32 --request-rate 32
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/test_ops/k357_192/boot_k5.log
++ return 0
++ for C in 2 4 8 16 32 64 128
++ bench /root/test_ops/k357_192/matrix_k5.log /root/test_ops/k357_192/boot_k5.log 'tier 1K/1K c64 k=5' 1024 1024 64
++ local LOG=/root/test_ops/k357_192/matrix_k5.log BLOG=/root/test_ops/k357_192/boot_k5.log 'label=tier 1K/1K c64 k=5' ilen=1024 olen=1024 conc=64
+++ date -u +%H:%M:%S
++ echo '===== tier 1K/1K c64 k=5 13:55:35 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data/models/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 1024 --random-output-len 1024 --ignore-eos --num-prompts 64 --request-rate 64
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/test_ops/k357_192/boot_k5.log
++ return 0
++ for C in 2 4 8 16 32 64 128
++ bench /root/test_ops/k357_192/matrix_k5.log /root/test_ops/k357_192/boot_k5.log 'tier 1K/1K c128 k=5' 1024 1024 128
++ local LOG=/root/test_ops/k357_192/matrix_k5.log BLOG=/root/test_ops/k357_192/boot_k5.log 'label=tier 1K/1K c128 k=5' ilen=1024 olen=1024 conc=128
+++ date -u +%H:%M:%S
++ echo '===== tier 1K/1K c128 k=5 13:56:36 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data/models/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 1024 --random-output-len 1024 --ignore-eos --num-prompts 128 --request-rate 128
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/test_ops/k357_192/boot_k5.log
++ return 0
++ for C in 1 2 4 8 16 32
++ bench /root/test_ops/k357_192/matrix_k5.log /root/test_ops/k357_192/boot_k5.log 'tier 4K/4K c1 k=5' 4096 4096 1
++ local LOG=/root/test_ops/k357_192/matrix_k5.log BLOG=/root/test_ops/k357_192/boot_k5.log 'label=tier 4K/4K c1 k=5' ilen=4096 olen=4096 conc=1
+++ date -u +%H:%M:%S
++ echo '===== tier 4K/4K c1 k=5 13:58:06 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data/models/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 4096 --random-output-len 4096 --ignore-eos --num-prompts 1 --request-rate 1
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/test_ops/k357_192/boot_k5.log
++ return 0
++ for C in 1 2 4 8 16 32
++ bench /root/test_ops/k357_192/matrix_k5.log /root/test_ops/k357_192/boot_k5.log 'tier 4K/4K c2 k=5' 4096 4096 2
++ local LOG=/root/test_ops/k357_192/matrix_k5.log BLOG=/root/test_ops/k357_192/boot_k5.log 'label=tier 4K/4K c2 k=5' ilen=4096 olen=4096 conc=2
+++ date -u +%H:%M:%S
++ echo '===== tier 4K/4K c2 k=5 13:59:21 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data/models/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 4096 --random-output-len 4096 --ignore-eos --num-prompts 2 --request-rate 2
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/test_ops/k357_192/boot_k5.log
++ return 0
++ for C in 1 2 4 8 16 32
++ bench /root/test_ops/k357_192/matrix_k5.log /root/test_ops/k357_192/boot_k5.log 'tier 4K/4K c4 k=5' 4096 4096 4
++ local LOG=/root/test_ops/k357_192/matrix_k5.log BLOG=/root/test_ops/k357_192/boot_k5.log 'label=tier 4K/4K c4 k=5' ilen=4096 olen=4096 conc=4
+++ date -u +%H:%M:%S
++ echo '===== tier 4K/4K c4 k=5 14:00:12 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data/models/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 4096 --random-output-len 4096 --ignore-eos --num-prompts 4 --request-rate 4
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/test_ops/k357_192/boot_k5.log
++ return 0
++ for C in 1 2 4 8 16 32
++ bench /root/test_ops/k357_192/matrix_k5.log /root/test_ops/k357_192/boot_k5.log 'tier 4K/4K c8 k=5' 4096 4096 8
++ local LOG=/root/test_ops/k357_192/matrix_k5.log BLOG=/root/test_ops/k357_192/boot_k5.log 'label=tier 4K/4K c8 k=5' ilen=4096 olen=4096 conc=8
+++ date -u +%H:%M:%S
++ echo '===== tier 4K/4K c8 k=5 14:01:07 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data/models/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 4096 --random-output-len 4096 --ignore-eos --num-prompts 8 --request-rate 8
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/test_ops/k357_192/boot_k5.log
++ return 0
++ for C in 1 2 4 8 16 32
++ bench /root/test_ops/k357_192/matrix_k5.log /root/test_ops/k357_192/boot_k5.log 'tier 4K/4K c16 k=5' 4096 4096 16
++ local LOG=/root/test_ops/k357_192/matrix_k5.log BLOG=/root/test_ops/k357_192/boot_k5.log 'label=tier 4K/4K c16 k=5' ilen=4096 olen=4096 conc=16
+++ date -u +%H:%M:%S
++ echo '===== tier 4K/4K c16 k=5 14:02:35 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data/models/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 4096 --random-output-len 4096 --ignore-eos --num-prompts 16 --request-rate 16
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/test_ops/k357_192/boot_k5.log
++ return 0
++ for C in 1 2 4 8 16 32
++ bench /root/test_ops/k357_192/matrix_k5.log /root/test_ops/k357_192/boot_k5.log 'tier 4K/4K c32 k=5' 4096 4096 32
++ local LOG=/root/test_ops/k357_192/matrix_k5.log BLOG=/root/test_ops/k357_192/boot_k5.log 'label=tier 4K/4K c32 k=5' ilen=4096 olen=4096 conc=32
+++ date -u +%H:%M:%S
++ echo '===== tier 4K/4K c32 k=5 14:04:29 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data/models/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 4096 --random-output-len 4096 --ignore-eos --num-prompts 32 --request-rate 32
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/test_ops/k357_192/boot_k5.log
++ return 0
++ for C in 1 2 4 8 16 32
++ bench /root/test_ops/k357_192/matrix_k5.log /root/test_ops/k357_192/boot_k5.log 'tier 8K/8K c1 k=5' 8192 8192 1
++ local LOG=/root/test_ops/k357_192/matrix_k5.log BLOG=/root/test_ops/k357_192/boot_k5.log 'label=tier 8K/8K c1 k=5' ilen=8192 olen=8192 conc=1
+++ date -u +%H:%M:%S
++ echo '===== tier 8K/8K c1 k=5 14:06:51 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data/models/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 8192 --random-output-len 8192 --ignore-eos --num-prompts 1 --request-rate 1
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/test_ops/k357_192/boot_k5.log
++ return 0
++ for C in 1 2 4 8 16 32
++ bench /root/test_ops/k357_192/matrix_k5.log /root/test_ops/k357_192/boot_k5.log 'tier 8K/8K c2 k=5' 8192 8192 2
++ local LOG=/root/test_ops/k357_192/matrix_k5.log BLOG=/root/test_ops/k357_192/boot_k5.log 'label=tier 8K/8K c2 k=5' ilen=8192 olen=8192 conc=2
+++ date -u +%H:%M:%S
++ echo '===== tier 8K/8K c2 k=5 14:07:51 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data/models/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 8192 --random-output-len 8192 --ignore-eos --num-prompts 2 --request-rate 2
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/test_ops/k357_192/boot_k5.log
++ return 0
++ for C in 1 2 4 8 16 32
++ bench /root/test_ops/k357_192/matrix_k5.log /root/test_ops/k357_192/boot_k5.log 'tier 8K/8K c4 k=5' 8192 8192 4
++ local LOG=/root/test_ops/k357_192/matrix_k5.log BLOG=/root/test_ops/k357_192/boot_k5.log 'label=tier 8K/8K c4 k=5' ilen=8192 olen=8192 conc=4
+++ date -u +%H:%M:%S
++ echo '===== tier 8K/8K c4 k=5 14:09:27 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data/models/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 8192 --random-output-len 8192 --ignore-eos --num-prompts 4 --request-rate 4
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/test_ops/k357_192/boot_k5.log
++ return 0
++ for C in 1 2 4 8 16 32
++ bench /root/test_ops/k357_192/matrix_k5.log /root/test_ops/k357_192/boot_k5.log 'tier 8K/8K c8 k=5' 8192 8192 8
++ local LOG=/root/test_ops/k357_192/matrix_k5.log BLOG=/root/test_ops/k357_192/boot_k5.log 'label=tier 8K/8K c8 k=5' ilen=8192 olen=8192 conc=8
+++ date -u +%H:%M:%S
++ echo '===== tier 8K/8K c8 k=5 14:11:14 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data/models/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 8192 --random-output-len 8192 --ignore-eos --num-prompts 8 --request-rate 8
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/test_ops/k357_192/boot_k5.log
++ return 0
++ for C in 1 2 4 8 16 32
++ bench /root/test_ops/k357_192/matrix_k5.log /root/test_ops/k357_192/boot_k5.log 'tier 8K/8K c16 k=5' 8192 8192 16
++ local LOG=/root/test_ops/k357_192/matrix_k5.log BLOG=/root/test_ops/k357_192/boot_k5.log 'label=tier 8K/8K c16 k=5' ilen=8192 olen=8192 conc=16
+++ date -u +%H:%M:%S
++ echo '===== tier 8K/8K c16 k=5 14:12:59 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data/models/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 8192 --random-output-len 8192 --ignore-eos --num-prompts 16 --request-rate 16
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/test_ops/k357_192/boot_k5.log
++ return 0
++ for C in 1 2 4 8 16 32
++ bench /root/test_ops/k357_192/matrix_k5.log /root/test_ops/k357_192/boot_k5.log 'tier 8K/8K c32 k=5' 8192 8192 32
++ local LOG=/root/test_ops/k357_192/matrix_k5.log BLOG=/root/test_ops/k357_192/boot_k5.log 'label=tier 8K/8K c32 k=5' ilen=8192 olen=8192 conc=32
+++ date -u +%H:%M:%S
++ echo '===== tier 8K/8K c32 k=5 14:17:36 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data/models/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 8192 --random-output-len 8192 --ignore-eos --num-prompts 32 --request-rate 32
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/test_ops/k357_192/boot_k5.log
++ return 0
++ for C in 1 2 4 8 16
++ bench /root/test_ops/k357_192/matrix_k5.log /root/test_ops/k357_192/boot_k5.log 'tier 32K/32K c1 k=5' 32768 32768 1
++ local LOG=/root/test_ops/k357_192/matrix_k5.log BLOG=/root/test_ops/k357_192/boot_k5.log 'label=tier 32K/32K c1 k=5' ilen=32768 olen=32768 conc=1
+++ date -u +%H:%M:%S
++ echo '===== tier 32K/32K c1 k=5 14:22:48 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data/models/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 32768 --random-output-len 32768 --ignore-eos --num-prompts 1 --request-rate 1
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/test_ops/k357_192/boot_k5.log
++ return 0
++ for C in 1 2 4 8 16
++ bench /root/test_ops/k357_192/matrix_k5.log /root/test_ops/k357_192/boot_k5.log 'tier 32K/32K c2 k=5' 32768 32768 2
++ local LOG=/root/test_ops/k357_192/matrix_k5.log BLOG=/root/test_ops/k357_192/boot_k5.log 'label=tier 32K/32K c2 k=5' ilen=32768 olen=32768 conc=2
+++ date -u +%H:%M:%S
++ echo '===== tier 32K/32K c2 k=5 14:26:17 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data/models/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 32768 --random-output-len 32768 --ignore-eos --num-prompts 2 --request-rate 2
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/test_ops/k357_192/boot_k5.log
++ return 0
++ for C in 1 2 4 8 16
++ bench /root/test_ops/k357_192/matrix_k5.log /root/test_ops/k357_192/boot_k5.log 'tier 32K/32K c4 k=5' 32768 32768 4
++ local LOG=/root/test_ops/k357_192/matrix_k5.log BLOG=/root/test_ops/k357_192/boot_k5.log 'label=tier 32K/32K c4 k=5' ilen=32768 olen=32768 conc=4
+++ date -u +%H:%M:%S
++ echo '===== tier 32K/32K c4 k=5 14:31:38 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data/models/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 32768 --random-output-len 32768 --ignore-eos --num-prompts 4 --request-rate 4
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/test_ops/k357_192/boot_k5.log
++ return 0
++ for C in 1 2 4 8 16
++ bench /root/test_ops/k357_192/matrix_k5.log /root/test_ops/k357_192/boot_k5.log 'tier 32K/32K c8 k=5' 32768 32768 8
++ local LOG=/root/test_ops/k357_192/matrix_k5.log BLOG=/root/test_ops/k357_192/boot_k5.log 'label=tier 32K/32K c8 k=5' ilen=32768 olen=32768 conc=8
+++ date -u +%H:%M:%S
++ echo '===== tier 32K/32K c8 k=5 14:36:19 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data/models/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 32768 --random-output-len 32768 --ignore-eos --num-prompts 8 --request-rate 8
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/test_ops/k357_192/boot_k5.log
++ return 0
++ for C in 1 2 4 8 16
++ bench /root/test_ops/k357_192/matrix_k5.log /root/test_ops/k357_192/boot_k5.log 'tier 32K/32K c16 k=5' 32768 32768 16
++ local LOG=/root/test_ops/k357_192/matrix_k5.log BLOG=/root/test_ops/k357_192/boot_k5.log 'label=tier 32K/32K c16 k=5' ilen=32768 olen=32768 conc=16
+++ date -u +%H:%M:%S
++ echo '===== tier 32K/32K c16 k=5 14:41:38 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data/models/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 32768 --random-output-len 32768 --ignore-eos --num-prompts 16 --request-rate 16
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/test_ops/k357_192/boot_k5.log
++ return 0
++ for C in 1 2 4 8
++ bench /root/test_ops/k357_192/matrix_k5.log /root/test_ops/k357_192/boot_k5.log 'tier 64K/64K c1 k=5' 65536 65536 1
++ local LOG=/root/test_ops/k357_192/matrix_k5.log BLOG=/root/test_ops/k357_192/boot_k5.log 'label=tier 64K/64K c1 k=5' ilen=65536 olen=65536 conc=1
+++ date -u +%H:%M:%S
++ echo '===== tier 64K/64K c1 k=5 14:48:00 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data/models/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 65536 --random-output-len 65536 --ignore-eos --num-prompts 1 --request-rate 1
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/test_ops/k357_192/boot_k5.log
++ return 0
++ for C in 1 2 4 8
++ bench /root/test_ops/k357_192/matrix_k5.log /root/test_ops/k357_192/boot_k5.log 'tier 64K/64K c2 k=5' 65536 65536 2
++ local LOG=/root/test_ops/k357_192/matrix_k5.log BLOG=/root/test_ops/k357_192/boot_k5.log 'label=tier 64K/64K c2 k=5' ilen=65536 olen=65536 conc=2
+++ date -u +%H:%M:%S
++ echo '===== tier 64K/64K c2 k=5 14:54:15 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data/models/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 65536 --random-output-len 65536 --ignore-eos --num-prompts 2 --request-rate 2
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/test_ops/k357_192/boot_k5.log
++ return 0
++ for C in 1 2 4 8
++ bench /root/test_ops/k357_192/matrix_k5.log /root/test_ops/k357_192/boot_k5.log 'tier 64K/64K c4 k=5' 65536 65536 4
++ local LOG=/root/test_ops/k357_192/matrix_k5.log BLOG=/root/test_ops/k357_192/boot_k5.log 'label=tier 64K/64K c4 k=5' ilen=65536 olen=65536 conc=4
+++ date -u +%H:%M:%S
++ echo '===== tier 64K/64K c4 k=5 15:01:36 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data/models/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 65536 --random-output-len 65536 --ignore-eos --num-prompts 4 --request-rate 4
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/test_ops/k357_192/boot_k5.log
++ return 0
++ for C in 1 2 4 8
++ bench /root/test_ops/k357_192/matrix_k5.log /root/test_ops/k357_192/boot_k5.log 'tier 64K/64K c8 k=5' 65536 65536 8
++ local LOG=/root/test_ops/k357_192/matrix_k5.log BLOG=/root/test_ops/k357_192/boot_k5.log 'label=tier 64K/64K c8 k=5' ilen=65536 olen=65536 conc=8
+++ date -u +%H:%M:%S
++ echo '===== tier 64K/64K c8 k=5 15:09:31 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data/models/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 65536 --random-output-len 65536 --ignore-eos --num-prompts 8 --request-rate 8
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/test_ops/k357_192/boot_k5.log
++ return 0
++ '[' 5 = 3 ']'
+++ date -u
++ echo '########## k=5 AGENT Wed Oct 28 03:18:17 PM UTC 2026 ##########'
++ for S in 1 2 3
++ /root/vllmenv/bin/python /root/test_ops/agent_tools_sim.py http://127.0.0.1:8123 --turns 12
++ echo 'agent s1 rc=0'
++ for S in 1 2 3
++ /root/vllmenv/bin/python /root/test_ops/agent_tools_sim.py http://127.0.0.1:8123 --turns 12
++ echo 'agent s2 rc=0'
++ for S in 1 2 3
++ /root/vllmenv/bin/python /root/test_ops/agent_tools_sim.py http://127.0.0.1:8123 --turns 12
++ echo 'agent s3 rc=0'
++ grep -E 'SpecDecoding metrics' /root/test_ops/k357_192/boot_k5.log
++ tail -150
++ kill_all
++ pkill -9 -f '[v]llm serve'
++ pkill -9 -f VLLM::
+matrix_192.sh: line 12: 322946 Killed                  setsid nohup env PATH=/root/v3env/bin:/usr/local/cuda/bin:/usr/local/bin:$PATH CUDA_HOME=/usr/local/cuda VLLM_USE_RUST_FRONTEND=1 VLLM_ENGINE_READY_TIMEOUT_S=7200 NCCL_P2P_LEVEL=SYS FLASHINFER_DISABLE_VERSION_CHECK=1 HF_HUB_OFFLINE=1 HF_HUB_DISABLE_XET=1 $V/bin/vllm serve $MODEL --served-model-name deepseek-v4.1-flash --tokenizer-mode deepseek_v41 --trust-remote-code --tensor-parallel-size 8 --enable-expert-parallel --kv-cache-dtype fp8 --engram-config '{"cpu_offload":true}' --moe-backend auto --compilation-config '{"cudagraph_mode":"PIECEWISE"}' --max-model-len 1048576 --max-num-seqs 128 --gpu-memory-utilization 0.90 --speculative-config "{\"method\":\"dspark\",\"num_speculative_tokens\":$K}" --max-cudagraph-capture-size $CAP --enable-auto-tool-choice --tool-call-parser deepseek_v41 --reasoning-parser deepseek_v41 --port 8123 --api-key abc.12345 > $BLOG 2>&1 < /dev/null
++ sleep 2
+++ ss -lptnH 'sport = :8123'
+++ grep -oP 'pid=\K[0-9]+'
+++ sort -u
++ for p in $(ss -lptnH "sport = :8123" 2> /dev/null | grep -oP 'pid=\K[0-9]+' | sort -u)
++ kill -9 323863
+++ nvidia-smi --query-compute-apps=pid --format=csv,noheader
++ for p in $(nvidia-smi --query-compute-apps=pid --format=csv,noheader 2> /dev/null)
++ kill -9 324414
++ for p in $(nvidia-smi --query-compute-apps=pid --format=csv,noheader 2> /dev/null)
++ kill -9 324413
++ for p in $(nvidia-smi --query-compute-apps=pid --format=csv,noheader 2> /dev/null)
++ kill -9 324415
++ for p in $(nvidia-smi --query-compute-apps=pid --format=csv,noheader 2> /dev/null)
++ kill -9 324416
++ for p in $(nvidia-smi --query-compute-apps=pid --format=csv,noheader 2> /dev/null)
++ kill -9 324417
++ for p in $(nvidia-smi --query-compute-apps=pid --format=csv,noheader 2> /dev/null)
++ kill -9 324419
++ for p in $(nvidia-smi --query-compute-apps=pid --format=csv,noheader 2> /dev/null)
++ kill -9 324418
++ for p in $(nvidia-smi --query-compute-apps=pid --format=csv,noheader 2> /dev/null)
++ kill -9 324420
++ rm -f '/dev/shm/nccl-*' '/dev/shm/vllm-*'
++ sleep 3
+++ date -u
++ echo '########## K357_192 k=5 DONE Wed Oct 28 03:19:30 PM UTC 2026 ##########'
++ echo DONE
++ for K in ${KLIST:-3 5 7}
++ run_k 7
++ local K=7
++ local KLOG=/root/test_ops/k357_192/matrix_k7.log
++ local BLOG=/root/test_ops/k357_192/boot_k7.log
++ boot_k 7
++ local K=7
++ local CAP=1024
++ '[' 1024 -lt 512 ']'
++ local BLOG=/root/test_ops/k357_192/boot_k7.log
++ local KLOG=/root/test_ops/k357_192/matrix_k7.log
++ kill_all
++ pkill -9 -f '[v]llm serve'
++ pkill -9 -f VLLM::
++ sleep 2
+++ ss -lptnH 'sport = :8123'
+++ grep -oP 'pid=\K[0-9]+'
+++ sort -u
+++ nvidia-smi --query-compute-apps=pid --format=csv,noheader
++ for p in $(nvidia-smi --query-compute-apps=pid --format=csv,noheader 2> /dev/null)
++ kill -9 324416
++ rm -f '/dev/shm/nccl-*' '/dev/shm/vllm-*'
++ sleep 3
+++ date -u
++ echo '########## K357_192 k=7 BOOT (align patch, nightly) Wed Oct 28 03:20:05 PM UTC 2026 ##########'
++ echo 'BOOT CMD: /root/vllmenv/bin/vllm serve /data/models/DeepSeek-V4.1-Flash-1017 --served-model-name deepseek-v4.1-flash --tokenizer-mode deepseek_v41 --trust-remote-code --tensor-parallel-size 8 --enable-expert-parallel --kv-cache-dtype fp8 --engram-config {cpu_offload:true} --moe-backend auto --compilation-config {cudagraph_mode:PIECEWISE} --max-model-len 1048576 --max-num-seqs 128 --gpu-memory-utilization 0.90 --speculative-config {method:dspark,num_speculative_tokens:7} --max-cudagraph-capture-size 1024 --enable-auto-tool-choice --tool-call-parser deepseek_v41 --reasoning-parser deepseek_v41 --port 8123 --api-key *** [VL ON]'
++ setsid nohup env PATH=/root/v3env/bin:/usr/local/cuda/bin:/usr/local/bin:/usr/local/cuda/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin CUDA_HOME=/usr/local/cuda VLLM_USE_RUST_FRONTEND=1 VLLM_ENGINE_READY_TIMEOUT_S=7200 NCCL_P2P_LEVEL=SYS FLASHINFER_DISABLE_VERSION_CHECK=1 HF_HUB_OFFLINE=1 HF_HUB_DISABLE_XET=1 /root/vllmenv/bin/vllm serve /data/models/DeepSeek-V4.1-Flash-1017 --served-model-name deepseek-v4.1-flash --tokenizer-mode deepseek_v41 --trust-remote-code --tensor-parallel-size 8 --enable-expert-parallel --kv-cache-dtype fp8 --engram-config '{"cpu_offload":true}' --moe-backend auto --compilation-config '{"cudagraph_mode":"PIECEWISE"}' --max-model-len 1048576 --max-num-seqs 128 --gpu-memory-utilization 0.90 --speculative-config '{"method":"dspark","num_speculative_tokens":7}' --max-cudagraph-capture-size 1024 --enable-auto-tool-choice --tool-call-parser deepseek_v41 --reasoning-parser deepseek_v41 --port 8123 --api-key abc.12345
+++ seq 1 100
++ for i in $(seq 1 100)
++ sleep 10
+++ curl -s -m 60 http://127.0.0.1:8123/v1/completions -H 'Authorization: Bearer abc.12345' -H 'Content-Type: application/json' -d '{"model":"deepseek-v4.1-flash","prompt":"17*19=","max_tokens":8,"temperature":0}'
+++ grep -o '"text":"[^"]*"'
+++ head -1
++ ANS=
++ echo ''
++ grep -q 323
++ grep -qE 'Assertion error|ValueError|Engine core initialization failed|OutOfMemory' /root/test_ops/k357_192/boot_k7.log
++ for i in $(seq 1 100)
++ sleep 10
+++ grep -o '"text":"[^"]*"'
+++ curl -s -m 60 http://127.0.0.1:8123/v1/completions -H 'Authorization: Bearer abc.12345' -H 'Content-Type: application/json' -d '{"model":"deepseek-v4.1-flash","prompt":"17*19=","max_tokens":8,"temperature":0}'
+++ head -1
++ ANS=
++ echo ''
++ grep -q 323
++ grep -qE 'Assertion error|ValueError|Engine core initialization failed|OutOfMemory' /root/test_ops/k357_192/boot_k7.log
++ for i in $(seq 1 100)
++ sleep 10
+++ curl -s -m 60 http://127.0.0.1:8123/v1/completions -H 'Authorization: Bearer abc.12345' -H 'Content-Type: application/json' -d '{"model":"deepseek-v4.1-flash","prompt":"17*19=","max_tokens":8,"temperature":0}'
+++ grep -o '"text":"[^"]*"'
+++ head -1
++ ANS=
++ echo ''
++ grep -q 323
++ grep -qE 'Assertion error|ValueError|Engine core initialization failed|OutOfMemory' /root/test_ops/k357_192/boot_k7.log
++ for i in $(seq 1 100)
++ sleep 10
+++ curl -s -m 60 http://127.0.0.1:8123/v1/completions -H 'Authorization: Bearer abc.12345' -H 'Content-Type: application/json' -d '{"model":"deepseek-v4.1-flash","prompt":"17*19=","max_tokens":8,"temperature":0}'
+++ grep -o '"text":"[^"]*"'
+++ head -1
++ ANS=
++ echo ''
++ grep -q 323
++ grep -qE 'Assertion error|ValueError|Engine core initialization failed|OutOfMemory' /root/test_ops/k357_192/boot_k7.log
++ for i in $(seq 1 100)
++ sleep 10
+++ curl -s -m 60 http://127.0.0.1:8123/v1/completions -H 'Authorization: Bearer abc.12345' -H 'Content-Type: application/json' -d '{"model":"deepseek-v4.1-flash","prompt":"17*19=","max_tokens":8,"temperature":0}'
+++ grep -o '"text":"[^"]*"'
+++ head -1
++ ANS=
++ echo ''
++ grep -q 323
++ grep -qE 'Assertion error|ValueError|Engine core initialization failed|OutOfMemory' /root/test_ops/k357_192/boot_k7.log
++ for i in $(seq 1 100)
++ sleep 10
+++ curl -s -m 60 http://127.0.0.1:8123/v1/completions -H 'Authorization: Bearer abc.12345' -H 'Content-Type: application/json' -d '{"model":"deepseek-v4.1-flash","prompt":"17*19=","max_tokens":8,"temperature":0}'
+++ grep -o '"text":"[^"]*"'
+++ head -1
++ ANS=
++ echo ''
++ grep -q 323
++ grep -qE 'Assertion error|ValueError|Engine core initialization failed|OutOfMemory' /root/test_ops/k357_192/boot_k7.log
++ for i in $(seq 1 100)
++ sleep 10
+++ curl -s -m 60 http://127.0.0.1:8123/v1/completions -H 'Authorization: Bearer abc.12345' -H 'Content-Type: application/json' -d '{"model":"deepseek-v4.1-flash","prompt":"17*19=","max_tokens":8,"temperature":0}'
+++ grep -o '"text":"[^"]*"'
+++ head -1
++ ANS=
++ grep -q 323
++ echo ''
++ grep -qE 'Assertion error|ValueError|Engine core initialization failed|OutOfMemory' /root/test_ops/k357_192/boot_k7.log
++ for i in $(seq 1 100)
++ sleep 10
+++ curl -s -m 60 http://127.0.0.1:8123/v1/completions -H 'Authorization: Bearer abc.12345' -H 'Content-Type: application/json' -d '{"model":"deepseek-v4.1-flash","prompt":"17*19=","max_tokens":8,"temperature":0}'
+++ grep -o '"text":"[^"]*"'
+++ head -1
++ ANS=
++ echo ''
++ grep -q 323
++ grep -qE 'Assertion error|ValueError|Engine core initialization failed|OutOfMemory' /root/test_ops/k357_192/boot_k7.log
++ for i in $(seq 1 100)
++ sleep 10
+++ curl -s -m 60 http://127.0.0.1:8123/v1/completions -H 'Authorization: Bearer abc.12345' -H 'Content-Type: application/json' -d '{"model":"deepseek-v4.1-flash","prompt":"17*19=","max_tokens":8,"temperature":0}'
+++ grep -o '"text":"[^"]*"'
+++ head -1
++ ANS=
++ echo ''
++ grep -q 323
++ grep -qE 'Assertion error|ValueError|Engine core initialization failed|OutOfMemory' /root/test_ops/k357_192/boot_k7.log
++ for i in $(seq 1 100)
++ sleep 10
+++ curl -s -m 60 http://127.0.0.1:8123/v1/completions -H 'Authorization: Bearer abc.12345' -H 'Content-Type: application/json' -d '{"model":"deepseek-v4.1-flash","prompt":"17*19=","max_tokens":8,"temperature":0}'
+++ grep -o '"text":"[^"]*"'
+++ head -1
++ ANS=
++ echo ''
++ grep -q 323
++ grep -qE 'Assertion error|ValueError|Engine core initialization failed|OutOfMemory' /root/test_ops/k357_192/boot_k7.log
++ for i in $(seq 1 100)
++ sleep 10
+++ curl -s -m 60 http://127.0.0.1:8123/v1/completions -H 'Authorization: Bearer abc.12345' -H 'Content-Type: application/json' -d '{"model":"deepseek-v4.1-flash","prompt":"17*19=","max_tokens":8,"temperature":0}'
+++ grep -o '"text":"[^"]*"'
+++ head -1
++ ANS=
++ echo ''
++ grep -q 323
++ grep -qE 'Assertion error|ValueError|Engine core initialization failed|OutOfMemory' /root/test_ops/k357_192/boot_k7.log
++ for i in $(seq 1 100)
++ sleep 10
+++ curl -s -m 60 http://127.0.0.1:8123/v1/completions -H 'Authorization: Bearer abc.12345' -H 'Content-Type: application/json' -d '{"model":"deepseek-v4.1-flash","prompt":"17*19=","max_tokens":8,"temperature":0}'
+++ grep -o '"text":"[^"]*"'
+++ head -1
++ ANS=
++ echo ''
++ grep -q 323
++ grep -qE 'Assertion error|ValueError|Engine core initialization failed|OutOfMemory' /root/test_ops/k357_192/boot_k7.log
++ for i in $(seq 1 100)
++ sleep 10
+++ curl -s -m 60 http://127.0.0.1:8123/v1/completions -H 'Authorization: Bearer abc.12345' -H 'Content-Type: application/json' -d '{"model":"deepseek-v4.1-flash","prompt":"17*19=","max_tokens":8,"temperature":0}'
+++ grep -o '"text":"[^"]*"'
+++ head -1
++ ANS=
++ echo ''
++ grep -q 323
++ grep -qE 'Assertion error|ValueError|Engine core initialization failed|OutOfMemory' /root/test_ops/k357_192/boot_k7.log
++ for i in $(seq 1 100)
++ sleep 10
+++ curl -s -m 60 http://127.0.0.1:8123/v1/completions -H 'Authorization: Bearer abc.12345' -H 'Content-Type: application/json' -d '{"model":"deepseek-v4.1-flash","prompt":"17*19=","max_tokens":8,"temperature":0}'
+++ grep -o '"text":"[^"]*"'
+++ head -1
++ ANS=
++ echo ''
++ grep -q 323
++ grep -qE 'Assertion error|ValueError|Engine core initialization failed|OutOfMemory' /root/test_ops/k357_192/boot_k7.log
++ for i in $(seq 1 100)
++ sleep 10
+++ curl -s -m 60 http://127.0.0.1:8123/v1/completions -H 'Authorization: Bearer abc.12345' -H 'Content-Type: application/json' -d '{"model":"deepseek-v4.1-flash","prompt":"17*19=","max_tokens":8,"temperature":0}'
+++ grep -o '"text":"[^"]*"'
+++ head -1
++ ANS=
++ echo ''
++ grep -q 323
++ grep -qE 'Assertion error|ValueError|Engine core initialization failed|OutOfMemory' /root/test_ops/k357_192/boot_k7.log
++ for i in $(seq 1 100)
++ sleep 10
+++ grep -o '"text":"[^"]*"'
+++ curl -s -m 60 http://127.0.0.1:8123/v1/completions -H 'Authorization: Bearer abc.12345' -H 'Content-Type: application/json' -d '{"model":"deepseek-v4.1-flash","prompt":"17*19=","max_tokens":8,"temperature":0}'
+++ head -1
++ ANS=
++ echo ''
++ grep -q 323
++ grep -qE 'Assertion error|ValueError|Engine core initialization failed|OutOfMemory' /root/test_ops/k357_192/boot_k7.log
++ for i in $(seq 1 100)
++ sleep 10
+++ curl -s -m 60 http://127.0.0.1:8123/v1/completions -H 'Authorization: Bearer abc.12345' -H 'Content-Type: application/json' -d '{"model":"deepseek-v4.1-flash","prompt":"17*19=","max_tokens":8,"temperature":0}'
+++ grep -o '"text":"[^"]*"'
+++ head -1
++ ANS=
++ echo ''
++ grep -q 323
++ grep -qE 'Assertion error|ValueError|Engine core initialization failed|OutOfMemory' /root/test_ops/k357_192/boot_k7.log
++ for i in $(seq 1 100)
++ sleep 10
+++ curl -s -m 60 http://127.0.0.1:8123/v1/completions -H 'Authorization: Bearer abc.12345' -H 'Content-Type: application/json' -d '{"model":"deepseek-v4.1-flash","prompt":"17*19=","max_tokens":8,"temperature":0}'
+++ grep -o '"text":"[^"]*"'
+++ head -1
++ ANS=
++ echo ''
++ grep -q 323
++ grep -qE 'Assertion error|ValueError|Engine core initialization failed|OutOfMemory' /root/test_ops/k357_192/boot_k7.log
++ for i in $(seq 1 100)
++ sleep 10
+++ curl -s -m 60 http://127.0.0.1:8123/v1/completions -H 'Authorization: Bearer abc.12345' -H 'Content-Type: application/json' -d '{"model":"deepseek-v4.1-flash","prompt":"17*19=","max_tokens":8,"temperature":0}'
+++ grep -o '"text":"[^"]*"'
+++ head -1
++ ANS=
++ echo ''
++ grep -q 323
++ grep -qE 'Assertion error|ValueError|Engine core initialization failed|OutOfMemory' /root/test_ops/k357_192/boot_k7.log
++ for i in $(seq 1 100)
++ sleep 10
+++ curl -s -m 60 http://127.0.0.1:8123/v1/completions -H 'Authorization: Bearer abc.12345' -H 'Content-Type: application/json' -d '{"model":"deepseek-v4.1-flash","prompt":"17*19=","max_tokens":8,"temperature":0}'
+++ grep -o '"text":"[^"]*"'
+++ head -1
++ ANS=
++ echo ''
++ grep -q 323
++ grep -qE 'Assertion error|ValueError|Engine core initialization failed|OutOfMemory' /root/test_ops/k357_192/boot_k7.log
++ for i in $(seq 1 100)
++ sleep 10
+++ curl -s -m 60 http://127.0.0.1:8123/v1/completions -H 'Authorization: Bearer abc.12345' -H 'Content-Type: application/json' -d '{"model":"deepseek-v4.1-flash","prompt":"17*19=","max_tokens":8,"temperature":0}'
+++ grep -o '"text":"[^"]*"'
+++ head -1
++ ANS='"text":"323\n\n323/19=17\n\n"'
++ echo '"text":"323\n\n323/19=17\n\n"'
++ grep -q 323
++ echo 'k=7 READY after ~210s'
++ grep -E 'KV cache size' /root/test_ops/k357_192/boot_k7.log
++ tail -2
++ return 0
++ sleep 5
++ echo '===== correctness k=7 ====='
++ curl -s -m 120 http://127.0.0.1:8123/v1/completions -H 'Content-Type: application/json' -H 'Authorization: Bearer abc.12345' -d '{"model":"deepseek-v4.1-flash","prompt":"17*19=","max_tokens":16,"temperature":0}'
++ echo
++ bench /root/test_ops/k357_192/matrix_k7.log /root/test_ops/k357_192/boot_k7.log 'tier 1K/1K c1 k=7' 1024 1024 1
++ local LOG=/root/test_ops/k357_192/matrix_k7.log BLOG=/root/test_ops/k357_192/boot_k7.log 'label=tier 1K/1K c1 k=7' ilen=1024 olen=1024 conc=1
+++ date -u +%H:%M:%S
++ echo '===== tier 1K/1K c1 k=7 15:23:41 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data/models/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 1024 --random-output-len 1024 --ignore-eos --num-prompts 1 --request-rate 1
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/test_ops/k357_192/boot_k7.log
++ return 0
++ bench /root/test_ops/k357_192/matrix_k7.log /root/test_ops/k357_192/boot_k7.log 'tier 1K/1K c1 k=7' 1024 1024 1
++ local LOG=/root/test_ops/k357_192/matrix_k7.log BLOG=/root/test_ops/k357_192/boot_k7.log 'label=tier 1K/1K c1 k=7' ilen=1024 olen=1024 conc=1
+++ date -u +%H:%M:%S
++ echo '===== tier 1K/1K c1 k=7 15:24:06 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data/models/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 1024 --random-output-len 1024 --ignore-eos --num-prompts 1 --request-rate 1
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/test_ops/k357_192/boot_k7.log
++ return 0
++ for C in 2 4 8 16 32 64 128
++ bench /root/test_ops/k357_192/matrix_k7.log /root/test_ops/k357_192/boot_k7.log 'tier 1K/1K c2 k=7' 1024 1024 2
++ local LOG=/root/test_ops/k357_192/matrix_k7.log BLOG=/root/test_ops/k357_192/boot_k7.log 'label=tier 1K/1K c2 k=7' ilen=1024 olen=1024 conc=2
+++ date -u +%H:%M:%S
++ echo '===== tier 1K/1K c2 k=7 15:24:31 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data/models/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 1024 --random-output-len 1024 --ignore-eos --num-prompts 2 --request-rate 2
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/test_ops/k357_192/boot_k7.log
++ return 0
++ for C in 2 4 8 16 32 64 128
++ bench /root/test_ops/k357_192/matrix_k7.log /root/test_ops/k357_192/boot_k7.log 'tier 1K/1K c4 k=7' 1024 1024 4
++ local LOG=/root/test_ops/k357_192/matrix_k7.log BLOG=/root/test_ops/k357_192/boot_k7.log 'label=tier 1K/1K c4 k=7' ilen=1024 olen=1024 conc=4
+++ date -u +%H:%M:%S
++ echo '===== tier 1K/1K c4 k=7 15:25:03 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data/models/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 1024 --random-output-len 1024 --ignore-eos --num-prompts 4 --request-rate 4
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/test_ops/k357_192/boot_k7.log
++ return 0
++ for C in 2 4 8 16 32 64 128
++ bench /root/test_ops/k357_192/matrix_k7.log /root/test_ops/k357_192/boot_k7.log 'tier 1K/1K c8 k=7' 1024 1024 8
++ local LOG=/root/test_ops/k357_192/matrix_k7.log BLOG=/root/test_ops/k357_192/boot_k7.log 'label=tier 1K/1K c8 k=7' ilen=1024 olen=1024 conc=8
+++ date -u +%H:%M:%S
++ echo '===== tier 1K/1K c8 k=7 15:25:30 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data/models/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 1024 --random-output-len 1024 --ignore-eos --num-prompts 8 --request-rate 8
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/test_ops/k357_192/boot_k7.log
++ return 0
++ for C in 2 4 8 16 32 64 128
++ bench /root/test_ops/k357_192/matrix_k7.log /root/test_ops/k357_192/boot_k7.log 'tier 1K/1K c16 k=7' 1024 1024 16
++ local LOG=/root/test_ops/k357_192/matrix_k7.log BLOG=/root/test_ops/k357_192/boot_k7.log 'label=tier 1K/1K c16 k=7' ilen=1024 olen=1024 conc=16
+++ date -u +%H:%M:%S
++ echo '===== tier 1K/1K c16 k=7 15:26:03 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data/models/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 1024 --random-output-len 1024 --ignore-eos --num-prompts 16 --request-rate 16
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/test_ops/k357_192/boot_k7.log
++ return 0
++ for C in 2 4 8 16 32 64 128
++ bench /root/test_ops/k357_192/matrix_k7.log /root/test_ops/k357_192/boot_k7.log 'tier 1K/1K c32 k=7' 1024 1024 32
++ local LOG=/root/test_ops/k357_192/matrix_k7.log BLOG=/root/test_ops/k357_192/boot_k7.log 'label=tier 1K/1K c32 k=7' ilen=1024 olen=1024 conc=32
+++ date -u +%H:%M:%S
++ echo '===== tier 1K/1K c32 k=7 15:26:43 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data/models/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 1024 --random-output-len 1024 --ignore-eos --num-prompts 32 --request-rate 32
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/test_ops/k357_192/boot_k7.log
++ return 0
++ for C in 2 4 8 16 32 64 128
++ bench /root/test_ops/k357_192/matrix_k7.log /root/test_ops/k357_192/boot_k7.log 'tier 1K/1K c64 k=7' 1024 1024 64
++ local LOG=/root/test_ops/k357_192/matrix_k7.log BLOG=/root/test_ops/k357_192/boot_k7.log 'label=tier 1K/1K c64 k=7' ilen=1024 olen=1024 conc=64
+++ date -u +%H:%M:%S
++ echo '===== tier 1K/1K c64 k=7 15:27:27 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data/models/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 1024 --random-output-len 1024 --ignore-eos --num-prompts 64 --request-rate 64
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/test_ops/k357_192/boot_k7.log
++ return 0
++ for C in 2 4 8 16 32 64 128
++ bench /root/test_ops/k357_192/matrix_k7.log /root/test_ops/k357_192/boot_k7.log 'tier 1K/1K c128 k=7' 1024 1024 128
++ local LOG=/root/test_ops/k357_192/matrix_k7.log BLOG=/root/test_ops/k357_192/boot_k7.log 'label=tier 1K/1K c128 k=7' ilen=1024 olen=1024 conc=128
+++ date -u +%H:%M:%S
++ echo '===== tier 1K/1K c128 k=7 15:28:34 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data/models/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 1024 --random-output-len 1024 --ignore-eos --num-prompts 128 --request-rate 128
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/test_ops/k357_192/boot_k7.log
++ return 0
++ for C in 1 2 4 8 16 32
++ bench /root/test_ops/k357_192/matrix_k7.log /root/test_ops/k357_192/boot_k7.log 'tier 4K/4K c1 k=7' 4096 4096 1
++ local LOG=/root/test_ops/k357_192/matrix_k7.log BLOG=/root/test_ops/k357_192/boot_k7.log 'label=tier 4K/4K c1 k=7' ilen=4096 olen=4096 conc=1
+++ date -u +%H:%M:%S
++ echo '===== tier 4K/4K c1 k=7 15:30:27 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data/models/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 4096 --random-output-len 4096 --ignore-eos --num-prompts 1 --request-rate 1
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/test_ops/k357_192/boot_k7.log
++ return 0
++ for C in 1 2 4 8 16 32
++ bench /root/test_ops/k357_192/matrix_k7.log /root/test_ops/k357_192/boot_k7.log 'tier 4K/4K c2 k=7' 4096 4096 2
++ local LOG=/root/test_ops/k357_192/matrix_k7.log BLOG=/root/test_ops/k357_192/boot_k7.log 'label=tier 4K/4K c2 k=7' ilen=4096 olen=4096 conc=2
+++ date -u +%H:%M:%S
++ echo '===== tier 4K/4K c2 k=7 15:31:09 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data/models/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 4096 --random-output-len 4096 --ignore-eos --num-prompts 2 --request-rate 2
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/test_ops/k357_192/boot_k7.log
++ return 0
++ for C in 1 2 4 8 16 32
++ bench /root/test_ops/k357_192/matrix_k7.log /root/test_ops/k357_192/boot_k7.log 'tier 4K/4K c4 k=7' 4096 4096 4
++ local LOG=/root/test_ops/k357_192/matrix_k7.log BLOG=/root/test_ops/k357_192/boot_k7.log 'label=tier 4K/4K c4 k=7' ilen=4096 olen=4096 conc=4
+++ date -u +%H:%M:%S
++ echo '===== tier 4K/4K c4 k=7 15:31:44 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data/models/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 4096 --random-output-len 4096 --ignore-eos --num-prompts 4 --request-rate 4
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/test_ops/k357_192/boot_k7.log
++ return 0
++ for C in 1 2 4 8 16 32
++ bench /root/test_ops/k357_192/matrix_k7.log /root/test_ops/k357_192/boot_k7.log 'tier 4K/4K c8 k=7' 4096 4096 8
++ local LOG=/root/test_ops/k357_192/matrix_k7.log BLOG=/root/test_ops/k357_192/boot_k7.log 'label=tier 4K/4K c8 k=7' ilen=4096 olen=4096 conc=8
+++ date -u +%H:%M:%S
++ echo '===== tier 4K/4K c8 k=7 15:32:43 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data/models/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 4096 --random-output-len 4096 --ignore-eos --num-prompts 8 --request-rate 8
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/test_ops/k357_192/boot_k7.log
++ return 0
++ for C in 1 2 4 8 16 32
++ bench /root/test_ops/k357_192/matrix_k7.log /root/test_ops/k357_192/boot_k7.log 'tier 4K/4K c16 k=7' 4096 4096 16
++ local LOG=/root/test_ops/k357_192/matrix_k7.log BLOG=/root/test_ops/k357_192/boot_k7.log 'label=tier 4K/4K c16 k=7' ilen=4096 olen=4096 conc=16
+++ date -u +%H:%M:%S
++ echo '===== tier 4K/4K c16 k=7 15:33:57 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data/models/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 4096 --random-output-len 4096 --ignore-eos --num-prompts 16 --request-rate 16
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/test_ops/k357_192/boot_k7.log
++ return 0
++ for C in 1 2 4 8 16 32
++ bench /root/test_ops/k357_192/matrix_k7.log /root/test_ops/k357_192/boot_k7.log 'tier 4K/4K c32 k=7' 4096 4096 32
++ local LOG=/root/test_ops/k357_192/matrix_k7.log BLOG=/root/test_ops/k357_192/boot_k7.log 'label=tier 4K/4K c32 k=7' ilen=4096 olen=4096 conc=32
+++ date -u +%H:%M:%S
++ echo '===== tier 4K/4K c32 k=7 15:35:19 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data/models/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 4096 --random-output-len 4096 --ignore-eos --num-prompts 32 --request-rate 32
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/test_ops/k357_192/boot_k7.log
++ return 0
++ for C in 1 2 4 8 16 32
++ bench /root/test_ops/k357_192/matrix_k7.log /root/test_ops/k357_192/boot_k7.log 'tier 8K/8K c1 k=7' 8192 8192 1
++ local LOG=/root/test_ops/k357_192/matrix_k7.log BLOG=/root/test_ops/k357_192/boot_k7.log 'label=tier 8K/8K c1 k=7' ilen=8192 olen=8192 conc=1
+++ date -u +%H:%M:%S
++ echo '===== tier 8K/8K c1 k=7 15:37:35 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data/models/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 8192 --random-output-len 8192 --ignore-eos --num-prompts 1 --request-rate 1
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/test_ops/k357_192/boot_k7.log
++ return 0
++ for C in 1 2 4 8 16 32
++ bench /root/test_ops/k357_192/matrix_k7.log /root/test_ops/k357_192/boot_k7.log 'tier 8K/8K c2 k=7' 8192 8192 2
++ local LOG=/root/test_ops/k357_192/matrix_k7.log BLOG=/root/test_ops/k357_192/boot_k7.log 'label=tier 8K/8K c2 k=7' ilen=8192 olen=8192 conc=2
+++ date -u +%H:%M:%S
++ echo '===== tier 8K/8K c2 k=7 15:39:32 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data/models/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 8192 --random-output-len 8192 --ignore-eos --num-prompts 2 --request-rate 2
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/test_ops/k357_192/boot_k7.log
++ return 0
++ for C in 1 2 4 8 16 32
++ bench /root/test_ops/k357_192/matrix_k7.log /root/test_ops/k357_192/boot_k7.log 'tier 8K/8K c4 k=7' 8192 8192 4
++ local LOG=/root/test_ops/k357_192/matrix_k7.log BLOG=/root/test_ops/k357_192/boot_k7.log 'label=tier 8K/8K c4 k=7' ilen=8192 olen=8192 conc=4
+++ date -u +%H:%M:%S
++ echo '===== tier 8K/8K c4 k=7 15:41:26 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data/models/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 8192 --random-output-len 8192 --ignore-eos --num-prompts 4 --request-rate 4
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/test_ops/k357_192/boot_k7.log
++ return 0
++ for C in 1 2 4 8 16 32
++ bench /root/test_ops/k357_192/matrix_k7.log /root/test_ops/k357_192/boot_k7.log 'tier 8K/8K c8 k=7' 8192 8192 8
++ local LOG=/root/test_ops/k357_192/matrix_k7.log BLOG=/root/test_ops/k357_192/boot_k7.log 'label=tier 8K/8K c8 k=7' ilen=8192 olen=8192 conc=8
+++ date -u +%H:%M:%S
++ echo '===== tier 8K/8K c8 k=7 15:44:10 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data/models/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 8192 --random-output-len 8192 --ignore-eos --num-prompts 8 --request-rate 8
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/test_ops/k357_192/boot_k7.log
++ return 0
++ for C in 1 2 4 8 16 32
++ bench /root/test_ops/k357_192/matrix_k7.log /root/test_ops/k357_192/boot_k7.log 'tier 8K/8K c16 k=7' 8192 8192 16
++ local LOG=/root/test_ops/k357_192/matrix_k7.log BLOG=/root/test_ops/k357_192/boot_k7.log 'label=tier 8K/8K c16 k=7' ilen=8192 olen=8192 conc=16
+++ date -u +%H:%M:%S
++ echo '===== tier 8K/8K c16 k=7 15:46:36 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data/models/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 8192 --random-output-len 8192 --ignore-eos --num-prompts 16 --request-rate 16
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/test_ops/k357_192/boot_k7.log
++ return 0
++ for C in 1 2 4 8 16 32
++ bench /root/test_ops/k357_192/matrix_k7.log /root/test_ops/k357_192/boot_k7.log 'tier 8K/8K c32 k=7' 8192 8192 32
++ local LOG=/root/test_ops/k357_192/matrix_k7.log BLOG=/root/test_ops/k357_192/boot_k7.log 'label=tier 8K/8K c32 k=7' ilen=8192 olen=8192 conc=32
+++ date -u +%H:%M:%S
++ echo '===== tier 8K/8K c32 k=7 15:49:18 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data/models/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 8192 --random-output-len 8192 --ignore-eos --num-prompts 32 --request-rate 32
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/test_ops/k357_192/boot_k7.log
++ return 0
++ for C in 1 2 4 8 16
++ bench /root/test_ops/k357_192/matrix_k7.log /root/test_ops/k357_192/boot_k7.log 'tier 32K/32K c1 k=7' 32768 32768 1
++ local LOG=/root/test_ops/k357_192/matrix_k7.log BLOG=/root/test_ops/k357_192/boot_k7.log 'label=tier 32K/32K c1 k=7' ilen=32768 olen=32768 conc=1
+++ date -u +%H:%M:%S
++ echo '===== tier 32K/32K c1 k=7 15:53:23 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data/models/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 32768 --random-output-len 32768 --ignore-eos --num-prompts 1 --request-rate 1
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/test_ops/k357_192/boot_k7.log
++ return 0
++ for C in 1 2 4 8 16
++ bench /root/test_ops/k357_192/matrix_k7.log /root/test_ops/k357_192/boot_k7.log 'tier 32K/32K c2 k=7' 32768 32768 2
++ local LOG=/root/test_ops/k357_192/matrix_k7.log BLOG=/root/test_ops/k357_192/boot_k7.log 'label=tier 32K/32K c2 k=7' ilen=32768 olen=32768 conc=2
+++ date -u +%H:%M:%S
++ echo '===== tier 32K/32K c2 k=7 15:56:24 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data/models/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 32768 --random-output-len 32768 --ignore-eos --num-prompts 2 --request-rate 2
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/test_ops/k357_192/boot_k7.log
++ return 0
++ for C in 1 2 4 8 16
++ bench /root/test_ops/k357_192/matrix_k7.log /root/test_ops/k357_192/boot_k7.log 'tier 32K/32K c4 k=7' 32768 32768 4
++ local LOG=/root/test_ops/k357_192/matrix_k7.log BLOG=/root/test_ops/k357_192/boot_k7.log 'label=tier 32K/32K c4 k=7' ilen=32768 olen=32768 conc=4
+++ date -u +%H:%M:%S
++ echo '===== tier 32K/32K c4 k=7 15:59:19 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data/models/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 32768 --random-output-len 32768 --ignore-eos --num-prompts 4 --request-rate 4
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/test_ops/k357_192/boot_k7.log
++ return 0
++ for C in 1 2 4 8 16
++ bench /root/test_ops/k357_192/matrix_k7.log /root/test_ops/k357_192/boot_k7.log 'tier 32K/32K c8 k=7' 32768 32768 8
++ local LOG=/root/test_ops/k357_192/matrix_k7.log BLOG=/root/test_ops/k357_192/boot_k7.log 'label=tier 32K/32K c8 k=7' ilen=32768 olen=32768 conc=8
+++ date -u +%H:%M:%S
++ echo '===== tier 32K/32K c8 k=7 16:02:53 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data/models/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 32768 --random-output-len 32768 --ignore-eos --num-prompts 8 --request-rate 8
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/test_ops/k357_192/boot_k7.log
++ return 0
++ for C in 1 2 4 8 16
++ bench /root/test_ops/k357_192/matrix_k7.log /root/test_ops/k357_192/boot_k7.log 'tier 32K/32K c16 k=7' 32768 32768 16
++ local LOG=/root/test_ops/k357_192/matrix_k7.log BLOG=/root/test_ops/k357_192/boot_k7.log 'label=tier 32K/32K c16 k=7' ilen=32768 olen=32768 conc=16
+++ date -u +%H:%M:%S
++ echo '===== tier 32K/32K c16 k=7 16:10:13 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data/models/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 32768 --random-output-len 32768 --ignore-eos --num-prompts 16 --request-rate 16
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/test_ops/k357_192/boot_k7.log
++ return 0
++ for C in 1 2 4 8
++ bench /root/test_ops/k357_192/matrix_k7.log /root/test_ops/k357_192/boot_k7.log 'tier 64K/64K c1 k=7' 65536 65536 1
++ local LOG=/root/test_ops/k357_192/matrix_k7.log BLOG=/root/test_ops/k357_192/boot_k7.log 'label=tier 64K/64K c1 k=7' ilen=65536 olen=65536 conc=1
+++ date -u +%H:%M:%S
++ echo '===== tier 64K/64K c1 k=7 16:18:18 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data/models/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 65536 --random-output-len 65536 --ignore-eos --num-prompts 1 --request-rate 1
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/test_ops/k357_192/boot_k7.log
++ return 0
++ for C in 1 2 4 8
++ bench /root/test_ops/k357_192/matrix_k7.log /root/test_ops/k357_192/boot_k7.log 'tier 64K/64K c2 k=7' 65536 65536 2
++ local LOG=/root/test_ops/k357_192/matrix_k7.log BLOG=/root/test_ops/k357_192/boot_k7.log 'label=tier 64K/64K c2 k=7' ilen=65536 olen=65536 conc=2
+++ date -u +%H:%M:%S
++ echo '===== tier 64K/64K c2 k=7 16:26:35 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data/models/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 65536 --random-output-len 65536 --ignore-eos --num-prompts 2 --request-rate 2
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/test_ops/k357_192/boot_k7.log
++ return 0
++ for C in 1 2 4 8
++ bench /root/test_ops/k357_192/matrix_k7.log /root/test_ops/k357_192/boot_k7.log 'tier 64K/64K c4 k=7' 65536 65536 4
++ local LOG=/root/test_ops/k357_192/matrix_k7.log BLOG=/root/test_ops/k357_192/boot_k7.log 'label=tier 64K/64K c4 k=7' ilen=65536 olen=65536 conc=4
+++ date -u +%H:%M:%S
++ echo '===== tier 64K/64K c4 k=7 16:38:47 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data/models/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 65536 --random-output-len 65536 --ignore-eos --num-prompts 4 --request-rate 4
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/test_ops/k357_192/boot_k7.log
++ return 0
++ for C in 1 2 4 8
++ bench /root/test_ops/k357_192/matrix_k7.log /root/test_ops/k357_192/boot_k7.log 'tier 64K/64K c8 k=7' 65536 65536 8
++ local LOG=/root/test_ops/k357_192/matrix_k7.log BLOG=/root/test_ops/k357_192/boot_k7.log 'label=tier 64K/64K c8 k=7' ilen=65536 olen=65536 conc=8
+++ date -u +%H:%M:%S
++ echo '===== tier 64K/64K c8 k=7 16:45:41 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data/models/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 65536 --random-output-len 65536 --ignore-eos --num-prompts 8 --request-rate 8
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/test_ops/k357_192/boot_k7.log
++ return 0
++ '[' 7 = 3 ']'
+++ date -u
++ echo '########## k=7 AGENT Wed Oct 28 04:55:33 PM UTC 2026 ##########'
++ for S in 1 2 3
++ /root/vllmenv/bin/python /root/test_ops/agent_tools_sim.py http://127.0.0.1:8123 --turns 12
++ echo 'agent s1 rc=0'
++ for S in 1 2 3
++ /root/vllmenv/bin/python /root/test_ops/agent_tools_sim.py http://127.0.0.1:8123 --turns 12
++ echo 'agent s2 rc=0'
++ for S in 1 2 3
++ /root/vllmenv/bin/python /root/test_ops/agent_tools_sim.py http://127.0.0.1:8123 --turns 12
++ echo 'agent s3 rc=0'
++ grep -E 'SpecDecoding metrics' /root/test_ops/k357_192/boot_k7.log
++ tail -150
++ kill_all
++ pkill -9 -f '[v]llm serve'
++ pkill -9 -f VLLM::
+matrix_192.sh: line 12: 450958 Killed                  setsid nohup env PATH=/root/v3env/bin:/usr/local/cuda/bin:/usr/local/bin:$PATH CUDA_HOME=/usr/local/cuda VLLM_USE_RUST_FRONTEND=1 VLLM_ENGINE_READY_TIMEOUT_S=7200 NCCL_P2P_LEVEL=SYS FLASHINFER_DISABLE_VERSION_CHECK=1 HF_HUB_OFFLINE=1 HF_HUB_DISABLE_XET=1 $V/bin/vllm serve $MODEL --served-model-name deepseek-v4.1-flash --tokenizer-mode deepseek_v41 --trust-remote-code --tensor-parallel-size 8 --enable-expert-parallel --kv-cache-dtype fp8 --engram-config '{"cpu_offload":true}' --moe-backend auto --compilation-config '{"cudagraph_mode":"PIECEWISE"}' --max-model-len 1048576 --max-num-seqs 128 --gpu-memory-utilization 0.90 --speculative-config "{\"method\":\"dspark\",\"num_speculative_tokens\":$K}" --max-cudagraph-capture-size $CAP --enable-auto-tool-choice --tool-call-parser deepseek_v41 --reasoning-parser deepseek_v41 --port 8123 --api-key abc.12345 > $BLOG 2>&1 < /dev/null
++ sleep 2
+++ ss -lptnH 'sport = :8123'
+++ grep -oP 'pid=\K[0-9]+'
+++ sort -u
++ for p in $(ss -lptnH "sport = :8123" 2> /dev/null | grep -oP 'pid=\K[0-9]+' | sort -u)
++ kill -9 451878
+++ nvidia-smi --query-compute-apps=pid --format=csv,noheader
++ for p in $(nvidia-smi --query-compute-apps=pid --format=csv,noheader 2> /dev/null)
++ kill -9 452465
++ for p in $(nvidia-smi --query-compute-apps=pid --format=csv,noheader 2> /dev/null)
++ kill -9 452466
++ for p in $(nvidia-smi --query-compute-apps=pid --format=csv,noheader 2> /dev/null)
++ kill -9 452469
++ for p in $(nvidia-smi --query-compute-apps=pid --format=csv,noheader 2> /dev/null)
++ kill -9 452470
++ for p in $(nvidia-smi --query-compute-apps=pid --format=csv,noheader 2> /dev/null)
++ kill -9 452468
++ for p in $(nvidia-smi --query-compute-apps=pid --format=csv,noheader 2> /dev/null)
++ kill -9 452471
++ for p in $(nvidia-smi --query-compute-apps=pid --format=csv,noheader 2> /dev/null)
++ kill -9 452472
++ for p in $(nvidia-smi --query-compute-apps=pid --format=csv,noheader 2> /dev/null)
++ kill -9 452473
++ rm -f '/dev/shm/nccl-*' '/dev/shm/vllm-*'
++ sleep 3
+++ date -u
++ echo '########## K357_192 k=7 DONE Wed Oct 28 04:56:44 PM UTC 2026 ##########'
++ echo DONE
++ kill_all
++ pkill -9 -f '[v]llm serve'
++ pkill -9 -f VLLM::
++ sleep 2
+++ ss -lptnH 'sport = :8123'
+++ grep -oP 'pid=\K[0-9]+'
+++ sort -u
+++ nvidia-smi --query-compute-apps=pid --format=csv,noheader
++ for p in $(nvidia-smi --query-compute-apps=pid --format=csv,noheader 2> /dev/null)
++ kill -9 452472
++ rm -f '/dev/shm/nccl-*' '/dev/shm/vllm-*'
++ sleep 3
+++ date -u
++ echo '########## MASTER ALL DONE Wed Oct 28 04:57:18 PM UTC 2026 ##########'
+########## MASTER ALL DONE Wed Oct 28 04:57:18 PM UTC 2026 ##########
++ echo DONE

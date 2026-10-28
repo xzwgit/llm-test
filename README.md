@@ -71,3 +71,5 @@ LLM 部署与性能测试归档。每个子目录是一个独立测试项目，�
 - glm53-flash-pro6000-sm120/logs/matrix-155/ — 2026-10-28 GLM-5.3-Flash two-leg matrix (MTP k5 + no-spec, 29 tiers, zero failures; FIXB #64266 + latest nightly)
 
 - glm53-flash-6000d-sm120/logs/matrix-157/ — 2026-10-28 GLM-5.3-Flash two-leg matrix on 6000D 84G (MTP k5 + no-spec, 29 tiers, zero failures; cross-SKU vs 96G: KV 27.98 vs 38.71 GiB/card)
+
+- dsv41-flash-1017-gb202-sm120/ — 2026-10-28 DSV4.1-Flash-1017 four-leg matrix on GB202 platform (DSpark k3/k5/k7 + no-spec, 29 tiers each, zero failures; docs/ has 4 unified reports)
