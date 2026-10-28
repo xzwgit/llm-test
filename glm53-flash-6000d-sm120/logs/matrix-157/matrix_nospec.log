@@ -1,0 +1,1239 @@
+########## GLM_MATRIX NOSPEC BOOT Wed Oct 28 03:39:48 PM UTC 2026 ##########
+BOOT CMD: /root/fixbenv/bin/vllm serve /data/models/GLM-5.3-Flash --served-model-name glm-5.3-flash --tensor-parallel-size 8 --gpu-memory-utilization 0.90 --port 8123 --api-key *** --trust-remote-code 
+ENV: VLLM_BREAKABLE_CAPTURE_ATTN=1 VLLM_USE_RUST_FRONTEND=1 NCCL_P2P_LEVEL=SYS HF_HUB_OFFLINE=1
+NOSPEC READY after ~170s
+(Worker_TP5 pid=2655948) INFO 10-28 23:41:43 [gpu_worker.py:790] CUDA graph memory profiling is enabled (default since v0.21.0). The current --gpu-memory-utilization=0.9000 is equivalent to --gpu-memory-utilization=0.8635 without CUDA graph memory profiling. To maintain the same effective KV cache size as before, increase --gpu-memory-utilization to 0.9365. To disable, set VLLM_MEMORY_PROFILER_ESTIMATE_CUDAGRAPHS=0.
+(EngineCore pid=2651227) INFO 10-28 23:41:43 [kv_cache_utils.py:1147] GPU KV cache size: 4,799,446 tokens, Maximum concurrency for 1,048,576 tokens per request: 4.58x
+===== correctness NOSPEC =====
+{"id":"chatcmpl-0a8b1226","object":"chat.completion","created":1793202168,"model":"glm-5.3-flash","choices":[{"index":0,"message":{"role":"assistant","content":"17 × 19 = 323</think>323","refusal":null,"annotations":null,"audio":null,"function_call":null,"reasoning":null},"logprobs":null,"finish_reason":"stop","stop_reason":154827,"token_ids":null,"routed_experts":null,"weight_versions":null}],"service_tier":null,"usage":{"prompt_tokens":35,"total_tokens":47,"completion_tokens":12,"prompt_tokens_details":null,"completion_tokens_details":{"reasoning_tokens":0}},"metrics":null,"system_fingerprint":null,"prompt_logprobs":null,"prompt_token_ids":null,"prompt_text":null,"kv_transfer_params":null,"ec_transfer_params":null}
+===== tier 1K/1K c1 nospec 15:42:48 =====
+W1028 23:42:50.631000 2677567 torch/_opaque_base.py:6] torch._opaque_base is deprecated, use torch._custom_class_base instead
+W1028 23:42:50.631000 2677567 torch/_library/opaque_object.py:288] register_opaque_type is deprecated, use register_custom_class instead
+W1028 23:42:50.631000 2677567 torch/_library/opaque_object.py:211] typ='value' is deprecated, use typ='constant' instead
+FlashInfer kernels are disabled: flashinfer-cubin is not installed and nvcc (CUDA_HOME, CUDA_PATH, PATH or /usr/local/cuda) or ninja (PATH) is missing. Set CUDA_HOME to a CUDA toolkit and put ninja on PATH, or run `vllm download-kernels`.
+Namespace(subparser='bench', bench_type='serve', dispatch_function=<function BenchmarkServingSubcommand.cmd at 0x7411a8736020>, trust_remote_code=False, seed=0, num_prompts=1, dataset_name='random', no_stream=False, dataset_path=None, no_oversample=False, skip_chat_template=False, enable_multimodal_chat=False, disable_shuffle=False, custom_output_len=256, custom_ensure_client_side_data=False, spec_bench_output_len=256, spec_bench_category=None, sharegpt_output_len=None, timed_trace_chunk_hash_size=16, timed_trace_sec_multiplier=1, timed_trace_label_timestamp='timestamp', timed_trace_label_input_length='input_length', timed_trace_label_output_length='output_length', timed_trace_label_hash_ids='hash_ids', blazedit_min_distance=0.0, blazedit_max_distance=1.0, asr_max_audio_len_sec=inf, asr_min_audio_len_sec=0.0, random_input_len=1024, random_output_len=1024, random_range_ratio='0.0', random_prefix_len=0, random_batch_size=1, no_reranker=False, random_mm_base_items_per_request=1, random_mm_num_mm_items_range_ratio=0.0, random_mm_limit_mm_per_prompt={'image': 255, 'video': 1}, random_mm_bucket_config={(256, 256, 1): 0.5, (720, 1280, 1): 0.5, (720, 1280, 16): 0.0}, hf_subset=None, hf_split=None, hf_name=None, hf_output_len=None, bfcl_categories=None, prefix_repetition_prefix_len=256, prefix_repetition_suffix_len=256, prefix_repetition_num_prefixes=10, prefix_repetition_output_len=128, speed_bench_dataset_subset='qualitative', speed_bench_output_len=4096, speed_bench_category=None, label=None, backend='openai', base_url='http://127.0.0.1:8123', host='127.0.0.1', port=8000, endpoint='/v1/completions', header=None, max_concurrency=None, model='glm-5.3-flash', input_len=None, output_len=None, tokenizer='/data/models/GLM-5.3-Flash', tokenizer_mode='auto', use_beam_search=False, logprobs=None, request_rate=1.0, burstiness=1.0, probe_request_rate=0.0, disable_tqdm=False, num_warmups=0, profile=False, save_result=False, save_detailed=False, append_result=False, metadata=None, result_dir=None, result_filename=None, ignore_eos=True, self_timed=None, percentile_metrics=None, metric_percentiles='99', goodput=None, request_id_prefix='bench-df9e8a1a-', top_p=None, top_k=None, min_p=None, temperature=None, frequency_penalty=None, presence_penalty=None, repetition_penalty=None, served_model_name=None, lora_modules=None, lora_assignment='random', ramp_up_strategy=None, ramp_up_start_rps=None, ramp_up_end_rps=None, ready_check_timeout_sec=0, chat_template_kwargs=None, extra_body=None, skip_tokenizer_init=False, insecure=False, plot_timeline=False, timeline_itl_thresholds='25,50', plot_dataset_stats=False, log_config_file=None, logging_config=LoggingConfig(log_level='INFO', formatter='text', configure_logging=True, pylogging_config_file=None))
+(MainProcess pid=2677567) INFO 10-28 23:42:54 [utils.py:88] Sampling input_len from [1024, 1024] and output_len from [1024, 1024]
+WARNING: vllm bench serve no longer sets temperature==0 (greedy) in requests by default. The default will be determined on the server side and can be model/API specific. For the old behavior, include --temperature=0.
+Starting initial single prompt test run...
+Skipping endpoint ready check.
+Starting main benchmark run...
+Traffic request rate: 1.0
+Burstiness factor: 1.0 (Poisson process)
+Maximum request concurrency: None
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:13<00:00, 13.09s/it]100%|██████████| 1/1 [00:13<00:00, 13.09s/it]
+tip: install termplotlib and gnuplot to plot the metrics
+============ Serving Benchmark Result ============
+Successful requests:                     1         
+Failed requests:                         0         
+Request rate configured (RPS):           1.00      
+Benchmark duration (s):                  13.09     
+Total input tokens:                      1024      
+Total generated tokens:                  1024      
+Request throughput (req/s):              0.08      
+Output token throughput (tok/s):         78.24     
+Peak output token throughput (tok/s):    86.00     
+Peak concurrent requests:                1.00      
+Total token throughput (tok/s):          156.49    
+---------------Time to First Token----------------
+Mean TTFT (ms):                          161.11    
+Median TTFT (ms):                        161.11    
+P99 TTFT (ms):                           161.11    
+-----Time per Output Token (excl. 1st token)------
+Mean TPOT (ms):                          11.66     
+Median TPOT (ms):                        11.66     
+P99 TPOT (ms):                           11.66     
+---------------Inter-token Latency----------------
+Mean ITL (ms):                           11.65     
+Median ITL (ms):                         11.66     
+P99 ITL (ms):                            11.80     
+==================================================
+===== tier 1K/1K c1 nospec 15:43:08 =====
+W1028 23:43:10.274000 2680349 torch/_opaque_base.py:6] torch._opaque_base is deprecated, use torch._custom_class_base instead
+W1028 23:43:10.275000 2680349 torch/_library/opaque_object.py:288] register_opaque_type is deprecated, use register_custom_class instead
+W1028 23:43:10.275000 2680349 torch/_library/opaque_object.py:211] typ='value' is deprecated, use typ='constant' instead
+FlashInfer kernels are disabled: flashinfer-cubin is not installed and nvcc (CUDA_HOME, CUDA_PATH, PATH or /usr/local/cuda) or ninja (PATH) is missing. Set CUDA_HOME to a CUDA toolkit and put ninja on PATH, or run `vllm download-kernels`.
+Namespace(subparser='bench', bench_type='serve', dispatch_function=<function BenchmarkServingSubcommand.cmd at 0x7e46f413a020>, trust_remote_code=False, seed=0, num_prompts=1, dataset_name='random', no_stream=False, dataset_path=None, no_oversample=False, skip_chat_template=False, enable_multimodal_chat=False, disable_shuffle=False, custom_output_len=256, custom_ensure_client_side_data=False, spec_bench_output_len=256, spec_bench_category=None, sharegpt_output_len=None, timed_trace_chunk_hash_size=16, timed_trace_sec_multiplier=1, timed_trace_label_timestamp='timestamp', timed_trace_label_input_length='input_length', timed_trace_label_output_length='output_length', timed_trace_label_hash_ids='hash_ids', blazedit_min_distance=0.0, blazedit_max_distance=1.0, asr_max_audio_len_sec=inf, asr_min_audio_len_sec=0.0, random_input_len=1024, random_output_len=1024, random_range_ratio='0.0', random_prefix_len=0, random_batch_size=1, no_reranker=False, random_mm_base_items_per_request=1, random_mm_num_mm_items_range_ratio=0.0, random_mm_limit_mm_per_prompt={'image': 255, 'video': 1}, random_mm_bucket_config={(256, 256, 1): 0.5, (720, 1280, 1): 0.5, (720, 1280, 16): 0.0}, hf_subset=None, hf_split=None, hf_name=None, hf_output_len=None, bfcl_categories=None, prefix_repetition_prefix_len=256, prefix_repetition_suffix_len=256, prefix_repetition_num_prefixes=10, prefix_repetition_output_len=128, speed_bench_dataset_subset='qualitative', speed_bench_output_len=4096, speed_bench_category=None, label=None, backend='openai', base_url='http://127.0.0.1:8123', host='127.0.0.1', port=8000, endpoint='/v1/completions', header=None, max_concurrency=None, model='glm-5.3-flash', input_len=None, output_len=None, tokenizer='/data/models/GLM-5.3-Flash', tokenizer_mode='auto', use_beam_search=False, logprobs=None, request_rate=1.0, burstiness=1.0, probe_request_rate=0.0, disable_tqdm=False, num_warmups=0, profile=False, save_result=False, save_detailed=False, append_result=False, metadata=None, result_dir=None, result_filename=None, ignore_eos=True, self_timed=None, percentile_metrics=None, metric_percentiles='99', goodput=None, request_id_prefix='bench-2eb9efdf-', top_p=None, top_k=None, min_p=None, temperature=None, frequency_penalty=None, presence_penalty=None, repetition_penalty=None, served_model_name=None, lora_modules=None, lora_assignment='random', ramp_up_strategy=None, ramp_up_start_rps=None, ramp_up_end_rps=None, ready_check_timeout_sec=0, chat_template_kwargs=None, extra_body=None, skip_tokenizer_init=False, insecure=False, plot_timeline=False, timeline_itl_thresholds='25,50', plot_dataset_stats=False, log_config_file=None, logging_config=LoggingConfig(log_level='INFO', formatter='text', configure_logging=True, pylogging_config_file=None))
+(MainProcess pid=2680349) INFO 10-28 23:43:14 [utils.py:88] Sampling input_len from [1024, 1024] and output_len from [1024, 1024]
+WARNING: vllm bench serve no longer sets temperature==0 (greedy) in requests by default. The default will be determined on the server side and can be model/API specific. For the old behavior, include --temperature=0.
+Starting initial single prompt test run...
+Skipping endpoint ready check.
+Starting main benchmark run...
+Traffic request rate: 1.0
+Burstiness factor: 1.0 (Poisson process)
+Maximum request concurrency: None
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:13<00:00, 13.08s/it]100%|██████████| 1/1 [00:13<00:00, 13.09s/it]
+tip: install termplotlib and gnuplot to plot the metrics
+============ Serving Benchmark Result ============
+Successful requests:                     1         
+Failed requests:                         0         
+Request rate configured (RPS):           1.00      
+Benchmark duration (s):                  13.09     
+Total input tokens:                      1024      
+Total generated tokens:                  1024      
+Request throughput (req/s):              0.08      
+Output token throughput (tok/s):         78.26     
+Peak output token throughput (tok/s):    86.00     
+Peak concurrent requests:                1.00      
+Total token throughput (tok/s):          156.51    
+---------------Time to First Token----------------
+Mean TTFT (ms):                          157.86    
+Median TTFT (ms):                        157.86    
+P99 TTFT (ms):                           157.86    
+-----Time per Output Token (excl. 1st token)------
+Mean TPOT (ms):                          11.66     
+Median TPOT (ms):                        11.66     
+P99 TPOT (ms):                           11.66     
+---------------Inter-token Latency----------------
+Mean ITL (ms):                           11.65     
+Median ITL (ms):                         11.66     
+P99 ITL (ms):                            11.76     
+==================================================
+===== tier 1K/1K c2 nospec 15:43:27 =====
+W1028 23:43:30.116000 2683156 torch/_opaque_base.py:6] torch._opaque_base is deprecated, use torch._custom_class_base instead
+W1028 23:43:30.116000 2683156 torch/_library/opaque_object.py:288] register_opaque_type is deprecated, use register_custom_class instead
+W1028 23:43:30.117000 2683156 torch/_library/opaque_object.py:211] typ='value' is deprecated, use typ='constant' instead
+FlashInfer kernels are disabled: flashinfer-cubin is not installed and nvcc (CUDA_HOME, CUDA_PATH, PATH or /usr/local/cuda) or ninja (PATH) is missing. Set CUDA_HOME to a CUDA toolkit and put ninja on PATH, or run `vllm download-kernels`.
+Namespace(subparser='bench', bench_type='serve', dispatch_function=<function BenchmarkServingSubcommand.cmd at 0x75fe77f0a5c0>, trust_remote_code=False, seed=0, num_prompts=2, dataset_name='random', no_stream=False, dataset_path=None, no_oversample=False, skip_chat_template=False, enable_multimodal_chat=False, disable_shuffle=False, custom_output_len=256, custom_ensure_client_side_data=False, spec_bench_output_len=256, spec_bench_category=None, sharegpt_output_len=None, timed_trace_chunk_hash_size=16, timed_trace_sec_multiplier=1, timed_trace_label_timestamp='timestamp', timed_trace_label_input_length='input_length', timed_trace_label_output_length='output_length', timed_trace_label_hash_ids='hash_ids', blazedit_min_distance=0.0, blazedit_max_distance=1.0, asr_max_audio_len_sec=inf, asr_min_audio_len_sec=0.0, random_input_len=1024, random_output_len=1024, random_range_ratio='0.0', random_prefix_len=0, random_batch_size=1, no_reranker=False, random_mm_base_items_per_request=1, random_mm_num_mm_items_range_ratio=0.0, random_mm_limit_mm_per_prompt={'image': 255, 'video': 1}, random_mm_bucket_config={(256, 256, 1): 0.5, (720, 1280, 1): 0.5, (720, 1280, 16): 0.0}, hf_subset=None, hf_split=None, hf_name=None, hf_output_len=None, bfcl_categories=None, prefix_repetition_prefix_len=256, prefix_repetition_suffix_len=256, prefix_repetition_num_prefixes=10, prefix_repetition_output_len=128, speed_bench_dataset_subset='qualitative', speed_bench_output_len=4096, speed_bench_category=None, label=None, backend='openai', base_url='http://127.0.0.1:8123', host='127.0.0.1', port=8000, endpoint='/v1/completions', header=None, max_concurrency=None, model='glm-5.3-flash', input_len=None, output_len=None, tokenizer='/data/models/GLM-5.3-Flash', tokenizer_mode='auto', use_beam_search=False, logprobs=None, request_rate=2.0, burstiness=1.0, probe_request_rate=0.0, disable_tqdm=False, num_warmups=0, profile=False, save_result=False, save_detailed=False, append_result=False, metadata=None, result_dir=None, result_filename=None, ignore_eos=True, self_timed=None, percentile_metrics=None, metric_percentiles='99', goodput=None, request_id_prefix='bench-d9e6e0ff-', top_p=None, top_k=None, min_p=None, temperature=None, frequency_penalty=None, presence_penalty=None, repetition_penalty=None, served_model_name=None, lora_modules=None, lora_assignment='random', ramp_up_strategy=None, ramp_up_start_rps=None, ramp_up_end_rps=None, ready_check_timeout_sec=0, chat_template_kwargs=None, extra_body=None, skip_tokenizer_init=False, insecure=False, plot_timeline=False, timeline_itl_thresholds='25,50', plot_dataset_stats=False, log_config_file=None, logging_config=LoggingConfig(log_level='INFO', formatter='text', configure_logging=True, pylogging_config_file=None))
+(MainProcess pid=2683156) INFO 10-28 23:43:34 [utils.py:88] Sampling input_len from [1024, 1024] and output_len from [1024, 1024]
+WARNING: vllm bench serve no longer sets temperature==0 (greedy) in requests by default. The default will be determined on the server side and can be model/API specific. For the old behavior, include --temperature=0.
+Starting initial single prompt test run...
+Skipping endpoint ready check.
+Starting main benchmark run...
+Traffic request rate: 2.0
+Burstiness factor: 1.0 (Poisson process)
+Maximum request concurrency: None
+  0%|          | 0/2 [00:00<?, ?it/s] 50%|█████     | 1/2 [00:14<00:14, 14.07s/it]100%|██████████| 2/2 [00:14<00:00,  6.08s/it]100%|██████████| 2/2 [00:14<00:00,  7.28s/it]
+tip: install termplotlib and gnuplot to plot the metrics
+============ Serving Benchmark Result ============
+Successful requests:                     2         
+Failed requests:                         0         
+Request rate configured (RPS):           2.00      
+Benchmark duration (s):                  14.56     
+Total input tokens:                      2048      
+Total generated tokens:                  2048      
+Request throughput (req/s):              0.14      
+Output token throughput (tok/s):         140.62    
+Peak output token throughput (tok/s):    154.00    
+Peak concurrent requests:                2.00      
+Total token throughput (tok/s):          281.25    
+---------------Time to First Token----------------
+Mean TTFT (ms):                          181.73    
+Median TTFT (ms):                        181.73    
+P99 TTFT (ms):                           206.11    
+-----Time per Output Token (excl. 1st token)------
+Mean TPOT (ms):                          13.14     
+Median TPOT (ms):                        13.14     
+P99 TPOT (ms):                           13.22     
+---------------Inter-token Latency----------------
+Mean ITL (ms):                           13.13     
+Median ITL (ms):                         13.12     
+P99 ITL (ms):                            13.32     
+==================================================
+===== tier 1K/1K c4 nospec 15:43:49 =====
+W1028 23:43:51.627000 2686317 torch/_opaque_base.py:6] torch._opaque_base is deprecated, use torch._custom_class_base instead
+W1028 23:43:51.627000 2686317 torch/_library/opaque_object.py:288] register_opaque_type is deprecated, use register_custom_class instead
+W1028 23:43:51.627000 2686317 torch/_library/opaque_object.py:211] typ='value' is deprecated, use typ='constant' instead
+FlashInfer kernels are disabled: flashinfer-cubin is not installed and nvcc (CUDA_HOME, CUDA_PATH, PATH or /usr/local/cuda) or ninja (PATH) is missing. Set CUDA_HOME to a CUDA toolkit and put ninja on PATH, or run `vllm download-kernels`.
+Namespace(subparser='bench', bench_type='serve', dispatch_function=<function BenchmarkServingSubcommand.cmd at 0x737024932020>, trust_remote_code=False, seed=0, num_prompts=4, dataset_name='random', no_stream=False, dataset_path=None, no_oversample=False, skip_chat_template=False, enable_multimodal_chat=False, disable_shuffle=False, custom_output_len=256, custom_ensure_client_side_data=False, spec_bench_output_len=256, spec_bench_category=None, sharegpt_output_len=None, timed_trace_chunk_hash_size=16, timed_trace_sec_multiplier=1, timed_trace_label_timestamp='timestamp', timed_trace_label_input_length='input_length', timed_trace_label_output_length='output_length', timed_trace_label_hash_ids='hash_ids', blazedit_min_distance=0.0, blazedit_max_distance=1.0, asr_max_audio_len_sec=inf, asr_min_audio_len_sec=0.0, random_input_len=1024, random_output_len=1024, random_range_ratio='0.0', random_prefix_len=0, random_batch_size=1, no_reranker=False, random_mm_base_items_per_request=1, random_mm_num_mm_items_range_ratio=0.0, random_mm_limit_mm_per_prompt={'image': 255, 'video': 1}, random_mm_bucket_config={(256, 256, 1): 0.5, (720, 1280, 1): 0.5, (720, 1280, 16): 0.0}, hf_subset=None, hf_split=None, hf_name=None, hf_output_len=None, bfcl_categories=None, prefix_repetition_prefix_len=256, prefix_repetition_suffix_len=256, prefix_repetition_num_prefixes=10, prefix_repetition_output_len=128, speed_bench_dataset_subset='qualitative', speed_bench_output_len=4096, speed_bench_category=None, label=None, backend='openai', base_url='http://127.0.0.1:8123', host='127.0.0.1', port=8000, endpoint='/v1/completions', header=None, max_concurrency=None, model='glm-5.3-flash', input_len=None, output_len=None, tokenizer='/data/models/GLM-5.3-Flash', tokenizer_mode='auto', use_beam_search=False, logprobs=None, request_rate=4.0, burstiness=1.0, probe_request_rate=0.0, disable_tqdm=False, num_warmups=0, profile=False, save_result=False, save_detailed=False, append_result=False, metadata=None, result_dir=None, result_filename=None, ignore_eos=True, self_timed=None, percentile_metrics=None, metric_percentiles='99', goodput=None, request_id_prefix='bench-532830e9-', top_p=None, top_k=None, min_p=None, temperature=None, frequency_penalty=None, presence_penalty=None, repetition_penalty=None, served_model_name=None, lora_modules=None, lora_assignment='random', ramp_up_strategy=None, ramp_up_start_rps=None, ramp_up_end_rps=None, ready_check_timeout_sec=0, chat_template_kwargs=None, extra_body=None, skip_tokenizer_init=False, insecure=False, plot_timeline=False, timeline_itl_thresholds='25,50', plot_dataset_stats=False, log_config_file=None, logging_config=LoggingConfig(log_level='INFO', formatter='text', configure_logging=True, pylogging_config_file=None))
+(MainProcess pid=2686317) INFO 10-28 23:43:55 [utils.py:88] Sampling input_len from [1024, 1024] and output_len from [1024, 1024]
+WARNING: vllm bench serve no longer sets temperature==0 (greedy) in requests by default. The default will be determined on the server side and can be model/API specific. For the old behavior, include --temperature=0.
+Starting initial single prompt test run...
+Skipping endpoint ready check.
+Starting main benchmark run...
+Traffic request rate: 4.0
+Burstiness factor: 1.0 (Poisson process)
+Maximum request concurrency: None
+  0%|          | 0/4 [00:00<?, ?it/s] 25%|██▌       | 1/4 [00:17<00:51, 17.19s/it] 50%|█████     | 2/4 [00:17<00:14,  7.25s/it] 75%|███████▌  | 3/4 [00:17<00:03,  3.99s/it]100%|██████████| 4/4 [00:17<00:00,  4.41s/it]
+tip: install termplotlib and gnuplot to plot the metrics
+============ Serving Benchmark Result ============
+Successful requests:                     4         
+Failed requests:                         0         
+Request rate configured (RPS):           4.00      
+Benchmark duration (s):                  17.66     
+Total input tokens:                      4096      
+Total generated tokens:                  4096      
+Request throughput (req/s):              0.23      
+Output token throughput (tok/s):         231.95    
+Peak output token throughput (tok/s):    252.00    
+Peak concurrent requests:                4.00      
+Total token throughput (tok/s):          463.90    
+---------------Time to First Token----------------
+Mean TTFT (ms):                          169.20    
+Median TTFT (ms):                        171.12    
+P99 TTFT (ms):                           176.48    
+-----Time per Output Token (excl. 1st token)------
+Mean TPOT (ms):                          16.30     
+Median TPOT (ms):                        16.33     
+P99 TPOT (ms):                           16.44     
+---------------Inter-token Latency----------------
+Mean ITL (ms):                           16.29     
+Median ITL (ms):                         16.17     
+P99 ITL (ms):                            16.55     
+==================================================
+===== tier 1K/1K c8 nospec 15:44:13 =====
+W1028 23:44:16.181000 2690150 torch/_opaque_base.py:6] torch._opaque_base is deprecated, use torch._custom_class_base instead
+W1028 23:44:16.182000 2690150 torch/_library/opaque_object.py:288] register_opaque_type is deprecated, use register_custom_class instead
+W1028 23:44:16.182000 2690150 torch/_library/opaque_object.py:211] typ='value' is deprecated, use typ='constant' instead
+FlashInfer kernels are disabled: flashinfer-cubin is not installed and nvcc (CUDA_HOME, CUDA_PATH, PATH or /usr/local/cuda) or ninja (PATH) is missing. Set CUDA_HOME to a CUDA toolkit and put ninja on PATH, or run `vllm download-kernels`.
+Namespace(subparser='bench', bench_type='serve', dispatch_function=<function BenchmarkServingSubcommand.cmd at 0x79d1ee33a0c0>, trust_remote_code=False, seed=0, num_prompts=8, dataset_name='random', no_stream=False, dataset_path=None, no_oversample=False, skip_chat_template=False, enable_multimodal_chat=False, disable_shuffle=False, custom_output_len=256, custom_ensure_client_side_data=False, spec_bench_output_len=256, spec_bench_category=None, sharegpt_output_len=None, timed_trace_chunk_hash_size=16, timed_trace_sec_multiplier=1, timed_trace_label_timestamp='timestamp', timed_trace_label_input_length='input_length', timed_trace_label_output_length='output_length', timed_trace_label_hash_ids='hash_ids', blazedit_min_distance=0.0, blazedit_max_distance=1.0, asr_max_audio_len_sec=inf, asr_min_audio_len_sec=0.0, random_input_len=1024, random_output_len=1024, random_range_ratio='0.0', random_prefix_len=0, random_batch_size=1, no_reranker=False, random_mm_base_items_per_request=1, random_mm_num_mm_items_range_ratio=0.0, random_mm_limit_mm_per_prompt={'image': 255, 'video': 1}, random_mm_bucket_config={(256, 256, 1): 0.5, (720, 1280, 1): 0.5, (720, 1280, 16): 0.0}, hf_subset=None, hf_split=None, hf_name=None, hf_output_len=None, bfcl_categories=None, prefix_repetition_prefix_len=256, prefix_repetition_suffix_len=256, prefix_repetition_num_prefixes=10, prefix_repetition_output_len=128, speed_bench_dataset_subset='qualitative', speed_bench_output_len=4096, speed_bench_category=None, label=None, backend='openai', base_url='http://127.0.0.1:8123', host='127.0.0.1', port=8000, endpoint='/v1/completions', header=None, max_concurrency=None, model='glm-5.3-flash', input_len=None, output_len=None, tokenizer='/data/models/GLM-5.3-Flash', tokenizer_mode='auto', use_beam_search=False, logprobs=None, request_rate=8.0, burstiness=1.0, probe_request_rate=0.0, disable_tqdm=False, num_warmups=0, profile=False, save_result=False, save_detailed=False, append_result=False, metadata=None, result_dir=None, result_filename=None, ignore_eos=True, self_timed=None, percentile_metrics=None, metric_percentiles='99', goodput=None, request_id_prefix='bench-839f0c36-', top_p=None, top_k=None, min_p=None, temperature=None, frequency_penalty=None, presence_penalty=None, repetition_penalty=None, served_model_name=None, lora_modules=None, lora_assignment='random', ramp_up_strategy=None, ramp_up_start_rps=None, ramp_up_end_rps=None, ready_check_timeout_sec=0, chat_template_kwargs=None, extra_body=None, skip_tokenizer_init=False, insecure=False, plot_timeline=False, timeline_itl_thresholds='25,50', plot_dataset_stats=False, log_config_file=None, logging_config=LoggingConfig(log_level='INFO', formatter='text', configure_logging=True, pylogging_config_file=None))
+(MainProcess pid=2690150) INFO 10-28 23:44:20 [utils.py:88] Sampling input_len from [1024, 1024] and output_len from [1024, 1024]
+WARNING: vllm bench serve no longer sets temperature==0 (greedy) in requests by default. The default will be determined on the server side and can be model/API specific. For the old behavior, include --temperature=0.
+Starting initial single prompt test run...
+Skipping endpoint ready check.
+Starting main benchmark run...
+Traffic request rate: 8.0
+Burstiness factor: 1.0 (Poisson process)
+Maximum request concurrency: None
+  0%|          | 0/8 [00:00<?, ?it/s] 12%|█▎        | 1/8 [00:22<02:34, 22.11s/it] 50%|█████     | 4/8 [00:22<00:16,  4.22s/it]100%|██████████| 8/8 [00:22<00:00,  2.79s/it]
+tip: install termplotlib and gnuplot to plot the metrics
+============ Serving Benchmark Result ============
+Successful requests:                     8         
+Failed requests:                         0         
+Request rate configured (RPS):           8.00      
+Benchmark duration (s):                  22.29     
+Total input tokens:                      8192      
+Total generated tokens:                  8192      
+Request throughput (req/s):              0.36      
+Output token throughput (tok/s):         367.52    
+Peak output token throughput (tok/s):    400.00    
+Peak concurrent requests:                8.00      
+Total token throughput (tok/s):          735.04    
+---------------Time to First Token----------------
+Mean TTFT (ms):                          290.91    
+Median TTFT (ms):                        293.92    
+P99 TTFT (ms):                           447.78    
+-----Time per Output Token (excl. 1st token)------
+Mean TPOT (ms):                          20.93     
+Median TPOT (ms):                        20.91     
+P99 TPOT (ms):                           21.36     
+---------------Inter-token Latency----------------
+Mean ITL (ms):                           20.91     
+Median ITL (ms):                         20.62     
+P99 ITL (ms):                            20.98     
+==================================================
+===== tier 1K/1K c16 nospec 15:44:43 =====
+W1028 23:44:45.244000 2693737 torch/_opaque_base.py:6] torch._opaque_base is deprecated, use torch._custom_class_base instead
+W1028 23:44:45.244000 2693737 torch/_library/opaque_object.py:288] register_opaque_type is deprecated, use register_custom_class instead
+W1028 23:44:45.244000 2693737 torch/_library/opaque_object.py:211] typ='value' is deprecated, use typ='constant' instead
+FlashInfer kernels are disabled: flashinfer-cubin is not installed and nvcc (CUDA_HOME, CUDA_PATH, PATH or /usr/local/cuda) or ninja (PATH) is missing. Set CUDA_HOME to a CUDA toolkit and put ninja on PATH, or run `vllm download-kernels`.
+Namespace(subparser='bench', bench_type='serve', dispatch_function=<function BenchmarkServingSubcommand.cmd at 0x727152d2e020>, trust_remote_code=False, seed=0, num_prompts=16, dataset_name='random', no_stream=False, dataset_path=None, no_oversample=False, skip_chat_template=False, enable_multimodal_chat=False, disable_shuffle=False, custom_output_len=256, custom_ensure_client_side_data=False, spec_bench_output_len=256, spec_bench_category=None, sharegpt_output_len=None, timed_trace_chunk_hash_size=16, timed_trace_sec_multiplier=1, timed_trace_label_timestamp='timestamp', timed_trace_label_input_length='input_length', timed_trace_label_output_length='output_length', timed_trace_label_hash_ids='hash_ids', blazedit_min_distance=0.0, blazedit_max_distance=1.0, asr_max_audio_len_sec=inf, asr_min_audio_len_sec=0.0, random_input_len=1024, random_output_len=1024, random_range_ratio='0.0', random_prefix_len=0, random_batch_size=1, no_reranker=False, random_mm_base_items_per_request=1, random_mm_num_mm_items_range_ratio=0.0, random_mm_limit_mm_per_prompt={'image': 255, 'video': 1}, random_mm_bucket_config={(256, 256, 1): 0.5, (720, 1280, 1): 0.5, (720, 1280, 16): 0.0}, hf_subset=None, hf_split=None, hf_name=None, hf_output_len=None, bfcl_categories=None, prefix_repetition_prefix_len=256, prefix_repetition_suffix_len=256, prefix_repetition_num_prefixes=10, prefix_repetition_output_len=128, speed_bench_dataset_subset='qualitative', speed_bench_output_len=4096, speed_bench_category=None, label=None, backend='openai', base_url='http://127.0.0.1:8123', host='127.0.0.1', port=8000, endpoint='/v1/completions', header=None, max_concurrency=None, model='glm-5.3-flash', input_len=None, output_len=None, tokenizer='/data/models/GLM-5.3-Flash', tokenizer_mode='auto', use_beam_search=False, logprobs=None, request_rate=16.0, burstiness=1.0, probe_request_rate=0.0, disable_tqdm=False, num_warmups=0, profile=False, save_result=False, save_detailed=False, append_result=False, metadata=None, result_dir=None, result_filename=None, ignore_eos=True, self_timed=None, percentile_metrics=None, metric_percentiles='99', goodput=None, request_id_prefix='bench-93117042-', top_p=None, top_k=None, min_p=None, temperature=None, frequency_penalty=None, presence_penalty=None, repetition_penalty=None, served_model_name=None, lora_modules=None, lora_assignment='random', ramp_up_strategy=None, ramp_up_start_rps=None, ramp_up_end_rps=None, ready_check_timeout_sec=0, chat_template_kwargs=None, extra_body=None, skip_tokenizer_init=False, insecure=False, plot_timeline=False, timeline_itl_thresholds='25,50', plot_dataset_stats=False, log_config_file=None, logging_config=LoggingConfig(log_level='INFO', formatter='text', configure_logging=True, pylogging_config_file=None))
+(MainProcess pid=2693737) INFO 10-28 23:44:49 [utils.py:88] Sampling input_len from [1024, 1024] and output_len from [1024, 1024]
+WARNING: vllm bench serve no longer sets temperature==0 (greedy) in requests by default. The default will be determined on the server side and can be model/API specific. For the old behavior, include --temperature=0.
+Starting initial single prompt test run...
+Skipping endpoint ready check.
+Starting main benchmark run...
+Traffic request rate: 16.0
+Burstiness factor: 1.0 (Poisson process)
+Maximum request concurrency: None
+  0%|          | 0/16 [00:00<?, ?it/s]  6%|▋         | 1/16 [00:28<07:12, 28.82s/it] 31%|███▏      | 5/16 [00:28<00:47,  4.31s/it]100%|██████████| 16/16 [00:28<00:00,  1.81s/it]
+tip: install termplotlib and gnuplot to plot the metrics
+============ Serving Benchmark Result ============
+Successful requests:                     16        
+Failed requests:                         0         
+Request rate configured (RPS):           16.00     
+Benchmark duration (s):                  28.97     
+Total input tokens:                      16384     
+Total generated tokens:                  16384     
+Request throughput (req/s):              0.55      
+Output token throughput (tok/s):         565.50    
+Peak output token throughput (tok/s):    640.00    
+Peak concurrent requests:                16.00     
+Total token throughput (tok/s):          1131.00   
+---------------Time to First Token----------------
+Mean TTFT (ms):                          780.66    
+Median TTFT (ms):                        846.95    
+P99 TTFT (ms):                           1215.82   
+-----Time per Output Token (excl. 1st token)------
+Mean TPOT (ms):                          26.99     
+Median TPOT (ms):                        26.86     
+P99 TPOT (ms):                           27.94     
+---------------Inter-token Latency----------------
+Mean ITL (ms):                           26.97     
+Median ITL (ms):                         26.46     
+P99 ITL (ms):                            27.34     
+==================================================
+===== tier 1K/1K c32 nospec 15:45:18 =====
+W1028 23:45:21.083000 2698676 torch/_opaque_base.py:6] torch._opaque_base is deprecated, use torch._custom_class_base instead
+W1028 23:45:21.083000 2698676 torch/_library/opaque_object.py:288] register_opaque_type is deprecated, use register_custom_class instead
+W1028 23:45:21.083000 2698676 torch/_library/opaque_object.py:211] typ='value' is deprecated, use typ='constant' instead
+FlashInfer kernels are disabled: flashinfer-cubin is not installed and nvcc (CUDA_HOME, CUDA_PATH, PATH or /usr/local/cuda) or ninja (PATH) is missing. Set CUDA_HOME to a CUDA toolkit and put ninja on PATH, or run `vllm download-kernels`.
+Namespace(subparser='bench', bench_type='serve', dispatch_function=<function BenchmarkServingSubcommand.cmd at 0x7acf3e732520>, trust_remote_code=False, seed=0, num_prompts=32, dataset_name='random', no_stream=False, dataset_path=None, no_oversample=False, skip_chat_template=False, enable_multimodal_chat=False, disable_shuffle=False, custom_output_len=256, custom_ensure_client_side_data=False, spec_bench_output_len=256, spec_bench_category=None, sharegpt_output_len=None, timed_trace_chunk_hash_size=16, timed_trace_sec_multiplier=1, timed_trace_label_timestamp='timestamp', timed_trace_label_input_length='input_length', timed_trace_label_output_length='output_length', timed_trace_label_hash_ids='hash_ids', blazedit_min_distance=0.0, blazedit_max_distance=1.0, asr_max_audio_len_sec=inf, asr_min_audio_len_sec=0.0, random_input_len=1024, random_output_len=1024, random_range_ratio='0.0', random_prefix_len=0, random_batch_size=1, no_reranker=False, random_mm_base_items_per_request=1, random_mm_num_mm_items_range_ratio=0.0, random_mm_limit_mm_per_prompt={'image': 255, 'video': 1}, random_mm_bucket_config={(256, 256, 1): 0.5, (720, 1280, 1): 0.5, (720, 1280, 16): 0.0}, hf_subset=None, hf_split=None, hf_name=None, hf_output_len=None, bfcl_categories=None, prefix_repetition_prefix_len=256, prefix_repetition_suffix_len=256, prefix_repetition_num_prefixes=10, prefix_repetition_output_len=128, speed_bench_dataset_subset='qualitative', speed_bench_output_len=4096, speed_bench_category=None, label=None, backend='openai', base_url='http://127.0.0.1:8123', host='127.0.0.1', port=8000, endpoint='/v1/completions', header=None, max_concurrency=None, model='glm-5.3-flash', input_len=None, output_len=None, tokenizer='/data/models/GLM-5.3-Flash', tokenizer_mode='auto', use_beam_search=False, logprobs=None, request_rate=32.0, burstiness=1.0, probe_request_rate=0.0, disable_tqdm=False, num_warmups=0, profile=False, save_result=False, save_detailed=False, append_result=False, metadata=None, result_dir=None, result_filename=None, ignore_eos=True, self_timed=None, percentile_metrics=None, metric_percentiles='99', goodput=None, request_id_prefix='bench-4961da3f-', top_p=None, top_k=None, min_p=None, temperature=None, frequency_penalty=None, presence_penalty=None, repetition_penalty=None, served_model_name=None, lora_modules=None, lora_assignment='random', ramp_up_strategy=None, ramp_up_start_rps=None, ramp_up_end_rps=None, ready_check_timeout_sec=0, chat_template_kwargs=None, extra_body=None, skip_tokenizer_init=False, insecure=False, plot_timeline=False, timeline_itl_thresholds='25,50', plot_dataset_stats=False, log_config_file=None, logging_config=LoggingConfig(log_level='INFO', formatter='text', configure_logging=True, pylogging_config_file=None))
+(MainProcess pid=2698676) INFO 10-28 23:45:25 [utils.py:88] Sampling input_len from [1024, 1024] and output_len from [1024, 1024]
+WARNING: vllm bench serve no longer sets temperature==0 (greedy) in requests by default. The default will be determined on the server side and can be model/API specific. For the old behavior, include --temperature=0.
+Starting initial single prompt test run...
+Skipping endpoint ready check.
+Starting main benchmark run...
+Traffic request rate: 32.0
+Burstiness factor: 1.0 (Poisson process)
+Maximum request concurrency: None
+  0%|          | 0/32 [00:00<?, ?it/s]  3%|▎         | 1/32 [00:37<19:36, 37.95s/it] 25%|██▌       | 8/32 [00:38<01:23,  3.47s/it]100%|██████████| 32/32 [00:38<00:00,  1.19s/it]
+tip: install termplotlib and gnuplot to plot the metrics
+============ Serving Benchmark Result ============
+Successful requests:                     32        
+Failed requests:                         0         
+Request rate configured (RPS):           32.00     
+Benchmark duration (s):                  38.15     
+Total input tokens:                      32768     
+Total generated tokens:                  32768     
+Request throughput (req/s):              0.84      
+Output token throughput (tok/s):         858.94    
+Peak output token throughput (tok/s):    1029.00   
+Peak concurrent requests:                32.00     
+Total token throughput (tok/s):          1717.89   
+---------------Time to First Token----------------
+Mean TTFT (ms):                          1638.95   
+Median TTFT (ms):                        1773.62   
+P99 TTFT (ms):                           2611.52   
+-----Time per Output Token (excl. 1st token)------
+Mean TPOT (ms):                          35.13     
+Median TPOT (ms):                        34.95     
+P99 TPOT (ms):                           36.75     
+---------------Inter-token Latency----------------
+Mean ITL (ms):                           35.10     
+Median ITL (ms):                         33.58     
+P99 ITL (ms):                            37.02     
+==================================================
+===== tier 1K/1K c64 nospec 15:46:04 =====
+W1028 23:46:06.325000 2704525 torch/_opaque_base.py:6] torch._opaque_base is deprecated, use torch._custom_class_base instead
+W1028 23:46:06.326000 2704525 torch/_library/opaque_object.py:288] register_opaque_type is deprecated, use register_custom_class instead
+W1028 23:46:06.326000 2704525 torch/_library/opaque_object.py:211] typ='value' is deprecated, use typ='constant' instead
+FlashInfer kernels are disabled: flashinfer-cubin is not installed and nvcc (CUDA_HOME, CUDA_PATH, PATH or /usr/local/cuda) or ninja (PATH) is missing. Set CUDA_HOME to a CUDA toolkit and put ninja on PATH, or run `vllm download-kernels`.
+Namespace(subparser='bench', bench_type='serve', dispatch_function=<function BenchmarkServingSubcommand.cmd at 0x761e8b92e520>, trust_remote_code=False, seed=0, num_prompts=64, dataset_name='random', no_stream=False, dataset_path=None, no_oversample=False, skip_chat_template=False, enable_multimodal_chat=False, disable_shuffle=False, custom_output_len=256, custom_ensure_client_side_data=False, spec_bench_output_len=256, spec_bench_category=None, sharegpt_output_len=None, timed_trace_chunk_hash_size=16, timed_trace_sec_multiplier=1, timed_trace_label_timestamp='timestamp', timed_trace_label_input_length='input_length', timed_trace_label_output_length='output_length', timed_trace_label_hash_ids='hash_ids', blazedit_min_distance=0.0, blazedit_max_distance=1.0, asr_max_audio_len_sec=inf, asr_min_audio_len_sec=0.0, random_input_len=1024, random_output_len=1024, random_range_ratio='0.0', random_prefix_len=0, random_batch_size=1, no_reranker=False, random_mm_base_items_per_request=1, random_mm_num_mm_items_range_ratio=0.0, random_mm_limit_mm_per_prompt={'image': 255, 'video': 1}, random_mm_bucket_config={(256, 256, 1): 0.5, (720, 1280, 1): 0.5, (720, 1280, 16): 0.0}, hf_subset=None, hf_split=None, hf_name=None, hf_output_len=None, bfcl_categories=None, prefix_repetition_prefix_len=256, prefix_repetition_suffix_len=256, prefix_repetition_num_prefixes=10, prefix_repetition_output_len=128, speed_bench_dataset_subset='qualitative', speed_bench_output_len=4096, speed_bench_category=None, label=None, backend='openai', base_url='http://127.0.0.1:8123', host='127.0.0.1', port=8000, endpoint='/v1/completions', header=None, max_concurrency=None, model='glm-5.3-flash', input_len=None, output_len=None, tokenizer='/data/models/GLM-5.3-Flash', tokenizer_mode='auto', use_beam_search=False, logprobs=None, request_rate=64.0, burstiness=1.0, probe_request_rate=0.0, disable_tqdm=False, num_warmups=0, profile=False, save_result=False, save_detailed=False, append_result=False, metadata=None, result_dir=None, result_filename=None, ignore_eos=True, self_timed=None, percentile_metrics=None, metric_percentiles='99', goodput=None, request_id_prefix='bench-5ab8e9ce-', top_p=None, top_k=None, min_p=None, temperature=None, frequency_penalty=None, presence_penalty=None, repetition_penalty=None, served_model_name=None, lora_modules=None, lora_assignment='random', ramp_up_strategy=None, ramp_up_start_rps=None, ramp_up_end_rps=None, ready_check_timeout_sec=0, chat_template_kwargs=None, extra_body=None, skip_tokenizer_init=False, insecure=False, plot_timeline=False, timeline_itl_thresholds='25,50', plot_dataset_stats=False, log_config_file=None, logging_config=LoggingConfig(log_level='INFO', formatter='text', configure_logging=True, pylogging_config_file=None))
+(MainProcess pid=2704525) INFO 10-28 23:46:10 [utils.py:88] Sampling input_len from [1024, 1024] and output_len from [1024, 1024]
+WARNING: vllm bench serve no longer sets temperature==0 (greedy) in requests by default. The default will be determined on the server side and can be model/API specific. For the old behavior, include --temperature=0.
+Starting initial single prompt test run...
+Skipping endpoint ready check.
+Starting main benchmark run...
+Traffic request rate: 64.0
+Burstiness factor: 1.0 (Poisson process)
+Maximum request concurrency: None
+  0%|          | 0/64 [00:00<?, ?it/s]  2%|▏         | 1/64 [00:52<54:47, 52.18s/it] 14%|█▍        | 9/64 [00:52<03:51,  4.22s/it] 47%|████▋     | 30/64 [00:52<00:32,  1.05it/s] 91%|█████████ | 58/64 [00:52<00:02,  2.58it/s]100%|██████████| 64/64 [00:52<00:00,  1.22it/s]
+tip: install termplotlib and gnuplot to plot the metrics
+============ Serving Benchmark Result ============
+Successful requests:                     64        
+Failed requests:                         0         
+Request rate configured (RPS):           64.00     
+Benchmark duration (s):                  52.57     
+Total input tokens:                      65536     
+Total generated tokens:                  65536     
+Request throughput (req/s):              1.22      
+Output token throughput (tok/s):         1246.53   
+Peak output token throughput (tok/s):    1536.00   
+Peak concurrent requests:                64.00     
+Total token throughput (tok/s):          2493.07   
+---------------Time to First Token----------------
+Mean TTFT (ms):                          3317.42   
+Median TTFT (ms):                        3319.11   
+P99 TTFT (ms):                           6005.35   
+-----Time per Output Token (excl. 1st token)------
+Mean TPOT (ms):                          47.46     
+Median TPOT (ms):                        47.43     
+P99 TPOT (ms):                           50.43     
+---------------Inter-token Latency----------------
+Mean ITL (ms):                           47.42     
+Median ITL (ms):                         44.65     
+P99 ITL (ms):                            47.74     
+==================================================
+===== tier 1K/1K c128 nospec 15:47:03 =====
+W1028 23:47:05.816000 2712487 torch/_opaque_base.py:6] torch._opaque_base is deprecated, use torch._custom_class_base instead
+W1028 23:47:05.816000 2712487 torch/_library/opaque_object.py:288] register_opaque_type is deprecated, use register_custom_class instead
+W1028 23:47:05.816000 2712487 torch/_library/opaque_object.py:211] typ='value' is deprecated, use typ='constant' instead
+FlashInfer kernels are disabled: flashinfer-cubin is not installed and nvcc (CUDA_HOME, CUDA_PATH, PATH or /usr/local/cuda) or ninja (PATH) is missing. Set CUDA_HOME to a CUDA toolkit and put ninja on PATH, or run `vllm download-kernels`.
+Namespace(subparser='bench', bench_type='serve', dispatch_function=<function BenchmarkServingSubcommand.cmd at 0x7d5e705165c0>, trust_remote_code=False, seed=0, num_prompts=128, dataset_name='random', no_stream=False, dataset_path=None, no_oversample=False, skip_chat_template=False, enable_multimodal_chat=False, disable_shuffle=False, custom_output_len=256, custom_ensure_client_side_data=False, spec_bench_output_len=256, spec_bench_category=None, sharegpt_output_len=None, timed_trace_chunk_hash_size=16, timed_trace_sec_multiplier=1, timed_trace_label_timestamp='timestamp', timed_trace_label_input_length='input_length', timed_trace_label_output_length='output_length', timed_trace_label_hash_ids='hash_ids', blazedit_min_distance=0.0, blazedit_max_distance=1.0, asr_max_audio_len_sec=inf, asr_min_audio_len_sec=0.0, random_input_len=1024, random_output_len=1024, random_range_ratio='0.0', random_prefix_len=0, random_batch_size=1, no_reranker=False, random_mm_base_items_per_request=1, random_mm_num_mm_items_range_ratio=0.0, random_mm_limit_mm_per_prompt={'image': 255, 'video': 1}, random_mm_bucket_config={(256, 256, 1): 0.5, (720, 1280, 1): 0.5, (720, 1280, 16): 0.0}, hf_subset=None, hf_split=None, hf_name=None, hf_output_len=None, bfcl_categories=None, prefix_repetition_prefix_len=256, prefix_repetition_suffix_len=256, prefix_repetition_num_prefixes=10, prefix_repetition_output_len=128, speed_bench_dataset_subset='qualitative', speed_bench_output_len=4096, speed_bench_category=None, label=None, backend='openai', base_url='http://127.0.0.1:8123', host='127.0.0.1', port=8000, endpoint='/v1/completions', header=None, max_concurrency=None, model='glm-5.3-flash', input_len=None, output_len=None, tokenizer='/data/models/GLM-5.3-Flash', tokenizer_mode='auto', use_beam_search=False, logprobs=None, request_rate=128.0, burstiness=1.0, probe_request_rate=0.0, disable_tqdm=False, num_warmups=0, profile=False, save_result=False, save_detailed=False, append_result=False, metadata=None, result_dir=None, result_filename=None, ignore_eos=True, self_timed=None, percentile_metrics=None, metric_percentiles='99', goodput=None, request_id_prefix='bench-69d6eede-', top_p=None, top_k=None, min_p=None, temperature=None, frequency_penalty=None, presence_penalty=None, repetition_penalty=None, served_model_name=None, lora_modules=None, lora_assignment='random', ramp_up_strategy=None, ramp_up_start_rps=None, ramp_up_end_rps=None, ready_check_timeout_sec=0, chat_template_kwargs=None, extra_body=None, skip_tokenizer_init=False, insecure=False, plot_timeline=False, timeline_itl_thresholds='25,50', plot_dataset_stats=False, log_config_file=None, logging_config=LoggingConfig(log_level='INFO', formatter='text', configure_logging=True, pylogging_config_file=None))
+(MainProcess pid=2712487) INFO 10-28 23:47:10 [utils.py:88] Sampling input_len from [1024, 1024] and output_len from [1024, 1024]
+WARNING: vllm bench serve no longer sets temperature==0 (greedy) in requests by default. The default will be determined on the server side and can be model/API specific. For the old behavior, include --temperature=0.
+Starting initial single prompt test run...
+Skipping endpoint ready check.
+Starting main benchmark run...
+Traffic request rate: 128.0
+Burstiness factor: 1.0 (Poisson process)
+Maximum request concurrency: None
+  0%|          | 0/128 [00:00<?, ?it/s]  1%|          | 1/128 [01:13<2:35:25, 73.43s/it]  2%|▏         | 2/128 [01:13<1:03:37, 30.30s/it] 12%|█▎        | 16/128 [01:13<04:26,  2.38s/it]  23%|██▎       | 30/128 [01:13<01:41,  1.03s/it] 40%|███▉      | 51/128 [01:13<00:36,  2.13it/s] 56%|█████▋    | 72/128 [01:14<00:14,  3.76it/s] 73%|███████▎  | 93/128 [01:14<00:05,  6.05it/s] 95%|█████████▍| 121/128 [01:14<00:00, 10.32it/s]100%|██████████| 128/128 [01:14<00:00,  1.72it/s]
+tip: install termplotlib and gnuplot to plot the metrics
+============ Serving Benchmark Result ============
+Successful requests:                     128       
+Failed requests:                         0         
+Request rate configured (RPS):           128.00    
+Benchmark duration (s):                  74.27     
+Total input tokens:                      131072    
+Total generated tokens:                  131072    
+Request throughput (req/s):              1.72      
+Output token throughput (tok/s):         1764.86   
+Peak output token throughput (tok/s):    2304.00   
+Peak concurrent requests:                128.00    
+Total token throughput (tok/s):          3529.72   
+---------------Time to First Token----------------
+Mean TTFT (ms):                          6825.71   
+Median TTFT (ms):                        6801.79   
+P99 TTFT (ms):                           12885.95  
+-----Time per Output Token (excl. 1st token)------
+Mean TPOT (ms):                          65.10     
+Median TPOT (ms):                        65.15     
+P99 TPOT (ms):                           70.99     
+---------------Inter-token Latency----------------
+Mean ITL (ms):                           65.04     
+Median ITL (ms):                         59.32     
+P99 ITL (ms):                            65.63     
+==================================================
+===== tier 4K/4K c1 nospec 15:48:25 =====
+W1028 23:48:27.266000 2723039 torch/_opaque_base.py:6] torch._opaque_base is deprecated, use torch._custom_class_base instead
+W1028 23:48:27.267000 2723039 torch/_library/opaque_object.py:288] register_opaque_type is deprecated, use register_custom_class instead
+W1028 23:48:27.267000 2723039 torch/_library/opaque_object.py:211] typ='value' is deprecated, use typ='constant' instead
+FlashInfer kernels are disabled: flashinfer-cubin is not installed and nvcc (CUDA_HOME, CUDA_PATH, PATH or /usr/local/cuda) or ninja (PATH) is missing. Set CUDA_HOME to a CUDA toolkit and put ninja on PATH, or run `vllm download-kernels`.
+Namespace(subparser='bench', bench_type='serve', dispatch_function=<function BenchmarkServingSubcommand.cmd at 0x7161ee32e0c0>, trust_remote_code=False, seed=0, num_prompts=1, dataset_name='random', no_stream=False, dataset_path=None, no_oversample=False, skip_chat_template=False, enable_multimodal_chat=False, disable_shuffle=False, custom_output_len=256, custom_ensure_client_side_data=False, spec_bench_output_len=256, spec_bench_category=None, sharegpt_output_len=None, timed_trace_chunk_hash_size=16, timed_trace_sec_multiplier=1, timed_trace_label_timestamp='timestamp', timed_trace_label_input_length='input_length', timed_trace_label_output_length='output_length', timed_trace_label_hash_ids='hash_ids', blazedit_min_distance=0.0, blazedit_max_distance=1.0, asr_max_audio_len_sec=inf, asr_min_audio_len_sec=0.0, random_input_len=4096, random_output_len=4096, random_range_ratio='0.0', random_prefix_len=0, random_batch_size=1, no_reranker=False, random_mm_base_items_per_request=1, random_mm_num_mm_items_range_ratio=0.0, random_mm_limit_mm_per_prompt={'image': 255, 'video': 1}, random_mm_bucket_config={(256, 256, 1): 0.5, (720, 1280, 1): 0.5, (720, 1280, 16): 0.0}, hf_subset=None, hf_split=None, hf_name=None, hf_output_len=None, bfcl_categories=None, prefix_repetition_prefix_len=256, prefix_repetition_suffix_len=256, prefix_repetition_num_prefixes=10, prefix_repetition_output_len=128, speed_bench_dataset_subset='qualitative', speed_bench_output_len=4096, speed_bench_category=None, label=None, backend='openai', base_url='http://127.0.0.1:8123', host='127.0.0.1', port=8000, endpoint='/v1/completions', header=None, max_concurrency=None, model='glm-5.3-flash', input_len=None, output_len=None, tokenizer='/data/models/GLM-5.3-Flash', tokenizer_mode='auto', use_beam_search=False, logprobs=None, request_rate=1.0, burstiness=1.0, probe_request_rate=0.0, disable_tqdm=False, num_warmups=0, profile=False, save_result=False, save_detailed=False, append_result=False, metadata=None, result_dir=None, result_filename=None, ignore_eos=True, self_timed=None, percentile_metrics=None, metric_percentiles='99', goodput=None, request_id_prefix='bench-00cac844-', top_p=None, top_k=None, min_p=None, temperature=None, frequency_penalty=None, presence_penalty=None, repetition_penalty=None, served_model_name=None, lora_modules=None, lora_assignment='random', ramp_up_strategy=None, ramp_up_start_rps=None, ramp_up_end_rps=None, ready_check_timeout_sec=0, chat_template_kwargs=None, extra_body=None, skip_tokenizer_init=False, insecure=False, plot_timeline=False, timeline_itl_thresholds='25,50', plot_dataset_stats=False, log_config_file=None, logging_config=LoggingConfig(log_level='INFO', formatter='text', configure_logging=True, pylogging_config_file=None))
+(MainProcess pid=2723039) INFO 10-28 23:48:31 [utils.py:88] Sampling input_len from [4096, 4096] and output_len from [4096, 4096]
+WARNING: vllm bench serve no longer sets temperature==0 (greedy) in requests by default. The default will be determined on the server side and can be model/API specific. For the old behavior, include --temperature=0.
+Starting initial single prompt test run...
+Skipping endpoint ready check.
+Starting main benchmark run...
+Traffic request rate: 1.0
+Burstiness factor: 1.0 (Poisson process)
+Maximum request concurrency: None
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [00:49<00:00, 49.25s/it]100%|██████████| 1/1 [00:49<00:00, 49.25s/it]
+tip: install termplotlib and gnuplot to plot the metrics
+============ Serving Benchmark Result ============
+Successful requests:                     1         
+Failed requests:                         0         
+Request rate configured (RPS):           1.00      
+Benchmark duration (s):                  49.25     
+Total input tokens:                      4096      
+Total generated tokens:                  4096      
+Request throughput (req/s):              0.02      
+Output token throughput (tok/s):         83.17     
+Peak output token throughput (tok/s):    86.00     
+Peak concurrent requests:                1.00      
+Total token throughput (tok/s):          166.34    
+---------------Time to First Token----------------
+Mean TTFT (ms):                          424.92    
+Median TTFT (ms):                        424.92    
+P99 TTFT (ms):                           424.92    
+-----Time per Output Token (excl. 1st token)------
+Mean TPOT (ms):                          11.68     
+Median TPOT (ms):                        11.68     
+P99 TPOT (ms):                           11.68     
+---------------Inter-token Latency----------------
+Mean ITL (ms):                           11.68     
+Median ITL (ms):                         11.69     
+P99 ITL (ms):                            11.78     
+==================================================
+===== tier 4K/4K c2 nospec 15:49:21 =====
+W1028 23:49:23.315000 2730673 torch/_opaque_base.py:6] torch._opaque_base is deprecated, use torch._custom_class_base instead
+W1028 23:49:23.316000 2730673 torch/_library/opaque_object.py:288] register_opaque_type is deprecated, use register_custom_class instead
+W1028 23:49:23.316000 2730673 torch/_library/opaque_object.py:211] typ='value' is deprecated, use typ='constant' instead
+FlashInfer kernels are disabled: flashinfer-cubin is not installed and nvcc (CUDA_HOME, CUDA_PATH, PATH or /usr/local/cuda) or ninja (PATH) is missing. Set CUDA_HOME to a CUDA toolkit and put ninja on PATH, or run `vllm download-kernels`.
+Namespace(subparser='bench', bench_type='serve', dispatch_function=<function BenchmarkServingSubcommand.cmd at 0x78effef1e5c0>, trust_remote_code=False, seed=0, num_prompts=2, dataset_name='random', no_stream=False, dataset_path=None, no_oversample=False, skip_chat_template=False, enable_multimodal_chat=False, disable_shuffle=False, custom_output_len=256, custom_ensure_client_side_data=False, spec_bench_output_len=256, spec_bench_category=None, sharegpt_output_len=None, timed_trace_chunk_hash_size=16, timed_trace_sec_multiplier=1, timed_trace_label_timestamp='timestamp', timed_trace_label_input_length='input_length', timed_trace_label_output_length='output_length', timed_trace_label_hash_ids='hash_ids', blazedit_min_distance=0.0, blazedit_max_distance=1.0, asr_max_audio_len_sec=inf, asr_min_audio_len_sec=0.0, random_input_len=4096, random_output_len=4096, random_range_ratio='0.0', random_prefix_len=0, random_batch_size=1, no_reranker=False, random_mm_base_items_per_request=1, random_mm_num_mm_items_range_ratio=0.0, random_mm_limit_mm_per_prompt={'image': 255, 'video': 1}, random_mm_bucket_config={(256, 256, 1): 0.5, (720, 1280, 1): 0.5, (720, 1280, 16): 0.0}, hf_subset=None, hf_split=None, hf_name=None, hf_output_len=None, bfcl_categories=None, prefix_repetition_prefix_len=256, prefix_repetition_suffix_len=256, prefix_repetition_num_prefixes=10, prefix_repetition_output_len=128, speed_bench_dataset_subset='qualitative', speed_bench_output_len=4096, speed_bench_category=None, label=None, backend='openai', base_url='http://127.0.0.1:8123', host='127.0.0.1', port=8000, endpoint='/v1/completions', header=None, max_concurrency=None, model='glm-5.3-flash', input_len=None, output_len=None, tokenizer='/data/models/GLM-5.3-Flash', tokenizer_mode='auto', use_beam_search=False, logprobs=None, request_rate=2.0, burstiness=1.0, probe_request_rate=0.0, disable_tqdm=False, num_warmups=0, profile=False, save_result=False, save_detailed=False, append_result=False, metadata=None, result_dir=None, result_filename=None, ignore_eos=True, self_timed=None, percentile_metrics=None, metric_percentiles='99', goodput=None, request_id_prefix='bench-3551a25d-', top_p=None, top_k=None, min_p=None, temperature=None, frequency_penalty=None, presence_penalty=None, repetition_penalty=None, served_model_name=None, lora_modules=None, lora_assignment='random', ramp_up_strategy=None, ramp_up_start_rps=None, ramp_up_end_rps=None, ready_check_timeout_sec=0, chat_template_kwargs=None, extra_body=None, skip_tokenizer_init=False, insecure=False, plot_timeline=False, timeline_itl_thresholds='25,50', plot_dataset_stats=False, log_config_file=None, logging_config=LoggingConfig(log_level='INFO', formatter='text', configure_logging=True, pylogging_config_file=None))
+(MainProcess pid=2730673) INFO 10-28 23:49:27 [utils.py:88] Sampling input_len from [4096, 4096] and output_len from [4096, 4096]
+WARNING: vllm bench serve no longer sets temperature==0 (greedy) in requests by default. The default will be determined on the server side and can be model/API specific. For the old behavior, include --temperature=0.
+Starting initial single prompt test run...
+Skipping endpoint ready check.
+Starting main benchmark run...
+Traffic request rate: 2.0
+Burstiness factor: 1.0 (Poisson process)
+Maximum request concurrency: None
+  0%|          | 0/2 [00:00<?, ?it/s] 50%|█████     | 1/2 [00:54<00:54, 54.47s/it]100%|██████████| 2/2 [00:55<00:00, 22.76s/it]100%|██████████| 2/2 [00:55<00:00, 27.52s/it]
+tip: install termplotlib and gnuplot to plot the metrics
+============ Serving Benchmark Result ============
+Successful requests:                     2         
+Failed requests:                         0         
+Request rate configured (RPS):           2.00      
+Benchmark duration (s):                  55.03     
+Total input tokens:                      8192      
+Total generated tokens:                  8192      
+Request throughput (req/s):              0.04      
+Output token throughput (tok/s):         148.85    
+Peak output token throughput (tok/s):    156.00    
+Peak concurrent requests:                2.00      
+Total token throughput (tok/s):          297.70    
+---------------Time to First Token----------------
+Mean TTFT (ms):                          231.88    
+Median TTFT (ms):                        231.88    
+P99 TTFT (ms):                           391.00    
+-----Time per Output Token (excl. 1st token)------
+Mean TPOT (ms):                          13.14     
+Median TPOT (ms):                        13.14     
+P99 TPOT (ms):                           13.19     
+---------------Inter-token Latency----------------
+Mean ITL (ms):                           13.14     
+Median ITL (ms):                         13.11     
+P99 ITL (ms):                            13.39     
+==================================================
+===== tier 4K/4K c4 nospec 15:50:22 =====
+W1028 23:50:25.141000 2738531 torch/_opaque_base.py:6] torch._opaque_base is deprecated, use torch._custom_class_base instead
+W1028 23:50:25.141000 2738531 torch/_library/opaque_object.py:288] register_opaque_type is deprecated, use register_custom_class instead
+W1028 23:50:25.142000 2738531 torch/_library/opaque_object.py:211] typ='value' is deprecated, use typ='constant' instead
+FlashInfer kernels are disabled: flashinfer-cubin is not installed and nvcc (CUDA_HOME, CUDA_PATH, PATH or /usr/local/cuda) or ninja (PATH) is missing. Set CUDA_HOME to a CUDA toolkit and put ninja on PATH, or run `vllm download-kernels`.
+Namespace(subparser='bench', bench_type='serve', dispatch_function=<function BenchmarkServingSubcommand.cmd at 0x794d13b46020>, trust_remote_code=False, seed=0, num_prompts=4, dataset_name='random', no_stream=False, dataset_path=None, no_oversample=False, skip_chat_template=False, enable_multimodal_chat=False, disable_shuffle=False, custom_output_len=256, custom_ensure_client_side_data=False, spec_bench_output_len=256, spec_bench_category=None, sharegpt_output_len=None, timed_trace_chunk_hash_size=16, timed_trace_sec_multiplier=1, timed_trace_label_timestamp='timestamp', timed_trace_label_input_length='input_length', timed_trace_label_output_length='output_length', timed_trace_label_hash_ids='hash_ids', blazedit_min_distance=0.0, blazedit_max_distance=1.0, asr_max_audio_len_sec=inf, asr_min_audio_len_sec=0.0, random_input_len=4096, random_output_len=4096, random_range_ratio='0.0', random_prefix_len=0, random_batch_size=1, no_reranker=False, random_mm_base_items_per_request=1, random_mm_num_mm_items_range_ratio=0.0, random_mm_limit_mm_per_prompt={'image': 255, 'video': 1}, random_mm_bucket_config={(256, 256, 1): 0.5, (720, 1280, 1): 0.5, (720, 1280, 16): 0.0}, hf_subset=None, hf_split=None, hf_name=None, hf_output_len=None, bfcl_categories=None, prefix_repetition_prefix_len=256, prefix_repetition_suffix_len=256, prefix_repetition_num_prefixes=10, prefix_repetition_output_len=128, speed_bench_dataset_subset='qualitative', speed_bench_output_len=4096, speed_bench_category=None, label=None, backend='openai', base_url='http://127.0.0.1:8123', host='127.0.0.1', port=8000, endpoint='/v1/completions', header=None, max_concurrency=None, model='glm-5.3-flash', input_len=None, output_len=None, tokenizer='/data/models/GLM-5.3-Flash', tokenizer_mode='auto', use_beam_search=False, logprobs=None, request_rate=4.0, burstiness=1.0, probe_request_rate=0.0, disable_tqdm=False, num_warmups=0, profile=False, save_result=False, save_detailed=False, append_result=False, metadata=None, result_dir=None, result_filename=None, ignore_eos=True, self_timed=None, percentile_metrics=None, metric_percentiles='99', goodput=None, request_id_prefix='bench-07b7c01e-', top_p=None, top_k=None, min_p=None, temperature=None, frequency_penalty=None, presence_penalty=None, repetition_penalty=None, served_model_name=None, lora_modules=None, lora_assignment='random', ramp_up_strategy=None, ramp_up_start_rps=None, ramp_up_end_rps=None, ready_check_timeout_sec=0, chat_template_kwargs=None, extra_body=None, skip_tokenizer_init=False, insecure=False, plot_timeline=False, timeline_itl_thresholds='25,50', plot_dataset_stats=False, log_config_file=None, logging_config=LoggingConfig(log_level='INFO', formatter='text', configure_logging=True, pylogging_config_file=None))
+(MainProcess pid=2738531) INFO 10-28 23:50:29 [utils.py:88] Sampling input_len from [4096, 4096] and output_len from [4096, 4096]
+WARNING: vllm bench serve no longer sets temperature==0 (greedy) in requests by default. The default will be determined on the server side and can be model/API specific. For the old behavior, include --temperature=0.
+Starting initial single prompt test run...
+Skipping endpoint ready check.
+Starting main benchmark run...
+Traffic request rate: 4.0
+Burstiness factor: 1.0 (Poisson process)
+Maximum request concurrency: None
+  0%|          | 0/4 [00:00<?, ?it/s] 25%|██▌       | 1/4 [01:07<03:22, 67.34s/it] 50%|█████     | 2/4 [01:07<00:55, 27.97s/it] 75%|███████▌  | 3/4 [01:07<00:15, 15.29s/it]100%|██████████| 4/4 [01:07<00:00, 16.99s/it]
+tip: install termplotlib and gnuplot to plot the metrics
+============ Serving Benchmark Result ============
+Successful requests:                     4         
+Failed requests:                         0         
+Request rate configured (RPS):           4.00      
+Benchmark duration (s):                  67.98     
+Total input tokens:                      16384     
+Total generated tokens:                  16384     
+Request throughput (req/s):              0.06      
+Output token throughput (tok/s):         241.03    
+Peak output token throughput (tok/s):    252.00    
+Peak concurrent requests:                4.00      
+Total token throughput (tok/s):          482.06    
+---------------Time to First Token----------------
+Mean TTFT (ms):                          274.11    
+Median TTFT (ms):                        232.44    
+P99 TTFT (ms):                           560.06    
+-----Time per Output Token (excl. 1st token)------
+Mean TPOT (ms):                          16.32     
+Median TPOT (ms):                        16.34     
+P99 TPOT (ms):                           16.39     
+---------------Inter-token Latency----------------
+Mean ITL (ms):                           16.32     
+Median ITL (ms):                         16.22     
+P99 ITL (ms):                            16.54     
+==================================================
+===== tier 4K/4K c8 nospec 15:51:37 =====
+W1028 23:51:39.961000 2748557 torch/_opaque_base.py:6] torch._opaque_base is deprecated, use torch._custom_class_base instead
+W1028 23:51:39.961000 2748557 torch/_library/opaque_object.py:288] register_opaque_type is deprecated, use register_custom_class instead
+W1028 23:51:39.961000 2748557 torch/_library/opaque_object.py:211] typ='value' is deprecated, use typ='constant' instead
+FlashInfer kernels are disabled: flashinfer-cubin is not installed and nvcc (CUDA_HOME, CUDA_PATH, PATH or /usr/local/cuda) or ninja (PATH) is missing. Set CUDA_HOME to a CUDA toolkit and put ninja on PATH, or run `vllm download-kernels`.
+Namespace(subparser='bench', bench_type='serve', dispatch_function=<function BenchmarkServingSubcommand.cmd at 0x7c99b7136020>, trust_remote_code=False, seed=0, num_prompts=8, dataset_name='random', no_stream=False, dataset_path=None, no_oversample=False, skip_chat_template=False, enable_multimodal_chat=False, disable_shuffle=False, custom_output_len=256, custom_ensure_client_side_data=False, spec_bench_output_len=256, spec_bench_category=None, sharegpt_output_len=None, timed_trace_chunk_hash_size=16, timed_trace_sec_multiplier=1, timed_trace_label_timestamp='timestamp', timed_trace_label_input_length='input_length', timed_trace_label_output_length='output_length', timed_trace_label_hash_ids='hash_ids', blazedit_min_distance=0.0, blazedit_max_distance=1.0, asr_max_audio_len_sec=inf, asr_min_audio_len_sec=0.0, random_input_len=4096, random_output_len=4096, random_range_ratio='0.0', random_prefix_len=0, random_batch_size=1, no_reranker=False, random_mm_base_items_per_request=1, random_mm_num_mm_items_range_ratio=0.0, random_mm_limit_mm_per_prompt={'image': 255, 'video': 1}, random_mm_bucket_config={(256, 256, 1): 0.5, (720, 1280, 1): 0.5, (720, 1280, 16): 0.0}, hf_subset=None, hf_split=None, hf_name=None, hf_output_len=None, bfcl_categories=None, prefix_repetition_prefix_len=256, prefix_repetition_suffix_len=256, prefix_repetition_num_prefixes=10, prefix_repetition_output_len=128, speed_bench_dataset_subset='qualitative', speed_bench_output_len=4096, speed_bench_category=None, label=None, backend='openai', base_url='http://127.0.0.1:8123', host='127.0.0.1', port=8000, endpoint='/v1/completions', header=None, max_concurrency=None, model='glm-5.3-flash', input_len=None, output_len=None, tokenizer='/data/models/GLM-5.3-Flash', tokenizer_mode='auto', use_beam_search=False, logprobs=None, request_rate=8.0, burstiness=1.0, probe_request_rate=0.0, disable_tqdm=False, num_warmups=0, profile=False, save_result=False, save_detailed=False, append_result=False, metadata=None, result_dir=None, result_filename=None, ignore_eos=True, self_timed=None, percentile_metrics=None, metric_percentiles='99', goodput=None, request_id_prefix='bench-16ab2c14-', top_p=None, top_k=None, min_p=None, temperature=None, frequency_penalty=None, presence_penalty=None, repetition_penalty=None, served_model_name=None, lora_modules=None, lora_assignment='random', ramp_up_strategy=None, ramp_up_start_rps=None, ramp_up_end_rps=None, ready_check_timeout_sec=0, chat_template_kwargs=None, extra_body=None, skip_tokenizer_init=False, insecure=False, plot_timeline=False, timeline_itl_thresholds='25,50', plot_dataset_stats=False, log_config_file=None, logging_config=LoggingConfig(log_level='INFO', formatter='text', configure_logging=True, pylogging_config_file=None))
+(MainProcess pid=2748557) INFO 10-28 23:51:44 [utils.py:88] Sampling input_len from [4096, 4096] and output_len from [4096, 4096]
+WARNING: vllm bench serve no longer sets temperature==0 (greedy) in requests by default. The default will be determined on the server side and can be model/API specific. For the old behavior, include --temperature=0.
+Starting initial single prompt test run...
+Skipping endpoint ready check.
+Starting main benchmark run...
+Traffic request rate: 8.0
+Burstiness factor: 1.0 (Poisson process)
+Maximum request concurrency: None
+  0%|          | 0/8 [00:00<?, ?it/s] 12%|█▎        | 1/8 [01:25<10:01, 85.98s/it] 25%|██▌       | 2/8 [01:26<03:33, 35.52s/it] 38%|███▊      | 3/8 [01:26<01:36, 19.35s/it] 75%|███████▌  | 6/8 [01:26<00:13,  6.57s/it]100%|██████████| 8/8 [01:26<00:00, 10.80s/it]
+tip: install termplotlib and gnuplot to plot the metrics
+============ Serving Benchmark Result ============
+Successful requests:                     8         
+Failed requests:                         0         
+Request rate configured (RPS):           8.00      
+Benchmark duration (s):                  86.44     
+Total input tokens:                      32768     
+Total generated tokens:                  32768     
+Request throughput (req/s):              0.09      
+Output token throughput (tok/s):         379.10    
+Peak output token throughput (tok/s):    400.00    
+Peak concurrent requests:                8.00      
+Total token throughput (tok/s):          758.20    
+---------------Time to First Token----------------
+Mean TTFT (ms):                          471.95    
+Median TTFT (ms):                        246.24    
+P99 TTFT (ms):                           1074.87   
+-----Time per Output Token (excl. 1st token)------
+Mean TPOT (ms):                          20.84     
+Median TPOT (ms):                        20.91     
+P99 TPOT (ms):                           20.96     
+---------------Inter-token Latency----------------
+Mean ITL (ms):                           20.83     
+Median ITL (ms):                         20.70     
+P99 ITL (ms):                            21.09     
+==================================================
+===== tier 4K/4K c16 nospec 15:53:11 =====
+W1028 23:53:13.347000 2760394 torch/_opaque_base.py:6] torch._opaque_base is deprecated, use torch._custom_class_base instead
+W1028 23:53:13.348000 2760394 torch/_library/opaque_object.py:288] register_opaque_type is deprecated, use register_custom_class instead
+W1028 23:53:13.348000 2760394 torch/_library/opaque_object.py:211] typ='value' is deprecated, use typ='constant' instead
+FlashInfer kernels are disabled: flashinfer-cubin is not installed and nvcc (CUDA_HOME, CUDA_PATH, PATH or /usr/local/cuda) or ninja (PATH) is missing. Set CUDA_HOME to a CUDA toolkit and put ninja on PATH, or run `vllm download-kernels`.
+Namespace(subparser='bench', bench_type='serve', dispatch_function=<function BenchmarkServingSubcommand.cmd at 0x7195aa72a5c0>, trust_remote_code=False, seed=0, num_prompts=16, dataset_name='random', no_stream=False, dataset_path=None, no_oversample=False, skip_chat_template=False, enable_multimodal_chat=False, disable_shuffle=False, custom_output_len=256, custom_ensure_client_side_data=False, spec_bench_output_len=256, spec_bench_category=None, sharegpt_output_len=None, timed_trace_chunk_hash_size=16, timed_trace_sec_multiplier=1, timed_trace_label_timestamp='timestamp', timed_trace_label_input_length='input_length', timed_trace_label_output_length='output_length', timed_trace_label_hash_ids='hash_ids', blazedit_min_distance=0.0, blazedit_max_distance=1.0, asr_max_audio_len_sec=inf, asr_min_audio_len_sec=0.0, random_input_len=4096, random_output_len=4096, random_range_ratio='0.0', random_prefix_len=0, random_batch_size=1, no_reranker=False, random_mm_base_items_per_request=1, random_mm_num_mm_items_range_ratio=0.0, random_mm_limit_mm_per_prompt={'image': 255, 'video': 1}, random_mm_bucket_config={(256, 256, 1): 0.5, (720, 1280, 1): 0.5, (720, 1280, 16): 0.0}, hf_subset=None, hf_split=None, hf_name=None, hf_output_len=None, bfcl_categories=None, prefix_repetition_prefix_len=256, prefix_repetition_suffix_len=256, prefix_repetition_num_prefixes=10, prefix_repetition_output_len=128, speed_bench_dataset_subset='qualitative', speed_bench_output_len=4096, speed_bench_category=None, label=None, backend='openai', base_url='http://127.0.0.1:8123', host='127.0.0.1', port=8000, endpoint='/v1/completions', header=None, max_concurrency=None, model='glm-5.3-flash', input_len=None, output_len=None, tokenizer='/data/models/GLM-5.3-Flash', tokenizer_mode='auto', use_beam_search=False, logprobs=None, request_rate=16.0, burstiness=1.0, probe_request_rate=0.0, disable_tqdm=False, num_warmups=0, profile=False, save_result=False, save_detailed=False, append_result=False, metadata=None, result_dir=None, result_filename=None, ignore_eos=True, self_timed=None, percentile_metrics=None, metric_percentiles='99', goodput=None, request_id_prefix='bench-5cab6a4f-', top_p=None, top_k=None, min_p=None, temperature=None, frequency_penalty=None, presence_penalty=None, repetition_penalty=None, served_model_name=None, lora_modules=None, lora_assignment='random', ramp_up_strategy=None, ramp_up_start_rps=None, ramp_up_end_rps=None, ready_check_timeout_sec=0, chat_template_kwargs=None, extra_body=None, skip_tokenizer_init=False, insecure=False, plot_timeline=False, timeline_itl_thresholds='25,50', plot_dataset_stats=False, log_config_file=None, logging_config=LoggingConfig(log_level='INFO', formatter='text', configure_logging=True, pylogging_config_file=None))
+(MainProcess pid=2760394) INFO 10-28 23:53:17 [utils.py:88] Sampling input_len from [4096, 4096] and output_len from [4096, 4096]
+WARNING: vllm bench serve no longer sets temperature==0 (greedy) in requests by default. The default will be determined on the server side and can be model/API specific. For the old behavior, include --temperature=0.
+Starting initial single prompt test run...
+Skipping endpoint ready check.
+Starting main benchmark run...
+Traffic request rate: 16.0
+Burstiness factor: 1.0 (Poisson process)
+Maximum request concurrency: None
+  0%|          | 0/16 [00:00<?, ?it/s]  6%|▋         | 1/16 [01:43<25:49, 103.32s/it] 19%|█▉        | 3/16 [01:43<05:48, 26.83s/it]  50%|█████     | 8/16 [01:43<00:59,  7.38s/it] 69%|██████▉   | 11/16 [01:43<00:22,  4.57s/it]100%|██████████| 16/16 [01:43<00:00,  6.49s/it]
+tip: install termplotlib and gnuplot to plot the metrics
+============ Serving Benchmark Result ============
+Successful requests:                     16        
+Failed requests:                         0         
+Request rate configured (RPS):           16.00     
+Benchmark duration (s):                  103.79    
+Total input tokens:                      65536     
+Total generated tokens:                  65536     
+Request throughput (req/s):              0.15      
+Output token throughput (tok/s):         631.40    
+Peak output token throughput (tok/s):    688.00    
+Peak concurrent requests:                16.00     
+Total token throughput (tok/s):          1262.81   
+---------------Time to First Token----------------
+Mean TTFT (ms):                          893.44    
+Median TTFT (ms):                        283.49    
+P99 TTFT (ms):                           2500.48   
+-----Time per Output Token (excl. 1st token)------
+Mean TPOT (ms):                          24.95     
+Median TPOT (ms):                        25.11     
+P99 TPOT (ms):                           25.20     
+---------------Inter-token Latency----------------
+Mean ITL (ms):                           24.95     
+Median ITL (ms):                         24.22     
+P99 ITL (ms):                            26.86     
+==================================================
+===== tier 4K/4K c32 nospec 15:55:02 =====
+W1028 23:55:04.375000 2774543 torch/_opaque_base.py:6] torch._opaque_base is deprecated, use torch._custom_class_base instead
+W1028 23:55:04.376000 2774543 torch/_library/opaque_object.py:288] register_opaque_type is deprecated, use register_custom_class instead
+W1028 23:55:04.376000 2774543 torch/_library/opaque_object.py:211] typ='value' is deprecated, use typ='constant' instead
+FlashInfer kernels are disabled: flashinfer-cubin is not installed and nvcc (CUDA_HOME, CUDA_PATH, PATH or /usr/local/cuda) or ninja (PATH) is missing. Set CUDA_HOME to a CUDA toolkit and put ninja on PATH, or run `vllm download-kernels`.
+Namespace(subparser='bench', bench_type='serve', dispatch_function=<function BenchmarkServingSubcommand.cmd at 0x72181a532020>, trust_remote_code=False, seed=0, num_prompts=32, dataset_name='random', no_stream=False, dataset_path=None, no_oversample=False, skip_chat_template=False, enable_multimodal_chat=False, disable_shuffle=False, custom_output_len=256, custom_ensure_client_side_data=False, spec_bench_output_len=256, spec_bench_category=None, sharegpt_output_len=None, timed_trace_chunk_hash_size=16, timed_trace_sec_multiplier=1, timed_trace_label_timestamp='timestamp', timed_trace_label_input_length='input_length', timed_trace_label_output_length='output_length', timed_trace_label_hash_ids='hash_ids', blazedit_min_distance=0.0, blazedit_max_distance=1.0, asr_max_audio_len_sec=inf, asr_min_audio_len_sec=0.0, random_input_len=4096, random_output_len=4096, random_range_ratio='0.0', random_prefix_len=0, random_batch_size=1, no_reranker=False, random_mm_base_items_per_request=1, random_mm_num_mm_items_range_ratio=0.0, random_mm_limit_mm_per_prompt={'image': 255, 'video': 1}, random_mm_bucket_config={(256, 256, 1): 0.5, (720, 1280, 1): 0.5, (720, 1280, 16): 0.0}, hf_subset=None, hf_split=None, hf_name=None, hf_output_len=None, bfcl_categories=None, prefix_repetition_prefix_len=256, prefix_repetition_suffix_len=256, prefix_repetition_num_prefixes=10, prefix_repetition_output_len=128, speed_bench_dataset_subset='qualitative', speed_bench_output_len=4096, speed_bench_category=None, label=None, backend='openai', base_url='http://127.0.0.1:8123', host='127.0.0.1', port=8000, endpoint='/v1/completions', header=None, max_concurrency=None, model='glm-5.3-flash', input_len=None, output_len=None, tokenizer='/data/models/GLM-5.3-Flash', tokenizer_mode='auto', use_beam_search=False, logprobs=None, request_rate=32.0, burstiness=1.0, probe_request_rate=0.0, disable_tqdm=False, num_warmups=0, profile=False, save_result=False, save_detailed=False, append_result=False, metadata=None, result_dir=None, result_filename=None, ignore_eos=True, self_timed=None, percentile_metrics=None, metric_percentiles='99', goodput=None, request_id_prefix='bench-82b134e8-', top_p=None, top_k=None, min_p=None, temperature=None, frequency_penalty=None, presence_penalty=None, repetition_penalty=None, served_model_name=None, lora_modules=None, lora_assignment='random', ramp_up_strategy=None, ramp_up_start_rps=None, ramp_up_end_rps=None, ready_check_timeout_sec=0, chat_template_kwargs=None, extra_body=None, skip_tokenizer_init=False, insecure=False, plot_timeline=False, timeline_itl_thresholds='25,50', plot_dataset_stats=False, log_config_file=None, logging_config=LoggingConfig(log_level='INFO', formatter='text', configure_logging=True, pylogging_config_file=None))
+(MainProcess pid=2774543) INFO 10-28 23:55:08 [utils.py:88] Sampling input_len from [4096, 4096] and output_len from [4096, 4096]
+WARNING: vllm bench serve no longer sets temperature==0 (greedy) in requests by default. The default will be determined on the server side and can be model/API specific. For the old behavior, include --temperature=0.
+Starting initial single prompt test run...
+Skipping endpoint ready check.
+Starting main benchmark run...
+Traffic request rate: 32.0
+Burstiness factor: 1.0 (Poisson process)
+Maximum request concurrency: None
+  0%|          | 0/32 [00:00<?, ?it/s]  3%|▎         | 1/32 [02:17<1:10:54, 137.25s/it] 16%|█▌        | 5/32 [02:17<09:12, 20.47s/it]    44%|████▍     | 14/32 [02:17<01:38,  5.49s/it] 78%|███████▊  | 25/32 [02:17<00:16,  2.41s/it]100%|██████████| 32/32 [02:17<00:00,  4.30s/it]
+tip: install termplotlib and gnuplot to plot the metrics
+============ Serving Benchmark Result ============
+Successful requests:                     32        
+Failed requests:                         0         
+Request rate configured (RPS):           32.00     
+Benchmark duration (s):                  137.67    
+Total input tokens:                      131072    
+Total generated tokens:                  131072    
+Request throughput (req/s):              0.23      
+Output token throughput (tok/s):         952.04    
+Peak output token throughput (tok/s):    1056.00   
+Peak concurrent requests:                32.00     
+Total token throughput (tok/s):          1904.09   
+---------------Time to First Token----------------
+Mean TTFT (ms):                          1691.36   
+Median TTFT (ms):                        547.16    
+P99 TTFT (ms):                           5213.24   
+-----Time per Output Token (excl. 1st token)------
+Mean TPOT (ms):                          33.04     
+Median TPOT (ms):                        33.33     
+P99 TPOT (ms):                           33.49     
+---------------Inter-token Latency----------------
+Mean ITL (ms):                           33.03     
+Median ITL (ms):                         31.42     
+P99 ITL (ms):                            36.51     
+==================================================
+===== tier 8K/8K c1 nospec 15:57:27 =====
+W1028 23:57:29.559000 2793209 torch/_opaque_base.py:6] torch._opaque_base is deprecated, use torch._custom_class_base instead
+W1028 23:57:29.560000 2793209 torch/_library/opaque_object.py:288] register_opaque_type is deprecated, use register_custom_class instead
+W1028 23:57:29.560000 2793209 torch/_library/opaque_object.py:211] typ='value' is deprecated, use typ='constant' instead
+FlashInfer kernels are disabled: flashinfer-cubin is not installed and nvcc (CUDA_HOME, CUDA_PATH, PATH or /usr/local/cuda) or ninja (PATH) is missing. Set CUDA_HOME to a CUDA toolkit and put ninja on PATH, or run `vllm download-kernels`.
+Namespace(subparser='bench', bench_type='serve', dispatch_function=<function BenchmarkServingSubcommand.cmd at 0x7df61773a020>, trust_remote_code=False, seed=0, num_prompts=1, dataset_name='random', no_stream=False, dataset_path=None, no_oversample=False, skip_chat_template=False, enable_multimodal_chat=False, disable_shuffle=False, custom_output_len=256, custom_ensure_client_side_data=False, spec_bench_output_len=256, spec_bench_category=None, sharegpt_output_len=None, timed_trace_chunk_hash_size=16, timed_trace_sec_multiplier=1, timed_trace_label_timestamp='timestamp', timed_trace_label_input_length='input_length', timed_trace_label_output_length='output_length', timed_trace_label_hash_ids='hash_ids', blazedit_min_distance=0.0, blazedit_max_distance=1.0, asr_max_audio_len_sec=inf, asr_min_audio_len_sec=0.0, random_input_len=8192, random_output_len=8192, random_range_ratio='0.0', random_prefix_len=0, random_batch_size=1, no_reranker=False, random_mm_base_items_per_request=1, random_mm_num_mm_items_range_ratio=0.0, random_mm_limit_mm_per_prompt={'image': 255, 'video': 1}, random_mm_bucket_config={(256, 256, 1): 0.5, (720, 1280, 1): 0.5, (720, 1280, 16): 0.0}, hf_subset=None, hf_split=None, hf_name=None, hf_output_len=None, bfcl_categories=None, prefix_repetition_prefix_len=256, prefix_repetition_suffix_len=256, prefix_repetition_num_prefixes=10, prefix_repetition_output_len=128, speed_bench_dataset_subset='qualitative', speed_bench_output_len=4096, speed_bench_category=None, label=None, backend='openai', base_url='http://127.0.0.1:8123', host='127.0.0.1', port=8000, endpoint='/v1/completions', header=None, max_concurrency=None, model='glm-5.3-flash', input_len=None, output_len=None, tokenizer='/data/models/GLM-5.3-Flash', tokenizer_mode='auto', use_beam_search=False, logprobs=None, request_rate=1.0, burstiness=1.0, probe_request_rate=0.0, disable_tqdm=False, num_warmups=0, profile=False, save_result=False, save_detailed=False, append_result=False, metadata=None, result_dir=None, result_filename=None, ignore_eos=True, self_timed=None, percentile_metrics=None, metric_percentiles='99', goodput=None, request_id_prefix='bench-fbb4082e-', top_p=None, top_k=None, min_p=None, temperature=None, frequency_penalty=None, presence_penalty=None, repetition_penalty=None, served_model_name=None, lora_modules=None, lora_assignment='random', ramp_up_strategy=None, ramp_up_start_rps=None, ramp_up_end_rps=None, ready_check_timeout_sec=0, chat_template_kwargs=None, extra_body=None, skip_tokenizer_init=False, insecure=False, plot_timeline=False, timeline_itl_thresholds='25,50', plot_dataset_stats=False, log_config_file=None, logging_config=LoggingConfig(log_level='INFO', formatter='text', configure_logging=True, pylogging_config_file=None))
+(MainProcess pid=2793209) INFO 10-28 23:57:33 [utils.py:88] Sampling input_len from [8192, 8192] and output_len from [8192, 8192]
+WARNING: vllm bench serve no longer sets temperature==0 (greedy) in requests by default. The default will be determined on the server side and can be model/API specific. For the old behavior, include --temperature=0.
+Starting initial single prompt test run...
+Skipping endpoint ready check.
+Starting main benchmark run...
+Traffic request rate: 1.0
+Burstiness factor: 1.0 (Poisson process)
+Maximum request concurrency: None
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [01:36<00:00, 96.33s/it]100%|██████████| 1/1 [01:36<00:00, 96.33s/it]
+tip: install termplotlib and gnuplot to plot the metrics
+============ Serving Benchmark Result ============
+Successful requests:                     1         
+Failed requests:                         0         
+Request rate configured (RPS):           1.00      
+Benchmark duration (s):                  96.33     
+Total input tokens:                      8192      
+Total generated tokens:                  8192      
+Request throughput (req/s):              0.01      
+Output token throughput (tok/s):         85.04     
+Peak output token throughput (tok/s):    89.00     
+Peak concurrent requests:                1.00      
+Total token throughput (tok/s):          170.08    
+---------------Time to First Token----------------
+Mean TTFT (ms):                          351.57    
+Median TTFT (ms):                        351.57    
+P99 TTFT (ms):                           351.57    
+-----Time per Output Token (excl. 1st token)------
+Mean TPOT (ms):                          11.60     
+Median TPOT (ms):                        11.60     
+P99 TPOT (ms):                           11.60     
+---------------Inter-token Latency----------------
+Mean ITL (ms):                           11.59     
+Median ITL (ms):                         11.61     
+P99 ITL (ms):                            11.82     
+==================================================
+===== tier 8K/8K c2 nospec 15:59:10 =====
+W1028 23:59:12.784000 2806454 torch/_opaque_base.py:6] torch._opaque_base is deprecated, use torch._custom_class_base instead
+W1028 23:59:12.784000 2806454 torch/_library/opaque_object.py:288] register_opaque_type is deprecated, use register_custom_class instead
+W1028 23:59:12.785000 2806454 torch/_library/opaque_object.py:211] typ='value' is deprecated, use typ='constant' instead
+FlashInfer kernels are disabled: flashinfer-cubin is not installed and nvcc (CUDA_HOME, CUDA_PATH, PATH or /usr/local/cuda) or ninja (PATH) is missing. Set CUDA_HOME to a CUDA toolkit and put ninja on PATH, or run `vllm download-kernels`.
+Namespace(subparser='bench', bench_type='serve', dispatch_function=<function BenchmarkServingSubcommand.cmd at 0x7318fe332020>, trust_remote_code=False, seed=0, num_prompts=2, dataset_name='random', no_stream=False, dataset_path=None, no_oversample=False, skip_chat_template=False, enable_multimodal_chat=False, disable_shuffle=False, custom_output_len=256, custom_ensure_client_side_data=False, spec_bench_output_len=256, spec_bench_category=None, sharegpt_output_len=None, timed_trace_chunk_hash_size=16, timed_trace_sec_multiplier=1, timed_trace_label_timestamp='timestamp', timed_trace_label_input_length='input_length', timed_trace_label_output_length='output_length', timed_trace_label_hash_ids='hash_ids', blazedit_min_distance=0.0, blazedit_max_distance=1.0, asr_max_audio_len_sec=inf, asr_min_audio_len_sec=0.0, random_input_len=8192, random_output_len=8192, random_range_ratio='0.0', random_prefix_len=0, random_batch_size=1, no_reranker=False, random_mm_base_items_per_request=1, random_mm_num_mm_items_range_ratio=0.0, random_mm_limit_mm_per_prompt={'image': 255, 'video': 1}, random_mm_bucket_config={(256, 256, 1): 0.5, (720, 1280, 1): 0.5, (720, 1280, 16): 0.0}, hf_subset=None, hf_split=None, hf_name=None, hf_output_len=None, bfcl_categories=None, prefix_repetition_prefix_len=256, prefix_repetition_suffix_len=256, prefix_repetition_num_prefixes=10, prefix_repetition_output_len=128, speed_bench_dataset_subset='qualitative', speed_bench_output_len=4096, speed_bench_category=None, label=None, backend='openai', base_url='http://127.0.0.1:8123', host='127.0.0.1', port=8000, endpoint='/v1/completions', header=None, max_concurrency=None, model='glm-5.3-flash', input_len=None, output_len=None, tokenizer='/data/models/GLM-5.3-Flash', tokenizer_mode='auto', use_beam_search=False, logprobs=None, request_rate=2.0, burstiness=1.0, probe_request_rate=0.0, disable_tqdm=False, num_warmups=0, profile=False, save_result=False, save_detailed=False, append_result=False, metadata=None, result_dir=None, result_filename=None, ignore_eos=True, self_timed=None, percentile_metrics=None, metric_percentiles='99', goodput=None, request_id_prefix='bench-2a6c85e7-', top_p=None, top_k=None, min_p=None, temperature=None, frequency_penalty=None, presence_penalty=None, repetition_penalty=None, served_model_name=None, lora_modules=None, lora_assignment='random', ramp_up_strategy=None, ramp_up_start_rps=None, ramp_up_end_rps=None, ready_check_timeout_sec=0, chat_template_kwargs=None, extra_body=None, skip_tokenizer_init=False, insecure=False, plot_timeline=False, timeline_itl_thresholds='25,50', plot_dataset_stats=False, log_config_file=None, logging_config=LoggingConfig(log_level='INFO', formatter='text', configure_logging=True, pylogging_config_file=None))
+(MainProcess pid=2806454) INFO 10-28 23:59:16 [utils.py:88] Sampling input_len from [8192, 8192] and output_len from [8192, 8192]
+WARNING: vllm bench serve no longer sets temperature==0 (greedy) in requests by default. The default will be determined on the server side and can be model/API specific. For the old behavior, include --temperature=0.
+Starting initial single prompt test run...
+Skipping endpoint ready check.
+Starting main benchmark run...
+Traffic request rate: 2.0
+Burstiness factor: 1.0 (Poisson process)
+Maximum request concurrency: None
+  0%|          | 0/2 [00:00<?, ?it/s] 50%|█████     | 1/2 [01:48<01:48, 108.96s/it]100%|██████████| 2/2 [01:49<00:00, 45.19s/it] 100%|██████████| 2/2 [01:49<00:00, 54.75s/it]
+tip: install termplotlib and gnuplot to plot the metrics
+============ Serving Benchmark Result ============
+Successful requests:                     2         
+Failed requests:                         0         
+Request rate configured (RPS):           2.00      
+Benchmark duration (s):                  109.51    
+Total input tokens:                      16384     
+Total generated tokens:                  16384     
+Request throughput (req/s):              0.02      
+Output token throughput (tok/s):         149.61    
+Peak output token throughput (tok/s):    154.00    
+Peak concurrent requests:                2.00      
+Total token throughput (tok/s):          299.22    
+---------------Time to First Token----------------
+Mean TTFT (ms):                          234.79    
+Median TTFT (ms):                        234.79    
+P99 TTFT (ms):                           369.93    
+-----Time per Output Token (excl. 1st token)------
+Mean TPOT (ms):                          13.22     
+Median TPOT (ms):                        13.22     
+P99 TPOT (ms):                           13.24     
+---------------Inter-token Latency----------------
+Mean ITL (ms):                           13.22     
+Median ITL (ms):                         13.23     
+P99 ITL (ms):                            13.44     
+==================================================
+===== tier 8K/8K c4 nospec 16:01:06 =====
+W1029 00:01:09.188000 2821573 torch/_opaque_base.py:6] torch._opaque_base is deprecated, use torch._custom_class_base instead
+W1029 00:01:09.188000 2821573 torch/_library/opaque_object.py:288] register_opaque_type is deprecated, use register_custom_class instead
+W1029 00:01:09.188000 2821573 torch/_library/opaque_object.py:211] typ='value' is deprecated, use typ='constant' instead
+FlashInfer kernels are disabled: flashinfer-cubin is not installed and nvcc (CUDA_HOME, CUDA_PATH, PATH or /usr/local/cuda) or ninja (PATH) is missing. Set CUDA_HOME to a CUDA toolkit and put ninja on PATH, or run `vllm download-kernels`.
+Namespace(subparser='bench', bench_type='serve', dispatch_function=<function BenchmarkServingSubcommand.cmd at 0x7cb32c7260c0>, trust_remote_code=False, seed=0, num_prompts=4, dataset_name='random', no_stream=False, dataset_path=None, no_oversample=False, skip_chat_template=False, enable_multimodal_chat=False, disable_shuffle=False, custom_output_len=256, custom_ensure_client_side_data=False, spec_bench_output_len=256, spec_bench_category=None, sharegpt_output_len=None, timed_trace_chunk_hash_size=16, timed_trace_sec_multiplier=1, timed_trace_label_timestamp='timestamp', timed_trace_label_input_length='input_length', timed_trace_label_output_length='output_length', timed_trace_label_hash_ids='hash_ids', blazedit_min_distance=0.0, blazedit_max_distance=1.0, asr_max_audio_len_sec=inf, asr_min_audio_len_sec=0.0, random_input_len=8192, random_output_len=8192, random_range_ratio='0.0', random_prefix_len=0, random_batch_size=1, no_reranker=False, random_mm_base_items_per_request=1, random_mm_num_mm_items_range_ratio=0.0, random_mm_limit_mm_per_prompt={'image': 255, 'video': 1}, random_mm_bucket_config={(256, 256, 1): 0.5, (720, 1280, 1): 0.5, (720, 1280, 16): 0.0}, hf_subset=None, hf_split=None, hf_name=None, hf_output_len=None, bfcl_categories=None, prefix_repetition_prefix_len=256, prefix_repetition_suffix_len=256, prefix_repetition_num_prefixes=10, prefix_repetition_output_len=128, speed_bench_dataset_subset='qualitative', speed_bench_output_len=4096, speed_bench_category=None, label=None, backend='openai', base_url='http://127.0.0.1:8123', host='127.0.0.1', port=8000, endpoint='/v1/completions', header=None, max_concurrency=None, model='glm-5.3-flash', input_len=None, output_len=None, tokenizer='/data/models/GLM-5.3-Flash', tokenizer_mode='auto', use_beam_search=False, logprobs=None, request_rate=4.0, burstiness=1.0, probe_request_rate=0.0, disable_tqdm=False, num_warmups=0, profile=False, save_result=False, save_detailed=False, append_result=False, metadata=None, result_dir=None, result_filename=None, ignore_eos=True, self_timed=None, percentile_metrics=None, metric_percentiles='99', goodput=None, request_id_prefix='bench-08add56f-', top_p=None, top_k=None, min_p=None, temperature=None, frequency_penalty=None, presence_penalty=None, repetition_penalty=None, served_model_name=None, lora_modules=None, lora_assignment='random', ramp_up_strategy=None, ramp_up_start_rps=None, ramp_up_end_rps=None, ready_check_timeout_sec=0, chat_template_kwargs=None, extra_body=None, skip_tokenizer_init=False, insecure=False, plot_timeline=False, timeline_itl_thresholds='25,50', plot_dataset_stats=False, log_config_file=None, logging_config=LoggingConfig(log_level='INFO', formatter='text', configure_logging=True, pylogging_config_file=None))
+(MainProcess pid=2821573) INFO 10-29 00:01:13 [utils.py:88] Sampling input_len from [8192, 8192] and output_len from [8192, 8192]
+WARNING: vllm bench serve no longer sets temperature==0 (greedy) in requests by default. The default will be determined on the server side and can be model/API specific. For the old behavior, include --temperature=0.
+Starting initial single prompt test run...
+Skipping endpoint ready check.
+Starting main benchmark run...
+Traffic request rate: 4.0
+Burstiness factor: 1.0 (Poisson process)
+Maximum request concurrency: None
+  0%|          | 0/4 [00:00<?, ?it/s] 25%|██▌       | 1/4 [02:12<06:37, 132.36s/it] 50%|█████     | 2/4 [02:12<01:49, 54.73s/it]  75%|███████▌  | 3/4 [02:12<00:29, 29.82s/it]100%|██████████| 4/4 [02:12<00:00, 33.24s/it]
+tip: install termplotlib and gnuplot to plot the metrics
+============ Serving Benchmark Result ============
+Successful requests:                     4         
+Failed requests:                         0         
+Request rate configured (RPS):           4.00      
+Benchmark duration (s):                  132.94    
+Total input tokens:                      32768     
+Total generated tokens:                  32768     
+Request throughput (req/s):              0.03      
+Output token throughput (tok/s):         246.49    
+Peak output token throughput (tok/s):    252.00    
+Peak concurrent requests:                4.00      
+Total token throughput (tok/s):          492.97    
+---------------Time to First Token----------------
+Mean TTFT (ms):                          272.21    
+Median TTFT (ms):                        238.45    
+P99 TTFT (ms):                           518.04    
+-----Time per Output Token (excl. 1st token)------
+Mean TPOT (ms):                          16.09     
+Median TPOT (ms):                        16.10     
+P99 TPOT (ms):                           16.13     
+---------------Inter-token Latency----------------
+Mean ITL (ms):                           16.09     
+Median ITL (ms):                         16.01     
+P99 ITL (ms):                            16.56     
+==================================================
+===== tier 8K/8K c8 nospec 16:03:27 =====
+W1029 00:03:29.249000 2839354 torch/_opaque_base.py:6] torch._opaque_base is deprecated, use torch._custom_class_base instead
+W1029 00:03:29.249000 2839354 torch/_library/opaque_object.py:288] register_opaque_type is deprecated, use register_custom_class instead
+W1029 00:03:29.250000 2839354 torch/_library/opaque_object.py:211] typ='value' is deprecated, use typ='constant' instead
+FlashInfer kernels are disabled: flashinfer-cubin is not installed and nvcc (CUDA_HOME, CUDA_PATH, PATH or /usr/local/cuda) or ninja (PATH) is missing. Set CUDA_HOME to a CUDA toolkit and put ninja on PATH, or run `vllm download-kernels`.
+Namespace(subparser='bench', bench_type='serve', dispatch_function=<function BenchmarkServingSubcommand.cmd at 0x7a5166332520>, trust_remote_code=False, seed=0, num_prompts=8, dataset_name='random', no_stream=False, dataset_path=None, no_oversample=False, skip_chat_template=False, enable_multimodal_chat=False, disable_shuffle=False, custom_output_len=256, custom_ensure_client_side_data=False, spec_bench_output_len=256, spec_bench_category=None, sharegpt_output_len=None, timed_trace_chunk_hash_size=16, timed_trace_sec_multiplier=1, timed_trace_label_timestamp='timestamp', timed_trace_label_input_length='input_length', timed_trace_label_output_length='output_length', timed_trace_label_hash_ids='hash_ids', blazedit_min_distance=0.0, blazedit_max_distance=1.0, asr_max_audio_len_sec=inf, asr_min_audio_len_sec=0.0, random_input_len=8192, random_output_len=8192, random_range_ratio='0.0', random_prefix_len=0, random_batch_size=1, no_reranker=False, random_mm_base_items_per_request=1, random_mm_num_mm_items_range_ratio=0.0, random_mm_limit_mm_per_prompt={'image': 255, 'video': 1}, random_mm_bucket_config={(256, 256, 1): 0.5, (720, 1280, 1): 0.5, (720, 1280, 16): 0.0}, hf_subset=None, hf_split=None, hf_name=None, hf_output_len=None, bfcl_categories=None, prefix_repetition_prefix_len=256, prefix_repetition_suffix_len=256, prefix_repetition_num_prefixes=10, prefix_repetition_output_len=128, speed_bench_dataset_subset='qualitative', speed_bench_output_len=4096, speed_bench_category=None, label=None, backend='openai', base_url='http://127.0.0.1:8123', host='127.0.0.1', port=8000, endpoint='/v1/completions', header=None, max_concurrency=None, model='glm-5.3-flash', input_len=None, output_len=None, tokenizer='/data/models/GLM-5.3-Flash', tokenizer_mode='auto', use_beam_search=False, logprobs=None, request_rate=8.0, burstiness=1.0, probe_request_rate=0.0, disable_tqdm=False, num_warmups=0, profile=False, save_result=False, save_detailed=False, append_result=False, metadata=None, result_dir=None, result_filename=None, ignore_eos=True, self_timed=None, percentile_metrics=None, metric_percentiles='99', goodput=None, request_id_prefix='bench-69442ada-', top_p=None, top_k=None, min_p=None, temperature=None, frequency_penalty=None, presence_penalty=None, repetition_penalty=None, served_model_name=None, lora_modules=None, lora_assignment='random', ramp_up_strategy=None, ramp_up_start_rps=None, ramp_up_end_rps=None, ready_check_timeout_sec=0, chat_template_kwargs=None, extra_body=None, skip_tokenizer_init=False, insecure=False, plot_timeline=False, timeline_itl_thresholds='25,50', plot_dataset_stats=False, log_config_file=None, logging_config=LoggingConfig(log_level='INFO', formatter='text', configure_logging=True, pylogging_config_file=None))
+(MainProcess pid=2839354) INFO 10-29 00:03:33 [utils.py:88] Sampling input_len from [8192, 8192] and output_len from [8192, 8192]
+WARNING: vllm bench serve no longer sets temperature==0 (greedy) in requests by default. The default will be determined on the server side and can be model/API specific. For the old behavior, include --temperature=0.
+Starting initial single prompt test run...
+Skipping endpoint ready check.
+Starting main benchmark run...
+Traffic request rate: 8.0
+Burstiness factor: 1.0 (Poisson process)
+Maximum request concurrency: None
+  0%|          | 0/8 [00:00<?, ?it/s] 12%|█▎        | 1/8 [02:49<19:46, 169.46s/it] 25%|██▌       | 2/8 [02:49<06:59, 69.87s/it]  50%|█████     | 4/8 [02:49<01:44, 26.10s/it]100%|██████████| 8/8 [02:49<00:00, 21.23s/it]
+tip: install termplotlib and gnuplot to plot the metrics
+============ Serving Benchmark Result ============
+Successful requests:                     8         
+Failed requests:                         0         
+Request rate configured (RPS):           8.00      
+Benchmark duration (s):                  169.83    
+Total input tokens:                      65536     
+Total generated tokens:                  65536     
+Request throughput (req/s):              0.05      
+Output token throughput (tok/s):         385.89    
+Peak output token throughput (tok/s):    400.00    
+Peak concurrent requests:                8.00      
+Total token throughput (tok/s):          771.78    
+---------------Time to First Token----------------
+Mean TTFT (ms):                          442.24    
+Median TTFT (ms):                        256.00    
+P99 TTFT (ms):                           983.38    
+-----Time per Output Token (excl. 1st token)------
+Mean TPOT (ms):                          20.60     
+Median TPOT (ms):                        20.63     
+P99 TPOT (ms):                           20.67     
+---------------Inter-token Latency----------------
+Mean ITL (ms):                           20.60     
+Median ITL (ms):                         20.50     
+P99 ITL (ms):                            20.87     
+==================================================
+===== tier 8K/8K c16 nospec 16:06:23 =====
+W1029 00:06:26.215000 2861386 torch/_opaque_base.py:6] torch._opaque_base is deprecated, use torch._custom_class_base instead
+W1029 00:06:26.215000 2861386 torch/_library/opaque_object.py:288] register_opaque_type is deprecated, use register_custom_class instead
+W1029 00:06:26.216000 2861386 torch/_library/opaque_object.py:211] typ='value' is deprecated, use typ='constant' instead
+FlashInfer kernels are disabled: flashinfer-cubin is not installed and nvcc (CUDA_HOME, CUDA_PATH, PATH or /usr/local/cuda) or ninja (PATH) is missing. Set CUDA_HOME to a CUDA toolkit and put ninja on PATH, or run `vllm download-kernels`.
+Namespace(subparser='bench', bench_type='serve', dispatch_function=<function BenchmarkServingSubcommand.cmd at 0x73583db1e520>, trust_remote_code=False, seed=0, num_prompts=16, dataset_name='random', no_stream=False, dataset_path=None, no_oversample=False, skip_chat_template=False, enable_multimodal_chat=False, disable_shuffle=False, custom_output_len=256, custom_ensure_client_side_data=False, spec_bench_output_len=256, spec_bench_category=None, sharegpt_output_len=None, timed_trace_chunk_hash_size=16, timed_trace_sec_multiplier=1, timed_trace_label_timestamp='timestamp', timed_trace_label_input_length='input_length', timed_trace_label_output_length='output_length', timed_trace_label_hash_ids='hash_ids', blazedit_min_distance=0.0, blazedit_max_distance=1.0, asr_max_audio_len_sec=inf, asr_min_audio_len_sec=0.0, random_input_len=8192, random_output_len=8192, random_range_ratio='0.0', random_prefix_len=0, random_batch_size=1, no_reranker=False, random_mm_base_items_per_request=1, random_mm_num_mm_items_range_ratio=0.0, random_mm_limit_mm_per_prompt={'image': 255, 'video': 1}, random_mm_bucket_config={(256, 256, 1): 0.5, (720, 1280, 1): 0.5, (720, 1280, 16): 0.0}, hf_subset=None, hf_split=None, hf_name=None, hf_output_len=None, bfcl_categories=None, prefix_repetition_prefix_len=256, prefix_repetition_suffix_len=256, prefix_repetition_num_prefixes=10, prefix_repetition_output_len=128, speed_bench_dataset_subset='qualitative', speed_bench_output_len=4096, speed_bench_category=None, label=None, backend='openai', base_url='http://127.0.0.1:8123', host='127.0.0.1', port=8000, endpoint='/v1/completions', header=None, max_concurrency=None, model='glm-5.3-flash', input_len=None, output_len=None, tokenizer='/data/models/GLM-5.3-Flash', tokenizer_mode='auto', use_beam_search=False, logprobs=None, request_rate=16.0, burstiness=1.0, probe_request_rate=0.0, disable_tqdm=False, num_warmups=0, profile=False, save_result=False, save_detailed=False, append_result=False, metadata=None, result_dir=None, result_filename=None, ignore_eos=True, self_timed=None, percentile_metrics=None, metric_percentiles='99', goodput=None, request_id_prefix='bench-4cc70e23-', top_p=None, top_k=None, min_p=None, temperature=None, frequency_penalty=None, presence_penalty=None, repetition_penalty=None, served_model_name=None, lora_modules=None, lora_assignment='random', ramp_up_strategy=None, ramp_up_start_rps=None, ramp_up_end_rps=None, ready_check_timeout_sec=0, chat_template_kwargs=None, extra_body=None, skip_tokenizer_init=False, insecure=False, plot_timeline=False, timeline_itl_thresholds='25,50', plot_dataset_stats=False, log_config_file=None, logging_config=LoggingConfig(log_level='INFO', formatter='text', configure_logging=True, pylogging_config_file=None))
+(MainProcess pid=2861386) INFO 10-29 00:06:30 [utils.py:88] Sampling input_len from [8192, 8192] and output_len from [8192, 8192]
+WARNING: vllm bench serve no longer sets temperature==0 (greedy) in requests by default. The default will be determined on the server side and can be model/API specific. For the old behavior, include --temperature=0.
+Starting initial single prompt test run...
+Skipping endpoint ready check.
+Starting main benchmark run...
+Traffic request rate: 16.0
+Burstiness factor: 1.0 (Poisson process)
+Maximum request concurrency: None
+  0%|          | 0/16 [00:00<?, ?it/s]  6%|▋         | 1/16 [03:34<53:35, 214.36s/it] 19%|█▉        | 3/16 [03:34<12:02, 55.61s/it]  56%|█████▋    | 9/16 [03:34<01:33, 13.34s/it]100%|██████████| 16/16 [03:34<00:00, 13.42s/it]
+tip: install termplotlib and gnuplot to plot the metrics
+============ Serving Benchmark Result ============
+Successful requests:                     16        
+Failed requests:                         0         
+Request rate configured (RPS):           16.00     
+Benchmark duration (s):                  214.72    
+Total input tokens:                      131072    
+Total generated tokens:                  131072    
+Request throughput (req/s):              0.07      
+Output token throughput (tok/s):         610.43    
+Peak output token throughput (tok/s):    656.00    
+Peak concurrent requests:                16.00     
+Total token throughput (tok/s):          1220.87   
+---------------Time to First Token----------------
+Mean TTFT (ms):                          833.04    
+Median TTFT (ms):                        327.77    
+P99 TTFT (ms):                           2328.08   
+-----Time per Output Token (excl. 1st token)------
+Mean TPOT (ms):                          26.03     
+Median TPOT (ms):                        26.10     
+P99 TPOT (ms):                           26.15     
+---------------Inter-token Latency----------------
+Mean ITL (ms):                           26.03     
+Median ITL (ms):                         25.66     
+P99 ITL (ms):                            27.63     
+==================================================
+===== tier 8K/8K c32 nospec 16:10:06 =====
+W1029 00:10:08.552000 2890101 torch/_opaque_base.py:6] torch._opaque_base is deprecated, use torch._custom_class_base instead
+W1029 00:10:08.553000 2890101 torch/_library/opaque_object.py:288] register_opaque_type is deprecated, use register_custom_class instead
+W1029 00:10:08.553000 2890101 torch/_library/opaque_object.py:211] typ='value' is deprecated, use typ='constant' instead
+FlashInfer kernels are disabled: flashinfer-cubin is not installed and nvcc (CUDA_HOME, CUDA_PATH, PATH or /usr/local/cuda) or ninja (PATH) is missing. Set CUDA_HOME to a CUDA toolkit and put ninja on PATH, or run `vllm download-kernels`.
+Namespace(subparser='bench', bench_type='serve', dispatch_function=<function BenchmarkServingSubcommand.cmd at 0x78e8c7f260c0>, trust_remote_code=False, seed=0, num_prompts=32, dataset_name='random', no_stream=False, dataset_path=None, no_oversample=False, skip_chat_template=False, enable_multimodal_chat=False, disable_shuffle=False, custom_output_len=256, custom_ensure_client_side_data=False, spec_bench_output_len=256, spec_bench_category=None, sharegpt_output_len=None, timed_trace_chunk_hash_size=16, timed_trace_sec_multiplier=1, timed_trace_label_timestamp='timestamp', timed_trace_label_input_length='input_length', timed_trace_label_output_length='output_length', timed_trace_label_hash_ids='hash_ids', blazedit_min_distance=0.0, blazedit_max_distance=1.0, asr_max_audio_len_sec=inf, asr_min_audio_len_sec=0.0, random_input_len=8192, random_output_len=8192, random_range_ratio='0.0', random_prefix_len=0, random_batch_size=1, no_reranker=False, random_mm_base_items_per_request=1, random_mm_num_mm_items_range_ratio=0.0, random_mm_limit_mm_per_prompt={'image': 255, 'video': 1}, random_mm_bucket_config={(256, 256, 1): 0.5, (720, 1280, 1): 0.5, (720, 1280, 16): 0.0}, hf_subset=None, hf_split=None, hf_name=None, hf_output_len=None, bfcl_categories=None, prefix_repetition_prefix_len=256, prefix_repetition_suffix_len=256, prefix_repetition_num_prefixes=10, prefix_repetition_output_len=128, speed_bench_dataset_subset='qualitative', speed_bench_output_len=4096, speed_bench_category=None, label=None, backend='openai', base_url='http://127.0.0.1:8123', host='127.0.0.1', port=8000, endpoint='/v1/completions', header=None, max_concurrency=None, model='glm-5.3-flash', input_len=None, output_len=None, tokenizer='/data/models/GLM-5.3-Flash', tokenizer_mode='auto', use_beam_search=False, logprobs=None, request_rate=32.0, burstiness=1.0, probe_request_rate=0.0, disable_tqdm=False, num_warmups=0, profile=False, save_result=False, save_detailed=False, append_result=False, metadata=None, result_dir=None, result_filename=None, ignore_eos=True, self_timed=None, percentile_metrics=None, metric_percentiles='99', goodput=None, request_id_prefix='bench-5ac39866-', top_p=None, top_k=None, min_p=None, temperature=None, frequency_penalty=None, presence_penalty=None, repetition_penalty=None, served_model_name=None, lora_modules=None, lora_assignment='random', ramp_up_strategy=None, ramp_up_start_rps=None, ramp_up_end_rps=None, ready_check_timeout_sec=0, chat_template_kwargs=None, extra_body=None, skip_tokenizer_init=False, insecure=False, plot_timeline=False, timeline_itl_thresholds='25,50', plot_dataset_stats=False, log_config_file=None, logging_config=LoggingConfig(log_level='INFO', formatter='text', configure_logging=True, pylogging_config_file=None))
+(MainProcess pid=2890101) INFO 10-29 00:10:12 [utils.py:88] Sampling input_len from [8192, 8192] and output_len from [8192, 8192]
+WARNING: vllm bench serve no longer sets temperature==0 (greedy) in requests by default. The default will be determined on the server side and can be model/API specific. For the old behavior, include --temperature=0.
+Starting initial single prompt test run...
+Skipping endpoint ready check.
+Starting main benchmark run...
+Traffic request rate: 32.0
+Burstiness factor: 1.0 (Poisson process)
+Maximum request concurrency: None
+  0%|          | 0/32 [00:00<?, ?it/s]  3%|▎         | 1/32 [04:33<2:21:07, 273.13s/it] 19%|█▉        | 6/32 [04:33<14:32, 33.57s/it]    59%|█████▉    | 19/32 [04:33<01:42,  7.89s/it] 88%|████████▊ | 28/32 [04:33<00:17,  4.50s/it]100%|██████████| 32/32 [04:33<00:00,  8.55s/it]
+tip: install termplotlib and gnuplot to plot the metrics
+============ Serving Benchmark Result ============
+Successful requests:                     32        
+Failed requests:                         0         
+Request rate configured (RPS):           32.00     
+Benchmark duration (s):                  273.51    
+Total input tokens:                      262144    
+Total generated tokens:                  262144    
+Request throughput (req/s):              0.12      
+Output token throughput (tok/s):         958.46    
+Peak output token throughput (tok/s):    1024.00   
+Peak concurrent requests:                32.00     
+Total token throughput (tok/s):          1916.92   
+---------------Time to First Token----------------
+Mean TTFT (ms):                          1776.75   
+Median TTFT (ms):                        820.51    
+P99 TTFT (ms):                           5217.37   
+-----Time per Output Token (excl. 1st token)------
+Mean TPOT (ms):                          33.09     
+Median TPOT (ms):                        33.22     
+P99 TPOT (ms):                           33.33     
+---------------Inter-token Latency----------------
+Mean ITL (ms):                           33.09     
+Median ITL (ms):                         32.33     
+P99 ITL (ms):                            36.66     
+==================================================
+===== tier 32K/32K c1 nospec 16:14:47 =====
+W1029 00:14:49.994000 2924763 torch/_opaque_base.py:6] torch._opaque_base is deprecated, use torch._custom_class_base instead
+W1029 00:14:49.994000 2924763 torch/_library/opaque_object.py:288] register_opaque_type is deprecated, use register_custom_class instead
+W1029 00:14:49.995000 2924763 torch/_library/opaque_object.py:211] typ='value' is deprecated, use typ='constant' instead
+FlashInfer kernels are disabled: flashinfer-cubin is not installed and nvcc (CUDA_HOME, CUDA_PATH, PATH or /usr/local/cuda) or ninja (PATH) is missing. Set CUDA_HOME to a CUDA toolkit and put ninja on PATH, or run `vllm download-kernels`.
+Namespace(subparser='bench', bench_type='serve', dispatch_function=<function BenchmarkServingSubcommand.cmd at 0x7e795531e0c0>, trust_remote_code=False, seed=0, num_prompts=1, dataset_name='random', no_stream=False, dataset_path=None, no_oversample=False, skip_chat_template=False, enable_multimodal_chat=False, disable_shuffle=False, custom_output_len=256, custom_ensure_client_side_data=False, spec_bench_output_len=256, spec_bench_category=None, sharegpt_output_len=None, timed_trace_chunk_hash_size=16, timed_trace_sec_multiplier=1, timed_trace_label_timestamp='timestamp', timed_trace_label_input_length='input_length', timed_trace_label_output_length='output_length', timed_trace_label_hash_ids='hash_ids', blazedit_min_distance=0.0, blazedit_max_distance=1.0, asr_max_audio_len_sec=inf, asr_min_audio_len_sec=0.0, random_input_len=32768, random_output_len=32768, random_range_ratio='0.0', random_prefix_len=0, random_batch_size=1, no_reranker=False, random_mm_base_items_per_request=1, random_mm_num_mm_items_range_ratio=0.0, random_mm_limit_mm_per_prompt={'image': 255, 'video': 1}, random_mm_bucket_config={(256, 256, 1): 0.5, (720, 1280, 1): 0.5, (720, 1280, 16): 0.0}, hf_subset=None, hf_split=None, hf_name=None, hf_output_len=None, bfcl_categories=None, prefix_repetition_prefix_len=256, prefix_repetition_suffix_len=256, prefix_repetition_num_prefixes=10, prefix_repetition_output_len=128, speed_bench_dataset_subset='qualitative', speed_bench_output_len=4096, speed_bench_category=None, label=None, backend='openai', base_url='http://127.0.0.1:8123', host='127.0.0.1', port=8000, endpoint='/v1/completions', header=None, max_concurrency=None, model='glm-5.3-flash', input_len=None, output_len=None, tokenizer='/data/models/GLM-5.3-Flash', tokenizer_mode='auto', use_beam_search=False, logprobs=None, request_rate=1.0, burstiness=1.0, probe_request_rate=0.0, disable_tqdm=False, num_warmups=0, profile=False, save_result=False, save_detailed=False, append_result=False, metadata=None, result_dir=None, result_filename=None, ignore_eos=True, self_timed=None, percentile_metrics=None, metric_percentiles='99', goodput=None, request_id_prefix='bench-2c5f63ea-', top_p=None, top_k=None, min_p=None, temperature=None, frequency_penalty=None, presence_penalty=None, repetition_penalty=None, served_model_name=None, lora_modules=None, lora_assignment='random', ramp_up_strategy=None, ramp_up_start_rps=None, ramp_up_end_rps=None, ready_check_timeout_sec=0, chat_template_kwargs=None, extra_body=None, skip_tokenizer_init=False, insecure=False, plot_timeline=False, timeline_itl_thresholds='25,50', plot_dataset_stats=False, log_config_file=None, logging_config=LoggingConfig(log_level='INFO', formatter='text', configure_logging=True, pylogging_config_file=None))
+(MainProcess pid=2924763) INFO 10-29 00:14:54 [utils.py:88] Sampling input_len from [32768, 32768] and output_len from [32768, 32768]
+WARNING: vllm bench serve no longer sets temperature==0 (greedy) in requests by default. The default will be determined on the server side and can be model/API specific. For the old behavior, include --temperature=0.
+Starting initial single prompt test run...
+Skipping endpoint ready check.
+Starting main benchmark run...
+Traffic request rate: 1.0
+Burstiness factor: 1.0 (Poisson process)
+Maximum request concurrency: None
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [06:27<00:00, 387.52s/it]100%|██████████| 1/1 [06:27<00:00, 387.52s/it]
+tip: install termplotlib and gnuplot to plot the metrics
+============ Serving Benchmark Result ============
+Successful requests:                     1         
+Failed requests:                         0         
+Request rate configured (RPS):           1.00      
+Benchmark duration (s):                  387.52    
+Total input tokens:                      32768     
+Total generated tokens:                  32768     
+Request throughput (req/s):              0.00      
+Output token throughput (tok/s):         84.56     
+Peak output token throughput (tok/s):    86.00     
+Peak concurrent requests:                1.00      
+Total token throughput (tok/s):          169.12    
+---------------Time to First Token----------------
+Mean TTFT (ms):                          1971.46   
+Median TTFT (ms):                        1971.46   
+P99 TTFT (ms):                           1971.46   
+-----Time per Output Token (excl. 1st token)------
+Mean TPOT (ms):                          11.74     
+Median TPOT (ms):                        11.74     
+P99 TPOT (ms):                           11.74     
+---------------Inter-token Latency----------------
+Mean ITL (ms):                           11.74     
+Median ITL (ms):                         11.73     
+P99 ITL (ms):                            11.86     
+==================================================
+===== tier 32K/32K c2 nospec 16:21:22 =====
+W1029 00:21:24.717000 2974490 torch/_opaque_base.py:6] torch._opaque_base is deprecated, use torch._custom_class_base instead
+W1029 00:21:24.717000 2974490 torch/_library/opaque_object.py:288] register_opaque_type is deprecated, use register_custom_class instead
+W1029 00:21:24.718000 2974490 torch/_library/opaque_object.py:211] typ='value' is deprecated, use typ='constant' instead
+FlashInfer kernels are disabled: flashinfer-cubin is not installed and nvcc (CUDA_HOME, CUDA_PATH, PATH or /usr/local/cuda) or ninja (PATH) is missing. Set CUDA_HOME to a CUDA toolkit and put ninja on PATH, or run `vllm download-kernels`.
+Namespace(subparser='bench', bench_type='serve', dispatch_function=<function BenchmarkServingSubcommand.cmd at 0x7c3570702020>, trust_remote_code=False, seed=0, num_prompts=2, dataset_name='random', no_stream=False, dataset_path=None, no_oversample=False, skip_chat_template=False, enable_multimodal_chat=False, disable_shuffle=False, custom_output_len=256, custom_ensure_client_side_data=False, spec_bench_output_len=256, spec_bench_category=None, sharegpt_output_len=None, timed_trace_chunk_hash_size=16, timed_trace_sec_multiplier=1, timed_trace_label_timestamp='timestamp', timed_trace_label_input_length='input_length', timed_trace_label_output_length='output_length', timed_trace_label_hash_ids='hash_ids', blazedit_min_distance=0.0, blazedit_max_distance=1.0, asr_max_audio_len_sec=inf, asr_min_audio_len_sec=0.0, random_input_len=32768, random_output_len=32768, random_range_ratio='0.0', random_prefix_len=0, random_batch_size=1, no_reranker=False, random_mm_base_items_per_request=1, random_mm_num_mm_items_range_ratio=0.0, random_mm_limit_mm_per_prompt={'image': 255, 'video': 1}, random_mm_bucket_config={(256, 256, 1): 0.5, (720, 1280, 1): 0.5, (720, 1280, 16): 0.0}, hf_subset=None, hf_split=None, hf_name=None, hf_output_len=None, bfcl_categories=None, prefix_repetition_prefix_len=256, prefix_repetition_suffix_len=256, prefix_repetition_num_prefixes=10, prefix_repetition_output_len=128, speed_bench_dataset_subset='qualitative', speed_bench_output_len=4096, speed_bench_category=None, label=None, backend='openai', base_url='http://127.0.0.1:8123', host='127.0.0.1', port=8000, endpoint='/v1/completions', header=None, max_concurrency=None, model='glm-5.3-flash', input_len=None, output_len=None, tokenizer='/data/models/GLM-5.3-Flash', tokenizer_mode='auto', use_beam_search=False, logprobs=None, request_rate=2.0, burstiness=1.0, probe_request_rate=0.0, disable_tqdm=False, num_warmups=0, profile=False, save_result=False, save_detailed=False, append_result=False, metadata=None, result_dir=None, result_filename=None, ignore_eos=True, self_timed=None, percentile_metrics=None, metric_percentiles='99', goodput=None, request_id_prefix='bench-d3eecb90-', top_p=None, top_k=None, min_p=None, temperature=None, frequency_penalty=None, presence_penalty=None, repetition_penalty=None, served_model_name=None, lora_modules=None, lora_assignment='random', ramp_up_strategy=None, ramp_up_start_rps=None, ramp_up_end_rps=None, ready_check_timeout_sec=0, chat_template_kwargs=None, extra_body=None, skip_tokenizer_init=False, insecure=False, plot_timeline=False, timeline_itl_thresholds='25,50', plot_dataset_stats=False, log_config_file=None, logging_config=LoggingConfig(log_level='INFO', formatter='text', configure_logging=True, pylogging_config_file=None))
+(MainProcess pid=2974490) INFO 10-29 00:21:28 [utils.py:88] Sampling input_len from [32768, 32768] and output_len from [32768, 32768]
+WARNING: vllm bench serve no longer sets temperature==0 (greedy) in requests by default. The default will be determined on the server side and can be model/API specific. For the old behavior, include --temperature=0.
+Starting initial single prompt test run...
+Skipping endpoint ready check.
+Starting main benchmark run...
+Traffic request rate: 2.0
+Burstiness factor: 1.0 (Poisson process)
+Maximum request concurrency: None
+  0%|          | 0/2 [00:00<?, ?it/s] 50%|█████     | 1/2 [07:16<07:16, 436.81s/it]100%|██████████| 2/2 [07:17<00:00, 180.19s/it]100%|██████████| 2/2 [07:17<00:00, 218.69s/it]
+tip: install termplotlib and gnuplot to plot the metrics
+============ Serving Benchmark Result ============
+Successful requests:                     2         
+Failed requests:                         0         
+Request rate configured (RPS):           2.00      
+Benchmark duration (s):                  437.38    
+Total input tokens:                      65536     
+Total generated tokens:                  65536     
+Request throughput (req/s):              0.00      
+Output token throughput (tok/s):         149.84    
+Peak output token throughput (tok/s):    154.00    
+Peak concurrent requests:                2.00      
+Total token throughput (tok/s):          299.68    
+---------------Time to First Token----------------
+Mean TTFT (ms):                          1058.39   
+Median TTFT (ms):                        1058.39   
+P99 TTFT (ms):                           1974.44   
+-----Time per Output Token (excl. 1st token)------
+Mean TPOT (ms):                          13.29     
+Median TPOT (ms):                        13.29     
+P99 TPOT (ms):                           13.31     
+---------------Inter-token Latency----------------
+Mean ITL (ms):                           13.29     
+Median ITL (ms):                         13.27     
+P99 ITL (ms):                            13.49     
+==================================================
+===== tier 32K/32K c4 nospec 16:28:47 =====
+W1029 00:28:49.356000 3030302 torch/_opaque_base.py:6] torch._opaque_base is deprecated, use torch._custom_class_base instead
+W1029 00:28:49.357000 3030302 torch/_library/opaque_object.py:288] register_opaque_type is deprecated, use register_custom_class instead
+W1029 00:28:49.357000 3030302 torch/_library/opaque_object.py:211] typ='value' is deprecated, use typ='constant' instead
+FlashInfer kernels are disabled: flashinfer-cubin is not installed and nvcc (CUDA_HOME, CUDA_PATH, PATH or /usr/local/cuda) or ninja (PATH) is missing. Set CUDA_HOME to a CUDA toolkit and put ninja on PATH, or run `vllm download-kernels`.
+Namespace(subparser='bench', bench_type='serve', dispatch_function=<function BenchmarkServingSubcommand.cmd at 0x759dced26020>, trust_remote_code=False, seed=0, num_prompts=4, dataset_name='random', no_stream=False, dataset_path=None, no_oversample=False, skip_chat_template=False, enable_multimodal_chat=False, disable_shuffle=False, custom_output_len=256, custom_ensure_client_side_data=False, spec_bench_output_len=256, spec_bench_category=None, sharegpt_output_len=None, timed_trace_chunk_hash_size=16, timed_trace_sec_multiplier=1, timed_trace_label_timestamp='timestamp', timed_trace_label_input_length='input_length', timed_trace_label_output_length='output_length', timed_trace_label_hash_ids='hash_ids', blazedit_min_distance=0.0, blazedit_max_distance=1.0, asr_max_audio_len_sec=inf, asr_min_audio_len_sec=0.0, random_input_len=32768, random_output_len=32768, random_range_ratio='0.0', random_prefix_len=0, random_batch_size=1, no_reranker=False, random_mm_base_items_per_request=1, random_mm_num_mm_items_range_ratio=0.0, random_mm_limit_mm_per_prompt={'image': 255, 'video': 1}, random_mm_bucket_config={(256, 256, 1): 0.5, (720, 1280, 1): 0.5, (720, 1280, 16): 0.0}, hf_subset=None, hf_split=None, hf_name=None, hf_output_len=None, bfcl_categories=None, prefix_repetition_prefix_len=256, prefix_repetition_suffix_len=256, prefix_repetition_num_prefixes=10, prefix_repetition_output_len=128, speed_bench_dataset_subset='qualitative', speed_bench_output_len=4096, speed_bench_category=None, label=None, backend='openai', base_url='http://127.0.0.1:8123', host='127.0.0.1', port=8000, endpoint='/v1/completions', header=None, max_concurrency=None, model='glm-5.3-flash', input_len=None, output_len=None, tokenizer='/data/models/GLM-5.3-Flash', tokenizer_mode='auto', use_beam_search=False, logprobs=None, request_rate=4.0, burstiness=1.0, probe_request_rate=0.0, disable_tqdm=False, num_warmups=0, profile=False, save_result=False, save_detailed=False, append_result=False, metadata=None, result_dir=None, result_filename=None, ignore_eos=True, self_timed=None, percentile_metrics=None, metric_percentiles='99', goodput=None, request_id_prefix='bench-fb877e27-', top_p=None, top_k=None, min_p=None, temperature=None, frequency_penalty=None, presence_penalty=None, repetition_penalty=None, served_model_name=None, lora_modules=None, lora_assignment='random', ramp_up_strategy=None, ramp_up_start_rps=None, ramp_up_end_rps=None, ready_check_timeout_sec=0, chat_template_kwargs=None, extra_body=None, skip_tokenizer_init=False, insecure=False, plot_timeline=False, timeline_itl_thresholds='25,50', plot_dataset_stats=False, log_config_file=None, logging_config=LoggingConfig(log_level='INFO', formatter='text', configure_logging=True, pylogging_config_file=None))
+(MainProcess pid=3030302) INFO 10-29 00:28:53 [utils.py:88] Sampling input_len from [32768, 32768] and output_len from [32768, 32768]
+WARNING: vllm bench serve no longer sets temperature==0 (greedy) in requests by default. The default will be determined on the server side and can be model/API specific. For the old behavior, include --temperature=0.
+Starting initial single prompt test run...
+Skipping endpoint ready check.
+Starting main benchmark run...
+Traffic request rate: 4.0
+Burstiness factor: 1.0 (Poisson process)
+Maximum request concurrency: None
+  0%|          | 0/4 [00:00<?, ?it/s] 25%|██▌       | 1/4 [08:34<25:44, 514.74s/it] 50%|█████     | 2/4 [08:35<07:04, 212.15s/it] 75%|███████▌  | 3/4 [08:35<01:55, 115.37s/it]100%|██████████| 4/4 [08:35<00:00, 128.83s/it]
+tip: install termplotlib and gnuplot to plot the metrics
+============ Serving Benchmark Result ============
+Successful requests:                     4         
+Failed requests:                         0         
+Request rate configured (RPS):           4.00      
+Benchmark duration (s):                  515.30    
+Total input tokens:                      131072    
+Total generated tokens:                  131072    
+Request throughput (req/s):              0.01      
+Output token throughput (tok/s):         254.36    
+Peak output token throughput (tok/s):    260.00    
+Peak concurrent requests:                4.00      
+Total token throughput (tok/s):          508.72    
+---------------Time to First Token----------------
+Mean TTFT (ms):                          1560.28   
+Median TTFT (ms):                        1227.98   
+P99 TTFT (ms):                           3622.29   
+-----Time per Output Token (excl. 1st token)------
+Mean TPOT (ms):                          15.65     
+Median TPOT (ms):                        15.66     
+P99 TPOT (ms):                           15.70     
+---------------Inter-token Latency----------------
+Mean ITL (ms):                           15.65     
+Median ITL (ms):                         15.55     
+P99 ITL (ms):                            16.30     
+==================================================
+===== tier 32K/32K c8 nospec 16:37:29 =====
+W1029 00:37:32.103000 3095234 torch/_opaque_base.py:6] torch._opaque_base is deprecated, use torch._custom_class_base instead
+W1029 00:37:32.103000 3095234 torch/_library/opaque_object.py:288] register_opaque_type is deprecated, use register_custom_class instead
+W1029 00:37:32.104000 3095234 torch/_library/opaque_object.py:211] typ='value' is deprecated, use typ='constant' instead
+FlashInfer kernels are disabled: flashinfer-cubin is not installed and nvcc (CUDA_HOME, CUDA_PATH, PATH or /usr/local/cuda) or ninja (PATH) is missing. Set CUDA_HOME to a CUDA toolkit and put ninja on PATH, or run `vllm download-kernels`.
+Namespace(subparser='bench', bench_type='serve', dispatch_function=<function BenchmarkServingSubcommand.cmd at 0x78d7ebf06020>, trust_remote_code=False, seed=0, num_prompts=8, dataset_name='random', no_stream=False, dataset_path=None, no_oversample=False, skip_chat_template=False, enable_multimodal_chat=False, disable_shuffle=False, custom_output_len=256, custom_ensure_client_side_data=False, spec_bench_output_len=256, spec_bench_category=None, sharegpt_output_len=None, timed_trace_chunk_hash_size=16, timed_trace_sec_multiplier=1, timed_trace_label_timestamp='timestamp', timed_trace_label_input_length='input_length', timed_trace_label_output_length='output_length', timed_trace_label_hash_ids='hash_ids', blazedit_min_distance=0.0, blazedit_max_distance=1.0, asr_max_audio_len_sec=inf, asr_min_audio_len_sec=0.0, random_input_len=32768, random_output_len=32768, random_range_ratio='0.0', random_prefix_len=0, random_batch_size=1, no_reranker=False, random_mm_base_items_per_request=1, random_mm_num_mm_items_range_ratio=0.0, random_mm_limit_mm_per_prompt={'image': 255, 'video': 1}, random_mm_bucket_config={(256, 256, 1): 0.5, (720, 1280, 1): 0.5, (720, 1280, 16): 0.0}, hf_subset=None, hf_split=None, hf_name=None, hf_output_len=None, bfcl_categories=None, prefix_repetition_prefix_len=256, prefix_repetition_suffix_len=256, prefix_repetition_num_prefixes=10, prefix_repetition_output_len=128, speed_bench_dataset_subset='qualitative', speed_bench_output_len=4096, speed_bench_category=None, label=None, backend='openai', base_url='http://127.0.0.1:8123', host='127.0.0.1', port=8000, endpoint='/v1/completions', header=None, max_concurrency=None, model='glm-5.3-flash', input_len=None, output_len=None, tokenizer='/data/models/GLM-5.3-Flash', tokenizer_mode='auto', use_beam_search=False, logprobs=None, request_rate=8.0, burstiness=1.0, probe_request_rate=0.0, disable_tqdm=False, num_warmups=0, profile=False, save_result=False, save_detailed=False, append_result=False, metadata=None, result_dir=None, result_filename=None, ignore_eos=True, self_timed=None, percentile_metrics=None, metric_percentiles='99', goodput=None, request_id_prefix='bench-4d01e97b-', top_p=None, top_k=None, min_p=None, temperature=None, frequency_penalty=None, presence_penalty=None, repetition_penalty=None, served_model_name=None, lora_modules=None, lora_assignment='random', ramp_up_strategy=None, ramp_up_start_rps=None, ramp_up_end_rps=None, ready_check_timeout_sec=0, chat_template_kwargs=None, extra_body=None, skip_tokenizer_init=False, insecure=False, plot_timeline=False, timeline_itl_thresholds='25,50', plot_dataset_stats=False, log_config_file=None, logging_config=LoggingConfig(log_level='INFO', formatter='text', configure_logging=True, pylogging_config_file=None))
+(MainProcess pid=3095234) INFO 10-29 00:37:36 [utils.py:88] Sampling input_len from [32768, 32768] and output_len from [32768, 32768]
+WARNING: vllm bench serve no longer sets temperature==0 (greedy) in requests by default. The default will be determined on the server side and can be model/API specific. For the old behavior, include --temperature=0.
+Starting initial single prompt test run...
+Skipping endpoint ready check.
+Starting main benchmark run...
+Traffic request rate: 8.0
+Burstiness factor: 1.0 (Poisson process)
+Maximum request concurrency: None
+  0%|          | 0/8 [00:00<?, ?it/s] 12%|█▎        | 1/8 [10:56<1:16:36, 656.59s/it] 25%|██▌       | 2/8 [10:56<27:02, 270.43s/it]   62%|██████▎   | 5/8 [10:56<03:50, 76.84s/it] 100%|██████████| 8/8 [10:56<00:00, 38.01s/it]100%|██████████| 8/8 [10:56<00:00, 82.12s/it]
+tip: install termplotlib and gnuplot to plot the metrics
+============ Serving Benchmark Result ============
+Successful requests:                     8         
+Failed requests:                         0         
+Request rate configured (RPS):           8.00      
+Benchmark duration (s):                  656.99    
+Total input tokens:                      262144    
+Total generated tokens:                  262144    
+Request throughput (req/s):              0.01      
+Output token throughput (tok/s):         399.01    
+Peak output token throughput (tok/s):    416.00    
+Peak concurrent requests:                8.00      
+Total token throughput (tok/s):          798.01    
+---------------Time to First Token----------------
+Mean TTFT (ms):                          2471.75   
+Median TTFT (ms):                        1262.23   
+P99 TTFT (ms):                           7172.72   
+-----Time per Output Token (excl. 1st token)------
+Mean TPOT (ms):                          19.95     
+Median TPOT (ms):                        19.99     
+P99 TPOT (ms):                           20.03     
+---------------Inter-token Latency----------------
+Mean ITL (ms):                           19.95     
+Median ITL (ms):                         19.68     
+P99 ITL (ms):                            20.74     
+==================================================
+===== tier 32K/32K c16 nospec 16:48:35 =====
+W1029 00:48:37.286000 3177845 torch/_opaque_base.py:6] torch._opaque_base is deprecated, use torch._custom_class_base instead
+W1029 00:48:37.287000 3177845 torch/_library/opaque_object.py:288] register_opaque_type is deprecated, use register_custom_class instead
+W1029 00:48:37.287000 3177845 torch/_library/opaque_object.py:211] typ='value' is deprecated, use typ='constant' instead
+FlashInfer kernels are disabled: flashinfer-cubin is not installed and nvcc (CUDA_HOME, CUDA_PATH, PATH or /usr/local/cuda) or ninja (PATH) is missing. Set CUDA_HOME to a CUDA toolkit and put ninja on PATH, or run `vllm download-kernels`.
+Namespace(subparser='bench', bench_type='serve', dispatch_function=<function BenchmarkServingSubcommand.cmd at 0x7e39e7346520>, trust_remote_code=False, seed=0, num_prompts=16, dataset_name='random', no_stream=False, dataset_path=None, no_oversample=False, skip_chat_template=False, enable_multimodal_chat=False, disable_shuffle=False, custom_output_len=256, custom_ensure_client_side_data=False, spec_bench_output_len=256, spec_bench_category=None, sharegpt_output_len=None, timed_trace_chunk_hash_size=16, timed_trace_sec_multiplier=1, timed_trace_label_timestamp='timestamp', timed_trace_label_input_length='input_length', timed_trace_label_output_length='output_length', timed_trace_label_hash_ids='hash_ids', blazedit_min_distance=0.0, blazedit_max_distance=1.0, asr_max_audio_len_sec=inf, asr_min_audio_len_sec=0.0, random_input_len=32768, random_output_len=32768, random_range_ratio='0.0', random_prefix_len=0, random_batch_size=1, no_reranker=False, random_mm_base_items_per_request=1, random_mm_num_mm_items_range_ratio=0.0, random_mm_limit_mm_per_prompt={'image': 255, 'video': 1}, random_mm_bucket_config={(256, 256, 1): 0.5, (720, 1280, 1): 0.5, (720, 1280, 16): 0.0}, hf_subset=None, hf_split=None, hf_name=None, hf_output_len=None, bfcl_categories=None, prefix_repetition_prefix_len=256, prefix_repetition_suffix_len=256, prefix_repetition_num_prefixes=10, prefix_repetition_output_len=128, speed_bench_dataset_subset='qualitative', speed_bench_output_len=4096, speed_bench_category=None, label=None, backend='openai', base_url='http://127.0.0.1:8123', host='127.0.0.1', port=8000, endpoint='/v1/completions', header=None, max_concurrency=None, model='glm-5.3-flash', input_len=None, output_len=None, tokenizer='/data/models/GLM-5.3-Flash', tokenizer_mode='auto', use_beam_search=False, logprobs=None, request_rate=16.0, burstiness=1.0, probe_request_rate=0.0, disable_tqdm=False, num_warmups=0, profile=False, save_result=False, save_detailed=False, append_result=False, metadata=None, result_dir=None, result_filename=None, ignore_eos=True, self_timed=None, percentile_metrics=None, metric_percentiles='99', goodput=None, request_id_prefix='bench-c324c39e-', top_p=None, top_k=None, min_p=None, temperature=None, frequency_penalty=None, presence_penalty=None, repetition_penalty=None, served_model_name=None, lora_modules=None, lora_assignment='random', ramp_up_strategy=None, ramp_up_start_rps=None, ramp_up_end_rps=None, ready_check_timeout_sec=0, chat_template_kwargs=None, extra_body=None, skip_tokenizer_init=False, insecure=False, plot_timeline=False, timeline_itl_thresholds='25,50', plot_dataset_stats=False, log_config_file=None, logging_config=LoggingConfig(log_level='INFO', formatter='text', configure_logging=True, pylogging_config_file=None))
+(MainProcess pid=3177845) INFO 10-29 00:48:41 [utils.py:88] Sampling input_len from [32768, 32768] and output_len from [32768, 32768]
+WARNING: vllm bench serve no longer sets temperature==0 (greedy) in requests by default. The default will be determined on the server side and can be model/API specific. For the old behavior, include --temperature=0.
+Starting initial single prompt test run...
+Skipping endpoint ready check.
+Starting main benchmark run...
+Traffic request rate: 16.0
+Burstiness factor: 1.0 (Poisson process)
+Maximum request concurrency: None
+  0%|          | 0/16 [00:00<?, ?it/s]  6%|▋         | 1/16 [13:31<3:22:59, 811.94s/it] 38%|███▊      | 6/16 [13:32<16:37, 99.73s/it]    69%|██████▉   | 11/16 [13:32<03:41, 44.29s/it] 94%|█████████▍| 15/16 [13:32<00:27, 27.10s/it]100%|██████████| 16/16 [13:32<00:00, 50.78s/it]
+tip: install termplotlib and gnuplot to plot the metrics
+============ Serving Benchmark Result ============
+Successful requests:                     16        
+Failed requests:                         0         
+Request rate configured (RPS):           16.00     
+Benchmark duration (s):                  812.54    
+Total input tokens:                      524288    
+Total generated tokens:                  524288    
+Request throughput (req/s):              0.02      
+Output token throughput (tok/s):         645.25    
+Peak output token throughput (tok/s):    672.00    
+Peak concurrent requests:                16.00     
+Total token throughput (tok/s):          1290.49   
+---------------Time to First Token----------------
+Mean TTFT (ms):                          4562.60   
+Median TTFT (ms):                        1419.65   
+P99 TTFT (ms):                           15059.02  
+-----Time per Output Token (excl. 1st token)------
+Mean TPOT (ms):                          24.63     
+Median TPOT (ms):                        24.73     
+P99 TPOT (ms):                           24.77     
+---------------Inter-token Latency----------------
+Mean ITL (ms):                           24.63     
+Median ITL (ms):                         24.18     
+P99 ITL (ms):                            27.07     
+==================================================
+===== tier 64K/64K c1 nospec 17:02:16 =====
+W1029 01:02:18.540000 3280152 torch/_opaque_base.py:6] torch._opaque_base is deprecated, use torch._custom_class_base instead
+W1029 01:02:18.541000 3280152 torch/_library/opaque_object.py:288] register_opaque_type is deprecated, use register_custom_class instead
+W1029 01:02:18.541000 3280152 torch/_library/opaque_object.py:211] typ='value' is deprecated, use typ='constant' instead
+FlashInfer kernels are disabled: flashinfer-cubin is not installed and nvcc (CUDA_HOME, CUDA_PATH, PATH or /usr/local/cuda) or ninja (PATH) is missing. Set CUDA_HOME to a CUDA toolkit and put ninja on PATH, or run `vllm download-kernels`.
+Namespace(subparser='bench', bench_type='serve', dispatch_function=<function BenchmarkServingSubcommand.cmd at 0x7e0346136520>, trust_remote_code=False, seed=0, num_prompts=1, dataset_name='random', no_stream=False, dataset_path=None, no_oversample=False, skip_chat_template=False, enable_multimodal_chat=False, disable_shuffle=False, custom_output_len=256, custom_ensure_client_side_data=False, spec_bench_output_len=256, spec_bench_category=None, sharegpt_output_len=None, timed_trace_chunk_hash_size=16, timed_trace_sec_multiplier=1, timed_trace_label_timestamp='timestamp', timed_trace_label_input_length='input_length', timed_trace_label_output_length='output_length', timed_trace_label_hash_ids='hash_ids', blazedit_min_distance=0.0, blazedit_max_distance=1.0, asr_max_audio_len_sec=inf, asr_min_audio_len_sec=0.0, random_input_len=65536, random_output_len=65536, random_range_ratio='0.0', random_prefix_len=0, random_batch_size=1, no_reranker=False, random_mm_base_items_per_request=1, random_mm_num_mm_items_range_ratio=0.0, random_mm_limit_mm_per_prompt={'image': 255, 'video': 1}, random_mm_bucket_config={(256, 256, 1): 0.5, (720, 1280, 1): 0.5, (720, 1280, 16): 0.0}, hf_subset=None, hf_split=None, hf_name=None, hf_output_len=None, bfcl_categories=None, prefix_repetition_prefix_len=256, prefix_repetition_suffix_len=256, prefix_repetition_num_prefixes=10, prefix_repetition_output_len=128, speed_bench_dataset_subset='qualitative', speed_bench_output_len=4096, speed_bench_category=None, label=None, backend='openai', base_url='http://127.0.0.1:8123', host='127.0.0.1', port=8000, endpoint='/v1/completions', header=None, max_concurrency=None, model='glm-5.3-flash', input_len=None, output_len=None, tokenizer='/data/models/GLM-5.3-Flash', tokenizer_mode='auto', use_beam_search=False, logprobs=None, request_rate=1.0, burstiness=1.0, probe_request_rate=0.0, disable_tqdm=False, num_warmups=0, profile=False, save_result=False, save_detailed=False, append_result=False, metadata=None, result_dir=None, result_filename=None, ignore_eos=True, self_timed=None, percentile_metrics=None, metric_percentiles='99', goodput=None, request_id_prefix='bench-a89d2694-', top_p=None, top_k=None, min_p=None, temperature=None, frequency_penalty=None, presence_penalty=None, repetition_penalty=None, served_model_name=None, lora_modules=None, lora_assignment='random', ramp_up_strategy=None, ramp_up_start_rps=None, ramp_up_end_rps=None, ready_check_timeout_sec=0, chat_template_kwargs=None, extra_body=None, skip_tokenizer_init=False, insecure=False, plot_timeline=False, timeline_itl_thresholds='25,50', plot_dataset_stats=False, log_config_file=None, logging_config=LoggingConfig(log_level='INFO', formatter='text', configure_logging=True, pylogging_config_file=None))
+(MainProcess pid=3280152) INFO 10-29 01:02:22 [utils.py:88] Sampling input_len from [65536, 65536] and output_len from [65536, 65536]
+WARNING: vllm bench serve no longer sets temperature==0 (greedy) in requests by default. The default will be determined on the server side and can be model/API specific. For the old behavior, include --temperature=0.
+Starting initial single prompt test run...
+Skipping endpoint ready check.
+Starting main benchmark run...
+Traffic request rate: 1.0
+Burstiness factor: 1.0 (Poisson process)
+Maximum request concurrency: None
+  0%|          | 0/1 [00:00<?, ?it/s]100%|██████████| 1/1 [12:55<00:00, 775.71s/it]100%|██████████| 1/1 [12:55<00:00, 775.71s/it]
+tip: install termplotlib and gnuplot to plot the metrics
+============ Serving Benchmark Result ============
+Successful requests:                     1         
+Failed requests:                         0         
+Request rate configured (RPS):           1.00      
+Benchmark duration (s):                  775.71    
+Total input tokens:                      65536     
+Total generated tokens:                  65536     
+Request throughput (req/s):              0.00      
+Output token throughput (tok/s):         84.49     
+Peak output token throughput (tok/s):    86.00     
+Peak concurrent requests:                1.00      
+Total token throughput (tok/s):          168.97    
+---------------Time to First Token----------------
+Mean TTFT (ms):                          2659.70   
+Median TTFT (ms):                        2659.70   
+P99 TTFT (ms):                           2659.70   
+-----Time per Output Token (excl. 1st token)------
+Mean TPOT (ms):                          11.78     
+Median TPOT (ms):                        11.78     
+P99 TPOT (ms):                           11.78     
+---------------Inter-token Latency----------------
+Mean ITL (ms):                           11.78     
+Median ITL (ms):                         11.78     
+P99 ITL (ms):                            11.90     
+==================================================
+===== tier 64K/64K c2 nospec 17:15:19 =====
+W1029 01:15:21.457000 3379212 torch/_opaque_base.py:6] torch._opaque_base is deprecated, use torch._custom_class_base instead
+W1029 01:15:21.457000 3379212 torch/_library/opaque_object.py:288] register_opaque_type is deprecated, use register_custom_class instead
+W1029 01:15:21.457000 3379212 torch/_library/opaque_object.py:211] typ='value' is deprecated, use typ='constant' instead
+FlashInfer kernels are disabled: flashinfer-cubin is not installed and nvcc (CUDA_HOME, CUDA_PATH, PATH or /usr/local/cuda) or ninja (PATH) is missing. Set CUDA_HOME to a CUDA toolkit and put ninja on PATH, or run `vllm download-kernels`.
+Namespace(subparser='bench', bench_type='serve', dispatch_function=<function BenchmarkServingSubcommand.cmd at 0x71d155b3e0c0>, trust_remote_code=False, seed=0, num_prompts=2, dataset_name='random', no_stream=False, dataset_path=None, no_oversample=False, skip_chat_template=False, enable_multimodal_chat=False, disable_shuffle=False, custom_output_len=256, custom_ensure_client_side_data=False, spec_bench_output_len=256, spec_bench_category=None, sharegpt_output_len=None, timed_trace_chunk_hash_size=16, timed_trace_sec_multiplier=1, timed_trace_label_timestamp='timestamp', timed_trace_label_input_length='input_length', timed_trace_label_output_length='output_length', timed_trace_label_hash_ids='hash_ids', blazedit_min_distance=0.0, blazedit_max_distance=1.0, asr_max_audio_len_sec=inf, asr_min_audio_len_sec=0.0, random_input_len=65536, random_output_len=65536, random_range_ratio='0.0', random_prefix_len=0, random_batch_size=1, no_reranker=False, random_mm_base_items_per_request=1, random_mm_num_mm_items_range_ratio=0.0, random_mm_limit_mm_per_prompt={'image': 255, 'video': 1}, random_mm_bucket_config={(256, 256, 1): 0.5, (720, 1280, 1): 0.5, (720, 1280, 16): 0.0}, hf_subset=None, hf_split=None, hf_name=None, hf_output_len=None, bfcl_categories=None, prefix_repetition_prefix_len=256, prefix_repetition_suffix_len=256, prefix_repetition_num_prefixes=10, prefix_repetition_output_len=128, speed_bench_dataset_subset='qualitative', speed_bench_output_len=4096, speed_bench_category=None, label=None, backend='openai', base_url='http://127.0.0.1:8123', host='127.0.0.1', port=8000, endpoint='/v1/completions', header=None, max_concurrency=None, model='glm-5.3-flash', input_len=None, output_len=None, tokenizer='/data/models/GLM-5.3-Flash', tokenizer_mode='auto', use_beam_search=False, logprobs=None, request_rate=2.0, burstiness=1.0, probe_request_rate=0.0, disable_tqdm=False, num_warmups=0, profile=False, save_result=False, save_detailed=False, append_result=False, metadata=None, result_dir=None, result_filename=None, ignore_eos=True, self_timed=None, percentile_metrics=None, metric_percentiles='99', goodput=None, request_id_prefix='bench-df6dba4f-', top_p=None, top_k=None, min_p=None, temperature=None, frequency_penalty=None, presence_penalty=None, repetition_penalty=None, served_model_name=None, lora_modules=None, lora_assignment='random', ramp_up_strategy=None, ramp_up_start_rps=None, ramp_up_end_rps=None, ready_check_timeout_sec=0, chat_template_kwargs=None, extra_body=None, skip_tokenizer_init=False, insecure=False, plot_timeline=False, timeline_itl_thresholds='25,50', plot_dataset_stats=False, log_config_file=None, logging_config=LoggingConfig(log_level='INFO', formatter='text', configure_logging=True, pylogging_config_file=None))
+(MainProcess pid=3379212) INFO 10-29 01:15:25 [utils.py:88] Sampling input_len from [65536, 65536] and output_len from [65536, 65536]
+WARNING: vllm bench serve no longer sets temperature==0 (greedy) in requests by default. The default will be determined on the server side and can be model/API specific. For the old behavior, include --temperature=0.
+Starting initial single prompt test run...
+Skipping endpoint ready check.
+Starting main benchmark run...
+Traffic request rate: 2.0
+Burstiness factor: 1.0 (Poisson process)
+Maximum request concurrency: None
+  0%|          | 0/2 [00:00<?, ?it/s] 50%|█████     | 1/2 [14:24<14:24, 864.48s/it]100%|██████████| 2/2 [14:25<00:00, 356.32s/it]100%|██████████| 2/2 [14:25<00:00, 432.55s/it]
+tip: install termplotlib and gnuplot to plot the metrics
+============ Serving Benchmark Result ============
+Successful requests:                     2         
+Failed requests:                         0         
+Request rate configured (RPS):           2.00      
+Benchmark duration (s):                  865.09    
+Total input tokens:                      131072    
+Total generated tokens:                  131072    
+Request throughput (req/s):              0.00      
+Output token throughput (tok/s):         151.51    
+Peak output token throughput (tok/s):    156.00    
+Peak concurrent requests:                2.00      
+Total token throughput (tok/s):          303.02    
+---------------Time to First Token----------------
+Mean TTFT (ms):                          1382.36   
+Median TTFT (ms):                        1382.36   
+P99 TTFT (ms):                           2643.85   
+-----Time per Output Token (excl. 1st token)------
+Mean TPOT (ms):                          13.16     
+Median TPOT (ms):                        13.16     
+P99 TPOT (ms):                           13.18     
+---------------Inter-token Latency----------------
+Mean ITL (ms):                           13.16     
+Median ITL (ms):                         13.15     
+P99 ITL (ms):                            13.47     
+==================================================
+===== tier 64K/64K c4 nospec 17:29:51 =====
+W1029 01:29:53.919000 3488656 torch/_opaque_base.py:6] torch._opaque_base is deprecated, use torch._custom_class_base instead
+W1029 01:29:53.919000 3488656 torch/_library/opaque_object.py:288] register_opaque_type is deprecated, use register_custom_class instead
+W1029 01:29:53.920000 3488656 torch/_library/opaque_object.py:211] typ='value' is deprecated, use typ='constant' instead
+FlashInfer kernels are disabled: flashinfer-cubin is not installed and nvcc (CUDA_HOME, CUDA_PATH, PATH or /usr/local/cuda) or ninja (PATH) is missing. Set CUDA_HOME to a CUDA toolkit and put ninja on PATH, or run `vllm download-kernels`.
+Namespace(subparser='bench', bench_type='serve', dispatch_function=<function BenchmarkServingSubcommand.cmd at 0x7caac4b1e020>, trust_remote_code=False, seed=0, num_prompts=4, dataset_name='random', no_stream=False, dataset_path=None, no_oversample=False, skip_chat_template=False, enable_multimodal_chat=False, disable_shuffle=False, custom_output_len=256, custom_ensure_client_side_data=False, spec_bench_output_len=256, spec_bench_category=None, sharegpt_output_len=None, timed_trace_chunk_hash_size=16, timed_trace_sec_multiplier=1, timed_trace_label_timestamp='timestamp', timed_trace_label_input_length='input_length', timed_trace_label_output_length='output_length', timed_trace_label_hash_ids='hash_ids', blazedit_min_distance=0.0, blazedit_max_distance=1.0, asr_max_audio_len_sec=inf, asr_min_audio_len_sec=0.0, random_input_len=65536, random_output_len=65536, random_range_ratio='0.0', random_prefix_len=0, random_batch_size=1, no_reranker=False, random_mm_base_items_per_request=1, random_mm_num_mm_items_range_ratio=0.0, random_mm_limit_mm_per_prompt={'image': 255, 'video': 1}, random_mm_bucket_config={(256, 256, 1): 0.5, (720, 1280, 1): 0.5, (720, 1280, 16): 0.0}, hf_subset=None, hf_split=None, hf_name=None, hf_output_len=None, bfcl_categories=None, prefix_repetition_prefix_len=256, prefix_repetition_suffix_len=256, prefix_repetition_num_prefixes=10, prefix_repetition_output_len=128, speed_bench_dataset_subset='qualitative', speed_bench_output_len=4096, speed_bench_category=None, label=None, backend='openai', base_url='http://127.0.0.1:8123', host='127.0.0.1', port=8000, endpoint='/v1/completions', header=None, max_concurrency=None, model='glm-5.3-flash', input_len=None, output_len=None, tokenizer='/data/models/GLM-5.3-Flash', tokenizer_mode='auto', use_beam_search=False, logprobs=None, request_rate=4.0, burstiness=1.0, probe_request_rate=0.0, disable_tqdm=False, num_warmups=0, profile=False, save_result=False, save_detailed=False, append_result=False, metadata=None, result_dir=None, result_filename=None, ignore_eos=True, self_timed=None, percentile_metrics=None, metric_percentiles='99', goodput=None, request_id_prefix='bench-ce49fa5b-', top_p=None, top_k=None, min_p=None, temperature=None, frequency_penalty=None, presence_penalty=None, repetition_penalty=None, served_model_name=None, lora_modules=None, lora_assignment='random', ramp_up_strategy=None, ramp_up_start_rps=None, ramp_up_end_rps=None, ready_check_timeout_sec=0, chat_template_kwargs=None, extra_body=None, skip_tokenizer_init=False, insecure=False, plot_timeline=False, timeline_itl_thresholds='25,50', plot_dataset_stats=False, log_config_file=None, logging_config=LoggingConfig(log_level='INFO', formatter='text', configure_logging=True, pylogging_config_file=None))
+(MainProcess pid=3488656) INFO 10-29 01:29:58 [utils.py:88] Sampling input_len from [65536, 65536] and output_len from [65536, 65536]
+WARNING: vllm bench serve no longer sets temperature==0 (greedy) in requests by default. The default will be determined on the server side and can be model/API specific. For the old behavior, include --temperature=0.
+Starting initial single prompt test run...
+Skipping endpoint ready check.
+Starting main benchmark run...
+Traffic request rate: 4.0
+Burstiness factor: 1.0 (Poisson process)
+Maximum request concurrency: None
+  0%|          | 0/4 [00:00<?, ?it/s] 25%|██▌       | 1/4 [17:04<51:13, 1024.65s/it] 50%|█████     | 2/4 [17:05<14:04, 422.14s/it]  75%|███████▌  | 3/4 [17:05<03:49, 229.50s/it]100%|██████████| 4/4 [17:05<00:00, 256.33s/it]
+tip: install termplotlib and gnuplot to plot the metrics
+============ Serving Benchmark Result ============
+Successful requests:                     4         
+Failed requests:                         0         
+Request rate configured (RPS):           4.00      
+Benchmark duration (s):                  1025.33   
+Total input tokens:                      262144    
+Total generated tokens:                  262144    
+Request throughput (req/s):              0.00      
+Output token throughput (tok/s):         255.67    
+Peak output token throughput (tok/s):    264.00    
+Peak concurrent requests:                4.00      
+Total token throughput (tok/s):          511.34    
+---------------Time to First Token----------------
+Mean TTFT (ms):                          2070.96   
+Median TTFT (ms):                        1566.88   
+P99 TTFT (ms):                           4998.87   
+-----Time per Output Token (excl. 1st token)------
+Mean TPOT (ms):                          15.60     
+Median TPOT (ms):                        15.61     
+P99 TPOT (ms):                           15.63     
+---------------Inter-token Latency----------------
+Mean ITL (ms):                           15.60     
+Median ITL (ms):                         15.54     
+P99 ITL (ms):                            16.19     
+==================================================
+===== tier 64K/64K c8 nospec 17:47:05 =====
+W1029 01:47:07.284000 3616451 torch/_opaque_base.py:6] torch._opaque_base is deprecated, use torch._custom_class_base instead
+W1029 01:47:07.284000 3616451 torch/_library/opaque_object.py:288] register_opaque_type is deprecated, use register_custom_class instead
+W1029 01:47:07.285000 3616451 torch/_library/opaque_object.py:211] typ='value' is deprecated, use typ='constant' instead
+FlashInfer kernels are disabled: flashinfer-cubin is not installed and nvcc (CUDA_HOME, CUDA_PATH, PATH or /usr/local/cuda) or ninja (PATH) is missing. Set CUDA_HOME to a CUDA toolkit and put ninja on PATH, or run `vllm download-kernels`.
+Namespace(subparser='bench', bench_type='serve', dispatch_function=<function BenchmarkServingSubcommand.cmd at 0x716d8351e020>, trust_remote_code=False, seed=0, num_prompts=8, dataset_name='random', no_stream=False, dataset_path=None, no_oversample=False, skip_chat_template=False, enable_multimodal_chat=False, disable_shuffle=False, custom_output_len=256, custom_ensure_client_side_data=False, spec_bench_output_len=256, spec_bench_category=None, sharegpt_output_len=None, timed_trace_chunk_hash_size=16, timed_trace_sec_multiplier=1, timed_trace_label_timestamp='timestamp', timed_trace_label_input_length='input_length', timed_trace_label_output_length='output_length', timed_trace_label_hash_ids='hash_ids', blazedit_min_distance=0.0, blazedit_max_distance=1.0, asr_max_audio_len_sec=inf, asr_min_audio_len_sec=0.0, random_input_len=65536, random_output_len=65536, random_range_ratio='0.0', random_prefix_len=0, random_batch_size=1, no_reranker=False, random_mm_base_items_per_request=1, random_mm_num_mm_items_range_ratio=0.0, random_mm_limit_mm_per_prompt={'image': 255, 'video': 1}, random_mm_bucket_config={(256, 256, 1): 0.5, (720, 1280, 1): 0.5, (720, 1280, 16): 0.0}, hf_subset=None, hf_split=None, hf_name=None, hf_output_len=None, bfcl_categories=None, prefix_repetition_prefix_len=256, prefix_repetition_suffix_len=256, prefix_repetition_num_prefixes=10, prefix_repetition_output_len=128, speed_bench_dataset_subset='qualitative', speed_bench_output_len=4096, speed_bench_category=None, label=None, backend='openai', base_url='http://127.0.0.1:8123', host='127.0.0.1', port=8000, endpoint='/v1/completions', header=None, max_concurrency=None, model='glm-5.3-flash', input_len=None, output_len=None, tokenizer='/data/models/GLM-5.3-Flash', tokenizer_mode='auto', use_beam_search=False, logprobs=None, request_rate=8.0, burstiness=1.0, probe_request_rate=0.0, disable_tqdm=False, num_warmups=0, profile=False, save_result=False, save_detailed=False, append_result=False, metadata=None, result_dir=None, result_filename=None, ignore_eos=True, self_timed=None, percentile_metrics=None, metric_percentiles='99', goodput=None, request_id_prefix='bench-c561b583-', top_p=None, top_k=None, min_p=None, temperature=None, frequency_penalty=None, presence_penalty=None, repetition_penalty=None, served_model_name=None, lora_modules=None, lora_assignment='random', ramp_up_strategy=None, ramp_up_start_rps=None, ramp_up_end_rps=None, ready_check_timeout_sec=0, chat_template_kwargs=None, extra_body=None, skip_tokenizer_init=False, insecure=False, plot_timeline=False, timeline_itl_thresholds='25,50', plot_dataset_stats=False, log_config_file=None, logging_config=LoggingConfig(log_level='INFO', formatter='text', configure_logging=True, pylogging_config_file=None))
+(MainProcess pid=3616451) INFO 10-29 01:47:11 [utils.py:88] Sampling input_len from [65536, 65536] and output_len from [65536, 65536]
+WARNING: vllm bench serve no longer sets temperature==0 (greedy) in requests by default. The default will be determined on the server side and can be model/API specific. For the old behavior, include --temperature=0.
+Starting initial single prompt test run...
+Skipping endpoint ready check.
+Starting main benchmark run...
+Traffic request rate: 8.0
+Burstiness factor: 1.0 (Poisson process)
+Maximum request concurrency: None
+  0%|          | 0/8 [00:00<?, ?it/s] 12%|█▎        | 1/8 [21:42<2:31:56, 1302.38s/it] 25%|██▌       | 2/8 [21:42<53:38, 536.39s/it]    50%|█████     | 4/8 [21:42<13:20, 200.14s/it] 75%|███████▌  | 6/8 [21:42<03:31, 105.62s/it]100%|██████████| 8/8 [21:42<00:00, 63.08s/it] 100%|██████████| 8/8 [21:42<00:00, 162.87s/it]
+tip: install termplotlib and gnuplot to plot the metrics
+============ Serving Benchmark Result ============
+Successful requests:                     8         
+Failed requests:                         0         
+Request rate configured (RPS):           8.00      
+Benchmark duration (s):                  1302.99   
+Total input tokens:                      524288    
+Total generated tokens:                  524288    
+Request throughput (req/s):              0.01      
+Output token throughput (tok/s):         402.37    
+Peak output token throughput (tok/s):    424.00    
+Peak concurrent requests:                8.00      
+Total token throughput (tok/s):          804.75    
+---------------Time to First Token----------------
+Mean TTFT (ms):                          3307.36   
+Median TTFT (ms):                        1579.17   
+P99 TTFT (ms):                           9857.02   
+-----Time per Output Token (excl. 1st token)------
+Mean TPOT (ms):                          19.82     
+Median TPOT (ms):                        19.85     
+P99 TPOT (ms):                           19.87     
+---------------Inter-token Latency----------------
+Mean ITL (ms):                           19.82     
+Median ITL (ms):                         19.71     
+P99 ITL (ms):                            20.71     
+==================================================
+########## GLM_MATRIX NOSPEC DONE Wed Oct 28 06:09:05 PM UTC 2026 ##########

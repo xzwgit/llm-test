@@ -1,0 +1,11 @@
+2026-10-28 22:05:18 deploy start
+== rsync fixbenv ==
+venv RC=0
+ver 0.33.0rc1.dev174+g5ea830198 0.7.2.post1 5.20.2 2.14.1+cu130
+vercheck RC=0
+== rsync weights 306G ==
+weights RC=0
+shards=62
+md5 ok
+2026-10-28 22:10:42 deploy done
+matrix launched Wed Oct 28 10:10:42 PM CST 2026

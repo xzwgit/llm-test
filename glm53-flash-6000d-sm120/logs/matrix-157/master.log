@@ -1,0 +1,1185 @@
++ export PATH=/usr/local/cuda-13.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
++ PATH=/usr/local/cuda-13.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
++ export OPENAI_API_KEY=abc.12345 HF_HUB_OFFLINE=1 HF_HUB_DISABLE_XET=1 FLASHINFER_DISABLE_VERSION_CHECK=1
++ OPENAI_API_KEY=abc.12345
++ HF_HUB_OFFLINE=1
++ HF_HUB_DISABLE_XET=1
++ FLASHINFER_DISABLE_VERSION_CHECK=1
++ V=/root/fixbenv
++ MODEL=/data/models/GLM-5.3-Flash
++ mkdir -p /root/glm_matrix
+++ date -u
++ echo '########## GLM MATRIX MASTER START Wed Oct 28 02:10:42 PM UTC 2026 ##########'
+########## GLM MATRIX MASTER START Wed Oct 28 02:10:42 PM UTC 2026 ##########
++ for LEG in ${LEGLIST:-k5 nospec}
++ boot_leg k5
++ local LEG=k5
++ local SPECARGS=
++ local TAGTXT=NOSPEC
++ '[' k5 = k5 ']'
++ SPECARGS='--speculative-config {"method":"mtp","num_speculative_tokens":5}'
++ TAGTXT='MTP k5'
++ local BLOG=/root/glm_matrix/boot_k5.log
++ local LLOG=/root/glm_matrix/matrix_k5.log
++ kill_all
++ pkill -9 -f '[v]llm serve'
++ pkill -9 -f VLLM::
++ sleep 2
+++ ss -lptnH 'sport = :8123'
+++ grep -oP 'pid=\K[0-9]+'
+++ sort -u
+++ nvidia-smi --query-compute-apps=pid --format=csv,noheader
++ rm -f '/dev/shm/nccl-*' '/dev/shm/vllm-*'
++ sleep 5
+++ date -u
++ echo '########## GLM_MATRIX MTP k5 BOOT Wed Oct 28 02:10:50 PM UTC 2026 ##########'
++ echo 'BOOT CMD: /root/fixbenv/bin/vllm serve /data/models/GLM-5.3-Flash --served-model-name glm-5.3-flash --tensor-parallel-size 8 --gpu-memory-utilization 0.90 --port 8123 --api-key *** --trust-remote-code --speculative-config {"method":"mtp","num_speculative_tokens":5}'
++ echo 'ENV: VLLM_BREAKABLE_CAPTURE_ATTN=1 VLLM_USE_RUST_FRONTEND=1 NCCL_P2P_LEVEL=SYS HF_HUB_OFFLINE=1'
++ local BOOT_OK=0
++ setsid nohup env PATH=/root/fixbenv/bin:/usr/local/cuda-13.0/bin:/usr/local/cuda-13.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin CUDA_HOME=/usr/local/cuda-13.0 VLLM_USE_RUST_FRONTEND=1 VLLM_ENGINE_READY_TIMEOUT_S=7200 NCCL_P2P_LEVEL=SYS VLLM_BREAKABLE_CAPTURE_ATTN=1 FLASHINFER_DISABLE_VERSION_CHECK=1 HF_HUB_OFFLINE=1 HF_HUB_DISABLE_XET=1 /root/fixbenv/bin/vllm serve /data/models/GLM-5.3-Flash --served-model-name glm-5.3-flash --tensor-parallel-size 8 --gpu-memory-utilization 0.90 --port 8123 --api-key abc.12345 --trust-remote-code --speculative-config '{"method":"mtp","num_speculative_tokens":5}'
+++ seq 1 100
++ for i in $(seq 1 100)
++ sleep 10
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Assertion error|ValueError|Engine core initialization failed|OutOfMemory|terminate called' /root/glm_matrix/boot_k5.log
++ for i in $(seq 1 100)
++ sleep 10
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Assertion error|ValueError|Engine core initialization failed|OutOfMemory|terminate called' /root/glm_matrix/boot_k5.log
++ for i in $(seq 1 100)
++ sleep 10
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Assertion error|ValueError|Engine core initialization failed|OutOfMemory|terminate called' /root/glm_matrix/boot_k5.log
++ for i in $(seq 1 100)
++ sleep 10
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Assertion error|ValueError|Engine core initialization failed|OutOfMemory|terminate called' /root/glm_matrix/boot_k5.log
++ for i in $(seq 1 100)
++ sleep 10
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Assertion error|ValueError|Engine core initialization failed|OutOfMemory|terminate called' /root/glm_matrix/boot_k5.log
++ for i in $(seq 1 100)
++ sleep 10
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Assertion error|ValueError|Engine core initialization failed|OutOfMemory|terminate called' /root/glm_matrix/boot_k5.log
++ for i in $(seq 1 100)
++ sleep 10
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Assertion error|ValueError|Engine core initialization failed|OutOfMemory|terminate called' /root/glm_matrix/boot_k5.log
++ for i in $(seq 1 100)
++ sleep 10
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Assertion error|ValueError|Engine core initialization failed|OutOfMemory|terminate called' /root/glm_matrix/boot_k5.log
++ for i in $(seq 1 100)
++ sleep 10
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Assertion error|ValueError|Engine core initialization failed|OutOfMemory|terminate called' /root/glm_matrix/boot_k5.log
++ for i in $(seq 1 100)
++ sleep 10
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Assertion error|ValueError|Engine core initialization failed|OutOfMemory|terminate called' /root/glm_matrix/boot_k5.log
++ for i in $(seq 1 100)
++ sleep 10
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Assertion error|ValueError|Engine core initialization failed|OutOfMemory|terminate called' /root/glm_matrix/boot_k5.log
++ for i in $(seq 1 100)
++ sleep 10
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Assertion error|ValueError|Engine core initialization failed|OutOfMemory|terminate called' /root/glm_matrix/boot_k5.log
++ for i in $(seq 1 100)
++ sleep 10
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Assertion error|ValueError|Engine core initialization failed|OutOfMemory|terminate called' /root/glm_matrix/boot_k5.log
++ for i in $(seq 1 100)
++ sleep 10
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Assertion error|ValueError|Engine core initialization failed|OutOfMemory|terminate called' /root/glm_matrix/boot_k5.log
++ for i in $(seq 1 100)
++ sleep 10
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Assertion error|ValueError|Engine core initialization failed|OutOfMemory|terminate called' /root/glm_matrix/boot_k5.log
++ for i in $(seq 1 100)
++ sleep 10
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Assertion error|ValueError|Engine core initialization failed|OutOfMemory|terminate called' /root/glm_matrix/boot_k5.log
++ for i in $(seq 1 100)
++ sleep 10
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Assertion error|ValueError|Engine core initialization failed|OutOfMemory|terminate called' /root/glm_matrix/boot_k5.log
++ for i in $(seq 1 100)
++ sleep 10
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Assertion error|ValueError|Engine core initialization failed|OutOfMemory|terminate called' /root/glm_matrix/boot_k5.log
++ for i in $(seq 1 100)
++ sleep 10
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Assertion error|ValueError|Engine core initialization failed|OutOfMemory|terminate called' /root/glm_matrix/boot_k5.log
++ for i in $(seq 1 100)
++ sleep 10
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Assertion error|ValueError|Engine core initialization failed|OutOfMemory|terminate called' /root/glm_matrix/boot_k5.log
++ for i in $(seq 1 100)
++ sleep 10
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Assertion error|ValueError|Engine core initialization failed|OutOfMemory|terminate called' /root/glm_matrix/boot_k5.log
++ for i in $(seq 1 100)
++ sleep 10
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Assertion error|ValueError|Engine core initialization failed|OutOfMemory|terminate called' /root/glm_matrix/boot_k5.log
++ for i in $(seq 1 100)
++ sleep 10
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Assertion error|ValueError|Engine core initialization failed|OutOfMemory|terminate called' /root/glm_matrix/boot_k5.log
++ for i in $(seq 1 100)
++ sleep 10
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Assertion error|ValueError|Engine core initialization failed|OutOfMemory|terminate called' /root/glm_matrix/boot_k5.log
++ for i in $(seq 1 100)
++ sleep 10
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Assertion error|ValueError|Engine core initialization failed|OutOfMemory|terminate called' /root/glm_matrix/boot_k5.log
++ for i in $(seq 1 100)
++ sleep 10
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Assertion error|ValueError|Engine core initialization failed|OutOfMemory|terminate called' /root/glm_matrix/boot_k5.log
++ for i in $(seq 1 100)
++ sleep 10
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Assertion error|ValueError|Engine core initialization failed|OutOfMemory|terminate called' /root/glm_matrix/boot_k5.log
++ for i in $(seq 1 100)
++ sleep 10
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Assertion error|ValueError|Engine core initialization failed|OutOfMemory|terminate called' /root/glm_matrix/boot_k5.log
++ for i in $(seq 1 100)
++ sleep 10
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Assertion error|ValueError|Engine core initialization failed|OutOfMemory|terminate called' /root/glm_matrix/boot_k5.log
++ for i in $(seq 1 100)
++ sleep 10
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Assertion error|ValueError|Engine core initialization failed|OutOfMemory|terminate called' /root/glm_matrix/boot_k5.log
++ for i in $(seq 1 100)
++ sleep 10
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Assertion error|ValueError|Engine core initialization failed|OutOfMemory|terminate called' /root/glm_matrix/boot_k5.log
++ for i in $(seq 1 100)
++ sleep 10
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Assertion error|ValueError|Engine core initialization failed|OutOfMemory|terminate called' /root/glm_matrix/boot_k5.log
++ for i in $(seq 1 100)
++ sleep 10
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Assertion error|ValueError|Engine core initialization failed|OutOfMemory|terminate called' /root/glm_matrix/boot_k5.log
++ for i in $(seq 1 100)
++ sleep 10
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Assertion error|ValueError|Engine core initialization failed|OutOfMemory|terminate called' /root/glm_matrix/boot_k5.log
++ for i in $(seq 1 100)
++ sleep 10
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Assertion error|ValueError|Engine core initialization failed|OutOfMemory|terminate called' /root/glm_matrix/boot_k5.log
++ for i in $(seq 1 100)
++ sleep 10
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Assertion error|ValueError|Engine core initialization failed|OutOfMemory|terminate called' /root/glm_matrix/boot_k5.log
++ for i in $(seq 1 100)
++ sleep 10
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Assertion error|ValueError|Engine core initialization failed|OutOfMemory|terminate called' /root/glm_matrix/boot_k5.log
++ for i in $(seq 1 100)
++ sleep 10
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Assertion error|ValueError|Engine core initialization failed|OutOfMemory|terminate called' /root/glm_matrix/boot_k5.log
++ for i in $(seq 1 100)
++ sleep 10
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Assertion error|ValueError|Engine core initialization failed|OutOfMemory|terminate called' /root/glm_matrix/boot_k5.log
++ for i in $(seq 1 100)
++ sleep 10
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Assertion error|ValueError|Engine core initialization failed|OutOfMemory|terminate called' /root/glm_matrix/boot_k5.log
++ for i in $(seq 1 100)
++ sleep 10
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Assertion error|ValueError|Engine core initialization failed|OutOfMemory|terminate called' /root/glm_matrix/boot_k5.log
++ for i in $(seq 1 100)
++ sleep 10
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Assertion error|ValueError|Engine core initialization failed|OutOfMemory|terminate called' /root/glm_matrix/boot_k5.log
++ for i in $(seq 1 100)
++ sleep 10
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Assertion error|ValueError|Engine core initialization failed|OutOfMemory|terminate called' /root/glm_matrix/boot_k5.log
++ for i in $(seq 1 100)
++ sleep 10
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Assertion error|ValueError|Engine core initialization failed|OutOfMemory|terminate called' /root/glm_matrix/boot_k5.log
++ for i in $(seq 1 100)
++ sleep 10
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Assertion error|ValueError|Engine core initialization failed|OutOfMemory|terminate called' /root/glm_matrix/boot_k5.log
++ for i in $(seq 1 100)
++ sleep 10
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Assertion error|ValueError|Engine core initialization failed|OutOfMemory|terminate called' /root/glm_matrix/boot_k5.log
++ for i in $(seq 1 100)
++ sleep 10
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Assertion error|ValueError|Engine core initialization failed|OutOfMemory|terminate called' /root/glm_matrix/boot_k5.log
++ for i in $(seq 1 100)
++ sleep 10
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Assertion error|ValueError|Engine core initialization failed|OutOfMemory|terminate called' /root/glm_matrix/boot_k5.log
++ for i in $(seq 1 100)
++ sleep 10
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Assertion error|ValueError|Engine core initialization failed|OutOfMemory|terminate called' /root/glm_matrix/boot_k5.log
++ for i in $(seq 1 100)
++ sleep 10
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Assertion error|ValueError|Engine core initialization failed|OutOfMemory|terminate called' /root/glm_matrix/boot_k5.log
++ for i in $(seq 1 100)
++ sleep 10
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ sleep 20
++ echo 'MTP k5 READY after ~530s'
++ grep -E 'KV cache size|Maximum concurrency' /root/glm_matrix/boot_k5.log
++ tail -2
++ BOOT_OK=1
++ break
++ '[' 1 '!=' 1 ']'
++ sleep 10
++ echo '===== correctness MTP k5 ====='
++ curl -s -m 120 http://127.0.0.1:8123/v1/chat/completions -H 'Content-Type: application/json' -H 'Authorization: Bearer abc.12345' -d '{"model":"glm-5.3-flash","messages":[{"role":"user","content":"请计算下面的算式并只输出最终结果，不要输出任何其他内容: 17 × 19 ="}],"temperature":0,"max_tokens":512}'
++ echo
++ bench /root/glm_matrix/matrix_k5.log /root/glm_matrix/boot_k5.log 'tier 1K/1K c1 k5' 1024 1024 1
++ local LOG=/root/glm_matrix/matrix_k5.log BLOG=/root/glm_matrix/boot_k5.log 'label=tier 1K/1K c1 k5' ilen=1024 olen=1024 conc=1
+++ date -u +%H:%M:%S
++ echo '===== tier 1K/1K c1 k5 14:19:51 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/fixbenv/bin/vllm bench serve --backend openai --base-url http://127.0.0.1:8123 --model glm-5.3-flash --tokenizer /data/models/GLM-5.3-Flash --endpoint /v1/completions --dataset-name random --random-input-len 1024 --random-output-len 1024 --ignore-eos --num-prompts 1 --request-rate 1
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/glm_matrix/boot_k5.log
++ return 0
++ bench /root/glm_matrix/matrix_k5.log /root/glm_matrix/boot_k5.log 'tier 1K/1K c1 k5' 1024 1024 1
++ local LOG=/root/glm_matrix/matrix_k5.log BLOG=/root/glm_matrix/boot_k5.log 'label=tier 1K/1K c1 k5' ilen=1024 olen=1024 conc=1
+++ date -u +%H:%M:%S
++ echo '===== tier 1K/1K c1 k5 14:20:06 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/fixbenv/bin/vllm bench serve --backend openai --base-url http://127.0.0.1:8123 --model glm-5.3-flash --tokenizer /data/models/GLM-5.3-Flash --endpoint /v1/completions --dataset-name random --random-input-len 1024 --random-output-len 1024 --ignore-eos --num-prompts 1 --request-rate 1
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/glm_matrix/boot_k5.log
++ return 0
++ for C in 2 4 8 16 32 64 128
++ bench /root/glm_matrix/matrix_k5.log /root/glm_matrix/boot_k5.log 'tier 1K/1K c2 k5' 1024 1024 2
++ local LOG=/root/glm_matrix/matrix_k5.log BLOG=/root/glm_matrix/boot_k5.log 'label=tier 1K/1K c2 k5' ilen=1024 olen=1024 conc=2
+++ date -u +%H:%M:%S
++ echo '===== tier 1K/1K c2 k5 14:20:26 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/fixbenv/bin/vllm bench serve --backend openai --base-url http://127.0.0.1:8123 --model glm-5.3-flash --tokenizer /data/models/GLM-5.3-Flash --endpoint /v1/completions --dataset-name random --random-input-len 1024 --random-output-len 1024 --ignore-eos --num-prompts 2 --request-rate 2
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/glm_matrix/boot_k5.log
++ return 0
++ for C in 2 4 8 16 32 64 128
++ bench /root/glm_matrix/matrix_k5.log /root/glm_matrix/boot_k5.log 'tier 1K/1K c4 k5' 1024 1024 4
++ local LOG=/root/glm_matrix/matrix_k5.log BLOG=/root/glm_matrix/boot_k5.log 'label=tier 1K/1K c4 k5' ilen=1024 olen=1024 conc=4
+++ date -u +%H:%M:%S
++ echo '===== tier 1K/1K c4 k5 14:20:47 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/fixbenv/bin/vllm bench serve --backend openai --base-url http://127.0.0.1:8123 --model glm-5.3-flash --tokenizer /data/models/GLM-5.3-Flash --endpoint /v1/completions --dataset-name random --random-input-len 1024 --random-output-len 1024 --ignore-eos --num-prompts 4 --request-rate 4
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/glm_matrix/boot_k5.log
++ return 0
++ for C in 2 4 8 16 32 64 128
++ bench /root/glm_matrix/matrix_k5.log /root/glm_matrix/boot_k5.log 'tier 1K/1K c8 k5' 1024 1024 8
++ local LOG=/root/glm_matrix/matrix_k5.log BLOG=/root/glm_matrix/boot_k5.log 'label=tier 1K/1K c8 k5' ilen=1024 olen=1024 conc=8
+++ date -u +%H:%M:%S
++ echo '===== tier 1K/1K c8 k5 14:21:20 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/fixbenv/bin/vllm bench serve --backend openai --base-url http://127.0.0.1:8123 --model glm-5.3-flash --tokenizer /data/models/GLM-5.3-Flash --endpoint /v1/completions --dataset-name random --random-input-len 1024 --random-output-len 1024 --ignore-eos --num-prompts 8 --request-rate 8
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/glm_matrix/boot_k5.log
++ return 0
++ for C in 2 4 8 16 32 64 128
++ bench /root/glm_matrix/matrix_k5.log /root/glm_matrix/boot_k5.log 'tier 1K/1K c16 k5' 1024 1024 16
++ local LOG=/root/glm_matrix/matrix_k5.log BLOG=/root/glm_matrix/boot_k5.log 'label=tier 1K/1K c16 k5' ilen=1024 olen=1024 conc=16
+++ date -u +%H:%M:%S
++ echo '===== tier 1K/1K c16 k5 14:21:59 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/fixbenv/bin/vllm bench serve --backend openai --base-url http://127.0.0.1:8123 --model glm-5.3-flash --tokenizer /data/models/GLM-5.3-Flash --endpoint /v1/completions --dataset-name random --random-input-len 1024 --random-output-len 1024 --ignore-eos --num-prompts 16 --request-rate 16
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/glm_matrix/boot_k5.log
++ return 0
++ for C in 2 4 8 16 32 64 128
++ bench /root/glm_matrix/matrix_k5.log /root/glm_matrix/boot_k5.log 'tier 1K/1K c32 k5' 1024 1024 32
++ local LOG=/root/glm_matrix/matrix_k5.log BLOG=/root/glm_matrix/boot_k5.log 'label=tier 1K/1K c32 k5' ilen=1024 olen=1024 conc=32
+++ date -u +%H:%M:%S
++ echo '===== tier 1K/1K c32 k5 14:22:43 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/fixbenv/bin/vllm bench serve --backend openai --base-url http://127.0.0.1:8123 --model glm-5.3-flash --tokenizer /data/models/GLM-5.3-Flash --endpoint /v1/completions --dataset-name random --random-input-len 1024 --random-output-len 1024 --ignore-eos --num-prompts 32 --request-rate 32
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/glm_matrix/boot_k5.log
++ return 0
++ for C in 2 4 8 16 32 64 128
++ bench /root/glm_matrix/matrix_k5.log /root/glm_matrix/boot_k5.log 'tier 1K/1K c64 k5' 1024 1024 64
++ local LOG=/root/glm_matrix/matrix_k5.log BLOG=/root/glm_matrix/boot_k5.log 'label=tier 1K/1K c64 k5' ilen=1024 olen=1024 conc=64
+++ date -u +%H:%M:%S
++ echo '===== tier 1K/1K c64 k5 14:23:36 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/fixbenv/bin/vllm bench serve --backend openai --base-url http://127.0.0.1:8123 --model glm-5.3-flash --tokenizer /data/models/GLM-5.3-Flash --endpoint /v1/completions --dataset-name random --random-input-len 1024 --random-output-len 1024 --ignore-eos --num-prompts 64 --request-rate 64
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/glm_matrix/boot_k5.log
++ return 0
++ for C in 2 4 8 16 32 64 128
++ bench /root/glm_matrix/matrix_k5.log /root/glm_matrix/boot_k5.log 'tier 1K/1K c128 k5' 1024 1024 128
++ local LOG=/root/glm_matrix/matrix_k5.log BLOG=/root/glm_matrix/boot_k5.log 'label=tier 1K/1K c128 k5' ilen=1024 olen=1024 conc=128
+++ date -u +%H:%M:%S
++ echo '===== tier 1K/1K c128 k5 14:24:51 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/fixbenv/bin/vllm bench serve --backend openai --base-url http://127.0.0.1:8123 --model glm-5.3-flash --tokenizer /data/models/GLM-5.3-Flash --endpoint /v1/completions --dataset-name random --random-input-len 1024 --random-output-len 1024 --ignore-eos --num-prompts 128 --request-rate 128
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/glm_matrix/boot_k5.log
++ return 0
++ for C in 1 2 4 8 16 32
++ bench /root/glm_matrix/matrix_k5.log /root/glm_matrix/boot_k5.log 'tier 4K/4K c1 k5' 4096 4096 1
++ local LOG=/root/glm_matrix/matrix_k5.log BLOG=/root/glm_matrix/boot_k5.log 'label=tier 4K/4K c1 k5' ilen=4096 olen=4096 conc=1
+++ date -u +%H:%M:%S
++ echo '===== tier 4K/4K c1 k5 14:26:42 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/fixbenv/bin/vllm bench serve --backend openai --base-url http://127.0.0.1:8123 --model glm-5.3-flash --tokenizer /data/models/GLM-5.3-Flash --endpoint /v1/completions --dataset-name random --random-input-len 4096 --random-output-len 4096 --ignore-eos --num-prompts 1 --request-rate 1
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/glm_matrix/boot_k5.log
++ return 0
++ for C in 1 2 4 8 16 32
++ bench /root/glm_matrix/matrix_k5.log /root/glm_matrix/boot_k5.log 'tier 4K/4K c2 k5' 4096 4096 2
++ local LOG=/root/glm_matrix/matrix_k5.log BLOG=/root/glm_matrix/boot_k5.log 'label=tier 4K/4K c2 k5' ilen=4096 olen=4096 conc=2
+++ date -u +%H:%M:%S
++ echo '===== tier 4K/4K c2 k5 14:27:09 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/fixbenv/bin/vllm bench serve --backend openai --base-url http://127.0.0.1:8123 --model glm-5.3-flash --tokenizer /data/models/GLM-5.3-Flash --endpoint /v1/completions --dataset-name random --random-input-len 4096 --random-output-len 4096 --ignore-eos --num-prompts 2 --request-rate 2
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/glm_matrix/boot_k5.log
++ return 0
++ for C in 1 2 4 8 16 32
++ bench /root/glm_matrix/matrix_k5.log /root/glm_matrix/boot_k5.log 'tier 4K/4K c4 k5' 4096 4096 4
++ local LOG=/root/glm_matrix/matrix_k5.log BLOG=/root/glm_matrix/boot_k5.log 'label=tier 4K/4K c4 k5' ilen=4096 olen=4096 conc=4
+++ date -u +%H:%M:%S
++ echo '===== tier 4K/4K c4 k5 14:27:35 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/fixbenv/bin/vllm bench serve --backend openai --base-url http://127.0.0.1:8123 --model glm-5.3-flash --tokenizer /data/models/GLM-5.3-Flash --endpoint /v1/completions --dataset-name random --random-input-len 4096 --random-output-len 4096 --ignore-eos --num-prompts 4 --request-rate 4
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/glm_matrix/boot_k5.log
++ return 0
++ for C in 1 2 4 8 16 32
++ bench /root/glm_matrix/matrix_k5.log /root/glm_matrix/boot_k5.log 'tier 4K/4K c8 k5' 4096 4096 8
++ local LOG=/root/glm_matrix/matrix_k5.log BLOG=/root/glm_matrix/boot_k5.log 'label=tier 4K/4K c8 k5' ilen=4096 olen=4096 conc=8
+++ date -u +%H:%M:%S
++ echo '===== tier 4K/4K c8 k5 14:28:24 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/fixbenv/bin/vllm bench serve --backend openai --base-url http://127.0.0.1:8123 --model glm-5.3-flash --tokenizer /data/models/GLM-5.3-Flash --endpoint /v1/completions --dataset-name random --random-input-len 4096 --random-output-len 4096 --ignore-eos --num-prompts 8 --request-rate 8
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/glm_matrix/boot_k5.log
++ return 0
++ for C in 1 2 4 8 16 32
++ bench /root/glm_matrix/matrix_k5.log /root/glm_matrix/boot_k5.log 'tier 4K/4K c16 k5' 4096 4096 16
++ local LOG=/root/glm_matrix/matrix_k5.log BLOG=/root/glm_matrix/boot_k5.log 'label=tier 4K/4K c16 k5' ilen=4096 olen=4096 conc=16
+++ date -u +%H:%M:%S
++ echo '===== tier 4K/4K c16 k5 14:29:48 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/fixbenv/bin/vllm bench serve --backend openai --base-url http://127.0.0.1:8123 --model glm-5.3-flash --tokenizer /data/models/GLM-5.3-Flash --endpoint /v1/completions --dataset-name random --random-input-len 4096 --random-output-len 4096 --ignore-eos --num-prompts 16 --request-rate 16
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/glm_matrix/boot_k5.log
++ return 0
++ for C in 1 2 4 8 16 32
++ bench /root/glm_matrix/matrix_k5.log /root/glm_matrix/boot_k5.log 'tier 4K/4K c32 k5' 4096 4096 32
++ local LOG=/root/glm_matrix/matrix_k5.log BLOG=/root/glm_matrix/boot_k5.log 'label=tier 4K/4K c32 k5' ilen=4096 olen=4096 conc=32
+++ date -u +%H:%M:%S
++ echo '===== tier 4K/4K c32 k5 14:31:11 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/fixbenv/bin/vllm bench serve --backend openai --base-url http://127.0.0.1:8123 --model glm-5.3-flash --tokenizer /data/models/GLM-5.3-Flash --endpoint /v1/completions --dataset-name random --random-input-len 4096 --random-output-len 4096 --ignore-eos --num-prompts 32 --request-rate 32
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/glm_matrix/boot_k5.log
++ return 0
++ for C in 1 2 4 8 16 32
++ bench /root/glm_matrix/matrix_k5.log /root/glm_matrix/boot_k5.log 'tier 8K/8K c1 k5' 8192 8192 1
++ local LOG=/root/glm_matrix/matrix_k5.log BLOG=/root/glm_matrix/boot_k5.log 'label=tier 8K/8K c1 k5' ilen=8192 olen=8192 conc=1
+++ date -u +%H:%M:%S
++ echo '===== tier 8K/8K c1 k5 14:33:48 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/fixbenv/bin/vllm bench serve --backend openai --base-url http://127.0.0.1:8123 --model glm-5.3-flash --tokenizer /data/models/GLM-5.3-Flash --endpoint /v1/completions --dataset-name random --random-input-len 8192 --random-output-len 8192 --ignore-eos --num-prompts 1 --request-rate 1
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/glm_matrix/boot_k5.log
++ return 0
++ for C in 1 2 4 8 16 32
++ bench /root/glm_matrix/matrix_k5.log /root/glm_matrix/boot_k5.log 'tier 8K/8K c2 k5' 8192 8192 2
++ local LOG=/root/glm_matrix/matrix_k5.log BLOG=/root/glm_matrix/boot_k5.log 'label=tier 8K/8K c2 k5' ilen=8192 olen=8192 conc=2
+++ date -u +%H:%M:%S
++ echo '===== tier 8K/8K c2 k5 14:34:50 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/fixbenv/bin/vllm bench serve --backend openai --base-url http://127.0.0.1:8123 --model glm-5.3-flash --tokenizer /data/models/GLM-5.3-Flash --endpoint /v1/completions --dataset-name random --random-input-len 8192 --random-output-len 8192 --ignore-eos --num-prompts 2 --request-rate 2
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/glm_matrix/boot_k5.log
++ return 0
++ for C in 1 2 4 8 16 32
++ bench /root/glm_matrix/matrix_k5.log /root/glm_matrix/boot_k5.log 'tier 8K/8K c4 k5' 8192 8192 4
++ local LOG=/root/glm_matrix/matrix_k5.log BLOG=/root/glm_matrix/boot_k5.log 'label=tier 8K/8K c4 k5' ilen=8192 olen=8192 conc=4
+++ date -u +%H:%M:%S
++ echo '===== tier 8K/8K c4 k5 14:36:11 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/fixbenv/bin/vllm bench serve --backend openai --base-url http://127.0.0.1:8123 --model glm-5.3-flash --tokenizer /data/models/GLM-5.3-Flash --endpoint /v1/completions --dataset-name random --random-input-len 8192 --random-output-len 8192 --ignore-eos --num-prompts 4 --request-rate 4
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/glm_matrix/boot_k5.log
++ return 0
++ for C in 1 2 4 8 16 32
++ bench /root/glm_matrix/matrix_k5.log /root/glm_matrix/boot_k5.log 'tier 8K/8K c8 k5' 8192 8192 8
++ local LOG=/root/glm_matrix/matrix_k5.log BLOG=/root/glm_matrix/boot_k5.log 'label=tier 8K/8K c8 k5' ilen=8192 olen=8192 conc=8
+++ date -u +%H:%M:%S
++ echo '===== tier 8K/8K c8 k5 14:37:24 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/fixbenv/bin/vllm bench serve --backend openai --base-url http://127.0.0.1:8123 --model glm-5.3-flash --tokenizer /data/models/GLM-5.3-Flash --endpoint /v1/completions --dataset-name random --random-input-len 8192 --random-output-len 8192 --ignore-eos --num-prompts 8 --request-rate 8
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/glm_matrix/boot_k5.log
++ return 0
++ for C in 1 2 4 8 16 32
++ bench /root/glm_matrix/matrix_k5.log /root/glm_matrix/boot_k5.log 'tier 8K/8K c16 k5' 8192 8192 16
++ local LOG=/root/glm_matrix/matrix_k5.log BLOG=/root/glm_matrix/boot_k5.log 'label=tier 8K/8K c16 k5' ilen=8192 olen=8192 conc=16
+++ date -u +%H:%M:%S
++ echo '===== tier 8K/8K c16 k5 14:40:06 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/fixbenv/bin/vllm bench serve --backend openai --base-url http://127.0.0.1:8123 --model glm-5.3-flash --tokenizer /data/models/GLM-5.3-Flash --endpoint /v1/completions --dataset-name random --random-input-len 8192 --random-output-len 8192 --ignore-eos --num-prompts 16 --request-rate 16
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/glm_matrix/boot_k5.log
++ return 0
++ for C in 1 2 4 8 16 32
++ bench /root/glm_matrix/matrix_k5.log /root/glm_matrix/boot_k5.log 'tier 8K/8K c32 k5' 8192 8192 32
++ local LOG=/root/glm_matrix/matrix_k5.log BLOG=/root/glm_matrix/boot_k5.log 'label=tier 8K/8K c32 k5' ilen=8192 olen=8192 conc=32
+++ date -u +%H:%M:%S
++ echo '===== tier 8K/8K c32 k5 14:42:47 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/fixbenv/bin/vllm bench serve --backend openai --base-url http://127.0.0.1:8123 --model glm-5.3-flash --tokenizer /data/models/GLM-5.3-Flash --endpoint /v1/completions --dataset-name random --random-input-len 8192 --random-output-len 8192 --ignore-eos --num-prompts 32 --request-rate 32
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/glm_matrix/boot_k5.log
++ return 0
++ for C in 1 2 4 8 16
++ bench /root/glm_matrix/matrix_k5.log /root/glm_matrix/boot_k5.log 'tier 32K/32K c1 k5' 32768 32768 1
++ local LOG=/root/glm_matrix/matrix_k5.log BLOG=/root/glm_matrix/boot_k5.log 'label=tier 32K/32K c1 k5' ilen=32768 olen=32768 conc=1
+++ date -u +%H:%M:%S
++ echo '===== tier 32K/32K c1 k5 14:47:08 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/fixbenv/bin/vllm bench serve --backend openai --base-url http://127.0.0.1:8123 --model glm-5.3-flash --tokenizer /data/models/GLM-5.3-Flash --endpoint /v1/completions --dataset-name random --random-input-len 32768 --random-output-len 32768 --ignore-eos --num-prompts 1 --request-rate 1
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/glm_matrix/boot_k5.log
++ return 0
++ for C in 1 2 4 8 16
++ bench /root/glm_matrix/matrix_k5.log /root/glm_matrix/boot_k5.log 'tier 32K/32K c2 k5' 32768 32768 2
++ local LOG=/root/glm_matrix/matrix_k5.log BLOG=/root/glm_matrix/boot_k5.log 'label=tier 32K/32K c2 k5' ilen=32768 olen=32768 conc=2
+++ date -u +%H:%M:%S
++ echo '===== tier 32K/32K c2 k5 14:48:55 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/fixbenv/bin/vllm bench serve --backend openai --base-url http://127.0.0.1:8123 --model glm-5.3-flash --tokenizer /data/models/GLM-5.3-Flash --endpoint /v1/completions --dataset-name random --random-input-len 32768 --random-output-len 32768 --ignore-eos --num-prompts 2 --request-rate 2
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/glm_matrix/boot_k5.log
++ return 0
++ for C in 1 2 4 8 16
++ bench /root/glm_matrix/matrix_k5.log /root/glm_matrix/boot_k5.log 'tier 32K/32K c4 k5' 32768 32768 4
++ local LOG=/root/glm_matrix/matrix_k5.log BLOG=/root/glm_matrix/boot_k5.log 'label=tier 32K/32K c4 k5' ilen=32768 olen=32768 conc=4
+++ date -u +%H:%M:%S
++ echo '===== tier 32K/32K c4 k5 14:51:44 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/fixbenv/bin/vllm bench serve --backend openai --base-url http://127.0.0.1:8123 --model glm-5.3-flash --tokenizer /data/models/GLM-5.3-Flash --endpoint /v1/completions --dataset-name random --random-input-len 32768 --random-output-len 32768 --ignore-eos --num-prompts 4 --request-rate 4
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/glm_matrix/boot_k5.log
++ return 0
++ for C in 1 2 4 8 16
++ bench /root/glm_matrix/matrix_k5.log /root/glm_matrix/boot_k5.log 'tier 32K/32K c8 k5' 32768 32768 8
++ local LOG=/root/glm_matrix/matrix_k5.log BLOG=/root/glm_matrix/boot_k5.log 'label=tier 32K/32K c8 k5' ilen=32768 olen=32768 conc=8
+++ date -u +%H:%M:%S
++ echo '===== tier 32K/32K c8 k5 14:55:13 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/fixbenv/bin/vllm bench serve --backend openai --base-url http://127.0.0.1:8123 --model glm-5.3-flash --tokenizer /data/models/GLM-5.3-Flash --endpoint /v1/completions --dataset-name random --random-input-len 32768 --random-output-len 32768 --ignore-eos --num-prompts 8 --request-rate 8
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/glm_matrix/boot_k5.log
++ return 0
++ for C in 1 2 4 8 16
++ bench /root/glm_matrix/matrix_k5.log /root/glm_matrix/boot_k5.log 'tier 32K/32K c16 k5' 32768 32768 16
++ local LOG=/root/glm_matrix/matrix_k5.log BLOG=/root/glm_matrix/boot_k5.log 'label=tier 32K/32K c16 k5' ilen=32768 olen=32768 conc=16
+++ date -u +%H:%M:%S
++ echo '===== tier 32K/32K c16 k5 14:59:45 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/fixbenv/bin/vllm bench serve --backend openai --base-url http://127.0.0.1:8123 --model glm-5.3-flash --tokenizer /data/models/GLM-5.3-Flash --endpoint /v1/completions --dataset-name random --random-input-len 32768 --random-output-len 32768 --ignore-eos --num-prompts 16 --request-rate 16
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/glm_matrix/boot_k5.log
++ return 0
++ for C in 1 2 4 8
++ bench /root/glm_matrix/matrix_k5.log /root/glm_matrix/boot_k5.log 'tier 64K/64K c1 k5' 65536 65536 1
++ local LOG=/root/glm_matrix/matrix_k5.log BLOG=/root/glm_matrix/boot_k5.log 'label=tier 64K/64K c1 k5' ilen=65536 olen=65536 conc=1
+++ date -u +%H:%M:%S
++ echo '===== tier 64K/64K c1 k5 15:08:33 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/fixbenv/bin/vllm bench serve --backend openai --base-url http://127.0.0.1:8123 --model glm-5.3-flash --tokenizer /data/models/GLM-5.3-Flash --endpoint /v1/completions --dataset-name random --random-input-len 65536 --random-output-len 65536 --ignore-eos --num-prompts 1 --request-rate 1
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/glm_matrix/boot_k5.log
++ return 0
++ for C in 1 2 4 8
++ bench /root/glm_matrix/matrix_k5.log /root/glm_matrix/boot_k5.log 'tier 64K/64K c2 k5' 65536 65536 2
++ local LOG=/root/glm_matrix/matrix_k5.log BLOG=/root/glm_matrix/boot_k5.log 'label=tier 64K/64K c2 k5' ilen=65536 olen=65536 conc=2
+++ date -u +%H:%M:%S
++ echo '===== tier 64K/64K c2 k5 15:12:45 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/fixbenv/bin/vllm bench serve --backend openai --base-url http://127.0.0.1:8123 --model glm-5.3-flash --tokenizer /data/models/GLM-5.3-Flash --endpoint /v1/completions --dataset-name random --random-input-len 65536 --random-output-len 65536 --ignore-eos --num-prompts 2 --request-rate 2
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/glm_matrix/boot_k5.log
++ return 0
++ for C in 1 2 4 8
++ bench /root/glm_matrix/matrix_k5.log /root/glm_matrix/boot_k5.log 'tier 64K/64K c4 k5' 65536 65536 4
++ local LOG=/root/glm_matrix/matrix_k5.log BLOG=/root/glm_matrix/boot_k5.log 'label=tier 64K/64K c4 k5' ilen=65536 olen=65536 conc=4
+++ date -u +%H:%M:%S
++ echo '===== tier 64K/64K c4 k5 15:18:06 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/fixbenv/bin/vllm bench serve --backend openai --base-url http://127.0.0.1:8123 --model glm-5.3-flash --tokenizer /data/models/GLM-5.3-Flash --endpoint /v1/completions --dataset-name random --random-input-len 65536 --random-output-len 65536 --ignore-eos --num-prompts 4 --request-rate 4
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/glm_matrix/boot_k5.log
++ return 0
++ for C in 1 2 4 8
++ bench /root/glm_matrix/matrix_k5.log /root/glm_matrix/boot_k5.log 'tier 64K/64K c8 k5' 65536 65536 8
++ local LOG=/root/glm_matrix/matrix_k5.log BLOG=/root/glm_matrix/boot_k5.log 'label=tier 64K/64K c8 k5' ilen=65536 olen=65536 conc=8
+++ date -u +%H:%M:%S
++ echo '===== tier 64K/64K c8 k5 15:27:50 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/fixbenv/bin/vllm bench serve --backend openai --base-url http://127.0.0.1:8123 --model glm-5.3-flash --tokenizer /data/models/GLM-5.3-Flash --endpoint /v1/completions --dataset-name random --random-input-len 65536 --random-output-len 65536 --ignore-eos --num-prompts 8 --request-rate 8
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/glm_matrix/boot_k5.log
++ return 0
++ '[' k5 = k5 ']'
++ grep -E 'SpecDecoding metrics' /root/glm_matrix/boot_k5.log
++ tail -300
++ kill_all
++ pkill -9 -f '[v]llm serve'
++ pkill -9 -f VLLM::
+glm_matrix.sh: line 12: 1954281 Killed                  setsid nohup env PATH=/root/fixbenv/bin:/usr/local/cuda-13.0/bin:$PATH CUDA_HOME=/usr/local/cuda-13.0 VLLM_USE_RUST_FRONTEND=1 VLLM_ENGINE_READY_TIMEOUT_S=7200 NCCL_P2P_LEVEL=SYS VLLM_BREAKABLE_CAPTURE_ATTN=1 FLASHINFER_DISABLE_VERSION_CHECK=1 HF_HUB_OFFLINE=1 HF_HUB_DISABLE_XET=1 $V/bin/vllm serve $MODEL --served-model-name glm-5.3-flash --tensor-parallel-size 8 --gpu-memory-utilization 0.90 --port 8123 --api-key abc.12345 --trust-remote-code $SPECARGS > $BLOG 2>&1 < /dev/null
++ sleep 2
+++ ss -lptnH 'sport = :8123'
+++ grep -oP 'pid=\K[0-9]+'
+++ sort -u
++ for p in $(ss -lptnH "sport = :8123" 2> /dev/null | grep -oP 'pid=\K[0-9]+' | sort -u)
++ kill -9 1959698
+++ nvidia-smi --query-compute-apps=pid --format=csv,noheader
++ for p in $(nvidia-smi --query-compute-apps=pid --format=csv,noheader 2> /dev/null)
++ kill -9 1959813
++ rm -f '/dev/shm/nccl-*' '/dev/shm/vllm-*'
++ sleep 5
+++ date -u
++ echo '########## GLM_MATRIX MTP k5 DONE Wed Oct 28 03:39:40 PM UTC 2026 ##########'
++ echo DONE
++ for LEG in ${LEGLIST:-k5 nospec}
++ boot_leg nospec
++ local LEG=nospec
++ local SPECARGS=
++ local TAGTXT=NOSPEC
++ '[' nospec = k5 ']'
++ local BLOG=/root/glm_matrix/boot_nospec.log
++ local LLOG=/root/glm_matrix/matrix_nospec.log
++ kill_all
++ pkill -9 -f '[v]llm serve'
++ pkill -9 -f VLLM::
++ sleep 2
+++ grep -oP 'pid=\K[0-9]+'
+++ ss -lptnH 'sport = :8123'
+++ sort -u
+++ nvidia-smi --query-compute-apps=pid --format=csv,noheader
++ rm -f '/dev/shm/nccl-*' '/dev/shm/vllm-*'
++ sleep 5
+++ date -u
++ echo '########## GLM_MATRIX NOSPEC BOOT Wed Oct 28 03:39:48 PM UTC 2026 ##########'
++ echo 'BOOT CMD: /root/fixbenv/bin/vllm serve /data/models/GLM-5.3-Flash --served-model-name glm-5.3-flash --tensor-parallel-size 8 --gpu-memory-utilization 0.90 --port 8123 --api-key *** --trust-remote-code '
++ echo 'ENV: VLLM_BREAKABLE_CAPTURE_ATTN=1 VLLM_USE_RUST_FRONTEND=1 NCCL_P2P_LEVEL=SYS HF_HUB_OFFLINE=1'
++ local BOOT_OK=0
++ setsid nohup env PATH=/root/fixbenv/bin:/usr/local/cuda-13.0/bin:/usr/local/cuda-13.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin CUDA_HOME=/usr/local/cuda-13.0 VLLM_USE_RUST_FRONTEND=1 VLLM_ENGINE_READY_TIMEOUT_S=7200 NCCL_P2P_LEVEL=SYS VLLM_BREAKABLE_CAPTURE_ATTN=1 FLASHINFER_DISABLE_VERSION_CHECK=1 HF_HUB_OFFLINE=1 HF_HUB_DISABLE_XET=1 /root/fixbenv/bin/vllm serve /data/models/GLM-5.3-Flash --served-model-name glm-5.3-flash --tensor-parallel-size 8 --gpu-memory-utilization 0.90 --port 8123 --api-key abc.12345 --trust-remote-code
+++ seq 1 100
++ for i in $(seq 1 100)
++ sleep 10
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Assertion error|ValueError|Engine core initialization failed|OutOfMemory|terminate called' /root/glm_matrix/boot_nospec.log
++ for i in $(seq 1 100)
++ sleep 10
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Assertion error|ValueError|Engine core initialization failed|OutOfMemory|terminate called' /root/glm_matrix/boot_nospec.log
++ for i in $(seq 1 100)
++ sleep 10
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Assertion error|ValueError|Engine core initialization failed|OutOfMemory|terminate called' /root/glm_matrix/boot_nospec.log
++ for i in $(seq 1 100)
++ sleep 10
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Assertion error|ValueError|Engine core initialization failed|OutOfMemory|terminate called' /root/glm_matrix/boot_nospec.log
++ for i in $(seq 1 100)
++ sleep 10
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Assertion error|ValueError|Engine core initialization failed|OutOfMemory|terminate called' /root/glm_matrix/boot_nospec.log
++ for i in $(seq 1 100)
++ sleep 10
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Assertion error|ValueError|Engine core initialization failed|OutOfMemory|terminate called' /root/glm_matrix/boot_nospec.log
++ for i in $(seq 1 100)
++ sleep 10
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Assertion error|ValueError|Engine core initialization failed|OutOfMemory|terminate called' /root/glm_matrix/boot_nospec.log
++ for i in $(seq 1 100)
++ sleep 10
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Assertion error|ValueError|Engine core initialization failed|OutOfMemory|terminate called' /root/glm_matrix/boot_nospec.log
++ for i in $(seq 1 100)
++ sleep 10
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Assertion error|ValueError|Engine core initialization failed|OutOfMemory|terminate called' /root/glm_matrix/boot_nospec.log
++ for i in $(seq 1 100)
++ sleep 10
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Assertion error|ValueError|Engine core initialization failed|OutOfMemory|terminate called' /root/glm_matrix/boot_nospec.log
++ for i in $(seq 1 100)
++ sleep 10
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Assertion error|ValueError|Engine core initialization failed|OutOfMemory|terminate called' /root/glm_matrix/boot_nospec.log
++ for i in $(seq 1 100)
++ sleep 10
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Assertion error|ValueError|Engine core initialization failed|OutOfMemory|terminate called' /root/glm_matrix/boot_nospec.log
++ for i in $(seq 1 100)
++ sleep 10
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Assertion error|ValueError|Engine core initialization failed|OutOfMemory|terminate called' /root/glm_matrix/boot_nospec.log
++ for i in $(seq 1 100)
++ sleep 10
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Assertion error|ValueError|Engine core initialization failed|OutOfMemory|terminate called' /root/glm_matrix/boot_nospec.log
++ for i in $(seq 1 100)
++ sleep 10
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ sleep 20
++ echo 'NOSPEC READY after ~170s'
++ grep -E 'KV cache size|Maximum concurrency' /root/glm_matrix/boot_nospec.log
++ tail -2
++ BOOT_OK=1
++ break
++ '[' 1 '!=' 1 ']'
++ sleep 10
++ echo '===== correctness NOSPEC ====='
++ curl -s -m 120 http://127.0.0.1:8123/v1/chat/completions -H 'Content-Type: application/json' -H 'Authorization: Bearer abc.12345' -d '{"model":"glm-5.3-flash","messages":[{"role":"user","content":"请计算下面的算式并只输出最终结果，不要输出任何其他内容: 17 × 19 ="}],"temperature":0,"max_tokens":512}'
++ echo
++ bench /root/glm_matrix/matrix_nospec.log /root/glm_matrix/boot_nospec.log 'tier 1K/1K c1 nospec' 1024 1024 1
++ local LOG=/root/glm_matrix/matrix_nospec.log BLOG=/root/glm_matrix/boot_nospec.log 'label=tier 1K/1K c1 nospec' ilen=1024 olen=1024 conc=1
+++ date -u +%H:%M:%S
++ echo '===== tier 1K/1K c1 nospec 15:42:48 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/fixbenv/bin/vllm bench serve --backend openai --base-url http://127.0.0.1:8123 --model glm-5.3-flash --tokenizer /data/models/GLM-5.3-Flash --endpoint /v1/completions --dataset-name random --random-input-len 1024 --random-output-len 1024 --ignore-eos --num-prompts 1 --request-rate 1
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/glm_matrix/boot_nospec.log
++ return 0
++ bench /root/glm_matrix/matrix_nospec.log /root/glm_matrix/boot_nospec.log 'tier 1K/1K c1 nospec' 1024 1024 1
++ local LOG=/root/glm_matrix/matrix_nospec.log BLOG=/root/glm_matrix/boot_nospec.log 'label=tier 1K/1K c1 nospec' ilen=1024 olen=1024 conc=1
+++ date -u +%H:%M:%S
++ echo '===== tier 1K/1K c1 nospec 15:43:08 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/fixbenv/bin/vllm bench serve --backend openai --base-url http://127.0.0.1:8123 --model glm-5.3-flash --tokenizer /data/models/GLM-5.3-Flash --endpoint /v1/completions --dataset-name random --random-input-len 1024 --random-output-len 1024 --ignore-eos --num-prompts 1 --request-rate 1
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/glm_matrix/boot_nospec.log
++ return 0
++ for C in 2 4 8 16 32 64 128
++ bench /root/glm_matrix/matrix_nospec.log /root/glm_matrix/boot_nospec.log 'tier 1K/1K c2 nospec' 1024 1024 2
++ local LOG=/root/glm_matrix/matrix_nospec.log BLOG=/root/glm_matrix/boot_nospec.log 'label=tier 1K/1K c2 nospec' ilen=1024 olen=1024 conc=2
+++ date -u +%H:%M:%S
++ echo '===== tier 1K/1K c2 nospec 15:43:27 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/fixbenv/bin/vllm bench serve --backend openai --base-url http://127.0.0.1:8123 --model glm-5.3-flash --tokenizer /data/models/GLM-5.3-Flash --endpoint /v1/completions --dataset-name random --random-input-len 1024 --random-output-len 1024 --ignore-eos --num-prompts 2 --request-rate 2
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/glm_matrix/boot_nospec.log
++ return 0
++ for C in 2 4 8 16 32 64 128
++ bench /root/glm_matrix/matrix_nospec.log /root/glm_matrix/boot_nospec.log 'tier 1K/1K c4 nospec' 1024 1024 4
++ local LOG=/root/glm_matrix/matrix_nospec.log BLOG=/root/glm_matrix/boot_nospec.log 'label=tier 1K/1K c4 nospec' ilen=1024 olen=1024 conc=4
+++ date -u +%H:%M:%S
++ echo '===== tier 1K/1K c4 nospec 15:43:49 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/fixbenv/bin/vllm bench serve --backend openai --base-url http://127.0.0.1:8123 --model glm-5.3-flash --tokenizer /data/models/GLM-5.3-Flash --endpoint /v1/completions --dataset-name random --random-input-len 1024 --random-output-len 1024 --ignore-eos --num-prompts 4 --request-rate 4
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/glm_matrix/boot_nospec.log
++ return 0
++ for C in 2 4 8 16 32 64 128
++ bench /root/glm_matrix/matrix_nospec.log /root/glm_matrix/boot_nospec.log 'tier 1K/1K c8 nospec' 1024 1024 8
++ local LOG=/root/glm_matrix/matrix_nospec.log BLOG=/root/glm_matrix/boot_nospec.log 'label=tier 1K/1K c8 nospec' ilen=1024 olen=1024 conc=8
+++ date -u +%H:%M:%S
++ echo '===== tier 1K/1K c8 nospec 15:44:13 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/fixbenv/bin/vllm bench serve --backend openai --base-url http://127.0.0.1:8123 --model glm-5.3-flash --tokenizer /data/models/GLM-5.3-Flash --endpoint /v1/completions --dataset-name random --random-input-len 1024 --random-output-len 1024 --ignore-eos --num-prompts 8 --request-rate 8
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/glm_matrix/boot_nospec.log
++ return 0
++ for C in 2 4 8 16 32 64 128
++ bench /root/glm_matrix/matrix_nospec.log /root/glm_matrix/boot_nospec.log 'tier 1K/1K c16 nospec' 1024 1024 16
++ local LOG=/root/glm_matrix/matrix_nospec.log BLOG=/root/glm_matrix/boot_nospec.log 'label=tier 1K/1K c16 nospec' ilen=1024 olen=1024 conc=16
+++ date -u +%H:%M:%S
++ echo '===== tier 1K/1K c16 nospec 15:44:43 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/fixbenv/bin/vllm bench serve --backend openai --base-url http://127.0.0.1:8123 --model glm-5.3-flash --tokenizer /data/models/GLM-5.3-Flash --endpoint /v1/completions --dataset-name random --random-input-len 1024 --random-output-len 1024 --ignore-eos --num-prompts 16 --request-rate 16
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/glm_matrix/boot_nospec.log
++ return 0
++ for C in 2 4 8 16 32 64 128
++ bench /root/glm_matrix/matrix_nospec.log /root/glm_matrix/boot_nospec.log 'tier 1K/1K c32 nospec' 1024 1024 32
++ local LOG=/root/glm_matrix/matrix_nospec.log BLOG=/root/glm_matrix/boot_nospec.log 'label=tier 1K/1K c32 nospec' ilen=1024 olen=1024 conc=32
+++ date -u +%H:%M:%S
++ echo '===== tier 1K/1K c32 nospec 15:45:18 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/fixbenv/bin/vllm bench serve --backend openai --base-url http://127.0.0.1:8123 --model glm-5.3-flash --tokenizer /data/models/GLM-5.3-Flash --endpoint /v1/completions --dataset-name random --random-input-len 1024 --random-output-len 1024 --ignore-eos --num-prompts 32 --request-rate 32
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/glm_matrix/boot_nospec.log
++ return 0
++ for C in 2 4 8 16 32 64 128
++ bench /root/glm_matrix/matrix_nospec.log /root/glm_matrix/boot_nospec.log 'tier 1K/1K c64 nospec' 1024 1024 64
++ local LOG=/root/glm_matrix/matrix_nospec.log BLOG=/root/glm_matrix/boot_nospec.log 'label=tier 1K/1K c64 nospec' ilen=1024 olen=1024 conc=64
+++ date -u +%H:%M:%S
++ echo '===== tier 1K/1K c64 nospec 15:46:04 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/fixbenv/bin/vllm bench serve --backend openai --base-url http://127.0.0.1:8123 --model glm-5.3-flash --tokenizer /data/models/GLM-5.3-Flash --endpoint /v1/completions --dataset-name random --random-input-len 1024 --random-output-len 1024 --ignore-eos --num-prompts 64 --request-rate 64
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/glm_matrix/boot_nospec.log
++ return 0
++ for C in 2 4 8 16 32 64 128
++ bench /root/glm_matrix/matrix_nospec.log /root/glm_matrix/boot_nospec.log 'tier 1K/1K c128 nospec' 1024 1024 128
++ local LOG=/root/glm_matrix/matrix_nospec.log BLOG=/root/glm_matrix/boot_nospec.log 'label=tier 1K/1K c128 nospec' ilen=1024 olen=1024 conc=128
+++ date -u +%H:%M:%S
++ echo '===== tier 1K/1K c128 nospec 15:47:03 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/fixbenv/bin/vllm bench serve --backend openai --base-url http://127.0.0.1:8123 --model glm-5.3-flash --tokenizer /data/models/GLM-5.3-Flash --endpoint /v1/completions --dataset-name random --random-input-len 1024 --random-output-len 1024 --ignore-eos --num-prompts 128 --request-rate 128
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/glm_matrix/boot_nospec.log
++ return 0
++ for C in 1 2 4 8 16 32
++ bench /root/glm_matrix/matrix_nospec.log /root/glm_matrix/boot_nospec.log 'tier 4K/4K c1 nospec' 4096 4096 1
++ local LOG=/root/glm_matrix/matrix_nospec.log BLOG=/root/glm_matrix/boot_nospec.log 'label=tier 4K/4K c1 nospec' ilen=4096 olen=4096 conc=1
+++ date -u +%H:%M:%S
++ echo '===== tier 4K/4K c1 nospec 15:48:25 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/fixbenv/bin/vllm bench serve --backend openai --base-url http://127.0.0.1:8123 --model glm-5.3-flash --tokenizer /data/models/GLM-5.3-Flash --endpoint /v1/completions --dataset-name random --random-input-len 4096 --random-output-len 4096 --ignore-eos --num-prompts 1 --request-rate 1
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/glm_matrix/boot_nospec.log
++ return 0
++ for C in 1 2 4 8 16 32
++ bench /root/glm_matrix/matrix_nospec.log /root/glm_matrix/boot_nospec.log 'tier 4K/4K c2 nospec' 4096 4096 2
++ local LOG=/root/glm_matrix/matrix_nospec.log BLOG=/root/glm_matrix/boot_nospec.log 'label=tier 4K/4K c2 nospec' ilen=4096 olen=4096 conc=2
+++ date -u +%H:%M:%S
++ echo '===== tier 4K/4K c2 nospec 15:49:21 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/fixbenv/bin/vllm bench serve --backend openai --base-url http://127.0.0.1:8123 --model glm-5.3-flash --tokenizer /data/models/GLM-5.3-Flash --endpoint /v1/completions --dataset-name random --random-input-len 4096 --random-output-len 4096 --ignore-eos --num-prompts 2 --request-rate 2
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/glm_matrix/boot_nospec.log
++ return 0
++ for C in 1 2 4 8 16 32
++ bench /root/glm_matrix/matrix_nospec.log /root/glm_matrix/boot_nospec.log 'tier 4K/4K c4 nospec' 4096 4096 4
++ local LOG=/root/glm_matrix/matrix_nospec.log BLOG=/root/glm_matrix/boot_nospec.log 'label=tier 4K/4K c4 nospec' ilen=4096 olen=4096 conc=4
+++ date -u +%H:%M:%S
++ echo '===== tier 4K/4K c4 nospec 15:50:22 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/fixbenv/bin/vllm bench serve --backend openai --base-url http://127.0.0.1:8123 --model glm-5.3-flash --tokenizer /data/models/GLM-5.3-Flash --endpoint /v1/completions --dataset-name random --random-input-len 4096 --random-output-len 4096 --ignore-eos --num-prompts 4 --request-rate 4
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/glm_matrix/boot_nospec.log
++ return 0
++ for C in 1 2 4 8 16 32
++ bench /root/glm_matrix/matrix_nospec.log /root/glm_matrix/boot_nospec.log 'tier 4K/4K c8 nospec' 4096 4096 8
++ local LOG=/root/glm_matrix/matrix_nospec.log BLOG=/root/glm_matrix/boot_nospec.log 'label=tier 4K/4K c8 nospec' ilen=4096 olen=4096 conc=8
+++ date -u +%H:%M:%S
++ echo '===== tier 4K/4K c8 nospec 15:51:37 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/fixbenv/bin/vllm bench serve --backend openai --base-url http://127.0.0.1:8123 --model glm-5.3-flash --tokenizer /data/models/GLM-5.3-Flash --endpoint /v1/completions --dataset-name random --random-input-len 4096 --random-output-len 4096 --ignore-eos --num-prompts 8 --request-rate 8
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/glm_matrix/boot_nospec.log
++ return 0
++ for C in 1 2 4 8 16 32
++ bench /root/glm_matrix/matrix_nospec.log /root/glm_matrix/boot_nospec.log 'tier 4K/4K c16 nospec' 4096 4096 16
++ local LOG=/root/glm_matrix/matrix_nospec.log BLOG=/root/glm_matrix/boot_nospec.log 'label=tier 4K/4K c16 nospec' ilen=4096 olen=4096 conc=16
+++ date -u +%H:%M:%S
++ echo '===== tier 4K/4K c16 nospec 15:53:11 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/fixbenv/bin/vllm bench serve --backend openai --base-url http://127.0.0.1:8123 --model glm-5.3-flash --tokenizer /data/models/GLM-5.3-Flash --endpoint /v1/completions --dataset-name random --random-input-len 4096 --random-output-len 4096 --ignore-eos --num-prompts 16 --request-rate 16
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/glm_matrix/boot_nospec.log
++ return 0
++ for C in 1 2 4 8 16 32
++ bench /root/glm_matrix/matrix_nospec.log /root/glm_matrix/boot_nospec.log 'tier 4K/4K c32 nospec' 4096 4096 32
++ local LOG=/root/glm_matrix/matrix_nospec.log BLOG=/root/glm_matrix/boot_nospec.log 'label=tier 4K/4K c32 nospec' ilen=4096 olen=4096 conc=32
+++ date -u +%H:%M:%S
++ echo '===== tier 4K/4K c32 nospec 15:55:02 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/fixbenv/bin/vllm bench serve --backend openai --base-url http://127.0.0.1:8123 --model glm-5.3-flash --tokenizer /data/models/GLM-5.3-Flash --endpoint /v1/completions --dataset-name random --random-input-len 4096 --random-output-len 4096 --ignore-eos --num-prompts 32 --request-rate 32
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/glm_matrix/boot_nospec.log
++ return 0
++ for C in 1 2 4 8 16 32
++ bench /root/glm_matrix/matrix_nospec.log /root/glm_matrix/boot_nospec.log 'tier 8K/8K c1 nospec' 8192 8192 1
++ local LOG=/root/glm_matrix/matrix_nospec.log BLOG=/root/glm_matrix/boot_nospec.log 'label=tier 8K/8K c1 nospec' ilen=8192 olen=8192 conc=1
+++ date -u +%H:%M:%S
++ echo '===== tier 8K/8K c1 nospec 15:57:27 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/fixbenv/bin/vllm bench serve --backend openai --base-url http://127.0.0.1:8123 --model glm-5.3-flash --tokenizer /data/models/GLM-5.3-Flash --endpoint /v1/completions --dataset-name random --random-input-len 8192 --random-output-len 8192 --ignore-eos --num-prompts 1 --request-rate 1
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/glm_matrix/boot_nospec.log
++ return 0
++ for C in 1 2 4 8 16 32
++ bench /root/glm_matrix/matrix_nospec.log /root/glm_matrix/boot_nospec.log 'tier 8K/8K c2 nospec' 8192 8192 2
++ local LOG=/root/glm_matrix/matrix_nospec.log BLOG=/root/glm_matrix/boot_nospec.log 'label=tier 8K/8K c2 nospec' ilen=8192 olen=8192 conc=2
+++ date -u +%H:%M:%S
++ echo '===== tier 8K/8K c2 nospec 15:59:10 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/fixbenv/bin/vllm bench serve --backend openai --base-url http://127.0.0.1:8123 --model glm-5.3-flash --tokenizer /data/models/GLM-5.3-Flash --endpoint /v1/completions --dataset-name random --random-input-len 8192 --random-output-len 8192 --ignore-eos --num-prompts 2 --request-rate 2
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/glm_matrix/boot_nospec.log
++ return 0
++ for C in 1 2 4 8 16 32
++ bench /root/glm_matrix/matrix_nospec.log /root/glm_matrix/boot_nospec.log 'tier 8K/8K c4 nospec' 8192 8192 4
++ local LOG=/root/glm_matrix/matrix_nospec.log BLOG=/root/glm_matrix/boot_nospec.log 'label=tier 8K/8K c4 nospec' ilen=8192 olen=8192 conc=4
+++ date -u +%H:%M:%S
++ echo '===== tier 8K/8K c4 nospec 16:01:06 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/fixbenv/bin/vllm bench serve --backend openai --base-url http://127.0.0.1:8123 --model glm-5.3-flash --tokenizer /data/models/GLM-5.3-Flash --endpoint /v1/completions --dataset-name random --random-input-len 8192 --random-output-len 8192 --ignore-eos --num-prompts 4 --request-rate 4
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/glm_matrix/boot_nospec.log
++ return 0
++ for C in 1 2 4 8 16 32
++ bench /root/glm_matrix/matrix_nospec.log /root/glm_matrix/boot_nospec.log 'tier 8K/8K c8 nospec' 8192 8192 8
++ local LOG=/root/glm_matrix/matrix_nospec.log BLOG=/root/glm_matrix/boot_nospec.log 'label=tier 8K/8K c8 nospec' ilen=8192 olen=8192 conc=8
+++ date -u +%H:%M:%S
++ echo '===== tier 8K/8K c8 nospec 16:03:27 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/fixbenv/bin/vllm bench serve --backend openai --base-url http://127.0.0.1:8123 --model glm-5.3-flash --tokenizer /data/models/GLM-5.3-Flash --endpoint /v1/completions --dataset-name random --random-input-len 8192 --random-output-len 8192 --ignore-eos --num-prompts 8 --request-rate 8
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/glm_matrix/boot_nospec.log
++ return 0
++ for C in 1 2 4 8 16 32
++ bench /root/glm_matrix/matrix_nospec.log /root/glm_matrix/boot_nospec.log 'tier 8K/8K c16 nospec' 8192 8192 16
++ local LOG=/root/glm_matrix/matrix_nospec.log BLOG=/root/glm_matrix/boot_nospec.log 'label=tier 8K/8K c16 nospec' ilen=8192 olen=8192 conc=16
+++ date -u +%H:%M:%S
++ echo '===== tier 8K/8K c16 nospec 16:06:23 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/fixbenv/bin/vllm bench serve --backend openai --base-url http://127.0.0.1:8123 --model glm-5.3-flash --tokenizer /data/models/GLM-5.3-Flash --endpoint /v1/completions --dataset-name random --random-input-len 8192 --random-output-len 8192 --ignore-eos --num-prompts 16 --request-rate 16
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/glm_matrix/boot_nospec.log
++ return 0
++ for C in 1 2 4 8 16 32
++ bench /root/glm_matrix/matrix_nospec.log /root/glm_matrix/boot_nospec.log 'tier 8K/8K c32 nospec' 8192 8192 32
++ local LOG=/root/glm_matrix/matrix_nospec.log BLOG=/root/glm_matrix/boot_nospec.log 'label=tier 8K/8K c32 nospec' ilen=8192 olen=8192 conc=32
+++ date -u +%H:%M:%S
++ echo '===== tier 8K/8K c32 nospec 16:10:06 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/fixbenv/bin/vllm bench serve --backend openai --base-url http://127.0.0.1:8123 --model glm-5.3-flash --tokenizer /data/models/GLM-5.3-Flash --endpoint /v1/completions --dataset-name random --random-input-len 8192 --random-output-len 8192 --ignore-eos --num-prompts 32 --request-rate 32
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/glm_matrix/boot_nospec.log
++ return 0
++ for C in 1 2 4 8 16
++ bench /root/glm_matrix/matrix_nospec.log /root/glm_matrix/boot_nospec.log 'tier 32K/32K c1 nospec' 32768 32768 1
++ local LOG=/root/glm_matrix/matrix_nospec.log BLOG=/root/glm_matrix/boot_nospec.log 'label=tier 32K/32K c1 nospec' ilen=32768 olen=32768 conc=1
+++ date -u +%H:%M:%S
++ echo '===== tier 32K/32K c1 nospec 16:14:47 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/fixbenv/bin/vllm bench serve --backend openai --base-url http://127.0.0.1:8123 --model glm-5.3-flash --tokenizer /data/models/GLM-5.3-Flash --endpoint /v1/completions --dataset-name random --random-input-len 32768 --random-output-len 32768 --ignore-eos --num-prompts 1 --request-rate 1
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/glm_matrix/boot_nospec.log
++ return 0
++ for C in 1 2 4 8 16
++ bench /root/glm_matrix/matrix_nospec.log /root/glm_matrix/boot_nospec.log 'tier 32K/32K c2 nospec' 32768 32768 2
++ local LOG=/root/glm_matrix/matrix_nospec.log BLOG=/root/glm_matrix/boot_nospec.log 'label=tier 32K/32K c2 nospec' ilen=32768 olen=32768 conc=2
+++ date -u +%H:%M:%S
++ echo '===== tier 32K/32K c2 nospec 16:21:22 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/fixbenv/bin/vllm bench serve --backend openai --base-url http://127.0.0.1:8123 --model glm-5.3-flash --tokenizer /data/models/GLM-5.3-Flash --endpoint /v1/completions --dataset-name random --random-input-len 32768 --random-output-len 32768 --ignore-eos --num-prompts 2 --request-rate 2
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/glm_matrix/boot_nospec.log
++ return 0
++ for C in 1 2 4 8 16
++ bench /root/glm_matrix/matrix_nospec.log /root/glm_matrix/boot_nospec.log 'tier 32K/32K c4 nospec' 32768 32768 4
++ local LOG=/root/glm_matrix/matrix_nospec.log BLOG=/root/glm_matrix/boot_nospec.log 'label=tier 32K/32K c4 nospec' ilen=32768 olen=32768 conc=4
+++ date -u +%H:%M:%S
++ echo '===== tier 32K/32K c4 nospec 16:28:47 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/fixbenv/bin/vllm bench serve --backend openai --base-url http://127.0.0.1:8123 --model glm-5.3-flash --tokenizer /data/models/GLM-5.3-Flash --endpoint /v1/completions --dataset-name random --random-input-len 32768 --random-output-len 32768 --ignore-eos --num-prompts 4 --request-rate 4
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/glm_matrix/boot_nospec.log
++ return 0
++ for C in 1 2 4 8 16
++ bench /root/glm_matrix/matrix_nospec.log /root/glm_matrix/boot_nospec.log 'tier 32K/32K c8 nospec' 32768 32768 8
++ local LOG=/root/glm_matrix/matrix_nospec.log BLOG=/root/glm_matrix/boot_nospec.log 'label=tier 32K/32K c8 nospec' ilen=32768 olen=32768 conc=8
+++ date -u +%H:%M:%S
++ echo '===== tier 32K/32K c8 nospec 16:37:29 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/fixbenv/bin/vllm bench serve --backend openai --base-url http://127.0.0.1:8123 --model glm-5.3-flash --tokenizer /data/models/GLM-5.3-Flash --endpoint /v1/completions --dataset-name random --random-input-len 32768 --random-output-len 32768 --ignore-eos --num-prompts 8 --request-rate 8
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/glm_matrix/boot_nospec.log
++ return 0
++ for C in 1 2 4 8 16
++ bench /root/glm_matrix/matrix_nospec.log /root/glm_matrix/boot_nospec.log 'tier 32K/32K c16 nospec' 32768 32768 16
++ local LOG=/root/glm_matrix/matrix_nospec.log BLOG=/root/glm_matrix/boot_nospec.log 'label=tier 32K/32K c16 nospec' ilen=32768 olen=32768 conc=16
+++ date -u +%H:%M:%S
++ echo '===== tier 32K/32K c16 nospec 16:48:35 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/fixbenv/bin/vllm bench serve --backend openai --base-url http://127.0.0.1:8123 --model glm-5.3-flash --tokenizer /data/models/GLM-5.3-Flash --endpoint /v1/completions --dataset-name random --random-input-len 32768 --random-output-len 32768 --ignore-eos --num-prompts 16 --request-rate 16
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/glm_matrix/boot_nospec.log
++ return 0
++ for C in 1 2 4 8
++ bench /root/glm_matrix/matrix_nospec.log /root/glm_matrix/boot_nospec.log 'tier 64K/64K c1 nospec' 65536 65536 1
++ local LOG=/root/glm_matrix/matrix_nospec.log BLOG=/root/glm_matrix/boot_nospec.log 'label=tier 64K/64K c1 nospec' ilen=65536 olen=65536 conc=1
+++ date -u +%H:%M:%S
++ echo '===== tier 64K/64K c1 nospec 17:02:16 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/fixbenv/bin/vllm bench serve --backend openai --base-url http://127.0.0.1:8123 --model glm-5.3-flash --tokenizer /data/models/GLM-5.3-Flash --endpoint /v1/completions --dataset-name random --random-input-len 65536 --random-output-len 65536 --ignore-eos --num-prompts 1 --request-rate 1
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/glm_matrix/boot_nospec.log
++ return 0
++ for C in 1 2 4 8
++ bench /root/glm_matrix/matrix_nospec.log /root/glm_matrix/boot_nospec.log 'tier 64K/64K c2 nospec' 65536 65536 2
++ local LOG=/root/glm_matrix/matrix_nospec.log BLOG=/root/glm_matrix/boot_nospec.log 'label=tier 64K/64K c2 nospec' ilen=65536 olen=65536 conc=2
+++ date -u +%H:%M:%S
++ echo '===== tier 64K/64K c2 nospec 17:15:19 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/fixbenv/bin/vllm bench serve --backend openai --base-url http://127.0.0.1:8123 --model glm-5.3-flash --tokenizer /data/models/GLM-5.3-Flash --endpoint /v1/completions --dataset-name random --random-input-len 65536 --random-output-len 65536 --ignore-eos --num-prompts 2 --request-rate 2
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/glm_matrix/boot_nospec.log
++ return 0
++ for C in 1 2 4 8
++ bench /root/glm_matrix/matrix_nospec.log /root/glm_matrix/boot_nospec.log 'tier 64K/64K c4 nospec' 65536 65536 4
++ local LOG=/root/glm_matrix/matrix_nospec.log BLOG=/root/glm_matrix/boot_nospec.log 'label=tier 64K/64K c4 nospec' ilen=65536 olen=65536 conc=4
+++ date -u +%H:%M:%S
++ echo '===== tier 64K/64K c4 nospec 17:29:51 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/fixbenv/bin/vllm bench serve --backend openai --base-url http://127.0.0.1:8123 --model glm-5.3-flash --tokenizer /data/models/GLM-5.3-Flash --endpoint /v1/completions --dataset-name random --random-input-len 65536 --random-output-len 65536 --ignore-eos --num-prompts 4 --request-rate 4
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/glm_matrix/boot_nospec.log
++ return 0
++ for C in 1 2 4 8
++ bench /root/glm_matrix/matrix_nospec.log /root/glm_matrix/boot_nospec.log 'tier 64K/64K c8 nospec' 65536 65536 8
++ local LOG=/root/glm_matrix/matrix_nospec.log BLOG=/root/glm_matrix/boot_nospec.log 'label=tier 64K/64K c8 nospec' ilen=65536 olen=65536 conc=8
+++ date -u +%H:%M:%S
++ echo '===== tier 64K/64K c8 nospec 17:47:05 ====='
++ timeout 5400 env OPENAI_API_KEY=abc.12345 /root/fixbenv/bin/vllm bench serve --backend openai --base-url http://127.0.0.1:8123 --model glm-5.3-flash --tokenizer /data/models/GLM-5.3-Flash --endpoint /v1/completions --dataset-name random --random-input-len 65536 --random-output-len 65536 --ignore-eos --num-prompts 8 --request-rate 8
++ local RC=0
++ '[' 0 -ne 0 ']'
++ health_ok
++ curl -s -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer abc.12345'
++ grep -qE 'Illegal memory access|CUDA error|Engine core failed' /root/glm_matrix/boot_nospec.log
++ return 0
++ '[' nospec = k5 ']'
++ kill_all
++ pkill -9 -f '[v]llm serve'
++ pkill -9 -f VLLM::
++ sleep 2
+glm_matrix.sh: line 12: 2649900 Killed                  setsid nohup env PATH=/root/fixbenv/bin:/usr/local/cuda-13.0/bin:$PATH CUDA_HOME=/usr/local/cuda-13.0 VLLM_USE_RUST_FRONTEND=1 VLLM_ENGINE_READY_TIMEOUT_S=7200 NCCL_P2P_LEVEL=SYS VLLM_BREAKABLE_CAPTURE_ATTN=1 FLASHINFER_DISABLE_VERSION_CHECK=1 HF_HUB_OFFLINE=1 HF_HUB_DISABLE_XET=1 $V/bin/vllm serve $MODEL --served-model-name glm-5.3-flash --tensor-parallel-size 8 --gpu-memory-utilization 0.90 --port 8123 --api-key abc.12345 --trust-remote-code $SPECARGS > $BLOG 2>&1 < /dev/null
+++ ss -lptnH 'sport = :8123'
+++ grep -oP 'pid=\K[0-9]+'
+++ sort -u
++ for p in $(ss -lptnH "sport = :8123" 2> /dev/null | grep -oP 'pid=\K[0-9]+' | sort -u)
++ kill -9 2651990
+++ nvidia-smi --query-compute-apps=pid --format=csv,noheader
++ for p in $(nvidia-smi --query-compute-apps=pid --format=csv,noheader 2> /dev/null)
++ kill -9 2654449
++ rm -f '/dev/shm/nccl-*' '/dev/shm/vllm-*'
++ sleep 5
+++ date -u
++ echo '########## GLM_MATRIX NOSPEC DONE Wed Oct 28 06:09:05 PM UTC 2026 ##########'
++ echo DONE
++ kill_all
++ pkill -9 -f '[v]llm serve'
++ pkill -9 -f VLLM::
++ sleep 2
+++ ss -lptnH 'sport = :8123'
+++ grep -oP 'pid=\K[0-9]+'
+++ sort -u
+++ nvidia-smi --query-compute-apps=pid --format=csv,noheader
++ rm -f '/dev/shm/nccl-*' '/dev/shm/vllm-*'
++ sleep 5
+++ date -u
++ echo '########## GLM MATRIX ALL DONE Wed Oct 28 06:09:13 PM UTC 2026 ##########'
+########## GLM MATRIX ALL DONE Wed Oct 28 06:09:13 PM UTC 2026 ##########
++ echo DONE
