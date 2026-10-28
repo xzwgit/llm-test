@@ -40,3 +40,7 @@ zero corruption with the full-feature config (DSpark in both pools + vision + KV
 
 Note: the PR entered merge-conflict state on 2026-09-28 and awaits the author's rebase;
 this diff is the bridge we run locally until it lands.
+
+## glm53-flash-fixb-breakable-capture-attn
+
+本地修复（上游 PR 候选）：SM120 上 GLM-5.3-Flash（glm5_next）默认 breakable cudagraph 捕获期 IMA——eager-break 段间真实执行的 cuBLAS nvJet TMA GEMM 崩（coredump 命名）。修法=opt-in env `VLLM_BREAKABLE_CAPTURE_ATTN=1` 让注意力族 op 随段捕获（KDA break 保留）。验证：PIECEWISE 106+FULL 57 图全捕获，探针 4/4，c1 92.0 / c32 1295.2 tok/s（8×PRO 6000 96G TP8）。详见子目录 README。
