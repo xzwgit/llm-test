@@ -1,6 +1,6 @@
 # FIXB：SM120 上 GLM-5.3-Flash（glm5_next）breakable CUDA graph 捕获期 IMA 修复
 
-**状态**：本地修复，实机验证通过（2026-10-28）；上游 PR 候选。
+**状态**：已提上游 PR [vllm#64266](https://github.com/vllm-project/vllm/pull/64266)（2026-10-28）；PR 形态=env 走 vllm/envs.py 注册（本目录 patch 为 dev463 形态，PR 分支 fix/glm5next-breakable-capture-attn 为规范形态）。
 **适用**：vLLM `0.32.1rc1.dev463`（glm5_next 混合 KDA 模型 + SM120/Blackwell + 默认 breakable cudagraph 路径）。同样的机制预计适用于相近 nightly。
 
 ## 问题
