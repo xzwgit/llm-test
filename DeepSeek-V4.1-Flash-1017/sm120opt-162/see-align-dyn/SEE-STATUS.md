@@ -1,6 +1,6 @@
 # SEE 项目状态快照 · 2026-10-25 上午
 
-> 本文件 = SEE fork 线的全部已完成/进行中/待做工作快照。后续会话读本文件 + `xzwgit/vllm see 分支的 SEE.md` + `llm-test sm120opt-162/` 即可接手。
+> 本文件 = SEE fork 线的全部已完成/进行中/待做工作快照。后续会话读本文件 + `xzwgit/vllm see 分支的 SEE.md` + `llm-test DeepSeek-V4.1-Flash-1017/sm120opt-162/` 即可接手。
 
 ## 分支与机器
 
@@ -13,7 +13,7 @@
 
 ### 1. b12x MoE 首轮实验（已封存）
 - **结论**：快但不可信。TPMoe 路径 c1 +18.8% 但精确任务静默损坏；functional API 122/122 全过但只支持 W4A4（无 W4A8-MX）
-- **产出**：llm-test `sm120opt-162/` 根目录（b12x_*.log 系列）
+- **产出**：llm-test `DeepSeek-V4.1-Flash-1017/sm120opt-162/` 根目录（b12x_*.log 系列）
 - **封存原因**：正确修法=自研 fused kernel（kacper 样板）或等 FI 补 W4A8 路线
 
 ### 2. DeepGEMM 动态对齐 patch（★ 最大成果）
@@ -25,7 +25,7 @@
   - .158 dev440: 8K c8 三连 663/666/642 vs stock 605.8 (+8.5% 稳定)；c32 方差带内无回归
   - 加固矩阵（.162, 7 档×2 轮）：1K c64 1518/1576, 4K c8 558/671, 32K c8 666/623 等
   - 质量三连（323/9.9大/北京）全过
-- **归档**：llm-test `sm120opt-162/see-align-dyn/`（A/B 日志 + patch 文件 + validation matrix）
+- **归档**：llm-test `DeepSeek-V4.1-Flash-1017/sm120opt-162/see-align-dyn/`（A/B 日志 + patch 文件 + validation matrix）
 - **注意**：.158 的 v60762 已还原 stock（k7 线机器保持干净）；.162 的 sm120opt 仍带 patch
 
 ### 3. #60762 新环境 A/B 验证（已交付）
@@ -35,7 +35,7 @@
 ### 4. k7 完整矩阵（.158，已交付）
 - 29 档+VL E2E+Agent 3×12 全零失败，c32 1006 tok/s，接受率 Σ 全程 56.7%
 - 报告：`压测报告-HTML/DSV4.1-Flash-1017-PRO6000D-FlashInfer072-DSpark-k7prob-完整矩阵.html`
-- 原始：llm-test `dsv41-flash-1017-6000d-sm120/logs/k7full-prob/` @ 141bd7aae
+- 原始：llm-test `DeepSeek-V4.1-Flash-1017/dsv41-flash-1017-6000d-sm120/logs/k7full-prob/` @ 141bd7aae
 
 ### 5. A1 KV 分层（已定案）
 - 容量实证：512K×c32=16.4M token > GPU 池 12.66M 全过（TTFT 均 602s，出速 92.7 tok/s）
@@ -78,9 +78,9 @@
 | 位置 | 内容 | commit |
 |---|---|---|
 | `xzwgit/vllm see` | 分支本体（章程+对齐 patch） | cc17a5b3e |
-| `xzwgit/llm-test sm120opt-162/` | b12x 首轮+b12x 封存+对齐 patch A/B+加固矩阵 | b06703517/0ea4a3232 |
-| `xzwgit/llm-test dsv41-flash-1017-6000d-sm120/logs/k7full-prob/` | k7 完整矩阵原始数据 | 141bd7aae |
-| `xzwgit/llm-test dsv41-flash-1017-6000d-sm120/logs/see-align-dyn/` | 对齐 patch .158 跨机验证 | b06703517 |
+| `xzwgit/llm-test DeepSeek-V4.1-Flash-1017/sm120opt-162/` | b12x 首轮+b12x 封存+对齐 patch A/B+加固矩阵 | b06703517/0ea4a3232 |
+| `xzwgit/llm-test DeepSeek-V4.1-Flash-1017/dsv41-flash-1017-6000d-sm120/logs/k7full-prob/` | k7 完整矩阵原始数据 | 141bd7aae |
+| `xzwgit/llm-test DeepSeek-V4.1-Flash-1017/dsv41-flash-1017-6000d-sm120/logs/see-align-dyn/` | 对齐 patch .158 跨机验证 | b06703517 |
 | 本地 `data/see-align/` | 对齐 patch 文件+.162 日志 | — |
 | 本地 `data/see-align-158/` | .158 D3+repeat 日志 | — |
 | 本地 `data/k7full/` | k7 完整矩阵原始数据 | — |

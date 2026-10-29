@@ -37,7 +37,7 @@ DSpark speculative decoding corrupts thinking/chat outputs on the 1017 checkpoin
 
 ## Unified matrix retest (2026-10-21, same machine as the 25-tier suite above)
 
-Identical tier labels/rules as `dsv41-flash-1017-6000d-sm120/logs/unified-matrix` (k=3/4/5, 5 length groups x concurrency ladders + agent tools), run on this machine with vLLM 0.32.0 release + FlashInfer 0.7.2 + #62535, util 0.90 uniform, capture 512/640/768, NCCL_P2P_LEVEL=SYS. 87 tiers + 9 agent sessions zero-failure in a single pass (4h09m).
+Identical tier labels/rules as `DeepSeek-V4.1-Flash-1017/dsv41-flash-1017-6000d-sm120/logs/unified-matrix` (k=3/4/5, 5 length groups x concurrency ladders + agent tools), run on this machine with vLLM 0.32.0 release + FlashInfer 0.7.2 + #62535, util 0.90 uniform, capture 512/640/768, NCCL_P2P_LEVEL=SYS. 87 tiers + 9 agent sessions zero-failure in a single pass (4h09m).
 
 Cross-machine highlights vs RTX 6000D 84G: aggregate tiers +5-13% (1K c128 k3 1966 -> 2217 tok/s), KV pool 17.69M vs 13.2M tokens; the gap tracks the memory-bandwidth ratio (1.53 vs 1.30 TB/s), not the FP8 compute ratio (2.35x) - serving is bandwidth-priced.
 

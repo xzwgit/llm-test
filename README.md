@@ -5,54 +5,57 @@ LLM 部署与性能测试归档。每个子目录是一个独立测试项目，�
 ## 模型索引
 
 ### DeepSeek-V4-Pro
-- [DSV4.1-Flash · FlashInfer CUTLASS MoE on SM120](dsv41-flashinfer-cutlass-sm120/) — first successful deployment, JIT header fix, autotune timeout workaround, DeepGEMM comparison\n- [DeepSeek-V4.1-Flash · vLLM dev511 · SM120](dsv41-flash-dev511-sm120/) — PD 1M context full suite, mHC+AR fusion, #57292 still required
-- [DeepSeek-V4.1-Flash · PD disagg + KV CPU offload + 1M concurrency · 8x RTX PRO 6000 (SM120)](dsv41-flash-pd-offload-1m-sm120/) — first SM120 PD deployment, vision+PD, DSpark dual-pool, 1M ramp to c20 (no hard failure), 232x TTFT from CPU offload
+- [DSV4.1-Flash · FlashInfer CUTLASS MoE on SM120](DeepSeek-V4.1-Flash/dsv41-flashinfer-cutlass-sm120/) — first successful deployment, JIT header fix, autotune timeout workaround, DeepGEMM comparison\n- [DeepSeek-V4.1-Flash · vLLM dev511 · SM120](DeepSeek-V4.1-Flash/dsv41-flash-dev511-sm120/) — PD 1M context full suite, mHC+AR fusion, #57292 still required
+- [DeepSeek-V4.1-Flash · PD disagg + KV CPU offload + 1M concurrency · 8x RTX PRO 6000 (SM120)](DeepSeek-V4.1-Flash/dsv41-flash-pd-offload-1m-sm120/) — first SM120 PD deployment, vision+PD, DSpark dual-pool, 1M ramp to c20 (no hard failure), 232x TTFT from CPU offload
 | 测试 | 日期 | 说明 |
 |---|---|---|
-| [deepseek-v4-pro](deepseek-v4-pro/) | 2026-08 | DP2+MTP 部署, 多上下文压测, SM120 补丁与调优 |
+| [deepseek-v4-pro](DeepSeek-V4-Pro/deepseek-v4-pro/) | 2026-08 | DP2+MTP 部署, 多上下文压测, SM120 补丁与调优 |
 
 ### DeepSeek-V4.1-Flash
 | 测试 | 日期 | 说明 |
 |---|---|---|
-| [deepseek-v4.1-flash-tp8-8xb300](deepseek-v4.1-flash-tp8-8xb300/) | 2026-09 | 8×B300 SXM6（SM100）TP8, 1M 上下文, 官方镜像与本地 uv 环境两组独立数据 |
-| [dsv41-flash-1017-sm120](dsv41-flash-1017-sm120/) | 2026-10 | 最新 nightly(dev24)+torch2.14+#60762 · 1017 权重 25 档零失败(1K/长上下文/64K ramp) + 相位探针(1017 未复现) + NVFP4 KV 拒证 + DSpark×1017 chat 损坏定案(vllm#62417) |
+| [deepseek-v4.1-flash-tp8-8xb300](DeepSeek-V4.1-Flash/deepseek-v4.1-flash-tp8-8xb300/) | 2026-09 | 8×B300 SXM6（SM100）TP8, 1M 上下文, 官方镜像与本地 uv 环境两组独立数据 |
+| [dsv41-flash-1017-sm120](DeepSeek-V4.1-Flash-1017/dsv41-flash-1017-sm120/) | 2026-10 | 最新 nightly(dev24)+torch2.14+#60762 · 1017 权重 25 档零失败(1K/长上下文/64K ramp) + 相位探针(1017 未复现) + NVFP4 KV 拒证 + DSpark×1017 chat 损坏定案(vllm#62417) |
 
 ### DeepSeek-V4-Flash-0731
 | 测试 | 日期 | 说明 |
 |---|---|---|
-| [deepseek-v4-flash-0731-tp8-8xb300](deepseek-v4-flash-0731-tp8-8xb300/) | 2026-09 | 8×B300 SXM6（SM100）TP8, 官方镜像 + DSpark(spec=7), 冷/热两轮测量 |
+| [deepseek-v4-flash-0731-tp8-8xb300](DeepSeek-V4-Flash-0731/deepseek-v4-flash-0731-tp8-8xb300/) | 2026-09 | 8×B300 SXM6（SM100）TP8, 官方镜像 + DSpark(spec=7), 冷/热两轮测量 |
 
 ### Qwen3.8-27B
 | 测试 | 日期 | 说明 |
 |---|---|---|
-| [qwen3.8-27b-dp2-16x5090](qwen3.8-27b-dp2-16x5090/) | 2026-09 | 双机 DP=2（16×RTX 5090）26 档 |
-| [qwen3.8-27b-tp8-single-8x5090](qwen3.8-27b-tp8-single-8x5090/) | 2026-09 | 单机 TP=8（8×RTX 5090）26 档 |
-| [qwen3.8-27b-nvfp4-tp1-gb10-spark](qwen3.8-27b-nvfp4-tp1-gb10-spark/) | 2026-09 | unsloth NVFP4 包, DGX Spark(GB10) 9 档部分矩阵 |
-| [qwen3.8-27b-fp8-tp1-gb10-spark](qwen3.8-27b-fp8-tp1-gb10-spark/) | 2026-09 | 官方 FP8 包（KV bf16）, DGX Spark(GB10) 9 档 |
-| [qwen3.8-27b-dflash2-tp4-4x4090](qwen3.8-27b-dflash2-tp4-4x4090/) | 2026-08 | DFlash2(spec=3) 投机解码, 4×RTX 4090 TP4, 21 档（docker nightly） |
-| [qwen3.8-27b-fp8-dflash2-tp1-gb10-spark](qwen3.8-27b-fp8-dflash2-tp1-gb10-spark/) | 2026-09 | FP8 主模型 + DFlash2(spec=7), DGX Spark(GB10) 九档 + v2（Agent/多轮/缓存验证） |
-| [qwen3.8-27b-fp8-dflash2-tp8-8x5090](qwen3.8-27b-fp8-dflash2-tp8-8x5090/) | 2026-09 | FP8 + DFlash2(spec=7), 8×RTX 5090 TP8, 26 档矩阵 14 档有效（含两次崩溃记录） |
-| [qwen3.8-27b-sglang-dspark-tp1-gb10-spark](qwen3.8-27b-sglang-dspark-tp1-gb10-spark/) | 2026-09 | SGLang 定制镜像 + RadixArk NVFP4 + DSPARK, DGX Spark(GB10) 9 档 + 场景化全套 + 无投机对照 |
-- [Qwen3.8-Flash-Next-FP8 TP8+EP+MTP (SM120 x8)](qwen3.8-flash-next-fp8-tp8-ep-mtp-sm120/) — official vLLM 0.31.1 + FI 0.7.1rc5(+#6161 patch); 6-tier matrix c1~c32 (c32 1984 tok/s), agent 476-498 tok/s, MTP accept 75%/len 3.25; pure-TP boundary TP4-works/TP8-rejected
+| [qwen3.8-27b-dp2-16x5090](Qwen3.8-27B/qwen3.8-27b-dp2-16x5090/) | 2026-09 | 双机 DP=2（16×RTX 5090）26 档 |
+| [qwen3.8-27b-tp8-single-8x5090](Qwen3.8-27B/qwen3.8-27b-tp8-single-8x5090/) | 2026-09 | 单机 TP=8（8×RTX 5090）26 档 |
+| [qwen3.8-27b-nvfp4-tp1-gb10-spark](Qwen3.8-27B/qwen3.8-27b-nvfp4-tp1-gb10-spark/) | 2026-09 | unsloth NVFP4 包, DGX Spark(GB10) 9 档部分矩阵 |
+| [qwen3.8-27b-fp8-tp1-gb10-spark](Qwen3.8-27B/qwen3.8-27b-fp8-tp1-gb10-spark/) | 2026-09 | 官方 FP8 包（KV bf16）, DGX Spark(GB10) 9 档 |
+| [qwen3.8-27b-dflash2-tp4-4x4090](Qwen3.8-27B/qwen3.8-27b-dflash2-tp4-4x4090/) | 2026-08 | DFlash2(spec=3) 投机解码, 4×RTX 4090 TP4, 21 档（docker nightly） |
+| [qwen3.8-27b-fp8-dflash2-tp1-gb10-spark](Qwen3.8-27B/qwen3.8-27b-fp8-dflash2-tp1-gb10-spark/) | 2026-09 | FP8 主模型 + DFlash2(spec=7), DGX Spark(GB10) 九档 + v2（Agent/多轮/缓存验证） |
+| [qwen3.8-27b-fp8-dflash2-tp8-8x5090](Qwen3.8-27B/qwen3.8-27b-fp8-dflash2-tp8-8x5090/) | 2026-09 | FP8 + DFlash2(spec=7), 8×RTX 5090 TP8, 26 档矩阵 14 档有效（含两次崩溃记录） |
+| [qwen3.8-27b-sglang-dspark-tp1-gb10-spark](Qwen3.8-27B/qwen3.8-27b-sglang-dspark-tp1-gb10-spark/) | 2026-09 | SGLang 定制镜像 + RadixArk NVFP4 + DSPARK, DGX Spark(GB10) 9 档 + 场景化全套 + 无投机对照 |
+- [Qwen3.8-Flash-Next-FP8 TP8+EP+MTP (SM120 x8)](Qwen3.8-Flash-Next/qwen3.8-flash-next-fp8-tp8-ep-mtp-sm120/) — official vLLM 0.31.1 + FI 0.7.1rc5(+#6161 patch); 6-tier matrix c1~c32 (c32 1984 tok/s), agent 476-498 tok/s, MTP accept 75%/len 3.25; pure-TP boundary TP4-works/TP8-rejected
 
 ### Qwen3.6-27B
 | 测试 | 日期 | 说明 |
 |---|---|---|
-| [qwen3.6-27b-nvfp4-tp1-gb10-spark](qwen3.6-27b-nvfp4-tp1-gb10-spark/) | 2026-09 | 官方 NVFP4 包, DGX Spark(GB10) 9 档部分矩阵 |
+| [qwen3.6-27b-nvfp4-tp1-gb10-spark](Qwen3.6-27B/qwen3.6-27b-nvfp4-tp1-gb10-spark/) | 2026-09 | 官方 NVFP4 包, DGX Spark(GB10) 9 档部分矩阵 |
 
-## 目录约定
+## 目录约定（2026-10-29 起：一级目录按模型）
 
 ```
-<项目目录>/
-├── README.md          # 本项目结论速览 + 范围 + 启动命令
-├── docs/              # benchmark_report.html 完整报告
-├── bench_scripts/     # 压测脚本
-└── logs/              # 官方输出 JSON（逐档）
+<模型名>/                     # 一级目录按模型（DeepSeek-V4.1-Flash-1017/ GLM-5.3-Flash/ Qwen3.8-27B/ ...）
+└── <项目目录>/               # 一个 campaign 一个子目录（模型-量化/加速-TP-硬件）
+    ├── README.md           # 本项目结论速览 + 范围 + 启动命令
+    ├── docs/               # benchmark_report.html 完整报告
+    ├── bench_scripts/      # 压测脚本
+    └── logs/               # 官方输出 JSON（逐档）
 ```
+
+非模型类留在顶层：`_template/`（模板）、`sm120-upstream-patches/`（补丁）、`b300-stability/`（平台稳定性）、`rescue-20261009/`（救援档案）。
 
 ## 如何新增测试
 
-1. 复制 `_template/` 为新目录（命名: 模型-量化/加速-TP-硬件）
+1. 复制 `_template/` 到对应模型一级目录下（无对应模型目录则新建，命名与本地工作区 `压测报告-HTML/` 模型子目录一致）
 2. 子目录内放 `docs/`, `bench_scripts/`, `logs/`
 3. 在本 README「模型索引」对应模型分组下登记一行
 4. git commit + push（默认分支 master）
@@ -64,14 +67,14 @@ LLM 部署与性能测试归档。每个子目录是一个独立测试项目，�
 ## SM120 upstream patches
 
 - [SM120 upstream patches (vLLM x3 + TileKernels)](sm120-upstream-patches/) — verified patches + evidence from our 8x RTX PRO 6000 cluster: NIXL PD loopback diagnostic, PD troubleshooting docs, bench --metrics-url, sinkhorn SMEM fix
-- sm120opt-162/ — 10-24 fork line on .162: b12x MoE first experiment (fast c1 +18.8% but exact-task corruption; #60762 port to dev451)
+- DeepSeek-V4.1-Flash-1017/sm120opt-162/ — 10-24 fork line on .162: b12x MoE first experiment (fast c1 +18.8% but exact-task corruption; #60762 port to dev451)
 
-- dsv41-flash-1017-6000d-sm120/logs/nospec-matrix/ — 2026-10-26 no-spec full unified matrix baseline on .157 (29 tiers + c1 double-run, zero failures; docs/ has the report)
+- DeepSeek-V4.1-Flash-1017/dsv41-flash-1017-6000d-sm120/logs/nospec-matrix/ — 2026-10-26 no-spec full unified matrix baseline on .157 (29 tiers + c1 double-run, zero failures; docs/ has the report)
 
-- glm53-flash-pro6000-sm120/logs/matrix-155/ — 2026-10-28 GLM-5.3-Flash two-leg matrix (MTP k5 + no-spec, 29 tiers, zero failures; FIXB #64266 + latest nightly)
+- GLM-5.3-Flash/glm53-flash-pro6000-sm120/logs/matrix-155/ — 2026-10-28 GLM-5.3-Flash two-leg matrix (MTP k5 + no-spec, 29 tiers, zero failures; FIXB #64266 + latest nightly)
 
-- glm53-flash-6000d-sm120/logs/matrix-157/ — 2026-10-28 GLM-5.3-Flash two-leg matrix on 6000D 84G (MTP k5 + no-spec, 29 tiers, zero failures; cross-SKU vs 96G: KV 27.98 vs 38.71 GiB/card)
+- GLM-5.3-Flash/glm53-flash-6000d-sm120/logs/matrix-157/ — 2026-10-28 GLM-5.3-Flash two-leg matrix on 6000D 84G (MTP k5 + no-spec, 29 tiers, zero failures; cross-SKU vs 96G: KV 27.98 vs 38.71 GiB/card)
 
-- dsv41-flash-1017-gb202-sm120/ — 2026-10-28 DSV4.1-Flash-1017 four-leg matrix on GB202 platform (DSpark k3/k5/k7 + no-spec, 29 tiers each, zero failures; docs/ has 4 unified reports)
+- DeepSeek-V4.1-Flash-1017/dsv41-flash-1017-gb202-sm120/ — 2026-10-28 DSV4.1-Flash-1017 four-leg matrix on GB202 platform (DSpark k3/k5/k7 + no-spec, 29 tiers each, zero failures; docs/ has 4 unified reports)
 
-- glm53-flash-6000d-sm120/logs/matrix-192/ — 2026-10-29 GLM-5.3-Flash two-leg matrix on GB202 platform (MTP k5 + no-spec, 29 tiers, zero failures; cross-SKU 64K c1: 96G 354 > GB202 315.5 > 84G 267)
+- GLM-5.3-Flash/glm53-flash-6000d-sm120/logs/matrix-192/ — 2026-10-29 GLM-5.3-Flash two-leg matrix on GB202 platform (MTP k5 + no-spec, 29 tiers, zero failures; cross-SKU 64K c1: 96G 354 > GB202 315.5 > 84G 267)

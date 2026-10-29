@@ -2,7 +2,7 @@
 
 > 归档于 llm-test 项目 | 2026-08 | 硬件: 2×8 RTX PRO 6000 Blackwell
 
-> 💡 **完整压测数据见 [deepseek-v4-pro/docs/benchmark.md](deepseek-v4-pro/docs/benchmark.md)**
+> 💡 **完整压测数据见 [DeepSeek-V4-Pro/deepseek-v4-pro/docs/benchmark.md](DeepSeek-V4-Pro/deepseek-v4-pro/docs/benchmark.md)**
 > (含 ITL/MTP接受率/PC命中率, 终极版 bench_ultimate.py 测得)
 
 ## 一、测试环境
@@ -166,8 +166,8 @@ bash /root/dsv4pro/scripts/start_server01.sh
 bash /root/dsv4pro/scripts/start_server02.sh
 \`\`\`
 
-脚本也已归档到本仓库: `deepseek-v4-pro/scripts/`
-调优参数说明见: `deepseek-v4-pro/docs/tuning_guide.md`
+脚本也已归档到本仓库: `DeepSeek-V4-Pro/deepseek-v4-pro/scripts/`
+调优参数说明见: `DeepSeek-V4-Pro/deepseek-v4-pro/docs/tuning_guide.md`
 
 ## 五、显存分解 (每卡 96GB)
 
@@ -341,7 +341,7 @@ llm-test/
 ├── .gitignore
 ├── _template/                    ← 新测试模板
 │   └── README.md
-└── deepseek-v4-pro/
+└── DeepSeek-V4-Pro/deepseek-v4-pro/
     ├── docs/
     │   ├── benchmark_results.md  ← 详细压测数据
     │   └── benchmark_summary.md  ← 汇总
