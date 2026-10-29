@@ -38,3 +38,4 @@ Key numbers (output tok/s, k5 vs no-spec): 4K c1 228.1/85.8 (2.66x), 8K c1
 across both legs. Cross-SKU @64K c1 k5: 96G 354.0 > GB202 315.5 > 84G 267.0.
 
 - `docs/MTP-k5-unified-matrix-{157,192}.html` / `docs/no-spec-unified-matrix-{157,192}.html` — 2026-10-29 unified 19-col reports for both legs on both 6000D hosts
+- `docs/MTP-k5-vs-nospec-unified-matrix-192.html` — two-leg side-by-side comparison report for the GB202 host
