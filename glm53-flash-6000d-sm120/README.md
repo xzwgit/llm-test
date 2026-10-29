@@ -36,3 +36,5 @@ Key numbers (output tok/s, k5 vs no-spec): 4K c1 228.1/85.8 (2.66x), 8K c1
 64K c8 843.4/408.9 (2.06x). Crossover unchanged: 1K c128 no-spec wins
 (1713.1 vs 1216.4). KV pool 3,302,083 tokens (1M ctx 3.15x). Zero failures
 across both legs. Cross-SKU @64K c1 k5: 96G 354.0 > GB202 315.5 > 84G 267.0.
+
+- `docs/MTP-k5-unified-matrix-{157,192}.html` / `docs/no-spec-unified-matrix-{157,192}.html` — 2026-10-29 unified 19-col reports for both legs on both 6000D hosts

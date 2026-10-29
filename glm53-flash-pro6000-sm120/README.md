@@ -25,3 +25,5 @@ Key numbers (output tok/s, k5 vs nospec):
 - High concurrency: 1K c128 nospec wins (1932.9 vs 1465.1); 4K+ bands k5 wins everywhere (32K c16 2.06x, 64K c8 1.96x)
 - Acceptance peaks at long context: 64K c1 98.4%/5.92; lowest at 1K band (2.2-3.6)
 - Zero failures across both legs; c1 double-run cold-start delta +5.4% on k5
+
+- `docs/MTP-k5-unified-matrix.html` / `docs/no-spec-unified-matrix.html` — 2026-10-29 unified 19-col reports for both legs
