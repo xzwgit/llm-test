@@ -1,0 +1,1069 @@
++ export OPENAI_API_KEY=***
++ OPENAI_API_KEY=***
++ boot_leg k7 '{"method":"dspark","num_speculative_tokens":7,"draft_sample_method":"probabilistic","rejection_sample_method":"block"}' 1024
++ kill_all
++ pkill -9 -f '[v]llm serve'
++ pkill -9 -x vllm-rs
++ pkill -9 -f VLLM::
++ sleep 3
+++ ss -tlnp
+++ grep :8123
+++ grep -oP 'pid=\K[0-9]+'
+++ sort -u
+++ nvidia-smi --query-compute-apps=pid --format=csv,noheader
++ rm -f '/dev/shm/nccl-*' '/dev/shm/vllm-*'
++ sleep 3
+++ date -u
++ echo '########## BOOT k7 Fri Oct 30 03:12:47 PM UTC 2026 ##########'
+########## BOOT k7 Fri Oct 30 03:12:47 PM UTC 2026 ##########
++ local SPEC=
++ '[' -n '{"method":"dspark","num_speculative_tokens":7,"draft_sample_method":"probabilistic","rejection_sample_method":"block"}' ']'
++ SPEC='--speculative-config {"method":"dspark","num_speculative_tokens":7,"draft_sample_method":"probabilistic","rejection_sample_method":"block"}'
++ echo 'BOOT CMD: vllm serve /data1/DeepSeek-V4.1-Flash-1017 TP8/EP8 fp8KV PIECEWISE util0.90 capture=1024 spec={"method":"dspark","num_speculative_tokens":7,"draft_sample_method":"probabilistic","rejection_sample_method":"block"} [leg k7]'
++ setsid nohup env PATH=/root/vllmenv/bin:/usr/local/cuda-13.2/bin:/usr/bin:/bin VLLM_USE_RUST_FRONTEND=1 VLLM_ENGINE_READY_TIMEOUT_S=7200 NCCL_P2P_LEVEL=SYS NCCL_IB_DISABLE=1 FLASHINFER_DISABLE_VERSION_CHECK=1 HF_HUB_OFFLINE=1 HF_HUB_DISABLE_XET=1 /root/vllmenv/bin/vllm serve /data1/DeepSeek-V4.1-Flash-1017 --served-model-name deepseek-v4.1-flash --tokenizer-mode deepseek_v41 --trust-remote-code --tensor-parallel-size 8 --enable-expert-parallel --kv-cache-dtype fp8 --engram-config '{"cpu_offload":true}' --compilation-config '{"cudagraph_mode":"PIECEWISE"}' --max-model-len 1048576 --max-num-seqs 128 --gpu-memory-utilization 0.90 --speculative-config '{"method":"dspark","num_speculative_tokens":7,"draft_sample_method":"probabilistic","rejection_sample_method":"block"}' --max-cudagraph-capture-size 1024 --enable-prompt-tokens-details --enable-auto-tool-choice --tool-call-parser deepseek_v41 --reasoning-parser deepseek_v41 --port 8123 --api-key ***
+++ seq 1 180
++ for i in $(seq 1 180)
++ curl -sf -m 5 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ sleep 5
++ for i in $(seq 1 180)
++ curl -sf -m 5 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ sleep 5
++ for i in $(seq 1 180)
++ curl -sf -m 5 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ sleep 5
++ for i in $(seq 1 180)
++ curl -sf -m 5 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ sleep 5
++ for i in $(seq 1 180)
++ curl -sf -m 5 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ sleep 5
++ for i in $(seq 1 180)
++ curl -sf -m 5 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ sleep 5
++ for i in $(seq 1 180)
++ curl -sf -m 5 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ sleep 5
++ for i in $(seq 1 180)
++ curl -sf -m 5 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ sleep 5
++ for i in $(seq 1 180)
++ curl -sf -m 5 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ sleep 5
++ for i in $(seq 1 180)
++ curl -sf -m 5 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ sleep 5
++ for i in $(seq 1 180)
++ curl -sf -m 5 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ sleep 5
++ for i in $(seq 1 180)
++ curl -sf -m 5 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ sleep 5
++ for i in $(seq 1 180)
++ curl -sf -m 5 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ sleep 5
++ for i in $(seq 1 180)
++ curl -sf -m 5 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ sleep 5
++ for i in $(seq 1 180)
++ curl -sf -m 5 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ sleep 5
++ for i in $(seq 1 180)
++ curl -sf -m 5 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ sleep 5
++ for i in $(seq 1 180)
++ curl -sf -m 5 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ sleep 5
++ for i in $(seq 1 180)
++ curl -sf -m 5 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ sleep 5
++ for i in $(seq 1 180)
++ curl -sf -m 5 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ sleep 5
++ for i in $(seq 1 180)
++ curl -sf -m 5 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ sleep 5
++ for i in $(seq 1 180)
++ curl -sf -m 5 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ sleep 5
++ for i in $(seq 1 180)
++ curl -sf -m 5 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ sleep 5
++ for i in $(seq 1 180)
++ curl -sf -m 5 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ sleep 5
++ for i in $(seq 1 180)
++ curl -sf -m 5 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ sleep 5
++ for i in $(seq 1 180)
++ curl -sf -m 5 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ sleep 5
++ for i in $(seq 1 180)
++ curl -sf -m 5 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ sleep 5
++ for i in $(seq 1 180)
++ curl -sf -m 5 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ sleep 5
++ for i in $(seq 1 180)
++ curl -sf -m 5 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ sleep 5
++ for i in $(seq 1 180)
++ curl -sf -m 5 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ sleep 5
++ for i in $(seq 1 180)
++ curl -sf -m 5 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ sleep 5
++ for i in $(seq 1 180)
++ curl -sf -m 5 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ sleep 5
++ for i in $(seq 1 180)
++ curl -sf -m 5 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ sleep 5
++ for i in $(seq 1 180)
++ curl -sf -m 5 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ sleep 5
++ for i in $(seq 1 180)
++ curl -sf -m 5 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ sleep 5
++ for i in $(seq 1 180)
++ curl -sf -m 5 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ sleep 5
++ for i in $(seq 1 180)
++ curl -sf -m 5 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ sleep 5
++ for i in $(seq 1 180)
++ curl -sf -m 5 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ sleep 5
++ for i in $(seq 1 180)
++ curl -sf -m 5 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ sleep 5
++ for i in $(seq 1 180)
++ curl -sf -m 5 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ sleep 5
++ for i in $(seq 1 180)
++ curl -sf -m 5 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ sleep 5
++ for i in $(seq 1 180)
++ curl -sf -m 5 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ sleep 5
++ for i in $(seq 1 180)
++ curl -sf -m 5 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ sleep 5
++ for i in $(seq 1 180)
++ curl -sf -m 5 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ sleep 5
++ for i in $(seq 1 180)
++ curl -sf -m 5 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ sleep 5
++ for i in $(seq 1 180)
++ curl -sf -m 5 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ sleep 5
++ for i in $(seq 1 180)
++ curl -sf -m 5 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ sleep 5
++ for i in $(seq 1 180)
++ curl -sf -m 5 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ sleep 5
++ for i in $(seq 1 180)
++ curl -sf -m 5 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ sleep 5
++ for i in $(seq 1 180)
++ curl -sf -m 5 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ sleep 5
++ for i in $(seq 1 180)
++ curl -sf -m 5 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ sleep 5
++ for i in $(seq 1 180)
++ curl -sf -m 5 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ sleep 5
++ for i in $(seq 1 180)
++ curl -sf -m 5 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ sleep 5
++ for i in $(seq 1 180)
++ curl -sf -m 5 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ sleep 5
++ for i in $(seq 1 180)
++ curl -sf -m 5 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ sleep 5
++ for i in $(seq 1 180)
++ curl -sf -m 5 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ sleep 5
++ for i in $(seq 1 180)
++ curl -sf -m 5 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ sleep 5
++ for i in $(seq 1 180)
++ curl -sf -m 5 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ sleep 5
++ for i in $(seq 1 180)
++ curl -sf -m 5 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ sleep 5
++ for i in $(seq 1 180)
++ curl -sf -m 5 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ sleep 5
++ for i in $(seq 1 180)
++ curl -sf -m 5 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ sleep 5
++ for i in $(seq 1 180)
++ curl -sf -m 5 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ sleep 5
++ for i in $(seq 1 180)
++ curl -sf -m 5 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ sleep 5
++ for i in $(seq 1 180)
++ curl -sf -m 5 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ sleep 5
++ for i in $(seq 1 180)
++ curl -sf -m 5 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ sleep 5
++ for i in $(seq 1 180)
++ curl -sf -m 5 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ sleep 5
++ for i in $(seq 1 180)
++ curl -sf -m 5 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ sleep 5
++ for i in $(seq 1 180)
++ curl -sf -m 5 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ sleep 5
++ for i in $(seq 1 180)
++ curl -sf -m 5 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ sleep 5
++ for i in $(seq 1 180)
++ curl -sf -m 5 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ sleep 5
++ for i in $(seq 1 180)
++ curl -sf -m 5 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ sleep 5
++ for i in $(seq 1 180)
++ curl -sf -m 5 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ sleep 5
++ for i in $(seq 1 180)
++ curl -sf -m 5 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ sleep 5
++ for i in $(seq 1 180)
++ curl -sf -m 5 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ sleep 5
++ for i in $(seq 1 180)
++ curl -sf -m 5 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ sleep 5
++ for i in $(seq 1 180)
++ curl -sf -m 5 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ sleep 5
++ for i in $(seq 1 180)
++ curl -sf -m 5 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ sleep 5
++ for i in $(seq 1 180)
++ curl -sf -m 5 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ sleep 5
++ for i in $(seq 1 180)
++ curl -sf -m 5 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ sleep 5
++ for i in $(seq 1 180)
++ curl -sf -m 5 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ sleep 5
++ for i in $(seq 1 180)
++ curl -sf -m 5 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ sleep 5
++ for i in $(seq 1 180)
++ curl -sf -m 5 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ sleep 5
++ for i in $(seq 1 180)
++ curl -sf -m 5 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ break
++ sleep 8
++ grep -q 'GPU KV cache size' /root/m206_ops/boot_k7.log
++ echo 'LEG_k7 READY'
+LEG_k7 READY
++ grep 'GPU KV cache size' /root/m206_ops/boot_k7.log
++ tail -1
+(EngineCore pid=103136) INFO 10-30 23:18:30 [kv_cache_utils.py:1147] GPU KV cache size: 11,606,172 tokens, Maximum concurrency for 1,048,576 tokens per request: 11.07x
++ return 0
++ bench_leg k7 ''
++ local LOG=/root/m206_ops/tiers_k7.log
++ :
++ local 'CONCS1=1 1 2 4 8 16 32 64 128' 'CONCS4=1 2 4 8 16 32' 'CONCS32=1 2 4 8 16' 'CONCS64=1 2 4 8'
++ for L in 1024 4096 8192 32768 65536
++ case $L in
++ CS='1 1 2 4 8 16 32 64 128'
++ for c in $CS
+++ date -u +%H:%M:%S
++ echo '===== 1024/1024 c1 15:19:41 ====='
++ timeout 5400 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data1/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 1024 --random-output-len 1024 --ignore-eos --num-prompts 1 --request-rate 1
++ curl -sf -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ for c in $CS
+++ date -u +%H:%M:%S
++ echo '===== 1024/1024 c1 15:19:56 ====='
++ timeout 5400 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data1/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 1024 --random-output-len 1024 --ignore-eos --num-prompts 1 --request-rate 1
++ curl -sf -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ for c in $CS
+++ date -u +%H:%M:%S
++ echo '===== 1024/1024 c2 15:20:11 ====='
++ timeout 5400 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data1/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 1024 --random-output-len 1024 --ignore-eos --num-prompts 2 --request-rate 2
++ curl -sf -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ for c in $CS
+++ date -u +%H:%M:%S
++ echo '===== 1024/1024 c4 15:20:29 ====='
++ timeout 5400 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data1/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 1024 --random-output-len 1024 --ignore-eos --num-prompts 4 --request-rate 4
++ curl -sf -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ for c in $CS
+++ date -u +%H:%M:%S
++ echo '===== 1024/1024 c8 15:20:52 ====='
++ timeout 5400 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data1/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 1024 --random-output-len 1024 --ignore-eos --num-prompts 8 --request-rate 8
++ curl -sf -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ for c in $CS
+++ date -u +%H:%M:%S
++ echo '===== 1024/1024 c16 15:21:21 ====='
++ timeout 5400 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data1/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 1024 --random-output-len 1024 --ignore-eos --num-prompts 16 --request-rate 16
++ curl -sf -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ for c in $CS
+++ date -u +%H:%M:%S
++ echo '===== 1024/1024 c32 15:21:59 ====='
++ timeout 5400 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data1/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 1024 --random-output-len 1024 --ignore-eos --num-prompts 32 --request-rate 32
++ curl -sf -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ for c in $CS
+++ date -u +%H:%M:%S
++ echo '===== 1024/1024 c64 15:22:40 ====='
++ timeout 5400 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data1/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 1024 --random-output-len 1024 --ignore-eos --num-prompts 64 --request-rate 64
++ curl -sf -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ for c in $CS
+++ date -u +%H:%M:%S
++ echo '===== 1024/1024 c128 15:23:34 ====='
++ timeout 5400 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data1/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 1024 --random-output-len 1024 --ignore-eos --num-prompts 128 --request-rate 128
++ curl -sf -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ for L in 1024 4096 8192 32768 65536
++ case $L in
++ CS='1 2 4 8 16 32'
++ for c in $CS
+++ date -u +%H:%M:%S
++ echo '===== 4096/4096 c1 15:25:02 ====='
++ timeout 5400 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data1/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 4096 --random-output-len 4096 --ignore-eos --num-prompts 1 --request-rate 1
++ curl -sf -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ for c in $CS
+++ date -u +%H:%M:%S
++ echo '===== 4096/4096 c2 15:25:36 ====='
++ timeout 5400 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data1/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 4096 --random-output-len 4096 --ignore-eos --num-prompts 2 --request-rate 2
++ curl -sf -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ for c in $CS
+++ date -u +%H:%M:%S
++ echo '===== 4096/4096 c4 15:26:12 ====='
++ timeout 5400 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data1/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 4096 --random-output-len 4096 --ignore-eos --num-prompts 4 --request-rate 4
++ curl -sf -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ for c in $CS
+++ date -u +%H:%M:%S
++ echo '===== 4096/4096 c8 15:27:14 ====='
++ timeout 5400 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data1/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 4096 --random-output-len 4096 --ignore-eos --num-prompts 8 --request-rate 8
++ curl -sf -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ for c in $CS
+++ date -u +%H:%M:%S
++ echo '===== 4096/4096 c16 15:28:16 ====='
++ timeout 5400 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data1/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 4096 --random-output-len 4096 --ignore-eos --num-prompts 16 --request-rate 16
++ curl -sf -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ for c in $CS
+++ date -u +%H:%M:%S
++ echo '===== 4096/4096 c32 15:29:42 ====='
++ timeout 5400 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data1/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 4096 --random-output-len 4096 --ignore-eos --num-prompts 32 --request-rate 32
++ curl -sf -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ for L in 1024 4096 8192 32768 65536
++ case $L in
++ CS='1 2 4 8 16 32'
++ for c in $CS
+++ date -u +%H:%M:%S
++ echo '===== 8192/8192 c1 15:31:54 ====='
++ timeout 5400 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data1/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 8192 --random-output-len 8192 --ignore-eos --num-prompts 1 --request-rate 1
++ curl -sf -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ for c in $CS
+++ date -u +%H:%M:%S
++ echo '===== 8192/8192 c2 15:32:56 ====='
++ timeout 5400 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data1/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 8192 --random-output-len 8192 --ignore-eos --num-prompts 2 --request-rate 2
++ curl -sf -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ for c in $CS
+++ date -u +%H:%M:%S
++ echo '===== 8192/8192 c4 15:33:44 ====='
++ timeout 5400 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data1/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 8192 --random-output-len 8192 --ignore-eos --num-prompts 4 --request-rate 4
++ curl -sf -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ for c in $CS
+++ date -u +%H:%M:%S
++ echo '===== 8192/8192 c8 15:35:06 ====='
++ timeout 5400 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data1/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 8192 --random-output-len 8192 --ignore-eos --num-prompts 8 --request-rate 8
++ curl -sf -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ for c in $CS
+++ date -u +%H:%M:%S
++ echo '===== 8192/8192 c16 15:37:05 ====='
++ timeout 5400 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data1/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 8192 --random-output-len 8192 --ignore-eos --num-prompts 16 --request-rate 16
++ curl -sf -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ for c in $CS
+++ date -u +%H:%M:%S
++ echo '===== 8192/8192 c32 15:40:08 ====='
++ timeout 5400 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data1/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 8192 --random-output-len 8192 --ignore-eos --num-prompts 32 --request-rate 32
++ curl -sf -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ for L in 1024 4096 8192 32768 65536
++ case $L in
++ CS='1 2 4 8 16'
++ for c in $CS
+++ date -u +%H:%M:%S
++ echo '===== 32768/32768 c1 15:44:50 ====='
++ timeout 5400 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data1/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 32768 --random-output-len 32768 --ignore-eos --num-prompts 1 --request-rate 1
++ curl -sf -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ for c in $CS
+++ date -u +%H:%M:%S
++ echo '===== 32768/32768 c2 15:47:26 ====='
++ timeout 5400 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data1/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 32768 --random-output-len 32768 --ignore-eos --num-prompts 2 --request-rate 2
++ curl -sf -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ for c in $CS
+++ date -u +%H:%M:%S
++ echo '===== 32768/32768 c4 15:50:27 ====='
++ timeout 5400 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data1/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 32768 --random-output-len 32768 --ignore-eos --num-prompts 4 --request-rate 4
++ curl -sf -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ for c in $CS
+++ date -u +%H:%M:%S
++ echo '===== 32768/32768 c8 15:55:02 ====='
++ timeout 5400 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data1/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 32768 --random-output-len 32768 --ignore-eos --num-prompts 8 --request-rate 8
++ curl -sf -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ for c in $CS
+++ date -u +%H:%M:%S
++ echo '===== 32768/32768 c16 16:00:36 ====='
++ timeout 5400 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data1/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 32768 --random-output-len 32768 --ignore-eos --num-prompts 16 --request-rate 16
++ curl -sf -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ for L in 1024 4096 8192 32768 65536
++ case $L in
++ CS='1 2 4 8'
++ for c in $CS
+++ date -u +%H:%M:%S
++ echo '===== 65536/65536 c1 16:09:10 ====='
++ timeout 5400 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data1/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 65536 --random-output-len 65536 --ignore-eos --num-prompts 1 --request-rate 1
++ curl -sf -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ for c in $CS
+++ date -u +%H:%M:%S
++ echo '===== 65536/65536 c2 16:13:04 ====='
++ timeout 5400 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data1/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 65536 --random-output-len 65536 --ignore-eos --num-prompts 2 --request-rate 2
++ curl -sf -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ for c in $CS
+++ date -u +%H:%M:%S
++ echo '===== 65536/65536 c4 16:19:07 ====='
++ timeout 5400 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data1/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 65536 --random-output-len 65536 --ignore-eos --num-prompts 4 --request-rate 4
++ curl -sf -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ for c in $CS
+++ date -u +%H:%M:%S
++ echo '===== 65536/65536 c8 16:27:42 ====='
++ timeout 5400 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data1/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 65536 --random-output-len 65536 --ignore-eos --num-prompts 8 --request-rate 8
++ curl -sf -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ grep -c ===== /root/m206_ops/tiers_k7.log
+90
++ echo LEG1_DONE
++ kill_all
++ pkill -9 -f '[v]llm serve'
++ pkill -9 -x vllm-rs
++ pkill -9 -f VLLM::
++ sleep 3
+/root/m206_ops/matrix_206.sh: line 12: 100860 Killed                  setsid nohup env PATH=$V/bin:/usr/local/cuda-13.2/bin:/usr/bin:/bin VLLM_USE_RUST_FRONTEND=1 VLLM_ENGINE_READY_TIMEOUT_S=7200 NCCL_P2P_LEVEL=SYS NCCL_IB_DISABLE=1 FLASHINFER_DISABLE_VERSION_CHECK=1 HF_HUB_OFFLINE=1 HF_HUB_DISABLE_XET=1 $V/bin/vllm serve $MODEL --served-model-name deepseek-v4.1-flash --tokenizer-mode deepseek_v41 --trust-remote-code --tensor-parallel-size 8 --enable-expert-parallel --kv-cache-dtype fp8 --engram-config '{"cpu_offload":true}' --compilation-config '{"cudagraph_mode":"PIECEWISE"}' --max-model-len 1048576 --max-num-seqs 128 --gpu-memory-utilization 0.90 $SPEC --max-cudagraph-capture-size $3 --enable-prompt-tokens-details --enable-auto-tool-choice --tool-call-parser deepseek_v41 --reasoning-parser deepseek_v41 --port 8123 --api-key *** > $OPS/boot_$1.log 2>&1 < /dev/null
+++ ss -tlnp
+++ grep :8123
+++ grep -oP 'pid=\K[0-9]+'
+++ sort -u
+++ nvidia-smi --query-compute-apps=pid --format=csv,noheader
++ for p in $(nvidia-smi --query-compute-apps=pid --format=csv,noheader 2>/dev/null)
++ kill -9 103608
++ rm -f '/dev/shm/nccl-*' '/dev/shm/vllm-*'
++ sleep 3
++ boot_leg k7t0 '{"method":"dspark","num_speculative_tokens":7,"draft_sample_method":"probabilistic","rejection_sample_method":"block"}' 1024
++ kill_all
++ pkill -9 -f '[v]llm serve'
++ pkill -9 -x vllm-rs
++ pkill -9 -f VLLM::
++ sleep 3
+++ ss -tlnp
+++ grep :8123
+++ grep -oP 'pid=\K[0-9]+'
+++ sort -u
+++ nvidia-smi --query-compute-apps=pid --format=csv,noheader
++ rm -f '/dev/shm/nccl-*' '/dev/shm/vllm-*'
++ sleep 3
+++ date -u
++ echo '########## BOOT k7t0 Fri Oct 30 04:38:31 PM UTC 2026 ##########'
+########## BOOT k7t0 Fri Oct 30 04:38:31 PM UTC 2026 ##########
++ local SPEC=
++ '[' -n '{"method":"dspark","num_speculative_tokens":7,"draft_sample_method":"probabilistic","rejection_sample_method":"block"}' ']'
++ SPEC='--speculative-config {"method":"dspark","num_speculative_tokens":7,"draft_sample_method":"probabilistic","rejection_sample_method":"block"}'
++ echo 'BOOT CMD: vllm serve /data1/DeepSeek-V4.1-Flash-1017 TP8/EP8 fp8KV PIECEWISE util0.90 capture=1024 spec={"method":"dspark","num_speculative_tokens":7,"draft_sample_method":"probabilistic","rejection_sample_method":"block"} [leg k7t0]'
++ setsid nohup env PATH=/root/vllmenv/bin:/usr/local/cuda-13.2/bin:/usr/bin:/bin VLLM_USE_RUST_FRONTEND=1 VLLM_ENGINE_READY_TIMEOUT_S=7200 NCCL_P2P_LEVEL=SYS NCCL_IB_DISABLE=1 FLASHINFER_DISABLE_VERSION_CHECK=1 HF_HUB_OFFLINE=1 HF_HUB_DISABLE_XET=1 /root/vllmenv/bin/vllm serve /data1/DeepSeek-V4.1-Flash-1017 --served-model-name deepseek-v4.1-flash --tokenizer-mode deepseek_v41 --trust-remote-code --tensor-parallel-size 8 --enable-expert-parallel --kv-cache-dtype fp8 --engram-config '{"cpu_offload":true}' --compilation-config '{"cudagraph_mode":"PIECEWISE"}' --max-model-len 1048576 --max-num-seqs 128 --gpu-memory-utilization 0.90 --speculative-config '{"method":"dspark","num_speculative_tokens":7,"draft_sample_method":"probabilistic","rejection_sample_method":"block"}' --max-cudagraph-capture-size 1024 --enable-prompt-tokens-details --enable-auto-tool-choice --tool-call-parser deepseek_v41 --reasoning-parser deepseek_v41 --port 8123 --api-key ***
+++ seq 1 180
++ for i in $(seq 1 180)
++ curl -sf -m 5 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ sleep 5
++ for i in $(seq 1 180)
++ curl -sf -m 5 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ sleep 5
++ for i in $(seq 1 180)
++ curl -sf -m 5 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ sleep 5
++ for i in $(seq 1 180)
++ curl -sf -m 5 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ sleep 5
++ for i in $(seq 1 180)
++ curl -sf -m 5 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ sleep 5
++ for i in $(seq 1 180)
++ curl -sf -m 5 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ sleep 5
++ for i in $(seq 1 180)
++ curl -sf -m 5 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ sleep 5
++ for i in $(seq 1 180)
++ curl -sf -m 5 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ sleep 5
++ for i in $(seq 1 180)
++ curl -sf -m 5 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ sleep 5
++ for i in $(seq 1 180)
++ curl -sf -m 5 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ sleep 5
++ for i in $(seq 1 180)
++ curl -sf -m 5 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ sleep 5
++ for i in $(seq 1 180)
++ curl -sf -m 5 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ sleep 5
++ for i in $(seq 1 180)
++ curl -sf -m 5 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ sleep 5
++ for i in $(seq 1 180)
++ curl -sf -m 5 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ sleep 5
++ for i in $(seq 1 180)
++ curl -sf -m 5 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ sleep 5
++ for i in $(seq 1 180)
++ curl -sf -m 5 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ sleep 5
++ for i in $(seq 1 180)
++ curl -sf -m 5 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ sleep 5
++ for i in $(seq 1 180)
++ curl -sf -m 5 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ sleep 5
++ for i in $(seq 1 180)
++ curl -sf -m 5 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ sleep 5
++ for i in $(seq 1 180)
++ curl -sf -m 5 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ sleep 5
++ for i in $(seq 1 180)
++ curl -sf -m 5 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ sleep 5
++ for i in $(seq 1 180)
++ curl -sf -m 5 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ sleep 5
++ for i in $(seq 1 180)
++ curl -sf -m 5 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ sleep 5
++ for i in $(seq 1 180)
++ curl -sf -m 5 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ sleep 5
++ for i in $(seq 1 180)
++ curl -sf -m 5 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ sleep 5
++ for i in $(seq 1 180)
++ curl -sf -m 5 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ sleep 5
++ for i in $(seq 1 180)
++ curl -sf -m 5 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ sleep 5
++ for i in $(seq 1 180)
++ curl -sf -m 5 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ sleep 5
++ for i in $(seq 1 180)
++ curl -sf -m 5 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ break
++ sleep 8
++ grep -q 'GPU KV cache size' /root/m206_ops/boot_k7t0.log
++ echo 'LEG_k7t0 READY'
+LEG_k7t0 READY
++ grep 'GPU KV cache size' /root/m206_ops/boot_k7t0.log
++ tail -1
+(EngineCore pid=201442) INFO 10-31 00:40:25 [kv_cache_utils.py:1147] GPU KV cache size: 11,606,172 tokens, Maximum concurrency for 1,048,576 tokens per request: 11.07x
++ return 0
++ bench_leg k7t0 '--temperature 0'
++ local LOG=/root/m206_ops/tiers_k7t0.log
++ :
++ local 'CONCS1=1 1 2 4 8 16 32 64 128' 'CONCS4=1 2 4 8 16 32' 'CONCS32=1 2 4 8 16' 'CONCS64=1 2 4 8'
++ for L in 1024 4096 8192 32768 65536
++ case $L in
++ CS='1 1 2 4 8 16 32 64 128'
++ for c in $CS
+++ date -u +%H:%M:%S
++ echo '===== 1024/1024 c1 16:40:59 ====='
++ timeout 5400 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data1/DeepSeek-V4.1-Flash-1017 --dataset-name random --temperature 0 --random-input-len 1024 --random-output-len 1024 --ignore-eos --num-prompts 1 --request-rate 1
++ curl -sf -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ for c in $CS
+++ date -u +%H:%M:%S
++ echo '===== 1024/1024 c1 16:41:11 ====='
++ timeout 5400 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data1/DeepSeek-V4.1-Flash-1017 --dataset-name random --temperature 0 --random-input-len 1024 --random-output-len 1024 --ignore-eos --num-prompts 1 --request-rate 1
++ curl -sf -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ for c in $CS
+++ date -u +%H:%M:%S
++ echo '===== 1024/1024 c2 16:41:27 ====='
++ timeout 5400 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data1/DeepSeek-V4.1-Flash-1017 --dataset-name random --temperature 0 --random-input-len 1024 --random-output-len 1024 --ignore-eos --num-prompts 2 --request-rate 2
++ curl -sf -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ for c in $CS
+++ date -u +%H:%M:%S
++ echo '===== 1024/1024 c4 16:41:42 ====='
++ timeout 5400 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data1/DeepSeek-V4.1-Flash-1017 --dataset-name random --temperature 0 --random-input-len 1024 --random-output-len 1024 --ignore-eos --num-prompts 4 --request-rate 4
++ curl -sf -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ for c in $CS
+++ date -u +%H:%M:%S
++ echo '===== 1024/1024 c8 16:41:55 ====='
++ timeout 5400 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data1/DeepSeek-V4.1-Flash-1017 --dataset-name random --temperature 0 --random-input-len 1024 --random-output-len 1024 --ignore-eos --num-prompts 8 --request-rate 8
++ curl -sf -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ for c in $CS
+++ date -u +%H:%M:%S
++ echo '===== 1024/1024 c16 16:42:16 ====='
++ timeout 5400 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data1/DeepSeek-V4.1-Flash-1017 --dataset-name random --temperature 0 --random-input-len 1024 --random-output-len 1024 --ignore-eos --num-prompts 16 --request-rate 16
++ curl -sf -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ for c in $CS
+++ date -u +%H:%M:%S
++ echo '===== 1024/1024 c32 16:42:39 ====='
++ timeout 5400 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data1/DeepSeek-V4.1-Flash-1017 --dataset-name random --temperature 0 --random-input-len 1024 --random-output-len 1024 --ignore-eos --num-prompts 32 --request-rate 32
++ curl -sf -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ for c in $CS
+++ date -u +%H:%M:%S
++ echo '===== 1024/1024 c64 16:43:07 ====='
++ timeout 5400 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data1/DeepSeek-V4.1-Flash-1017 --dataset-name random --temperature 0 --random-input-len 1024 --random-output-len 1024 --ignore-eos --num-prompts 64 --request-rate 64
++ curl -sf -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ for c in $CS
+++ date -u +%H:%M:%S
++ echo '===== 1024/1024 c128 16:43:44 ====='
++ timeout 5400 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data1/DeepSeek-V4.1-Flash-1017 --dataset-name random --temperature 0 --random-input-len 1024 --random-output-len 1024 --ignore-eos --num-prompts 128 --request-rate 128
++ curl -sf -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ for L in 1024 4096 8192 32768 65536
++ case $L in
++ CS='1 2 4 8 16 32'
++ for c in $CS
+++ date -u +%H:%M:%S
++ echo '===== 4096/4096 c1 16:44:44 ====='
++ timeout 5400 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data1/DeepSeek-V4.1-Flash-1017 --dataset-name random --temperature 0 --random-input-len 4096 --random-output-len 4096 --ignore-eos --num-prompts 1 --request-rate 1
++ curl -sf -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ for c in $CS
+++ date -u +%H:%M:%S
++ echo '===== 4096/4096 c2 16:45:04 ====='
++ timeout 5400 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data1/DeepSeek-V4.1-Flash-1017 --dataset-name random --temperature 0 --random-input-len 4096 --random-output-len 4096 --ignore-eos --num-prompts 2 --request-rate 2
++ curl -sf -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ for c in $CS
+++ date -u +%H:%M:%S
++ echo '===== 4096/4096 c4 16:45:22 ====='
++ timeout 5400 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data1/DeepSeek-V4.1-Flash-1017 --dataset-name random --temperature 0 --random-input-len 4096 --random-output-len 4096 --ignore-eos --num-prompts 4 --request-rate 4
++ curl -sf -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ for c in $CS
+++ date -u +%H:%M:%S
++ echo '===== 4096/4096 c8 16:45:48 ====='
++ timeout 5400 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data1/DeepSeek-V4.1-Flash-1017 --dataset-name random --temperature 0 --random-input-len 4096 --random-output-len 4096 --ignore-eos --num-prompts 8 --request-rate 8
++ curl -sf -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ for c in $CS
+++ date -u +%H:%M:%S
++ echo '===== 4096/4096 c16 16:46:20 ====='
++ timeout 5400 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data1/DeepSeek-V4.1-Flash-1017 --dataset-name random --temperature 0 --random-input-len 4096 --random-output-len 4096 --ignore-eos --num-prompts 16 --request-rate 16
++ curl -sf -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ for c in $CS
+++ date -u +%H:%M:%S
++ echo '===== 4096/4096 c32 16:47:24 ====='
++ timeout 5400 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data1/DeepSeek-V4.1-Flash-1017 --dataset-name random --temperature 0 --random-input-len 4096 --random-output-len 4096 --ignore-eos --num-prompts 32 --request-rate 32
++ curl -sf -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ for L in 1024 4096 8192 32768 65536
++ case $L in
++ CS='1 2 4 8 16 32'
++ for c in $CS
+++ date -u +%H:%M:%S
++ echo '===== 8192/8192 c1 16:49:07 ====='
++ timeout 5400 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data1/DeepSeek-V4.1-Flash-1017 --dataset-name random --temperature 0 --random-input-len 8192 --random-output-len 8192 --ignore-eos --num-prompts 1 --request-rate 1
++ curl -sf -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ for c in $CS
+++ date -u +%H:%M:%S
++ echo '===== 8192/8192 c2 16:49:46 ====='
++ timeout 5400 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data1/DeepSeek-V4.1-Flash-1017 --dataset-name random --temperature 0 --random-input-len 8192 --random-output-len 8192 --ignore-eos --num-prompts 2 --request-rate 2
++ curl -sf -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ for c in $CS
+++ date -u +%H:%M:%S
++ echo '===== 8192/8192 c4 16:50:25 ====='
++ timeout 5400 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data1/DeepSeek-V4.1-Flash-1017 --dataset-name random --temperature 0 --random-input-len 8192 --random-output-len 8192 --ignore-eos --num-prompts 4 --request-rate 4
++ curl -sf -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ for c in $CS
+++ date -u +%H:%M:%S
++ echo '===== 8192/8192 c8 16:51:34 ====='
++ timeout 5400 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data1/DeepSeek-V4.1-Flash-1017 --dataset-name random --temperature 0 --random-input-len 8192 --random-output-len 8192 --ignore-eos --num-prompts 8 --request-rate 8
++ curl -sf -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ for c in $CS
+++ date -u +%H:%M:%S
++ echo '===== 8192/8192 c16 16:52:50 ====='
++ timeout 5400 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data1/DeepSeek-V4.1-Flash-1017 --dataset-name random --temperature 0 --random-input-len 8192 --random-output-len 8192 --ignore-eos --num-prompts 16 --request-rate 16
++ curl -sf -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ for c in $CS
+++ date -u +%H:%M:%S
++ echo '===== 8192/8192 c32 16:54:54 ====='
++ timeout 5400 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data1/DeepSeek-V4.1-Flash-1017 --dataset-name random --temperature 0 --random-input-len 8192 --random-output-len 8192 --ignore-eos --num-prompts 32 --request-rate 32
++ curl -sf -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ for L in 1024 4096 8192 32768 65536
++ case $L in
++ CS='1 2 4 8 16'
++ for c in $CS
+++ date -u +%H:%M:%S
++ echo '===== 32768/32768 c1 16:57:01 ====='
++ timeout 5400 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data1/DeepSeek-V4.1-Flash-1017 --dataset-name random --temperature 0 --random-input-len 32768 --random-output-len 32768 --ignore-eos --num-prompts 1 --request-rate 1
++ curl -sf -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ for c in $CS
+++ date -u +%H:%M:%S
++ echo '===== 32768/32768 c2 16:58:30 ====='
++ timeout 5400 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data1/DeepSeek-V4.1-Flash-1017 --dataset-name random --temperature 0 --random-input-len 32768 --random-output-len 32768 --ignore-eos --num-prompts 2 --request-rate 2
++ curl -sf -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ for c in $CS
+++ date -u +%H:%M:%S
++ echo '===== 32768/32768 c4 17:00:11 ====='
++ timeout 5400 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data1/DeepSeek-V4.1-Flash-1017 --dataset-name random --temperature 0 --random-input-len 32768 --random-output-len 32768 --ignore-eos --num-prompts 4 --request-rate 4
++ curl -sf -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ for c in $CS
+++ date -u +%H:%M:%S
++ echo '===== 32768/32768 c8 17:02:33 ====='
++ timeout 5400 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data1/DeepSeek-V4.1-Flash-1017 --dataset-name random --temperature 0 --random-input-len 32768 --random-output-len 32768 --ignore-eos --num-prompts 8 --request-rate 8
++ curl -sf -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ for c in $CS
+++ date -u +%H:%M:%S
++ echo '===== 32768/32768 c16 17:06:34 ====='
++ timeout 5400 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data1/DeepSeek-V4.1-Flash-1017 --dataset-name random --temperature 0 --random-input-len 32768 --random-output-len 32768 --ignore-eos --num-prompts 16 --request-rate 16
++ curl -sf -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ for L in 1024 4096 8192 32768 65536
++ case $L in
++ CS='1 2 4 8'
++ for c in $CS
+++ date -u +%H:%M:%S
++ echo '===== 65536/65536 c1 17:12:12 ====='
++ timeout 5400 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data1/DeepSeek-V4.1-Flash-1017 --dataset-name random --temperature 0 --random-input-len 65536 --random-output-len 65536 --ignore-eos --num-prompts 1 --request-rate 1
++ curl -sf -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ for c in $CS
+++ date -u +%H:%M:%S
++ echo '===== 65536/65536 c2 17:17:56 ====='
++ timeout 5400 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data1/DeepSeek-V4.1-Flash-1017 --dataset-name random --temperature 0 --random-input-len 65536 --random-output-len 65536 --ignore-eos --num-prompts 2 --request-rate 2
++ curl -sf -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ for c in $CS
+++ date -u +%H:%M:%S
++ echo '===== 65536/65536 c4 17:23:55 ====='
++ timeout 5400 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data1/DeepSeek-V4.1-Flash-1017 --dataset-name random --temperature 0 --random-input-len 65536 --random-output-len 65536 --ignore-eos --num-prompts 4 --request-rate 4
++ curl -sf -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ for c in $CS
+++ date -u +%H:%M:%S
++ echo '===== 65536/65536 c8 17:30:40 ====='
++ timeout 5400 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data1/DeepSeek-V4.1-Flash-1017 --dataset-name random --temperature 0 --random-input-len 65536 --random-output-len 65536 --ignore-eos --num-prompts 8 --request-rate 8
++ curl -sf -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ grep -c ===== /root/m206_ops/tiers_k7t0.log
+90
++ echo LEG2_DONE
++ kill_all
++ pkill -9 -f '[v]llm serve'
++ pkill -9 -x vllm-rs
++ pkill -9 -f VLLM::
++ sleep 3
+/root/m206_ops/matrix_206.sh: line 12: 200038 Killed                  setsid nohup env PATH=$V/bin:/usr/local/cuda-13.2/bin:/usr/bin:/bin VLLM_USE_RUST_FRONTEND=1 VLLM_ENGINE_READY_TIMEOUT_S=7200 NCCL_P2P_LEVEL=SYS NCCL_IB_DISABLE=1 FLASHINFER_DISABLE_VERSION_CHECK=1 HF_HUB_OFFLINE=1 HF_HUB_DISABLE_XET=1 $V/bin/vllm serve $MODEL --served-model-name deepseek-v4.1-flash --tokenizer-mode deepseek_v41 --trust-remote-code --tensor-parallel-size 8 --enable-expert-parallel --kv-cache-dtype fp8 --engram-config '{"cpu_offload":true}' --compilation-config '{"cudagraph_mode":"PIECEWISE"}' --max-model-len 1048576 --max-num-seqs 128 --gpu-memory-utilization 0.90 $SPEC --max-cudagraph-capture-size $3 --enable-prompt-tokens-details --enable-auto-tool-choice --tool-call-parser deepseek_v41 --reasoning-parser deepseek_v41 --port 8123 --api-key *** > $OPS/boot_$1.log 2>&1 < /dev/null
+++ ss -tlnp
+++ grep :8123
+++ grep -oP 'pid=\K[0-9]+'
+++ sort -u
+++ nvidia-smi --query-compute-apps=pid --format=csv,noheader
++ for p in $(nvidia-smi --query-compute-apps=pid --format=csv,noheader 2>/dev/null)
++ kill -9 201847
++ rm -f '/dev/shm/nccl-*' '/dev/shm/vllm-*'
++ sleep 3
++ boot_leg nospec '' 512
++ kill_all
++ pkill -9 -f '[v]llm serve'
++ pkill -9 -x vllm-rs
++ pkill -9 -f VLLM::
++ sleep 3
+++ ss -tlnp
+++ grep :8123
+++ grep -oP 'pid=\K[0-9]+'
+++ sort -u
+++ nvidia-smi --query-compute-apps=pid --format=csv,noheader
++ rm -f '/dev/shm/nccl-*' '/dev/shm/vllm-*'
++ sleep 3
+++ date -u
++ echo '########## BOOT nospec Fri Oct 30 05:39:32 PM UTC 2026 ##########'
+########## BOOT nospec Fri Oct 30 05:39:32 PM UTC 2026 ##########
++ local SPEC=
++ '[' -n '' ']'
++ echo 'BOOT CMD: vllm serve /data1/DeepSeek-V4.1-Flash-1017 TP8/EP8 fp8KV PIECEWISE util0.90 capture=512 spec= [leg nospec]'
++ setsid nohup env PATH=/root/vllmenv/bin:/usr/local/cuda-13.2/bin:/usr/bin:/bin VLLM_USE_RUST_FRONTEND=1 VLLM_ENGINE_READY_TIMEOUT_S=7200 NCCL_P2P_LEVEL=SYS NCCL_IB_DISABLE=1 FLASHINFER_DISABLE_VERSION_CHECK=1 HF_HUB_OFFLINE=1 HF_HUB_DISABLE_XET=1 /root/vllmenv/bin/vllm serve /data1/DeepSeek-V4.1-Flash-1017 --served-model-name deepseek-v4.1-flash --tokenizer-mode deepseek_v41 --trust-remote-code --tensor-parallel-size 8 --enable-expert-parallel --kv-cache-dtype fp8 --engram-config '{"cpu_offload":true}' --compilation-config '{"cudagraph_mode":"PIECEWISE"}' --max-model-len 1048576 --max-num-seqs 128 --gpu-memory-utilization 0.90 --max-cudagraph-capture-size 512 --enable-prompt-tokens-details --enable-auto-tool-choice --tool-call-parser deepseek_v41 --reasoning-parser deepseek_v41 --port 8123 --api-key ***
+++ seq 1 180
++ for i in $(seq 1 180)
++ curl -sf -m 5 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ sleep 5
++ for i in $(seq 1 180)
++ curl -sf -m 5 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ sleep 5
++ for i in $(seq 1 180)
++ curl -sf -m 5 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ sleep 5
++ for i in $(seq 1 180)
++ curl -sf -m 5 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ sleep 5
++ for i in $(seq 1 180)
++ curl -sf -m 5 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ sleep 5
++ for i in $(seq 1 180)
++ curl -sf -m 5 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ sleep 5
++ for i in $(seq 1 180)
++ curl -sf -m 5 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ sleep 5
++ for i in $(seq 1 180)
++ curl -sf -m 5 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ sleep 5
++ for i in $(seq 1 180)
++ curl -sf -m 5 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ sleep 5
++ for i in $(seq 1 180)
++ curl -sf -m 5 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ sleep 5
++ for i in $(seq 1 180)
++ curl -sf -m 5 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ sleep 5
++ for i in $(seq 1 180)
++ curl -sf -m 5 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ sleep 5
++ for i in $(seq 1 180)
++ curl -sf -m 5 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ sleep 5
++ for i in $(seq 1 180)
++ curl -sf -m 5 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ sleep 5
++ for i in $(seq 1 180)
++ curl -sf -m 5 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ sleep 5
++ for i in $(seq 1 180)
++ curl -sf -m 5 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ sleep 5
++ for i in $(seq 1 180)
++ curl -sf -m 5 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ sleep 5
++ for i in $(seq 1 180)
++ curl -sf -m 5 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ sleep 5
++ for i in $(seq 1 180)
++ curl -sf -m 5 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ sleep 5
++ for i in $(seq 1 180)
++ curl -sf -m 5 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ sleep 5
++ for i in $(seq 1 180)
++ curl -sf -m 5 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ sleep 5
++ for i in $(seq 1 180)
++ curl -sf -m 5 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ sleep 5
++ for i in $(seq 1 180)
++ curl -sf -m 5 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ sleep 5
++ for i in $(seq 1 180)
++ curl -sf -m 5 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ sleep 5
++ for i in $(seq 1 180)
++ curl -sf -m 5 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ sleep 5
++ for i in $(seq 1 180)
++ curl -sf -m 5 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ sleep 5
++ for i in $(seq 1 180)
++ curl -sf -m 5 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ break
++ sleep 8
++ grep -q 'GPU KV cache size' /root/m206_ops/boot_nospec.log
++ echo 'LEG_nospec READY'
+LEG_nospec READY
++ grep 'GPU KV cache size' /root/m206_ops/boot_nospec.log
++ tail -1
+(EngineCore pid=269982) INFO 10-31 01:41:14 [kv_cache_utils.py:1147] GPU KV cache size: 15,344,466 tokens, Maximum concurrency for 1,048,576 tokens per request: 14.63x
++ return 0
++ bench_leg nospec ''
++ local LOG=/root/m206_ops/tiers_nospec.log
++ :
++ local 'CONCS1=1 1 2 4 8 16 32 64 128' 'CONCS4=1 2 4 8 16 32' 'CONCS32=1 2 4 8 16' 'CONCS64=1 2 4 8'
++ for L in 1024 4096 8192 32768 65536
++ case $L in
++ CS='1 1 2 4 8 16 32 64 128'
++ for c in $CS
+++ date -u +%H:%M:%S
++ echo '===== 1024/1024 c1 17:41:50 ====='
++ timeout 5400 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data1/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 1024 --random-output-len 1024 --ignore-eos --num-prompts 1 --request-rate 1
++ curl -sf -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ for c in $CS
+++ date -u +%H:%M:%S
++ echo '===== 1024/1024 c1 17:42:11 ====='
++ timeout 5400 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data1/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 1024 --random-output-len 1024 --ignore-eos --num-prompts 1 --request-rate 1
++ curl -sf -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ for c in $CS
+++ date -u +%H:%M:%S
++ echo '===== 1024/1024 c2 17:42:32 ====='
++ timeout 5400 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data1/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 1024 --random-output-len 1024 --ignore-eos --num-prompts 2 --request-rate 2
++ curl -sf -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ for c in $CS
+++ date -u +%H:%M:%S
++ echo '===== 1024/1024 c4 17:42:56 ====='
++ timeout 5400 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data1/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 1024 --random-output-len 1024 --ignore-eos --num-prompts 4 --request-rate 4
++ curl -sf -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ for c in $CS
+++ date -u +%H:%M:%S
++ echo '===== 1024/1024 c8 17:43:20 ====='
++ timeout 5400 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data1/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 1024 --random-output-len 1024 --ignore-eos --num-prompts 8 --request-rate 8
++ curl -sf -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ for c in $CS
+++ date -u +%H:%M:%S
++ echo '===== 1024/1024 c16 17:43:47 ====='
++ timeout 5400 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data1/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 1024 --random-output-len 1024 --ignore-eos --num-prompts 16 --request-rate 16
++ curl -sf -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ for c in $CS
+++ date -u +%H:%M:%S
++ echo '===== 1024/1024 c32 17:44:19 ====='
++ timeout 5400 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data1/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 1024 --random-output-len 1024 --ignore-eos --num-prompts 32 --request-rate 32
++ curl -sf -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ for c in $CS
+++ date -u +%H:%M:%S
++ echo '===== 1024/1024 c64 17:44:58 ====='
++ timeout 5400 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data1/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 1024 --random-output-len 1024 --ignore-eos --num-prompts 64 --request-rate 64
++ curl -sf -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ for c in $CS
+++ date -u +%H:%M:%S
++ echo '===== 1024/1024 c128 17:45:49 ====='
++ timeout 5400 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data1/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 1024 --random-output-len 1024 --ignore-eos --num-prompts 128 --request-rate 128
++ curl -sf -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ for L in 1024 4096 8192 32768 65536
++ case $L in
++ CS='1 2 4 8 16 32'
++ for c in $CS
+++ date -u +%H:%M:%S
++ echo '===== 4096/4096 c1 17:46:53 ====='
++ timeout 5400 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data1/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 4096 --random-output-len 4096 --ignore-eos --num-prompts 1 --request-rate 1
++ curl -sf -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ for c in $CS
+++ date -u +%H:%M:%S
++ echo '===== 4096/4096 c2 17:47:56 ====='
++ timeout 5400 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data1/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 4096 --random-output-len 4096 --ignore-eos --num-prompts 2 --request-rate 2
++ curl -sf -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ for c in $CS
+++ date -u +%H:%M:%S
++ echo '===== 4096/4096 c4 17:49:13 ====='
++ timeout 5400 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data1/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 4096 --random-output-len 4096 --ignore-eos --num-prompts 4 --request-rate 4
++ curl -sf -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ for c in $CS
+++ date -u +%H:%M:%S
++ echo '===== 4096/4096 c8 17:50:27 ====='
++ timeout 5400 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data1/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 4096 --random-output-len 4096 --ignore-eos --num-prompts 8 --request-rate 8
++ curl -sf -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ for c in $CS
+++ date -u +%H:%M:%S
++ echo '===== 4096/4096 c16 17:51:55 ====='
++ timeout 5400 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data1/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 4096 --random-output-len 4096 --ignore-eos --num-prompts 16 --request-rate 16
++ curl -sf -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ for c in $CS
+++ date -u +%H:%M:%S
++ echo '===== 4096/4096 c32 17:53:41 ====='
++ timeout 5400 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data1/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 4096 --random-output-len 4096 --ignore-eos --num-prompts 32 --request-rate 32
++ curl -sf -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ for L in 1024 4096 8192 32768 65536
++ case $L in
++ CS='1 2 4 8 16 32'
++ for c in $CS
+++ date -u +%H:%M:%S
++ echo '===== 8192/8192 c1 17:55:57 ====='
++ timeout 5400 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data1/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 8192 --random-output-len 8192 --ignore-eos --num-prompts 1 --request-rate 1
++ curl -sf -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ for c in $CS
+++ date -u +%H:%M:%S
++ echo '===== 8192/8192 c2 17:57:55 ====='
++ timeout 5400 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data1/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 8192 --random-output-len 8192 --ignore-eos --num-prompts 2 --request-rate 2
++ curl -sf -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ for c in $CS
+++ date -u +%H:%M:%S
++ echo '===== 8192/8192 c4 18:00:24 ====='
++ timeout 5400 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data1/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 8192 --random-output-len 8192 --ignore-eos --num-prompts 4 --request-rate 4
++ curl -sf -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ for c in $CS
+++ date -u +%H:%M:%S
++ echo '===== 8192/8192 c8 18:02:42 ====='
++ timeout 5400 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data1/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 8192 --random-output-len 8192 --ignore-eos --num-prompts 8 --request-rate 8
++ curl -sf -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ for c in $CS
+++ date -u +%H:%M:%S
++ echo '===== 8192/8192 c16 18:05:34 ====='
++ timeout 5400 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data1/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 8192 --random-output-len 8192 --ignore-eos --num-prompts 16 --request-rate 16
++ curl -sf -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ for c in $CS
+++ date -u +%H:%M:%S
++ echo '===== 8192/8192 c32 18:08:59 ====='
++ timeout 5400 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data1/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 8192 --random-output-len 8192 --ignore-eos --num-prompts 32 --request-rate 32
++ curl -sf -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ for L in 1024 4096 8192 32768 65536
++ case $L in
++ CS='1 2 4 8 16'
++ for c in $CS
+++ date -u +%H:%M:%S
++ echo '===== 32768/32768 c1 18:13:25 ====='
++ timeout 5400 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data1/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 32768 --random-output-len 32768 --ignore-eos --num-prompts 1 --request-rate 1
++ curl -sf -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ for c in $CS
+++ date -u +%H:%M:%S
++ echo '===== 32768/32768 c2 18:21:01 ====='
++ timeout 5400 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data1/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 32768 --random-output-len 32768 --ignore-eos --num-prompts 2 --request-rate 2
++ curl -sf -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ for c in $CS
+++ date -u +%H:%M:%S
++ echo '===== 32768/32768 c4 18:30:37 ====='
++ timeout 5400 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data1/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 32768 --random-output-len 32768 --ignore-eos --num-prompts 4 --request-rate 4
++ curl -sf -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ for c in $CS
+++ date -u +%H:%M:%S
++ echo '===== 32768/32768 c8 18:39:47 ====='
++ timeout 5400 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data1/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 32768 --random-output-len 32768 --ignore-eos --num-prompts 8 --request-rate 8
++ curl -sf -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ for c in $CS
+++ date -u +%H:%M:%S
++ echo '===== 32768/32768 c16 18:51:04 ====='
++ timeout 5400 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data1/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 32768 --random-output-len 32768 --ignore-eos --num-prompts 16 --request-rate 16
++ curl -sf -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ for L in 1024 4096 8192 32768 65536
++ case $L in
++ CS='1 2 4 8'
++ for c in $CS
+++ date -u +%H:%M:%S
++ echo '===== 65536/65536 c1 19:04:47 ====='
++ timeout 5400 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data1/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 65536 --random-output-len 65536 --ignore-eos --num-prompts 1 --request-rate 1
++ curl -sf -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ for c in $CS
+++ date -u +%H:%M:%S
++ echo '===== 65536/65536 c2 19:19:56 ====='
++ timeout 5400 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data1/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 65536 --random-output-len 65536 --ignore-eos --num-prompts 2 --request-rate 2
++ curl -sf -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ for c in $CS
+++ date -u +%H:%M:%S
++ echo '===== 65536/65536 c4 19:39:06 ====='
++ timeout 5400 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data1/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 65536 --random-output-len 65536 --ignore-eos --num-prompts 4 --request-rate 4
++ curl -sf -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ for c in $CS
+++ date -u +%H:%M:%S
++ echo '===== 65536/65536 c8 19:57:18 ====='
++ timeout 5400 /root/vllmenv/bin/vllm bench serve --base-url http://127.0.0.1:8123 --model deepseek-v4.1-flash --tokenizer /data1/DeepSeek-V4.1-Flash-1017 --dataset-name random --random-input-len 65536 --random-output-len 65536 --ignore-eos --num-prompts 8 --request-rate 8
++ curl -sf -m 10 http://127.0.0.1:8123/health -H 'Authorization: Bearer ***'
++ grep -c ===== /root/m206_ops/tiers_nospec.log
+90
++ echo LEG3_DONE
++ kill_all
++ pkill -9 -f '[v]llm serve'
++ pkill -9 -x vllm-rs
++ pkill -9 -f VLLM::
+/root/m206_ops/matrix_206.sh: line 12: 268595 Killed                  setsid nohup env PATH=$V/bin:/usr/local/cuda-13.2/bin:/usr/bin:/bin VLLM_USE_RUST_FRONTEND=1 VLLM_ENGINE_READY_TIMEOUT_S=7200 NCCL_P2P_LEVEL=SYS NCCL_IB_DISABLE=1 FLASHINFER_DISABLE_VERSION_CHECK=1 HF_HUB_OFFLINE=1 HF_HUB_DISABLE_XET=1 $V/bin/vllm serve $MODEL --served-model-name deepseek-v4.1-flash --tokenizer-mode deepseek_v41 --trust-remote-code --tensor-parallel-size 8 --enable-expert-parallel --kv-cache-dtype fp8 --engram-config '{"cpu_offload":true}' --compilation-config '{"cudagraph_mode":"PIECEWISE"}' --max-model-len 1048576 --max-num-seqs 128 --gpu-memory-utilization 0.90 $SPEC --max-cudagraph-capture-size $3 --enable-prompt-tokens-details --enable-auto-tool-choice --tool-call-parser deepseek_v41 --reasoning-parser deepseek_v41 --port 8123 --api-key *** > $OPS/boot_$1.log 2>&1 < /dev/null
++ sleep 3
+++ ss -tlnp
+++ grep :8123
+++ grep -oP 'pid=\K[0-9]+'
+++ sort -u
+++ nvidia-smi --query-compute-apps=pid --format=csv,noheader
++ for p in $(nvidia-smi --query-compute-apps=pid --format=csv,noheader 2>/dev/null)
++ kill -9 270452
++ rm -f '/dev/shm/nccl-*' '/dev/shm/vllm-*'
++ sleep 3
+++ date -u
++ echo 'ALL_DONE Fri Oct 30 08:20:29 PM UTC 2026'
+ALL_DONE Fri Oct 30 08:20:29 PM UTC 2026

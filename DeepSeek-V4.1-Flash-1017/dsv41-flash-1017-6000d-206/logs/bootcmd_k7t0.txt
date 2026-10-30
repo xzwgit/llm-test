@@ -1,0 +1,1 @@
+BOOT CMD: vllm serve /data1/DeepSeek-V4.1-Flash-1017 TP8/EP8 fp8KV PIECEWISE util0.90 capture=1024 spec={"method":"dspark","num_speculative_tokens":7,"draft_sample_method":"probabilistic","rejection_sample_method":"block"} [leg k7t0]
