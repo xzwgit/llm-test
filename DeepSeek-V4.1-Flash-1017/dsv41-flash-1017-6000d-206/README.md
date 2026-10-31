@@ -15,3 +15,7 @@ BOOM CMD summaries in `bootcmd_*.txt`; BOOT CMD in log headers. Raw timeline + m
 - **k7 + temp0 + alignment patch (PR #63533, dynamic per-group BLOCK_M) on latest nightly dev399**: 29 tiers, zero failures — `tiers_k7t0a.log`. vs no-align temp0 baseline: c1 gains across all lengths (1K +101% to 215, 4K +35% to 405, 32K +13% to 447); two regressions (4K c8 -20%, 8K c32 -27%).
 - **Multimodal VL E2E** (`vl_e2e.out`): 6/6 image cases pass (14/14 requests), TTFT 0.81-1.26s, vision tower resident.
 - Host RAM peak this leg: used 324 GiB / vLLM RSS 311 GiB.
+
+## Round 3 (2026-10-31): alignment + default sampling (completing the 2x2 grid)
+
+- **k7 + default sampling + alignment patch on dev399**: 29 tiers, zero failures — `tiers_k7defa.log`. Completes the 2x2 grid (align x temperature). Key reading: under default (random) sampling the alignment gain concentrates at 8K (c1 +80% to 266, c32 +51% to 1440) and 1K mid-concurrency (+11%); most other tiers neutral (4K c1 146 vs 150); one significant regression 4K c8 -18%. **Alignment gain strongly interacts with temperature** — it multiplies under greedy (temp0) sampling (4K c1 301→405) but is largely neutral under random sampling except 8K.
