@@ -1,0 +1,1 @@
+BOOT CMD: vllm serve /data1/DeepSeek-V4.1-Flash-1017 TP8/EP8 fp8KV PIECEWISE util0.90 capture=1024 dspark k7 prob/block temp0 + align(#63533) [leg k7t0a]
